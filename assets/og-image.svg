@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#12151b"/>
+      <stop offset="55%" stop-color="#0b0e11"/>
+      <stop offset="100%" stop-color="#0b0e11"/>
+    </linearGradient>
+    <linearGradient id="bolt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4fe8b0"/>
+      <stop offset="100%" stop-color="#14d38a"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#14d38a" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#14d38a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4fd8e8" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#4fd8e8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1000" cy="120" r="320" fill="url(#glow1)"/>
+  <circle cx="140" cy="560" r="260" fill="url(#glow2)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03">
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="310" x2="1200" y2="310"/>
+    <line x1="0" y1="470" x2="1200" y2="470"/>
+  </g>
+
+  <!-- mock candlesticks, right side, purely decorative -->
+  <g opacity="0.55">
+    <rect x="860" y="300" width="10" height="80" fill="#14d38a"/><line x1="865" y1="280" x2="865" y2="400" stroke="#14d38a" stroke-width="3"/>
+    <rect x="890" y="260" width="10" height="120" fill="#14d38a"/><line x1="895" y1="235" x2="895" y2="400" stroke="#14d38a" stroke-width="3"/>
+    <rect x="920" y="340" width="10" height="50" fill="#ff4d6a"/><line x1="925" y1="320" x2="925" y2="410" stroke="#ff4d6a" stroke-width="3"/>
+    <rect x="950" y="230" width="10" height="140" fill="#14d38a"/><line x1="955" y1="210" x2="955" y2="390" stroke="#14d38a" stroke-width="3"/>
+    <rect x="980" y="310" width="10" height="70" fill="#ff4d6a"/><line x1="985" y1="290" x2="985" y2="400" stroke="#ff4d6a" stroke-width="3"/>
+    <rect x="1010" y="200" width="10" height="160" fill="#14d38a"/><line x1="1015" y1="175" x2="1015" y2="380" stroke="#14d38a" stroke-width="3"/>
+    <rect x="1040" y="280" width="10" height="90" fill="#14d38a"/><line x1="1045" y1="260" x2="1045" y2="390" stroke="#14d38a" stroke-width="3"/>
+  </g>
+
+  <!-- logo mark -->
+  <g transform="translate(90,90)">
+    <rect width="120" height="120" rx="28" fill="#141820"/>
+    <rect x="2" y="2" width="116" height="116" rx="26" fill="none" stroke="#14d38a" stroke-opacity="0.3" stroke-width="2"/>
+    <path d="M69 12 L34 69 L54 69 L50 108 L88 49 L67 49 Z" fill="url(#bolt)"/>
+  </g>
+
+  <text x="90" y="290" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" fill="#e6e8eb">
+    <tspan fill="#e6e8eb">Crypto</tspan><tspan fill="#14d38a">Bolt</tspan>
+  </text>
+
+  <text x="92" y="340" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#9aa1ab">
+    Live Spot &amp; Futures Terminal — Charts, Order Book, AI Market Research
+  </text>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#7d8590">
+    <text x="92" y="400">📈 Real-time Binance data</text>
+    <text x="92" y="435">🤖 AI insight backed by live news &amp; sentiment</text>
+    <text x="92" y="470">🎯 Volatility-aware trade plans</text>
+  </g>
+
+  <text x="92" y="580" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#4fd8e8">
+    cryptobolt.io
+  </text>
+</svg>

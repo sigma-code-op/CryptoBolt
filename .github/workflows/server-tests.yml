@@ -1,0 +1,61 @@
+name: Server Tests
+
+# Runs the backend's Node built-in test suite (server/test/*.test.js) on every push and pull
+# request. This does NOT deploy anything — Hostinger deployment stays manual/FTP-based per
+# CryptoBolt_Complete_Deployment_Guide.md. This workflow exists purely as a safety net so a
+# breaking change to server/src/*.js is caught before it reaches production.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Backend tests (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    strategy:
+      matrix:
+        # Matches the "engines" field in server/package.json (>=18.17). Testing both the floor
+        # and a current LTS catches version-specific regressions without over-testing.
+        node-version: ['18.17', '22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+
+      - run: npm ci
+      - run: npm test
+
+  css-build:
+    name: Tailwind build is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+      - run: npm run build:css
+      # Fails the build if `npm run build:css` produces a different css/tailwind.css than what's
+      # committed — the usual cause is adding/changing a Tailwind class in HTML or JS without
+      # re-running the build before committing. See CryptoBolt_Complete_Deployment_Guide.md,
+      # "Tailwind CSS build" section.
+      - run: |
+          if ! git diff --quiet -- css/tailwind.css; then
+            echo "::error::css/tailwind.css is out of date. Run 'npm run build:css' locally and commit the result."
+            git diff --stat -- css/tailwind.css
+            exit 1
+          fi

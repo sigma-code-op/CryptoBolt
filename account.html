@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>My Account — Your Real Purchase History | CryptoBolt</title>
+    <meta name="description" content="Sign in to see every real crypto purchase you've made through CryptoBolt: what you bought, at what price, current value, and profit/loss.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://cryptobolt.io/account.html">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0b0e11">
+
+    <link rel="preconnect" href="https://api.binance.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
+    <div class="cw-ambient-orb cw-orb-1"></div>
+    <div class="cw-ambient-orb cw-orb-2"></div>
+    <div class="cw-ambient-orb cw-orb-3"></div>
+
+    <div class="container mx-auto px-4 py-6 max-w-[1400px]">
+
+        <!-- Header -->
+        <header class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-800 pb-4 mb-6 gap-4">
+            <div>
+                <a href="index.html" class="text-2xl font-bold flex items-center gap-2 tracking-tight w-fit">
+                    🪙 <span class="cw-logo-gradient">CryptoBolt</span>
+                </a>
+                <p class="text-gray-400 text-xs mt-0.5 flex items-center gap-2 flex-wrap">
+                    <span>👤 My Account</span>
+                    <span class="text-[9px] tracking-widest bg-cyan-500/10 text-[#4fd8e8] px-2 py-0.5 rounded font-bold uppercase border border-cyan-500/20">Real purchases</span>
+                </p>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap justify-end">
+                <button id="auth-open-btn" type="button" class="hidden text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">👤 Sign In</button>
+                <div id="auth-user-chip" class="hidden items-center gap-1.5">
+                    <span id="cloud-sync-status" class="hidden items-center gap-1 text-[10px] font-mono px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 cursor-pointer" title="Cloud sync status — click to sync now">
+                        <span id="cloud-sync-dot" class="status-dot status-connecting"></span>
+                        <span id="cloud-sync-label" class="hidden sm:inline">synced</span>
+                    </span>
+                    <span id="auth-user-email" class="text-[11px] font-mono px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300"></span>
+                    <button id="auth-signout-btn" type="button" class="text-[11px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer" title="Sign out">⎋ Sign Out</button>
+                </div>
+                <a href="index.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all">← Terminal</a>
+            </div>
+        </header>
+
+        <!-- Signed-out state -->
+        <div id="signed-out-panel" class="hidden">
+            <div class="cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-8 text-center max-w-md mx-auto mt-10">
+                <div class="text-4xl mb-3">👤</div>
+                <h2 class="text-lg font-bold text-white mb-2">Sign in to see your purchases</h2>
+                <p class="text-xs text-gray-500 leading-relaxed mb-5">Every real crypto purchase you make through CryptoBolt's Buy/Sell (Transak) gets saved to your account here — what you bought, at what price, current value, and profit or loss.</p>
+                <button id="signed-out-signin-btn" class="text-sm font-bold px-5 py-2.5 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">Sign In / Sign Up</button>
+            </div>
+        </div>
+
+        <!-- Not configured state -->
+        <div id="not-configured-panel" class="hidden">
+            <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-8 text-center max-w-lg mx-auto mt-10">
+                <div class="text-4xl mb-3">⚙️</div>
+                <h2 class="text-lg font-bold text-white mb-2">Accounts aren't set up yet</h2>
+                <p class="text-xs text-gray-500 leading-relaxed">Add <code class="cw-kbd">supabaseUrl</code> and <code class="cw-kbd">supabaseAnonKey</code> to <code class="cw-kbd">js/00-config.js</code>, and run <code class="cw-kbd">/supabase/schema.sql</code> in your Supabase project's SQL Editor.</p>
+            </div>
+        </div>
+
+        <!-- Signed-in dashboard -->
+        <div id="account-dashboard" class="hidden">
+
+            <!-- Hero summary -->
+            <div class="cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden mb-6">
+                <div class="px-6 py-5 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+                    <div>
+                        <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1">Current Holdings Value</span>
+                        <div class="flex items-baseline gap-3 flex-wrap">
+                            <span id="stat-value" class="text-4xl font-mono font-bold text-white">$0.00</span>
+                            <span id="stat-pnl" class="text-sm font-mono font-bold">--</span>
+                        </div>
+                        <span class="text-[11px] text-gray-500 mt-1 block">Based on everything you've bought or sold through CryptoBolt's real Buy/Sell, valued at live prices.</span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-3 text-right lg:text-left">
+                        <div>
+                            <span class="text-[9px] text-gray-500 block uppercase font-bold">Total Spent</span>
+                            <span id="stat-spent" class="text-sm font-mono font-bold text-gray-200">$0.00</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-gray-500 block uppercase font-bold">Total Sold</span>
+                            <span id="stat-sold" class="text-sm font-mono font-bold text-gray-200">$0.00</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-gray-500 block uppercase font-bold">Unrealized P&amp;L</span>
+                            <span id="stat-unrealized" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-gray-500 block uppercase font-bold">Realized P&amp;L</span>
+                            <span id="stat-realized" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-gray-500 block uppercase font-bold">Assets Held</span>
+                            <span id="stat-assets" class="text-sm font-mono font-bold text-gray-200">0</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-gray-500 block uppercase font-bold">Total Orders</span>
+                            <span id="stat-orders" class="text-sm font-mono font-bold text-gray-200">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Holdings -->
+                <div class="cw-card-interactive cw-panel-accent cw-accent-green bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
+                    <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400">💼 Holdings (from real purchases)</span>
+                        <a href="index.html" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">+ Buy More</a>
+                    </div>
+                    <div class="overflow-x-auto max-h-[360px]">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="text-[10px] font-bold uppercase text-gray-500 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0">
+                                    <th class="py-2 px-3">Asset</th>
+                                    <th class="py-2 px-3 text-right">Qty</th>
+                                    <th class="py-2 px-3 text-right">Avg Cost</th>
+                                    <th class="py-2 px-3 text-right">Price</th>
+                                    <th class="py-2 px-3 text-right">Value</th>
+                                    <th class="py-2 px-3 text-right">P&amp;L</th>
+                                </tr>
+                            </thead>
+                            <tbody id="holdings-rows" class="divide-y divide-gray-800/40 text-xs font-mono">
+                                <tr><td colspan="6" class="py-8 text-center text-gray-600 text-[11px]">No purchases yet.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Order history -->
+                <div class="cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
+                    <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400">🧾 Order History</span>
+                        <button id="refresh-btn" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#4fd8e8] hover:border-[#4fd8e8]/40 transition-all cursor-pointer">⟳ Refresh</button>
+                    </div>
+                    <div class="overflow-x-auto max-h-[360px]">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="text-[10px] font-bold uppercase text-gray-500 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0">
+                                    <th class="py-2 px-3">Date</th>
+                                    <th class="py-2 px-3">Asset</th>
+                                    <th class="py-2 px-3">Side</th>
+                                    <th class="py-2 px-3 text-right">Qty</th>
+                                    <th class="py-2 px-3 text-right">Spent/Received</th>
+                                    <th class="py-2 px-3 text-right">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-rows" class="divide-y divide-gray-800/40 text-xs font-mono">
+                                <tr><td colspan="6" class="py-8 text-center text-gray-600 text-[11px]">No orders yet — buy some crypto from the terminal to see it here.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-[10px] text-gray-600 leading-relaxed px-1 mt-6">
+                ℹ️ This page shows real orders you completed through CryptoBolt's Buy/Sell (Transak). CryptoBolt never holds your money or crypto — Transak sends it directly to your own wallet; this is a personal record of what you did, not a custody account.
+            </p>
+        </div>
+    </div>
+
+    <!-- Sign in / sign up modal -->
+    <div id="auth-modal" class="cw-modal-backdrop">
+        <div class="cw-modal-card" style="max-width:380px;" role="dialog" aria-modal="true" aria-label="Sign in or create an account">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#1e222b]">
+                <div class="flex items-center gap-4">
+                    <button id="auth-tab-signin" type="button" class="auth-tab-btn auth-tab-active text-sm font-bold pb-1 cursor-pointer">Sign In</button>
+                    <button id="auth-tab-signup" type="button" class="auth-tab-btn text-sm font-bold pb-1 cursor-pointer">Sign Up</button>
+                </div>
+                <button id="auth-modal-close" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
+            </div>
+            <div class="p-4 space-y-3">
+                <div id="auth-config-warning" class="hidden text-[10.5px] leading-relaxed text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded p-2.5">
+                    Accounts aren't set up on this deployment yet — add <code class="cw-kbd">supabaseUrl</code> and <code class="cw-kbd">supabaseAnonKey</code> in <code class="cw-kbd">js/00-config.js</code>.
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
+                    <input id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
+                        class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Password</label>
+                    <input id="auth-password-input" type="password" placeholder="At least 6 characters" autocomplete="current-password"
+                        class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                </div>
+                <div id="auth-error" class="hidden text-[11px] text-[#ff4d6a] bg-[#ff4d6a]/10 border border-[#ff4d6a]/20 rounded p-2"></div>
+                <div id="auth-info" class="hidden text-[11px] text-[#14d38a] bg-[#14d38a]/10 border border-[#14d38a]/20 rounded p-2"></div>
+                <button id="auth-submit-btn" class="w-full text-sm font-bold uppercase py-2.5 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">Sign In</button>
+                <a href="#" id="auth-forgot-link" class="block text-center text-[11px] text-gray-500 hover:text-gray-300 cursor-pointer">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 items-end"></div>
+
+    <script src="js/00-config.js"></script>
+    <script src="js/17-auth.js"></script>
+    <script src="js/19-cloud-sync.js"></script>
+    <script src="js/18-account.js"></script>
+</body>
+</html>

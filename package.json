@@ -1,0 +1,14 @@
+{
+  "name": "cryptobolt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CryptoBolt frontend build tooling (Tailwind CSS compilation). The site itself is static HTML/JS with no bundler — this only compiles Tailwind's utility classes to a static stylesheet.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/cli": "^4.3.3"
+  }
+}

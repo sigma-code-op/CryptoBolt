@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>Contact Us — CryptoBolt</title>
+    <meta name="description" content="Get in touch with the CryptoBolt team — questions, feedback, or partnership inquiries about the live crypto spot & futures terminal.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cryptobolt.io/contact.html">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0b0e11">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/contact.html">
+    <meta property="og:title" content="Contact Us — CryptoBolt">
+    <meta property="og:description" content="Get in touch with the CryptoBolt team — questions, feedback, or partnership inquiries.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
+    <div class="cw-ambient-orb cw-orb-1"></div>
+    <div class="cw-ambient-orb cw-orb-2"></div>
+    <div class="cw-ambient-orb cw-orb-3"></div>
+
+    <div class="container mx-auto px-4 py-6 max-w-[820px]">
+        <header class="flex items-center justify-between border-b border-gray-800 pb-4 mb-8">
+            <a href="index.html" class="text-xl font-bold flex items-center gap-2 tracking-tight">
+                🪙 <span class="cw-logo-gradient">CryptoBolt</span>
+            </a>
+            <a href="index.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all">← Back to terminal</a>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <!-- Contact form -->
+            <main class="md:col-span-3 cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-6 sm:p-8">
+                <div class="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#4fd8e8]">Get in touch</div>
+                <h1 class="text-2xl font-bold text-white mb-1" style="font-family:'Space Grotesk','Inter',sans-serif;">Contact us</h1>
+                <p class="text-gray-500 text-[12px] mb-6 leading-relaxed">Found a bug, have a feature idea, or something not working right? Send it straight to the team below.</p>
+
+                <form id="contact-form" class="space-y-4">
+                    <!-- Honeypot: hidden from real visitors via CSS, but a bot that fills every field will populate it, flagging the submission as spam server-side. -->
+                    <div class="hc-honeypot" aria-hidden="true">
+                        <label for="contact-company">Company</label>
+                        <input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div>
+                        <label for="contact-name" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Your name</label>
+                        <input id="contact-name" type="text" required placeholder="Jane Trader"
+                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#4fd8e8]">
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Your email</label>
+                        <input id="contact-email" type="email" required placeholder="you@example.com"
+                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#4fd8e8]">
+                    </div>
+                    <div>
+                        <label for="contact-topic" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Topic</label>
+                        <select id="contact-topic" class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 focus:outline-none focus:border-[#4fd8e8]">
+                            <option value="Bug report">Bug report</option>
+                            <option value="Feature request">Feature request</option>
+                            <option value="AI Insight / Groq key question">AI Insight / Groq key question</option>
+                            <option value="Privacy question">Privacy question</option>
+                            <option value="Something else">Something else</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="contact-message" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Message</label>
+                        <textarea id="contact-message" required rows="5" placeholder="What's going on? The more detail (asset, browser, steps to reproduce) the faster it's useful."
+                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#4fd8e8] resize-y"></textarea>
+                    </div>
+                    <button type="submit" id="contact-submit-btn" class="cw-shine w-full sm:w-auto text-sm px-5 py-2.5 rounded bg-[#14d38a] text-[#06110d] font-bold hover:opacity-90 transition-all cursor-pointer">
+                        ✉ Send message
+                    </button>
+                    <div id="contact-status" class="hidden text-[11px] leading-relaxed rounded p-2.5" role="status" aria-live="polite"></div>
+                </form>
+            </main>
+
+            <!-- Direct channels -->
+            <aside class="md:col-span-2 flex flex-col gap-4">
+                <div class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-xl p-5">
+                    <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Direct channels</div>
+                    <div class="space-y-3 text-[12.5px]">
+                        <a href="mailto:support@cryptobolt.io" class="flex items-center gap-2.5 text-gray-300 hover:text-[#4fd8e8] transition-colors">
+                            <span class="text-base">✉</span> support@cryptobolt.io
+                        </a>
+                        <a href="https://github.com/sigma-code-op/CRYPTOBOLT/issues" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 text-gray-300 hover:text-[#4fd8e8] transition-colors">
+                            <span class="text-base">🐙</span> Report an issue on GitHub
+                        </a>
+                        <a href="https://github.com/sigma-code-op/CRYPTOBOLT" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 text-gray-300 hover:text-[#4fd8e8] transition-colors">
+                            <span class="text-base">📄</span> Source &amp; documentation
+                        </a>
+                    </div>
+                    <p class="text-gray-600 text-[10px] mt-4 leading-relaxed">The form above sends to your mailbox via the backend in <code class="cw-kbd">/server</code> — set <code class="cw-kbd">SMTP_*</code> and <code class="cw-kbd">CONTACT_TO_EMAIL</code> in its <code class="cw-kbd">.env</code> (see <code class="cw-kbd">.env.example</code>). Until then it falls back to opening an email app.</p>
+                </div>
+
+                <div class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-xl p-5">
+                    <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Before you write in</div>
+                    <ul class="space-y-2 text-[11.5px] text-gray-400 list-disc pl-4">
+                        <li>Market data issues are usually Binance/CoinGecko-side — check <a href="https://www.binance.com/en/support/announcement" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Binance's status page</a> first.</li>
+                        <li>AI panel not working? Confirm a Groq key is saved and the backend in <code class="cw-kbd">/server</code> is running and reachable.</li>
+                        <li>This app doesn't place real trades or hold funds — nothing here can affect an actual exchange account.</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="cw-footer pb-8 mt-8">
+            <div class="pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <p class="text-[10px] text-gray-600">© <span id="footer-year"></span> CryptoBolt. Not financial advice.</p>
+                <p class="text-[10px] text-gray-600"><a href="index.html">Terminal</a> · <a href="privacy.html">Privacy</a> · <a href="https://github.com/sigma-code-op/CRYPTOBOLT" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/00-config.js"></script>
+    <script>
+        document.querySelectorAll('#footer-year').forEach(el => el.innerText = new Date().getFullYear());
+
+        const contactForm = document.getElementById('contact-form');
+        const statusBox = document.getElementById('contact-status');
+        const submitBtn = document.getElementById('contact-submit-btn');
+        const CONTACT_FALLBACK_EMAIL = 'support@cryptobolt.io';
+
+        function showStatus(message, kind) {
+            statusBox.textContent = message;
+            statusBox.classList.remove('hidden', 'text-[#14d38a]', 'bg-[#14d38a]/10', 'border', 'border-[#14d38a]/20', 'text-[#ff4d6a]', 'bg-[#ff4d6a]/10', 'border-[#ff4d6a]/20', 'text-amber-300', 'bg-amber-500/10', 'border-amber-500/20');
+            if (kind === 'success') statusBox.classList.add('text-[#14d38a]', 'bg-[#14d38a]/10', 'border', 'border-[#14d38a]/20');
+            else if (kind === 'error') statusBox.classList.add('text-[#ff4d6a]', 'bg-[#ff4d6a]/10', 'border', 'border-[#ff4d6a]/20');
+            else statusBox.classList.add('text-amber-300', 'bg-amber-500/10', 'border', 'border-amber-500/20');
+        }
+
+        function openMailtoFallback(name, email, topic, message) {
+            const subject = encodeURIComponent(`[CryptoBolt] ${topic} — from ${name}`);
+            const body = encodeURIComponent(`${message}\n\n—\nFrom: ${name} (${email})`);
+            window.location.href = `mailto:${CONTACT_FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+        }
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const topic = document.getElementById('contact-topic').value;
+            const message = document.getElementById('contact-message').value.trim();
+            const company = document.getElementById('contact-company').value; // honeypot
+            if (!name || !email || !message) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending…';
+
+            const apiBase = (typeof CW_CONFIG !== 'undefined' && CW_CONFIG.apiBaseUrl) ? CW_CONFIG.apiBaseUrl : '';
+
+            try {
+                const res = await fetch(`${apiBase}/api/contact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, topic, message, company }),
+                });
+
+                if (res.ok) {
+                    showStatus("Message sent — we'll get back to you soon.", 'success');
+                    contactForm.reset();
+                } else if (res.status === 503) {
+                    // Backend is reachable but SMTP isn't configured yet on this deployment — fall back gracefully.
+                    showStatus("This deployment's contact form isn't fully set up yet — opening your email app instead.", 'warning');
+                    openMailtoFallback(name, email, topic, message);
+                } else {
+                    const body = await res.json().catch(() => ({}));
+                    showStatus(body.error || 'Could not send your message. Opening your email app instead.', 'error');
+                    openMailtoFallback(name, email, topic, message);
+                }
+            } catch {
+                // Backend unreachable (not deployed yet, wrong apiBaseUrl, offline, etc.) — fall back to mailto so the form still "works".
+                showStatus("Couldn't reach the server — opening your email app instead.", 'warning');
+                openMailtoFallback(name, email, topic, message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '✉ Send message';
+            }
+        });
+    </script>
+</body>
+</html>
