@@ -4,7 +4,7 @@
 // as this frontend). If aiInsightUrl is falsy, the AI panel silently uses the local, rule-based
 // fallback instead of calling any backend.
 const CW_CONFIG = {
-    apiBaseUrl: '',            // e.g. 'https://cryptobolt-api.yourhost.com'
+    apiBaseUrl: 'https://api.cryptobolt.io',            // e.g. 'https://cryptobolt-api.yourhost.com'
     aiInsightUrl: '/api/ai-insight',
 
     // ---------- Transak (Buy/Sell Crypto widget) ----------
