@@ -1,5 +1,7 @@
 # CryptoBolt: Step-by-Step Deployment Guide (Start to Finish)
 
+*Updated August 2026 — reflects the current Hostinger panel and Transak dashboard layouts.*
+
 This assumes you're starting fresh and want every click spelled out. Follow the parts in order —
 don't skip ahead, later parts depend on earlier ones. Each step tells you exactly what to click
 and what you should see afterward, so you know if it worked before moving on.
@@ -12,8 +14,8 @@ and what you should see afterward, so you know if it worked before moving on.
 3. Set up Supabase (accounts + cloud sync database)
 4. Set up Transak (crypto buy/sell)
 5. Put your Supabase/Transak keys into the code
-6. Deploy the backend (the AI proxy server)
-7. Deploy the frontend (the actual website) to Hostinger
+6. Deploy the backend (the AI proxy server) — on Hostinger
+7. Deploy the frontend (the actual website) — on Hostinger
 8. Connect your domain + HTTPS
 9. Test everything on the live site
 ```
@@ -56,7 +58,7 @@ You only do this once, ever, on your computer.
 ## PART 2: Get the project code onto your computer and into GitHub
 
 ### 2.1 Open the project folder
-- Unzip the `CryptoBolt` folder I gave you somewhere sensible, e.g. `Documents/CryptoBolt`.
+- Unzip the `CryptoBolt` folder somewhere sensible, e.g. `Documents/CryptoBolt`.
 - Open it in VS Code: **File → Open Folder** → select that `CryptoBolt` folder.
 
 ### 2.2 Open a terminal inside VS Code
@@ -68,12 +70,8 @@ If this folder is brand new (not already a git repo connected to GitHub), run:
 
 ```bash
 git init
-git remote add origin https://github.com/sigma-code-op/YOUR-REPO-NAME.git
+git remote add origin https://github.com/sigma-code-op/CryptoBolt.git
 ```
-
-Replace `YOUR-REPO-NAME` with your actual repo name on GitHub. If you're not sure it exists yet:
-go to https://github.com/new, name it (e.g. `cryptobolt`), leave everything else default, click
-**Create repository**, and use that URL above.
 
 If the folder is **already** connected to your existing GitHub repo (you've pushed before), skip
 this step entirely — check with:
@@ -85,12 +83,12 @@ If that prints a URL with `sigma-code-op` in it, you're already connected, move 
 ### 2.4 Push the code
 ```bash
 git add .
-git commit -m "Deploy-ready CryptoBolt: AI model fix, cloud sync, compiled Tailwind"
+git commit -m "Deploy-ready CryptoBolt"
 git branch -M main
 git push -u origin main
 ```
 - First time pushing, it may open a browser window asking you to log into GitHub — do that.
-- **Check it worked**: go to `https://github.com/sigma-code-op/YOUR-REPO-NAME` in your browser.
+- **Check it worked**: go to `https://github.com/sigma-code-op/CryptoBolt` in your browser.
   You should see all the files (`index.html`, `js/`, `server/`, etc.) listed there.
 
 ---
@@ -162,7 +160,7 @@ you must run `npm run build:css` again before pushing, or the live site will loo
    ```
 4. Click **Save**.
 
-### 4.5 Copy your two keys (you'll need these in Part 6)
+### 4.5 Copy your two keys (you'll need these in Part 7)
 1. Left sidebar → **Project Settings** (gear icon) → **API**.
 2. You'll see **Project URL** — copy it, paste it into a scratch note. Looks like
    `https://abcdefgh.supabase.co`.
@@ -178,48 +176,62 @@ you must run `npm run build:css` again before pushing, or the live site will loo
 ### 5.1 Create an account
 1. Go to https://dashboard.transak.com/ → sign up / log in.
 
-### 5.2 Create an API key
-1. In the left sidebar, find **Developer** → **API Keys** (naming may vary slightly by dashboard
-   version — look for "API Keys" or "Integration").
-2. Click **Create new API key** (or similar).
-3. Copy the key it gives you — paste into your scratch note.
+### 5.2 Get your API key
+1. In the left sidebar, click **Developers**.
+2. Your **API Key** is shown right there under an "API Key" card — click the copy icon next to
+   it and paste it into your scratch note.
+3. Note the environment toggle at the top right of the dashboard (Staging / Production) — make
+   sure it's set to **Staging** while you copy the key. You'll get a separate Production key
+   later, once you're ready to take real payments.
+4. Ignore the **API Secret** card below it — that's only needed for advanced backend-to-backend
+   integrations, not for the Buy/Sell widget this project uses. Never put the API Secret in any
+   frontend code.
 
-### 5.3 Allow your domain
-1. Find **Allowed Domains** (usually on the same API key settings page).
-2. Add both:
-   ```
-   cryptobolt.io
-   www.cryptobolt.io
-   ```
-3. Save.
+### 5.3 About domain whitelisting
+Transak's dashboard no longer has a self-serve "Allowed Domains" field. Here's what that means
+in practice:
+- **Staging** (what you're using now) doesn't enforce domain whitelisting — your key will work
+  on `cryptobolt.io` immediately, no extra step needed.
+- **Production** (real money) does require your domain to be whitelisted. When you're ready to
+  go live (Part 10), you'll need to submit `cryptobolt.io` and `www.cryptobolt.io` to Transak
+  support, or through the KYB verification flow at https://forms.transak.com/kyb — this is also
+  when Production API access gets unlocked for you.
 
 ### 5.4 Leave it in STAGING for now
-Don't touch the environment/production toggle yet — you'll test with fake money first, and flip
-to production only after everything works (Part 9).
+Don't touch the environment toggle yet — you'll test with fake money first, and only submit for
+production access after everything else works (Part 10).
 
 ---
 
-## PART 6: Deploy the backend (the AI proxy server)
+## PART 6: Deploy the backend (the AI proxy server) — Hostinger Node.js
 
-This is a small Node.js server. You have two good options — pick ONE.
+This is a small Node.js server that lives in the `server/` folder of your repo. Hostinger's panel
+was reorganized recently — the old "Advanced → Node.js" menu is gone. Node.js apps now live under
+**Websites**.
 
-### Option A: Render.com (easiest for a first deploy, free tier)
+1. Log into Hostinger → **hPanel**.
+2. Left sidebar → **Websites** → **Web Apps**.
+3. Click **Add Website** / **Create Application** (label may say "Deploy Web App" or similar —
+   pick the **Node.js web app** option, not WordPress or PHP).
+4. Choose **Import Git repository** → **Connect with GitHub**. A popup asks you to install the
+   Hostinger GitHub App and pick which repos it can access — allow access to your `CryptoBolt`
+   repo (under `sigma-code-op`).
+5. Select the repo, branch `main`, and click through to the configuration screen. Hostinger tries
+   to auto-detect settings from `package.json` — since your backend lives in the `server/`
+   subfolder rather than the repo root, check for a field like **Application root**, **Working
+   directory**, or **Install command** and set/adjust it so it points at `server/`:
+   - **Application root / working directory**: `server`
+   - **Node.js version**: 18 or newer
+   - **Build/Install command**: `npm install` (run inside `server/`)
+   - **Startup file**: `src/server.js`
 
-1. Go to https://render.com → sign up (GitHub login is easiest — it'll ask to connect your
-   GitHub account, allow it).
-2. Click **New +** (top right) → **Web Service**.
-3. Find and select your `sigma-code-op` repo → click **Connect**.
-4. Fill in the form:
-   - **Name**: `cryptobolt-api` (this becomes part of your URL)
-   - **Region**: closest to you
-   - **Branch**: `main`
-   - **Root Directory**: `server`
-   - **Runtime**: Node
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-   - **Instance Type**: Free
-5. Scroll down to **Environment Variables** → click **Add Environment Variable** and add each of
-   these one at a time (name in the left box, value in the right box):
+   If the setup wizard doesn't offer a subfolder option at all, use the **Upload archive**
+   method instead: zip just the contents of your `server/` folder (so `package.json` sits at the
+   top of the zip) and upload that instead of connecting the whole repo. You'll then need to
+   re-upload/redeploy manually whenever you change backend code, since it won't auto-track GitHub
+   pushes.
+6. Find the **Environment Variables** section for this app (usually on the app's dashboard under
+   a "Environment Variables" or "Settings" tab) and add each of these:
 
    | Key | Value |
    |---|---|
@@ -230,40 +242,19 @@ This is a small Node.js server. You have two good options — pick ONE.
    | `CONTACT_RATE_LIMIT_MAX` | `5` |
    | `CONTACT_RATE_LIMIT_WINDOW_MINUTES` | `15` |
 
-   (Optional, for the contact form to send real email — see Part 6.3 below, skip for now if
-   unsure.)
+   (Optional, for the contact form to send real email — see 6.1 below, skip for now if unsure.)
 
-6. Click **Create Web Service** (bottom of page). Wait 2–5 minutes while it builds — you'll see
-   a log stream. When it says "Your service is live," it's done.
-7. At the top of the page you'll see your URL, something like
-   `https://cryptobolt-api.onrender.com`. **Copy this — you need it in Part 7.**
+7. Click **Deploy** / **Save**. Wait for the build/deploy log to finish. Hostinger will show you
+   the app's URL — something like `https://your-app-name.hostinger.dev` — **copy this, you need
+   it in Part 7.**
+8. **Check it worked**: open `YOUR-URL/api/health` in a browser. You should see JSON like:
+   ```json
+   {"ok":true,"service":"cryptobolt-server","model":"openai/gpt-oss-120b", ...}
+   ```
+   If `model` says something else, go back into the app's Environment Variables and confirm
+   `GROQ_MODEL` saved correctly, then redeploy/restart.
 
-**Check it worked**: open `https://cryptobolt-api.onrender.com/api/health` (your actual URL) in a
-browser. You should see JSON text like:
-```json
-{"ok":true,"service":"cryptobolt-server","model":"openai/gpt-oss-120b", ...}
-```
-If `model` says `llama-3.3-70b-versatile`, your `GROQ_MODEL` env var didn't save — go back and
-check it under Render's **Environment** tab.
-
-### Option B: Hostinger Node.js (if your Hostinger plan includes it)
-
-1. Log into Hostinger → **hPanel**.
-2. Find **Websites** or **Advanced → Node.js** (exact label depends on your plan — if you don't
-   see a Node.js option at all, your plan doesn't support it; use Option A instead).
-3. Click **Create Application** (or similar).
-4. Set:
-   - **Node.js version**: 18 or newer
-   - **Application root**: point it at the `server` folder of your repo (connect via Git if
-     offered, or upload the contents of `server/` directly so `package.json` sits at the top).
-   - **Startup file**: `src/server.js`
-5. Find the **Environment Variables** section for this app and add the same six variables from
-   the table in Option A above.
-6. Click **Save** / **Deploy**. Hostinger will show you the app's URL — copy it.
-7. **Check it worked**: same as Option A — open `YOUR-URL/api/health` in a browser and confirm
-   `ok: true` and the correct model.
-
-### 6.3 (Optional) Contact form email
+### 6.1 (Optional) Contact form email
 Skip this if you're fine with the contact form opening the visitor's email app instead of
 sending directly. To send real email through a Hostinger mailbox, add these additional env
 variables (same place as above):
@@ -285,11 +276,11 @@ Save, then restart/redeploy the backend app for it to pick up the new variables.
 ## PART 7: Put your keys into the code
 
 1. In VS Code, open `js/00-config.js`.
-2. It should look like this — fill in the blanks with what you copied in Parts 4, 5, and 6:
+2. Fill in the blanks with what you copied in Parts 4, 5, and 6:
 
 ```js
 const CW_CONFIG = {
-    apiBaseUrl: 'https://cryptobolt-api.onrender.com',   // ← your backend URL from Part 6, NO trailing slash
+    apiBaseUrl: 'https://your-app-name.hostinger.dev',   // ← your backend URL from Part 6, NO trailing slash
     aiInsightUrl: '/api/ai-insight',
     transakApiKey: 'PASTE_YOUR_TRANSAK_KEY_HERE',         // ← from Part 5.2
     transakEnvironment: 'STAGING',                         // ← leave as STAGING for now
@@ -312,15 +303,13 @@ const CW_CONFIG = {
 
 ### 8.1 Connect Hostinger to your GitHub repo
 1. Log into Hostinger → **hPanel**.
-2. **Websites** → **Add Website** (or if you already have the site, go to its dashboard instead
-   and skip to 8.2).
-3. Choose the option to deploy from **GitHub** (may be labeled "Git" or under "Advanced →
-   Git").
-4. Authorize Hostinger to access your GitHub account if asked, then select the `sigma-code-op`
-   repo and the `main` branch.
-5. Set the deployment/public directory to the **repository root** (not `server/` — that's the
+2. Left sidebar → **Websites** → click **Add Website**.
+3. Choose to deploy from **GitHub** — the wizard will ask you to authorize Hostinger's GitHub
+   App if you haven't already (same as Part 6.4), then pick your `CryptoBolt` repo and the
+   `main` branch.
+4. Set the deployment/public directory to the **repository root** (not `server/` — that's the
    backend, this is the website files).
-6. Click **Deploy** / **Save**.
+5. Click **Deploy** / **Save**.
 
 ### 8.2 Confirm it deployed
 - Hostinger will show a deployment log — wait for it to say success.
@@ -337,34 +326,36 @@ version — that's the whole point of connecting it to GitHub.
 
 ### 9.1 Point your domain at Hostinger
 1. In Hostinger hPanel, find **Domains** → select `cryptobolt.io` → **DNS / Name Servers**.
-2. If the domain was bought elsewhere, log into that registrar and either:
-   - point its **nameservers** to Hostinger's (Hostinger's DNS page shows you the exact
-     nameserver addresses to use), or
-   - add the specific **A record** / **CNAME record** Hostinger's setup wizard shows you.
+2. Since you bought the domain through Hostinger, this may already be pointed correctly — check
+   the DNS Zone records for an A record pointing at your site. If it was bought elsewhere,
+   either point its **nameservers** to Hostinger's (Hostinger's DNS page shows you the exact
+   nameserver addresses to use), or add the specific **A record** Hostinger's setup wizard shows
+   you.
 3. This step can take anywhere from a few minutes to 24 hours to fully propagate — don't panic
    if `cryptobolt.io` doesn't load instantly.
 
-### 9.2 Create the backend subdomain (if using Option A/Render for backend)
-1. Still in Hostinger's DNS settings for `cryptobolt.io`, add a new **CNAME record**:
+### 9.2 Create the backend subdomain
+1. Still in Hostinger's DNS settings for `cryptobolt.io`, check whether your Node.js app (Part
+   6) offers a **Domains** or **Custom Domain** tab within its own app dashboard — Hostinger's
+   newer Node.js apps often let you attach a subdomain directly there.
+2. If so: attach `api.cryptobolt.io` to the backend app from within its dashboard, and Hostinger
+   will handle the DNS record for you automatically.
+3. If not: manually add a **CNAME record** in the DNS Zone for `cryptobolt.io`:
    - **Name/Host**: `api`
-   - **Points to**: your Render URL's host, e.g. `cryptobolt-api.onrender.com`
-2. In Render, go to your web service → **Settings** → **Custom Domains** → **Add Custom Domain**
-   → type `api.cryptobolt.io` → follow its verification steps.
-3. Once verified, **update `js/00-config.js`** — change `apiBaseUrl` to `https://api.cryptobolt.io`
-   instead of the `onrender.com` URL, then also add `https://api.cryptobolt.io`... actually no
-   change needed to `ALLOWED_ORIGINS` (that's about who's *allowed to call* the backend, i.e. your
-   frontend domain — leave it as `cryptobolt.io`). Commit and push the config change.
+   - **Points to**: your backend app's Hostinger URL host (e.g. `your-app-name.hostinger.dev`)
+4. Once it's attached and resolving, update `js/00-config.js` — change `apiBaseUrl` to
+   `https://api.cryptobolt.io` instead of the `.hostinger.dev` URL. Commit and push.
 
 ### 9.3 Wait, then confirm HTTPS
-- Hostinger and Render both auto-issue free HTTPS certificates once DNS is pointed correctly —
-  usually within minutes to a couple hours after DNS propagates.
+- Hostinger auto-issues free HTTPS certificates once DNS is pointed correctly — usually within
+  minutes to a couple hours after DNS propagates.
 - **Check it worked** — open each of these in a browser and confirm they load with a padlock
   icon (HTTPS, not "not secure"):
   ```
   https://cryptobolt.io
   https://cryptobolt.io/account.html
   https://cryptobolt.io/trade.html
-  https://api.cryptobolt.io/api/health   (or your Render URL if you skipped 9.2)
+  https://api.cryptobolt.io/api/health
   ```
 
 ---
@@ -384,26 +375,29 @@ Go through this list on the real `https://cryptobolt.io` — check each box ment
       there too within a few seconds (that's cloud sync working).
 - [ ] Click **Buy/Sell** — the Transak widget should open (still in STAGING, so no real money).
 - [ ] Go to `contact.html`, fill out the form, submit — either you get a confirmation, or your
-      email app opens (depending on whether you set up SMTP in 6.3).
+      email app opens (depending on whether you set up SMTP in 6.1).
 - [ ] Open the AI Insight panel, paste in a Groq API key (get a free one at
       https://console.groq.com if you don't have one), click analyze — it should return a result
       within a few seconds.
 - [ ] Right-click anywhere on the page → **Inspect** → **Console** tab — scroll through, there
       shouldn't be red error messages.
 
-If everything above checks out, switch Transak to real money:
+If everything above checks out, and you're ready to accept real payments:
 
-1. Open `js/00-config.js`, change:
+1. Submit `cryptobolt.io` for Transak's KYB/production approval (Part 5.3) if you haven't
+   already, and get your Production API key from the dashboard.
+2. Open `js/00-config.js`, change:
    ```js
+   transakApiKey: 'YOUR_PRODUCTION_KEY',
    transakEnvironment: 'PRODUCTION',
    ```
-2. Save, commit, push:
+3. Save, commit, push:
    ```bash
    git add js/00-config.js
    git commit -m "Go live with Transak production"
    git push
    ```
-3. Hostinger auto-redeploys. Give it a minute, then confirm `trade.html`/Buy still opens
+4. Hostinger auto-redeploys. Give it a minute, then confirm `trade.html`/Buy still opens
    correctly.
 
 **You're live.** 🎉
@@ -422,16 +416,17 @@ Double check `supabaseUrl` and `supabaseAnonKey` in `js/00-config.js` are copied
 
 **AI panel says "model unavailable" or similar:**
 Open `YOUR-BACKEND-URL/api/health` in a browser. Check the `model` field. If it's wrong, go back
-to your backend host (Render or Hostinger) and fix the `GROQ_MODEL` environment variable, then
-restart the service.
+to your backend app in Hostinger and fix the `GROQ_MODEL` environment variable, then
+restart/redeploy the app.
 
 **Buy/Sell button doesn't open a widget:**
-Check `transakApiKey` in `js/00-config.js`, and confirm `cryptobolt.io` is in Transak's Allowed
-Domains list (Part 5.3).
+Check `transakApiKey` in `js/00-config.js` is correct and matches the environment
+(`transakEnvironment`) you're using. In staging, no domain whitelisting is needed — if it still
+fails, double-check for typos or stray spaces in the key.
 
 **Backend health check fails / times out:**
-Open your backend host's dashboard (Render: your service → **Logs** tab) and look for red error
-text — it usually tells you exactly what's wrong (missing env var, crashed on startup, etc.).
+Open your Hostinger Node.js app's dashboard → **Logs** and look for red error text — it usually
+tells you exactly what's wrong (missing env var, crashed on startup, etc.).
 
 **CORS error in the browser console** (mentions "blocked by CORS policy"):
 Your `ALLOWED_ORIGINS` env var on the backend doesn't exactly match your live domain. It must be
@@ -449,8 +444,9 @@ Your `ALLOWED_ORIGINS` env var on the backend doesn't exactly match your live do
    git commit -m "describe what you changed"
    git push
    ```
-4. Hostinger auto-redeploys the frontend within a minute or two. If you changed backend code
-   (`server/` folder), also redeploy on Render (it also auto-redeploys on push, same as
-   Hostinger) or Hostinger Node.js (may need a manual restart depending on your plan).
+4. Hostinger auto-redeploys both the frontend and backend apps within a minute or two of the
+   push (assuming both are connected via GitHub as described above). If you used the manual
+   zip-upload method for the backend (Part 6, fallback), you'll need to re-upload it by hand
+   after backend changes.
 5. GitHub Actions runs your tests automatically in the background — check the **Actions** tab
    on your GitHub repo page for a green check ✅ or red ✗ on your latest commit.

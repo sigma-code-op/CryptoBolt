@@ -11,7 +11,7 @@ const CW_CONFIG = {
     // Get a free API key from your Transak dashboard: https://dashboard.transak.com/
     // (Sign up -> Developer -> API Keys). Leave blank and the Buy/Sell buttons will show
     // setup instructions instead of the widget.
-    transakApiKey: '',
+    transakApiKey: '620c5f6c-5f08-4cda-a06f-483c0a0953f0',
     // 'STAGING' = Transak's sandbox (no real money, test cards only) — good for development.
     // 'PRODUCTION' = live, real fiat/crypto transactions. Switch this once you're ready to go live.
     transakEnvironment: 'STAGING',
@@ -21,6 +21,6 @@ const CW_CONFIG = {
     // supabaseAnonKey is the PUBLIC "anon" key — it's meant to be exposed in frontend code and is
     // safe to commit; it only works within the Row Level Security policies defined in the database
     // (see /supabase/schema.sql). NEVER put the "service_role" key here or anywhere in frontend code.
-    supabaseUrl: '',
-    supabaseAnonKey: ''
+    supabaseUrl: 'https://xdfkumkkfskdmlemelso.supabase.co',
+    supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkZmt1bWtrZnNrZG1sZW1lbHNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1MTkxODMsImV4cCI6MjEwMjA5NTE4M30.Lv0pj2Xb3b0aCtg6ByvURuBblWpxSWgUm9tWA6HGLUA'
 };
