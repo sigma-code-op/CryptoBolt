@@ -14,30 +14,47 @@
 // actual money or crypto — Transak moves it directly to the buyer's own wallet; this is purely
 // a receipt log. If nobody's signed in, the purchase still goes through, it's just not saved
 // anywhere on our side.
+//
+// Widget URL: Transak now requires the iframe src to be a short-lived, single-use widgetUrl
+// minted by a backend call (their old "put params straight in the URL" method is deprecated and
+// gets a hard 403). See server/src/server.js POST /api/transak-widget-url — the API secret lives
+// there only, never in this file or js/00-config.js.
 
 (function setupTransakWidget() {
-    const TRANSAK_STAGING_URL = 'https://global-stg.transak.com';
-    const TRANSAK_PRODUCTION_URL = 'https://global.transak.com';
-
-    function transakBaseUrl() {
-        return (CW_CONFIG.transakEnvironment === 'PRODUCTION') ? TRANSAK_PRODUCTION_URL : TRANSAK_STAGING_URL;
+    // Transak deprecated embedding widget params directly in the iframe URL — it now hard-403s
+    // that (with an X-Frame-Options: sameorigin block on the resulting error page). The widget
+    // URL must be minted server-side per request via our own backend, which holds the Transak
+    // API secret and calls Transak's Create Widget URL API. See server/src/server.js for the
+    // POST /api/transak-widget-url endpoint. Each returned widgetUrl is single-use and expires
+    // in 5 minutes, so we fetch a fresh one every time the modal opens or the asset/mode changes
+    // — never cached or reused.
+    function resolveApiUrl(path) {
+        const base = (CW_CONFIG.apiBaseUrl || '').replace(/\/$/, '');
+        return /^https?:\/\//i.test(path) ? path : `${base}${path}`;
     }
 
-    function buildTransakUrl(mode, cryptoSymbol) {
-        const url = new URL(transakBaseUrl());
-        url.searchParams.set('apiKey', CW_CONFIG.transakApiKey);
-        url.searchParams.set('productsAvailable', mode); // 'BUY' or 'SELL'
-        url.searchParams.set('defaultCryptoCurrency', cryptoSymbol);
-        url.searchParams.set('hostURL', window.location.origin);
-        url.searchParams.set('widgetHeight', '640px');
-        url.searchParams.set('widgetWidth', '100%');
-        url.searchParams.set('themeColor', mode === 'BUY' ? '14d38a' : 'ff9f1c');
-        url.searchParams.set('exchangeScreenTitle', `${mode === 'BUY' ? 'Buy' : 'Sell'} ${cryptoSymbol}`);
-        // Tags the order with our own signed-in user's id so we can attribute it to their
-        // account in the TRANSAK_ORDER_SUCCESSFUL payload — omitted entirely for guests.
+    async function fetchTransakWidgetUrl(mode, cryptoSymbol) {
+        const body = { mode, symbol: cryptoSymbol };
         const user = window.cwAuth?.getUser?.();
-        if (user) url.searchParams.set('partnerCustomerId', user.id);
-        return url.toString();
+        if (user) body.partnerCustomerId = user.id;
+
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 15000);
+        try {
+            const res = await fetch(resolveApiUrl('/api/transak-widget-url'), {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(body),
+                signal: controller.signal,
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data.widgetUrl) {
+                throw new Error(data?.error || `Widget session request failed (${res.status})`);
+            }
+            return data.widgetUrl;
+        } finally {
+            clearTimeout(timer);
+        }
     }
 
     // Assets offered in the "change asset" dropdown: curated popular list, plus whatever the
@@ -91,26 +108,35 @@
     let currentMode = 'BUY';
     let activeIframe = null;
 
-    function renderBody() {
-        if (!CW_CONFIG.transakApiKey) {
+    // Bumped on every renderBody() call so a slow/late-arriving fetch from a previous open (or a
+    // rapid asset/mode switch) can never overwrite what's currently on screen.
+    let renderToken = 0;
+
+    async function renderBody() {
+        const myToken = ++renderToken;
+        bodyEl.innerHTML = `
+            <div class="p-5 text-center text-gray-500 text-xs">
+                Starting a secure session…
+            </div>`;
+        activeIframe = null;
+
+        const symbol = assetSelect.value || 'BTC';
+        try {
+            const widgetUrl = await fetchTransakWidgetUrl(currentMode, symbol);
+            if (myToken !== renderToken) return; // superseded by a newer open/switch
+            bodyEl.innerHTML = `<iframe id="transak-iframe" src="${widgetUrl}" allow="camera;microphone;payment" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:640px;border:0;display:block;"></iframe>`;
+            activeIframe = document.getElementById('transak-iframe');
+        } catch (err) {
+            if (myToken !== renderToken) return;
+            console.error('[CryptoBolt] Failed to start Transak widget session:', err?.message || err);
             bodyEl.innerHTML = `
                 <div class="p-5 text-center">
-                    <p class="text-xs text-gray-300 mb-2">The Buy/Sell widget needs a free Transak API key before it can load.</p>
-                    <p class="text-[10.5px] text-gray-500 leading-relaxed mb-3">
-                        Grab one from your Transak dashboard, then set <code class="cw-kbd">transakApiKey</code>
-                        (and optionally switch <code class="cw-kbd">transakEnvironment</code> to
-                        <code class="cw-kbd">'PRODUCTION'</code>) in <code class="cw-kbd">js/00-config.js</code>.
-                    </p>
-                    <a href="https://dashboard.transak.com/" target="_blank" rel="noopener noreferrer"
-                       class="inline-block text-[11px] px-3 py-1.5 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all">Get an API key ↗</a>
+                    <p class="text-xs text-gray-300 mb-2">Couldn't start the Buy/Sell session.</p>
+                    <p class="text-[10.5px] text-gray-500 leading-relaxed mb-3">${escapeHtml(err?.message || 'Please try again in a moment.')}</p>
+                    <button id="transak-retry-btn" type="button" class="inline-block text-[11px] px-3 py-1.5 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Retry</button>
                 </div>`;
-            activeIframe = null;
-            return;
+            document.getElementById('transak-retry-btn')?.addEventListener('click', renderBody);
         }
-        const symbol = assetSelect.value || 'BTC';
-        const iframeUrl = buildTransakUrl(currentMode, symbol);
-        bodyEl.innerHTML = `<iframe id="transak-iframe" src="${iframeUrl}" allow="camera;microphone;payment" style="width:100%;height:640px;border:0;display:block;"></iframe>`;
-        activeIframe = document.getElementById('transak-iframe');
     }
 
     function populateAssetSelect(preset) {
@@ -215,8 +241,4 @@
 
     document.getElementById('futures-buy-btn')?.addEventListener('click', () => openTransakWidget('BUY', firstFuturesSymbol(), { isFutures: true }));
     document.getElementById('futures-sell-btn')?.addEventListener('click', () => openTransakWidget('SELL', firstFuturesSymbol(), { isFutures: true }));
-
-    if (!CW_CONFIG.transakApiKey) {
-        console.info('[CryptoBolt] Transak API key not set — Buy/Sell buttons will show setup instructions until js/00-config.js has transakApiKey filled in.');
-    }
 })();

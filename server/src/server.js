@@ -26,6 +26,52 @@ const GROQ_MODEL = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
 // Each visitor pastes their own key into the app; it's sent per-request in the
 // x-groq-key header, used once to call Groq, and never logged or stored.
 
+// ---------- Transak (Buy/Sell Crypto widget) ----------
+// Transak deprecated embedding widget params directly in the iframe URL (that now gets a hard
+// 403 + X-Frame-Options block) and now REQUIRES generating the widget URL from a backend using
+// the partner API key + secret. Full flow: (1) exchange apiKey+secret for a short-lived partner
+// access token, (2) use that token to mint a single-use, 5-minute sessionId + widgetUrl scoped to
+// this specific buy/sell request, (3) hand only that widgetUrl back to the browser. The secret
+// itself NEVER reaches the frontend.
+const TRANSAK_API_KEY = process.env.TRANSAK_API_KEY || '';
+const TRANSAK_API_SECRET = process.env.TRANSAK_API_SECRET || '';
+const TRANSAK_ENVIRONMENT = (process.env.TRANSAK_ENVIRONMENT || 'STAGING').toUpperCase();
+const TRANSAK_REFERRER_DOMAIN = process.env.TRANSAK_REFERRER_DOMAIN || '';
+const TRANSAK_REFRESH_TOKEN_URL = TRANSAK_ENVIRONMENT === 'PRODUCTION'
+  ? 'https://api.transak.com/partners/api/v2/refresh-token'
+  : 'https://api-stg.transak.com/partners/api/v2/refresh-token';
+const TRANSAK_CREATE_SESSION_URL = TRANSAK_ENVIRONMENT === 'PRODUCTION'
+  ? 'https://api-gateway.transak.com/api/v2/auth/session'
+  : 'https://api-gateway-stg.transak.com/api/v2/auth/session';
+
+// The partner access token is valid 7 days — cached in memory (per server process) and only
+// refreshed once it's within an hour of expiring, so we're not hitting Transak's auth endpoint
+// on every single Buy/Sell click.
+let cachedTransakAccessToken = null;
+let cachedTransakAccessTokenExpiresAt = 0;
+
+async function getTransakAccessToken() {
+  const nowSec = Math.floor(Date.now() / 1000);
+  if (cachedTransakAccessToken && cachedTransakAccessTokenExpiresAt - nowSec > 3600) {
+    return cachedTransakAccessToken;
+  }
+  const res = await fetch(TRANSAK_REFRESH_TOKEN_URL, {
+    method: 'POST',
+    headers: { accept: 'application/json', 'api-secret': TRANSAK_API_SECRET, 'content-type': 'application/json' },
+    body: JSON.stringify({ apiKey: TRANSAK_API_KEY }),
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    throw new Error(`Transak refresh-token failed (${res.status}): ${text.slice(0, 200)}`);
+  }
+  const json = await res.json();
+  const accessToken = json?.data?.accessToken;
+  if (!accessToken) throw new Error('Transak refresh-token response missing accessToken');
+  cachedTransakAccessToken = accessToken;
+  cachedTransakAccessTokenExpiresAt = Number(json?.data?.expiresAt) || nowSec + 6 * 24 * 60 * 60;
+  return cachedTransakAccessToken;
+}
+
 const app = express();
 app.set('trust proxy', 1);
 app.use(helmet());
@@ -115,7 +161,76 @@ const aiLimiter = rateLimit({
 });
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'cryptobolt-server', model: GROQ_MODEL, mailerConfigured: isMailerConfigured(), time: new Date().toISOString() });
+  res.json({
+    ok: true,
+    service: 'cryptobolt-server',
+    model: GROQ_MODEL,
+    mailerConfigured: isMailerConfigured(),
+    transakConfigured: Boolean(TRANSAK_API_KEY && TRANSAK_API_SECRET && TRANSAK_REFERRER_DOMAIN),
+    time: new Date().toISOString(),
+  });
+});
+
+// Rate limited per-IP — mints a live, single-use Transak session, so it shouldn't be hammered.
+const transakLimiter = rateLimit({
+  windowMs: (Number(process.env.TRANSAK_RATE_LIMIT_WINDOW_MINUTES) || 15) * 60 * 1000,
+  max: Number(process.env.TRANSAK_RATE_LIMIT_MAX) || 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many widget requests from this address. Please wait and try again.' },
+});
+
+// Mints a fresh, single-use Transak widgetUrl for one Buy/Sell modal open. Called every time the
+// modal opens or the asset/mode changes — a sessionId can't be reused, so this is never cached
+// on the frontend.
+app.post('/api/transak-widget-url', transakLimiter, async (req, res) => {
+  if (!TRANSAK_API_KEY || !TRANSAK_API_SECRET) {
+    return res.status(503).json({ error: 'Transak is not configured on this server yet (missing TRANSAK_API_KEY / TRANSAK_API_SECRET).' });
+  }
+  if (!TRANSAK_REFERRER_DOMAIN) {
+    return res.status(503).json({ error: 'TRANSAK_REFERRER_DOMAIN is not set on this server.' });
+  }
+
+  const mode = req.body?.mode === 'SELL' ? 'SELL' : 'BUY';
+  const symbol = String(req.body?.symbol || 'BTC').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 15) || 'BTC';
+
+  const widgetParams = {
+    apiKey: TRANSAK_API_KEY,
+    referrerDomain: TRANSAK_REFERRER_DOMAIN,
+    productsAvailable: mode,
+    defaultCryptoCurrency: symbol,
+    themeColor: mode === 'BUY' ? '14d38a' : 'ff9f1c',
+    exchangeScreenTitle: `${mode === 'BUY' ? 'Buy' : 'Sell'} ${symbol}`,
+  };
+  // Only forward a partnerCustomerId that looks like one of our own Supabase user UUIDs — never
+  // trust an arbitrary client-supplied string here, since it gets attributed to a real order.
+  const partnerCustomerId = req.body?.partnerCustomerId;
+  if (typeof partnerCustomerId === 'string' && /^[0-9a-f-]{36}$/i.test(partnerCustomerId)) {
+    widgetParams.partnerCustomerId = partnerCustomerId;
+  }
+
+  try {
+    const accessToken = await getTransakAccessToken();
+    const sessionRes = await fetch(TRANSAK_CREATE_SESSION_URL, {
+      method: 'POST',
+      headers: { accept: 'application/json', 'access-token': accessToken, 'content-type': 'application/json' },
+      body: JSON.stringify({ widgetParams }),
+    });
+    if (!sessionRes.ok) {
+      const text = await sessionRes.text().catch(() => '');
+      console.error('[cryptobolt-server] Transak create-widget-url failed:', sessionRes.status, text.slice(0, 300));
+      return res.status(502).json({ error: 'Could not start the Transak widget session. Please try again.' });
+    }
+    const sessionJson = await sessionRes.json();
+    const widgetUrl = sessionJson?.data?.widgetUrl;
+    if (!widgetUrl) {
+      return res.status(502).json({ error: 'Transak session response was missing a widget URL.' });
+    }
+    return res.json({ widgetUrl });
+  } catch (err) {
+    console.error('[cryptobolt-server] Transak widget URL error:', err?.message || err);
+    return res.status(502).json({ error: 'Could not reach Transak right now. Please try again shortly.' });
+  }
 });
 
 // Rate limited per-IP so the contact form can't be used to spam an inbox.
