@@ -8,13 +8,12 @@ const CW_CONFIG = {
     aiInsightUrl: '/api/ai-insight',
 
     // ---------- Transak (Buy/Sell Crypto widget) ----------
-    // Get a free API key from your Transak dashboard: https://dashboard.transak.com/
-    // (Sign up -> Developer -> API Keys). Leave blank and the Buy/Sell buttons will show
-    // setup instructions instead of the widget.
-    transakApiKey: '620c5f6c-5f08-4cda-a06f-483c0a0953f0',
-    // 'STAGING' = Transak's sandbox (no real money, test cards only) — good for development.
-    // 'PRODUCTION' = live, real fiat/crypto transactions. Switch this once you're ready to go live.
-    transakEnvironment: 'STAGING',
+    // Transak now requires the widget URL to be minted server-side per request (their old
+    // client-side "params in the URL" method is deprecated and gets a hard 403). So there's
+    // nothing to configure here anymore — the Buy/Sell modal calls this app's own backend
+    // (apiBaseUrl + POST /api/transak-widget-url), and the real Transak API key + secret live
+    // ONLY in server/.env (TRANSAK_API_KEY, TRANSAK_API_SECRET, TRANSAK_ENVIRONMENT,
+    // TRANSAK_REFERRER_DOMAIN). See server/.env.example for setup.
 
     // ---------- Supabase (accounts + real purchase history) ----------
     // Create a free project at https://supabase.com, then Project Settings -> API to get these.
