@@ -72,7 +72,7 @@
     backdrop.id = 'transak-modal';
     backdrop.className = 'cw-modal-backdrop';
     backdrop.innerHTML = `
-        <div class="cw-modal-card" style="max-width:480px; padding:0; overflow:hidden;" role="dialog" aria-modal="true" aria-label="Buy or sell crypto">
+        <div class="cw-modal-card" style="max-width:480px; padding:0; overflow-x:hidden;" role="dialog" aria-modal="true" aria-label="Buy or sell crypto">
             <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#1e222b]">
                 <div class="flex items-center gap-2">
                     <h2 id="transak-modal-title" class="text-sm font-bold text-white">Buy Crypto</h2>
@@ -124,7 +124,12 @@
         try {
             const widgetUrl = await fetchTransakWidgetUrl(currentMode, symbol);
             if (myToken !== renderToken) return; // superseded by a newer open/switch
-            bodyEl.innerHTML = `<iframe id="transak-iframe" src="${widgetUrl}" allow="camera;microphone;payment" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:640px;border:0;display:block;"></iframe>`;
+            // Fixed 640px was taller than most phone screens (with the header/notes bars
+            // above it also eating vertical space), pushing Transak's own Buy/Sell button
+            // below the fold with no way to reach it. min(640px, 75dvh) keeps the desktop
+            // size but shrinks to fit short mobile viewports; the modal card itself also
+            // scrolls now as a fallback (see .cw-modal-card in styles.css).
+            bodyEl.innerHTML = `<iframe id="transak-iframe" src="${widgetUrl}" allow="camera;microphone;payment" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:min(640px, 75vh);height:min(640px, 75dvh);border:0;display:block;"></iframe>`;
             activeIframe = document.getElementById('transak-iframe');
         } catch (err) {
             if (myToken !== renderToken) return;
