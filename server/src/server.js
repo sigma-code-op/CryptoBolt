@@ -489,11 +489,17 @@ app.use((err, _req, res, _next) => {
   return res.status(500).json({ error: 'Internal server error.' });
 });
 
-// Only bind to a port when this file is run directly (`npm start` / `node src/server.js`).
-// When imported by the test suite, `app` is used with its own ephemeral listener instead,
-// so tests never fight over PORT or leave a real server running after they finish.
-const isMainModule = process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
-if (isMainModule) {
+// Bind to a port unless this file was imported by the test suite (NODE_ENV=test), which uses
+// `app` with its own ephemeral listener instead, so tests never fight over PORT or leave a real
+// server running after they finish.
+//
+// NOTE: this used to detect "was I run directly?" via `import.meta.url === file://${process.argv[1]}`
+// (the ESM equivalent of `require.main === module`). That check silently fails on Hostinger's
+// Node.js hosting because Hostinger launches the app through its own process wrapper, so
+// process.argv[1] never matches import.meta.url — app.listen() never ran, and Hostinger killed
+// the app after 3 seconds with "App did not call listen() within 3 seconds." Every deploy was
+// hitting this. An explicit NODE_ENV check avoids relying on how the host invokes the process.
+if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`[cryptobolt-server] listening on port ${PORT} (bring-your-own-key mode, model: ${GROQ_MODEL})`);
   });
