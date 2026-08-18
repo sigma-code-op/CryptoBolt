@@ -74,7 +74,15 @@ async function getTransakAccessToken() {
 
 const app = express();
 app.set('trust proxy', 1);
-app.use(helmet());
+// helmet()'s default Cross-Origin-Resource-Policy: same-origin header blocks this API's
+// responses from being read by fetch() calls made from the frontend's origin (cryptobolt.io
+// calling api.cryptobolt.io — two different origins by design). The browser enforces that
+// header regardless of CORS being configured correctly, and it fails silently as a generic
+// "Failed to fetch" in the browser with no explanatory error surfaced to the page — a plain
+// page visit (e.g. opening /api/health directly in a tab) is a navigation, not a fetch, so it's
+// unaffected by CORP and can misleadingly look like the server is fine. cross-origin here is
+// intentional and safe: real access control is handled by the CORS origin allowlist below.
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(express.json({ limit: '32kb' }));
 
 // ---------- Live internet research (news + market-wide sentiment) ----------
