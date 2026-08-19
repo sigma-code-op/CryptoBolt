@@ -6,10 +6,11 @@
     "use strict";
 
     const API_BASE =
+        (typeof CW_CONFIG !== "undefined" && CW_CONFIG?.apiBaseUrl) ||
         window.CW_CONFIG?.apiBaseUrl ||
         "https://api.cryptobolt.io";
 
-    const AI_ENDPOINT = `${API_BASE}/api/ai-chat`;
+    const AI_ENDPOINT = `${API_BASE.replace(/\/$/, "")}/api/ai-chat`;
 
     const $ = id => document.getElementById(id);
 
@@ -66,29 +67,41 @@
         return $("timeframe").value;
     }
 
-    function binanceBase() {
-        return $("market-type").value === "futures"
-            ? "https://fapi.binance.com"
-            : "https://api.binance.com";
+    function isFutures() {
+        return $("market-type").value === "futures";
+    }
+
+    /** Spot uses /api/v3, futures uses /fapi/v1 */
+    function tickerUrl(sym) {
+        if (isFutures()) {
+            return `https://fapi.binance.com/fapi/v1/ticker/24hr?symbol=${sym}`;
+        }
+        return `https://api.binance.com/api/v3/ticker/24hr?symbol=${sym}`;
+    }
+
+    function klinesUrl(sym, interval) {
+        if (isFutures()) {
+            return `https://fapi.binance.com/fapi/v1/klines?symbol=${sym}&interval=${interval}&limit=100`;
+        }
+        return `https://api.binance.com/api/v3/klines?symbol=${sym}&interval=${interval}&limit=100`;
     }
 
     async function fetchMarket() {
 
         const sym = symbol();
 
-        const ticker = await fetch(
-            `${binanceBase()}/api/v3/ticker/24hr?symbol=${sym}`
-        ).then(r => {
-            if (!r.ok) throw new Error("Asset not found");
+        const ticker = await fetch(tickerUrl(sym)).then(r => {
+            if (!r.ok) throw new Error("Asset not found on Binance");
             return r.json();
         });
 
         let candles;
 
         try {
-            candles = await fetch(
-                `${binanceBase()}/api/v3/klines?symbol=${sym}&interval=${timeframe()}&limit=100`
-            ).then(r => r.json());
+            candles = await fetch(klinesUrl(sym, timeframe())).then(r => {
+                if (!r.ok) throw new Error("klines failed");
+                return r.json();
+            });
         } catch {
             candles = [];
         }
@@ -101,7 +114,9 @@
             high24h: Number(ticker.highPrice),
             low24h: Number(ticker.lowPrice),
             volume: Number(ticker.quoteVolume),
-            candles
+            candles,
+            isFutures: isFutures(),
+            timeframe: timeframe()
         };
 
         updateMarketUI();
@@ -230,6 +245,8 @@
 
     /* -----------------------------
        AI CHAT
+       Server expects: { message, context }
+       Client previously sent: { question, market }  ← bug
     ----------------------------- */
 
     async function askAI(question) {
@@ -253,11 +270,15 @@
 
             const technical = technicalContext();
 
+            // Match server contract in server/src/server.js (/api/ai-chat):
+            //   body.message  = user question
+            //   body.context  = market snapshot object
             const payload = {
 
-                question,
+                message: question,
 
-                market: {
+                context: {
+                    selectedAsset: marketData.asset,
                     asset: marketData.asset,
                     symbol: marketData.symbol,
                     price: marketData.price,
@@ -265,15 +286,12 @@
                     high24h: marketData.high24h,
                     low24h: marketData.low24h,
                     volume24h: marketData.volume,
-
-                    timeframe: timeframe(),
-
+                    market: marketData.isFutures ? "futures" : "spot",
+                    timeframe: marketData.timeframe || timeframe(),
                     ma7: technical.ma7,
                     ma25: technical.ma25,
                     rsi14: technical.rsi14,
-
-                    recentCloses:
-                        technical.recentCloses
+                    recentCloses: technical.recentCloses
                 }
 
             };
@@ -291,11 +309,11 @@
 
             });
 
-            const data = await response.json();
+            const data = await response.json().catch(() => ({}));
 
             if (!response.ok)
                 throw new Error(
-                    data.error || "AI request failed."
+                    data.error || `AI request failed (${response.status}).`
                 );
 
             return data.answer;
@@ -469,22 +487,26 @@
                     technicalContext();
 
                 const trend =
-                    tech.ma7 > tech.ma25
-                        ? "Bullish"
-                        : tech.ma7 < tech.ma25
-                            ? "Bearish"
-                            : "Neutral";
+                    tech.ma7 != null && tech.ma25 != null
+                        ? (tech.ma7 > tech.ma25
+                            ? "Bullish"
+                            : tech.ma7 < tech.ma25
+                                ? "Bearish"
+                                : "Neutral")
+                        : "—";
 
                 $("result-trend")
                     .textContent = trend;
 
                 $("result-momentum")
                     .textContent =
-                        tech.rsi14 >= 70
-                            ? "Strong / Overbought"
-                            : tech.rsi14 <= 30
-                                ? "Strong / Oversold"
-                                : "Moderate";
+                        tech.rsi14 == null
+                            ? "—"
+                            : tech.rsi14 >= 70
+                                ? "Strong / Overbought"
+                                : tech.rsi14 <= 30
+                                    ? "Strong / Oversold"
+                                    : "Moderate";
 
                 $("result-rsi")
                     .textContent =
@@ -494,7 +516,7 @@
 
                 $("result-sentiment")
                     .textContent =
-                    "Ask AI";
+                    "Ask AI in chat";
 
                 $("analysis-title")
                     .textContent =
@@ -504,14 +526,16 @@
                     .textContent =
                     `Price is currently $${formatPrice(marketData.price)}. ` +
                     `The 24-hour move is ${marketData.change24h.toFixed(2)}%. ` +
-                    `MA(7) is ${tech.ma7 > tech.ma25 ? "above" : "below"} MA(25), ` +
+                    (tech.ma7 != null && tech.ma25 != null
+                        ? `MA(7) is ${tech.ma7 > tech.ma25 ? "above" : "below"} MA(25), `
+                        : "") +
                     `while RSI(14) is ${tech.rsi14?.toFixed(1) ?? "unavailable"}.`;
 
                 $("result-reasoning")
                     .innerHTML = `
                         <li>Current price: $${formatPrice(marketData.price)}</li>
-                        <li>MA(7): $${formatPrice(tech.ma7)}</li>
-                        <li>MA(25): $${formatPrice(tech.ma25)}</li>
+                        <li>MA(7): ${tech.ma7 != null ? "$" + formatPrice(tech.ma7) : "—"}</li>
+                        <li>MA(25): ${tech.ma25 != null ? "$" + formatPrice(tech.ma25) : "—"}</li>
                         <li>24h change: ${marketData.change24h.toFixed(2)}%</li>
                     `;
 
