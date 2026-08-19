@@ -427,7 +427,8 @@ app.post('/api/ai-insight', aiLimiter, async (req, res) => {
     // ---- Pass 1: research (free-text reasoning, not JSON-constrained) ----
     const researchCompletion = await groq.chat.completions.create({
       model: GROQ_MODEL,
-      max_tokens: 420,
+      max_tokens: 700,
+      reasoning_effort: 'low',
       messages: [
         { role: 'system', content: RESEARCH_SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },
@@ -436,17 +437,34 @@ app.post('/api/ai-insight', aiLimiter, async (req, res) => {
     const researchNotes = (researchCompletion.choices?.[0]?.message?.content || '').trim();
 
     // ---- Pass 2: synthesis, grounded in pass 1's own notes ----
-    const synthesisCompletion = await groq.chat.completions.create({
-      model: GROQ_MODEL,
-      max_tokens: 550,
-      response_format: { type: 'json_object' },
-      messages: [
-        { role: 'system', content: synthesisSystemPrompt(enrichedCtx) },
-        { role: 'user', content: `${userPrompt}\n\nResearch notes from pass 1 (ground your answer in these):\n${researchNotes || '(no research notes were returned — reason from the raw data above only)'}` },
-      ],
-    });
-
-    const rawText = (synthesisCompletion.choices?.[0]?.message?.content || '').trim();
+    // gpt-oss models on Groq can occasionally spend their whole token budget on internal
+    // reasoning and return an empty completion under response_format: json_object (Groq
+    // then rejects it with a 400 json_validate_failed and an empty failed_generation). This
+    // is intermittent, not deterministic, so one retry clears most cases without user impact.
+    const synthesisMessages = [
+      { role: 'system', content: synthesisSystemPrompt(enrichedCtx) },
+      { role: 'user', content: `${userPrompt}\n\nResearch notes from pass 1 (ground your answer in these):\n${researchNotes || '(no research notes were returned — reason from the raw data above only)'}` },
+    ];
+    let rawText = '';
+    let lastErr = null;
+    for (let attempt = 0; attempt < 2 && !rawText; attempt++) {
+      try {
+        const synthesisCompletion = await groq.chat.completions.create({
+          model: GROQ_MODEL,
+          max_tokens: 1200,
+          reasoning_effort: 'low',
+          response_format: { type: 'json_object' },
+          messages: synthesisMessages,
+        });
+        rawText = (synthesisCompletion.choices?.[0]?.message?.content || '').trim();
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    if (!rawText) {
+      if (lastErr) throw lastErr;
+      return res.status(502).json({ error: 'AI model returned an empty response — try again.' });
+    }
     const cleaned = rawText.replace(/^```json\s*/i, '').replace(/```$/, '').trim();
 
     let parsed;
