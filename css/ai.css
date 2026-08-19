@@ -683,3 +683,20 @@ body {
         flex-basis: 100%;
     }
 }
+
+/* =========================================================
+   Visibility helpers — must beat component display rules
+   (ai.css loads after Tailwind, so .ai-loading { display:flex }
+   was overriding .hidden { display:none })
+   ========================================================= */
+.hidden {
+    display: none !important;
+}
+
+.ai-loading.hidden,
+#analysis-result.hidden,
+#analysis-empty.hidden,
+#api-panel.hidden,
+.ai-api-panel.hidden {
+    display: none !important;
+}
