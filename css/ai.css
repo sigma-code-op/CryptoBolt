@@ -1,0 +1,685 @@
+/* =========================================================
+   CryptoBolt AI Research
+   ========================================================= */
+
+:root {
+    --ai-green: #14d38a;
+    --ai-cyan: #4fd8e8;
+    --ai-bg: #0b0e11;
+    --ai-card: rgba(20, 24, 31, 0.88);
+    --ai-border: rgba(255,255,255,.07);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    overflow-x: hidden;
+}
+
+.ai-background {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.ai-orb {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .08;
+}
+
+.ai-orb-one {
+    background: #14d38a;
+    top: -200px;
+    left: -150px;
+}
+
+.ai-orb-two {
+    background: #4fd8e8;
+    right: -200px;
+    bottom: -200px;
+}
+
+.ai-shell {
+    position: relative;
+    z-index: 1;
+    width: min(1500px, calc(100% - 32px));
+    margin: auto;
+    padding: 24px 0 60px;
+}
+
+.ai-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--ai-border);
+}
+
+.ai-brand {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.ai-logo {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.ai-logo span {
+    background: linear-gradient(90deg, #fff, #14d38a);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.ai-title-main {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.ai-subtitle {
+    color: #6d7480;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.ai-live-badge {
+    font-size: 8px;
+    letter-spacing: .12em;
+    color: var(--ai-green);
+    border: 1px solid rgba(20,211,138,.25);
+    background: rgba(20,211,138,.08);
+    padding: 4px 7px;
+    border-radius: 999px;
+}
+
+.ai-header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.ai-nav-button {
+    border: 1px solid var(--ai-border);
+    background: rgba(255,255,255,.025);
+    color: #aab2bd;
+    padding: 9px 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.ai-nav-button:hover {
+    color: white;
+    border-color: rgba(20,211,138,.35);
+}
+
+.ai-api-panel {
+    margin-top: 16px;
+    padding: 15px;
+    border: 1px solid var(--ai-border);
+    border-radius: 12px;
+    background: var(--ai-card);
+}
+
+.ai-api-panel p {
+    color: #68717d;
+    font-size: 11px;
+    margin: 4px 0 10px;
+}
+
+.ai-api-panel a {
+    color: var(--ai-green);
+    font-size: 11px;
+}
+
+.ai-api-controls {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.ai-api-controls input {
+    flex: 1;
+    background: #0d1014;
+    border: 1px solid #252b33;
+    color: white;
+    padding: 9px;
+    border-radius: 7px;
+    outline: none;
+}
+
+.ai-api-controls button {
+    border: 0;
+    border-radius: 7px;
+    padding: 0 13px;
+    background: var(--ai-green);
+    color: #04110b;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ai-api-controls .danger {
+    background: #241217;
+    color: #ff667d;
+}
+
+.ai-main {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.ai-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ai-card {
+    background: var(--ai-card);
+    border: 1px solid var(--ai-border);
+    border-radius: 13px;
+    padding: 15px;
+    backdrop-filter: blur(14px);
+}
+
+.ai-card-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #c5cbd3;
+    margin-bottom: 15px;
+}
+
+.ai-card label {
+    display: block;
+    color: #666f7b;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 12px 0 5px;
+}
+
+.ai-card input,
+.ai-card select {
+    width: 100%;
+    background: #0d1014;
+    border: 1px solid #252b33;
+    color: #dbe1e8;
+    border-radius: 7px;
+    padding: 9px;
+    outline: none;
+}
+
+.asset-input {
+    display: flex;
+    align-items: center;
+    background: #0d1014;
+    border: 1px solid #252b33;
+    border-radius: 7px;
+}
+
+.asset-input input {
+    border: 0;
+    background: transparent;
+}
+
+.asset-input span {
+    padding-right: 9px;
+    color: #59616d;
+    font-family: monospace;
+    font-size: 11px;
+}
+
+.ai-analyze-button {
+    width: 100%;
+    margin-top: 15px;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px;
+    background: linear-gradient(135deg, #14d38a, #0da96e);
+    color: #04110b;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.question-chip {
+    width: 100%;
+    text-align: left;
+    background: rgba(255,255,255,.025);
+    color: #9099a6;
+    border: 1px solid transparent;
+    padding: 9px;
+    border-radius: 7px;
+    font-size: 10px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+.question-chip:hover {
+    color: white;
+    border-color: rgba(20,211,138,.25);
+}
+
+.ai-disclaimer {
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,174,0,.15);
+    background: rgba(255,174,0,.04);
+    color: #8b7c60;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.ai-disclaimer strong {
+    color: #d6aa58;
+}
+
+.ai-content {
+    min-width: 0;
+}
+
+.market-overview {
+    display: grid;
+    grid-template-columns: 1.4fr 1.4fr repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ai-border);
+    border: 1px solid var(--ai-border);
+    border-radius: 13px;
+    overflow: hidden;
+}
+
+.market-overview > div {
+    background: rgba(20,24,31,.92);
+    padding: 16px;
+}
+
+.market-symbol {
+    font-family: "Space Grotesk";
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.market-symbol small {
+    color: #565e69;
+}
+
+.market-price {
+    font-family: "JetBrains Mono";
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.market-price small {
+    display: block;
+    margin-top: 4px;
+    font-size: 10px;
+}
+
+.market-stat span {
+    display: block;
+    font-size: 8px;
+    color: #5d6570;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+.market-stat strong {
+    display: block;
+    margin-top: 7px;
+    font-family: "JetBrains Mono";
+    font-size: 11px;
+    color: #cdd3da;
+}
+
+.ai-analysis-card,
+.chat-card {
+    margin-top: 16px;
+    background: var(--ai-card);
+    border: 1px solid var(--ai-border);
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+}
+
+.analysis-header,
+.chat-header {
+    padding: 17px 19px;
+    border-bottom: 1px solid var(--ai-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eyebrow {
+    color: #58616d;
+    font-size: 8px;
+    letter-spacing: .15em;
+    font-weight: 800;
+}
+
+.analysis-header h1,
+.chat-header h2 {
+    font-family: "Space Grotesk";
+    font-size: 19px;
+    margin-top: 4px;
+    color: #f0f3f6;
+}
+
+.status-pill {
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: #6e7782;
+    background: rgba(255,255,255,.04);
+}
+
+.analysis-empty {
+    text-align: center;
+    padding: 55px 20px;
+    color: #69727e;
+}
+
+.empty-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.analysis-empty h2 {
+    color: #cfd5dc;
+    font-size: 16px;
+}
+
+.analysis-empty p {
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 16px;
+}
+
+.analysis-box {
+    background: #0d1014;
+    border: 1px solid #20262e;
+    border-radius: 9px;
+    padding: 12px;
+}
+
+.analysis-box span {
+    display: block;
+    color: #59626e;
+    font-size: 8px;
+    text-transform: uppercase;
+}
+
+.analysis-box strong {
+    display: block;
+    margin-top: 7px;
+    font-family: "JetBrains Mono";
+    font-size: 13px;
+}
+
+.analysis-section {
+    padding: 16px 19px;
+    border-top: 1px solid var(--ai-border);
+}
+
+.analysis-section h3 {
+    color: #aeb6c0;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 7px;
+}
+
+.analysis-section p,
+.analysis-section li {
+    color: #858e99;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.analysis-section ul {
+    padding-left: 18px;
+}
+
+.chat-messages {
+    min-height: 360px;
+    max-height: 560px;
+    overflow-y: auto;
+    padding: 18px;
+}
+
+.chat-message {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.message-avatar {
+    flex: 0 0 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: rgba(20,211,138,.08);
+    border: 1px solid rgba(20,211,138,.15);
+}
+
+.message-body {
+    max-width: 850px;
+}
+
+.message-body strong {
+    font-size: 10px;
+    color: #aeb6c0;
+}
+
+.message-body p {
+    margin-top: 5px;
+    white-space: pre-wrap;
+    color: #8b949f;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.chat-message.user {
+    flex-direction: row-reverse;
+}
+
+.chat-message.user .message-body {
+    text-align: right;
+}
+
+.chat-message.user .message-avatar {
+    background: rgba(79,216,232,.08);
+}
+
+.chat-suggestions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 0 18px 12px;
+}
+
+.chat-suggestions button {
+    border: 1px solid #242a32;
+    background: #0d1014;
+    color: #69727d;
+    border-radius: 999px;
+    padding: 6px 9px;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.chat-suggestions button:hover {
+    color: white;
+    border-color: rgba(20,211,138,.25);
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 8px;
+    padding: 13px;
+    border-top: 1px solid var(--ai-border);
+}
+
+.chat-input-area textarea {
+    flex: 1;
+    resize: none;
+    min-height: 43px;
+    max-height: 130px;
+    background: #0d1014;
+    border: 1px solid #252b33;
+    color: white;
+    border-radius: 9px;
+    padding: 12px;
+    outline: none;
+    font: inherit;
+    font-size: 11px;
+}
+
+.chat-input-area button {
+    width: 45px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--ai-green);
+    color: #03110a;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.chat-footer {
+    padding: 0 14px 12px;
+    color: #414952;
+    font-size: 8px;
+    text-align: center;
+}
+
+.clear-chat {
+    border: 1px solid #252b33;
+    background: transparent;
+    color: #69727d;
+    border-radius: 7px;
+    padding: 6px 9px;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.ai-loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 25px 19px;
+    color: #6e7782;
+    font-size: 10px;
+}
+
+.loading-spinner {
+    width: 17px;
+    height: 17px;
+    border: 2px solid #273039;
+    border-top-color: var(--ai-green);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media(max-width: 950px) {
+    .ai-main {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ai-disclaimer {
+        grid-column: span 2;
+    }
+
+    .market-overview {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 650px) {
+    .ai-shell {
+        width: min(100% - 20px, 1500px);
+        padding-top: 12px;
+    }
+
+    .ai-header,
+    .ai-brand {
+        align-items: flex-start;
+    }
+
+    .ai-header {
+        flex-direction: column;
+    }
+
+    .ai-brand {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .ai-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-disclaimer {
+        grid-column: auto;
+    }
+
+    .market-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .market-overview > div:first-child {
+        grid-column: span 2;
+    }
+
+    .analysis-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ai-api-controls {
+        flex-wrap: wrap;
+    }
+
+    .ai-api-controls input {
+        flex-basis: 100%;
+    }
+}

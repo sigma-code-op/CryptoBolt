@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CryptoBolt AI Research — Crypto Market AI</title>
+    <meta name="description" content="CryptoBolt AI Research lets you ask questions about crypto markets, price action, indicators, sentiment and market structure.">
+
+    <link rel="icon" href="/assets/favicon.svg">
+
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/ai.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-[#0b0e11] text-gray-200">
+
+<div class="ai-background">
+    <div class="ai-orb ai-orb-one"></div>
+    <div class="ai-orb ai-orb-two"></div>
+</div>
+
+<div class="ai-shell">
+
+    <!-- Header -->
+    <header class="ai-header">
+        <div class="ai-brand">
+            <a href="/" class="ai-logo">
+                ⚡ <span>CryptoBolt</span>
+            </a>
+
+            <div class="ai-title">
+                <div class="ai-title-main">
+                    AI Research
+                    <span class="ai-live-badge">LIVE MARKET AI</span>
+                </div>
+                <div class="ai-subtitle">
+                    Ask questions. Understand the market. Research before you trade.
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-header-actions">
+            <a href="/" class="ai-nav-button">← Dashboard</a>
+            <button id="ai-key-button" class="ai-nav-button">⚙ API Key</button>
+        </div>
+    </header>
+
+    <!-- API key -->
+    <section id="api-panel" class="ai-api-panel hidden">
+        <div>
+            <strong>Groq API key</strong>
+            <p>
+                Your key is stored only in this browser and sent to your CryptoBolt backend
+                when you use AI.
+            </p>
+        </div>
+
+        <div class="ai-api-controls">
+            <input
+                id="groq-key"
+                type="password"
+                placeholder="gsk_..."
+            >
+            <button id="save-key">Save</button>
+            <button id="clear-key" class="danger">Clear</button>
+        </div>
+
+        <a
+            href="https://console.groq.com/keys"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Get a Groq API key →
+        </a>
+    </section>
+
+    <!-- Main -->
+    <main class="ai-main">
+
+        <!-- Left research controls -->
+        <aside class="ai-sidebar">
+
+            <div class="ai-card">
+                <div class="ai-card-title">
+                    <span>🔎</span>
+                    Market Research
+                </div>
+
+                <label>Asset</label>
+
+                <div class="asset-input">
+                    <input id="asset-input" value="BTC" maxlength="15">
+                    <span>/USDT</span>
+                </div>
+
+                <label>Market</label>
+
+                <select id="market-type">
+                    <option value="spot">Spot</option>
+                    <option value="futures">Perpetual Futures</option>
+                </select>
+
+                <label>Chart timeframe</label>
+
+                <select id="timeframe">
+                    <option value="15m">15 minutes</option>
+                    <option value="1h" selected>1 hour</option>
+                    <option value="4h">4 hours</option>
+                    <option value="1d">1 day</option>
+                </select>
+
+                <button id="analyze-button" class="ai-analyze-button">
+                    ✨ Analyze Market
+                </button>
+            </div>
+
+            <div class="ai-card">
+                <div class="ai-card-title">
+                    <span>💡</span>
+                    Ask CryptoBolt
+                </div>
+
+                <button class="question-chip">
+                    What's happening with this coin?
+                </button>
+
+                <button class="question-chip">
+                    Explain the current trend
+                </button>
+
+                <button class="question-chip">
+                    What is the biggest market risk?
+                </button>
+
+                <button class="question-chip">
+                    Explain RSI in this situation
+                </button>
+
+                <button class="question-chip">
+                    Is the market bullish or bearish?
+                </button>
+            </div>
+
+            <div class="ai-disclaimer">
+                <strong>⚠ Research tool</strong>
+                <p>
+                    CryptoBolt AI provides educational market analysis.
+                    It can be wrong and is not financial advice.
+                </p>
+            </div>
+
+        </aside>
+
+        <!-- Center -->
+        <section class="ai-content">
+
+            <!-- Market status -->
+            <div class="market-overview">
+
+                <div class="market-symbol">
+                    <span id="market-asset">BTC</span>
+                    <small>/USDT</small>
+                </div>
+
+                <div class="market-price">
+                    <span id="market-price">$—</span>
+                    <small id="market-change">—</small>
+                </div>
+
+                <div class="market-stat">
+                    <span>24H HIGH</span>
+                    <strong id="market-high">—</strong>
+                </div>
+
+                <div class="market-stat">
+                    <span>24H LOW</span>
+                    <strong id="market-low">—</strong>
+                </div>
+
+                <div class="market-stat">
+                    <span>24H VOLUME</span>
+                    <strong id="market-volume">—</strong>
+                </div>
+
+            </div>
+
+            <!-- AI analysis -->
+            <div class="ai-analysis-card">
+
+                <div class="analysis-header">
+                    <div>
+                        <span class="eyebrow">AI MARKET READ</span>
+                        <h1 id="analysis-title">
+                            Ready to research
+                        </h1>
+                    </div>
+
+                    <div id="analysis-status" class="status-pill">
+                        WAITING
+                    </div>
+                </div>
+
+                <div id="analysis-loading" class="ai-loading hidden">
+                    <div class="loading-spinner"></div>
+                    <span>Researching market data...</span>
+                </div>
+
+                <div id="analysis-empty" class="analysis-empty">
+                    <div class="empty-icon">🧠</div>
+                    <h2>Ask CryptoBolt about the market</h2>
+                    <p>
+                        Select an asset and analyze it, or start a conversation below.
+                    </p>
+                </div>
+
+                <div id="analysis-result" class="hidden">
+
+                    <div class="analysis-grid">
+
+                        <div class="analysis-box">
+                            <span>Trend</span>
+                            <strong id="result-trend">—</strong>
+                        </div>
+
+                        <div class="analysis-box">
+                            <span>Momentum</span>
+                            <strong id="result-momentum">—</strong>
+                        </div>
+
+                        <div class="analysis-box">
+                            <span>RSI</span>
+                            <strong id="result-rsi">—</strong>
+                        </div>
+
+                        <div class="analysis-box">
+                            <span>Market sentiment</span>
+                            <strong id="result-sentiment">—</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="analysis-section">
+                        <h3>AI Summary</h3>
+                        <p id="result-summary"></p>
+                    </div>
+
+                    <div class="analysis-section">
+                        <h3>Why?</h3>
+                        <ul id="result-reasoning"></ul>
+                    </div>
+
+                    <div class="analysis-section">
+                        <h3>Market Risk</h3>
+                        <p id="result-risk"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Chat -->
+            <div class="chat-card">
+
+                <div class="chat-header">
+                    <div>
+                        <span class="eyebrow">CRYPTOBOLT AI</span>
+                        <h2>Market Research Chat</h2>
+                    </div>
+
+                    <button id="clear-chat" class="clear-chat">
+                        Clear
+                    </button>
+                </div>
+
+                <div id="chat-messages" class="chat-messages">
+
+                    <div class="chat-message ai">
+                        <div class="message-avatar">⚡</div>
+
+                        <div class="message-body">
+                            <strong>CryptoBolt AI</strong>
+                            <p>
+                                Hey! Ask me about the crypto market.
+                                I can explain price action, indicators,
+                                sentiment, market structure and current conditions.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="chat-suggestions">
+                    <button>Why is BTC moving?</button>
+                    <button>Explain RSI</button>
+                    <button>What's the current market risk?</button>
+                    <button>Explain this market simply</button>
+                </div>
+
+                <form id="chat-form" class="chat-input-area">
+
+                    <textarea
+                        id="chat-input"
+                        rows="1"
+                        placeholder="Ask CryptoBolt about the market..."
+                    ></textarea>
+
+                    <button type="submit" id="send-chat">
+                        ➤
+                    </button>
+
+                </form>
+
+                <div class="chat-footer">
+                    AI responses are informational only. Always do your own research.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/ai-chat.js"></script>
+
+</body>
+</html>
