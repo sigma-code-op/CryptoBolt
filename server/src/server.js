@@ -1032,9 +1032,12 @@ app.post(
       });
     }
 
+    // Support both the current frontend contract ({ message, context }) and an
+    // older/alternate one ({ question, market }) so this endpoint keeps working
+    // even if an older cached/deployed copy of ai-chat.js is still live somewhere.
     const message =
       String(
-        req.body?.message || ''
+        req.body?.message || req.body?.question || ''
       ).trim();
 
     if (!message) {
@@ -1053,12 +1056,16 @@ app.post(
       });
     }
 
-    const context =
-      req.body?.context &&
-      typeof req.body.context ===
-        'object'
-        ? req.body.context
-        : {};
+    const rawContext =
+      (req.body?.context &&
+        typeof req.body.context === 'object' &&
+        req.body.context) ||
+      (req.body?.market &&
+        typeof req.body.market === 'object' &&
+        req.body.market) ||
+      {};
+
+    const context = rawContext;
 
     const selectedAsset =
       String(
