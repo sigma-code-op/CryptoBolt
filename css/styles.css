@@ -403,10 +403,39 @@ body {
 /* ---------- Touch-friendly hit targets on touch devices ---------- */
 @media (pointer: coarse) {
     button, a, select, [role="button"], .tf-btn, .ctype-btn, .ind-btn {
-        min-height: 30px;
+        min-height: 40px;
     }
     /* Prevent iOS Safari auto-zoom-on-focus: any focusable field under 16px triggers it */
     input, select, textarea { font-size: 16px !important; }
+}
+
+/* ---------- Horizontal scroll strips ----------
+   Used on filter/timeframe/indicator button rows so they read as one tidy,
+   swipeable line on narrow screens instead of wrapping into a multi-row pile
+   of shrunken text. Works on any container holding a run of small buttons —
+   just add the class, no JS needed. */
+.cw-scroll-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+}
+.cw-scroll-row::-webkit-scrollbar { display: none; }
+.cw-scroll-row > * { flex: 0 0 auto; scroll-snap-align: start; }
+/* Edge fade so the row visually reads as "scrolls further", not cut off */
+@media (max-width: 767px) {
+    .cw-scroll-row {
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 20px), transparent 100%);
+        mask-image: linear-gradient(to right, #000 calc(100% - 20px), transparent 100%);
+        margin-left: -2px;
+        padding-left: 2px;
+        /* Inside a flex-wrap toolbar (Interval / Type / Overlays), each scroll row should
+           take its own full-width line rather than all three cramming onto one row. */
+        flex: 1 1 100%;
+    }
 }
 
 /* ---------- Tablet tuning ---------- */
@@ -416,19 +445,28 @@ body {
 }
 
 @media (max-width: 767px) {
-    .container { padding-left: 12px; padding-right: 12px; }
-    h1 { font-size: 1.25rem !important; }
+    .container { padding-left: 14px; padding-right: 14px; }
+    h1 { font-size: 1.15rem !important; }
     .marquee-track { animation-duration: 22s; }
-    table { font-size: 10.5px; }
+    table { font-size: 11.5px; }
 
     .cw-card-interactive { border-radius: 12px !important; }
-    .p-5 { padding: 14px !important; }
-    .px-6 { padding-left: 14px !important; padding-right: 14px !important; }
-    .px-4 { padding-left: 12px !important; padding-right: 12px !important; }
-    .gap-6 { gap: 14px !important; }
+    /* Slightly tighter than desktop, but not the aggressive shrink this used to be —
+       cards need breathing room or the whole page reads as "crammed" even if each
+       individual control is legible. */
+    .p-5 { padding: 16px !important; }
+    .px-6 { padding-left: 16px !important; padding-right: 16px !important; }
+    .px-4 { padding-left: 14px !important; padding-right: 14px !important; }
+    .gap-6 { gap: 16px !important; }
+    /* Give stacked card sections real separation so panels don't visually merge into
+       one long wall on mobile — this is the single biggest driver of "congested". */
+    .grid.grid-cols-1.lg\:grid-cols-12 > div { margin-bottom: 4px; }
 
-    .tf-btn, .ctype-btn { padding: 4px 8px !important; font-size: 10px !important; }
-    .ind-btn { padding: 3px 6px !important; font-size: 9.5px !important; }
+    /* Timeframe / chart-type / indicator toolbars: scroll horizontally as one row
+       instead of wrapping into a multi-row pile of shrunken pills. Sizing stays
+       close to desktop for legibility — density comes from scrolling, not shrinking. */
+    .tf-btn, .ctype-btn { padding: 6px 10px !important; font-size: 11px !important; }
+    .ind-btn { padding: 5px 8px !important; font-size: 10.5px !important; }
 
     .cw-ambient-orb { opacity: 0.28; filter: blur(60px); }
     .cw-ambient-orb.cw-orb-1 { width: 260px; height: 260px; }
@@ -455,6 +493,34 @@ body {
     #table-container, .overflow-x-auto {
         -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
         mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
+    }
+
+    /* ---------- Header decluttering ----------
+       The header packs status pills, a search box, accent swatches, and 5+ action
+       buttons into one row. On desktop it wraps fine; on mobile that wrap turns into
+       a messy pile. Hide the purely decorative/secondary bits and let the primary
+       actions (Sign In, AI Research, Trading Account) breathe. Nothing here is
+       removed from the DOM, so no JS bindings break — it's just not shown. */
+    .accent-swatch { display: none !important; }
+    header .flex.items-center.gap-3.text-\[10px\].font-mono.font-bold,
+    header .flex.items-center.gap-1\.5.text-\[10px\].font-mono.font-bold {
+        display: none !important;
+    }
+    header a[title="Share CryptoBolt"] span:last-child,
+    #share-btn span:last-child { display: none; }
+    header { gap: 10px !important; }
+    header > div.flex.items-center { gap: 8px !important; row-gap: 10px !important; }
+}
+
+@media (max-width: 480px) {
+    /* At the narrowest widths, make the remaining primary header buttons equal-width
+       so they align into a tidy grid instead of a ragged wrap. */
+    header a[href="ai.html"],
+    header a[href="trade.html"],
+    #auth-open-btn {
+        flex: 1 1 auto;
+        text-align: center;
+        justify-content: center;
     }
 }
 

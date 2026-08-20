@@ -82,6 +82,7 @@ body {
 .ai-logo span {
     background: linear-gradient(90deg, #fff, #14d38a);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 
