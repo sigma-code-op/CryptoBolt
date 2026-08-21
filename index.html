@@ -330,8 +330,8 @@
                                 <span id="chart-market-badge" class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded"></span>
                                 <span id="mtf-badge" class="hidden text-[9px] font-bold uppercase px-1.5 py-0.5 rounded" title="Higher-timeframe trend agreement"></span>
                                 <button id="alert-bell" title="Add price alert" class="ml-1 text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-sm">🔔</button>
-                                <button id="chart-buy-btn" title="Buy this asset with fiat via Transak" class="ml-2 text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Buy</button>
-                                <button id="chart-sell-btn" title="Sell this asset for fiat via Transak" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell</button>
+                                <button id="chart-buy-btn" title="Buy this asset with fiat via AlchemyPay" class="ml-2 text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Buy</button>
+                                <button id="chart-sell-btn" title="Sell this asset for fiat via AlchemyPay" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell</button>
                             </div>
                             <p id="chart-ticker-sym" class="text-[10px] text-gray-400 uppercase tracking-wider flex items-center gap-1.5">OHL-V Candlestick Feed Matrix <span id="chart-feed-dot" class="status-dot status-connecting"></span></p>
                         </div>
@@ -704,8 +704,8 @@
                     </div>
                     <a href="trade.html" title="Open the full practice trading account — market/limit orders, live account P&L, trade history" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">🎯 Practice Trading →</a>
                     <div class="flex items-center gap-1.5">
-                        <button id="portfolio-buy-btn" title="Buy real crypto with fiat via Transak" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Buy (real)</button>
-                        <button id="portfolio-sell-btn" title="Sell real crypto for fiat via Transak" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell (real)</button>
+                        <button id="portfolio-buy-btn" title="Buy real crypto with fiat via AlchemyPay" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Buy (real)</button>
+                        <button id="portfolio-sell-btn" title="Sell real crypto for fiat via AlchemyPay" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell (real)</button>
                     </div>
                     <button id="portfolio-csv-btn" title="Export holdings to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer">⭳ CSV</button>
                 </div>
@@ -770,7 +770,7 @@
                         <span class="text-[9px] text-gray-500 block uppercase font-bold">Unrealized P&amp;L</span>
                         <span id="futures-total-pnl" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
                     </div>
-                    <div class="flex items-center gap-1.5" title="Transak buys/sells the real underlying coin with fiat — it can't open leveraged positions directly. Use it to fund or cash out the wallet you trade futures from.">
+                    <div class="flex items-center gap-1.5" title="AlchemyPay buys/sells the real underlying coin with fiat — it can't open leveraged positions directly. Use it to fund or cash out the wallet you trade futures from.">
                         <button id="futures-buy-btn" class="text-[10px] px-2.5 py-1 rounded bg-amber-500 text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Fund ⓘ</button>
                         <button id="futures-sell-btn" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Cash Out</button>
                     </div>
@@ -1014,7 +1014,7 @@
     <script src="js/13-risk-calculator.js?v=20260820"></script>
     <script src="js/17-auth.js?v=20260820"></script>
     <script src="js/19-cloud-sync.js?v=20260820"></script>
-    <script src="js/14-transak.js?v=20260820"></script>
+    <script src="js/14-alchemypay.js?v=20260821"></script>
     <script src="js/15-risk-triggers.js?v=20260820"></script>
 </body>
 </html>

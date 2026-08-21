@@ -7,13 +7,12 @@ const CW_CONFIG = {
     apiBaseUrl: 'https://api.cryptobolt.io',            // e.g. 'https://cryptobolt-api.yourhost.com'
     aiInsightUrl: '/api/ai-insight',
 
-    // ---------- Transak (Buy/Sell Crypto widget) ----------
-    // Transak now requires the widget URL to be minted server-side per request (their old
-    // client-side "params in the URL" method is deprecated and gets a hard 403). So there's
-    // nothing to configure here anymore — the Buy/Sell modal calls this app's own backend
-    // (apiBaseUrl + POST /api/transak-widget-url), and the real Transak API key + secret live
-    // ONLY in server/.env (TRANSAK_API_KEY, TRANSAK_API_SECRET, TRANSAK_ENVIRONMENT,
-    // TRANSAK_REFERRER_DOMAIN). See server/.env.example for setup.
+    // ---------- AlchemyPay (Buy/Sell Crypto widget) ----------
+    // AlchemyPay's Ramp widget needs a signed URL (appId + params + an HMAC-SHA256 sign), so
+    // there's nothing to configure here — the Buy/Sell modal calls this app's own backend
+    // (apiBaseUrl + POST /api/alchemypay-widget-url), and the real AlchemyPay appId + appSecret
+    // live ONLY in server/.env (ALCHEMYPAY_APP_ID, ALCHEMYPAY_APP_SECRET, ALCHEMYPAY_ENVIRONMENT,
+    // ALCHEMYPAY_REDIRECT_BASE, ALCHEMYPAY_CALLBACK_URL).
 
     // ---------- Supabase (accounts + real purchase history) ----------
     // Create a free project at https://supabase.com, then Project Settings -> API to get these.

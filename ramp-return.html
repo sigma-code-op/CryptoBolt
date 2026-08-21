@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<title>CryptoBolt</title>
+<style>
+    html, body {
+        margin: 0;
+        height: 100%;
+        background: #14161c;
+        color: #9ca3af;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    p { font-size: 12px; padding: 0 20px; }
+</style>
+</head>
+<body>
+<p>Finishing up…</p>
+<script>
+    // AlchemyPay's Ramp widget navigates the iframe to this page (our own domain, set as
+    // redirectUrl when the widget URL was signed — see server/src/server.js) once a Buy/Sell
+    // flow ends. This page's only job is to tell the parent page (js/14-alchemypay.js) which
+    // order just finished, so it can ask our backend to confirm the real status/amounts with
+    // AlchemyPay's Query Order API before saving anything to the visitor's account history.
+    (function () {
+        var params = new URLSearchParams(window.location.search);
+        var merchantOrderNo = params.get('orderNo');
+        var side = params.get('side') || 'buy';
+
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                event_id: 'ALCHEMYPAY_ORDER_REDIRECT',
+                merchantOrderNo: merchantOrderNo,
+                side: side,
+            }, window.location.origin);
+        }
+    })();
+</script>
+</body>
+</html>

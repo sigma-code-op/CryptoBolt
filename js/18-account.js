@@ -1,6 +1,6 @@
 // ---------- My Account page logic ----------
 // Reads the signed-in visitor's real purchase history from Supabase (written by
-// js/14-transak.js whenever a Transak order completes) and renders holdings + P&L + order
+// js/14-alchemypay.js whenever an AlchemyPay order completes) and renders holdings + P&L + order
 // history. This page is entirely dependent on js/17-auth.js having already set up
 // window.cwAuth — it reacts to the 'cw:auth' event rather than assuming a load order.
 

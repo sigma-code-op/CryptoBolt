@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import crypto from 'crypto';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -26,82 +27,94 @@ const GROQ_MODEL =
 // The frontend sends the key with each AI request.
 
 // =========================================================
-// TRANSAK
+// ALCHEMYPAY
 // =========================================================
+// AlchemyPay's Ramp "Page Integration" is a signed-URL flow, not a token-exchange flow like
+// Transak: every request (widget URL, order status query) is authenticated by an HMAC-SHA256
+// signature computed from timestamp + httpMethod + requestPath(+sorted query) + bodyString,
+// using the merchant's appSecret. The appSecret NEVER leaves this file — see
+// https://alchemypay.readme.io/docs/api-sign and https://alchemypay.readme.io/docs/on-ramp-custom-parameters
 
-const TRANSAK_API_KEY =
-  process.env.TRANSAK_API_KEY || '';
+const ALCHEMYPAY_APP_ID =
+  process.env.ALCHEMYPAY_APP_ID || '';
 
-const TRANSAK_API_SECRET =
-  process.env.TRANSAK_API_SECRET || '';
+const ALCHEMYPAY_APP_SECRET =
+  process.env.ALCHEMYPAY_APP_SECRET || '';
 
-const TRANSAK_ENVIRONMENT =
-  (process.env.TRANSAK_ENVIRONMENT || 'STAGING').toUpperCase();
+const ALCHEMYPAY_ENVIRONMENT =
+  (process.env.ALCHEMYPAY_ENVIRONMENT || 'STAGING').toUpperCase();
 
-const TRANSAK_REFERRER_DOMAIN =
-  process.env.TRANSAK_REFERRER_DOMAIN || '';
+// Ramp widget (page integration) host — this is what the iframe src points at.
+const ALCHEMYPAY_RAMP_URL =
+  ALCHEMYPAY_ENVIRONMENT === 'PRODUCTION'
+    ? 'https://ramp.alchemypay.org'
+    : 'https://ramptest.alchemypay.org';
 
-const TRANSAK_REFRESH_TOKEN_URL =
-  TRANSAK_ENVIRONMENT === 'PRODUCTION'
-    ? 'https://api.transak.com/partners/api/v2/refresh-token'
-    : 'https://api-stg.transak.com/partners/api/v2/refresh-token';
+// Open API host — used for server-to-server calls like Query Order.
+const ALCHEMYPAY_API_URL =
+  ALCHEMYPAY_ENVIRONMENT === 'PRODUCTION'
+    ? 'https://openapi.alchemypay.org'
+    : 'https://openapi-test.alchemypay.org';
 
-const TRANSAK_CREATE_SESSION_URL =
-  TRANSAK_ENVIRONMENT === 'PRODUCTION'
-    ? 'https://api-gateway.transak.com/api/v2/auth/session'
-    : 'https://api-gateway-stg.transak.com/api/v2/auth/session';
+const ALCHEMYPAY_REDIRECT_BASE =
+  process.env.ALCHEMYPAY_REDIRECT_BASE || 'https://cryptobolt.io';
 
-let cachedTransakAccessToken = null;
-let cachedTransakAccessTokenExpiresAt = 0;
+const ALCHEMYPAY_CALLBACK_URL =
+  process.env.ALCHEMYPAY_CALLBACK_URL || '';
 
-async function getTransakAccessToken() {
-  const nowSec = Math.floor(Date.now() / 1000);
+// Sensible default network per popular ticker, so a person doesn't have to pick a chain just
+// to buy/sell BTC. Coins not in this list are still supported — we just omit 'network' and let
+// AlchemyPay's own widget ask the visitor to choose one.
+const ALCHEMYPAY_DEFAULT_NETWORK = {
+  BTC: 'BTC',
+  ETH: 'ETH',
+  USDT: 'TRX',
+  USDC: 'ETH',
+  BNB: 'BSC',
+  SOL: 'SOL',
+  XRP: 'XRP',
+  ADA: 'ADA',
+  DOGE: 'DOGE',
+  MATIC: 'POLYGON',
+  TRX: 'TRX',
+  DOT: 'DOT',
+  LTC: 'LTC',
+  AVAX: 'AVAXC',
+};
 
-  if (
-    cachedTransakAccessToken &&
-    cachedTransakAccessTokenExpiresAt - nowSec > 3600
-  ) {
-    return cachedTransakAccessToken;
+// timestamp + httpMethod + requestPath(with sorted, non-empty query params) + bodyString,
+// HMAC-SHA256'd with the appSecret and base64-encoded. Identical rule for GET (query-signed)
+// and POST (body-signed) endpoints — see docs/api-sign.
+function alchemyPaySign({ timestamp, httpMethod, requestPath, queryParams, bodyObj }) {
+  let pathForSig = requestPath;
+
+  if (queryParams && Object.keys(queryParams).length) {
+    const sortedQuery = Object.keys(queryParams)
+      .filter((k) => queryParams[k] !== undefined && queryParams[k] !== null && queryParams[k] !== '')
+      .sort()
+      .map((k) => `${k}=${queryParams[k]}`)
+      .join('&');
+    if (sortedQuery) pathForSig = `${requestPath}?${sortedQuery}`;
   }
 
-  const res = await fetch(TRANSAK_REFRESH_TOKEN_URL, {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'api-secret': TRANSAK_API_SECRET,
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      apiKey: TRANSAK_API_KEY,
-    }),
-  });
-
-  if (!res.ok) {
-    const text = await res.text().catch(() => '');
-
-    throw new Error(
-      `Transak refresh-token failed (${res.status}): ${text.slice(0, 200)}`
-    );
+  let bodyString = '';
+  if (bodyObj && Object.keys(bodyObj).length) {
+    const cleaned = {};
+    Object.keys(bodyObj)
+      .filter((k) => bodyObj[k] !== undefined && bodyObj[k] !== null && bodyObj[k] !== '')
+      .sort()
+      .forEach((k) => {
+        cleaned[k] = bodyObj[k];
+      });
+    if (Object.keys(cleaned).length) bodyString = JSON.stringify(cleaned);
   }
 
-  const json = await res.json();
+  const content = `${timestamp}${httpMethod.toUpperCase()}${pathForSig}${bodyString}`;
 
-  const accessToken =
-    json?.data?.accessToken;
-
-  if (!accessToken) {
-    throw new Error(
-      'Transak refresh-token response missing accessToken'
-    );
-  }
-
-  cachedTransakAccessToken = accessToken;
-
-  cachedTransakAccessTokenExpiresAt =
-    Number(json?.data?.expiresAt) ||
-    nowSec + 6 * 24 * 60 * 60;
-
-  return cachedTransakAccessToken;
+  return crypto
+    .createHmac('sha256', ALCHEMYPAY_APP_SECRET)
+    .update(content, 'utf8')
+    .digest('base64');
 }
 
 // =========================================================
@@ -335,11 +348,10 @@ app.get('/api/health', (_req, res) => {
     mailerConfigured:
       isMailerConfigured(),
 
-    transakConfigured:
+    alchemyPayConfigured:
       Boolean(
-        TRANSAK_API_KEY &&
-        TRANSAK_API_SECRET &&
-        TRANSAK_REFERRER_DOMAIN
+        ALCHEMYPAY_APP_ID &&
+        ALCHEMYPAY_APP_SECRET
       ),
 
     time:
@@ -348,20 +360,20 @@ app.get('/api/health', (_req, res) => {
 });
 
 // =========================================================
-// TRANSAK RATE LIMIT
+// ALCHEMYPAY RATE LIMIT
 // =========================================================
 
-const transakLimiter = rateLimit({
+const alchemyPayLimiter = rateLimit({
   windowMs:
     (Number(
-      process.env.TRANSAK_RATE_LIMIT_WINDOW_MINUTES
+      process.env.ALCHEMYPAY_RATE_LIMIT_WINDOW_MINUTES
     ) || 15) *
     60 *
     1000,
 
   max:
     Number(
-      process.env.TRANSAK_RATE_LIMIT_MAX
+      process.env.ALCHEMYPAY_RATE_LIMIT_MAX
     ) || 60,
 
   standardHeaders: true,
@@ -375,28 +387,25 @@ const transakLimiter = rateLimit({
 });
 
 // =========================================================
-// TRANSAK WIDGET
+// ALCHEMYPAY WIDGET URL
 // =========================================================
+// Unlike Transak, AlchemyPay's page-integration widget needs no server-minted session/token —
+// the backend just signs a query string with the merchant's appSecret and the frontend drops
+// the result straight into an iframe src. We still keep this server-side so the appSecret is
+// never exposed to the browser, and so we can attach a per-order merchantOrderNo we control.
 
 app.post(
-  '/api/transak-widget-url',
-  transakLimiter,
-  async (req, res) => {
+  '/api/alchemypay-widget-url',
+  alchemyPayLimiter,
+  (req, res) => {
 
     if (
-      !TRANSAK_API_KEY ||
-      !TRANSAK_API_SECRET
+      !ALCHEMYPAY_APP_ID ||
+      !ALCHEMYPAY_APP_SECRET
     ) {
       return res.status(503).json({
         error:
-          'Transak is not configured on this server yet.',
-      });
-    }
-
-    if (!TRANSAK_REFERRER_DOMAIN) {
-      return res.status(503).json({
-        error:
-          'TRANSAK_REFERRER_DOMAIN is not set on this server.',
+          'AlchemyPay is not configured on this server yet.',
       });
     }
 
@@ -404,6 +413,11 @@ app.post(
       req.body?.mode === 'SELL'
         ? 'SELL'
         : 'BUY';
+
+    const side =
+      mode === 'SELL'
+        ? 'sell'
+        : 'buy';
 
     const symbol =
       String(
@@ -413,119 +427,214 @@ app.post(
         .replace(/[^A-Z0-9]/g, '')
         .slice(0, 15) || 'BTC';
 
-    const widgetParams = {
+    const network =
+      String(
+        req.body?.network ||
+        ALCHEMYPAY_DEFAULT_NETWORK[symbol] ||
+        ''
+      )
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g, '')
+        .slice(0, 20);
 
-      apiKey:
-        TRANSAK_API_KEY,
+    // Ours to generate and track — carried through in the webhook + Query Order lookups, and
+    // echoed back on redirectUrl so the frontend knows which order to poll after the widget
+    // hands control back to us.
+    const merchantOrderNo =
+      `cb${Date.now()}${crypto.randomBytes(4).toString('hex')}`;
 
-      referrerDomain:
-        TRANSAK_REFERRER_DOMAIN,
+    const timestamp =
+      String(Date.now());
 
-      productsAvailable:
-        mode,
+    const requestPath =
+      side === 'buy'
+        ? '/index/rampPageBuy'
+        : '/index/rampPageSell';
 
-      defaultCryptoCurrency:
-        symbol,
-
-      themeColor:
-        mode === 'BUY'
-          ? '14d38a'
-          : 'ff9f1c',
-
-      exchangeScreenTitle:
-        `${mode === 'BUY' ? 'Buy' : 'Sell'} ${symbol}`,
+    const queryParams = {
+      appId: ALCHEMYPAY_APP_ID,
+      crypto: symbol,
+      showTable: side,
+      merchantOrderNo,
+      redirectUrl: `${ALCHEMYPAY_REDIRECT_BASE.replace(/\/$/, '')}/ramp-return.html?orderNo=${encodeURIComponent(merchantOrderNo)}&side=${side}`,
+      timestamp,
     };
 
-    const partnerCustomerId =
-      req.body?.partnerCustomerId;
+    if (network) queryParams.network = network;
+    if (ALCHEMYPAY_CALLBACK_URL) queryParams.callbackUrl = ALCHEMYPAY_CALLBACK_URL;
+
+    const partnerCustomerEmail =
+      req.body?.email;
 
     if (
-      typeof partnerCustomerId === 'string' &&
-      /^[0-9a-f-]{36}$/i.test(
-        partnerCustomerId
-      )
+      typeof partnerCustomerEmail === 'string' &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(partnerCustomerEmail)
     ) {
-      widgetParams.partnerCustomerId =
-        partnerCustomerId;
+      queryParams.email = partnerCustomerEmail;
     }
 
     try {
 
-      const accessToken =
-        await getTransakAccessToken();
+      const sign = alchemyPaySign({
+        timestamp,
+        httpMethod: 'GET',
+        requestPath,
+        queryParams,
+      });
 
-      const sessionRes =
-        await fetch(
-          TRANSAK_CREATE_SESSION_URL,
-          {
-            method: 'POST',
+      const search = new URLSearchParams({
+        ...queryParams,
+        sign,
+      }).toString();
 
-            headers: {
-              accept:
-                'application/json',
-
-              'access-token':
-                accessToken,
-
-              'content-type':
-                'application/json',
-            },
-
-            body: JSON.stringify({
-              widgetParams,
-            }),
-          }
-        );
-
-      if (!sessionRes.ok) {
-
-        const text =
-          await sessionRes
-            .text()
-            .catch(() => '');
-
-        console.error(
-          '[cryptobolt-server] Transak create-widget-url failed:',
-          sessionRes.status,
-          text.slice(0, 300)
-        );
-
-        return res.status(502).json({
-          error:
-            'Could not start the Transak widget session.',
-        });
-      }
-
-      const sessionJson =
-        await sessionRes.json();
-
-      const widgetUrl =
-        sessionJson?.data?.widgetUrl;
-
-      if (!widgetUrl) {
-
-        return res.status(502).json({
-          error:
-            'Transak session response was missing a widget URL.',
-        });
-      }
+      const widgetUrl = `${ALCHEMYPAY_RAMP_URL}?${search}`;
 
       return res.json({
         widgetUrl,
+        merchantOrderNo,
+        side,
       });
 
     } catch (err) {
 
       console.error(
-        '[cryptobolt-server] Transak widget URL error:',
+        '[cryptobolt-server] AlchemyPay widget URL error:',
         err?.message || err
       );
 
       return res.status(502).json({
         error:
-          'Could not reach Transak right now. Please try again shortly.',
+          'Could not start the AlchemyPay widget session. Please try again shortly.',
       });
     }
+  }
+);
+
+// =========================================================
+// ALCHEMYPAY ORDER STATUS
+// =========================================================
+// Called by the frontend once the widget redirects back to /ramp-return.html, so the actual
+// completed crypto/fiat amounts (not just "the user finished the flow") come from AlchemyPay's
+// own Query Order API rather than being trusted from the client. See
+// https://alchemypay.readme.io/docs/query-order-2
+
+app.get(
+  '/api/alchemypay-order-status',
+  alchemyPayLimiter,
+  async (req, res) => {
+
+    if (
+      !ALCHEMYPAY_APP_ID ||
+      !ALCHEMYPAY_APP_SECRET
+    ) {
+      return res.status(503).json({
+        error:
+          'AlchemyPay is not configured on this server yet.',
+      });
+    }
+
+    const merchantOrderNo =
+      String(req.query?.orderNo || '').slice(0, 64);
+
+    const side =
+      req.query?.side === 'sell'
+        ? 'SELL'
+        : 'BUY';
+
+    if (!merchantOrderNo) {
+      return res.status(400).json({
+        error:
+          'Missing orderNo.',
+      });
+    }
+
+    const timestamp =
+      String(Date.now());
+
+    const requestPath =
+      '/open/api/v4/merchant/query/trade';
+
+    const queryParams = {
+      merchantOrderNo,
+      side,
+    };
+
+    try {
+
+      const sign = alchemyPaySign({
+        timestamp,
+        httpMethod: 'GET',
+        requestPath,
+        queryParams,
+      });
+
+      const search = new URLSearchParams(queryParams).toString();
+
+      const orderRes = await fetch(
+        `${ALCHEMYPAY_API_URL}${requestPath}?${search}`,
+        {
+          method: 'GET',
+          headers: {
+            accept: 'application/json',
+            appid: ALCHEMYPAY_APP_ID,
+            timestamp,
+            sign,
+          },
+        }
+      );
+
+      const orderJson =
+        await orderRes.json().catch(() => ({}));
+
+      if (!orderRes.ok) {
+        console.error(
+          '[cryptobolt-server] AlchemyPay query-order failed:',
+          orderRes.status,
+          JSON.stringify(orderJson).slice(0, 300)
+        );
+
+        return res.status(502).json({
+          error:
+            'Could not look up the AlchemyPay order right now.',
+        });
+      }
+
+      return res.json(orderJson?.data || orderJson);
+
+    } catch (err) {
+
+      console.error(
+        '[cryptobolt-server] AlchemyPay order status error:',
+        err?.message || err
+      );
+
+      return res.status(502).json({
+        error:
+          'Could not reach AlchemyPay right now. Please try again shortly.',
+      });
+    }
+  }
+);
+
+// =========================================================
+// ALCHEMYPAY WEBHOOK (optional server-verified hardening)
+// =========================================================
+// AlchemyPay POSTs order-status updates here if ALCHEMYPAY_CALLBACK_URL is set. This is a stub:
+// it logs the notification so you can see it arrive. To make the purchase ledger tamper-proof,
+// verify the payload signature (see https://alchemypay.readme.io/docs/webhook-signature) and
+// write the row directly to Supabase here using the service_role key instead of trusting the
+// browser — see the note at the bottom of supabase/schema.sql.
+
+app.post(
+  '/api/alchemypay-webhook',
+  (req, res) => {
+    console.log(
+      '[cryptobolt-server] AlchemyPay webhook received:',
+      JSON.stringify(req.body).slice(0, 500)
+    );
+
+    // Always 200 quickly — AlchemyPay retries on non-2xx responses.
+    return res.json({ ok: true });
   }
 );
 

@@ -259,7 +259,7 @@ tr.active-row { background-color: rgba(20, 211, 138, 0.08) !important; border-le
     transform: translateY(8px) scale(0.98);
     transition: transform 0.2s var(--cw-ease);
     box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
-    /* Without a height cap, any modal taller than the viewport (e.g. the Transak
+    /* Without a height cap, any modal taller than the viewport (e.g. the AlchemyPay
        iframe on a short phone screen) just overflows past the top/bottom edges with
        no way to scroll to it — its own close/action buttons become unreachable.
        Cap it to the viewport and let the card itself scroll instead. */
@@ -476,9 +476,9 @@ body {
     #chart-title { font-size: 1rem !important; }
 
     .cw-modal-card { max-width: 100% !important; width: calc(100% - 8px); padding: 16px !important; }
-    /* The Buy/Sell (Transak) modal deliberately ships padding:0 inline so its header/asset
+    /* The Buy/Sell (AlchemyPay) modal deliberately ships padding:0 inline so its header/asset
        bar/iframe sit flush edge-to-edge — don't let the generic mobile padding above undo that. */
-    #transak-modal .cw-modal-card { padding: 0 !important; }
+    #alchemypay-modal .cw-modal-card { padding: 0 !important; }
 
     #market-heatmap { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
     .heatmap-tile { padding: 6px 4px !important; }
