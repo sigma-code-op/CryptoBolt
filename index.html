@@ -141,7 +141,7 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <!-- TradingView Lightweight Charts -->
     <script src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
-    <link rel="stylesheet" href="css/styles.css?v=20260820">
+    <link rel="stylesheet" href="css/styles.css?v=20260822">
 </head>
 <body class="bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
     <div class="cw-ambient-orb cw-orb-1"></div>
@@ -523,15 +523,15 @@
                             <span>Price Alerts</span>
                             <button id="sound-toggle-btn" title="Toggle alert sound" class="text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-xs">🔊</button>
                         </div>
-                        <div class="p-3 flex gap-2">
-                            <select id="alert-direction" class="bg-gray-900 border border-gray-800 rounded text-[10px] px-1.5 py-1 text-gray-300">
+                        <div class="p-3 flex gap-2 flex-wrap">
+                            <select id="alert-direction" class="flex-shrink-0 bg-gray-900 border border-gray-800 rounded text-[10px] px-1.5 py-1 text-gray-300">
                                 <option value="above">Above $</option>
                                 <option value="below">Below $</option>
                                 <option value="pct_up">Rises by %</option>
                                 <option value="pct_down">Falls by %</option>
                             </select>
-                            <input id="alert-price-input" type="number" step="any" placeholder="Target price" class="flex-1 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
-                            <button id="alert-add-btn" class="text-[11px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add</button>
+                            <input id="alert-price-input" type="number" step="any" placeholder="Target price" class="flex-1 min-w-[90px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                            <button id="alert-add-btn" class="flex-shrink-0 text-[11px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add</button>
                         </div>
                         <div id="alerts-list" class="px-3 pb-3 font-mono text-[10px] space-y-1.5 overflow-y-auto max-h-[160px]">
                             <p class="text-gray-600 text-[10px]">No alerts set for this asset.</p>
@@ -568,7 +568,7 @@
             <div id="ai-insight-body" class="p-5">
                 <p class="text-gray-600 text-[11px]">Select an asset, then click "Analyze Selected Coin" for a read that combines technicals, live news, and market sentiment — trend, momentum, a hedged outlook, and a volatility-aware trade plan structure, not just indicator math.</p>
             </div>
-            <div class="px-5 pb-3 flex items-center gap-3">
+            <div class="px-5 pb-3 flex items-center gap-3 flex-wrap">
                 <button id="ai-copy-snapshot-btn" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">📋 Copy snapshot</button>
                 <button id="ai-history-toggle" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">📜 Show read history</button>
             </div>
@@ -1006,7 +1006,7 @@
     <script src="js/03-ui-table.js?v=20260820"></script>
     <script src="js/04-ticker-sockets.js?v=20260820"></script>
     <script src="js/05-indicators.js?v=20260820"></script>
-    <script src="js/06-chart-engine.js?v=20260820"></script>
+    <script src="js/06-chart-engine.js?v=20260822"></script>
     <script src="js/07-alerts.js?v=20260820"></script>
     <script src="js/08-portfolio.js?v=20260820"></script>
     <script src="js/09-sound-compare.js?v=20260820"></script>

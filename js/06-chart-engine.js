@@ -222,15 +222,21 @@
             lineSeries.setData(cachedCandlesArray.map(c => ({ time: c.time, value: c.close })));
 
             // Tech Overlays Integration Pipeline
-            ma7Series = chartInstance.addLineSeries({ color: '#e5b324', lineWidth: 1.5, title: 'MA(7)', priceLineVisible: false, crosshairMarkerVisible: false });
-            ma25Series = chartInstance.addLineSeries({ color: '#24a0e5', lineWidth: 1.5, title: 'MA(25)', priceLineVisible: false, crosshairMarkerVisible: false });
-            ema12Series = chartInstance.addLineSeries({ color: '#ec4899', lineWidth: 1.5, title: 'EMA(12)', priceLineVisible: false, crosshairMarkerVisible: false });
-            ema26Series = chartInstance.addLineSeries({ color: '#22d3ee', lineWidth: 1.5, title: 'EMA(26)', priceLineVisible: false, crosshairMarkerVisible: false });
-            vwapSeries = chartInstance.addLineSeries({ color: '#fbbf24', lineWidth: 1.5, lineStyle: 2, title: 'VWAP', priceLineVisible: false, crosshairMarkerVisible: false });
+            // lastValueVisible:false — without it, every active overlay stamps its own
+            // colored "last value" badge on the right price axis (in addition to its
+            // line on the chart). With several overlays on at once these badges stack
+            // up and collide with each other and with the axis's own price ticks —
+            // the "labels overlapping the price scale" glitch. The line + the toolbar
+            // pill already identify each overlay, so the axis badge is redundant.
+            ma7Series = chartInstance.addLineSeries({ color: '#e5b324', lineWidth: 1.5, title: 'MA(7)', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+            ma25Series = chartInstance.addLineSeries({ color: '#24a0e5', lineWidth: 1.5, title: 'MA(25)', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+            ema12Series = chartInstance.addLineSeries({ color: '#ec4899', lineWidth: 1.5, title: 'EMA(12)', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+            ema26Series = chartInstance.addLineSeries({ color: '#22d3ee', lineWidth: 1.5, title: 'EMA(26)', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+            vwapSeries = chartInstance.addLineSeries({ color: '#fbbf24', lineWidth: 1.5, lineStyle: 2, title: 'VWAP', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
             
-            bbUpperSeries = chartInstance.addLineSeries({ color: 'rgba(168, 85, 247, 0.6)', lineWidth: 1, title: 'BB Upper', priceLineVisible: false, crosshairMarkerVisible: false });
-            bbBasisSeries = chartInstance.addLineSeries({ color: 'rgba(168, 85, 247, 0.3)', lineWidth: 1, lineStyle: 2, title: 'BB Basis', priceLineVisible: false, crosshairMarkerVisible: false });
-            bbLowerSeries = chartInstance.addLineSeries({ color: 'rgba(168, 85, 247, 0.6)', lineWidth: 1, title: 'BB Lower', priceLineVisible: false, crosshairMarkerVisible: false });
+            bbUpperSeries = chartInstance.addLineSeries({ color: 'rgba(168, 85, 247, 0.6)', lineWidth: 1, title: 'BB Upper', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+            bbBasisSeries = chartInstance.addLineSeries({ color: 'rgba(168, 85, 247, 0.3)', lineWidth: 1, lineStyle: 2, title: 'BB Basis', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+            bbLowerSeries = chartInstance.addLineSeries({ color: 'rgba(168, 85, 247, 0.6)', lineWidth: 1, title: 'BB Lower', priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
 
             volumeSeries = chartInstance.addHistogramSeries({ 
                 priceFormat: { type: 'volume' }, 
@@ -704,4 +710,3 @@
 
     // ---------- Price alerts ----------
     let notificationPermissionRequested = false;
-

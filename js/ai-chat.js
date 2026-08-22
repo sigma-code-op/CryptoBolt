@@ -298,6 +298,105 @@
        CHAT UI
     ----------------------------- */
 
+    function escapeHtmlChat(str) {
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+
+    /**
+     * Minimal markdown -> HTML for chat replies. The AI backend answers in
+     * plain markdown (bold, bullet/numbered lists, headings, pipe tables),
+     * but the chat bubble used to insert that text with textContent + CSS
+     * white-space:pre-wrap — which preserves markdown syntax and source
+     * line breaks literally instead of rendering them, producing raw
+     * "**bold**" / "| a | b |" text with ragged, seemingly-random line
+     * wrapping. This renders the handful of markdown constructs the model
+     * actually uses into real HTML (escaping first, so nothing from the
+     * model can inject markup).
+     */
+    function renderMarkdownLite(raw) {
+        const text = escapeHtmlChat(raw).replace(/\r\n/g, "\n");
+        const lines = text.split("\n");
+        const html = [];
+        let list = null; // 'ul' | 'ol' | null
+        let tableRows = null;
+
+        const closeList = () => {
+            if (list) { html.push(`</${list}>`); list = null; }
+        };
+        const inline = (s) =>
+            s
+                .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                .replace(/(?<!\*)\*(?!\*)([^*]+)\*(?!\*)/g, "<em>$1</em>")
+                .replace(/`([^`]+)`/g, "<code>$1</code>");
+        const flushTable = () => {
+            if (!tableRows || !tableRows.length) { tableRows = null; return; }
+            const [headerRow, ...bodyRows] = tableRows;
+            html.push('<div class="chat-table-wrap"><table class="chat-table"><thead><tr>');
+            headerRow.forEach((cell) => html.push(`<th>${inline(cell.trim())}</th>`));
+            html.push("</tr></thead><tbody>");
+            bodyRows.forEach((row) => {
+                html.push("<tr>");
+                row.forEach((cell) => html.push(`<td>${inline(cell.trim())}</td>`));
+                html.push("</tr>");
+            });
+            html.push("</tbody></table></div>");
+            tableRows = null;
+        };
+        const isTableSeparator = (line) => /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(line);
+        const splitRow = (line) =>
+            line.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const trimmed = line.trim();
+
+            // Pipe table: a "| a | b |" row followed by a "|---|---|" separator
+            if (trimmed.startsWith("|") && isTableSeparator(lines[i + 1] || "")) {
+                closeList();
+                tableRows = [splitRow(trimmed)];
+                i++; // skip the separator line
+                while (i + 1 < lines.length && lines[i + 1].trim().startsWith("|")) {
+                    i++;
+                    tableRows.push(splitRow(lines[i]));
+                }
+                flushTable();
+                continue;
+            }
+
+            if (!trimmed) { closeList(); continue; }
+
+            const heading = trimmed.match(/^(#{1,4})\s+(.*)$/);
+            if (heading) {
+                closeList();
+                html.push(`<p class="chat-heading">${inline(heading[2])}</p>`);
+                continue;
+            }
+
+            const bullet = trimmed.match(/^[-*•]\s+(.*)$/);
+            if (bullet) {
+                if (list !== "ul") { closeList(); html.push("<ul>"); list = "ul"; }
+                html.push(`<li>${inline(bullet[1])}</li>`);
+                continue;
+            }
+
+            const numbered = trimmed.match(/^\d+[.)]\s+(.*)$/);
+            if (numbered) {
+                if (list !== "ol") { closeList(); html.push("<ol>"); list = "ol"; }
+                html.push(`<li>${inline(numbered[1])}</li>`);
+                continue;
+            }
+
+            closeList();
+            html.push(`<p>${inline(trimmed)}</p>`);
+        }
+        closeList();
+        flushTable();
+        return html.join("");
+    }
+
     function addMessage(type, text) {
         const container = $("chat-messages");
         if (!container) return null;
@@ -308,13 +407,20 @@
             <div class="message-avatar">${type === "ai" ? "⚡" : "👤"}</div>
             <div class="message-body">
                 <strong>${type === "ai" ? "CryptoBolt AI" : "You"}</strong>
-                <p></p>
+                <div class="message-text"></div>
             </div>
         `;
-        wrapper.querySelector("p").textContent = text;
+        wrapper.querySelector(".message-text").innerHTML =
+            type === "ai" ? renderMarkdownLite(text) : `<p>${escapeHtmlChat(text)}</p>`;
         container.appendChild(wrapper);
         container.scrollTop = container.scrollHeight;
         return wrapper;
+    }
+
+    function setMessageText(wrapper, type, text) {
+        const el = wrapper?.querySelector(".message-text");
+        if (!el) return;
+        el.innerHTML = type === "ai" ? renderMarkdownLite(text) : `<p>${escapeHtmlChat(text)}</p>`;
     }
 
     $("chat-form")?.addEventListener("submit", async (event) => {
@@ -330,7 +436,7 @@
         const thinking = addMessage("ai", "Researching the current market...");
         const answer = await askAI(question);
         if (thinking) {
-            thinking.querySelector("p").textContent = answer;
+            setMessageText(thinking, "ai", answer);
         }
     });
 
@@ -360,7 +466,7 @@
                 <div class="message-avatar">⚡</div>
                 <div class="message-body">
                     <strong>CryptoBolt AI</strong>
-                    <p>Chat cleared. Ask me another market research question.</p>
+                    <div class="message-text"><p>Chat cleared. Ask me another market research question.</p></div>
                 </div>
             </div>
         `;

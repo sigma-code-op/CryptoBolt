@@ -495,6 +495,7 @@ body {
 
 .message-body {
     max-width: 850px;
+    min-width: 0;
 }
 
 .message-body strong {
@@ -502,13 +503,81 @@ body {
     color: #aeb6c0;
 }
 
-.message-body p {
+.message-text {
     margin-top: 5px;
-    white-space: pre-wrap;
+}
+
+/* Rendered markdown (see renderMarkdownLite in ai-chat.js): real paragraphs,
+   lists and tables instead of raw "**bold**" / "| a | b |" text dumped with
+   white-space:pre-wrap, which used to preserve the model's (and the static
+   greeting's) source line breaks and indentation literally. */
+.message-text p {
+    margin: 0 0 8px;
     color: #8b949f;
     font-size: 12px;
     line-height: 1.7;
 }
+.message-text p:last-child { margin-bottom: 0; }
+
+.message-text strong { color: #d7dce3; }
+.message-text code {
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--ai-border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.message-text .chat-heading {
+    font-size: 11px;
+    font-weight: 700;
+    color: #aeb6c0;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin: 10px 0 6px;
+}
+.message-text .chat-heading:first-child { margin-top: 0; }
+
+.message-text ul,
+.message-text ol {
+    margin: 0 0 8px;
+    padding-left: 18px;
+    color: #8b949f;
+    font-size: 12px;
+    line-height: 1.7;
+}
+.message-text li { margin-bottom: 2px; }
+
+.chat-table-wrap {
+    overflow-x: auto;
+    margin: 4px 0 10px;
+    border: 1px solid var(--ai-border);
+    border-radius: 8px;
+    -webkit-overflow-scrolling: touch;
+}
+.chat-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 320px;
+    font-size: 11px;
+}
+.chat-table th,
+.chat-table td {
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--ai-border);
+    white-space: normal;
+    color: #8b949f;
+}
+.chat-table thead th {
+    color: #aeb6c0;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    background: rgba(255,255,255,.03);
+}
+.chat-table tbody tr:last-child td { border-bottom: none; }
 
 .chat-message.user {
     flex-direction: row-reverse;
@@ -516,6 +585,12 @@ body {
 
 .chat-message.user .message-body {
     text-align: right;
+}
+
+.chat-message.user .message-text ul,
+.chat-message.user .message-text ol {
+    padding-left: 0;
+    padding-right: 18px;
 }
 
 .chat-message.user .message-avatar {

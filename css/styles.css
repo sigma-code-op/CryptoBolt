@@ -409,6 +409,30 @@ body {
     input, select, textarea { font-size: 16px !important; }
 }
 
+/* ---------- Flex-row form controls: prevent overflow ----------
+   Inputs/selects have an intrinsic min-content width that flexbox respects
+   by default (min-width: auto), so a `flex: 1` input sitting next to a
+   select + button can refuse to shrink and push the row past its card's
+   edge instead of wrapping — the classic "control runs off-screen on
+   mobile" bug (seen in Price Alerts, Risk Calculator, Compare, etc).
+   min-width: 0 lets these controls actually shrink to fit; flex-wrap on
+   their parent rows is the fallback once they hit a sane minimum. */
+input, select, textarea {
+    min-width: 0;
+}
+/* Rows that pair a select/input with an action button: wrap instead of
+   overflowing once the controls hit their shrink limit on narrow screens. */
+#alert-direction, #alert-price-input, #alert-add-btn,
+#risk-account-size, #risk-pct {
+    min-width: 0;
+}
+.p-3.flex.gap-2:has(#alert-direction) {
+    flex-wrap: wrap;
+}
+#alert-add-btn {
+    flex-shrink: 0;
+}
+
 /* ---------- Horizontal scroll strips ----------
    Used on filter/timeframe/indicator button rows so they read as one tidy,
    swipeable line on narrow screens instead of wrapping into a multi-row pile
