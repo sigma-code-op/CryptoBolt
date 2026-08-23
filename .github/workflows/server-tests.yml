@@ -1,9 +1,10 @@
-name: Server Tests
+name: CI
 
-# Runs the backend's Node built-in test suite (server/test/*.test.js) on every push and pull
-# request. This does NOT deploy anything — Hostinger deployment stays manual/FTP-based per
-# CryptoBolt_Complete_Deployment_Guide.md. This workflow exists purely as a safety net so a
-# breaking change to server/src/*.js is caught before it reaches production.
+# Runs the backend's Node built-in test suite (server/test/*.test.js), the frontend indicator
+# test suite (test/*.test.js), and staleness checks for the Tailwind CSS and JS bundle build
+# outputs, on every push and pull request. This does NOT deploy anything — Hostinger deployment
+# stays manual/FTP-based per CryptoBolt_Complete_Deployment_Guide.md. This workflow exists purely
+# as a safety net so a breaking change is caught before it reaches production.
 
 on:
   push:
@@ -59,3 +60,45 @@ jobs:
             git diff --stat -- css/tailwind.css
             exit 1
           fi
+
+  js-bundle:
+    name: JS bundle is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+      - run: npm run build:js
+      # Fails the build if `npm run build:js` produces different js/dist/*.js bundles than what's
+      # committed — the usual cause is editing a js/*.js module (or its script order in an HTML
+      # page) without re-running the build before committing.
+      - run: |
+          if ! git diff --quiet -- js/dist; then
+            echo "::error::js/dist/*.js is out of date. Run 'npm run build:js' locally and commit the result."
+            git diff --stat -- js/dist
+            exit 1
+          fi
+
+  frontend-tests:
+    name: Frontend indicator tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+      # Runs test/indicators.test.js against the real, shipped js/05-indicators.js (loaded via
+      # vm, not reimplemented) — a regression guard on the SMA/EMA/RSI/MACD/Bollinger/ATR/VWAP/
+      # StochRSI/Heikin-Ashi math that every chart panel and the AI context builder depend on.
+      - run: npm test

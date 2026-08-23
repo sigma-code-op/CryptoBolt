@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
+         the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
       gtag('js', new Date());
-
       gtag('config', 'G-BEK3KJ2TEV');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
@@ -57,12 +65,12 @@
         <main class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-6 sm:p-9">
             <div class="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#4fd8e8]">Legal</div>
             <h1 class="text-2xl font-bold text-white mb-1" style="font-family:'Space Grotesk','Inter',sans-serif;">Privacy Policy</h1>
-            <p class="text-gray-500 text-[11px] mb-8">Last updated: July 30, 2026</p>
+            <p class="text-gray-500 text-[11px] mb-8">Last updated: August 23, 2026</p>
 
             <div class="space-y-7 text-[13px] leading-relaxed text-gray-300">
                 <section>
                     <h2 class="text-sm font-bold text-white mb-2">The short version</h2>
-                    <p>CryptoBolt is a client-side market terminal. There is no user account, no server-side database, and no tracking of individual visitors. Almost everything the app remembers — your watchlist, alerts, portfolio entries, notes, and settings — is written directly to your browser's own storage and never leaves your device unless a feature explicitly says otherwise (below).</p>
+                    <p>CryptoBolt is a client-side market terminal. There is no user account, no server-side database, and no server-side tracking of individual visitors. Almost everything the app remembers — your watchlist, alerts, portfolio entries, notes, and settings — is written directly to your browser's own storage and never leaves your device. The one exception is optional analytics/ad cookies, covered in "Cookies &amp; analytics" below.</p>
                 </section>
 
                 <section>
@@ -98,7 +106,9 @@
 
                 <section>
                     <h2 class="text-sm font-bold text-white mb-2">Cookies &amp; analytics</h2>
-                    <p>CryptoBolt does not set cookies and does not run any analytics, telemetry, or advertising scripts. There is no first-party or third-party tracking of your activity within the app.</p>
+                    <p class="mb-2">CryptoBolt uses <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Google Analytics</a> (GA4) to understand traffic at a high level, and <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Google AdSense</a> to show ads. Both set cookies in your browser and are how this free tool is funded.</p>
+                    <p class="mb-2">A banner asks for your choice the first time you visit. If you accept, analytics and ad-personalization cookies are enabled; if you reject, they stay off and ads are shown without personalization instead. You can change your mind anytime: <button type="button" onclick="window.cwOpenCookiePreferences && window.cwOpenCookiePreferences()" class="text-[#4fd8e8] hover:underline">open cookie preferences</button>.</p>
+                    <p>This is separate from the <code class="cw-kbd">localStorage</code> data described above, which is not a cookie, is never sent to Google or any analytics provider, and has no consent toggle because it never leaves your device.</p>
                 </section>
 
                 <section>
@@ -128,5 +138,6 @@
     <script>
         document.querySelectorAll('#footer-year').forEach(el => el.innerText = new Date().getFullYear());
     </script>
+    <script src="js/cookie-consent.js?v=20260823" defer></script>
 </body>
 </html>

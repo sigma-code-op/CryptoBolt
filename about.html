@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
+         the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
       gtag('js', new Date());
-
       gtag('config', 'G-BEK3KJ2TEV');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
@@ -117,5 +125,6 @@
     <script>
         document.querySelectorAll('#footer-year').forEach(el => el.innerText = new Date().getFullYear());
     </script>
+    <script src="js/cookie-consent.js?v=20260823" defer></script>
 </body>
 </html>

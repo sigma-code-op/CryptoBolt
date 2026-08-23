@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
+         the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
       gtag('js', new Date());
-
       gtag('config', 'G-BEK3KJ2TEV');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
@@ -32,6 +40,7 @@
     <link rel="preconnect" href="https://api.binance.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -232,9 +241,9 @@
 
     <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 items-end"></div>
 
-    <script src="js/00-config.js?v=20260820"></script>
-    <script src="js/17-auth.js?v=20260820"></script>
-    <script src="js/19-cloud-sync.js?v=20260820"></script>
-    <script src="js/18-account.js?v=20260820"></script>
+    <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
+         files, not this bundle — it's a generated build artifact. -->
+    <script src="js/dist/bundle-account.js?v=20260823"></script>
+    <script src="js/cookie-consent.js?v=20260823" defer></script>
 </body>
 </html>

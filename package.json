@@ -2,10 +2,14 @@
   "name": "cryptobolt",
   "version": "1.0.0",
   "private": true,
-  "description": "CryptoBolt frontend build tooling (Tailwind CSS compilation). The site itself is static HTML/JS with no bundler — this only compiles Tailwind's utility classes to a static stylesheet.",
+  "type": "module",
+  "description": "CryptoBolt frontend build tooling and tests: Tailwind CSS compilation, JS module bundling, and a Node test suite for the pure-math technical indicators. The site itself is static HTML/JS with no framework — these scripts compile Tailwind's utility classes to a static stylesheet, concatenate the ordered js/*.js modules into per-page bundles under js/dist/ (see scripts/build-js.js), and test the shipped indicator math directly (see test/).",
   "scripts": {
+    "build": "npm run build:css && npm run build:js",
     "build:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch"
+    "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch",
+    "build:js": "node scripts/build-js.js",
+    "test": "node --test \"test/*.test.js\""
   },
   "devDependencies": {
     "tailwindcss": "^4.3.3",

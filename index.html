@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
+         the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
       gtag('js', new Date());
-
       gtag('config', 'G-BEK3KJ2TEV');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
@@ -1000,23 +1008,9 @@
 
     <!-- App modules load in order; they share the global scope (no bundler needed). -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/00-config.js?v=20260820"></script>
-    <script src="js/01-state.js?v=20260820"></script>
-    <script src="js/02-api.js?v=20260820"></script>
-    <script src="js/03-ui-table.js?v=20260820"></script>
-    <script src="js/04-ticker-sockets.js?v=20260820"></script>
-    <script src="js/05-indicators.js?v=20260820"></script>
-    <script src="js/06-chart-engine.js?v=20260822"></script>
-    <script src="js/07-alerts.js?v=20260820"></script>
-    <script src="js/08-portfolio.js?v=20260820"></script>
-    <script src="js/09-sound-compare.js?v=20260820"></script>
-    <script src="js/10-ai-insight.js?v=20260820"></script>
-    <script src="js/11-performance-notes-funding.js?v=20260820"></script>
-    <script src="js/12-events-init.js?v=20260820"></script>
-    <script src="js/13-risk-calculator.js?v=20260820"></script>
-    <script src="js/17-auth.js?v=20260820"></script>
-    <script src="js/19-cloud-sync.js?v=20260820"></script>
-    <script src="js/14-alchemypay.js?v=20260821"></script>
-    <script src="js/15-risk-triggers.js?v=20260820"></script>
+    <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
+         files, not this bundle — it's a generated build artifact. -->
+    <script src="js/dist/bundle-home.js?v=20260823"></script>
+    <script src="js/cookie-consent.js?v=20260823" defer></script>
 </body>
 </html>
