@@ -1,0 +1,101 @@
+# CryptoBolt
+
+> CryptoBolt is a free crypto market research and analysis platform that provides live cryptocurrency market data, technical analysis, charts, portfolio tools, alerts, paper trading, and AI-assisted market research. CryptoBolt is an analysis and education tool, not a cryptocurrency exchange and not financial advice.
+
+## Primary Pages
+
+- [CryptoBolt Home](https://cryptobolt.io/) — Live crypto prices, charts, market data, technical indicators, portfolio tools, alerts, and market analysis.
+- [CryptoBolt AI Research](https://cryptobolt.io/ai.html) — AI-assisted crypto market research and conversational market analysis using current market context.
+- [CryptoBolt Trading Practice](https://cryptobolt.io/trade.html) — Paper-trading environment for practicing buy/sell decisions with virtual funds.
+- [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.
+- [Contact CryptoBolt](https://cryptobolt.io/contact.html) — Contact and partnership inquiries.
+- [Privacy Policy](https://cryptobolt.io/privacy.html) — Privacy and data-handling information.
+- [Terms of Service](https://cryptobolt.io/terms.html) — Terms governing use of CryptoBolt.
+
+## Core Capabilities
+
+- Live cryptocurrency prices and 24-hour market statistics.
+- Spot and perpetual-futures market data.
+- Binance-powered market data and ticker information.
+- Interactive cryptocurrency charts.
+- Technical indicators including RSI, moving averages, MACD, Bollinger Bands, ATR, and related market measurements.
+- Multi-timeframe market analysis.
+- Market trend, momentum, volatility, volume, support/resistance, and market-structure analysis.
+- Order-book and market-depth information where available.
+- Portfolio tracking and performance monitoring.
+- Price alerts and risk-management tools.
+- Paper trading using virtual funds rather than real-money execution.
+- AI-assisted market research and conversational crypto analysis.
+- Market sentiment and broader market-context research where available.
+
+## CryptoBolt AI
+
+CryptoBolt AI is designed to help users understand market conditions and research cryptocurrency price action. It can discuss topics such as:
+
+- Current market trend and momentum.
+- RSI and other technical indicators.
+- Price action and market structure.
+- Support and resistance.
+- Volatility and risk.
+- Spot versus perpetual-futures conditions.
+- Funding-rate and positioning context for supported futures markets.
+- Multi-timeframe confluence.
+- General market sentiment and research context.
+
+CryptoBolt AI is informational and educational. It can be incorrect, and its output should not be treated as guaranteed predictions, trading signals, or financial advice. Users should independently verify important information and make their own decisions.
+
+## Market Data Context
+
+CryptoBolt can work with live market information including:
+
+- Asset price.
+- 24-hour percentage change.
+- 24-hour high and low.
+- 24-hour volume.
+- Candlestick data.
+- Selected chart timeframe.
+- Spot or perpetual-futures market type.
+- Moving averages.
+- RSI.
+- ATR and volatility context.
+- Recent price movement.
+- Multi-timeframe trend information.
+- Futures funding-rate context when available.
+
+Market data is dynamic and can change continuously. Historical or previously displayed values should not be assumed to represent current conditions.
+
+## Paper Trading
+
+CryptoBolt includes a practice trading environment designed for learning and testing strategies with virtual funds. It is not a real-money exchange and does not represent completed real cryptocurrency transactions.
+
+## Intended Use
+
+CryptoBolt is intended for:
+
+- Cryptocurrency market research.
+- Technical-analysis education.
+- Market monitoring.
+- Strategy exploration.
+- Paper-trading practice.
+- Understanding crypto-market concepts.
+- Using AI to summarize and explain market information.
+
+CryptoBolt should not be represented as a broker, exchange, custodian, investment adviser, or provider of guaranteed returns.
+
+## Important Limitations
+
+- Cryptocurrency markets are volatile and unpredictable.
+- Live market data can be delayed, unavailable, or temporarily incorrect.
+- AI-generated analysis can contain mistakes.
+- Technical indicators are analytical tools, not guarantees of future price movement.
+- Paper-trading results do not guarantee real-world trading performance.
+- Users should verify prices, news, market conditions, and other important information before acting on them.
+
+## Machine-Readable Site Map
+
+- https://cryptobolt.io/sitemap.xml
+- https://cryptobolt.io/robots.txt
+
+## Canonical Domain
+
+https://cryptobolt.io/
