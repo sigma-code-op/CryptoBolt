@@ -1,0 +1,306 @@
+/* ============================================================
+   CryptoBolt — "Elevate" visual pass
+   ------------------------------------------------------------
+   Pure presentation layer on top of the existing Signal Deck /
+   shadcn-ui system. Does NOT touch markup, IDs, or any class
+   that JS reads for behaviour (.active, .filter-btn, .tf-btn,
+   data-* attributes, etc.) — only restyles appearance so it is
+   safe to drop in.
+
+   Load order: tailwind.css -> styles.css -> shadcn-ui.css ->
+   ui-elevate.css (this file, last — so it wins the cascade).
+   ============================================================ */
+
+:root {
+    /* Richer, slightly cooler depth scale layered over the existing
+       --cw-* tokens. Kept as new variables so nothing else breaks. */
+    --el-bg-0: #07080c;
+    --el-bg-1: #0c0e14;
+    --el-surface: #14161d;
+    --el-surface-2: #191c25;
+    --el-surface-hi: #20232e;
+    --el-border: rgba(148, 163, 194, 0.12);
+    --el-border-hi: rgba(148, 163, 194, 0.22);
+    --el-glow-green: rgba(20, 211, 138, 0.16);
+    --el-glow-cyan: rgba(79, 216, 232, 0.14);
+    --el-radius: 14px;
+    --el-radius-sm: 9px;
+    --el-shadow-card:
+        0 1px 0 rgba(255, 255, 255, 0.04) inset,
+        0 18px 40px -18px rgba(0, 0, 0, 0.65),
+        0 4px 14px -6px rgba(0, 0, 0, 0.5);
+    --el-shadow-card-hover:
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 28px 60px -20px rgba(0, 0, 0, 0.7),
+        0 0 0 1px var(--el-border-hi),
+        0 0 36px -6px var(--el-glow-cyan);
+    --el-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Page backdrop: layered mesh instead of flat black ---------- */
+html { background: var(--el-bg-0); }
+
+body.bg-\[\#0b0e11\],
+body {
+    background:
+        radial-gradient(1100px 620px at 8% -8%, rgba(20, 211, 138, 0.07), transparent 60%),
+        radial-gradient(900px 560px at 96% 0%, rgba(79, 216, 232, 0.06), transparent 55%),
+        radial-gradient(1200px 700px at 50% 115%, rgba(168, 85, 247, 0.05), transparent 60%),
+        var(--el-bg-0) !important;
+    background-attachment: fixed, fixed, fixed, fixed;
+}
+
+/* Faint schematic grid for texture (very subtle, sits above the mesh) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(1200px 900px at 50% 0%, black, transparent 75%);
+    -webkit-mask-image: radial-gradient(1200px 900px at 50% 0%, black, transparent 75%);
+}
+
+.container { position: relative; z-index: 1; }
+
+/* ---------- Selection & scrollbar ---------- */
+::selection { background: rgba(20, 211, 138, 0.28); color: #eafff5; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #2a2e3b, #1c1f28);
+    border-radius: 999px;
+    border: 2px solid var(--el-bg-1);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--cw-cyan); }
+
+/* ---------- Header: glass panel bar ----------
+   NOTE: intentionally NOT position:sticky. html/body carry
+   `overflow-x: hidden` (a deliberate mobile anti-overflow guard
+   elsewhere in the codebase), and that combination is a known
+   browser gotcha that silently breaks position:sticky. A static
+   bar avoids that failure mode entirely. */
+header.flex {
+    margin: -0.5rem -0.5rem 1.25rem;
+    padding: 1.1rem 0.9rem !important;
+    background: linear-gradient(180deg, rgba(11, 13, 18, 0.88), rgba(11, 13, 18, 0.72));
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--el-border) !important;
+    border-radius: 16px;
+}
+
+header h1 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-size: 1.5rem !important;
+}
+
+.cw-logo-gradient { filter: drop-shadow(0 0 14px rgba(20, 211, 138, 0.25)); }
+
+/* Status telemetry chip */
+header .font-mono.bg-\[\#181a20\] {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 999px !important;
+    border-color: var(--el-border) !important;
+}
+
+/* Search input */
+#search-input {
+    background: rgba(255, 255, 255, 0.035) !important;
+    border-color: var(--el-border) !important;
+    border-radius: var(--el-radius-sm) !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+#search-input:focus {
+    border-color: var(--cw-green) !important;
+    box-shadow: 0 0 0 3px var(--el-glow-green);
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ---------- Buttons: consistent hierarchy ---------- */
+
+/* Primary (brand-filled) actions: Trading Account, Add, Save, Buy, Sign in submit... */
+.bg-\[\#14d38a\] {
+    background: linear-gradient(180deg, #1be89c, #0fb579) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 6px 18px -6px rgba(20, 211, 138, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    border-radius: var(--el-radius-sm) !important;
+}
+.bg-\[\#14d38a\]:hover { filter: brightness(1.06); box-shadow: 0 8px 22px -6px rgba(20, 211, 138, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+.bg-amber-500 {
+    background: linear-gradient(180deg, #ffc44d, #f5a623) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 6px 18px -6px rgba(255, 176, 32, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    border-radius: var(--el-radius-sm) !important;
+}
+
+/* Secondary / ghost (bg-gray-900 utility) buttons: header actions, CSV export, Live, Cash Out... */
+button.bg-gray-900,
+a.bg-gray-900,
+.bg-gray-900 {
+    background: rgba(255, 255, 255, 0.035) !important;
+    border-color: var(--el-border) !important;
+    border-radius: var(--el-radius-sm) !important;
+}
+button.bg-gray-900:hover,
+a.bg-gray-900:hover {
+    background: rgba(255, 255, 255, 0.065) !important;
+    border-color: var(--el-border-hi) !important;
+    transform: translateY(-1px);
+}
+
+/* AI purple ghost pill */
+.bg-\[\#a855f7\]\/15 {
+    border-radius: 999px !important;
+    box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.12) inset;
+}
+
+button, a { border-radius: var(--el-radius-sm); }
+.rounded-full, .status-dot, .accent-swatch { border-radius: 9999px !important; }
+
+/* ---------- Card system ---------- */
+.cw-card-interactive {
+    border-radius: var(--el-radius) !important;
+    border-color: var(--el-border) !important;
+    box-shadow: var(--el-shadow-card) !important;
+    background: linear-gradient(165deg, var(--el-surface), var(--el-bg-1)) !important;
+}
+.cw-card-interactive:hover {
+    box-shadow: var(--el-shadow-card-hover) !important;
+    border-color: var(--el-border-hi) !important;
+}
+
+/* Card header strip (the bg-[#1e222b] bar with the section title) */
+.bg-\[\#1e222b\] {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)) !important;
+    border-color: var(--el-border) !important;
+}
+.bg-\[\#1e222b\]\/50 { background: rgba(255, 255, 255, 0.03) !important; }
+
+/* Secondary sub-bars (filters row, popular coins, form rows) */
+.bg-\[\#14161c\] { background: rgba(255, 255, 255, 0.018) !important; }
+
+/* Generic panel fill used for chart/RSI/MACD workspaces etc. */
+.bg-\[\#181a20\] { background: var(--el-surface) !important; }
+
+/* Section title typography inside card headers */
+.cw-card-interactive .uppercase.tracking-wider,
+.cw-card-interactive .uppercase.tracking-wide {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: 0.06em !important;
+    color: #b9c0d4 !important;
+}
+
+/* ---------- Segmented controls (timeframe / type / filters / overlays) ---------- */
+.tf-btn, .ctype-btn, .ind-btn, .filter-btn, .heatmap-scope-btn, .chart-overlay-btn {
+    border-radius: 7px !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+.tf-btn.active, .ctype-btn.active, .ind-btn.active,
+.filter-btn.active, .heatmap-scope-btn.active, .chart-overlay-btn.active {
+    background: linear-gradient(180deg, rgba(20, 211, 138, 0.22), rgba(20, 211, 138, 0.1)) !important;
+    color: #b6ffe0 !important;
+    box-shadow: 0 0 0 1px rgba(20, 211, 138, 0.35) inset;
+}
+.tf-btn:hover:not(.active), .ctype-btn:hover:not(.active), .ind-btn:hover:not(.active),
+.filter-btn:hover:not(.active), .heatmap-scope-btn:hover:not(.active), .chart-overlay-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ---------- Inputs, selects, textareas ---------- */
+input.bg-gray-900, select.bg-gray-900, textarea,
+input[class*="bg-gray-900"], select[class*="bg-gray-900"] {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: var(--el-border) !important;
+    border-radius: var(--el-radius-sm) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+}
+input:focus, select:focus, textarea:focus {
+    background: rgba(255, 255, 255, 0.045) !important;
+}
+
+/* ---------- Data table ---------- */
+table thead tr {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(6px);
+}
+table thead th {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: 0.07em;
+    color: #8891a8 !important;
+}
+table tbody tr {
+    transition: background-color 0.15s var(--el-ease), box-shadow 0.15s var(--el-ease);
+}
+table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.035) !important;
+    box-shadow: inset 3px 0 0 var(--cw-green);
+    cursor: pointer;
+}
+td, th { font-variant-numeric: tabular-nums; }
+
+/* ---------- Badges / pills / risk-output tiles ---------- */
+span[class*="rounded"][class*="uppercase"][class*="px-1.5"],
+span[class*="rounded"][class*="uppercase"][class*="px-2"] {
+    border-radius: 999px !important;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.bg-gray-900\/50 {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--el-border);
+    border-radius: var(--el-radius-sm) !important;
+    transition: border-color 0.15s var(--el-ease), background 0.15s var(--el-ease);
+}
+.bg-gray-900\/50:hover { border-color: var(--el-border-hi); background: rgba(255, 255, 255, 0.045) !important; }
+
+/* ---------- Premium / accent panel edges ---------- */
+.cw-panel-premium {
+    box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(168, 85, 247, 0.14) !important;
+}
+.cw-panel-accent.cw-accent-cyan { box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(79, 216, 232, 0.14) !important; }
+.cw-panel-accent.cw-accent-green { box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(20, 211, 138, 0.14) !important; }
+.cw-panel-accent.cw-accent-amber { box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(255, 176, 32, 0.14) !important; }
+
+/* ---------- Marquee / movers strip ---------- */
+#mover-strip { font-family: 'JetBrains Mono', monospace; }
+
+/* ---------- Ambient orbs: a touch richer, still cheap ---------- */
+.cw-ambient-orb { opacity: 0.5; filter: blur(90px); }
+
+/* ---------- Footer ---------- */
+.cw-footer a { transition: color 0.15s var(--el-ease); }
+.cw-footer-col-title {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: 0.08em;
+    color: #7d859c;
+}
+
+/* ---------- Modal ---------- */
+.cw-modal-card {
+    border-radius: 18px !important;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.75), 0 0 0 1px var(--el-border-hi) !important;
+}
+
+/* ---------- Motion polish ---------- */
+.cw-reveal { transition: opacity 0.5s var(--el-ease), transform 0.5s var(--el-ease) !important; }
+
+/* ---------- Responsive: don't fight existing mobile fixes, just refine ---------- */
+@media (max-width: 640px) {
+    header.flex {
+        margin: 0 0 1rem;
+        border-radius: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cw-card-interactive, .cw-card-interactive:hover { transition: none !important; }
+}
