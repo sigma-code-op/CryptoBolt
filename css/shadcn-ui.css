@@ -1,0 +1,266 @@
+/* ============================================================
+   CryptoBolt — shadcn/ui component layer
+   ------------------------------------------------------------
+   This file layers a shadcn/ui-style component system (precise
+   radii, ring-offset focus states, muted/card/border tokens,
+   segmented "tabs" controls, dialog/badge/input primitives) on
+   top of the existing "Signal Deck" palette. It does NOT change
+   any markup, IDs, or the classes JS reads (.active, .filter-btn,
+   .tf-btn, etc.) — it only restyles those same selectors, so it
+   is safe to drop in without touching behaviour.
+
+   Load order: tailwind.css -> styles.css -> shadcn-ui.css (last,
+   so it can refine what came before).
+   ============================================================ */
+
+:root {
+    /* ---- shadcn token bridge (mapped onto the existing brand palette) ---- */
+    --sc-radius: 0.65rem;
+    --sc-radius-sm: calc(var(--sc-radius) - 4px);
+    --sc-radius-lg: calc(var(--sc-radius) + 4px);
+
+    --sc-background: var(--cw-bg);
+    --sc-foreground: var(--cw-text);
+
+    --sc-card: #12141c;
+    --sc-card-hi: #171a24;
+    --sc-card-foreground: var(--cw-text);
+
+    --sc-popover: #14161f;
+    --sc-popover-foreground: var(--cw-text);
+
+    --sc-border: rgba(255, 255, 255, 0.08);
+    --sc-border-hi: rgba(255, 255, 255, 0.14);
+    --sc-input: rgba(255, 255, 255, 0.1);
+
+    --sc-primary: var(--cw-green);
+    --sc-primary-foreground: #06110d;
+
+    --sc-secondary: #1b1e28;
+    --sc-secondary-foreground: var(--cw-text);
+
+    --sc-muted: #14161f;
+    --sc-muted-2: #191c26;
+    --sc-muted-foreground: var(--cw-text-dim);
+
+    --sc-accent: #1c202b;
+    --sc-accent-foreground: var(--cw-text);
+
+    --sc-destructive: var(--cw-red);
+    --sc-destructive-foreground: #ffffff;
+
+    --sc-ring: var(--cw-cyan);
+    --sc-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+    --sc-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.45), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+    --sc-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -3px rgba(0, 0, 0, 0.45);
+    --sc-shadow-lg: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 4px 12px -6px rgba(0, 0, 0, 0.5);
+    --sc-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Global focus ring (shadcn ring-offset style halo) ---------- */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, [tabindex]:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px var(--sc-background), 0 0 0 4px var(--sc-ring) !important;
+    border-radius: var(--sc-radius-sm);
+}
+
+/* ---------- Buttons: shadcn "default/outline/ghost" feel on top of existing classes ---------- */
+button, .filter-btn, .tf-btn, .ctype-btn, .ind-btn, .heatmap-scope-btn,
+.chart-overlay-btn, .order-side-btn, .order-type-btn, a[class*="rounded"][class*="px-3"],
+a[class*="rounded"][class*="px-2"] {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: var(--sc-shadow-sm);
+    transition: background-color 0.15s var(--sc-ease), border-color 0.15s var(--sc-ease),
+        color 0.15s var(--sc-ease), box-shadow 0.15s var(--sc-ease), transform 0.1s var(--sc-ease),
+        opacity 0.15s var(--sc-ease);
+}
+button:active { transform: scale(0.97); }
+button:disabled, button[disabled] { opacity: 0.5; box-shadow: none; cursor: not-allowed; }
+
+/* Neutral / bg-gray-900 buttons -> shadcn "secondary" variant */
+.bg-gray-900 {
+    background-color: var(--sc-secondary) !important;
+    border-color: var(--sc-border) !important;
+}
+.bg-gray-900:hover { border-color: var(--sc-border-hi) !important; background-color: var(--sc-accent) !important; }
+
+/* ---------- Segmented controls (Timeframe / Type / Overlays / Filters / Scope) ----------
+   These groups already share a common flex wrapper in the markup; :has() lets us give
+   the *container* the shadcn TabsList treatment (muted pill track) without editing HTML. */
+div:has(> .tf-btn), div:has(> .ctype-btn), div:has(> .ind-btn),
+div:has(> .filter-btn), div:has(> .heatmap-scope-btn), div:has(> .chart-overlay-btn) {
+    background: var(--sc-muted);
+    padding: 3px;
+    border-radius: var(--sc-radius);
+    border: 1px solid var(--sc-border);
+    gap: 2px !important;
+}
+.tf-btn, .ctype-btn, .ind-btn, .filter-btn, .heatmap-scope-btn, .chart-overlay-btn {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    color: var(--sc-muted-foreground);
+}
+.tf-btn:hover, .ctype-btn:hover, .ind-btn:hover, .filter-btn:hover,
+.heatmap-scope-btn:hover, .chart-overlay-btn:hover {
+    background: var(--sc-accent) !important;
+    color: var(--sc-foreground);
+}
+.tf-btn.active, .ctype-btn.active, .ind-btn.active, .filter-btn.active,
+.heatmap-scope-btn.active, .chart-overlay-btn.active {
+    background: var(--cw-green) !important;
+    color: #06110d !important;
+    border-color: transparent !important;
+    box-shadow: var(--sc-shadow-sm), 0 0 0 1px rgba(20, 211, 138, 0.35) !important;
+}
+/* Watchlist filter keeps its amber identity even when active */
+.filter-btn[data-filter="watchlist"].active {
+    background: var(--cw-amber) !important;
+    color: #221400 !important;
+}
+
+/* ---------- Buy / Sell segmented control (trade.html order ticket) ---------- */
+.order-side-btn, .order-type-btn { background: var(--sc-muted); border-color: var(--sc-border); }
+
+/* ---------- Cards / panels: shadcn Card primitive ---------- */
+.cw-card-interactive, [class*="bg-[#181a20]"] {
+    border-radius: var(--sc-radius-lg) !important;
+    border: 1px solid var(--sc-border) !important;
+    box-shadow: var(--sc-shadow) !important;
+    background: linear-gradient(165deg, var(--sc-card-hi) 0%, var(--sc-card) 100%) !important;
+}
+.cw-card-interactive:hover { border-color: var(--sc-border-hi) !important; box-shadow: var(--sc-shadow-md) !important; }
+
+/* Card header strip (px-4 py-2.5 border-b … bg-[#1e222b]) -> shadcn CardHeader */
+[class*="bg-[#1e222b]"] {
+    background: var(--sc-muted-2) !important;
+    border-bottom: 1px solid var(--sc-border) !important;
+}
+
+/* ---------- Inputs / selects: shadcn Input primitive ---------- */
+input[type="text"], input[type="number"], input[type="password"], input[type="email"],
+input[type="search"], select, textarea {
+    background-color: var(--sc-background) !important;
+    border: 1px solid var(--sc-input) !important;
+    border-radius: var(--sc-radius-sm) !important;
+    box-shadow: var(--sc-shadow-sm) !important;
+    height: 34px;
+}
+textarea { height: auto; }
+input[type="text"]:hover, input[type="number"]:hover, select:hover { border-color: var(--sc-border-hi) !important; }
+input:focus, select:focus, textarea:focus { border-color: var(--sc-ring) !important; }
+
+/* ---------- Badges: coin-chip, status pills, watchlist stars ---------- */
+.coin-chip {
+    border-radius: 999px;
+    background: var(--sc-muted) !important;
+    border: 1px solid var(--sc-border) !important;
+    box-shadow: none;
+}
+.coin-chip:hover, .coin-chip.active { background: var(--sc-accent) !important; }
+
+/* ---------- Dialog / Modal: shadcn Dialog primitive ---------- */
+.cw-modal-card {
+    background: var(--sc-popover) !important;
+    border: 1px solid var(--sc-border) !important;
+    border-radius: var(--sc-radius-lg) !important;
+    box-shadow: var(--sc-shadow-lg) !important;
+}
+
+/* ---------- Toasts ---------- */
+.cw-toast {
+    border: 1px solid var(--sc-border);
+    border-radius: var(--sc-radius);
+    box-shadow: var(--sc-shadow-md) !important;
+}
+
+/* ---------- Tables: shadcn Table primitive ---------- */
+table thead th {
+    color: var(--sc-muted-foreground);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--sc-border) !important;
+}
+table tbody tr { border-bottom: 1px solid var(--sc-border); }
+table tbody tr:hover:not(.active-row) { background-color: var(--sc-accent) !important; box-shadow: none !important; }
+
+/* ---------- Header top bar polish ---------- */
+header { border-bottom-color: var(--sc-border) !important; }
+
+/* ---------- shadcn Tooltip (added by js/shadcn-ui.js, progressive enhancement of [title]) ---------- */
+.sc-tooltip {
+    position: fixed;
+    z-index: 200;
+    background: var(--sc-popover);
+    color: var(--sc-popover-foreground);
+    border: 1px solid var(--sc-border);
+    border-radius: var(--sc-radius-sm);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 9px;
+    box-shadow: var(--sc-shadow-md);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px) scale(0.96);
+    transition: opacity 0.12s var(--sc-ease), transform 0.12s var(--sc-ease);
+    max-width: 220px;
+}
+.sc-tooltip.sc-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+@media (prefers-reduced-motion: reduce) {
+    .sc-tooltip { transition: none; }
+}
+
+/* ---------- Underline tabs (e.g. auth modal Sign In / Sign Up) ---------- */
+.auth-tab-btn {
+    box-shadow: none !important;
+    padding-bottom: 6px;
+    color: var(--sc-muted-foreground);
+    border-bottom: 2px solid transparent;
+}
+.auth-tab-btn.auth-tab-active {
+    color: var(--sc-foreground);
+    border-bottom-color: var(--cw-green);
+}
+
+/* ---------- Google OAuth button: keep its native white surface, just smooth the chrome ---------- */
+#auth-google-btn, .bg-white {
+    box-shadow: var(--sc-shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================================
+   ai.html — bespoke component names (css/ai.css), aligned to
+   the same shadcn radius/border/shadow/ring tokens as the rest
+   of the app. Only chrome (radius, border, shadow, focus) is
+   touched — colors/layout from ai.css are left as-is.
+   ============================================================ */
+.ai-card, .ai-analysis-card, .chat-card, .ai-api-panel, .ai-disclaimer {
+    border-radius: var(--sc-radius-lg) !important;
+    border-color: var(--sc-border) !important;
+    box-shadow: var(--sc-shadow) !important;
+}
+.ai-nav-button, .ai-analyze-button, .question-chip, .ai-api-controls button,
+.ai-card input, .ai-card select, .ai-api-controls input, .asset-input {
+    border-radius: var(--sc-radius-sm) !important;
+    border-color: var(--sc-border) !important;
+    box-shadow: var(--sc-shadow-sm) !important;
+}
+.ai-nav-button, .ai-analyze-button, .question-chip, .ai-api-controls button {
+    font-weight: 600;
+    transition: background-color 0.15s var(--sc-ease), border-color 0.15s var(--sc-ease),
+        color 0.15s var(--sc-ease), box-shadow 0.15s var(--sc-ease), transform 0.1s var(--sc-ease);
+}
+.ai-nav-button:active, .ai-analyze-button:active, .question-chip:active {
+    transform: scale(0.98);
+}
+.status-pill, .ai-live-badge {
+    border-radius: 999px !important;
+    box-shadow: none !important;
+}
+.ai-card input:focus, .ai-card select:focus, .ai-api-controls input:focus,
+.asset-input:focus-within {
+    border-color: var(--sc-ring) !important;
+}
