@@ -48,7 +48,22 @@
     <link rel="stylesheet" href="css/styles.css?v=20260822">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
 </head>
-<body class="bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
+<body class="cb-has-rail bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
+    <nav class="cb-rail" aria-label="Product navigation">
+        <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home">⚡</a>
+        <div class="cb-rail-nav">
+            <a href="app.html" class="cb-rail-item " aria-label="Terminal">📈<span class="cb-rail-tip">Terminal</span></a>
+            <a href="trade.html" class="cb-rail-item " aria-label="Trade">📊<span class="cb-rail-tip">Trade</span></a>
+            <a href="ai.html" class="cb-rail-item " aria-label="AI Research">🤖<span class="cb-rail-tip">AI Research</span></a>
+            <a href="account.html" class="cb-rail-item is-active" aria-label="Account">👤<span class="cb-rail-tip">Account</span></a>
+        </div>
+        <div class="cb-rail-foot">
+            <a href="features.html" class="cb-rail-item" aria-label="Features">✨<span class="cb-rail-tip">Features</span></a>
+            <a href="index.html" class="cb-rail-item" aria-label="Home">🏠<span class="cb-rail-tip">Home</span></a>
+        </div>
+    </nav>
+
+
     <div class="cw-ambient-orb cw-orb-1"></div>
     <div class="cw-ambient-orb cw-orb-2"></div>
     <div class="cw-ambient-orb cw-orb-3"></div>
@@ -76,7 +91,7 @@
                     <span id="auth-user-email" class="text-[11px] font-mono px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300"></span>
                     <button id="auth-signout-btn" type="button" class="text-[11px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer" title="Sign out">⎋ Sign Out</button>
                 </div>
-                <a href="index.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all">← Terminal</a>
+                <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all">← Terminal</a>
             </div>
         </header>
 
@@ -147,7 +162,7 @@
                 <div class="cw-card-interactive cw-panel-accent cw-accent-green bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
                     <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center">
                         <span class="text-xs font-bold uppercase tracking-wider text-gray-400">💼 Holdings (from real purchases)</span>
-                        <a href="index.html" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">+ Buy More</a>
+                        <a href="app.html" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">+ Buy More</a>
                     </div>
                     <div class="overflow-x-auto max-h-[360px]">
                         <table class="w-full text-left border-collapse whitespace-nowrap">

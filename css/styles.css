@@ -1820,3 +1820,116 @@ textarea:focus-visible,
         transition-duration: .01ms !important;
     }
 }
+/* ============================================================
+   CryptoBolt — App shell sidebar (Supabase-inspired icon rail)
+   Fixed left navigation rail for the logged-in / working surfaces
+   (Terminal, Trade, AI Research, Account). Marketing & legal pages
+   keep the simple top bar — the rail only appears where someone is
+   actively working the product, same split Supabase draws between
+   supabase.com and the dashboard.
+   ============================================================ */
+.cb-rail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 64px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 0 16px;
+    background: #0a0d11;
+    border-right: 1px solid rgba(255, 255, 255, 0.075);
+}
+.cb-rail-logo {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    border-radius: 9px;
+    background: rgba(20, 211, 138, 0.12);
+    border: 1px solid rgba(20, 211, 138, 0.28);
+    margin-bottom: 18px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+.cb-rail-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+.cb-rail-item {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    border-radius: 10px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.cb-rail-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #d1d5db;
+}
+.cb-rail-item.is-active {
+    background: rgba(20, 211, 138, 0.12);
+    color: #14d38a;
+}
+.cb-rail-item.is-active::before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 18px;
+    border-radius: 2px;
+    background: #14d38a;
+}
+.cb-rail-item .cb-rail-tip {
+    position: absolute;
+    left: 54px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+    background: #16191f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e5e7eb;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+.cb-rail-item:hover .cb-rail-tip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+.cb-rail-foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+body.cb-has-rail {
+    padding-left: 64px;
+}
+@media (max-width: 900px) {
+    .cb-rail { display: none; }
+    body.cb-has-rail { padding-left: 0; }
+}
