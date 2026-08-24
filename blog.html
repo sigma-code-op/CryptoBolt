@@ -16,7 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Blog — CryptoBolt</title>
     <meta name="description" content="Short, practical notes from CryptoBolt on reading the Fear & Greed index, spot vs futures mechanics, and how the AI research pass stays grounded in real data.">
-    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="fear and greed index, spot vs futures, crypto funding rate, AI crypto research, crypto trading basics, crypto market notes">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://cryptobolt.io/blog.html">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -31,15 +32,62 @@
     <meta property="og:title" content="Blog — CryptoBolt">
     <meta property="og:description" content="Notes on reading the market and how the terminal actually works.">
     <meta property="og:image" content="https://cryptobolt.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt blog — notes on reading the market">
+    <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — CryptoBolt">
+    <meta name="twitter:description" content="Notes on reading the market and how the terminal actually works.">
     <meta name="twitter:image" content="https://cryptobolt.io/assets/og-image.png">
+    <meta name="twitter:image:alt" content="CryptoBolt blog — notes on reading the market">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "CryptoBolt Blog",
+      "url": "https://cryptobolt.io/blog.html",
+      "description": "Short, practical notes from CryptoBolt on reading the Fear & Greed index, spot vs futures mechanics, and how the AI research pass stays grounded in real data.",
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Reading the Fear & Greed index without overreacting to it",
+          "url": "https://cryptobolt.io/blog.html#fear-and-greed",
+          "author": { "@type": "Organization", "name": "CryptoBolt" }
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Spot vs. perpetual futures: what actually changes",
+          "url": "https://cryptobolt.io/blog.html#spot-vs-futures",
+          "author": { "@type": "Organization", "name": "CryptoBolt" }
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "How CryptoBolt's AI research stays grounded in real data",
+          "url": "https://cryptobolt.io/blog.html#ai-grounding",
+          "author": { "@type": "Organization", "name": "CryptoBolt" }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CryptoBolt", "item": "https://cryptobolt.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cryptobolt.io/blog.html" }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <link rel="stylesheet" href="css/styles.css?v=20260822">
-    <link rel="stylesheet" href="css/home.css?v=20260824">
+    <link rel="stylesheet" href="css/home.css?v=20260825">
 </head>
 <body class="mk">
 <div class="mk-field"></div>
@@ -67,7 +115,7 @@
 
 <article class="mk-article" id="fear-and-greed">
     <span class="mk-article-meta">SENTIMENT · 4 MIN READ</span>
-    <h1>Reading the Fear &amp; Greed index without overreacting to it</h1>
+    <h2>Reading the Fear &amp; Greed index without overreacting to it</h2>
     <p>The Fear &amp; Greed index — the number CryptoBolt pulls from Alternative.me into the Global Market Pulse strip — compresses a handful of inputs (volatility, momentum, social volume, dominance, and survey data) into a single 0–100 score. Near 0 is "extreme fear," near 100 is "extreme greed."</p>
     <p>It's easy to treat that number like a trade signal: buy the fear, sell the greed. Sometimes that works. Often it doesn't, because the index describes the current mood of the market, not where it's headed next. Extreme fear can sit at extreme fear for weeks during a genuine downtrend. Extreme greed can grind higher for months in a strong bull run before anything mean-reverts.</p>
     <h3>What it's actually useful for</h3>
@@ -79,7 +127,7 @@
 
 <article class="mk-article" id="spot-vs-futures">
     <span class="mk-article-meta">MECHANICS · 5 MIN READ</span>
-    <h1>Spot vs. perpetual futures: what actually changes</h1>
+    <h2>Spot vs. perpetual futures: what actually changes</h2>
     <p>Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath.</p>
     <h3>Ownership</h3>
     <p>A spot trade means you hold the asset itself — buy 0.1 BTC and you own 0.1 BTC, full stop. A perpetual futures contract is a derivative: you're holding a position that tracks BTC's price without ever owning the coin. That distinction is why spot has no liquidation risk and futures does.</p>
@@ -94,7 +142,7 @@
 
 <article class="mk-article" id="ai-grounding">
     <span class="mk-article-meta">PRODUCT · 4 MIN READ</span>
-    <h1>How CryptoBolt's AI research stays grounded in real data</h1>
+    <h2>How CryptoBolt's AI research stays grounded in real data</h2>
     <p>Ask an AI model to "analyze the market" with nothing but its training data and you'll get something that sounds confident and is frequently stale or invented. CryptoBolt's AI research desk is built to avoid that in two ways: a two-pass pipeline, and a hard rule that trade levels are never AI-generated.</p>
     <h3>Pass one: research</h3>
     <p>The first pass is a free-text research step. The model is handed live inputs — recent news, the Fear &amp; Greed reading, funding-rate positioning, and multi-timeframe technical data — and asked to reason through what's actually happening, in plain language, before committing to any conclusion.</p>
