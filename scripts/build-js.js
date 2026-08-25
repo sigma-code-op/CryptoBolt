@@ -49,6 +49,7 @@ const BUNDLES = {
     '19-cloud-sync.js',
     '14-alchemypay.js',
     '15-risk-triggers.js',
+    '20-scroll-reveal.js',
   ],
   // trade.html
   'bundle-trade.js': [
@@ -56,6 +57,7 @@ const BUNDLES = {
     '16-paper-trading.js',
     '17-auth.js',
     '19-cloud-sync.js',
+    '20-scroll-reveal.js',
   ],
   // account.html
   'bundle-account.js': [
@@ -63,6 +65,15 @@ const BUNDLES = {
     '17-auth.js',
     '19-cloud-sync.js',
     '18-account.js',
+    '20-scroll-reveal.js',
+  ],
+  // invest.html (dedicated real-money buy/sell page — separate from paper trading)
+  'bundle-invest.js': [
+    '00-config.js',
+    '17-auth.js',
+    '21-invest.js',
+    '14-alchemypay.js',
+    '20-scroll-reveal.js',
   ],
 };
 

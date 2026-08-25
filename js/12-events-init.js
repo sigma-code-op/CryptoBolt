@@ -294,28 +294,6 @@
         el.innerText = `${m}:${s.toString().padStart(2, '0')}`;
     }, 1000);
 
-    // ---------- Scroll-reveal for cards ----------
-    // Cards fade/slide into view the first time they cross into the viewport, then stay
-    // revealed (no re-hiding on scroll-out) — a common, tasteful modern-dashboard touch.
-    (function setupScrollReveal() {
-        if (!('IntersectionObserver' in window)) {
-            document.querySelectorAll('.cw-reveal').forEach(el => el.classList.add('cw-in-view'));
-            return;
-        }
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('cw-in-view');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.cw-reveal').forEach((el, i) => {
-            el.style.transitionDelay = `${Math.min(i * 40, 240)}ms`;
-            observer.observe(el);
-        });
-    })();
-
     // ---------- Feature: Command palette (Ctrl/Cmd+K quick jump) ----------
     // A faster way to jump straight to an asset than scrolling/filtering the table —
     // type a few letters, arrow through matches, hit Enter.
