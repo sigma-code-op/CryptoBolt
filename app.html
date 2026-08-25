@@ -130,6 +130,7 @@
     <link rel="stylesheet" href="css/styles.css?v=20260822">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
     <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
+    <link rel="stylesheet" href="css/home.css?v=20260825">
 </head>
 <body class="cb-has-rail bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
@@ -902,58 +903,36 @@
         </section>
 
         <!-- Footer -->
-        <footer class="cw-footer pb-8">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 pb-8">
-                <div class="col-span-2 sm:col-span-1">
-                    <h2 class="text-base font-bold flex items-center gap-1.5 mb-2">🪙 <span class="cw-logo-gradient">CryptoBolt</span></h2>
-                    <p class="text-gray-500 text-[11px] leading-relaxed max-w-[220px]">A real-time market terminal for spot &amp; perpetual futures — live charts, order flow, alerts, and portfolio tracking in one panel.</p>
-                    <div class="flex items-center gap-1.5 mt-3 text-[10px] text-gray-500">
-                        <span class="cw-footer-status-dot"></span> All feeds nominal
-                    </div>
+        <footer class="mk mk-footer">
+            <div class="mk-footer-grid">
+                <div class="mk-footer-brand">
+                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark">⚡</span>CryptoBolt</a>
+                    <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
                 </div>
-                <div>
-                    <div class="cw-footer-col-title">Terminal</div>
-                    <ul class="space-y-2 text-[11px]">
-                        <li><a href="trade.html" class="cursor-pointer">Trading account (practice)</a></li>
-                        <li><a href="account.html" class="cursor-pointer">My account (real purchases)</a></li>
-                        <li><a href="#chart-card" class="cursor-pointer">Chart &amp; indicators</a></li>
-                        <li><a href="#" id="footer-cmdk-link" class="cursor-pointer">Quick jump <span class="cw-kbd ml-1">⌘K</span></a></li>
-                        <li><a href="#" id="footer-shortcuts-link" class="cursor-pointer">Keyboard shortcuts <span class="cw-kbd ml-1">?</span></a></li>
-                        <li><a href="#market-heatmap" class="cursor-pointer">Market heatmap</a></li>
-                    </ul>
+                <div class="mk-footer-col">
+                    <h4>Product</h4>
+                    <a href="app.html">Terminal</a>
+                    <a href="trade.html">Paper trading</a>
+                    <a href="invest.html">Invest (real)</a>
+                    <a href="ai.html">AI research</a>
                 </div>
-                <div>
-                    <div class="cw-footer-col-title">Data &amp; sources</div>
-                    <ul class="space-y-2 text-[11px]">
-                        <li><a href="https://www.binance.com" target="_blank" rel="noopener noreferrer">Binance Spot &amp; Futures API</a></li>
-                        <li><a href="https://www.coingecko.com" target="_blank" rel="noopener noreferrer">CoinGecko</a></li>
-                        <li><a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener noreferrer">Alternative.me F&amp;G Index</a></li>
-                        <li><a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">Groq (AI Insight)</a></li>
-                    </ul>
+                <div class="mk-footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
-                <div>
-                    <div class="cw-footer-col-title">Project &amp; Legal</div>
-                    <ul class="space-y-2 text-[11px]">
-                        <li><a href="https://github.com/sigma-code-op/CRYPTOBOLT" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a></li>
-                        <li><a href="https://github.com/sigma-code-op/CRYPTOBOLT#readme" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-                        <li><a href="https://github.com/sigma-code-op/CRYPTOBOLT/issues" target="_blank" rel="noopener noreferrer">Report an issue</a></li>
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="terms.html">Terms of service</a></li>
-                        <li><a href="privacy.html">Privacy policy</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
-                    </ul>
+                <div class="mk-footer-col">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy policy</a>
+                    <a href="terms.html">Terms of service</a>
                 </div>
             </div>
-            <div class="pt-5 border-t border-gray-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <p class="text-[10px] text-gray-600">© <span id="footer-year"></span> CryptoBolt. Not financial advice — data can be delayed, incomplete, or wrong. Always do your own research. <a href="about.html" class="underline">About</a> · <a href="terms.html" class="underline">Terms</a> · <a href="privacy.html" class="underline">Privacy</a> · <a href="contact.html" class="underline">Contact</a></p>
-                <p class="text-[10px] text-gray-600 font-mono">Built with Binance WebSockets · TradingView Lightweight Charts</p>
+            <div class="mk-footer-bottom">
+                <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
+                <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
             </div>
-            <!-- Social links: uncomment and fill in once the profiles exist.
-            <div class="pt-3 flex items-center gap-3">
-                <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#4fd8e8] text-[11px]">Facebook</a>
-                <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#4fd8e8] text-[11px]">YouTube</a>
-            </div>
-            -->
         </footer>
     </div>
 

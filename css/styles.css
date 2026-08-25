@@ -1929,7 +1929,64 @@ textarea:focus-visible,
 body.cb-has-rail {
     padding-left: 64px;
 }
+
+/* On narrow viewports there's no room for a left rail, but the rail is the ONLY navigation
+   on these pages (Terminal/Trade/Invest/AI/Account) — hiding it outright with no replacement
+   left mobile visitors with no way to move between sections at all. Instead it becomes a fixed
+   horizontal tab bar pinned to the bottom of the screen, the standard mobile-app nav pattern. */
 @media (max-width: 900px) {
-    .cb-rail { display: none; }
-    body.cb-has-rail { padding-left: 0; }
+    .cb-rail {
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 6px max(8px, env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-right));
+        border-right: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.075);
+        gap: 2px;
+    }
+    .cb-rail-logo { display: none; }
+    .cb-rail-nav {
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        gap: 2px;
+    }
+    .cb-rail-item {
+        width: auto;
+        flex: 1 1 0;
+        height: 44px;
+    }
+    .cb-rail-item.is-active::before {
+        left: 50%;
+        top: auto;
+        bottom: 2px;
+        transform: translateX(-50%);
+        width: 16px;
+        height: 3px;
+    }
+    /* Hover tooltips only make sense with a mouse; on touch they'd otherwise appear
+       stuck open after a tap and never dismiss cleanly. */
+    .cb-rail-item .cb-rail-tip { display: none; }
+    .cb-rail-foot {
+        margin-top: 0;
+        flex-direction: row;
+        width: auto;
+        gap: 2px;
+    }
+    body.cb-has-rail {
+        padding-left: 0;
+        padding-bottom: calc(60px + env(safe-area-inset-bottom));
+    }
+    /* The cookie-consent banner (js/cookie-consent.js, z-index 9999) is also pinned to the
+       viewport bottom, so on pages with the mobile tab bar it needs to sit just above the bar
+       rather than on top of it — otherwise it fully hides the only navigation these pages have. */
+    body.cb-has-rail .cw-cc-banner {
+        bottom: calc(60px + env(safe-area-inset-bottom));
+    }
 }
