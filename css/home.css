@@ -383,6 +383,15 @@
 .mk-footer { border-top: 1px solid var(--mk-line); padding: 56px clamp(16px, 4vw, 48px) 32px; }
 .mk-footer-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; }
 .mk-footer-brand p { color: var(--mk-text-dim); font-size: 13px; margin-top: 12px; max-width: 260px; line-height: 1.55; }
+.mk-footer-social { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+.mk-footer-social a {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 8px;
+    border: 1px solid var(--mk-line); color: var(--mk-text-dim);
+    transition: all .15s ease;
+}
+.mk-footer-social a:hover { color: var(--mk-green); border-color: var(--mk-line-hi); background: rgba(20,211,138,.08); }
+.mk-footer-social svg { width: 16px; height: 16px; fill: currentColor; }
 .mk-footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mk-text-dim); margin-bottom: 14px; }
 .mk-footer-col a { display: block; font-size: 13.5px; color: var(--mk-text); text-decoration: none; margin-bottom: 10px; opacity: .82; }
 .mk-footer-col a:hover { opacity: 1; color: var(--mk-green); }
