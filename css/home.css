@@ -144,7 +144,62 @@
 .mk-btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
 .mk-btn-lg { padding: 12px 22px; font-size: 14px; border-radius: 10px; }
 
-.mk-burger { display: none; }
+.mk-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--mk-line);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.mk-burger span {
+    display: block;
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--mk-text);
+    transition: transform .18s ease, opacity .18s ease;
+}
+.mk-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mk-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.mk-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Off-canvas mobile menu: hidden by default, shown only below 880px, and only
+   expanded when the burger toggles aria-expanded on .mk-nav. Keeping the
+   panel outside .mk-nav means it can never contribute to the nav row's own
+   width, so it can't be the thing causing the CTA to overflow/get clipped. */
+.mk-mobile-panel {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px clamp(16px, 4vw, 48px) 18px;
+    background: rgba(7, 9, 13, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--mk-line);
+    position: sticky;
+    top: 63px;
+    z-index: 49;
+}
+.mk-mobile-panel.is-open { display: flex; }
+.mk-mobile-panel a {
+    color: var(--mk-text-dim);
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 500;
+    padding: 11px 4px;
+    border-bottom: 1px solid var(--mk-line);
+}
+.mk-mobile-panel a:hover { color: var(--mk-text); }
+.mk-mobile-panel-cta { display: flex; gap: 10px; margin-top: 12px; }
+.mk-mobile-panel-cta .mk-btn { flex: 1; }
 
 /* ---------- Hero ---------- */
 .mk-hero {
@@ -409,6 +464,17 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
     .mk-nav-links { display: none; }
+    /* Previously only .mk-nav-links was hidden here, leaving the logo + both
+       CTA buttons to fight for space in the nav row with no wrap — on
+       narrow phones (~360-400px) that overflowed and got sliced off by the
+       site-wide overflow-x:hidden guard (see ui-elevate.css), which is why
+       "Launch Terminal" was rendering cut off. Sign in now moves into the
+       burger panel and Launch Terminal shrinks slightly, so the row always
+       fits within the viewport. */
+    .mk-nav-cta .mk-btn-ghost { display: none; }
+    .mk-nav-cta .mk-btn-primary { padding: 8px 12px; font-size: 12.5px; }
+    .mk-burger { display: flex; }
+    .mk-nav { gap: 10px; }
     .mk-bento { grid-template-columns: repeat(2, 1fr); }
     .mk-card, .mk-card.mk-span-2, .mk-card.mk-span-4 { grid-column: span 2; }
     .mk-blog-grid { grid-template-columns: 1fr; }

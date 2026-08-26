@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "tailwindcss": "^4.3.3",
-    "@tailwindcss/cli": "^4.3.3"
+    "@tailwindcss/cli": "^4.3.3",
+    "terser": "^5.36.0"
   }
 }
