@@ -184,6 +184,14 @@
                         <span class="text-[9px] text-gray-500 block uppercase font-bold">Fees Paid</span>
                         <span id="stat-fees" class="text-sm font-mono font-bold text-gray-500">$0.00</span>
                     </div>
+                    <div>
+                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Margin Locked</span>
+                        <span id="stat-margin-locked" class="text-sm font-mono font-bold text-gray-200">$0.00</span>
+                    </div>
+                    <div>
+                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Futures Unrealized</span>
+                        <span id="stat-futures-unrealized" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
+                    </div>
                 </div>
             </div>
             <!-- Equity curve -->
@@ -199,10 +207,16 @@
             <div class="lg:col-span-2 lg:sticky lg:top-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
                 <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex items-center justify-between">
                     <span class="text-xs font-bold uppercase tracking-wider text-gray-400">🎯 Place Order</span>
-                    <span class="text-[9px] text-gray-600">0.10% simulated fee</span>
+                    <span id="order-fee-note" class="text-[9px] text-gray-600">0.10% simulated fee</span>
                 </div>
 
                 <div class="p-4 space-y-3">
+                    <!-- Market toggle: Spot vs Futures -->
+                    <div class="flex items-center gap-1 bg-gray-900 border border-gray-800 rounded p-0.5">
+                        <button id="market-spot-btn" data-market="spot" class="order-type-btn market-mode-btn flex-1 text-[10px] font-bold uppercase px-3 py-1.5 rounded transition-all cursor-pointer">Spot</button>
+                        <button id="market-futures-btn" data-market="futures" class="order-type-btn market-mode-btn flex-1 text-[10px] font-bold uppercase px-3 py-1.5 rounded transition-all cursor-pointer">Futures</button>
+                    </div>
+
                     <!-- Asset picker -->
                     <div>
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Asset</label>
@@ -224,10 +238,29 @@
                         <button id="side-sell-btn" data-side="sell" class="order-side-btn text-xs font-bold uppercase py-2 rounded border transition-all cursor-pointer">Sell</button>
                     </div>
 
-                    <!-- Order type toggle -->
-                    <div class="flex items-center gap-1 bg-gray-900 border border-gray-800 rounded p-0.5 w-fit">
-                        <button id="type-market-btn" data-type="market" class="order-type-btn text-[10px] font-bold uppercase px-3 py-1.5 rounded transition-all cursor-pointer">Market</button>
-                        <button id="type-limit-btn" data-type="limit" class="order-type-btn text-[10px] font-bold uppercase px-3 py-1.5 rounded transition-all cursor-pointer">Limit</button>
+                    <!-- Leverage (futures only) -->
+                    <div id="leverage-row" class="hidden">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500">Leverage</label>
+                            <span id="leverage-value" class="text-[11px] font-mono font-bold text-[#4fd8e8]">10x</span>
+                        </div>
+                        <input id="leverage-slider" type="range" min="1" max="50" value="10" step="1" class="w-full cursor-pointer">
+                        <div class="flex gap-1.5 mt-1.5">
+                            <button class="leverage-btn coin-chip flex-1 text-center" data-lev="2">2x</button>
+                            <button class="leverage-btn coin-chip flex-1 text-center" data-lev="5">5x</button>
+                            <button class="leverage-btn coin-chip flex-1 text-center" data-lev="10">10x</button>
+                            <button class="leverage-btn coin-chip flex-1 text-center" data-lev="20">20x</button>
+                            <button class="leverage-btn coin-chip flex-1 text-center" data-lev="50">50x</button>
+                        </div>
+                        <p class="text-[10px] text-gray-600 mt-1">Isolated margin. Higher leverage means a closer liquidation price — the position is force-closed and margin is forfeited if the mark price reaches it.</p>
+                    </div>
+
+                    <!-- Order type toggle (spot only — futures orders fill at the live market price) -->
+                    <div id="order-type-row">
+                        <div class="flex items-center gap-1 bg-gray-900 border border-gray-800 rounded p-0.5 w-fit">
+                            <button id="type-market-btn" data-type="market" class="order-type-btn text-[10px] font-bold uppercase px-3 py-1.5 rounded transition-all cursor-pointer">Market</button>
+                            <button id="type-limit-btn" data-type="limit" class="order-type-btn text-[10px] font-bold uppercase px-3 py-1.5 rounded transition-all cursor-pointer">Limit</button>
+                        </div>
                     </div>
 
                     <div id="limit-price-row" class="hidden">
@@ -237,10 +270,10 @@
                         <p class="text-[10px] text-gray-600 mt-1">Sits in Pending Orders and fills automatically the moment live price reaches this level.</p>
                     </div>
 
-                    <!-- Amount -->
+                    <!-- Amount / Margin -->
                     <div>
                         <div class="flex items-center justify-between mb-1.5">
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500">Amount</label>
+                            <label id="amount-label" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500">Amount</label>
                             <span id="order-available-hint" class="text-[10px] text-gray-500 font-mono">--</span>
                         </div>
                         <div class="flex items-center gap-1">
@@ -260,10 +293,18 @@
                         <span id="order-amount-hint" class="text-[10px] text-gray-500 font-mono block mt-1">&nbsp;</span>
                     </div>
 
-                    <!-- Order summary -->
-                    <div class="bg-gray-900/60 border border-gray-800 rounded p-2.5 space-y-1 text-[11px] font-mono">
+                    <!-- Order summary: spot -->
+                    <div id="spot-summary-rows" class="bg-gray-900/60 border border-gray-800 rounded p-2.5 space-y-1 text-[11px] font-mono">
                         <div class="flex justify-between text-gray-500"><span>Est. fee (0.10%)</span><span id="order-summary-fee">$0.00</span></div>
                         <div class="flex justify-between text-gray-300 font-bold"><span id="order-summary-label">Total cost</span><span id="order-summary-total">$0.00</span></div>
+                    </div>
+
+                    <!-- Order summary: futures -->
+                    <div id="futures-summary-rows" class="hidden bg-gray-900/60 border border-gray-800 rounded p-2.5 space-y-1 text-[11px] font-mono">
+                        <div class="flex justify-between text-gray-500"><span>Position size</span><span id="futures-summary-notional">$0.00</span></div>
+                        <div class="flex justify-between text-gray-500"><span>Est. fee (0.10%)</span><span id="futures-summary-fee">$0.00</span></div>
+                        <div class="flex justify-between text-gray-500"><span>Est. liquidation price</span><span id="futures-summary-liq">--</span></div>
+                        <div class="flex justify-between text-gray-300 font-bold"><span>Margin required</span><span id="futures-summary-margin">$0.00</span></div>
                     </div>
 
                     <button id="submit-order-btn" class="w-full text-sm font-bold uppercase py-2.5 rounded transition-all cursor-pointer">Place Buy Order</button>
@@ -295,6 +336,35 @@
                             </thead>
                             <tbody id="holdings-rows" class="divide-y divide-gray-800/40 text-xs font-mono">
                                 <tr><td colspan="8" class="py-8 text-center text-gray-600 text-[11px]">No holdings yet — place a buy order to get started.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Futures positions -->
+                <div class="cw-card-interactive cw-reveal cw-panel-accent cw-accent-amber bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
+                    <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2">📐 Futures Positions</span>
+                        <button id="futures-csv-btn" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer">⭳ CSV</button>
+                    </div>
+                    <div class="overflow-x-auto max-h-[280px]">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="text-[10px] font-bold uppercase text-gray-500 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0">
+                                    <th class="py-2 px-3">Asset</th>
+                                    <th class="py-2 px-3">Side</th>
+                                    <th class="py-2 px-3 text-right">Lev.</th>
+                                    <th class="py-2 px-3 text-right">Qty</th>
+                                    <th class="py-2 px-3 text-right">Entry</th>
+                                    <th class="py-2 px-3 text-right">Mark</th>
+                                    <th class="py-2 px-3 text-right">Margin</th>
+                                    <th class="py-2 px-3 text-right">Liq. Price</th>
+                                    <th class="py-2 px-3 text-right">P&amp;L (ROE)</th>
+                                    <th class="py-2 px-3 w-16"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="futures-rows" class="divide-y divide-gray-800/40 text-xs font-mono">
+                                <tr><td colspan="10" class="py-8 text-center text-gray-600 text-[11px]">No open positions — open a long or short above to get started.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -354,7 +424,7 @@
                 </div>
 
                 <p class="text-[10px] text-gray-600 leading-relaxed px-1">
-                    ⚠️ This is a practice trading account funded with virtual money — no real crypto is bought or sold and no exchange account is connected. Orders fill instantly at live Binance prices with a simulated 0.10% fee and no slippage or order-book depth, so real execution will differ. Looking to trade with real funds? Use the <a href="app.html" class="text-[#4fd8e8] hover:underline">Buy/Sell</a> button on the terminal, which opens AlchemyPay's real fiat on/off-ramp.
+                    ⚠️ This is a practice trading account funded with virtual money — no real crypto is bought or sold and no exchange account is connected. Orders fill instantly at live Binance prices with a simulated 0.10% fee and no slippage or order-book depth, so real execution will differ. Futures positions use a simplified isolated-margin model (flat 0.4% maintenance margin) — real liquidation engines are more complex, so treat estimated liquidation prices as a rough guide, not a guarantee. Looking to trade with real funds? Use the <a href="app.html" class="text-[#4fd8e8] hover:underline">Buy/Sell</a> button on the terminal, which opens AlchemyPay's real fiat on/off-ramp.
                 </p>
             </div>
         </div>

@@ -136,6 +136,10 @@ tr.active-row { background-color: rgba(20, 211, 138, 0.08) !important; border-le
     color: var(--cw-cyan);
 }
 
+/* ---------- Trading account: futures leverage slider ---------- */
+/* (leverage quick-select buttons reuse .coin-chip's active styling above) */
+#leverage-slider { accent-color: #4fd8e8; }
+
 /* ---------- Auth modal tabs ---------- */
 .auth-tab-btn {
     background: transparent;

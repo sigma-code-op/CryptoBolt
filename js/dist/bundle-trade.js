@@ -42,6 +42,30 @@ const CW_CONFIG = {
     const PRICE_POLL_MS = 5000;
     const POPULAR_COINS = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'ADA', 'AVAX', 'LINK', 'DOT', 'TRX', 'LTC', 'SHIB', 'SUI', 'PEPE'];
 
+    // ---------- Futures constants ----------
+    // Simplified isolated-margin model: a single flat maintenance-margin rate stands in for
+    // Binance's real tiered maintenance-margin table (which varies by symbol and notional
+    // size). Good enough for a practice account to teach "higher leverage = closer
+    // liquidation", not a promise of matching real-exchange liquidation prices exactly.
+    const MAINTENANCE_MARGIN_RATE = 0.004; // 0.4%
+    const MAX_LEVERAGE = 50;
+    const MIN_LEVERAGE = 1;
+    const DEFAULT_LEVERAGE = 10;
+
+    // side is 'long' or 'short'. Long liquidates on the way down, short on the way up — the
+    // distance from entry to liq price shrinks as leverage rises because there's less margin
+    // cushioning each dollar of notional exposure.
+    function estimateLiqPrice(side, entryPrice, leverage) {
+        const cushion = (1 / leverage) - MAINTENANCE_MARGIN_RATE;
+        if (cushion <= 0) return side === 'long' ? entryPrice * 1.001 : entryPrice * 0.999; // extreme leverage edge case
+        return side === 'long' ? entryPrice * (1 - cushion) : entryPrice * (1 + cushion);
+    }
+    function futuresPnl(position, markPrice) {
+        return position.side === 'long'
+            ? (markPrice - position.entryPrice) * position.qty
+            : (position.entryPrice - markPrice) * position.qty;
+    }
+
     // ---------- Small utilities (duplicated here so this page has zero dependency on the terminal's JS modules) ----------
     function safeJSONParse(str, fallback) {
         try {
@@ -109,9 +133,13 @@ const CW_CONFIG = {
     let cash = safeJSONParse(localStorage.getItem('cw_paper_cash'), null);
     let totalDeposited = safeJSONParse(localStorage.getItem('cw_paper_deposited'), null);
     let holdings = safeJSONParse(localStorage.getItem('cw_paper_holdings'), []); // [{symbol, qty, avgCost}]
-    let trades = safeJSONParse(localStorage.getItem('cw_paper_trades'), []); // [{id, ts, symbol, side, type, qty, price, value, fee, realizedPnl}]
+    let trades = safeJSONParse(localStorage.getItem('cw_paper_trades'), []); // [{id, ts, symbol, side, type, qty, price, value, fee, realizedPnl, leverage?}]
     let pendingOrders = safeJSONParse(localStorage.getItem('cw_paper_orders'), []); // [{id, ts, symbol, side, qty, limitPrice}]
     let equityCurve = safeJSONParse(localStorage.getItem('cw_paper_equity_curve'), []); // [{ts, equity}]
+    // Kept entirely separate from the terminal's manual futures tracker (cw_futures_positions
+    // in 01-state.js) — that one is a hand-entered log with no cash account behind it, this one
+    // is funded from (and settles back into) this page's own paper cash balance.
+    let futuresPositions = safeJSONParse(localStorage.getItem('cw_paper_futures'), []); // [{id, ts, symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice}]
 
     if (cash === null || totalDeposited === null) {
         cash = STARTING_BALANCE;
@@ -126,6 +154,7 @@ const CW_CONFIG = {
         localStorage.setItem('cw_paper_trades', JSON.stringify(trades));
         localStorage.setItem('cw_paper_orders', JSON.stringify(pendingOrders));
         localStorage.setItem('cw_paper_equity_curve', JSON.stringify(equityCurve));
+        localStorage.setItem('cw_paper_futures', JSON.stringify(futuresPositions));
     }
 
     // ---------- Live prices ----------
@@ -169,6 +198,7 @@ const CW_CONFIG = {
         const needed = new Set([symbol]);
         holdings.forEach(h => needed.add(h.symbol));
         pendingOrders.forEach(o => needed.add(o.symbol));
+        futuresPositions.forEach(p => needed.add(p.symbol));
         const pairs = Array.from(needed).filter(Boolean).map(b => `${b}USDT`);
         if (pairs.length === 0) return;
         try {
@@ -185,6 +215,7 @@ const CW_CONFIG = {
             }
             setFeedStatus('live', 'Live');
             checkPendingOrders();
+            checkFuturesLiquidations();
             renderAll();
             maybeSnapshotEquity();
         } catch (err) {
@@ -218,23 +249,39 @@ const CW_CONFIG = {
     const orderSymbolInput = document.getElementById('order-symbol-input');
     const orderSymbolList = document.getElementById('order-symbol-list');
     const popularChips = document.getElementById('popular-coin-chips');
+    const marketModeButtons = document.querySelectorAll('.market-mode-btn');
     const sideButtons = document.querySelectorAll('.order-side-btn');
-    const typeButtons = document.querySelectorAll('.order-type-btn');
+    const typeButtons = document.querySelectorAll('.order-type-btn:not(.market-mode-btn)');
+    const orderTypeRow = document.getElementById('order-type-row');
     const limitPriceRow = document.getElementById('limit-price-row');
     const limitPriceInput = document.getElementById('order-limit-price-input');
+    const amountLabelEl = document.getElementById('amount-label');
     const amountInput = document.getElementById('order-amount-input');
     const amountUnitSelect = document.getElementById('order-amount-unit');
     const amountHint = document.getElementById('order-amount-hint');
     const availableHint = document.getElementById('order-available-hint');
     const submitBtn = document.getElementById('submit-order-btn');
+    const orderFeeNote = document.getElementById('order-fee-note');
+    const spotSummaryRows = document.getElementById('spot-summary-rows');
     const summaryFeeEl = document.getElementById('order-summary-fee');
     const summaryTotalEl = document.getElementById('order-summary-total');
     const summaryLabelEl = document.getElementById('order-summary-label');
+    const futuresSummaryRows = document.getElementById('futures-summary-rows');
+    const futuresSummaryNotionalEl = document.getElementById('futures-summary-notional');
+    const futuresSummaryFeeEl = document.getElementById('futures-summary-fee');
+    const futuresSummaryLiqEl = document.getElementById('futures-summary-liq');
+    const futuresSummaryMarginEl = document.getElementById('futures-summary-margin');
+    const leverageRow = document.getElementById('leverage-row');
+    const leverageSlider = document.getElementById('leverage-slider');
+    const leverageValueEl = document.getElementById('leverage-value');
+    const leverageButtons = document.querySelectorAll('.leverage-btn');
     const livePriceEl = document.getElementById('order-live-price');
     const liveChangeEl = document.getElementById('order-live-change');
 
-    let currentSide = 'buy';
+    let currentMarket = 'spot'; // 'spot' | 'futures'
+    let currentSide = 'buy';    // 'buy'/'sell' — read as 'long'/'short' when currentMarket is 'futures'
     let currentType = 'market';
+    let currentLeverage = DEFAULT_LEVERAGE;
 
     // ---------- Symbol list / chips ----------
     function populateSymbolList() {
@@ -288,7 +335,11 @@ const CW_CONFIG = {
 
     function renderAvailableHint() {
         const symbol = orderSymbolInput.value.toUpperCase().trim();
-        if (currentSide === 'buy') {
+        if (currentMarket === 'futures') {
+            // Margin for a long or a short both come out of free cash, so the hint doesn't
+            // depend on side the way spot's "held qty" hint does.
+            availableHint.innerText = `Free cash: ${fmtUsd(cash)}`;
+        } else if (currentSide === 'buy') {
             availableHint.innerText = `Cash: ${fmtUsd(cash)}`;
         } else {
             const h = findHolding(symbol);
@@ -309,7 +360,34 @@ const CW_CONFIG = {
         return { qty, value, price };
     }
 
+    // Futures sizing always treats the amount field as a USD margin figure — the position size
+    // (notional) is margin × leverage, not the raw amount typed in.
+    function futuresAmountToPosition() {
+        const price = currentType === 'limit' && parseFloat(limitPriceInput.value) > 0
+            ? parseFloat(limitPriceInput.value)
+            : getPrice(orderSymbolInput.value.toUpperCase().trim());
+        const margin = parseFloat(amountInput.value);
+        if (!price || isNaN(margin) || margin <= 0) return { margin: 0, leverage: currentLeverage, notional: 0, qty: 0, price };
+        const notional = margin * currentLeverage;
+        const qty = notional / price;
+        return { margin, leverage: currentLeverage, notional, qty, price };
+    }
+
     function renderOrderSummary() {
+        if (currentMarket === 'futures') {
+            const { margin, leverage, notional, qty, price } = futuresAmountToPosition();
+            const fee = notional * FEE_RATE;
+            const side = currentSide === 'buy' ? 'long' : 'short';
+            const liq = price ? estimateLiqPrice(side, price, leverage) : null;
+            futuresSummaryNotionalEl.innerText = fmtUsd(notional);
+            futuresSummaryFeeEl.innerText = fmtUsd(fee);
+            futuresSummaryLiqEl.innerText = liq ? fmtUsd(liq, priceFmt(liq)) : '--';
+            futuresSummaryMarginEl.innerText = fmtUsd(margin + fee);
+            const symbol = orderSymbolInput.value.toUpperCase().trim();
+            if (!price || qty <= 0) { amountHint.innerHTML = '&nbsp;'; }
+            else amountHint.innerText = `≈ ${fmtQty(qty)} ${symbol} position @ ${leverage}x`;
+            return;
+        }
         const { qty, value, price } = amountToQtyAndValue();
         const fee = value * FEE_RATE;
         summaryFeeEl.innerText = fmtUsd(fee);
@@ -327,11 +405,20 @@ const CW_CONFIG = {
             : `≈ ${fmtUsd(value)}`;
     }
 
+    function updateSideLabels() {
+        const isFutures = currentMarket === 'futures';
+        document.getElementById('side-buy-btn').innerText = isFutures ? 'Long' : 'Buy';
+        document.getElementById('side-sell-btn').innerText = isFutures ? 'Short' : 'Sell';
+        submitBtn.innerText = isFutures
+            ? `Open ${currentSide === 'buy' ? 'Long' : 'Short'} Position`
+            : `Place ${currentSide === 'buy' ? 'Buy' : 'Sell'} Order`;
+        submitBtn.className = `w-full text-sm font-bold uppercase py-2.5 rounded transition-all cursor-pointer ${currentSide === 'buy' ? 'bg-[#14d38a] text-[#0b0e11] hover:opacity-90' : 'bg-[#ff4d6a] text-white hover:opacity-90'}`;
+    }
+
     function setSide(side) {
         currentSide = side;
         sideButtons.forEach(b => b.classList.toggle('active', b.getAttribute('data-side') === side));
-        submitBtn.innerText = `Place ${side === 'buy' ? 'Buy' : 'Sell'} Order`;
-        submitBtn.className = `w-full text-sm font-bold uppercase py-2.5 rounded transition-all cursor-pointer ${side === 'buy' ? 'bg-[#14d38a] text-[#0b0e11] hover:opacity-90' : 'bg-[#ff4d6a] text-white hover:opacity-90'}`;
+        updateSideLabels();
         renderAvailableHint();
         renderOrderSummary();
     }
@@ -341,9 +428,37 @@ const CW_CONFIG = {
         limitPriceRow.classList.toggle('hidden', type !== 'limit');
         renderOrderSummary();
     }
+    function setLeverage(lev) {
+        currentLeverage = Math.max(MIN_LEVERAGE, Math.min(MAX_LEVERAGE, Math.round(lev) || DEFAULT_LEVERAGE));
+        leverageSlider.value = currentLeverage;
+        leverageValueEl.innerText = `${currentLeverage}x`;
+        leverageButtons.forEach(b => b.classList.toggle('active', parseInt(b.getAttribute('data-lev'), 10) === currentLeverage));
+        renderOrderSummary();
+    }
+    function setMarket(market) {
+        currentMarket = market;
+        marketModeButtons.forEach(b => b.classList.toggle('active', b.getAttribute('data-market') === market));
+        leverageRow.classList.toggle('hidden', market !== 'futures');
+        // Futures orders in this practice account fill at the live market price only —
+        // no pending limit entries for futures yet, so hide the type toggle entirely.
+        orderTypeRow.classList.toggle('hidden', market === 'futures');
+        if (market === 'futures') setType('market');
+        spotSummaryRows.classList.toggle('hidden', market === 'futures');
+        futuresSummaryRows.classList.toggle('hidden', market !== 'futures');
+        amountUnitSelect.classList.toggle('hidden', market === 'futures');
+        if (market === 'futures') amountUnitSelect.value = 'usd';
+        amountLabelEl.innerText = market === 'futures' ? 'Margin (USD)' : 'Amount';
+        orderFeeNote.innerText = market === 'futures' ? '0.10% simulated taker fee' : '0.10% simulated fee';
+        updateSideLabels();
+        renderAvailableHint();
+        renderOrderSummary();
+    }
 
+    marketModeButtons.forEach(b => b.addEventListener('click', () => setMarket(b.getAttribute('data-market'))));
     sideButtons.forEach(b => b.addEventListener('click', () => setSide(b.getAttribute('data-side'))));
     typeButtons.forEach(b => b.addEventListener('click', () => setType(b.getAttribute('data-type'))));
+    leverageSlider.addEventListener('input', () => setLeverage(parseInt(leverageSlider.value, 10)));
+    leverageButtons.forEach(b => b.addEventListener('click', () => setLeverage(parseInt(b.getAttribute('data-lev'), 10))));
     orderSymbolInput.addEventListener('change', onSymbolChange);
     orderSymbolInput.addEventListener('blur', onSymbolChange);
     [amountInput, amountUnitSelect, limitPriceInput].forEach(el => el.addEventListener('input', renderOrderSummary));
@@ -351,6 +466,17 @@ const CW_CONFIG = {
         btn.addEventListener('click', () => {
             const pct = parseFloat(btn.getAttribute('data-pct'));
             const symbol = orderSymbolInput.value.toUpperCase().trim();
+            if (currentMarket === 'futures') {
+                // Margin sizing always draws from free cash regardless of long/short. The open
+                // fee is charged on notional (margin × leverage), not on margin alone, so the
+                // "Max" case has to divide out (1 + leverage × feeRate), not (1 + feeRate) —
+                // otherwise higher leverage tiers would ask for slightly more than cash covers.
+                const marginBudget = cash * pct / (1 + currentLeverage * FEE_RATE);
+                amountUnitSelect.value = 'usd';
+                amountInput.value = marginBudget > 0 ? marginBudget.toFixed(2) : '';
+                renderOrderSummary();
+                return;
+            }
             const price = currentType === 'limit' && parseFloat(limitPriceInput.value) > 0 ? parseFloat(limitPriceInput.value) : getPrice(symbol);
             if (currentSide === 'buy') {
                 const usdBudget = cash * pct / (1 + FEE_RATE);
@@ -401,7 +527,83 @@ const CW_CONFIG = {
         return true;
     }
 
+    // ---------- Futures execution ----------
+    function handleFuturesSubmit() {
+        const symbol = orderSymbolInput.value.toUpperCase().trim();
+        if (!symbol) { showToast('Enter an asset symbol, e.g. BTC.', 'error'); return; }
+        if (!validSymbols.has(symbol) && !getPrice(symbol)) { showToast(`${symbol} isn't a tracked USDT market.`, 'error'); return; }
+        const entryPrice = getPrice(symbol);
+        if (!entryPrice) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
+        const margin = parseFloat(amountInput.value);
+        if (isNaN(margin) || margin <= 0) { showToast('Enter a valid margin amount.', 'error'); return; }
+        const leverage = currentLeverage;
+        const side = currentSide === 'buy' ? 'long' : 'short';
+        const notional = margin * leverage;
+        const fee = notional * FEE_RATE;
+        const totalRequired = margin + fee;
+        if (totalRequired > cash + 1e-9) { showToast(`Not enough free cash — need ${fmtUsd(totalRequired)} (margin + fee), have ${fmtUsd(cash)}.`, 'error'); return; }
+        const qty = notional / entryPrice;
+        const liqPrice = estimateLiqPrice(side, entryPrice, leverage);
+
+        cash -= totalRequired;
+        const id = `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+        futuresPositions.push({ id, ts: Date.now(), symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice });
+        trades.unshift({ id: `${id}_open`, ts: Date.now(), symbol, side, type: 'open', qty, price: entryPrice, value: notional, fee, realizedPnl: null, leverage });
+        showToast(`Opened ${leverage}x ${side.toUpperCase()} on ${symbol} @ ${fmtUsd(entryPrice, priceFmt(entryPrice))}. Est. liq. ${fmtUsd(liqPrice, priceFmt(liqPrice))}.`, 'success');
+        amountInput.value = '';
+        persist(); renderAll(); maybeSnapshotEquity(true);
+    }
+
+    function closeFuturesPosition(id) {
+        const p = futuresPositions.find(x => x.id === id);
+        if (!p) return;
+        const markPrice = getPrice(p.symbol);
+        if (!markPrice) { showToast('Live price unavailable — try again in a moment.', 'error'); return; }
+        const pnl = futuresPnl(p, markPrice);
+        const closeNotional = p.qty * markPrice;
+        const fee = closeNotional * FEE_RATE;
+        const netPnl = pnl - fee;
+        // Margin is returned alongside net P&L; floored at 0 as a safety net in case an
+        // extreme, un-liquidated move (e.g. a price gap between polls) pushes the loss past
+        // the margin itself — real exchanges liquidate before that happens, which is what the
+        // checkFuturesLiquidations() sweep below is for.
+        const proceeds = Math.max(0, p.margin + netPnl);
+        cash += proceeds;
+        futuresPositions = futuresPositions.filter(x => x.id !== id);
+        trades.unshift({ id: `${p.id}_close_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type: 'close', qty: p.qty, price: markPrice, value: closeNotional, fee, realizedPnl: netPnl, leverage: p.leverage });
+        showToast(`Closed ${p.leverage}x ${p.side.toUpperCase()} ${p.symbol} — ${netPnl >= 0 ? 'profit' : 'loss'} of ${fmtSigned(netPnl)}.`, netPnl >= 0 ? 'success' : 'info');
+        persist(); renderAll(); maybeSnapshotEquity(true);
+    }
+
+    function checkFuturesLiquidations() {
+        if (futuresPositions.length === 0) return;
+        const survivors = [];
+        let liquidatedAny = false;
+        futuresPositions.forEach(p => {
+            const mark = getPrice(p.symbol);
+            if (!mark) { survivors.push(p); return; }
+            const hit = p.side === 'long' ? mark <= p.liqPrice : mark >= p.liqPrice;
+            if (!hit) { survivors.push(p); return; }
+            // Liquidated: the position is force-closed at (roughly) the liquidation price and
+            // the margin is forfeited entirely — no proceeds credited back, and no separate fee
+            // charged (the forfeited margin already absorbs the loss) — matching how
+            // isolated-margin liquidation works on real exchanges.
+            trades.unshift({ id: `${p.id}_liq_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type: 'liquidated', qty: p.qty, price: p.liqPrice, value: p.notional, fee: 0, realizedPnl: -p.margin, leverage: p.leverage });
+            showToast(`${p.symbol} ${p.side.toUpperCase()} position liquidated near ${fmtUsd(p.liqPrice, priceFmt(p.liqPrice))}.`, 'error');
+            liquidatedAny = true;
+        });
+        futuresPositions = survivors;
+        if (liquidatedAny) { persist(); renderAll(); maybeSnapshotEquity(true); }
+    }
+
+    document.getElementById('futures-rows').addEventListener('click', (e) => {
+        const btn = e.target.closest('.close-position-btn');
+        if (!btn) return;
+        closeFuturesPosition(btn.getAttribute('data-id'));
+    });
+
     submitBtn.addEventListener('click', () => {
+        if (currentMarket === 'futures') { handleFuturesSubmit(); return; }
         const symbol = orderSymbolInput.value.toUpperCase().trim();
         if (!symbol) { showToast('Enter an asset symbol, e.g. BTC.', 'error'); return; }
         if (!validSymbols.has(symbol) && !getPrice(symbol)) { showToast(`${symbol} isn't a tracked USDT market.`, 'error'); return; }
@@ -486,14 +688,21 @@ const CW_CONFIG = {
             holdingsValue += price * h.qty;
             unrealized += (price - h.avgCost) * h.qty;
         });
+        let marginLocked = 0, futuresUnrealized = 0;
+        futuresPositions.forEach(p => {
+            marginLocked += p.margin;
+            futuresUnrealized += futuresPnl(p, getPrice(p.symbol) || p.entryPrice);
+        });
+        // realized/fees pull straight from the trade log, which already carries futures
+        // open/close/liquidation entries alongside spot ones — no separate accumulator needed.
         const realized = trades.reduce((sum, t) => sum + (t.realizedPnl || 0), 0);
         const fees = trades.reduce((sum, t) => sum + (t.fee || 0), 0);
-        const equity = cash + holdingsValue;
+        const equity = cash + holdingsValue + marginLocked + futuresUnrealized;
         const totalPnl = equity - totalDeposited;
-        const sells = trades.filter(t => t.side === 'sell');
-        const wins = sells.filter(t => (t.realizedPnl || 0) > 0).length;
-        const winRate = sells.length ? (wins / sells.length) * 100 : null;
-        return { holdingsValue, unrealized, realized, fees, equity, totalPnl, totalTrades: trades.length, winRate };
+        const closedTrades = trades.filter(t => t.side === 'sell' || t.type === 'close' || t.type === 'liquidated');
+        const wins = closedTrades.filter(t => (t.realizedPnl || 0) > 0).length;
+        const winRate = closedTrades.length ? (wins / closedTrades.length) * 100 : null;
+        return { holdingsValue, unrealized, realized, fees, equity, totalPnl, totalTrades: trades.length, winRate, marginLocked, futuresUnrealized };
     }
 
     function maybeSnapshotEquity(force) {
@@ -526,6 +735,36 @@ const CW_CONFIG = {
         document.getElementById('stat-trade-count').innerText = s.totalTrades;
         document.getElementById('stat-winrate').innerText = s.winRate === null ? '--' : `${s.winRate.toFixed(0)}%`;
         document.getElementById('stat-fees').innerText = fmtUsd(s.fees);
+        document.getElementById('stat-margin-locked').innerText = fmtUsd(s.marginLocked);
+        const futUnrealEl = document.getElementById('stat-futures-unrealized');
+        futUnrealEl.innerText = fmtSigned(s.futuresUnrealized); futUnrealEl.className = `text-sm font-mono font-bold ${pnlColorClass(s.futuresUnrealized)}`;
+    }
+
+    function renderFuturesPositions() {
+        const tbody = document.getElementById('futures-rows');
+        if (futuresPositions.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="10" class="py-8 text-center text-gray-600 text-[11px]">No open positions — open a long or short above to get started.</td></tr>`;
+            return;
+        }
+        tbody.innerHTML = futuresPositions.slice().sort((a, b) => b.ts - a.ts).map(p => {
+            const mark = getPrice(p.symbol);
+            const pnl = mark ? futuresPnl(p, mark) : 0;
+            const roe = p.margin ? (pnl / p.margin) * 100 : 0;
+            const sideColor = p.side === 'long' ? 'text-[#14d38a] bg-[#14d38a]/10 border-[#14d38a]/30' : 'text-[#ff4d6a] bg-[#ff4d6a]/10 border-[#ff4d6a]/30';
+            return `
+                <tr class="hover:bg-gray-800/40 transition-colors">
+                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(p.symbol)}</td>
+                    <td class="py-2 px-3"><span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded border ${sideColor}">${p.side}</span></td>
+                    <td class="py-2 px-3 text-right text-gray-400">${p.leverage}x</td>
+                    <td class="py-2 px-3 text-right text-gray-300">${fmtQty(p.qty)}</td>
+                    <td class="py-2 px-3 text-right text-gray-300">${fmtUsd(p.entryPrice, priceFmt(p.entryPrice))}</td>
+                    <td class="py-2 px-3 text-right text-gray-300">${mark ? fmtUsd(mark, priceFmt(mark)) : '<span class="text-gray-600">--</span>'}</td>
+                    <td class="py-2 px-3 text-right text-gray-400">${fmtUsd(p.margin)}</td>
+                    <td class="py-2 px-3 text-right text-amber-400/80">${fmtUsd(p.liqPrice, priceFmt(p.liqPrice))}</td>
+                    <td class="py-2 px-3 text-right ${pnlColorClass(pnl)}">${fmtSigned(pnl)}<br><span class="text-[10px]">${pnl >= 0 ? '+' : ''}${roe.toFixed(1)}%</span></td>
+                    <td class="py-2 px-3 text-center"><button class="close-position-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-id="${p.id}">Close</button></td>
+                </tr>`;
+        }).join('');
     }
 
     function renderHoldings() {
@@ -583,13 +822,16 @@ const CW_CONFIG = {
             return;
         }
         tbody.innerHTML = trades.slice(0, 100).map(t => {
-            const sideColor = t.side === 'buy' ? 'text-[#14d38a] bg-[#14d38a]/10 border-[#14d38a]/30' : 'text-[#ff4d6a] bg-[#ff4d6a]/10 border-[#ff4d6a]/30';
+            const isGreenSide = t.side === 'buy' || t.side === 'long';
+            const sideColor = isGreenSide ? 'text-[#14d38a] bg-[#14d38a]/10 border-[#14d38a]/30' : 'text-[#ff4d6a] bg-[#ff4d6a]/10 border-[#ff4d6a]/30';
+            const assetLabel = t.leverage ? `${escapeHtml(t.symbol)} <span class="text-gray-500">${t.leverage}x</span>` : escapeHtml(t.symbol);
+            const typeLabel = t.type === 'liquidated' ? '<span class="text-[#ff4d6a]">liquidated</span>' : t.type;
             return `
                 <tr class="hover:bg-gray-800/40 transition-colors">
                     <td class="py-2 px-3 text-gray-500">${new Date(t.ts).toLocaleString()}</td>
-                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(t.symbol)}</td>
+                    <td class="py-2 px-3 font-bold text-white">${assetLabel}</td>
                     <td class="py-2 px-3"><span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded border ${sideColor}">${t.side}</span></td>
-                    <td class="py-2 px-3 text-gray-500 uppercase text-[10px]">${t.type}</td>
+                    <td class="py-2 px-3 text-gray-500 uppercase text-[10px]">${typeLabel}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${fmtQty(t.qty)}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${fmtUsd(t.price, priceFmt(t.price))}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${fmtUsd(t.value)}</td>
@@ -602,6 +844,7 @@ const CW_CONFIG = {
     function renderAll() {
         renderStats();
         renderHoldings();
+        renderFuturesPositions();
         renderOrders();
         renderTrades();
         renderOrderTicketPrice();
@@ -655,7 +898,7 @@ const CW_CONFIG = {
     document.getElementById('reset-modal-confirm').addEventListener('click', () => {
         cash = STARTING_BALANCE;
         totalDeposited = STARTING_BALANCE;
-        holdings = []; trades = []; pendingOrders = [];
+        holdings = []; trades = []; pendingOrders = []; futuresPositions = [];
         equityCurve = [{ ts: Date.now(), equity: STARTING_BALANCE }];
         lastEquitySnapshot = Date.now();
         persist(); renderAll(); updateEquityChart();
@@ -700,6 +943,16 @@ const CW_CONFIG = {
         });
         downloadCSV(lines.join('\n'), `paper_holdings_${Date.now()}.csv`);
     });
+    document.getElementById('futures-csv-btn').addEventListener('click', () => {
+        if (futuresPositions.length === 0) { showToast('No open positions to export.', 'error'); return; }
+        const lines = [['Asset', 'Side', 'Leverage', 'Qty', 'Entry', 'Mark', 'Margin', 'LiqPrice', 'PnL'].join(',')];
+        futuresPositions.forEach(p => {
+            const mark = getPrice(p.symbol);
+            const pnl = mark ? futuresPnl(p, mark) : '';
+            lines.push([p.symbol, p.side, p.leverage, p.qty, p.entryPrice, mark || '', p.margin.toFixed(2), p.liqPrice.toFixed(6), pnl === '' ? '' : pnl.toFixed(2)].join(','));
+        });
+        downloadCSV(lines.join('\n'), `paper_futures_positions_${Date.now()}.csv`);
+    });
     document.getElementById('trades-csv-btn').addEventListener('click', () => {
         if (trades.length === 0) { showToast('No trades to export.', 'error'); return; }
         const lines = [['Time', 'Asset', 'Side', 'Type', 'Qty', 'Price', 'Value', 'Fee', 'RealizedPnL'].join(',')];
@@ -711,8 +964,10 @@ const CW_CONFIG = {
 
     // ---------- Boot ----------
     document.getElementById('footer-year').innerText = new Date().getFullYear();
+    setMarket('spot');
     setSide('buy');
     setType('market');
+    setLeverage(DEFAULT_LEVERAGE);
     renderChips();
     renderAll();
 

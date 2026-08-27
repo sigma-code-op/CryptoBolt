@@ -483,7 +483,7 @@
     .mk-nav-cta .mk-btn-ghost { display: none; }
     .mk-nav-cta .mk-btn-primary { padding: 8px 12px; font-size: 12.5px; }
     .mk-burger { display: flex; }
-    .mk-nav { gap: 10px; }
+    .mk-nav { gap: 8px; padding-left: 14px; padding-right: 14px; }
     .mk-bento { grid-template-columns: repeat(2, 1fr); }
     .mk-card, .mk-card.mk-span-2, .mk-card.mk-span-4 { grid-column: span 2; }
     .mk-blog-grid { grid-template-columns: 1fr; }
@@ -496,4 +496,15 @@
 }
 @media (max-width: 560px) {
     .mk-footer-grid { grid-template-columns: 1fr; }
+}
+/* Narrow phones (~360-400px CSS width): logo + "Launch Terminal →" + burger were still a
+   few pixels wider than the viewport at this size even after the 880px breakpoint above
+   shrank the button, so the burger kept getting sliced off by the site-wide
+   overflow-x:hidden guard. Shrink the remaining pieces further so the row always fits. */
+@media (max-width: 400px) {
+    .mk-logo { font-size: 15.5px; gap: 6px; }
+    .mk-logo-mark { width: 24px; height: 24px; font-size: 12px; }
+    .mk-nav-cta .mk-btn-primary { padding: 7px 9px; font-size: 11.5px; }
+    .mk-nav { gap: 6px; padding-left: 12px; padding-right: 12px; }
+    .mk-burger { width: 32px; height: 32px; }
 }
