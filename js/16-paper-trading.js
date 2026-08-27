@@ -185,6 +185,8 @@
             }
             setFeedStatus('live', 'Live');
             checkPendingOrders();
+            checkHoldingsTpSl();
+            checkFuturesTpSl();
             checkFuturesLiquidations();
             renderAll();
             maybeSnapshotEquity();
@@ -245,6 +247,10 @@
     const leverageSlider = document.getElementById('leverage-slider');
     const leverageValueEl = document.getElementById('leverage-value');
     const leverageButtons = document.querySelectorAll('.leverage-btn');
+    const tpslRow = document.getElementById('tpsl-row');
+    const tpInput = document.getElementById('order-tp-input');
+    const slInput = document.getElementById('order-sl-input');
+    const tpslHint = document.getElementById('tpsl-hint');
     const livePriceEl = document.getElementById('order-live-price');
     const liveChangeEl = document.getElementById('order-live-change');
 
@@ -385,10 +391,20 @@
         submitBtn.className = `w-full text-sm font-bold uppercase py-2.5 rounded transition-all cursor-pointer ${currentSide === 'buy' ? 'bg-[#14d38a] text-[#0b0e11] hover:opacity-90' : 'bg-[#ff4d6a] text-white hover:opacity-90'}`;
     }
 
+    function updateTpSlVisibility() {
+        // TP/SL are entry-attached exit triggers: for spot they only make sense on a Buy (an
+        // immediate Sell is already an exit, so there's nothing for it to protect); for futures
+        // they apply to either side since Long and Short are both entries.
+        const show = currentMarket === 'futures' || currentSide === 'buy';
+        tpslRow.classList.toggle('hidden', !show);
+        if (!show) { tpInput.value = ''; slInput.value = ''; }
+    }
+
     function setSide(side) {
         currentSide = side;
         sideButtons.forEach(b => b.classList.toggle('active', b.getAttribute('data-side') === side));
         updateSideLabels();
+        updateTpSlVisibility();
         renderAvailableHint();
         renderOrderSummary();
     }
@@ -420,6 +436,7 @@
         amountLabelEl.innerText = market === 'futures' ? 'Margin (USD)' : 'Amount';
         orderFeeNote.innerText = market === 'futures' ? '0.10% simulated taker fee' : '0.10% simulated fee';
         updateSideLabels();
+        updateTpSlVisibility();
         renderAvailableHint();
         renderOrderSummary();
     }
@@ -461,8 +478,31 @@
         });
     });
 
+    // ---------- Take profit / stop loss ----------
+    // dir is 'buy'/'long' (protects against price falling, profits as it rises) or
+    // 'sell'/'short' (the reverse). refPrice is the price the position will actually enter at
+    // (limit price for a pending limit order, live price for anything filling now).
+    function readTpSl(dir, refPrice) {
+        const isLongDir = dir === 'buy' || dir === 'long';
+        let tpPrice = tpInput.value.trim() === '' ? null : parseFloat(tpInput.value);
+        let slPrice = slInput.value.trim() === '' ? null : parseFloat(slInput.value);
+        if (tpPrice !== null && (isNaN(tpPrice) || tpPrice <= 0)) tpPrice = null;
+        if (slPrice !== null && (isNaN(slPrice) || slPrice <= 0)) slPrice = null;
+        let error = null;
+        if (tpPrice !== null) {
+            if (isLongDir && tpPrice <= refPrice) error = 'Take profit must be above the entry price for a buy/long.';
+            else if (!isLongDir && tpPrice >= refPrice) error = 'Take profit must be below the entry price for a short.';
+        }
+        if (!error && slPrice !== null) {
+            if (isLongDir && slPrice >= refPrice) error = 'Stop loss must be below the entry price for a buy/long.';
+            else if (!isLongDir && slPrice <= refPrice) error = 'Stop loss must be above the entry price for a short.';
+        }
+        return { tpPrice, slPrice, error };
+    }
+    function clearTpSlInputs() { tpInput.value = ''; slInput.value = ''; }
+
     // ---------- Trade execution ----------
-    function executeBuy(symbol, qty, price, type) {
+    function executeBuy(symbol, qty, price, type, tpPrice, slPrice) {
         const value = qty * price;
         const fee = value * FEE_RATE;
         const totalCost = value + fee;
@@ -473,8 +513,12 @@
             const newQty = h.qty + qty;
             h.avgCost = (h.qty * h.avgCost + value + fee) / newQty;
             h.qty = newQty;
+            // A new TP/SL on a top-up order replaces the old one — only one active exit target
+            // per symbol. Leaving both blank on the top-up keeps whatever was already set.
+            if (tpPrice !== undefined) h.tpPrice = tpPrice;
+            if (slPrice !== undefined) h.slPrice = slPrice;
         } else {
-            holdings.push({ symbol, qty, avgCost: (value + fee) / qty });
+            holdings.push({ symbol, qty, avgCost: (value + fee) / qty, tpPrice: tpPrice || null, slPrice: slPrice || null });
         }
         trades.unshift({ id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, ts: Date.now(), symbol, side: 'buy', type, qty, price, value, fee, realizedPnl: null });
         showToast(`Bought ${fmtQty(qty)} ${symbol} at ${fmtUsd(price, priceFmt(price))}.`, 'success');
@@ -493,8 +537,24 @@
         h.qty -= qty;
         if (h.qty <= 1e-9) holdings = holdings.filter(x => x !== h);
         trades.unshift({ id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, ts: Date.now(), symbol, side: 'sell', type, qty, price, value, fee, realizedPnl });
-        showToast(`Sold ${fmtQty(qty)} ${symbol} at ${fmtUsd(price, priceFmt(price))} — ${realizedPnl >= 0 ? 'profit' : 'loss'} of ${fmtSigned(realizedPnl)}.`, realizedPnl >= 0 ? 'success' : 'info');
+        const reasonLabel = type === 'tp' ? 'take-profit hit' : type === 'sl' ? 'stop-loss hit' : (realizedPnl >= 0 ? 'profit' : 'loss');
+        showToast(`Sold ${fmtQty(qty)} ${symbol} at ${fmtUsd(price, priceFmt(price))} — ${reasonLabel} of ${fmtSigned(realizedPnl)}.`, realizedPnl >= 0 ? 'success' : 'info');
         return true;
+    }
+
+    // Checked every price refresh: any holding with an active TP/SL that the live price has
+    // reached gets sold in full at that price.
+    function checkHoldingsTpSl() {
+        if (holdings.length === 0) return;
+        let filledAny = false;
+        holdings.slice().forEach(h => {
+            if (!h.tpPrice && !h.slPrice) return;
+            const price = getPrice(h.symbol);
+            if (!price) return;
+            if (h.tpPrice && price >= h.tpPrice) { if (executeSell(h.symbol, h.qty, price, 'tp')) filledAny = true; return; }
+            if (h.slPrice && price <= h.slPrice) { if (executeSell(h.symbol, h.qty, price, 'sl')) filledAny = true; }
+        });
+        if (filledAny) { persist(); renderAll(); maybeSnapshotEquity(true); }
     }
 
     // ---------- Futures execution ----------
@@ -508,26 +568,35 @@
         if (isNaN(margin) || margin <= 0) { showToast('Enter a valid margin amount.', 'error'); return; }
         const leverage = currentLeverage;
         const side = currentSide === 'buy' ? 'long' : 'short';
+        const { tpPrice, slPrice, error } = readTpSl(side, entryPrice);
+        if (error) { showToast(error, 'error'); return; }
         const notional = margin * leverage;
         const fee = notional * FEE_RATE;
         const totalRequired = margin + fee;
         if (totalRequired > cash + 1e-9) { showToast(`Not enough free cash — need ${fmtUsd(totalRequired)} (margin + fee), have ${fmtUsd(cash)}.`, 'error'); return; }
         const qty = notional / entryPrice;
         const liqPrice = estimateLiqPrice(side, entryPrice, leverage);
+        // A stop loss tighter than the liquidation price would never fire — liquidation gets
+        // there first and the margin is forfeited instead of a controlled, partial-loss close.
+        if (slPrice !== null) {
+            const slPastLiq = side === 'long' ? slPrice <= liqPrice : slPrice >= liqPrice;
+            if (slPastLiq) { showToast(`Stop loss is past the estimated liquidation price (${fmtUsd(liqPrice, priceFmt(liqPrice))}) — liquidation would trigger first.`, 'error'); return; }
+        }
 
         cash -= totalRequired;
         const id = `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
-        futuresPositions.push({ id, ts: Date.now(), symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice });
+        futuresPositions.push({ id, ts: Date.now(), symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice, tpPrice, slPrice });
         trades.unshift({ id: `${id}_open`, ts: Date.now(), symbol, side, type: 'open', qty, price: entryPrice, value: notional, fee, realizedPnl: null, leverage });
         showToast(`Opened ${leverage}x ${side.toUpperCase()} on ${symbol} @ ${fmtUsd(entryPrice, priceFmt(entryPrice))}. Est. liq. ${fmtUsd(liqPrice, priceFmt(liqPrice))}.`, 'success');
         amountInput.value = '';
+        clearTpSlInputs();
         persist(); renderAll(); maybeSnapshotEquity(true);
     }
 
-    function closeFuturesPosition(id) {
+    function closeFuturesPosition(id, reason) {
         const p = futuresPositions.find(x => x.id === id);
         if (!p) return;
-        const markPrice = getPrice(p.symbol);
+        const markPrice = reason ? (reason === 'tp' ? p.tpPrice : reason === 'sl' ? p.slPrice : getPrice(p.symbol)) : getPrice(p.symbol);
         if (!markPrice) { showToast('Live price unavailable — try again in a moment.', 'error'); return; }
         const pnl = futuresPnl(p, markPrice);
         const closeNotional = p.qty * markPrice;
@@ -540,9 +609,25 @@
         const proceeds = Math.max(0, p.margin + netPnl);
         cash += proceeds;
         futuresPositions = futuresPositions.filter(x => x.id !== id);
-        trades.unshift({ id: `${p.id}_close_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type: 'close', qty: p.qty, price: markPrice, value: closeNotional, fee, realizedPnl: netPnl, leverage: p.leverage });
-        showToast(`Closed ${p.leverage}x ${p.side.toUpperCase()} ${p.symbol} — ${netPnl >= 0 ? 'profit' : 'loss'} of ${fmtSigned(netPnl)}.`, netPnl >= 0 ? 'success' : 'info');
+        const type = reason === 'tp' ? 'tp' : reason === 'sl' ? 'sl' : 'close';
+        trades.unshift({ id: `${p.id}_close_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type, qty: p.qty, price: markPrice, value: closeNotional, fee, realizedPnl: netPnl, leverage: p.leverage });
+        const reasonLabel = reason === 'tp' ? 'take-profit hit' : reason === 'sl' ? 'stop-loss hit' : (netPnl >= 0 ? 'profit' : 'loss');
+        showToast(`Closed ${p.leverage}x ${p.side.toUpperCase()} ${p.symbol} — ${reasonLabel} of ${fmtSigned(netPnl)}.`, netPnl >= 0 ? 'success' : 'info');
         persist(); renderAll(); maybeSnapshotEquity(true);
+    }
+
+    // Checked every price refresh, ahead of liquidation: any position with an active TP/SL
+    // that the live price has reached gets closed at that trigger price.
+    function checkFuturesTpSl() {
+        if (futuresPositions.length === 0) return;
+        futuresPositions.slice().forEach(p => {
+            const mark = getPrice(p.symbol);
+            if (!mark) return;
+            const tpHit = p.tpPrice && (p.side === 'long' ? mark >= p.tpPrice : mark <= p.tpPrice);
+            const slHit = p.slPrice && (p.side === 'long' ? mark <= p.slPrice : mark >= p.slPrice);
+            if (tpHit) closeFuturesPosition(p.id, 'tp');
+            else if (slHit) closeFuturesPosition(p.id, 'sl');
+        });
     }
 
     function checkFuturesLiquidations() {
@@ -585,16 +670,21 @@
             const raw = parseFloat(amountInput.value);
             if (isNaN(raw) || raw <= 0) { showToast('Enter a valid amount.', 'error'); return; }
             const qty = unit === 'usd' ? raw / limitPrice : raw;
+            let tpPrice = null, slPrice = null;
             if (currentSide === 'buy') {
                 const totalCost = qty * limitPrice * (1 + FEE_RATE);
                 if (totalCost > cash + 1e-9) { showToast(`Not enough cash reserved for this limit order — need ${fmtUsd(totalCost)}.`, 'error'); return; }
+                const r = readTpSl('buy', limitPrice);
+                if (r.error) { showToast(r.error, 'error'); return; }
+                tpPrice = r.tpPrice; slPrice = r.slPrice;
             } else {
                 const h = findHolding(symbol);
                 if (!h || qty > h.qty + 1e-9) { showToast(`You only hold ${h ? fmtQty(h.qty) : '0'} ${symbol}.`, 'error'); return; }
             }
-            pendingOrders.push({ id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, ts: Date.now(), symbol, side: currentSide, qty, limitPrice });
+            pendingOrders.push({ id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, ts: Date.now(), symbol, side: currentSide, qty, limitPrice, tpPrice, slPrice });
             showToast(`Limit ${currentSide} order placed: ${fmtQty(qty)} ${symbol} @ ${fmtUsd(limitPrice, priceFmt(limitPrice))}.`, 'success');
             amountInput.value = '';
+            clearTpSlInputs();
             persist(); renderAll(); maybeSnapshotEquity(true);
             return;
         }
@@ -603,9 +693,17 @@
         if (!price) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
         if (!qty || qty <= 0) { showToast('Enter a valid amount.', 'error'); return; }
 
-        const ok = currentSide === 'buy' ? executeBuy(symbol, qty, price, 'market') : executeSell(symbol, qty, price, 'market');
+        let ok;
+        if (currentSide === 'buy') {
+            const r = readTpSl('buy', price);
+            if (r.error) { showToast(r.error, 'error'); return; }
+            ok = executeBuy(symbol, qty, price, 'market', r.tpPrice, r.slPrice);
+        } else {
+            ok = executeSell(symbol, qty, price, 'market');
+        }
         if (ok) {
             amountInput.value = '';
+            clearTpSlInputs();
             persist(); renderAll(); maybeSnapshotEquity(true);
         }
     });
@@ -619,7 +717,7 @@
             if (!price) { stillPending.push(o); return; }
             const shouldFill = o.side === 'buy' ? price <= o.limitPrice : price >= o.limitPrice;
             if (!shouldFill) { stillPending.push(o); return; }
-            const ok = o.side === 'buy' ? executeBuy(o.symbol, o.qty, o.limitPrice, 'limit') : executeSell(o.symbol, o.qty, o.limitPrice, 'limit');
+            const ok = o.side === 'buy' ? executeBuy(o.symbol, o.qty, o.limitPrice, 'limit', o.tpPrice, o.slPrice) : executeSell(o.symbol, o.qty, o.limitPrice, 'limit');
             if (!ok) { stillPending.push(o); return; } // couldn't fill (e.g. cash/holding changed since placed) — keep trying
             filledAny = true;
         });
@@ -721,9 +819,12 @@
             const pnl = mark ? futuresPnl(p, mark) : 0;
             const roe = p.margin ? (pnl / p.margin) * 100 : 0;
             const sideColor = p.side === 'long' ? 'text-[#14d38a] bg-[#14d38a]/10 border-[#14d38a]/30' : 'text-[#ff4d6a] bg-[#ff4d6a]/10 border-[#ff4d6a]/30';
+            const tpSlNote = (p.tpPrice || p.slPrice)
+                ? `<div class="text-[9px] font-normal mt-0.5">${p.tpPrice ? `<span class="text-[#14d38a]">TP ${fmtUsd(p.tpPrice, priceFmt(p.tpPrice))}</span>` : ''}${p.tpPrice && p.slPrice ? ' <span class="text-gray-700">·</span> ' : ''}${p.slPrice ? `<span class="text-[#ff4d6a]">SL ${fmtUsd(p.slPrice, priceFmt(p.slPrice))}</span>` : ''}</div>`
+                : '';
             return `
                 <tr class="hover:bg-gray-800/40 transition-colors">
-                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(p.symbol)}</td>
+                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(p.symbol)}${tpSlNote}</td>
                     <td class="py-2 px-3"><span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded border ${sideColor}">${p.side}</span></td>
                     <td class="py-2 px-3 text-right text-gray-400">${p.leverage}x</td>
                     <td class="py-2 px-3 text-right text-gray-300">${fmtQty(p.qty)}</td>
@@ -750,9 +851,12 @@
             const pnl = (price - h.avgCost) * h.qty;
             const pnlPct = h.avgCost ? ((price - h.avgCost) / h.avgCost) * 100 : 0;
             const alloc = s.equity > 0 ? (value / s.equity) * 100 : 0;
+            const tpSlNote = (h.tpPrice || h.slPrice)
+                ? `<div class="text-[9px] font-normal mt-0.5">${h.tpPrice ? `<span class="text-[#14d38a]">TP ${fmtUsd(h.tpPrice, priceFmt(h.tpPrice))}</span>` : ''}${h.tpPrice && h.slPrice ? ' <span class="text-gray-700">·</span> ' : ''}${h.slPrice ? `<span class="text-[#ff4d6a]">SL ${fmtUsd(h.slPrice, priceFmt(h.slPrice))}</span>` : ''}</div>`
+                : '';
             return `
                 <tr class="hover:bg-gray-800/40 transition-colors">
-                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(h.symbol)}</td>
+                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(h.symbol)}${tpSlNote}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${fmtQty(h.qty)}</td>
                     <td class="py-2 px-3 text-right text-gray-400">${fmtUsd(h.avgCost, priceFmt(h.avgCost))}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${price ? fmtUsd(price, priceFmt(price)) : '<span class="text-gray-600">--</span>'}</td>

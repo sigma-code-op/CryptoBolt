@@ -89,10 +89,10 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <script src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="css/styles.css?v=20260825b">
+    <link rel="stylesheet" href="css/styles.css?v=20260827">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
     <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
-    <link rel="stylesheet" href="css/home.css?v=20260826">
+    <link rel="stylesheet" href="css/home.css?v=20260827">
 </head>
 <body class="cb-has-rail bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
@@ -291,6 +291,18 @@
                             <button class="order-pct-btn flex-1 text-[10px] py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#4fd8e8] hover:border-[#4fd8e8]/40 cursor-pointer" data-pct="1">Max</button>
                         </div>
                         <span id="order-amount-hint" class="text-[10px] text-gray-500 font-mono block mt-1">&nbsp;</span>
+                    </div>
+
+                    <!-- Take profit / stop loss (optional, attached at entry) -->
+                    <div id="tpsl-row">
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Take Profit / Stop Loss <span class="normal-case text-gray-600">(optional)</span></label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input id="order-tp-input" type="number" step="any" placeholder="TP price"
+                                class="w-full bg-gray-900 border border-gray-800 rounded text-xs px-3 py-2 text-[#14d38a] placeholder-gray-500 font-mono focus:outline-none focus:border-[#14d38a]">
+                            <input id="order-sl-input" type="number" step="any" placeholder="SL price"
+                                class="w-full bg-gray-900 border border-gray-800 rounded text-xs px-3 py-2 text-[#ff4d6a] placeholder-gray-500 font-mono focus:outline-none focus:border-[#ff4d6a]">
+                        </div>
+                        <p id="tpsl-hint" class="text-[10px] text-gray-600 mt-1">Auto-closes the position at either price. Leave blank to skip.</p>
                     </div>
 
                     <!-- Order summary: spot -->
@@ -513,7 +525,7 @@
 
     <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
          files, not this bundle — it's a generated build artifact. -->
-    <script src="js/dist/bundle-trade.js?v=20260823"></script>
+    <script src="js/dist/bundle-trade.js?v=20260827"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>
