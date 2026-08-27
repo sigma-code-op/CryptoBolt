@@ -199,6 +199,58 @@
         showToast('Refreshed.', 'success');
     });
 
+    // ---------- Leaderboard username ----------
+    const USERNAME_RE = /^[A-Za-z0-9_]{3,20}$/;
+    const usernameInput = document.getElementById('username-input');
+    const usernameSaveBtn = document.getElementById('username-save-btn');
+    const usernameMsg = document.getElementById('username-msg');
+
+    function showUsernameMsg(msg, tone) {
+        if (!usernameMsg) return;
+        usernameMsg.innerText = msg;
+        usernameMsg.className = `text-[11px] px-6 pb-3 ${tone === 'error' ? 'text-[#ff4d6a]' : 'text-[#14d38a]'}`;
+        usernameMsg.classList.remove('hidden');
+    }
+
+    async function loadUsername() {
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user || !usernameInput) return;
+        const { data, error } = await client.from('profiles').select('username').eq('id', user.id).maybeSingle();
+        if (!error && data?.username) usernameInput.value = data.username;
+    }
+
+    usernameSaveBtn?.addEventListener('click', async () => {
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user || !usernameInput) return;
+        const next = usernameInput.value.trim();
+        if (!USERNAME_RE.test(next)) {
+            showUsernameMsg('Username must be 3-20 characters — letters, numbers, and underscores only.', 'error');
+            return;
+        }
+        usernameSaveBtn.disabled = true;
+        const original = usernameSaveBtn.innerText;
+        usernameSaveBtn.innerText = 'Saving…';
+        try {
+            const { error } = await client.from('profiles').update({ username: next }).eq('id', user.id);
+            if (error) {
+                if (/duplicate|already exists|unique/i.test(error.message || '')) {
+                    showUsernameMsg('That username is already taken — try another.', 'error');
+                } else {
+                    showUsernameMsg(error.message || 'Could not save username.', 'error');
+                }
+                return;
+            }
+            showUsernameMsg('Username saved.', 'success');
+        } catch (err) {
+            showUsernameMsg(err.message || 'Could not save username.', 'error');
+        } finally {
+            usernameSaveBtn.disabled = false;
+            usernameSaveBtn.innerText = original;
+        }
+    });
+
     function handleAuthChange(user, configured) {
         if (!configured) {
             notConfiguredPanel.classList.remove('hidden');
@@ -213,6 +265,7 @@
             const emailEl = document.getElementById('auth-user-email');
             if (emailEl) emailEl.innerText = user.email || '';
             loadPurchases();
+            loadUsername();
         } else {
             dashboard.classList.add('hidden');
             signedOutPanel.classList.remove('hidden');

@@ -109,6 +109,8 @@ const CW_CONFIG = {
     if (modal) {
         const tabSignIn = document.getElementById('auth-tab-signin');
         const tabSignUp = document.getElementById('auth-tab-signup');
+        const usernameWrap = document.getElementById('auth-username-wrap');
+        const usernameInput = document.getElementById('auth-username-input');
         const emailInput = document.getElementById('auth-email-input');
         const passwordInput = document.getElementById('auth-password-input');
         const submitBtn = document.getElementById('auth-submit-btn');
@@ -116,12 +118,14 @@ const CW_CONFIG = {
         const infoEl = document.getElementById('auth-info');
         const forgotLink = document.getElementById('auth-forgot-link');
         const configWarning = document.getElementById('auth-config-warning');
+        const USERNAME_RE = /^[A-Za-z0-9_]{3,20}$/;
         let mode = 'signin'; // 'signin' | 'signup'
 
         function setMode(next) {
             mode = next;
             tabSignIn.classList.toggle('auth-tab-active', mode === 'signin');
             tabSignUp.classList.toggle('auth-tab-active', mode === 'signup');
+            usernameWrap?.classList.toggle('hidden', mode !== 'signup');
             submitBtn.innerText = mode === 'signin' ? 'Sign In' : 'Create Account';
             forgotLink.classList.toggle('hidden', mode !== 'signin');
             errorEl.classList.add('hidden');
@@ -140,6 +144,7 @@ const CW_CONFIG = {
             infoEl.classList.add('hidden');
             emailInput.value = '';
             passwordInput.value = '';
+            if (usernameInput) usernameInput.value = '';
             modal.classList.add('cw-visible');
             setMode('signin');
         }
@@ -157,15 +162,26 @@ const CW_CONFIG = {
             if (!supabaseClient) { showError('Accounts are not set up yet on this deployment.'); return; }
             const email = emailInput.value.trim();
             const password = passwordInput.value;
+            const username = usernameInput ? usernameInput.value.trim() : '';
             if (!email || !/^\S+@\S+\.\S+$/.test(email)) { showError('Enter a valid email address.'); return; }
             if (!password || password.length < 6) { showError('Password must be at least 6 characters.'); return; }
+            if (mode === 'signup' && !USERNAME_RE.test(username)) {
+                showError('Username must be 3-20 characters — letters, numbers, and underscores only.');
+                return;
+            }
 
             submitBtn.disabled = true;
             const originalLabel = submitBtn.innerText;
             submitBtn.innerText = 'Please wait…';
             try {
                 if (mode === 'signup') {
-                    const { data, error } = await supabaseClient.auth.signUp({ email, password });
+                    // The username is handed to Postgres via raw_user_meta_data — a
+                    // database trigger (handle_new_user(), see supabase/schema.sql) copies
+                    // it into the public "profiles" table the instant the account row is
+                    // created, so it works identically for this form and for "Continue with
+                    // Google" (which never touches this code path but still gets a
+                    // fallback username from that same trigger).
+                    const { data, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { username } } });
                     if (error) {
                         // Some Supabase configs throw this outright for a duplicate email.
                         if (/already registered|already exists|user already/i.test(error.message || '')) {
@@ -808,6 +824,58 @@ const CW_CONFIG = {
         showToast('Refreshed.', 'success');
     });
 
+    // ---------- Leaderboard username ----------
+    const USERNAME_RE = /^[A-Za-z0-9_]{3,20}$/;
+    const usernameInput = document.getElementById('username-input');
+    const usernameSaveBtn = document.getElementById('username-save-btn');
+    const usernameMsg = document.getElementById('username-msg');
+
+    function showUsernameMsg(msg, tone) {
+        if (!usernameMsg) return;
+        usernameMsg.innerText = msg;
+        usernameMsg.className = `text-[11px] px-6 pb-3 ${tone === 'error' ? 'text-[#ff4d6a]' : 'text-[#14d38a]'}`;
+        usernameMsg.classList.remove('hidden');
+    }
+
+    async function loadUsername() {
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user || !usernameInput) return;
+        const { data, error } = await client.from('profiles').select('username').eq('id', user.id).maybeSingle();
+        if (!error && data?.username) usernameInput.value = data.username;
+    }
+
+    usernameSaveBtn?.addEventListener('click', async () => {
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user || !usernameInput) return;
+        const next = usernameInput.value.trim();
+        if (!USERNAME_RE.test(next)) {
+            showUsernameMsg('Username must be 3-20 characters — letters, numbers, and underscores only.', 'error');
+            return;
+        }
+        usernameSaveBtn.disabled = true;
+        const original = usernameSaveBtn.innerText;
+        usernameSaveBtn.innerText = 'Saving…';
+        try {
+            const { error } = await client.from('profiles').update({ username: next }).eq('id', user.id);
+            if (error) {
+                if (/duplicate|already exists|unique/i.test(error.message || '')) {
+                    showUsernameMsg('That username is already taken — try another.', 'error');
+                } else {
+                    showUsernameMsg(error.message || 'Could not save username.', 'error');
+                }
+                return;
+            }
+            showUsernameMsg('Username saved.', 'success');
+        } catch (err) {
+            showUsernameMsg(err.message || 'Could not save username.', 'error');
+        } finally {
+            usernameSaveBtn.disabled = false;
+            usernameSaveBtn.innerText = original;
+        }
+    });
+
     function handleAuthChange(user, configured) {
         if (!configured) {
             notConfiguredPanel.classList.remove('hidden');
@@ -822,6 +890,7 @@ const CW_CONFIG = {
             const emailEl = document.getElementById('auth-user-email');
             if (emailEl) emailEl.innerText = user.email || '';
             loadPurchases();
+            loadUsername();
         } else {
             dashboard.classList.add('hidden');
             signedOutPanel.classList.remove('hidden');

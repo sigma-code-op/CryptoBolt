@@ -259,6 +259,11 @@
                     <span class="text-[9.5px] text-gray-600 uppercase font-bold tracking-wider">or</span>
                     <div class="flex-1 h-px bg-gray-800"></div>
                 </div>
+                <div id="auth-username-wrap" class="hidden">
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Username <span class="normal-case font-normal text-gray-600">(shown on the leaderboard)</span></label>
+                    <input id="auth-username-input" type="text" placeholder="3-20 letters, numbers, underscores" autocomplete="username" maxlength="20"
+                        class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                </div>
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
                     <input id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
@@ -282,7 +287,7 @@
 
     <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
          files, not this bundle — it's a generated build artifact. -->
-    <script src="js/dist/bundle-invest.js?v=20260825"></script>
+    <script src="js/dist/bundle-invest.js?v=20260828"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>

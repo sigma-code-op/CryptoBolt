@@ -67,6 +67,7 @@ const BUNDLES = {
     '16-paper-trading.js',
     '17-auth.js',
     '19-cloud-sync.js',
+    '22-leaderboard.js',
     '20-scroll-reveal.js',
   ],
   // account.html

@@ -136,6 +136,15 @@
                 </div>
                 <button id="add-funds-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer">➕ Add Funds</button>
                 <button id="reset-account-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer">↺ Reset</button>
+                <button id="auth-open-btn" type="button" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">👤 Sign In</button>
+                <div id="auth-user-chip" class="hidden items-center gap-1.5">
+                    <span id="cloud-sync-status" class="hidden items-center gap-1 text-[10px] font-mono px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 cursor-pointer" title="Cloud sync status — click to sync now">
+                        <span id="cloud-sync-dot" class="status-dot status-connecting"></span>
+                        <span id="cloud-sync-label" class="hidden sm:inline">synced</span>
+                    </span>
+                    <a href="account.html" id="auth-user-email" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all" title="My Account">👤 My Account</a>
+                    <button id="auth-signout-btn" type="button" class="text-[11px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer" title="Sign out">⎋ Sign Out</button>
+                </div>
                 <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all">← Terminal</a>
             </div>
         </header>
@@ -197,6 +206,45 @@
             <!-- Equity curve -->
             <div class="border-t border-gray-800 bg-[#14161c] px-2 pt-2">
                 <div id="equity-chart" class="w-full" style="height:160px;"></div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard-card" class="cw-card-interactive cw-reveal cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden mb-6">
+            <div class="px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-800">
+                <div>
+                    <h2 class="text-sm font-bold text-white flex items-center gap-2">🏆 Paper Trading Leaderboard</h2>
+                    <p class="text-[10.5px] text-gray-500 mt-0.5">Who's made the most virtual money — ranked by gain since the period started.</p>
+                </div>
+                <div class="flex bg-gray-900 border border-gray-800 rounded p-0.5 text-[11px] font-bold w-fit">
+                    <button id="leaderboard-tab-week" type="button" class="px-3 py-1 rounded cursor-pointer transition-all bg-[#14d38a] text-[#0b0e11]">This Week</button>
+                    <button id="leaderboard-tab-month" type="button" class="px-3 py-1 rounded cursor-pointer transition-all text-gray-400">This Month</button>
+                </div>
+            </div>
+            <div id="leaderboard-signed-out" class="hidden px-5 py-6 text-center">
+                <p class="text-xs text-gray-500 mb-3">Sign in to see the standings and enter your paper trading account into the competition.</p>
+                <button id="leaderboard-signin-btn" class="text-xs font-bold px-4 py-2 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">Sign In / Sign Up</button>
+            </div>
+            <div id="leaderboard-not-configured" class="hidden px-5 py-6 text-center text-xs text-gray-500">
+                Accounts aren't set up on this deployment yet — add <code class="cw-kbd">supabaseUrl</code> and <code class="cw-kbd">supabaseAnonKey</code> in <code class="cw-kbd">js/00-config.js</code>, then run <code class="cw-kbd">/supabase/schema.sql</code>.
+            </div>
+            <div id="leaderboard-body" class="hidden">
+                <div id="leaderboard-you-row" class="hidden px-5 py-2.5 border-b border-gray-800 bg-[#14d38a]/5 items-center justify-between text-xs font-mono"></div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-[10px] text-gray-500 uppercase tracking-wider border-b border-gray-800">
+                                <th class="py-2 px-5 w-10">#</th>
+                                <th class="py-2 px-3">Trader</th>
+                                <th class="py-2 px-5 text-right">Gain</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-rows" class="divide-y divide-gray-800/40 text-xs font-mono">
+                            <tr><td colspan="3" class="py-8 text-center text-gray-600 text-[11px]">Loading…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-[10px] text-gray-600 leading-relaxed px-5 py-3 border-t border-gray-800">🎮 Ranked by virtual paper trading gains only — no real money is ever involved. Standings update every time you (or anyone else) has this page open.</p>
             </div>
         </div>
 
@@ -441,6 +489,53 @@
             </div>
         </div>
 
+        <!-- Sign in / sign up modal -->
+        <div id="auth-modal" class="cw-modal-backdrop">
+            <div class="cw-modal-card" style="max-width:380px;" role="dialog" aria-modal="true" aria-label="Sign in or create an account">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#1e222b]">
+                    <div class="flex items-center gap-4">
+                        <button id="auth-tab-signin" type="button" class="auth-tab-btn auth-tab-active text-sm font-bold pb-1 cursor-pointer">Sign In</button>
+                        <button id="auth-tab-signup" type="button" class="auth-tab-btn text-sm font-bold pb-1 cursor-pointer">Sign Up</button>
+                    </div>
+                    <button id="auth-modal-close" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
+                </div>
+                <div class="p-4 space-y-3">
+                    <div id="auth-config-warning" class="hidden text-[10.5px] leading-relaxed text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded p-2.5">
+                        Accounts aren't set up on this deployment yet — add <code class="cw-kbd">supabaseUrl</code> and <code class="cw-kbd">supabaseAnonKey</code> in <code class="cw-kbd">js/00-config.js</code>.
+                    </div>
+                    <p class="text-[11px] text-gray-500 leading-relaxed">Sign in to save your paper trading account to the cloud and join the leaderboard — see how your virtual P&amp;L stacks up against other traders this week and month.</p>
+                    <button id="auth-google-btn" type="button" class="w-full flex items-center justify-center gap-2.5 text-sm font-bold py-2.5 rounded bg-white text-gray-800 hover:bg-gray-100 transition-all cursor-pointer">
+                        <svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.17.28-1.7V4.97H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.03l2.99-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.97l2.99 2.33C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+                        Continue with Google
+                    </button>
+                    <div class="flex items-center gap-3 py-0.5">
+                        <div class="flex-1 h-px bg-gray-800"></div>
+                        <span class="text-[9.5px] text-gray-600 uppercase font-bold tracking-wider">or</span>
+                        <div class="flex-1 h-px bg-gray-800"></div>
+                    </div>
+                    <div id="auth-username-wrap" class="hidden">
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Username <span class="normal-case font-normal text-gray-600">(shown on the leaderboard)</span></label>
+                        <input id="auth-username-input" type="text" placeholder="3-20 letters, numbers, underscores" autocomplete="username" maxlength="20"
+                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
+                        <input id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
+                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Password</label>
+                        <input id="auth-password-input" type="password" placeholder="At least 6 characters" autocomplete="current-password"
+                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                    </div>
+                    <div id="auth-error" class="hidden text-[11px] text-[#ff4d6a] bg-[#ff4d6a]/10 border border-[#ff4d6a]/20 rounded p-2"></div>
+                    <div id="auth-info" class="hidden text-[11px] text-[#14d38a] bg-[#14d38a]/10 border border-[#14d38a]/20 rounded p-2"></div>
+                    <button id="auth-submit-btn" class="w-full text-sm font-bold uppercase py-2.5 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">Sign In</button>
+                    <a href="#" id="auth-forgot-link" class="block text-center text-[11px] text-gray-500 hover:text-gray-300 cursor-pointer">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="mk mk-footer">
             <div class="mk-footer-grid">
@@ -525,7 +620,7 @@
 
     <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
          files, not this bundle — it's a generated build artifact. -->
-    <script src="js/dist/bundle-trade.js?v=20260827"></script>
+    <script src="js/dist/bundle-trade.js?v=20260828"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>

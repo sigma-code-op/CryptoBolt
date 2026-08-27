@@ -145,3 +145,181 @@ create trigger app_state_set_updated_at
     before insert or update on public.app_state
     for each row
     execute function public.set_app_state_updated_at();
+
+-- ============================================================================
+-- Usernames + Paper Trading Leaderboard — a weekly/monthly "who made the most
+-- (virtual) money" competition between signed-in visitors. Written by
+-- js/17-auth.js (username at signup), js/18-account.js (rename later), and
+-- js/22-leaderboard.js (submitting equity + reading the board) on trade.html.
+-- ============================================================================
+
+-- ---------------------------------------------------------------------------
+-- profiles: one row per user, holding the public display name (username)
+-- shown on the leaderboard instead of their email. Username is collected at
+-- signup (see the "Username" field in the auth modal) and stored in
+-- auth.users' raw_user_meta_data by supabase-js's signUp({ options: { data }})
+-- call — the handle_new_user() trigger below copies it in here the moment the
+-- account row is created, so it works the same for email/password signups and
+-- "Continue with Google" (which never runs the app's own signup form).
+-- ---------------------------------------------------------------------------
+create table if not exists public.profiles (
+    id          uuid primary key references auth.users(id) on delete cascade,
+    username    text not null unique check (username ~ '^[A-Za-z0-9_]{3,20}$'),
+    created_at  timestamptz not null default now()
+);
+
+comment on table public.profiles is 'Public display name (username) per user, shown on the paper trading leaderboard instead of email.';
+
+-- MIGRATING AN EXISTING DEPLOYMENT (users created before this feature existed)?
+-- The trigger below only fires for NEW signups. Existing users won't have a profiles row until
+-- you backfill one — run this once, after the CREATE TABLE/TRIGGER statements below, to give
+-- everyone a fallback username (they can rename themselves later from the Account page):
+--   insert into public.profiles (id, username)
+--   select id, 'user' || substr(replace(id::text, '-', ''), 1, 8) from auth.users
+--   on conflict (id) do nothing;
+
+alter table public.profiles enable row level security;
+
+-- Usernames are meant to be seen by other visitors (that's the whole point of a
+-- leaderboard), and a visitor needs to be able to check "is this username already
+-- taken?" before they've even signed up — so SELECT is public, unauthenticated included.
+create policy "Anyone can view usernames"
+    on public.profiles
+    for select
+    using (true);
+
+create policy "Users can update their own username"
+    on public.profiles
+    for update
+    using (auth.uid() = id)
+    with check (auth.uid() = id);
+
+-- No public INSERT policy — rows are only ever created by handle_new_user() below, which
+-- runs as security definer and bypasses RLS. That keeps `id` always in lockstep with a real
+-- auth.users row instead of trusting the browser to supply it.
+
+-- Auto-generates a safe fallback username (userXXXXXXXX) when raw_user_meta_data has none
+-- (Google sign-in) or when the chosen one is already taken by someone else — a user can
+-- always rename themselves afterward from the Account page.
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+    desired text;
+begin
+    desired := trim(new.raw_user_meta_data->>'username');
+    if desired is null or desired !~ '^[A-Za-z0-9_]{3,20}$' then
+        desired := 'user' || substr(replace(new.id::text, '-', ''), 1, 8);
+    end if;
+
+    begin
+        insert into public.profiles (id, username) values (new.id, desired);
+    exception when unique_violation then
+        -- Desired name taken — fall back to a name that can't collide, rather than
+        -- blocking account creation entirely. The user can pick something nicer later.
+        insert into public.profiles (id, username)
+        values (new.id, 'user' || substr(replace(new.id::text, '-', ''), 1, 8))
+        on conflict (id) do nothing;
+    end;
+    return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+    after insert on auth.users
+    for each row
+    execute function public.handle_new_user();
+
+-- ---------------------------------------------------------------------------
+-- leaderboard_stats: one row per user, tracking paper trading equity ($10,000
+-- starting virtual balance, same as trade.html's STARTING_BALANCE) against a
+-- snapshot taken at the start of the current calendar week and month. The
+-- "gain" columns are what the leaderboard actually ranks by.
+-- ---------------------------------------------------------------------------
+create table if not exists public.leaderboard_stats (
+    user_id             uuid primary key references auth.users(id) on delete cascade,
+    username            text not null,
+    equity              numeric not null,
+    week_start_at       timestamptz not null,
+    week_start_equity   numeric not null,
+    month_start_at      timestamptz not null,
+    month_start_equity  numeric not null,
+    weekly_gain         numeric generated always as (equity - week_start_equity) stored,
+    monthly_gain        numeric generated always as (equity - month_start_equity) stored,
+    updated_at          timestamptz not null default now()
+);
+
+comment on table public.leaderboard_stats is 'Paper trading leaderboard: current equity vs. equity at the start of the current week/month, per user. Written via public.submit_paper_equity(), read directly by js/22-leaderboard.js.';
+
+create index if not exists leaderboard_stats_weekly_idx on public.leaderboard_stats (weekly_gain desc);
+create index if not exists leaderboard_stats_monthly_idx on public.leaderboard_stats (monthly_gain desc);
+
+alter table public.leaderboard_stats enable row level security;
+
+-- Public leaderboard — anyone can see the standings, signed in or not.
+create policy "Anyone can view the leaderboard"
+    on public.leaderboard_stats
+    for select
+    using (true);
+
+-- No direct INSERT/UPDATE policy for regular users: all writes go through
+-- submit_paper_equity() below (security definer), which is the only thing allowed to
+-- decide when a week/month "rolls over" and resets the baseline. This stops a visitor
+-- from just UPDATE-ing their own row to fabricate a huge starting-equity swing.
+
+-- NOTE ON TRUST: like the "purchases" table above, this is a personal/casual leaderboard,
+-- not a tamper-proof one — a technically savvy visitor could still call
+-- submit_paper_equity() with a fabricated (but plausible-range) equity number since paper
+-- trading itself runs client-side with no server-verified order book. That's an acceptable
+-- trade-off for a virtual-money competition; don't reuse this pattern for anything real.
+
+create or replace function public.submit_paper_equity(p_equity numeric)
+returns void
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+    v_uid uuid := auth.uid();
+    v_username text;
+    v_now timestamptz := now();
+    v_week_start timestamptz := date_trunc('week', v_now);
+    v_month_start timestamptz := date_trunc('month', v_now);
+begin
+    if v_uid is null then
+        raise exception 'Must be signed in to submit paper trading equity';
+    end if;
+    -- Sanity bound only — see NOTE ON TRUST above. STARTING_BALANCE is $10,000; this just
+    -- rejects obviously-broken values (NaN slipped through as null, negative, or absurd),
+    -- not a real anti-cheat measure.
+    if p_equity is null or p_equity < 0 or p_equity > 1000000000 then
+        return;
+    end if;
+
+    select username into v_username from public.profiles where id = v_uid;
+
+    insert into public.leaderboard_stats (
+        user_id, username, equity,
+        week_start_at, week_start_equity,
+        month_start_at, month_start_equity,
+        updated_at
+    ) values (
+        v_uid, coalesce(v_username, 'trader'), p_equity,
+        v_week_start, p_equity,
+        v_month_start, p_equity,
+        v_now
+    )
+    on conflict (user_id) do update set
+        username = coalesce(v_username, leaderboard_stats.username),
+        equity = p_equity,
+        week_start_at = case when leaderboard_stats.week_start_at < v_week_start then v_week_start else leaderboard_stats.week_start_at end,
+        week_start_equity = case when leaderboard_stats.week_start_at < v_week_start then p_equity else leaderboard_stats.week_start_equity end,
+        month_start_at = case when leaderboard_stats.month_start_at < v_month_start then v_month_start else leaderboard_stats.month_start_at end,
+        month_start_equity = case when leaderboard_stats.month_start_at < v_month_start then p_equity else leaderboard_stats.month_start_equity end,
+        updated_at = v_now;
+end;
+$$;
+
+grant execute on function public.submit_paper_equity(numeric) to authenticated;

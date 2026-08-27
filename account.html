@@ -120,6 +120,22 @@
         <!-- Signed-in dashboard -->
         <div id="account-dashboard" class="hidden">
 
+            <!-- Leaderboard username -->
+            <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden mb-6">
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1">🏆 Leaderboard Username</span>
+                        <span class="text-[11px] text-gray-500">Shown on the <a href="trade.html" class="text-[#4fd8e8] hover:underline">paper trading leaderboard</a> instead of your email.</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="username-input" type="text" placeholder="3-20 letters, numbers, underscores" maxlength="20"
+                            class="w-44 bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a] font-mono">
+                        <button id="username-save-btn" class="text-[11px] font-bold px-3 py-2 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer whitespace-nowrap">Save</button>
+                    </div>
+                </div>
+                <div id="username-msg" class="hidden text-[11px] px-6 pb-3"></div>
+            </div>
+
             <!-- Hero summary -->
             <div class="cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden mb-6">
                 <div class="px-6 py-5 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
@@ -241,6 +257,11 @@
                     <span class="text-[9.5px] text-gray-600 uppercase font-bold tracking-wider">or</span>
                     <div class="flex-1 h-px bg-gray-800"></div>
                 </div>
+                <div id="auth-username-wrap" class="hidden">
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Username <span class="normal-case font-normal text-gray-600">(shown on the leaderboard)</span></label>
+                    <input id="auth-username-input" type="text" placeholder="3-20 letters, numbers, underscores" autocomplete="username" maxlength="20"
+                        class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                </div>
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
                     <input id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
@@ -300,7 +321,7 @@
             </div>
         </footer>
 
-    <script src="js/dist/bundle-account.js?v=20260823"></script>
+    <script src="js/dist/bundle-account.js?v=20260828"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>

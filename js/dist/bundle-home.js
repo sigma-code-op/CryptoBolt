@@ -3697,7 +3697,6 @@ const CW_CONFIG = {
         applyAccent(localStorage.getItem('cw_accent') || 'green');
     })();
 
-
 // ==== 13-risk-calculator.js ====
 // ---------- Position Size & Risk Calculator ----------
 // A pure arithmetic sizing tool: given an account size, a risk budget per trade, and an
@@ -3950,6 +3949,8 @@ const CW_CONFIG = {
     if (modal) {
         const tabSignIn = document.getElementById('auth-tab-signin');
         const tabSignUp = document.getElementById('auth-tab-signup');
+        const usernameWrap = document.getElementById('auth-username-wrap');
+        const usernameInput = document.getElementById('auth-username-input');
         const emailInput = document.getElementById('auth-email-input');
         const passwordInput = document.getElementById('auth-password-input');
         const submitBtn = document.getElementById('auth-submit-btn');
@@ -3957,12 +3958,14 @@ const CW_CONFIG = {
         const infoEl = document.getElementById('auth-info');
         const forgotLink = document.getElementById('auth-forgot-link');
         const configWarning = document.getElementById('auth-config-warning');
+        const USERNAME_RE = /^[A-Za-z0-9_]{3,20}$/;
         let mode = 'signin'; // 'signin' | 'signup'
 
         function setMode(next) {
             mode = next;
             tabSignIn.classList.toggle('auth-tab-active', mode === 'signin');
             tabSignUp.classList.toggle('auth-tab-active', mode === 'signup');
+            usernameWrap?.classList.toggle('hidden', mode !== 'signup');
             submitBtn.innerText = mode === 'signin' ? 'Sign In' : 'Create Account';
             forgotLink.classList.toggle('hidden', mode !== 'signin');
             errorEl.classList.add('hidden');
@@ -3981,6 +3984,7 @@ const CW_CONFIG = {
             infoEl.classList.add('hidden');
             emailInput.value = '';
             passwordInput.value = '';
+            if (usernameInput) usernameInput.value = '';
             modal.classList.add('cw-visible');
             setMode('signin');
         }
@@ -3998,15 +4002,26 @@ const CW_CONFIG = {
             if (!supabaseClient) { showError('Accounts are not set up yet on this deployment.'); return; }
             const email = emailInput.value.trim();
             const password = passwordInput.value;
+            const username = usernameInput ? usernameInput.value.trim() : '';
             if (!email || !/^\S+@\S+\.\S+$/.test(email)) { showError('Enter a valid email address.'); return; }
             if (!password || password.length < 6) { showError('Password must be at least 6 characters.'); return; }
+            if (mode === 'signup' && !USERNAME_RE.test(username)) {
+                showError('Username must be 3-20 characters — letters, numbers, and underscores only.');
+                return;
+            }
 
             submitBtn.disabled = true;
             const originalLabel = submitBtn.innerText;
             submitBtn.innerText = 'Please wait…';
             try {
                 if (mode === 'signup') {
-                    const { data, error } = await supabaseClient.auth.signUp({ email, password });
+                    // The username is handed to Postgres via raw_user_meta_data — a
+                    // database trigger (handle_new_user(), see supabase/schema.sql) copies
+                    // it into the public "profiles" table the instant the account row is
+                    // created, so it works identically for this form and for "Continue with
+                    // Google" (which never touches this code path but still gets a
+                    // fallback username from that same trigger).
+                    const { data, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { username } } });
                     if (error) {
                         // Some Supabase configs throw this outright for a duplicate email.
                         if (/already registered|already exists|user already/i.test(error.message || '')) {
