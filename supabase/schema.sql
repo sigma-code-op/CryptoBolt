@@ -2,6 +2,9 @@
 -- CryptoBolt — Supabase schema for real account purchase history
 -- ============================================================================
 -- Run this once in your Supabase project's SQL Editor (Project -> SQL Editor -> New query).
+-- SAFE TO RE-RUN: every CREATE TABLE uses IF NOT EXISTS and every CREATE POLICY is preceded by
+-- a DROP POLICY IF EXISTS, so pasting this whole file again later (e.g. after pulling an update
+-- that adds new tables further down) will not error on objects that already exist.
 -- It creates one table, "purchases", that records every real Buy/Sell a signed-in visitor
 -- completes through the AlchemyPay widget, and locks it down with Row Level Security so a
 -- person can only ever read or write their own rows — nobody else's.
@@ -58,11 +61,13 @@ create index if not exists purchases_user_id_idx on public.purchases (user_id, c
 -- ---------------------------------------------------------------------------
 alter table public.purchases enable row level security;
 
+drop policy if exists "Users can view their own purchases" on public.purchases;
 create policy "Users can view their own purchases"
     on public.purchases
     for select
     using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert their own purchases" on public.purchases;
 create policy "Users can insert their own purchases"
     on public.purchases
     for insert
@@ -111,16 +116,19 @@ comment on table public.app_state is 'Cross-device sync: one JSON blob per user 
 
 alter table public.app_state enable row level security;
 
+drop policy if exists "Users can view their own app state" on public.app_state;
 create policy "Users can view their own app state"
     on public.app_state
     for select
     using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert their own app state" on public.app_state;
 create policy "Users can insert their own app state"
     on public.app_state
     for insert
     with check (auth.uid() = user_id);
 
+drop policy if exists "Users can update their own app state" on public.app_state;
 create policy "Users can update their own app state"
     on public.app_state
     for update
@@ -183,11 +191,13 @@ alter table public.profiles enable row level security;
 -- Usernames are meant to be seen by other visitors (that's the whole point of a
 -- leaderboard), and a visitor needs to be able to check "is this username already
 -- taken?" before they've even signed up — so SELECT is public, unauthenticated included.
+drop policy if exists "Anyone can view usernames" on public.profiles;
 create policy "Anyone can view usernames"
     on public.profiles
     for select
     using (true);
 
+drop policy if exists "Users can update their own username" on public.profiles;
 create policy "Users can update their own username"
     on public.profiles
     for update
@@ -260,6 +270,7 @@ create index if not exists leaderboard_stats_monthly_idx on public.leaderboard_s
 alter table public.leaderboard_stats enable row level security;
 
 -- Public leaderboard — anyone can see the standings, signed in or not.
+drop policy if exists "Anyone can view the leaderboard" on public.leaderboard_stats;
 create policy "Anyone can view the leaderboard"
     on public.leaderboard_stats
     for select
