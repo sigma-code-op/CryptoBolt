@@ -1,0 +1,201 @@
+/* ============================================================
+   CryptoBolt — "Premium" finishing pass
+   ------------------------------------------------------------
+   Pure presentation layer, loaded LAST (after ui-elevate.css) so
+   it wins the cascade. Does not touch markup, IDs, or any class
+   JS reads for behaviour (.active, .filter-btn, data-*, etc.) —
+   only restyles appearance, so it's safe to drop into every page.
+
+   What this adds over the existing Signal Deck / Elevate system:
+   - A believable gradient + grain background instead of flat black
+   - Buttons with real depth (gradient fill, sheen sweep, glow)
+   - Cards with a soft gradient hairline border + hover glow lift
+   - A refined type scale: tighter tracking, gradient hero heading
+   - A glassier nav bar and calmer, more consistent motion
+   ============================================================ */
+
+:root {
+    --pm-radius: 16px;
+    --pm-radius-sm: 10px;
+    --pm-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --pm-green: #14d38a;
+    --pm-green-2: #37e6a4;
+    --pm-cyan: #4fd8e8;
+    --pm-border: rgba(148, 163, 194, 0.14);
+    --pm-border-hi: rgba(148, 163, 194, 0.28);
+    --pm-shadow-lg:
+        0 1px 0 rgba(255, 255, 255, 0.05) inset,
+        0 24px 60px -22px rgba(0, 0, 0, 0.72),
+        0 6px 18px -8px rgba(0, 0, 0, 0.55);
+    --pm-shadow-glow:
+        0 1px 0 rgba(255, 255, 255, 0.07) inset,
+        0 30px 70px -20px rgba(0, 0, 0, 0.75),
+        0 0 0 1px var(--pm-border-hi),
+        0 0 42px -8px rgba(20, 211, 138, 0.28);
+}
+
+/* ---------- Grain: the single biggest "cheap template" tell is a
+   perfectly flat gradient background. A whisper of noise fixes it. ---------- */
+body {
+    position: relative;
+}
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Type scale: tighter, more confident tracking on display type ---------- */
+h1, .mk-display, h1 * {
+    letter-spacing: -0.03em !important;
+    font-weight: 700;
+}
+h2, .mk-feature-copy h2, .mk-cta-band h2 {
+    letter-spacing: -0.025em;
+}
+.mk-hero h1 {
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, rgba(255, 255, 255, 0.78) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mk-hero h1 .mk-accent {
+    background: linear-gradient(120deg, var(--pm-green-2), var(--pm-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 24px rgba(20, 211, 138, 0.35));
+}
+
+/* ---------- Buttons: real depth instead of a flat fill ---------- */
+.mk-btn-primary, .cta-btn, button.bg-\[var\(--cw-green\)\] {
+    position: relative;
+    background: linear-gradient(155deg, var(--pm-green-2) 0%, var(--pm-green) 55%, #0f9c67 100%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -2px 0 rgba(0, 0, 0, 0.18) inset,
+        0 14px 30px -10px rgba(20, 211, 138, 0.55),
+        0 4px 10px -4px rgba(20, 211, 138, 0.4);
+    overflow: hidden;
+    isolation: isolate;
+}
+.mk-btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 48%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.65s var(--pm-ease);
+}
+.mk-btn-primary:hover::before { transform: translateX(120%); }
+.mk-btn-primary:hover {
+    filter: none;
+    transform: translateY(-1.5px);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 -2px 0 rgba(0, 0, 0, 0.18) inset,
+        0 18px 38px -10px rgba(20, 211, 138, 0.65),
+        0 6px 14px -4px rgba(20, 211, 138, 0.5);
+}
+.mk-btn-ghost {
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.02);
+}
+.mk-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+}
+.mk-btn, .cw-btn, button, a.mk-btn {
+    transition: transform 0.2s var(--pm-ease), box-shadow 0.2s var(--pm-ease),
+                background 0.2s var(--pm-ease), border-color 0.2s var(--pm-ease), filter 0.2s var(--pm-ease);
+}
+
+/* ---------- Cards: soft gradient hairline border + hover glow lift ---------- */
+.mk-card, .mk-panel, .cw-card {
+    position: relative;
+    border-color: var(--pm-border);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+        var(--mk-surface, var(--cw-panel, #12141c));
+    box-shadow: var(--pm-shadow-lg);
+    transition: transform 0.35s var(--pm-ease), box-shadow 0.35s var(--pm-ease), border-color 0.35s var(--pm-ease);
+}
+.mk-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 40%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.mk-card:hover, .cw-card-interactive:hover {
+    transform: translateY(-4px);
+    border-color: var(--pm-border-hi);
+    box-shadow: var(--pm-shadow-glow);
+}
+.mk-card-icon {
+    background: linear-gradient(155deg, rgba(20, 211, 138, 0.22), rgba(79, 216, 232, 0.10));
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 8px 18px -8px rgba(20, 211, 138, 0.4);
+}
+
+/* ---------- Nav: glassier, with a soft top highlight ---------- */
+.mk-nav, header.flex {
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    background: linear-gradient(180deg, rgba(10, 12, 17, 0.82), rgba(10, 12, 17, 0.62)) !important;
+    border-bottom: 1px solid var(--pm-border);
+}
+
+/* ---------- Live/signature panel: stronger presence ---------- */
+.mk-panel {
+    box-shadow: var(--pm-shadow-lg), 0 0 60px -20px rgba(20, 211, 138, 0.18);
+}
+
+/* ---------- CTA band: richer gradient, not a flat tint ---------- */
+.mk-cta-band {
+    position: relative;
+    background:
+        radial-gradient(600px 260px at 15% 0%, rgba(20, 211, 138, 0.14), transparent 65%),
+        radial-gradient(600px 260px at 85% 100%, rgba(79, 216, 232, 0.12), transparent 65%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+    border: 1px solid var(--pm-border);
+}
+
+/* ---------- Eyebrow / tags: subtle glass chip instead of flat text ---------- */
+.mk-eyebrow {
+    padding: 5px 10px 5px 8px;
+    border-radius: 999px;
+    background: rgba(20, 211, 138, 0.08);
+    border: 1px solid rgba(20, 211, 138, 0.18);
+}
+
+/* ---------- Links inside body copy: animated underline instead of instant color swap ---------- */
+.mk-feature-copy a:not(.mk-btn) {
+    background-image: linear-gradient(var(--pm-green), var(--pm-green));
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.25s var(--pm-ease);
+}
+.mk-feature-copy a:not(.mk-btn):hover { background-size: 100% 1px; }
+
+/* ---------- Scroll-reveal elements land slightly softer ---------- */
+[data-reveal] {
+    transition: opacity 0.7s var(--pm-ease), transform 0.7s var(--pm-ease) !important;
+}
+
+/* ---------- Motion respect ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .mk-btn-primary::before { display: none; }
+    .mk-card, .mk-btn-primary, .mk-btn-ghost { transition: none !important; }
+}
