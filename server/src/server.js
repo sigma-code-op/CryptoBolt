@@ -4,7 +4,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { PORT, ALLOWED_ORIGINS, GROQ_MODEL } from './config.js';
 import healthRouter from './routes/health.js';
-import alchemypayRouter from './routes/alchemypay.js';
 import contactRouter from './routes/contact.js';
 import aiRouter from './routes/ai.js';
 
@@ -67,7 +66,6 @@ app.use(
 // original route-definition order purely for readability.
 
 app.use(healthRouter);
-app.use(alchemypayRouter);
 app.use(contactRouter);
 app.use(aiRouter);
 

@@ -7,12 +7,9 @@ const CW_CONFIG = {
     apiBaseUrl: 'https://api.cryptobolt.io',            // e.g. 'https://cryptobolt-api.yourhost.com'
     aiInsightUrl: '/api/ai-insight',
 
-    // ---------- AlchemyPay (Buy/Sell Crypto widget) ----------
-    // AlchemyPay's Ramp widget needs a signed URL (appId + params + an HMAC-SHA256 sign), so
-    // there's nothing to configure here — the Buy/Sell modal calls this app's own backend
-    // (apiBaseUrl + POST /api/alchemypay-widget-url), and the real AlchemyPay appId + appSecret
-    // live ONLY in server/.env (ALCHEMYPAY_APP_ID, ALCHEMYPAY_APP_SECRET, ALCHEMYPAY_ENVIRONMENT,
-    // ALCHEMYPAY_REDIRECT_BASE, ALCHEMYPAY_CALLBACK_URL).
+    // ---------- Buy/Sell Crypto ----------
+    // Nothing to configure here — the Buy/Sell buttons (js/14-alchemypay.js) just open Binance
+    // in a new tab with the selected asset. No backend call, no API keys.
 
     // ---------- Supabase (accounts + real purchase history) ----------
     // Create a free project at https://supabase.com, then Project Settings -> API to get these.
