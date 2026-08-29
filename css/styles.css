@@ -11,6 +11,21 @@
    so the browser can fetch them in parallel instead of blocking on this stylesheet
    first — faster first paint, which matters most on mobile connections. */
 
+/* Visually hidden but readable by screen readers and search-engine crawlers.
+   Used to give an <h1> a fuller, keyword-carrying label when the on-screen
+   heading is deliberately short (a logo lockup, a badge) for layout reasons. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 :root {
     /* Surfaces */
     --cw-bg: #090a0f;

@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { app } from '../src/server.js';
 
 // Boots the real app on a random free port (0) for the duration of these tests, and closes
@@ -119,4 +121,42 @@ test('POST /api/contact with a valid submission returns 503 when SMTP is not con
 test('unknown routes return 404', async () => {
   const res = await fetch(`${baseUrl}/api/does-not-exist`);
   assert.equal(res.status, 404);
+});
+
+test('server refuses to start in production with ALLOWED_ORIGINS unset (fails closed, not open)', () => {
+  // Regression guard for the CORS fail-open bug: NODE_ENV=production with no ALLOWED_ORIGINS
+  // used to silently allow every origin. It must now refuse to boot instead. Run as a child
+  // process — config.js calls process.exit(1) at import time in this case, which would
+  // otherwise kill the whole test runner rather than just this one test.
+  const result = spawnSync(
+    process.execPath,
+    ['src/server.js'],
+    {
+      cwd: fileURLToPath(new URL('..', import.meta.url)),
+      env: { ...process.env, NODE_ENV: 'production', ALLOWED_ORIGINS: '', PORT: '0' },
+      encoding: 'utf8',
+      timeout: 5000,
+    }
+  );
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /ALLOWED_ORIGINS is empty in production/);
+});
+
+test('server starts fine in production once ALLOWED_ORIGINS is set', () => {
+  const result = spawnSync(
+    process.execPath,
+    ['-e', "import('./src/server.js').then(() => process.exit(0))"],
+    {
+      cwd: fileURLToPath(new URL('..', import.meta.url)),
+      env: {
+        ...process.env,
+        NODE_ENV: 'production',
+        ALLOWED_ORIGINS: 'https://cryptobolt.io',
+        PORT: '0',
+      },
+      encoding: 'utf8',
+      timeout: 5000,
+    }
+  );
+  assert.equal(result.status, 0, result.stderr);
 });

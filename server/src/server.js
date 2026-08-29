@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { PORT, ALLOWED_ORIGINS, GROQ_MODEL } from './config.js';
+import { PORT, ALLOWED_ORIGINS, GROQ_MODEL, IS_PRODUCTION } from './config.js';
 import healthRouter from './routes/health.js';
 import contactRouter from './routes/contact.js';
 import aiRouter from './routes/ai.js';
@@ -37,10 +37,13 @@ app.use(
   cors({
     origin(origin, callback) {
 
+      // In production, config.js already refuses to boot with an empty ALLOWED_ORIGINS, so
+      // reaching this with an empty list only happens in dev/test — where "allow anything" is
+      // the convenient default. In production, ALLOWED_ORIGINS is guaranteed non-empty here.
       if (
         !origin ||
         origin === 'null' ||
-        ALLOWED_ORIGINS.length === 0 ||
+        (!IS_PRODUCTION && ALLOWED_ORIGINS.length === 0) ||
         ALLOWED_ORIGINS.includes(origin)
       ) {
         return callback(null, true);

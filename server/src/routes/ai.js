@@ -418,8 +418,12 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
 
       ];
 
-      let rawText =
-        '';
+      // Retries up to 2 attempts total, and — unlike before — a malformed-JSON response from
+      // attempt 1 now also triggers attempt 2, instead of failing straight to a 502. An empty
+      // response and an unparseable response are both just "this attempt didn't give us usable
+      // JSON", so both should get the same one extra try.
+      let parsed =
+        null;
 
       let lastErr =
         null;
@@ -427,9 +431,12 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
       for (
         let attempt = 0;
         attempt < 2 &&
-        !rawText;
+        !parsed;
         attempt++
       ) {
+
+        let rawText =
+          '';
 
         try {
 
@@ -467,10 +474,42 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
 
           lastErr =
             error;
+
+          continue;
+        }
+
+        if (!rawText) {
+          continue;
+        }
+
+        const cleaned =
+          rawText
+            .replace(
+              /^```json\s*/i,
+              ''
+            )
+            .replace(
+              /```$/,
+              ''
+            )
+            .trim();
+
+        try {
+
+          parsed =
+            JSON.parse(
+              cleaned
+            );
+
+        } catch {
+
+          // Malformed JSON — fall through and let the loop try again (or exhaust attempts).
+          parsed =
+            null;
         }
       }
 
-      if (!rawText) {
+      if (!parsed) {
 
         if (lastErr) {
           throw lastErr;
@@ -478,36 +517,7 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
 
         return res.status(502).json({
           error:
-            'AI model returned an empty response. Please try again.',
-        });
-      }
-
-      const cleaned =
-        rawText
-          .replace(
-            /^```json\s*/i,
-            ''
-          )
-          .replace(
-            /```$/,
-            ''
-          )
-          .trim();
-
-      let parsed;
-
-      try {
-
-        parsed =
-          JSON.parse(
-            cleaned
-          );
-
-      } catch {
-
-        return res.status(502).json({
-          error:
-            'AI service returned an unexpected response format.',
+            'AI service returned an unexpected response format. Please try again.',
         });
       }
 
