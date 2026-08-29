@@ -57,6 +57,7 @@ app.use(
     allowedHeaders: [
       'Content-Type',
       'x-groq-key',
+      'x-use-house-key',
     ],
   })
 );

@@ -18,9 +18,38 @@
 
     /* -----------------------------
        API KEY
+       Two modes, same idea as the app.html AI panel: 'own' (classic BYOK, key stays in
+       this browser's localStorage) or 'house' (no key needed — the request is flagged
+       with x-use-house-key and the backend's own shared Groq key is used instead, if the
+       deployment has one configured).
     ----------------------------- */
 
     const getKey = () => localStorage.getItem("cw_groq_api_key") || "";
+
+    const getKeyMode = () => (localStorage.getItem("cw_ai_key_mode") === "house" ? "house" : "own");
+    const setKeyMode = (mode) => localStorage.setItem("cw_ai_key_mode", mode === "house" ? "house" : "own");
+
+    function syncKeyModeUI() {
+        const mode = getKeyMode();
+        const ownBtn = $("ai-mode-own");
+        const houseBtn = $("ai-mode-house");
+        const ownRow = $("ai-own-key-row");
+        const houseRow = $("ai-house-key-row");
+        ownBtn?.classList.toggle("active", mode === "own");
+        houseBtn?.classList.toggle("active", mode === "house");
+        ownRow?.classList.toggle("hidden", mode !== "own");
+        houseRow?.classList.toggle("hidden", mode !== "house");
+    }
+
+    $("ai-mode-own")?.addEventListener("click", () => {
+        setKeyMode("own");
+        syncKeyModeUI();
+    });
+
+    $("ai-mode-house")?.addEventListener("click", () => {
+        setKeyMode("house");
+        syncKeyModeUI();
+    });
 
     $("ai-key-button")?.addEventListener("click", () => {
         const panel = $("api-panel");
@@ -28,7 +57,7 @@
         panel.classList.toggle("hidden");
         if (!panel.classList.contains("hidden")) {
             $("groq-key").value = getKey();
-            $("groq-key")?.focus();
+            if (getKeyMode() === "own") $("groq-key")?.focus();
         }
     });
 
@@ -47,6 +76,27 @@
         localStorage.removeItem("cw_groq_api_key");
         if ($("groq-key")) $("groq-key").value = "";
     });
+
+    syncKeyModeUI();
+
+    // Hide the "Use CryptoBolt's key" option if this deployment hasn't configured one
+    // server-side, so nobody switches to a mode that just 503s.
+    (async () => {
+        try {
+            const res = await fetch(`${String(API_BASE).replace(/\/$/, "")}/api/health`);
+            if (!res.ok) return;
+            const data = await res.json().catch(() => null);
+            if (!data?.houseKeyEnabled) {
+                $("ai-mode-house")?.classList.add("hidden");
+                if (getKeyMode() === "house") {
+                    setKeyMode("own");
+                    syncKeyModeUI();
+                }
+            }
+        } catch {
+            /* backend unreachable — leave as-is, askAI()'s own error handling covers it */
+        }
+    })();
 
     /* -----------------------------
        BINANCE MARKET DATA
@@ -236,9 +286,10 @@
     ----------------------------- */
 
     async function askAI(question) {
+        const useHouseKey = getKeyMode() === "house";
         const key = getKey();
-        if (!key) {
-            return "Please add your Groq API key first using the ⚙ API Key button.";
+        if (!useHouseKey && !key) {
+            return 'Please add your Groq API key first using the ⚙ API Key button — or switch it to "Use CryptoBolt\'s key".';
         }
 
         try {
@@ -272,12 +323,16 @@
                 },
             };
 
+            const headers = { "Content-Type": "application/json" };
+            if (useHouseKey) {
+                headers["x-use-house-key"] = "1";
+            } else {
+                headers["x-groq-key"] = key;
+            }
+
             const response = await fetch(AI_ENDPOINT, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-groq-key": key,
-                },
+                headers,
                 body: JSON.stringify(payload),
             });
 

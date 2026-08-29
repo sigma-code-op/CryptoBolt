@@ -151,6 +151,18 @@ body {
     font-size: 11px;
 }
 
+.ai-api-mode-switch {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.ai-api-mode-switch .ai-nav-button.active {
+    color: white;
+    border-color: var(--ai-green);
+    background: rgba(20,211,138,.12);
+}
+
 .ai-api-controls {
     display: flex;
     gap: 7px;

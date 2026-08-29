@@ -2433,29 +2433,75 @@ const CW_CONFIG = {
 
 // ==== 10-ai-insight.js ====
     // ---------- AI Market Insight ----------
-    // Bring-your-own-key model: each visitor's Groq key lives only in their own browser's
-    // localStorage and is sent per-request to this app's backend (CW_CONFIG.aiInsightUrl) in the
-    // x-groq-key header. The backend uses it once and never stores it. If no key is set, or
-    // the backend is unreachable, the panel falls back to a clearly-labeled local, rule-based read.
+    // Two key modes, chosen per-visitor and remembered in localStorage:
+    //  - 'own'   (default, classic BYOK): the visitor's Groq key lives only in their own
+    //            browser's localStorage and is sent per-request to this app's backend
+    //            (CW_CONFIG.aiInsightUrl) in the x-groq-key header. The backend uses it
+    //            once and never stores it.
+    //  - 'house': no key needed from the visitor — the request is sent with an
+    //            x-use-house-key header instead, and the backend (if it has one
+    //            configured) uses its own shared Groq key. Subject to a much stricter
+    //            server-side rate limit than a personal key, since the deployment owner
+    //            is paying for it.
+    // If no key is available for the active mode, or the backend is unreachable, the
+    // panel falls back to a clearly-labeled local, rule-based read.
 
     function getStoredApiKey() {
         return localStorage.getItem('cw_groq_api_key') || '';
     }
 
+    function getAIKeyMode() {
+        return localStorage.getItem('cw_ai_key_mode') === 'house' ? 'house' : 'own';
+    }
+
+    function setAIKeyMode(mode) {
+        localStorage.setItem('cw_ai_key_mode', mode === 'house' ? 'house' : 'own');
+    }
+
     function syncAIKeyUI() {
+        const mode = getAIKeyMode();
         const hasKey = !!getStoredApiKey();
         const toggleBtn = document.getElementById('ai-key-toggle-btn');
         if (toggleBtn) {
-            toggleBtn.innerText = hasKey ? '⚙ API Key ✓' : '⚙ API Key';
-            toggleBtn.classList.toggle('text-[#14d38a]', hasKey);
-            toggleBtn.classList.toggle('border-[#14d38a]/40', hasKey);
+            const ready = mode === 'house' || hasKey;
+            toggleBtn.innerText = mode === 'house' ? '🤖 CryptoBolt Key ✓' : (hasKey ? '⚙ API Key ✓' : '⚙ API Key');
+            toggleBtn.classList.toggle('text-[#14d38a]', ready);
+            toggleBtn.classList.toggle('border-[#14d38a]/40', ready);
         }
+
+        const ownBtn = document.getElementById('ai-key-mode-own');
+        const houseBtn = document.getElementById('ai-key-mode-house');
+        const ownRow = document.getElementById('ai-key-own-row');
+        const houseRow = document.getElementById('ai-key-house-row');
+        const activeCls = ['bg-[#a855f7]/20', 'text-[#c084fc]'];
+        const inactiveCls = ['bg-gray-900', 'text-gray-500'];
+        if (ownBtn && houseBtn) {
+            ownBtn.classList.remove(...activeCls, ...inactiveCls);
+            houseBtn.classList.remove(...activeCls, ...inactiveCls);
+            ownBtn.classList.add(...(mode === 'own' ? activeCls : inactiveCls));
+            houseBtn.classList.add(...(mode === 'house' ? activeCls : inactiveCls));
+        }
+        if (ownRow) ownRow.classList.toggle('hidden', mode !== 'own');
+        if (houseRow) houseRow.classList.toggle('hidden', mode !== 'house');
     }
 
     document.getElementById('ai-key-toggle-btn').addEventListener('click', () => {
         const panel = document.getElementById('ai-key-panel');
         panel.classList.toggle('hidden');
-        if (!panel.classList.contains('hidden')) document.getElementById('ai-key-input').focus();
+        if (!panel.classList.contains('hidden') && getAIKeyMode() === 'own') {
+            document.getElementById('ai-key-input').focus();
+        }
+    });
+
+    document.getElementById('ai-key-mode-own')?.addEventListener('click', () => {
+        setAIKeyMode('own');
+        syncAIKeyUI();
+    });
+
+    document.getElementById('ai-key-mode-house')?.addEventListener('click', () => {
+        setAIKeyMode('house');
+        syncAIKeyUI();
+        showToast("Using CryptoBolt's shared AI key — no setup needed.", 'info');
     });
 
     document.getElementById('ai-key-save-btn').addEventListener('click', () => {
@@ -2476,6 +2522,28 @@ const CW_CONFIG = {
     });
 
     syncAIKeyUI();
+
+    // Ask the backend whether it actually has a house key configured. If not, hide that
+    // option rather than let someone switch to it and hit a 503 on every request.
+    (async function checkHouseKeyAvailability() {
+        try {
+            if (!CW_CONFIG.aiInsightUrl) return;
+            const res = await fetch(resolveApiUrl('/api/health'));
+            if (!res.ok) return;
+            const data = await res.json().catch(() => null);
+            if (!data?.houseKeyEnabled) {
+                const houseBtn = document.getElementById('ai-key-mode-house');
+                if (houseBtn) houseBtn.classList.add('hidden');
+                if (getAIKeyMode() === 'house') {
+                    setAIKeyMode('own');
+                    syncAIKeyUI();
+                }
+            }
+        } catch (e) {
+            // Backend unreachable — leave the option as-is, the normal error handling in
+            // requestBackendInsight() will surface the real problem if they try it.
+        }
+    })();
 
     function resetAIInsightPanel() {
         const label = document.getElementById('ai-asset-label');
@@ -2768,16 +2836,19 @@ const CW_CONFIG = {
         return /^https?:\/\//i.test(path) ? path : `${base}${path}`;
     }
 
-    async function requestBackendInsight(ctx, apiKey) {
+    async function requestBackendInsight(ctx, apiKey, useHouseKey) {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 20000);
         try {
+            const headers = { 'content-type': 'application/json' };
+            if (useHouseKey) {
+                headers['x-use-house-key'] = '1';
+            } else {
+                headers['x-groq-key'] = apiKey;
+            }
             const res = await fetch(resolveApiUrl(CW_CONFIG.aiInsightUrl), {
                 method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                    'x-groq-key': apiKey
-                },
+                headers,
                 body: JSON.stringify({ context: ctx }),
                 signal: controller.signal
             });
@@ -2809,12 +2880,13 @@ const CW_CONFIG = {
         if (aiInsightLoading) return;
         if (!selectedAsset) { showToast('Select an asset first.', 'error'); return; }
 
+        const useHouseKey = getAIKeyMode() === 'house';
         const apiKey = getStoredApiKey();
         const body = document.getElementById('ai-insight-body');
         const ctx = buildAIContextSummary();
         if (!ctx) { showToast('Not enough chart data loaded yet — try again in a moment.', 'error'); return; }
 
-        if (!apiKey) {
+        if (!useHouseKey && !apiKey) {
             const localRead = computeLocalTechnicalRead(ctx);
             renderAIInsight(localRead, ctx);
             return;
@@ -2828,7 +2900,7 @@ const CW_CONFIG = {
 
         try {
             if (!CW_CONFIG.aiInsightUrl) throw new Error('This app has no AI backend configured yet.');
-            const parsed = await requestBackendInsight(ctx, apiKey);
+            const parsed = await requestBackendInsight(ctx, apiKey, useHouseKey);
             renderAIInsight(parsed, ctx);
         } catch (err) {
             let msg;
@@ -4499,7 +4571,6 @@ const CW_CONFIG = {
     document.getElementById('futures-buy-btn')?.addEventListener('click', () => openAlchemyPayWidget('BUY', firstFuturesSymbol()));
     document.getElementById('futures-sell-btn')?.addEventListener('click', () => openAlchemyPayWidget('SELL', firstFuturesSymbol()));
 })();
-
 
 // ==== 15-risk-triggers.js ====
 // ---------- Live stop-loss / take-profit triggers (holdings + futures positions) ----------

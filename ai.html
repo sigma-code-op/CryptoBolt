@@ -159,30 +159,42 @@
     <!-- API key -->
     <section id="api-panel" class="ai-api-panel hidden">
         <div>
-            <strong>Groq API key</strong>
+            <strong>AI key</strong>
             <p>
-                Your key is stored only in this browser and sent to your CryptoBolt backend
-                when you use AI.
+                Use your own Groq key, or switch on CryptoBolt's shared key and skip setup.
             </p>
         </div>
 
-        <div class="ai-api-controls">
-            <input
-                id="groq-key"
-                type="password"
-                placeholder="gsk_..."
-            >
-            <button id="save-key">Save</button>
-            <button id="clear-key" class="danger">Clear</button>
+        <div class="ai-api-mode-switch">
+            <button id="ai-mode-own" type="button" class="ai-nav-button">My own key</button>
+            <button id="ai-mode-house" type="button" class="ai-nav-button">Use CryptoBolt's key</button>
         </div>
 
-        <a
-            href="https://console.groq.com/keys"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Get a Groq API key →
-        </a>
+        <div id="ai-own-key-row">
+            <div class="ai-api-controls">
+                <input
+                    id="groq-key"
+                    type="password"
+                    placeholder="gsk_..."
+                >
+                <button id="save-key">Save</button>
+                <button id="clear-key" class="danger">Clear</button>
+            </div>
+
+            <a
+                href="https://console.groq.com/keys"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Get a Groq API key →
+            </a>
+        </div>
+
+        <p id="ai-house-key-row" class="hidden">
+            Using CryptoBolt's shared key — nothing to paste in. It's on a lower shared rate
+            limit than a personal key, so heavy use may occasionally ask you to wait or
+            switch to your own key.
+        </p>
     </section>
 
     <!-- Main -->

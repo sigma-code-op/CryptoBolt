@@ -5,7 +5,7 @@
 import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
 import Groq from 'groq-sdk';
-import { GROQ_MODEL } from '../config.js';
+import { GROQ_MODEL, GROQ_HOUSE_API_KEY, HOUSE_KEY_ENABLED } from '../config.js';
 import { validateContext } from '../validators.js';
 import { fetchCryptoNews, fetchFearGreedIndex } from '../lib/market-data.js';
 import {
@@ -46,23 +46,110 @@ const aiLimiter = rateLimit({
   },
 });
 
+// Separate, stricter limiter for requests using CryptoBolt's own shared "house" key —
+// that usage is billed to the deployment owner, not the visitor, so it needs a tighter
+// cap than the BYOK limiter above. Only reachable when HOUSE_KEY_ENABLED is true.
+const houseKeyLimiter = rateLimit({
+  windowMs:
+    (Number(
+      process.env.HOUSE_KEY_RATE_LIMIT_WINDOW_MINUTES
+    ) || 60) *
+    60 *
+    1000,
+
+  max:
+    Number(
+      process.env.HOUSE_KEY_RATE_LIMIT_MAX
+    ) || 6,
+
+  standardHeaders: true,
+
+  legacyHeaders: false,
+
+  message: {
+    error:
+      "You've hit the shared AI key's usage limit for now. Add your own Groq key for unlimited use, or try again later.",
+  },
+});
+
+// Picks the BYOK or house-key limiter for a request *before* either limiter's handler
+// runs, based on the same header the request handlers below use to pick the key itself.
+// Keeps the two limiter pools (and their two rate-limit budgets) fully separate.
+function aiRateLimit(req, res, next) {
+
+  const wantsHouseKey =
+    req.get('x-use-house-key') === '1';
+
+  if (wantsHouseKey) {
+    return houseKeyLimiter(req, res, next);
+  }
+
+  return aiLimiter(req, res, next);
+}
+
+// Resolves which Groq API key a request should use:
+//  - 'x-use-house-key: 1' → CryptoBolt's own server-side key (if the deployment has one
+//    configured), so the visitor doesn't need to paste their own.
+//  - otherwise → the visitor's own key, sent in 'x-groq-key' (classic BYOK).
+// Returns { apiKey } on success, or { errorStatus, errorBody } to send straight back.
+function resolveApiKey(req) {
+
+  const wantsHouseKey =
+    req.get('x-use-house-key') === '1';
+
+  if (wantsHouseKey) {
+
+    if (!HOUSE_KEY_ENABLED) {
+
+      return {
+        errorStatus: 503,
+        errorBody: {
+          error:
+            "CryptoBolt's shared AI key isn't enabled on this deployment. Switch to your own Groq key instead.",
+        },
+      };
+    }
+
+    return {
+      apiKey: GROQ_HOUSE_API_KEY,
+    };
+  }
+
+  const apiKey =
+    req.get('x-groq-key');
+
+  if (
+    !apiKey ||
+    !apiKey.startsWith('gsk_')
+  ) {
+
+    return {
+      errorStatus: 401,
+      errorBody: {
+        error:
+          'Missing or invalid Groq API key. Add your key, or switch on "Use CryptoBolt\'s key" instead.',
+      },
+    };
+  }
+
+  return {
+    apiKey,
+  };
+}
+
 router.post(
   '/api/ai-chat',
-  aiLimiter,
+  aiRateLimit,
   async (req, res) => {
 
-    const apiKey =
-      req.get('x-groq-key');
+    const {
+      apiKey,
+      errorStatus,
+      errorBody,
+    } = resolveApiKey(req);
 
-    if (
-      !apiKey ||
-      !apiKey.startsWith('gsk_')
-    ) {
-
-      return res.status(401).json({
-        error:
-          'Missing or invalid Groq API key. Add your key in the AI page first.',
-      });
+    if (errorStatus) {
+      return res.status(errorStatus).json(errorBody);
     }
 
     // Support both the current frontend contract ({ message, context }) and an
@@ -281,21 +368,17 @@ router.post(
 
 router.post(
   '/api/ai-insight',
-  aiLimiter,
+  aiRateLimit,
   async (req, res) => {
 
-    const apiKey =
-      req.get('x-groq-key');
+    const {
+      apiKey,
+      errorStatus,
+      errorBody,
+    } = resolveApiKey(req);
 
-    if (
-      !apiKey ||
-      !apiKey.startsWith('gsk_')
-    ) {
-
-      return res.status(401).json({
-        error:
-          'Missing or invalid Groq API key. Add your key in the app first.',
-      });
+    if (errorStatus) {
+      return res.status(errorStatus).json(errorBody);
     }
 
     const ctx =

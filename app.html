@@ -566,12 +566,24 @@
                 </div>
             </div>
             <div id="ai-key-panel" class="hidden px-4 py-3 border-b border-gray-800 bg-[#14161c] flex flex-wrap items-center gap-2">
-                <input id="ai-key-input" type="password" placeholder="gsk_..." autocomplete="off"
-                    class="flex-1 min-w-[220px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#a855f7]">
-                <button id="ai-key-save-btn" class="text-[11px] px-3 py-1.5 rounded bg-[#a855f7] text-white font-bold hover:opacity-90 transition-all cursor-pointer">Save</button>
-                <button id="ai-key-clear-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">Clear</button>
-                <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="text-[10px] text-[#c084fc] hover:underline ml-1">Get an API key →</a>
-                <p class="w-full text-[9px] text-gray-600 mt-1">Stored only in this browser's local storage. Sent to this app's own backend on each analysis, used once, and never stored server-side.</p>
+                <div class="w-full flex items-center gap-2 mb-1">
+                    <span class="text-[10px] text-gray-500 uppercase tracking-wide">AI key</span>
+                    <div class="flex rounded overflow-hidden border border-gray-800">
+                        <button id="ai-key-mode-own" type="button" class="text-[10.5px] px-2.5 py-1 cursor-pointer transition-all">My own key</button>
+                        <button id="ai-key-mode-house" type="button" class="text-[10.5px] px-2.5 py-1 cursor-pointer transition-all">Use CryptoBolt's key</button>
+                    </div>
+                </div>
+                <div id="ai-key-own-row" class="w-full flex flex-wrap items-center gap-2">
+                    <input id="ai-key-input" type="password" placeholder="gsk_..." autocomplete="off"
+                        class="flex-1 min-w-[220px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#a855f7]">
+                    <button id="ai-key-save-btn" class="text-[11px] px-3 py-1.5 rounded bg-[#a855f7] text-white font-bold hover:opacity-90 transition-all cursor-pointer">Save</button>
+                    <button id="ai-key-clear-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">Clear</button>
+                    <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="text-[10px] text-[#c084fc] hover:underline ml-1">Get an API key →</a>
+                    <p class="w-full text-[9px] text-gray-600 mt-1">Stored only in this browser's local storage. Sent to this app's own backend on each analysis, used once, and never stored server-side.</p>
+                </div>
+                <div id="ai-key-house-row" class="hidden w-full">
+                    <p class="text-[9.5px] text-gray-500">Using CryptoBolt's shared key — nothing to paste in. It's on a lower shared rate limit than a personal key, so heavy use may occasionally ask you to wait or switch to your own key.</p>
+                </div>
             </div>
             <div id="ai-insight-body" class="p-5">
                 <p class="text-gray-600 text-[11px]">Select an asset, then click "Analyze Selected Coin" for a read that combines technicals, live news, and market sentiment — trend, momentum, a hedged outlook, and a volatility-aware trade plan structure, not just indicator math.</p>

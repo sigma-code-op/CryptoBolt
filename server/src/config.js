@@ -32,9 +32,20 @@ if (IS_PRODUCTION && ALLOWED_ORIGINS.length === 0) {
 export const GROQ_MODEL =
   process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
 
-// CryptoBolt uses BYOK.
-// The server does NOT permanently store a user's Groq key.
-// The frontend sends the key with each AI request.
+// CryptoBolt is BYOK by default.
+// The server does NOT permanently store a user's Groq key — the frontend sends it with
+// each AI request.
+//
+// Optionally, a deployment can also configure a "house" key (GROQ_HOUSE_API_KEY) so
+// visitors can flip a switch and use CryptoBolt's own Groq key instead of pasting their
+// own. This key DOES live server-side (in env), is never sent to the browser, and is
+// gated behind its own — much stricter — rate limit (see routes/ai.js) since a single
+// deployment-owned key is shared across every visitor who opts in.
+export const GROQ_HOUSE_API_KEY =
+  process.env.GROQ_HOUSE_API_KEY || '';
+
+export const HOUSE_KEY_ENABLED =
+  Boolean(GROQ_HOUSE_API_KEY);
 
 // AlchemyPay integration removed — Buy/Sell now redirects to Binance client-side
 // (see js/14-alchemypay.js). No server-side config needed for it anymore.

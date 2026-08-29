@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------------------
 
 import { Router } from 'express';
-import { GROQ_MODEL } from '../config.js';
+import { GROQ_MODEL, HOUSE_KEY_ENABLED } from '../config.js';
 import { isMailerConfigured } from '../mailer.js';
 
 const router = Router();
@@ -21,6 +21,9 @@ router.get('/api/health', (_req, res) => {
 
     mailerConfigured:
       isMailerConfigured(),
+
+    houseKeyEnabled:
+      HOUSE_KEY_ENABLED,
 
     time:
       new Date().toISOString(),
