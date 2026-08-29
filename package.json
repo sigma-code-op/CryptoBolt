@@ -12,8 +12,11 @@
     "test": "node --test \"test/*.test.js\""
   },
   "devDependencies": {
-    "tailwindcss": "^4.3.3",
     "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3",
     "terser": "^5.36.0"
+  },
+  "dependencies": {
+    "nodemailer": "^9.0.6"
   }
 }
