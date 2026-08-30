@@ -1,5 +1,16 @@
 # CryptoBolt
 
+🔗 **Live site:** [cryptobolt.io](https://cryptobolt.io/) · [Launch the terminal](https://cryptobolt.io/app.html) · [AI research](https://cryptobolt.io/ai.html) · [Features](https://cryptobolt.io/features.html) · [Blog](https://cryptobolt.io/blog.html)
+
+A free, real-time **crypto terminal** — live Binance spot & futures prices, pro-grade charting,
+order book depth, portfolio tracking, price alerts, and AI-grounded crypto market analysis, all
+in one place. If you're looking for a free crypto trading terminal, crypto dashboard, or crypto
+market analysis tool, this is what [cryptobolt.io](https://cryptobolt.io/) does.
+
+Follow / find CryptoBolt: [YouTube](https://youtube.com/@cryptobolt) ·
+[X (Twitter)](https://x.com/cryptobolt) · [Facebook](https://facebook.com/cryptobolt) ·
+[GitHub](https://github.com/sigma-code-op/CryptoBolt)
+
 **First time deploying a website?** Start with
 [`CryptoBolt_Complete_Deployment_Guide.md`](./CryptoBolt_Complete_Deployment_Guide.md) — it walks
 through every click, in order, in plain English. `DEPLOY_CHECKLIST.md` is the fast reference
@@ -97,12 +108,39 @@ after you have followed the guide.
 - A **Share** button in the header uses the native Web Share API (falls back to copy-link)
   so visitors can share the page in one tap without you building a custom share flow.
 
+- Target keywords (`crypto terminal`, `crypto trading terminal`, `crypto dashboard`, `live crypto
+  prices`, `crypto portfolio tracker`, `AI crypto analysis`, etc.) are already in the `<title>`,
+  meta description, `keywords` meta, H1/H2 copy, and Open Graph tags on `index.html`, `app.html`,
+  `features.html`, `ai.html`, and now `about.html` / `contact.html` too. Note: Google itself
+  ignores the `keywords` meta tag for ranking (Bing gives it a little weight) — it's included for
+  completeness, but title tags, headings, and real body copy are what actually matter.
+
 **Honest note on ranking:** none of this can guarantee showing up first in search — no one
 outside the search engines controls that, and anyone promising a guaranteed #1 ranking is
 overselling. What this setup does is remove every *technical* reason a search engine or link
 preview would rank/render the site poorly (crawlability, a valid sitemap, correct metadata,
 fast load, mobile-friendliness, a real preview image). Actual ranking beyond that comes from
 backlinks, content depth, and time — things no code change can shortcut.
+
+### Getting real backlinks (the part code can't do)
+
+A backlink only counts for SEO if it comes from *someone else's* site — links added inside this
+repo/README only point outward, they don't point back in, so they help visitors and GitHub's own
+index but aren't themselves a ranking signal. To actually build backlinks:
+
+- **Submit the tool, not just the site**: Product Hunt, BetaList, SaaSHub, AlternativeTo, and
+  crypto-specific directories (CoinGecko's "apps" listings, CryptoJobsList tool roundups, etc.)
+  — most give a free, permanent listing link.
+- **List it on GitHub properly**: add `crypto`, `crypto-terminal`, `trading-terminal`,
+  `binance-api`, `crypto-dashboard` as repo topics, and fill in the GitHub "Website" field with
+  `https://cryptobolt.io` — repo topic pages and the linked site both get crawled.
+- **Write for other people's sites**: a guest post, a "tools I use" mention on a crypto/dev blog,
+  or answering a relevant Reddit/Stack Overflow/Quora question with a genuine link when it's
+  actually the best answer.
+- **Press/launch mentions**: a short write-up pitched to crypto or indie-hacker newsletters
+  (e.g. Console, TLDR, IndieHackers) tends to earn a real editorial backlink.
+- Avoid link farms, PBNs, or bulk "SEO backlink packages" — Google's spam policies treat those as
+  manipulative and they can get a site penalized rather than ranked higher.
 
 ## Running it locally
 
