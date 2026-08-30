@@ -8,6 +8,13 @@ import nodemailer from 'nodemailer';
 let cachedTransporter = null;
 
 function isMailerConfigured() {
+  // TEMP DEBUG — remove after diagnosing. Logs only true/false, never the actual secret values.
+  console.log('[cryptobolt-server] SMTP env check:', {
+    SMTP_HOST: Boolean(process.env.SMTP_HOST),
+    SMTP_USER: Boolean(process.env.SMTP_USER),
+    SMTP_PASS: Boolean(process.env.SMTP_PASS),
+    CONTACT_TO_EMAIL: Boolean(process.env.CONTACT_TO_EMAIL),
+  });
   return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS && process.env.CONTACT_TO_EMAIL);
 }
 
