@@ -362,6 +362,77 @@
 .mk-blog-body p { font-size: 13px; color: var(--mk-text-dim); line-height: 1.55; }
 .mk-blog-read { margin-top: auto; font-size: 12.5px; font-weight: 600; color: var(--mk-green); }
 
+/* ---------- AI Research poster ---------- */
+.mk-ai-poster-section { padding-top: 0; padding-bottom: 0; }
+.mk-ai-poster {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto 88px;
+    padding: clamp(28px, 4vw, 52px);
+    border-radius: 22px;
+    border: 1px solid rgba(168, 85, 247, 0.22);
+    background:
+        radial-gradient(700px 320px at 88% 12%, rgba(168, 85, 247, 0.16), transparent 62%),
+        radial-gradient(500px 280px at 6% 100%, rgba(79, 216, 232, 0.08), transparent 60%),
+        var(--mk-surface-strong);
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: center;
+    overflow: hidden;
+}
+.mk-eyebrow-purple { color: var(--mk-purple); }
+.mk-eyebrow-purple::before { background: var(--mk-purple); box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18); }
+.mk-ai-poster-copy h2 { font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; margin: 12px 0 10px; line-height: 1.15; }
+.mk-ai-poster-copy > p { color: var(--mk-text-dim); font-size: 14.5px; line-height: 1.6; max-width: 480px; margin-bottom: 18px; }
+.mk-ai-poster-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.mk-ai-poster-list li {
+    display: flex; align-items: baseline; gap: 9px;
+    font-size: 13.5px; color: var(--mk-text);
+}
+.mk-ai-poster-list li::before { content: "→"; color: var(--mk-purple); font-weight: 700; }
+.mk-ai-poster-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.mk-btn-purple { background: var(--mk-purple); color: #fff; box-shadow: 0 0 0 1px rgba(168,85,247,.45), 0 10px 24px -8px rgba(168,85,247,.55); }
+.mk-btn-purple:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.mk-ai-poster-note { font-size: 12px; color: var(--mk-text-dim); font-family: 'JetBrains Mono', monospace; }
+
+.mk-ai-poster-visual { position: relative; }
+.mk-ai-poster-card {
+    position: relative;
+    border-radius: 16px;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    background: rgba(12, 14, 20, 0.85);
+    padding: 20px 22px 22px;
+    box-shadow: 0 24px 60px -24px rgba(168, 85, 247, 0.45);
+}
+.mk-ai-poster-card-head {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; letter-spacing: 0.04em; color: var(--mk-text-dim);
+    padding-bottom: 14px; margin-bottom: 14px;
+    border-bottom: 1px solid var(--mk-line);
+}
+.mk-ai-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mk-purple); box-shadow: 0 0 0 3px rgba(168,85,247,.2); flex-shrink: 0; }
+.mk-ai-poster-line { height: 8px; border-radius: 5px; background: rgba(255,255,255,0.08); margin-bottom: 10px; }
+.mk-ai-poster-line.mk-w-90 { width: 90%; }
+.mk-ai-poster-line.mk-w-80 { width: 80%; background: rgba(168,85,247,0.18); }
+.mk-ai-poster-line.mk-w-70 { width: 62%; }
+.mk-ai-poster-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.mk-ai-poster-tags span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.03em;
+    padding: 5px 9px; border-radius: 999px;
+    border: 1px solid var(--mk-line-hi);
+    color: var(--mk-text-dim);
+}
+.mk-ai-poster-tags span:first-child { color: var(--mk-green); border-color: rgba(20,211,138,.3); background: rgba(20,211,138,.08); }
+
+@media (max-width: 860px) {
+    .mk-ai-poster { grid-template-columns: 1fr; }
+    .mk-ai-poster-copy > p { max-width: none; }
+    .mk-ai-poster-visual { order: -1; }
+}
+
 /* ---------- CTA band ---------- */
 .mk-cta-band {
     max-width: 1180px;
