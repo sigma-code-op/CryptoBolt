@@ -433,6 +433,49 @@
     .mk-ai-poster-visual { order: -1; }
 }
 
+/* ---------- How it works (steps) ---------- */
+.mk-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.mk-step {
+    border: 1px solid var(--mk-line);
+    border-radius: 14px;
+    background: var(--mk-surface);
+    padding: 26px;
+}
+.mk-step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--mk-green);
+    margin-bottom: 16px;
+}
+.mk-step h3 { font-size: 16.5px; font-weight: 700; margin-bottom: 7px; }
+.mk-step p { font-size: 13.5px; color: var(--mk-text-dim); line-height: 1.55; }
+
+/* ---------- Why CryptoBolt (comparison) ---------- */
+.mk-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.mk-compare-col {
+    border-radius: 14px;
+    padding: 28px 26px;
+    border: 1px solid var(--mk-line);
+    background: var(--mk-surface);
+}
+.mk-compare-col h3 {
+    font-size: 15px; font-weight: 700; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 9px;
+}
+.mk-compare-us {
+    border-color: rgba(20, 211, 138, .3);
+    background: linear-gradient(180deg, rgba(20,211,138,.07), var(--mk-surface) 60%);
+}
+.mk-compare-col ul { display: flex; flex-direction: column; gap: 12px; }
+.mk-compare-col li {
+    font-size: 13.5px; color: var(--mk-text-dim);
+    display: flex; gap: 10px; align-items: flex-start; line-height: 1.5;
+}
+.mk-compare-us li { color: var(--mk-text); }
+.mk-compare-us li::before { content: "✓"; color: var(--mk-green); font-weight: 700; flex-shrink: 0; }
+.mk-compare-them li::before { content: "–"; color: var(--mk-text-dim); flex-shrink: 0; }
+
 /* ---------- CTA band ---------- */
 .mk-cta-band {
     max-width: 1180px;
@@ -564,6 +607,8 @@
     .mk-more-grid { grid-template-columns: 1fr; }
     .mk-ticker-row { grid-template-columns: repeat(2, 1fr); }
     .mk-ticker-cell:nth-child(2n) { border-right: none; }
+    .mk-steps { grid-template-columns: 1fr; }
+    .mk-compare { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
     .mk-footer-grid { grid-template-columns: 1fr; }
