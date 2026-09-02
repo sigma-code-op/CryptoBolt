@@ -81,12 +81,23 @@
 
     // Hide the "Use CryptoBolt's key" option if this deployment hasn't configured one
     // server-side, so nobody switches to a mode that just 503s.
+    //
+    // If it IS configured and this visitor hasn't made an explicit choice yet (no stored
+    // mode, no key of their own already saved), default them into house mode — so landing
+    // on the AI Research page and asking a question works with zero setup. They only see
+    // the key-setup step if they hit the shared limit or choose to switch.
     (async () => {
         try {
             const res = await fetch(`${String(API_BASE).replace(/\/$/, "")}/api/health`);
             if (!res.ok) return;
             const data = await res.json().catch(() => null);
-            if (!data?.houseKeyEnabled) {
+            if (data?.houseKeyEnabled) {
+                const hasExplicitMode = localStorage.getItem("cw_ai_key_mode") !== null;
+                if (!hasExplicitMode && !getKey()) {
+                    setKeyMode("house");
+                    syncKeyModeUI();
+                }
+            } else {
                 $("ai-mode-house")?.classList.add("hidden");
                 if (getKeyMode() === "house") {
                     setKeyMode("own");

@@ -91,13 +91,25 @@
 
     // Ask the backend whether it actually has a house key configured. If not, hide that
     // option rather than let someone switch to it and hit a 503 on every request.
+    //
+    // If it IS configured, and this visitor has never made an explicit choice (no stored
+    // mode, no saved key of their own), default them into house mode. That turns "paste an
+    // API key before you can try the AI panel" into "click Analyze and see it work" for a
+    // first-time visitor — the setup step only shows up once they hit the shared-key rate
+    // limit or choose to switch, at which point the panel explains why.
     (async function checkHouseKeyAvailability() {
         try {
             if (!CW_CONFIG.aiInsightUrl) return;
             const res = await fetch(resolveApiUrl('/api/health'));
             if (!res.ok) return;
             const data = await res.json().catch(() => null);
-            if (!data?.houseKeyEnabled) {
+            if (data?.houseKeyEnabled) {
+                const hasExplicitMode = localStorage.getItem('cw_ai_key_mode') !== null;
+                if (!hasExplicitMode && !getStoredApiKey()) {
+                    setAIKeyMode('house');
+                    syncAIKeyUI();
+                }
+            } else {
                 const houseBtn = document.getElementById('ai-key-mode-house');
                 if (houseBtn) houseBtn.classList.add('hidden');
                 if (getAIKeyMode() === 'house') {

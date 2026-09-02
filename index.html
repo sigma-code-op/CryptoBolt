@@ -261,11 +261,11 @@
             <ul class="mk-ai-poster-list">
                 <li>Grounded in live news and sentiment, not a single indicator</li>
                 <li>Volatility-aware, ATR-based trade plan structure</li>
-                <li>Free — bring your own Groq API key to enable it</li>
+                <li id="mk-ai-key-note">Free — bring your own Groq API key to enable it</li>
             </ul>
             <div class="mk-ai-poster-cta">
                 <a href="ai.html" class="mk-btn mk-btn-primary mk-btn-lg mk-btn-purple">Open AI Research →</a>
-                <span class="mk-ai-poster-note">No signup required to try it</span>
+                <span class="mk-ai-poster-note" id="mk-ai-poster-note">No signup required to try it</span>
             </div>
         </div>
         <div class="mk-ai-poster-visual" aria-hidden="true">
@@ -444,6 +444,24 @@
 })();
 </script>
 
+<script>
+(function () {
+    // If this deployment has a shared "house" Groq key configured, the AI Research page
+    // works with zero setup (see js/ai-chat.js). Reflect that on the homepage poster
+    // instead of leaving the generic "bring your own key" copy — but only after actually
+    // confirming it, so this never claims a free trial that isn't really there.
+    fetch("https://api.cryptobolt.io/api/health")
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+            if (!data || !data.houseKeyEnabled) return;
+            var note = document.getElementById("mk-ai-key-note");
+            var cta = document.getElementById("mk-ai-poster-note");
+            if (note) note.textContent = "Free to try instantly — no API key needed";
+            if (cta) cta.textContent = "No signup, no key — try it now";
+        })
+        .catch(function () { /* leave the default BYOK copy in place */ });
+})();
+</script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 </body>
