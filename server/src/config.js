@@ -48,4 +48,4 @@ export const HOUSE_KEY_ENABLED =
   Boolean(GROQ_HOUSE_API_KEY);
 
 // AlchemyPay integration removed — Buy/Sell now redirects to Binance client-side
-// (see js/14-alchemypay.js). No server-side config needed for it anymore.
+// (see js/14-buy-sell-redirect.js). No server-side config needed for it anymore.

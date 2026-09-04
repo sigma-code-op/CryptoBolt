@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-+FLiZW1KyalDbMzvM/mw+i9PaWUSy2vECmDi/wUBYng=' 'sha256-acXrsAgGY8VKAnWmpM3sltvd3Xc8AyW6+X8XPFzMtvU=' 'sha256-rBXXkEzmdIixjpxH8FzsN8c7Eu7UjI7OMwRyssbjLh0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-        wait_for_update: 500
-      });
-      gtag('js', new Date());
-      gtag('config', 'G-BEK3KJ2TEV');
-    </script>
+    <script src="js/consent-default.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
@@ -396,72 +385,9 @@
     </div>
 </footer>
 
-<script>
-(function () {
-    var symbols = ["BTCUSDT","ETHUSDT","SOLUSDT","BNBUSDT"];
-    var labels = { BTCUSDT: "BTC / USDT", ETHUSDT: "ETH / USDT", SOLUSDT: "SOL / USDT", BNBUSDT: "BNB / USDT" };
-    var row = document.getElementById("mk-ticker-row");
-    var updated = document.getElementById("mk-ticker-updated");
+<script src="js/index-ticker-ribbon.js"></script>
 
-    function fmtPrice(n) {
-        n = parseFloat(n);
-        if (n >= 1000) return n.toLocaleString(undefined, { maximumFractionDigits: 0 });
-        if (n >= 1) return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        return n.toPrecision(4);
-    }
-
-    function render(data) {
-        row.innerHTML = "";
-        data.forEach(function (t) {
-            var chg = parseFloat(t.priceChangePercent);
-            var up = chg >= 0;
-            var cell = document.createElement("div");
-            cell.className = "mk-ticker-cell";
-            cell.innerHTML =
-                '<div class="mk-ticker-sym">' + labels[t.symbol] + '</div>' +
-                '<div class="mk-ticker-px">$' + fmtPrice(t.lastPrice) + '</div>' +
-                '<div class="mk-ticker-chg ' + (up ? 'mk-up' : 'mk-down') + '">' + (up ? '▲ ' : '▼ ') + Math.abs(chg).toFixed(2) + '%</div>';
-            row.appendChild(cell);
-        });
-        updated.textContent = "Updated " + new Date().toLocaleTimeString();
-    }
-
-    function load() {
-        fetch("https://api.binance.com/api/v3/ticker/24hr?symbols=" + encodeURIComponent(JSON.stringify(symbols)))
-            .then(function (r) { if (!r.ok) throw new Error("bad response"); return r.json(); })
-            .then(function (data) {
-                var ordered = symbols.map(function (s) { return data.find(function (d) { return d.symbol === s; }); }).filter(Boolean);
-                if (ordered.length) render(ordered);
-                else throw new Error("empty");
-            })
-            .catch(function () {
-                updated.textContent = "Live in the terminal";
-            });
-    }
-
-    load();
-    setInterval(load, 15000);
-})();
-</script>
-
-<script>
-(function () {
-    // If this deployment has a shared "house" Groq key configured, the AI Research page
-    // works with zero setup (see js/ai-chat.js). Reflect that on the homepage poster
-    // instead of leaving the generic "bring your own key" copy — but only after actually
-    // confirming it, so this never claims a free trial that isn't really there.
-    fetch("https://api.cryptobolt.io/api/health")
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (data) {
-            if (!data || !data.houseKeyEnabled) return;
-            var note = document.getElementById("mk-ai-key-note");
-            var cta = document.getElementById("mk-ai-poster-note");
-            if (note) note.textContent = "Free to try instantly — no API key needed";
-            if (cta) cta.textContent = "No signup, no key — try it now";
-        })
-        .catch(function () { /* leave the default BYOK copy in place */ });
-})();
-</script>
+<script src="js/index-ai-status.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 </body>

@@ -57,7 +57,7 @@ const BUNDLES = {
     '13-risk-calculator.js',
     '17-auth.js',
     '19-cloud-sync.js',
-    '14-alchemypay.js',
+    '14-buy-sell-redirect.js',
     '15-risk-triggers.js',
     '20-scroll-reveal.js',
   ],
@@ -83,7 +83,7 @@ const BUNDLES = {
     '00-config.js',
     '17-auth.js',
     '21-invest.js',
-    '14-alchemypay.js',
+    '14-buy-sell-redirect.js',
     '20-scroll-reveal.js',
   ],
 };

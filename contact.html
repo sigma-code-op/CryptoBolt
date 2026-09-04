@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-vzDwxcX0og6hvZiVtdNCZK0zQw3pZ5bLBpO1GAIYbzE=' 'sha256-Jfq1k8nbBHjR6PdYaseHKGyGzy9z4lGxasoWtILfd2s='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-        wait_for_update: 500
-      });
-      gtag('js', new Date());
-      gtag('config', 'G-BEK3KJ2TEV');
-    </script>
+    <script src="js/consent-default.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
@@ -208,71 +197,8 @@
     </div>
 
     <script src="js/00-config.js?v=20260820"></script>
-    <script>
-        document.querySelectorAll('#footer-year').forEach(el => el.innerText = new Date().getFullYear());
-
-        const contactForm = document.getElementById('contact-form');
-        const statusBox = document.getElementById('contact-status');
-        const submitBtn = document.getElementById('contact-submit-btn');
-        const CONTACT_FALLBACK_EMAIL = 'info@cryptobolt.io';
-
-        function showStatus(message, kind) {
-            statusBox.textContent = message;
-            statusBox.classList.remove('hidden', 'text-[#14d38a]', 'bg-[#14d38a]/10', 'border', 'border-[#14d38a]/20', 'text-[#ff4d6a]', 'bg-[#ff4d6a]/10', 'border-[#ff4d6a]/20', 'text-amber-300', 'bg-amber-500/10', 'border-amber-500/20');
-            if (kind === 'success') statusBox.classList.add('text-[#14d38a]', 'bg-[#14d38a]/10', 'border', 'border-[#14d38a]/20');
-            else if (kind === 'error') statusBox.classList.add('text-[#ff4d6a]', 'bg-[#ff4d6a]/10', 'border', 'border-[#ff4d6a]/20');
-            else statusBox.classList.add('text-amber-300', 'bg-amber-500/10', 'border', 'border-amber-500/20');
-        }
-
-        function openMailtoFallback(name, email, topic, message) {
-            const subject = encodeURIComponent(`[CryptoBolt] ${topic} — from ${name}`);
-            const body = encodeURIComponent(`${message}\n\n—\nFrom: ${name} (${email})`);
-            window.location.href = `mailto:${CONTACT_FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
-        }
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('contact-name').value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-            const topic = document.getElementById('contact-topic').value;
-            const message = document.getElementById('contact-message').value.trim();
-            const company = document.getElementById('contact-company').value; // honeypot
-            if (!name || !email || !message) return;
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending…';
-
-            const apiBase = (typeof CW_CONFIG !== 'undefined' && CW_CONFIG.apiBaseUrl) ? CW_CONFIG.apiBaseUrl : '';
-
-            try {
-                const res = await fetch(`${apiBase}/api/contact`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, topic, message, company }),
-                });
-
-                if (res.ok) {
-                    showStatus("Message sent — we'll get back to you soon.", 'success');
-                    contactForm.reset();
-                } else if (res.status === 503) {
-                    // Backend is reachable but SMTP isn't configured yet on this deployment — fall back gracefully.
-                    showStatus("This deployment's contact form isn't fully set up yet — opening your email app instead.", 'warning');
-                    openMailtoFallback(name, email, topic, message);
-                } else {
-                    const body = await res.json().catch(() => ({}));
-                    showStatus(body.error || 'Could not send your message. Opening your email app instead.', 'error');
-                    openMailtoFallback(name, email, topic, message);
-                }
-            } catch {
-                // Backend unreachable (not deployed yet, wrong apiBaseUrl, offline, etc.) — fall back to mailto so the form still "works".
-                showStatus("Couldn't reach the server — opening your email app instead.", 'warning');
-                openMailtoFallback(name, email, topic, message);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = '✉ Send message';
-            }
-        });
-    </script>
+    <script src="js/footer-year.js"></script>
+    <script src="js/contact-form.js"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>

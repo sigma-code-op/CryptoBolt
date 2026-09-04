@@ -5,30 +5,31 @@
 -- SAFE TO RE-RUN: every CREATE TABLE uses IF NOT EXISTS and every CREATE POLICY is preceded by
 -- a DROP POLICY IF EXISTS, so pasting this whole file again later (e.g. after pulling an update
 -- that adds new tables further down) will not error on objects that already exist.
--- It creates one table, "purchases", that records every real Buy/Sell a signed-in visitor
--- completes through the AlchemyPay widget, and locks it down with Row Level Security so a
--- person can only ever read or write their own rows — nobody else's.
+-- It creates one table, "purchases", that can record every real Buy/Sell a signed-in visitor
+-- completes (currently: redirected to Binance in a new tab — see js/14-buy-sell-redirect.js),
+-- and locks it down with Row Level Security so a person can only ever read or write their own
+-- rows — nobody else's.
 --
 -- IMPORTANT — what this table is and isn't:
---   - CryptoBolt never holds anyone's money or crypto. AlchemyPay moves the real fiat/crypto,
---     directly to the buyer's own wallet. This table is just a personal receipt log so a
---     signed-in visitor can see their own purchase history and P&L on the site afterward.
---   - Rows are inserted directly by the signed-in visitor's browser (using their own Supabase
---     session) once js/14-alchemypay.js has confirmed the order actually finished via our
---     backend's /api/alchemypay-order-status (which itself checks AlchemyPay's Query Order
---     API). That's still self-reported by the browser, not independently confirmed by
---     AlchemyPay's servers. For most personal-dashboard use this is fine. If you later want an
---     ironclad, tamper-proof ledger (e.g. because other people will rely on these numbers),
---     verify the AlchemyPay webhook (server/src/server.js POST /api/alchemypay-webhook already
---     receives it) and have that endpoint write the row itself using the service_role key —
+--   - CryptoBolt never holds anyone's money or crypto. The Buy/Sell buttons just open Binance
+--     in a new tab; the trade itself happens entirely on Binance's side. This table is a
+--     personal receipt log so a signed-in visitor can see their own purchase history and P&L
+--     on the site afterward — but nothing in this codebase currently writes to it, since a
+--     plain new-tab redirect has no way to report back whether/how the trade actually went.
+--     It's here for anyone who wants to log purchases manually, or wire up their own
+--     provider-specific integration later (an exchange webhook, a manual entry form, etc.).
+--   - If you do wire something up: have it insert rows using the signed-in visitor's own
+--     Supabase session (RLS below only allows a person to insert their own rows), or, for a
+--     tamper-resistant log, verify server-side and insert using the service_role key instead —
 --     see the note at the bottom of this file.
 --
--- MIGRATING FROM THE OLD TRANSAK-BACKED TABLE?
--- If "purchases" already exists from before this switch, run this once first (safe to skip on
--- a brand-new project — the CREATE TABLE below already reflects the new AlchemyPay columns):
---   alter table public.purchases rename column transak_order_id to alchemypay_order_no;
---   alter table public.purchases alter column provider set default 'alchemypay';
---   update public.purchases set provider = 'alchemypay' where provider = 'transak';
+-- MIGRATING FROM AN EARLIER VERSION OF THIS SCHEMA?
+-- Older copies of this file named the dedupe column `alchemypay_order_no` and defaulted
+-- `provider` to 'alchemypay', back when Buy/Sell opened an in-page AlchemyPay widget instead of
+-- redirecting to Binance. If "purchases" already exists with those names, run this once (safe
+-- to skip on a brand-new project — the CREATE TABLE below already reflects the new names):
+--   alter table public.purchases rename column alchemypay_order_no to order_reference;
+--   alter table public.purchases alter column provider set default 'manual';
 -- ============================================================================
 
 create table if not exists public.purchases (
@@ -44,15 +45,15 @@ create table if not exists public.purchases (
     price_usd         numeric,                        -- fiat_amount / crypto_amount at execution time, for convenience
 
     -- Where it came from
-    provider             text not null default 'alchemypay',
-    alchemypay_order_no  text unique,                 -- AlchemyPay's own order/merchant order no, dedupes retried inserts
-    wallet_address        text,
-    status               text not null default 'completed',
+    provider          text not null default 'manual', -- e.g. 'binance', 'manual' — whatever wrote the row
+    order_reference   text unique,                     -- the provider's own order/reference id, if any — dedupes retried inserts
+    wallet_address    text,
+    status            text not null default 'completed',
 
     created_at        timestamptz not null default now()
 );
 
-comment on table public.purchases is 'Personal record of real Buy/Sell orders a signed-in visitor completed through AlchemyPay. CryptoBolt never custodies funds; this is a receipt log only.';
+comment on table public.purchases is 'Personal record of real Buy/Sell orders a signed-in visitor completed. CryptoBolt never custodies funds; this is a receipt log only. Currently unpopulated by default — see the comment above.';
 
 create index if not exists purchases_user_id_idx on public.purchases (user_id, created_at desc);
 
@@ -79,23 +80,19 @@ create policy "Users can insert their own purchases"
 -- ============================================================================
 -- OPTIONAL HARDENING — server-verified purchases (do this later if you need it)
 -- ============================================================================
--- The MVP above trusts the browser to report "this order actually completed." That's normal
--- for a personal dashboard, but it does mean a technically savvy person could theoretically
--- insert a fake row into their OWN history (RLS still stops them from touching anyone else's).
---
--- To close that gap:
---   1. Set ALCHEMYPAY_CALLBACK_URL in server/.env to your existing Express server's
---      POST /api/alchemypay-webhook endpoint (already stubbed in server/src/server.js) and give
---      that same URL to AlchemyPay so they start POSTing order-status notifications to it.
---   2. Verify the payload signature before trusting it — see
---      https://alchemypay.readme.io/docs/webhook-signature — never trust an unverified webhook body.
---   3. Once verified, the server inserts the row itself using Supabase's service_role key
---      (Project Settings -> API -> service_role — keep this ONLY in server-side env vars,
+-- As shipped, nothing writes to "purchases" automatically (see the note at the top of this
+-- file) — Buy/Sell is a plain redirect to Binance with no callback. If you build your own
+-- provider integration and want it tamper-resistant rather than self-reported by the browser:
+--   1. Verify whatever signal your provider gives you server-side (a webhook signature, a
+--      signed redirect, a status API you poll) — never trust an unverified client report.
+--   2. Once verified, have your backend insert the row itself using Supabase's service_role
+--      key (Project Settings -> API -> service_role — keep this ONLY in server-side env vars,
 --      never in frontend code) via supabase-js, or a direct REST call with that key.
---   4. At that point you can DROP the "Users can insert their own purchases" policy above so
+--   3. At that point you can DROP the "Users can insert their own purchases" policy below so
 --      only your server (using service_role, which bypasses RLS entirely) can write rows —
 --      the browser becomes read-only for this table.
--- This is genuinely optional — most solo/indie dashboards ship happily with the MVP version.
+-- This is genuinely optional — most solo/indie dashboards are fine leaving "purchases" as a
+-- manual or browser-inserted log, or not using it at all.
 -- ============================================================================
 
 -- ============================================================================

@@ -1,10 +1,11 @@
 name: CI
 
 # Runs the backend's Node built-in test suite (server/test/*.test.js), the frontend indicator
-# test suite (test/*.test.js), and staleness checks for the Tailwind CSS and JS bundle build
-# outputs, on every push and pull request. This does NOT deploy anything — Hostinger deployment
-# stays manual/FTP-based per CryptoBolt_Complete_Deployment_Guide.md. This workflow exists purely
-# as a safety net so a breaking change is caught before it reaches production.
+# test suite (test/*.test.js), and staleness checks for the Tailwind CSS, JS bundle, and CSP
+# meta-tag build outputs, on every push and pull request. This does NOT deploy anything —
+# Hostinger deployment stays manual/FTP-based per CryptoBolt_Complete_Deployment_Guide.md. This
+# workflow exists purely as a safety net so a breaking change is caught before it reaches
+# production.
 
 on:
   push:
@@ -82,6 +83,31 @@ jobs:
           if ! git diff --quiet -- js/dist; then
             echo "::error::js/dist/*.js is out of date. Run 'npm run build:js' locally and commit the result."
             git diff --stat -- js/dist
+            exit 1
+          fi
+
+  csp-meta:
+    name: CSP meta tag is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+      - run: npm run build:csp
+      # Fails the build if `npm run build:csp` produces different *.html than what's committed —
+      # the usual cause is adding/editing a JSON-LD block (changes its allow-listed hash) or a
+      # <script>/<link> tag that pulls from a new third-party origin without updating the
+      # allowlist in scripts/build-csp.js and re-running the build before committing.
+      - run: |
+          if ! git diff --quiet -- '*.html'; then
+            echo "::error::One or more *.html CSP <meta> tags are out of date. Run 'npm run build:csp' locally and commit the result."
+            git diff --stat -- '*.html'
             exit 1
           fi
 

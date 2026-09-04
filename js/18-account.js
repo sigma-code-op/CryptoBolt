@@ -1,8 +1,12 @@
 // ---------- My Account page logic ----------
-// Reads the signed-in visitor's real purchase history from Supabase (written by
-// js/14-alchemypay.js whenever an AlchemyPay order completes) and renders holdings + P&L + order
-// history. This page is entirely dependent on js/17-auth.js having already set up
-// window.cwAuth — it reacts to the 'cw:auth' event rather than assuming a load order.
+// Reads the signed-in visitor's real purchase history from Supabase's `purchases` table and
+// renders holdings + P&L + order history. Nothing in this codebase currently writes to that
+// table — it was originally populated by the AlchemyPay integration on order completion, which
+// has since been removed in favor of a plain Binance redirect (see
+// js/14-buy-sell-redirect.js) — so this section will show empty unless something else (a manual
+// insert, a different ramp integration, etc.) populates `purchases`. This page is entirely
+// dependent on js/17-auth.js having already set up window.cwAuth — it reacts to the 'cw:auth'
+// event rather than assuming a load order.
 
 (function () {
     function fmtUsd(n, opts) {

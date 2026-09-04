@@ -8,7 +8,7 @@ const CW_CONFIG = {
     aiInsightUrl: '/api/ai-insight',
 
     // ---------- Buy/Sell Crypto ----------
-    // Nothing to configure here — the Buy/Sell buttons (js/14-alchemypay.js) just open Binance
+    // Nothing to configure here — the Buy/Sell buttons (js/14-buy-sell-redirect.js) just open Binance
     // in a new tab with the selected asset. No backend call, no API keys.
 
     // ---------- Supabase (accounts + real purchase history) ----------

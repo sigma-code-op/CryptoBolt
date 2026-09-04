@@ -1,7 +1,7 @@
 // ---------- Accounts (Supabase Auth) ----------
 // Shared across every page that includes this script (index.html, account.html). Handles
 // sign up / log in / log out and keeps the header's auth chip in sync. Other scripts (like
-// 14-alchemypay.js and account.html's own page script) listen for the 'cw:auth' event on
+// 14-buy-sell-redirect.js and account.html's own page script) listen for the 'cw:auth' event on
 // `document` rather than reaching into this module directly, so load order doesn't matter:
 //   document.addEventListener('cw:auth', (e) => { const user = e.detail.user; ... });
 // `window.cwAuth.getUser()` is also available for a one-off synchronous-ish read (returns

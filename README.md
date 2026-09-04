@@ -148,7 +148,7 @@ index but aren't themselves a ranking signal. To actually build backlinks:
 
 ```bash
 npm install
-npm run build:css   # or `npm run watch:css` while actively editing styles
+npm run build        # build:css + build:js + build:csp — or run any of the three on its own
 npx serve .
 # or
 python3 -m http.server 5500
@@ -173,6 +173,24 @@ Then set `apiBaseUrl` in `js/00-config.js` to `http://localhost:8787` (or wherev
 
 - **Frontend**: any static host — GitHub Pages, Netlify, Vercel, Cloudflare Pages.
 - **Backend**: any Node host — Render, Railway, Fly.io, a VPS. See `server/README.md` for details.
+
+## Content-Security-Policy
+
+Every page ships a `Content-Security-Policy` `<meta>` tag (rather than an HTTP header, so it
+works on any static host with zero server config — see `scripts/build-csp.js` for why). It's
+generated, not hand-edited: after changing anything that adds a new third-party script/connect
+target, or editing a page's JSON-LD block (its content is allow-listed by exact hash, not
+`'unsafe-inline'`), run:
+
+```bash
+npm run build:csp
+```
+
+and commit the updated `*.html`. CI (`.github/workflows/server-tests.yml`, job `csp-meta`) fails
+the build if the committed HTML doesn't match what `build:csp` would generate, the same way it
+already does for the Tailwind and JS-bundle outputs. If you fork this for your own deployment and
+add a new API, CDN script, or analytics tag, add its origin to the relevant list at the top of
+`scripts/build-csp.js` first — the build script won't guess it for you.
 
 ## Tech
 

@@ -1,15 +1,17 @@
 // ---------- Real Trading (invest.html): a self-contained "buy/sell real crypto" page. ----------
 // Runs on invest.html only. This page is the dedicated home for REAL, real-money trading
-// (fiat in/out via AlchemyPay) — kept on its own URL and its own bundle, deliberately separate
-// from trade.html (practice/paper trading with virtual funds) so the two are never confused.
+// (fiat in/out via a Binance redirect) — kept on its own URL and its own bundle, deliberately
+// separate from trade.html (practice/paper trading with virtual funds) so the two are never
+// confused.
 //
-// 14-alchemypay.js (loaded right after this file, in its own IIFE) reads several identifiers —
-// POPULAR_COINS, holdings, futuresPositions, selectedAsset, showToast, escapeHtml — as bare/
-// ambient names, resolved through the shared top-level scope of the bundle (exactly like
-// 01-state.js does for bundle-home.js). So everything alchemypay.js needs is declared here at
-// TOP LEVEL, not inside an IIFE — an easy mistake (an IIFE would hide them and break the modal).
+// 14-buy-sell-redirect.js (loaded right after this file, in its own IIFE) reads several
+// identifiers — POPULAR_COINS, holdings, futuresPositions, selectedAsset, showToast,
+// escapeHtml — as bare/ambient names, resolved through the shared top-level scope of the
+// bundle (exactly like 01-state.js does for bundle-home.js). So everything
+// 14-buy-sell-redirect.js needs is declared here at TOP LEVEL, not inside an IIFE — an easy
+// mistake (an IIFE would hide them and break the redirect buttons).
 // This page doesn't track a portfolio itself (that's trade.html / account.html), so holdings/
-// futuresPositions stay empty arrays — AlchemyPay still works fine with an empty set.
+// futuresPositions stay empty arrays — the redirect still works fine with an empty set.
 
 const POPULAR_COINS = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'ADA', 'AVAX', 'LINK', 'DOT', 'TRX', 'LTC', 'SHIB', 'SUI', 'PEPE'];
 const holdings = [];
@@ -138,11 +140,11 @@ function setFeedStatus(state, label) {
 
     buyBtn?.addEventListener('click', () => {
         const symbol = (symbolInput?.value || 'BTC').toUpperCase().trim();
-        window.openAlchemyPayWidget?.('BUY', symbol);
+        window.openBuySellRedirect?.('BUY', symbol);
     });
     sellBtn?.addEventListener('click', () => {
         const symbol = (symbolInput?.value || 'BTC').toUpperCase().trim();
-        window.openAlchemyPayWidget?.('SELL', symbol);
+        window.openBuySellRedirect?.('SELL', symbol);
     });
 
     renderPopularChips();
