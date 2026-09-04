@@ -506,6 +506,8 @@
 }
 .mk-footer-social a:hover { color: var(--mk-green); border-color: var(--mk-line-hi); background: rgba(20,211,138,.08); }
 .mk-footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+.mk-footer-social a.mk-social-disabled { opacity: .35; cursor: not-allowed; pointer-events: none; }
+.mk-footer-social a.mk-social-disabled:hover { color: var(--mk-text-dim); border-color: var(--mk-line); background: none; }
 .mk-footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mk-text-dim); margin-bottom: 14px; }
 .mk-footer-col a { display: block; font-size: 13.5px; color: var(--mk-text); text-decoration: none; margin-bottom: 10px; opacity: .82; }
 .mk-footer-col a:hover { opacity: 1; color: var(--mk-green); }
