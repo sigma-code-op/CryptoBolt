@@ -331,3 +331,50 @@ end;
 $$;
 
 grant execute on function public.submit_paper_equity(numeric) to authenticated;
+
+-- ============================================================================
+-- Push subscriptions — lets price alerts (js/07-alerts.js) fire even when the
+-- browser tab that set them is closed. A signed-in visitor's Web Push
+-- subscription (endpoint + keys, from the browser's PushManager) is stored
+-- here; the server's alert-checker cron (server/src/lib/alert-checker.js)
+-- reads every row with the service-role key (RLS below only opens rows to
+-- their own owner, so the cron necessarily uses the privileged key — same
+-- pattern as db.js), compares each user's cw_alerts (already synced into
+-- app_state by js/19-cloud-sync.js) against live prices, and pushes a
+-- notification through web-push when one trips. Written/deleted by
+-- js/23-push-alerts.js via POST /api/push/subscribe and /api/push/unsubscribe
+-- (both go through the server, not directly from the browser, since deciding
+-- "is this the current user" needs the visitor's auth token verified
+-- server-side before touching another user's row).
+-- ============================================================================
+
+create table if not exists public.push_subscriptions (
+    id          uuid primary key default gen_random_uuid(),
+    user_id     uuid not null references auth.users(id) on delete cascade,
+    endpoint    text not null unique,
+    p256dh      text not null,
+    auth        text not null,
+    created_at  timestamptz not null default now()
+);
+
+comment on table public.push_subscriptions is 'Web Push subscriptions for cross-device/closed-tab price alerts. Written by js/23-push-alerts.js via the server (not directly), read by server/src/lib/alert-checker.js with the service-role key.';
+
+create index if not exists push_subscriptions_user_id_idx on public.push_subscriptions (user_id);
+
+alter table public.push_subscriptions enable row level security;
+
+-- Regular visitors never talk to this table directly (see comment above) — these policies
+-- exist so RLS is deny-by-default and correct if that ever changes, not because the frontend
+-- currently uses them. All actual reads/writes go through the server with the service-role
+-- key, which bypasses RLS entirely.
+drop policy if exists "Users can view their own push subscriptions" on public.push_subscriptions;
+create policy "Users can view their own push subscriptions"
+    on public.push_subscriptions
+    for select
+    using (auth.uid() = user_id);
+
+drop policy if exists "Users can delete their own push subscriptions" on public.push_subscriptions;
+create policy "Users can delete their own push subscriptions"
+    on public.push_subscriptions
+    for delete
+    using (auth.uid() = user_id);

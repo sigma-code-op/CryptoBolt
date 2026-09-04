@@ -68,6 +68,20 @@ If a visitor hasn't entered a key, or the backend is unreachable, the AI panel a
 back to a clearly-labeled, locally-computed technical read, so the app still works without any
 key or backend at all.
 
+## Price alerts that survive a closed tab
+
+Price alerts (the bell icon on the chart) are checked in-browser by default — `js/07-alerts.js`
+compares live ticker prices against your thresholds while a CryptoBolt tab is open. That means an
+alert silently never fires if you close the tab, since nothing was left running to check it.
+
+Optionally, if you (the site owner) configure `SUPABASE_URL`/`SUPABASE_API_KEY` and
+`PUSH_VAPID_PUBLIC_KEY`/`PUSH_VAPID_PRIVATE_KEY` on the backend (see `server/.env.example`),
+signed-in visitors also get the option to enable Web Push delivery: the backend re-checks their
+alerts against live Binance prices on a timer (`server/src/lib/alert-checker.js`) and delivers a
+system notification even with every tab closed, with an email fallback (via the same SMTP config
+the contact form uses) if push can't reach the device. This is entirely additive — with none of
+those env vars set, alerts behave exactly as before.
+
 ## What the AI panel actually does
 
 It's a small research pipeline, not a single prompt on top of RSI/MA math:

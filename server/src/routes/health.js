@@ -5,6 +5,7 @@
 import { Router } from 'express';
 import { GROQ_MODEL, HOUSE_KEY_ENABLED } from '../config.js';
 import { isMailerConfigured } from '../mailer.js';
+import { ALERT_CHECKER_CONFIGURED } from '../lib/alert-checker.js';
 
 const router = Router();
 
@@ -24,6 +25,9 @@ router.get('/api/health', (_req, res) => {
 
     houseKeyEnabled:
       HOUSE_KEY_ENABLED,
+
+    pushAlertsConfigured:
+      ALERT_CHECKER_CONFIGURED,
 
     time:
       new Date().toISOString(),

@@ -1,23 +1,27 @@
 {
-  "name": "cryptobolt",
+  "name": "cryptobolt-server",
   "version": "1.0.0",
   "private": true,
+  "description": "Backend proxy for CryptoBolt. Passes each visitor's own Groq API key through to Groq's Llama models via a rate-limited /api/ai-insight endpoint.",
   "type": "module",
-  "description": "CryptoBolt frontend build tooling and tests: Tailwind CSS compilation, JS module bundling, Content-Security-Policy generation, and a Node test suite for the pure-math technical indicators. The site itself is static HTML/JS with no framework — these scripts compile Tailwind's utility classes to a static stylesheet, concatenate the ordered js/*.js modules into per-page bundles under js/dist/ (see scripts/build-js.js), maintain each page's CSP <meta> tag (see scripts/build-csp.js), and test the shipped indicator math directly (see test/).",
+  "main": "src/server.js",
   "scripts": {
-    "build": "npm run build:css && npm run build:js && npm run build:csp",
-    "build:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch",
-    "build:js": "node scripts/build-js.js",
-    "build:csp": "node scripts/build-csp.js",
-    "test": "node --test \"test/*.test.js\""
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "NODE_ENV=test node --test"
   },
-  "devDependencies": {
-    "@tailwindcss/cli": "^4.3.3",
-    "tailwindcss": "^4.3.3",
-    "terser": "^5.36.0"
+  "engines": {
+    "node": ">=18.17"
   },
   "dependencies": {
-    "nodemailer": "^9.0.6"
+    "@supabase/supabase-js": "^2.0.0",
+    "groq-sdk": "^0.9.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "nodemailer": "^6.9.16",
+    "web-push": "^3.6.7"
   }
 }

@@ -3,6 +3,10 @@
         if (notificationPermissionRequested || !('Notification' in window)) return;
         notificationPermissionRequested = true;
         if (Notification.permission === 'default') Notification.requestPermission();
+        // Also try to enable closed-tab push delivery (js/23-push-alerts.js) for this alert —
+        // a no-op if the visitor isn't signed in or this deployment hasn't set up push; either
+        // way, the in-tab notification above still works regardless.
+        if (window.cwPushAlerts) window.cwPushAlerts.enable();
     }
 
     function describeAlert(a) {

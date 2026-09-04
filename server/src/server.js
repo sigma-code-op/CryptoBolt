@@ -6,6 +6,8 @@ import { PORT, ALLOWED_ORIGINS, GROQ_MODEL, IS_PRODUCTION } from './config.js';
 import healthRouter from './routes/health.js';
 import contactRouter from './routes/contact.js';
 import aiRouter from './routes/ai.js';
+import pushRouter from './routes/push.js';
+import { startAlertChecker } from './lib/alert-checker.js';
 
 // =========================================================
 // APP
@@ -58,6 +60,9 @@ app.use(
       'Content-Type',
       'x-groq-key',
       'x-use-house-key',
+      // Push subscribe/unsubscribe (routes/push.js) send the visitor's Supabase access
+      // token here so the server can verify which signed-in user is making the request.
+      'Authorization',
     ],
   })
 );
@@ -72,6 +77,7 @@ app.use(
 app.use(healthRouter);
 app.use(contactRouter);
 app.use(aiRouter);
+app.use(pushRouter);
 
 // =========================================================
 // ERROR HANDLER
@@ -126,6 +132,8 @@ if (
       );
     }
   );
+
+  startAlertChecker();
 }
 
 export {

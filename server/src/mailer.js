@@ -64,4 +64,29 @@ async function sendContactEmail({ name, email, topic, message }) {
   });
 }
 
-export { sendContactEmail, isMailerConfigured };
+/**
+ * Fallback delivery for a triggered price alert when Web Push couldn't reach the visitor's
+ * device this cycle (see lib/alert-checker.js). Throws on failure, same contract as
+ * sendContactEmail — the caller decides how to log/ignore it.
+ */
+async function sendAlertEmail({ to, messages }) {
+  if (!isMailerConfigured()) {
+    const err = new Error('Mailer is not configured (missing SMTP_HOST/SMTP_USER/SMTP_PASS/CONTACT_TO_EMAIL env vars).');
+    err.code = 'MAILER_NOT_CONFIGURED';
+    throw err;
+  }
+  const transporter = getTransporter();
+  const fromAddress = process.env.CONTACT_FROM_EMAIL || process.env.SMTP_USER;
+  const subject = messages.length === 1 ? `[CryptoBolt] Price alert: ${messages[0]}` : `[CryptoBolt] ${messages.length} price alerts triggered`;
+  const listHtml = messages.map((m) => `<li>${escapeHtml(m)}</li>`).join('');
+
+  await transporter.sendMail({
+    from: `"CryptoBolt Alerts" <${fromAddress}>`,
+    to,
+    subject,
+    text: messages.join('\n'),
+    html: `<p>Your CryptoBolt price alert${messages.length > 1 ? 's' : ''} triggered:</p><ul>${listHtml}</ul><p style="color:#888;font-size:12px">You're getting this by email because push notifications couldn't reach a device right now. Manage alerts in the CryptoBolt app.</p>`,
+  });
+}
+
+export { sendContactEmail, sendAlertEmail, isMailerConfigured };

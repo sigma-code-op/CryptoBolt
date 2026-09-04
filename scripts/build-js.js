@@ -60,6 +60,7 @@ const BUNDLES = {
     '14-buy-sell-redirect.js',
     '15-risk-triggers.js',
     '20-scroll-reveal.js',
+    '23-push-alerts.js',
   ],
   // trade.html
   'bundle-trade.js': [
