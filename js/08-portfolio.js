@@ -158,7 +158,7 @@
             }
             return `
                 <tr class="hover:bg-gray-800/40 transition-colors" data-holding-id="${h.id}">
-                    <td class="py-2 px-3 font-bold text-white">${h.symbol}${!asset ? ' <span class=\"text-[9px] text-gray-600\">(unlisted)</span>' : ''}</td>
+                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(h.symbol)}${!asset ? ' <span class=\"text-[9px] text-gray-600\">(unlisted)</span>' : ''}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${h.qty.toLocaleString(undefined, { maximumFractionDigits: 6 })}</td>
                     <td class="py-2 px-3 text-right text-gray-500">${h.avgCost ? '$' + h.avgCost : '--'}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${price ? '$' + price.toLocaleString(undefined, priceFmt(price)) : '--'}</td>
@@ -320,7 +320,7 @@
 
             return `
                 <tr class="hover:bg-gray-800/40 transition-colors" data-position-id="${p.id}">
-                    <td class="py-2 px-3 font-bold text-white">${p.symbol}${!asset ? ' <span class=\"text-[9px] text-gray-600\">(unlisted)</span>' : ''}</td>
+                    <td class="py-2 px-3 font-bold text-white">${escapeHtml(p.symbol)}${!asset ? ' <span class=\"text-[9px] text-gray-600\">(unlisted)</span>' : ''}</td>
                     <td class="py-2 px-3"><span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded border ${sideColor}">${p.side}</span></td>
                     <td class="py-2 px-3 text-right text-gray-300">$${p.entryPrice.toLocaleString(undefined, priceFmt(p.entryPrice))}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${p.qty.toLocaleString(undefined, { maximumFractionDigits: 6 })}</td>
