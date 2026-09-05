@@ -37,12 +37,32 @@ This isn't a single prompt-and-parse call — it's a small research pipeline:
 4. The frontend turns that structure into actual price levels using real support/resistance and
    live ATR(14) — the model never invents a price, only the strategy shape and stop width.
 
+## Track record: is the AI panel actually any good?
+
+Every time the panel renders a real setup (not the local/offline fallback, not "no clear
+setup"), the frontend logs it — asset, setup shape, entry zone, stop, both targets, all pure
+math already computed from real support/resistance + ATR, nothing new invented — to
+`public.ai_calls` (see `supabase/schema.sql`). `lib/ai-call-tracker.js` then re-checks every
+open call against live Binance prices on its own timer (`AI_CALL_CHECK_INTERVAL_SECONDS`,
+default 60s), marking it a win (`hit_target1`/`hit_target2`), a loss (`hit_stop`), or
+`expired` if nothing happens within `AI_CALL_EXPIRY_HOURS` (default 72). `GET
+/api/ai-calls/track-record` aggregates the result into a public win-rate + average-R
+readout, bucketed by setup type (a range-fade's naturally higher hit rate shouldn't quietly
+flatter a breakout call's real record) — shown in-app via the "📊 Show track record" toggle
+under the AI panel. Needs only `SUPABASE_URL`/`SUPABASE_API_KEY` — independent of the push
+alert section below, so it can be on with no Web Push setup at all.
+
 ## Endpoints
 
 - `GET /api/health` — liveness check, also reports which model is configured.
 - `POST /api/ai-insight` — header `x-groq-key: gsk_...` (the visitor's own key), body
   `{ "context": { asset, market, interval, price, change24hPct, high24h, low24h, volume24hUSDT, ma7, ma25, rsi14, atr14, atrPct, recentSwingHigh, recentSwingLow, recentClosesTrend, ... } }`.
   Returns `{ "result": { trend, momentum, support, resistance, summary, outlook, confidence, reasoningSteps, keyRisk, newsContext, setupType, stopATRMultiple, catalystWatch }, "research": "...", "sources": [{title, source, hoursAgo}], "fearGreed": {value, classification} }`.
+- `POST /api/ai-calls` — logs one AI-generated trade setup for the track record (called
+  automatically by the frontend; see above). Body: `{ asset, market, interval, bias,
+  setupType, entryLow, entryHigh, stopPrice, target1, target2, priceAtCall, atr14, stopMult
+  }`. No-ops with `202` if Supabase isn't configured.
+- `GET /api/ai-calls/track-record` — public win-rate/avg-R stats, overall and by setup type.
 
 ## Local setup
 

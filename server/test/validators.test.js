@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validateContext, validateContact } from '../src/validators.js';
+import { validateContext, validateContact, validateAiCallLog } from '../src/validators.js';
 
 // ---------- validateContext ----------
 
@@ -115,4 +115,58 @@ test('validateContact rejects a topic outside the allowed list', () => {
 test('validateContact rejects a too-short or too-long message', () => {
   assert.match(validateContact({ ...validContact, message: 'hi' }), /Message/);
   assert.match(validateContact({ ...validContact, message: 'x'.repeat(4001) }), /Message/);
+});
+
+// ---------- validateAiCallLog ----------
+
+const validAiCall = {
+  asset: 'BTC',
+  market: 'spot',
+  interval: '1h',
+  bias: 'long-leaning',
+  setupType: 'pullback-entry',
+  entryLow: 64000,
+  entryHigh: 64500,
+  stopPrice: 63000,
+  target1: 66000,
+  target2: 67500,
+  priceAtCall: 64200,
+  atr14: 350.5,
+  stopMult: 1.5,
+};
+
+test('validateAiCallLog accepts a well-formed payload', () => {
+  assert.equal(validateAiCallLog(validAiCall), null);
+});
+
+test('validateAiCallLog accepts a payload with atr14/stopMult omitted', () => {
+  const { atr14, stopMult, ...rest } = validAiCall;
+  assert.equal(validateAiCallLog(rest), null);
+});
+
+test('validateAiCallLog rejects a missing body', () => {
+  assert.match(validateAiCallLog(undefined), /Missing call data/);
+});
+
+test('validateAiCallLog rejects an invalid asset', () => {
+  assert.match(validateAiCallLog({ ...validAiCall, asset: 'not-an-asset!' }), /asset/);
+});
+
+test('validateAiCallLog rejects a market outside spot\\/futures', () => {
+  assert.match(validateAiCallLog({ ...validAiCall, market: 'options' }), /market/);
+});
+
+test('validateAiCallLog rejects a bias outside the allowed enum', () => {
+  assert.match(validateAiCallLog({ ...validAiCall, bias: 'sideways' }), /bias/);
+});
+
+test('validateAiCallLog rejects a setupType outside the allowed enum', () => {
+  assert.match(validateAiCallLog({ ...validAiCall, setupType: 'no-setup' }), /setupType/);
+});
+
+test('validateAiCallLog rejects non-positive or non-finite numeric fields', () => {
+  assert.match(validateAiCallLog({ ...validAiCall, entryLow: 0 }), /entryLow/);
+  assert.match(validateAiCallLog({ ...validAiCall, stopPrice: -5 }), /stopPrice/);
+  assert.match(validateAiCallLog({ ...validAiCall, target1: NaN }), /target1/);
+  assert.match(validateAiCallLog({ ...validAiCall, priceAtCall: '64200' }), /priceAtCall/);
 });

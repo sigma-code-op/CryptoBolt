@@ -99,6 +99,16 @@ It's a small research pipeline, not a single prompt on top of RSI/MA math:
 
 See `server/README.md` for the full pipeline detail and the exact response shape.
 
+## The AI panel's public track record
+
+Every real setup the panel produces gets logged and auto-checked against live prices until
+it hits a target, hits its stop, or expires unresolved — then rolled up into a public
+win-rate/avg-R readout under the "📊 Show track record" toggle. It's opt-in infrastructure
+(needs `SUPABASE_URL`/`SUPABASE_API_KEY` on the backend — see `server/README.md` and
+`supabase/schema.sql`'s `ai_calls` table) so the site isn't just claiming its calls are
+good, it's showing the record, split out by setup type so one setup's better odds can't
+flatter another's.
+
 ## Deploying & going live
 
 Use the complete [single deployment guide](./CryptoBolt_Complete_Deployment_Guide.md). It is the

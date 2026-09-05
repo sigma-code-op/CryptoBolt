@@ -108,6 +108,36 @@ export async function fetchCryptoNews(asset) {
 }
 
 // =========================================================
+// LIVE BINANCE PRICES (all symbols in one call)
+// =========================================================
+// Shared by lib/alert-checker.js (price alerts) and lib/ai-call-tracker.js
+// (resolving logged AI trade setups) — both need "every symbol's current
+// price" on a timer, so this lives here once instead of twice.
+
+export async function fetchAllBinancePrices() {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch('https://api.binance.com/api/v3/ticker/price', {
+      signal: controller.signal,
+      headers: { accept: 'application/json' },
+    });
+    if (!res.ok) return null;
+    const rows = await res.json();
+    if (!Array.isArray(rows)) return null;
+    const map = new Map();
+    for (const row of rows) {
+      if (row?.symbol && row?.price) map.set(row.symbol, Number(row.price));
+    }
+    return map;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// =========================================================
 // FEAR & GREED
 // =========================================================
 

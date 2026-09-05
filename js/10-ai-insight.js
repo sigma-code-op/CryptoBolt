@@ -414,6 +414,103 @@
         return /^https?:\/\//i.test(path) ? path : `${base}${path}`;
     }
 
+    // ---------- Feature: AI call track record ----------
+    // Every real (non-local-calc) trade plan the panel renders gets logged to the backend
+    // (server/src/lib/ai-call-tracker.js), which resolves it against live prices over the
+    // following hours/days and folds it into a public win-rate readout — see
+    // renderTrackRecordWidget() below. Fire-and-forget: a failed log never blocks or
+    // interrupts the read the visitor is looking at.
+    function logAiCallForTrackRecord(ctx, plan) {
+        if (!CW_CONFIG.aiInsightUrl || plan.bias === 'no-clear-setup') return;
+        try {
+            fetch(resolveApiUrl('/api/ai-calls'), {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({
+                    asset: ctx.asset,
+                    market: ctx.market,
+                    interval: ctx.interval,
+                    bias: plan.bias,
+                    setupType: plan.setupType,
+                    entryLow: plan.entryLow,
+                    entryHigh: plan.entryHigh,
+                    stopPrice: plan.invalidation,
+                    target1: plan.target1,
+                    target2: plan.target2,
+                    priceAtCall: ctx.price,
+                    atr14: typeof ctx.atr14 === 'number' ? ctx.atr14 : null,
+                    stopMult: plan.stopMult || null,
+                }),
+            }).catch(() => { /* best-effort — a visitor's own read is unaffected either way */ });
+        } catch (e) { /* fetch can throw synchronously in rare environments — ignore */ }
+    }
+
+    const SETUP_TYPE_SHORT_LABELS = {
+        'breakout-continuation': 'Breakout',
+        'pullback-entry': 'Pullback',
+        'range-fade': 'Range fade',
+    };
+
+    function renderTrackRecordWidget(stats) {
+        const container = document.getElementById('ai-track-record-body');
+        if (!container) return;
+        if (!stats || !stats.configured) {
+            container.innerHTML = '<p class="text-gray-600 text-[10px]">Track record isn\'t enabled on this deployment yet.</p>';
+            return;
+        }
+        if (stats.error) {
+            container.innerHTML = `<p class="text-gray-600 text-[10px]">${escapeHtml(stats.error)}</p>`;
+            return;
+        }
+        const o = stats.overall;
+        if (!o || o.total === 0) {
+            container.innerHTML = '<p class="text-gray-600 text-[10px]">No AI calls resolved yet — check back after the first setups play out.</p>';
+            return;
+        }
+        const winRatePct = o.winRate !== null ? Math.round(o.winRate * 100) : null;
+        const winColor = winRatePct === null ? 'text-gray-400' : winRatePct >= 50 ? 'text-[#14d38a]' : 'text-[#ff4d6a]';
+        const bySetup = Object.entries(stats.bySetupType || {})
+            .map(([type, b]) => {
+                const pct = b.winRate !== null ? `${Math.round(b.winRate * 100)}%` : '—';
+                const label = SETUP_TYPE_SHORT_LABELS[type] || type;
+                return `<div class="bg-gray-900/50 rounded px-2 py-1.5 text-[10px]">
+                    <div class="text-gray-600 text-[9px] uppercase mb-0.5">${escapeHtml(label)}</div>
+                    <div class="text-gray-300 font-mono">${pct} <span class="text-gray-600">(${b.wins}W / ${b.losses}L / ${b.expired}exp)</span></div>
+                </div>`;
+            }).join('');
+        container.innerHTML = `
+            <div class="flex flex-wrap items-center gap-3 mb-2">
+                <span class="text-[10px] font-mono px-2 py-1 rounded border border-gray-800 ${winColor}">${winRatePct !== null ? `${winRatePct}% win rate` : 'Win rate n/a'}</span>
+                <span class="text-[10px] font-mono px-2 py-1 rounded border border-gray-800 text-gray-400">${stats.avgR !== null ? `Avg ${stats.avgR >= 0 ? '+' : ''}${stats.avgR.toFixed(2)}R` : 'Avg R n/a'}</span>
+                <span class="text-[10px] font-mono px-2 py-1 rounded border border-gray-800 text-gray-400">${o.total} calls (${o.wins}W / ${o.losses}L / ${o.expired} expired)</span>
+            </div>
+            ${bySetup ? `<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-1">${bySetup}</div>` : ''}
+            <p class="text-gray-600 text-[9px] mt-2 leading-relaxed">Every structured setup this panel has produced, auto-checked against live prices until it hits a target, hits its stop, or expires unresolved. Past setups are not a guarantee of future ones.</p>
+        `;
+    }
+
+    (function initTrackRecordWidget() {
+        const toggle = document.getElementById('ai-track-record-toggle');
+        const body = document.getElementById('ai-track-record-body');
+        if (!toggle || !body) return;
+        let loaded = false;
+        toggle.addEventListener('click', async () => {
+            const showing = !body.classList.contains('hidden');
+            body.classList.toggle('hidden');
+            toggle.innerText = showing ? '📊 Show track record' : '📊 Hide track record';
+            if (showing || loaded || !CW_CONFIG.aiInsightUrl) return;
+            loaded = true;
+            body.innerHTML = '<p class="text-gray-600 text-[10px]">Loading…</p>';
+            try {
+                const res = await fetch(resolveApiUrl('/api/ai-calls/track-record'));
+                const stats = await res.json().catch(() => null);
+                renderTrackRecordWidget(stats);
+            } catch (e) {
+                renderTrackRecordWidget({ configured: true, error: "Couldn't reach the track record right now." });
+            }
+        });
+    })();
+
     async function requestBackendInsight(ctx, apiKey, useHouseKey) {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 20000);
@@ -721,6 +818,13 @@
 
         const tradePlan = computeTradePlan(ctx, parsed.trend, parsed);
         const tradePlanBlock = renderTradePlanCard(tradePlan, ctx);
+
+        // Only genuine AI reads with an actual setup count toward the track record — a
+        // locally-calculated fallback (no API key / backend unreachable) never picked a
+        // setup shape via the model, so it isn't an "AI call" to hold to account.
+        if (!parsed.isLocalCalculation) {
+            logAiCallForTrackRecord(ctx, tradePlan);
+        }
 
         body.innerHTML = `
             ${sourceBanner}

@@ -378,3 +378,66 @@ create policy "Users can delete their own push subscriptions"
     on public.push_subscriptions
     for delete
     using (auth.uid() = user_id);
+
+-- ============================================================================
+-- AI call track record — every structured trade setup the AI Market Insight
+-- panel produces (js/10-ai-insight.js's computeTradePlan()) gets logged here
+-- the moment it's shown, and server/src/lib/ai-call-tracker.js resolves it
+-- automatically against live Binance prices (same fetchAllBinancePrices()
+-- helper the push-alert checker above uses) until it hits a target, hits its
+-- stop, or expires unresolved. GET /api/ai-calls/track-record aggregates
+-- these into a public win-rate/R-multiple readout, bucketed by setup type
+-- so a range-fade's naturally higher hit rate can't silently inflate a
+-- breakout call's real track record.
+--
+-- Nobody's personal data lives here — this isn't tied to a user_id at all.
+-- It's a record of what the MODEL said, not what any visitor did with it.
+-- ============================================================================
+
+create table if not exists public.ai_calls (
+    id              uuid primary key default gen_random_uuid(),
+    created_at      timestamptz not null default now(),
+
+    -- What was analyzed
+    asset           text not null,                 -- e.g. 'BTC'
+    market          text not null check (market in ('spot', 'perpetual futures')),
+    interval        text not null,                 -- chart interval at the time, e.g. '1h'
+
+    -- The AI-chosen setup shape + the deterministic price plan built from it
+    -- (see js/10-ai-insight.js's computeTradePlan() — same math, logged verbatim)
+    bias            text not null check (bias in ('long-leaning', 'short-leaning')),
+    setup_type      text not null check (setup_type in ('breakout-continuation', 'pullback-entry', 'range-fade')),
+    entry_low       numeric not null,
+    entry_high      numeric not null,
+    stop_price      numeric not null,
+    target1         numeric not null,
+    target2         numeric not null,
+    price_at_call   numeric not null,               -- live price when the call was logged
+    atr14           numeric,
+    stop_mult       numeric,
+
+    -- Resolution, filled in later by ai-call-tracker.js's resolve cycle
+    status          text not null default 'open' check (status in ('open', 'hit_target1', 'hit_target2', 'hit_stop', 'expired')),
+    resolved_at     timestamptz,
+    resolved_price  numeric
+);
+
+comment on table public.ai_calls is 'Every AI-generated trade setup shown in the AI Market Insight panel, auto-resolved against live prices for a public win-rate track record. Not tied to any user.';
+
+create index if not exists ai_calls_status_idx on public.ai_calls (status, created_at);
+create index if not exists ai_calls_asset_idx on public.ai_calls (asset, created_at desc);
+
+alter table public.ai_calls enable row level security;
+
+-- Public, read-only — the whole point is a track record anyone can check, signed in or not.
+drop policy if exists "Anyone can view AI call history" on public.ai_calls;
+create policy "Anyone can view AI call history"
+    on public.ai_calls
+    for select
+    using (true);
+
+-- No INSERT/UPDATE/DELETE policy for regular visitors: every write (logging a new call,
+-- resolving an open one) goes through the server using the service-role key
+-- (server/src/lib/ai-call-tracker.js), which bypasses RLS entirely. That keeps the track
+-- record honest — a visitor's browser can request that a call be logged, but only the
+-- server decides how it gets resolved, from real Binance prices it fetched itself.

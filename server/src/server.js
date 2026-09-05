@@ -7,7 +7,9 @@ import healthRouter from './routes/health.js';
 import contactRouter from './routes/contact.js';
 import aiRouter from './routes/ai.js';
 import pushRouter from './routes/push.js';
+import aiCallsRouter from './routes/ai-calls.js';
 import { startAlertChecker } from './lib/alert-checker.js';
+import { startAiCallResolver } from './lib/ai-call-tracker.js';
 
 // =========================================================
 // APP
@@ -78,6 +80,7 @@ app.use(healthRouter);
 app.use(contactRouter);
 app.use(aiRouter);
 app.use(pushRouter);
+app.use(aiCallsRouter);
 
 // =========================================================
 // ERROR HANDLER
@@ -134,6 +137,7 @@ if (
   );
 
   startAlertChecker();
+  startAiCallResolver();
 }
 
 export {

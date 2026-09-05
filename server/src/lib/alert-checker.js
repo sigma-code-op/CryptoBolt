@@ -24,31 +24,9 @@
 import { getSupabaseAdmin, SUPABASE_ADMIN_CONFIGURED } from './supabase-admin.js';
 import { sendPush, PUSH_CONFIGURED } from './push.js';
 import { sendAlertEmail, isMailerConfigured } from '../mailer.js';
+import { fetchAllBinancePrices } from './market-data.js';
 
 export const ALERT_CHECKER_CONFIGURED = SUPABASE_ADMIN_CONFIGURED && PUSH_CONFIGURED;
-
-async function fetchAllBinancePrices() {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 8000);
-  try {
-    const res = await fetch('https://api.binance.com/api/v3/ticker/price', {
-      signal: controller.signal,
-      headers: { accept: 'application/json' },
-    });
-    if (!res.ok) return null;
-    const rows = await res.json();
-    if (!Array.isArray(rows)) return null;
-    const map = new Map();
-    for (const row of rows) {
-      if (row?.symbol && row?.price) map.set(row.symbol, Number(row.price));
-    }
-    return map;
-  } catch {
-    return null;
-  } finally {
-    clearTimeout(timer);
-  }
-}
 
 // Mirrors checkPriceAlerts()'s hit test in js/07-alerts.js exactly, so an alert fires under
 // the same rule server-side as it would have client-side.

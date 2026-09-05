@@ -77,4 +77,49 @@ function validateContact(body) {
   return null;
 }
 
-export { validateContext, validateContact };
+const ASSET_RE = /^[A-Z0-9]{1,15}$/;
+
+/**
+ * Validate the payload sent by the frontend to log one AI-generated trade setup for the
+ * public track record (POST /api/ai-calls). Every numeric field is exactly what
+ * js/10-ai-insight.js's computeTradePlan() already computed from real support/resistance +
+ * ATR — this just double-checks shape/sanity server-side before it's written, the same way
+ * validateContext() does for /api/ai-insight.
+ * Returns an error message string, or null if the payload is valid.
+ */
+function validateAiCallLog(body) {
+  if (!body || typeof body !== 'object') return 'Missing call data.';
+
+  if (typeof body.asset !== 'string' || !ASSET_RE.test(body.asset.toUpperCase())) {
+    return 'Invalid field: asset';
+  }
+  if (body.market !== 'spot' && body.market !== 'perpetual futures') {
+    return 'Invalid field: market';
+  }
+  if (typeof body.interval !== 'string' || body.interval.length > 10) {
+    return 'Invalid field: interval';
+  }
+  if (body.bias !== 'long-leaning' && body.bias !== 'short-leaning') {
+    return 'Invalid field: bias';
+  }
+  const allowedSetupTypes = ['breakout-continuation', 'pullback-entry', 'range-fade'];
+  if (!allowedSetupTypes.includes(body.setupType)) {
+    return 'Invalid field: setupType';
+  }
+
+  const requiredNumbers = ['entryLow', 'entryHigh', 'stopPrice', 'target1', 'target2', 'priceAtCall'];
+  for (const key of requiredNumbers) {
+    if (typeof body[key] !== 'number' || !Number.isFinite(body[key]) || body[key] <= 0) {
+      return `Invalid field: ${key}`;
+    }
+  }
+  if (body.atr14 !== undefined && body.atr14 !== null && (typeof body.atr14 !== 'number' || !Number.isFinite(body.atr14))) {
+    return 'Invalid field: atr14';
+  }
+  if (body.stopMult !== undefined && body.stopMult !== null && (typeof body.stopMult !== 'number' || !Number.isFinite(body.stopMult))) {
+    return 'Invalid field: stopMult';
+  }
+  return null;
+}
+
+export { validateContext, validateContact, validateAiCallLog };
