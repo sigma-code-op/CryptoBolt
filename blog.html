@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-EuQ3c5bfYS27UO4MiGPYDhtCp39hnNVf0L2N2/OEDhM=' 'sha256-mkPypABDkQBMRTR7nhGHIwe4zH7WD+cYxHVzD2KVp4E='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-v6/1sNwz6mY60d5aNxbeYRO/FpvKn/XmmFt0t30UvDA=' 'sha256-mkPypABDkQBMRTR7nhGHIwe4zH7WD+cYxHVzD2KVp4E='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <script src="js/consent-default.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
@@ -48,19 +48,22 @@
         {
           "@type": "BlogPosting",
           "headline": "Reading the Fear & Greed index without overreacting to it",
-          "url": "https://cryptobolt.io/blog.html#fear-and-greed",
+          "url": "https://cryptobolt.io/fear-and-greed-index.html",
+          "datePublished": "2026-08-24",
           "author": { "@type": "Organization", "name": "CryptoBolt" }
         },
         {
           "@type": "BlogPosting",
           "headline": "Spot vs. perpetual futures: what actually changes",
-          "url": "https://cryptobolt.io/blog.html#spot-vs-futures",
+          "url": "https://cryptobolt.io/spot-vs-futures.html",
+          "datePublished": "2026-08-24",
           "author": { "@type": "Organization", "name": "CryptoBolt" }
         },
         {
           "@type": "BlogPosting",
           "headline": "How CryptoBolt's AI research stays grounded in real data",
-          "url": "https://cryptobolt.io/blog.html#ai-grounding",
+          "url": "https://cryptobolt.io/ai-research-grounded-data.html",
+          "datePublished": "2026-08-24",
           "author": { "@type": "Organization", "name": "CryptoBolt" }
         }
       ]
@@ -124,44 +127,35 @@
     <p>No price predictions — just how the tools work and what the numbers on screen actually mean.</p>
 </header>
 
-<article class="mk-article" id="fear-and-greed">
-    <span class="mk-article-meta">SENTIMENT · 4 MIN READ</span>
-    <h2>Reading the Fear &amp; Greed index without overreacting to it</h2>
-    <p>The Fear &amp; Greed index — the number CryptoBolt pulls from Alternative.me into the Global Market Pulse strip — compresses a handful of inputs (volatility, momentum, social volume, dominance, and survey data) into a single 0–100 score. Near 0 is "extreme fear," near 100 is "extreme greed."</p>
-    <p>It's easy to treat that number like a trade signal: buy the fear, sell the greed. Sometimes that works. Often it doesn't, because the index describes the current mood of the market, not where it's headed next. Extreme fear can sit at extreme fear for weeks during a genuine downtrend. Extreme greed can grind higher for months in a strong bull run before anything mean-reverts.</p>
-    <h3>What it's actually useful for</h3>
-    <p>Treat it as context, not a trigger. If price is testing a level you already care about and sentiment is at an extreme, that's a data point worth weighing alongside trend, volume, and funding — not a reason to act on its own. CryptoBolt's AI research pass uses it the same way: as one input folded into a broader read, next to multi-timeframe trend and funding-rate positioning, never as the deciding factor by itself.</p>
-    <p>The most reliable use case is spotting when the crowd is unusually one-sided. That's information. What you do with it is still yours to decide.</p>
-</article>
-
-<hr class="mk-article-divider">
-
-<article class="mk-article" id="spot-vs-futures">
-    <span class="mk-article-meta">MECHANICS · 5 MIN READ</span>
-    <h2>Spot vs. perpetual futures: what actually changes</h2>
-    <p>Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath.</p>
-    <h3>Ownership</h3>
-    <p>A spot trade means you hold the asset itself — buy 0.1 BTC and you own 0.1 BTC, full stop. A perpetual futures contract is a derivative: you're holding a position that tracks BTC's price without ever owning the coin. That distinction is why spot has no liquidation risk and futures does.</p>
-    <h3>Leverage and liquidation</h3>
-    <p>Futures let you open a position larger than your posted margin — 5x, 10x, sometimes more. That amplifies gains and losses equally, and if the market moves far enough against you, the exchange closes the position automatically at the liquidation price to prevent your balance from going negative. CryptoBolt's portfolio view estimates that price for every open futures position so it's never a surprise mid-move.</p>
-    <h3>Funding rate</h3>
-    <p>Perpetuals never expire, so exchanges use a periodic funding payment between longs and shorts to keep the contract price anchored near spot. When funding is positive, longs pay shorts, which usually means positioning is leaning long — one more piece of context the AI research pass folds in.</p>
-    <p>Neither is inherently better. Spot is simpler and caps your downside at zero; futures adds leverage and funding dynamics on top. Know which one you're actually looking at before you size a trade.</p>
-</article>
-
-<hr class="mk-article-divider">
-
-<article class="mk-article" id="ai-grounding">
-    <span class="mk-article-meta">PRODUCT · 4 MIN READ</span>
-    <h2>How CryptoBolt's AI research stays grounded in real data</h2>
-    <p>Ask an AI model to "analyze the market" with nothing but its training data and you'll get something that sounds confident and is frequently stale or invented. CryptoBolt's AI research desk is built to avoid that in two ways: a two-pass pipeline, and a hard rule that trade levels are never AI-generated.</p>
-    <h3>Pass one: research</h3>
-    <p>The first pass is a free-text research step. The model is handed live inputs — recent news, the Fear &amp; Greed reading, funding-rate positioning, and multi-timeframe technical data — and asked to reason through what's actually happening, in plain language, before committing to any conclusion.</p>
-    <h3>Pass two: synthesis</h3>
-    <p>The second pass takes that research and structures it into the read you actually see: trend read, volatility context, and a rationale you can follow, returned as structured data so the interface can render it consistently rather than parsing free-form prose.</p>
-    <h3>Why trade levels aren't AI output</h3>
-    <p>Entry, stop, and target levels in CryptoBolt come from deterministic ATR-based volatility math, not from the model. Language models are good at reasoning through context and bad at reliably generating precise numbers — so the numbers you'd actually place an order against are computed the same way every time, and the AI's job stays limited to the read, not the price levels.</p>
-</article>
+<div class="mk-blog-grid">
+    <a href="fear-and-greed-index.html" class="mk-blog-card">
+        <div class="mk-blog-cover" style="background:rgba(255,176,32,.08);">😨</div>
+        <div class="mk-blog-body">
+            <span class="mk-blog-meta">Sentiment · 4 min read</span>
+            <h2>Reading the Fear &amp; Greed index without overreacting to it</h2>
+            <p>The Fear &amp; Greed index compresses volatility, momentum, and sentiment into one 0–100 score. Here's what it's actually good for, and why it isn't a trade signal on its own.</p>
+            <span class="mk-blog-read">Read the post →</span>
+        </div>
+    </a>
+    <a href="spot-vs-futures.html" class="mk-blog-card">
+        <div class="mk-blog-cover" style="background:rgba(79,216,232,.08);">⚖️</div>
+        <div class="mk-blog-body">
+            <span class="mk-blog-meta">Mechanics · 5 min read</span>
+            <h2>Spot vs. perpetual futures: what actually changes</h2>
+            <p>Ownership, leverage, liquidation, and funding rate — the mechanics that actually differ between holding the asset and trading a derivative on it.</p>
+            <span class="mk-blog-read">Read the post →</span>
+        </div>
+    </a>
+    <a href="ai-research-grounded-data.html" class="mk-blog-card">
+        <div class="mk-blog-cover" style="background:rgba(168,85,247,.08);">🧠</div>
+        <div class="mk-blog-body">
+            <span class="mk-blog-meta">Product · 4 min read</span>
+            <h2>How CryptoBolt's AI research stays grounded in real data</h2>
+            <p>Inside the two-pass research pipeline, and why entry/stop/target levels always come from deterministic ATR math, never from the model.</p>
+            <span class="mk-blog-read">Read the post →</span>
+        </div>
+    </a>
+</div>
 
 <footer class="mk-footer">
     <div class="mk-footer-grid">

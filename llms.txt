@@ -7,6 +7,10 @@
 - [CryptoBolt Home](https://cryptobolt.io/) — Live crypto prices, charts, market data, technical indicators, portfolio tools, alerts, and market analysis.
 - [CryptoBolt AI Research](https://cryptobolt.io/ai.html) — AI-assisted crypto market research and conversational market analysis using current market context.
 - [CryptoBolt Trading Practice](https://cryptobolt.io/trade.html) — Paper-trading environment for practicing buy/sell decisions with virtual funds.
+- [CryptoBolt Blog](https://cryptobolt.io/blog.html) — Practical notes on market mechanics and how CryptoBolt's tools work.
+  - [Reading the Fear & Greed index without overreacting to it](https://cryptobolt.io/fear-and-greed-index.html)
+  - [Spot vs. perpetual futures: what actually changes](https://cryptobolt.io/spot-vs-futures.html)
+  - [How CryptoBolt's AI research stays grounded in real data](https://cryptobolt.io/ai-research-grounded-data.html)
 - [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.
 - [Contact CryptoBolt](https://cryptobolt.io/contact.html) — Contact and partnership inquiries.
 - [Privacy Policy](https://cryptobolt.io/privacy.html) — Privacy and data-handling information.
