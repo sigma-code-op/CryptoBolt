@@ -4,4 +4,6 @@
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Content-Security-Policy "frame-ancestors 'self';"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+  Header always set Link "</sitemap.xml>; rel=\"sitemap\", </privacy.html>; rel=\"privacy-policy\""
 </IfModule>
