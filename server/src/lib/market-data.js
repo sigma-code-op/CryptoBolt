@@ -110,9 +110,8 @@ export async function fetchCryptoNews(asset) {
 // =========================================================
 // LIVE BINANCE PRICES (all symbols in one call)
 // =========================================================
-// Shared by lib/alert-checker.js (price alerts) and lib/ai-call-tracker.js
-// (resolving logged AI trade setups) — both need "every symbol's current
-// price" on a timer, so this lives here once instead of twice.
+// Used by lib/alert-checker.js (price alerts), which needs "every symbol's
+// current price" on a timer.
 
 export async function fetchAllBinancePrices() {
   const controller = new AbortController();
