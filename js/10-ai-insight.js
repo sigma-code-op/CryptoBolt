@@ -127,7 +127,7 @@
         const label = document.getElementById('ai-asset-label');
         const body = document.getElementById('ai-insight-body');
         if (label) label.innerText = selectedAsset ? `— ${selectedAsset.baseAsset}/USDT (${selectedAsset.isFutures ? 'Futures' : 'Spot'})` : '';
-        if (body) body.innerHTML = `<p class="text-gray-600 text-[11px]">Click "Analyze Selected Coin" for a plain-English read of ${selectedAsset ? selectedAsset.baseAsset + "'s" : "this asset's"} current setup — trend, momentum, live news &amp; sentiment research, and a volatility-aware trade plan structure.</p>`;
+        if (body) body.innerHTML = `<p class="text-gray-600 text-[11px]">Click "Analyze Selected Coin" for a plain-English read of ${selectedAsset ? selectedAsset.baseAsset + "'s" : "this asset's"} current setup — trend, momentum, live news &amp; sentiment research, and current market conditions.</p>`;
         renderInsightHistory();
     }
 
@@ -381,7 +381,10 @@
         if (!selectedAsset || !lastRenderedInsight) { showToast('Generate a read first.', 'error'); return; }
         const p = lastRenderedInsight.parsed;
         const ctx = lastRenderedInsight.ctx;
-        const plan = computeTradePlan(ctx, p.trend, p);
+        const conditions = [];
+        if (typeof ctx.atrPct === 'number') conditions.push(`Volatility (ATR): ${ctx.atrPct.toFixed(2)}%`);
+        if (p.fearGreed && typeof p.fearGreed.value === 'number') conditions.push(`Fear & Greed: ${p.fearGreed.value}/100 (${p.fearGreed.classification || ''})`);
+        if (ctx.market === 'perpetual futures' && typeof ctx.fundingRatePct === 'number') conditions.push(`Funding: ${ctx.fundingRatePct >= 0 ? '+' : ''}${ctx.fundingRatePct.toFixed(4)}%`);
         const lines = [
             `${ctx.asset}/USDT (${ctx.market}) — ${ctx.interval} chart`,
             `Price: $${ctx.price}  |  24h: ${ctx.change24hPct >= 0 ? '+' : ''}${ctx.change24hPct}%`,
@@ -392,12 +395,10 @@
             p.outlook ? `Outlook: ${p.outlook}` : '',
             p.newsContext ? `News/sentiment: ${p.newsContext}` : '',
             '',
-            plan.bias === 'no-clear-setup'
-                ? 'Trade plan: no clear setup right now.'
-                : `Trade plan (${plan.bias}, ${plan.setupType}): entry $${fmtPrice(plan.entryLow)}–$${fmtPrice(plan.entryHigh)}, stop $${fmtPrice(plan.invalidation)} (~${plan.stopMult?.toFixed(1)}× ATR), T1 $${fmtPrice(plan.target1)}${plan.rr ? ` (R:R ~1:${plan.rr.toFixed(1)})` : ''}, T2 $${fmtPrice(plan.target2)}${plan.rr2 ? ` (R:R ~1:${plan.rr2.toFixed(1)})` : ''}.`,
+            conditions.length ? `Market conditions: ${conditions.join('  |  ')}` : '',
             p.catalystWatch ? `Watch: ${p.catalystWatch}` : '',
             '',
-            `⚠️ ${p.isLocalCalculation ? 'Locally calculated technical read' : 'AI-generated read, backed by live news + sentiment research'} + volatility-aware trade structure — not financial advice, not personalized, can be wrong.`,
+            `⚠️ ${p.isLocalCalculation ? 'Locally calculated technical read' : 'AI-generated read, backed by live news + sentiment research'} — not financial advice, not personalized, can be wrong.`,
             `Generated ${new Date().toLocaleString()} via CryptoBolt`
         ].filter(Boolean);
         try {
@@ -413,103 +414,6 @@
         const base = (CW_CONFIG.apiBaseUrl || '').replace(/\/$/, '');
         return /^https?:\/\//i.test(path) ? path : `${base}${path}`;
     }
-
-    // ---------- Feature: AI call track record ----------
-    // Every real (non-local-calc) trade plan the panel renders gets logged to the backend
-    // (server/src/lib/ai-call-tracker.js), which resolves it against live prices over the
-    // following hours/days and folds it into a public win-rate readout — see
-    // renderTrackRecordWidget() below. Fire-and-forget: a failed log never blocks or
-    // interrupts the read the visitor is looking at.
-    function logAiCallForTrackRecord(ctx, plan) {
-        if (!CW_CONFIG.aiInsightUrl || plan.bias === 'no-clear-setup') return;
-        try {
-            fetch(resolveApiUrl('/api/ai-calls'), {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({
-                    asset: ctx.asset,
-                    market: ctx.market,
-                    interval: ctx.interval,
-                    bias: plan.bias,
-                    setupType: plan.setupType,
-                    entryLow: plan.entryLow,
-                    entryHigh: plan.entryHigh,
-                    stopPrice: plan.invalidation,
-                    target1: plan.target1,
-                    target2: plan.target2,
-                    priceAtCall: ctx.price,
-                    atr14: typeof ctx.atr14 === 'number' ? ctx.atr14 : null,
-                    stopMult: plan.stopMult || null,
-                }),
-            }).catch(() => { /* best-effort — a visitor's own read is unaffected either way */ });
-        } catch (e) { /* fetch can throw synchronously in rare environments — ignore */ }
-    }
-
-    const SETUP_TYPE_SHORT_LABELS = {
-        'breakout-continuation': 'Breakout',
-        'pullback-entry': 'Pullback',
-        'range-fade': 'Range fade',
-    };
-
-    function renderTrackRecordWidget(stats) {
-        const container = document.getElementById('ai-track-record-body');
-        if (!container) return;
-        if (!stats || !stats.configured) {
-            container.innerHTML = '<p class="text-gray-600 text-[10px]">Track record isn\'t enabled on this deployment yet.</p>';
-            return;
-        }
-        if (stats.error) {
-            container.innerHTML = `<p class="text-gray-600 text-[10px]">${escapeHtml(stats.error)}</p>`;
-            return;
-        }
-        const o = stats.overall;
-        if (!o || o.total === 0) {
-            container.innerHTML = '<p class="text-gray-600 text-[10px]">No AI calls resolved yet — check back after the first setups play out.</p>';
-            return;
-        }
-        const winRatePct = o.winRate !== null ? Math.round(o.winRate * 100) : null;
-        const winColor = winRatePct === null ? 'text-gray-400' : winRatePct >= 50 ? 'text-[#14d38a]' : 'text-[#ff4d6a]';
-        const bySetup = Object.entries(stats.bySetupType || {})
-            .map(([type, b]) => {
-                const pct = b.winRate !== null ? `${Math.round(b.winRate * 100)}%` : '—';
-                const label = SETUP_TYPE_SHORT_LABELS[type] || type;
-                return `<div class="bg-gray-900/50 rounded px-2 py-1.5 text-[10px]">
-                    <div class="text-gray-600 text-[9px] uppercase mb-0.5">${escapeHtml(label)}</div>
-                    <div class="text-gray-300 font-mono">${pct} <span class="text-gray-600">(${b.wins}W / ${b.losses}L / ${b.expired}exp)</span></div>
-                </div>`;
-            }).join('');
-        container.innerHTML = `
-            <div class="flex flex-wrap items-center gap-3 mb-2">
-                <span class="text-[10px] font-mono px-2 py-1 rounded border border-gray-800 ${winColor}">${winRatePct !== null ? `${winRatePct}% win rate` : 'Win rate n/a'}</span>
-                <span class="text-[10px] font-mono px-2 py-1 rounded border border-gray-800 text-gray-400">${stats.avgR !== null ? `Avg ${stats.avgR >= 0 ? '+' : ''}${stats.avgR.toFixed(2)}R` : 'Avg R n/a'}</span>
-                <span class="text-[10px] font-mono px-2 py-1 rounded border border-gray-800 text-gray-400">${o.total} calls (${o.wins}W / ${o.losses}L / ${o.expired} expired)</span>
-            </div>
-            ${bySetup ? `<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-1">${bySetup}</div>` : ''}
-            <p class="text-gray-600 text-[9px] mt-2 leading-relaxed">Every structured setup this panel has produced, auto-checked against live prices until it hits a target, hits its stop, or expires unresolved. Past setups are not a guarantee of future ones.</p>
-        `;
-    }
-
-    (function initTrackRecordWidget() {
-        const toggle = document.getElementById('ai-track-record-toggle');
-        const body = document.getElementById('ai-track-record-body');
-        if (!toggle || !body) return;
-        let loaded = false;
-        toggle.addEventListener('click', async () => {
-            const showing = !body.classList.contains('hidden');
-            body.classList.toggle('hidden');
-            toggle.innerText = showing ? '📊 Show track record' : '📊 Hide track record';
-            if (showing || loaded || !CW_CONFIG.aiInsightUrl) return;
-            loaded = true;
-            body.innerHTML = '<p class="text-gray-600 text-[10px]">Loading…</p>';
-            try {
-                const res = await fetch(resolveApiUrl('/api/ai-calls/track-record'));
-                const stats = await res.json().catch(() => null);
-                renderTrackRecordWidget(stats);
-            } catch (e) {
-                renderTrackRecordWidget({ configured: true, error: "Couldn't reach the track record right now." });
-            }
-        });
-    })();
 
     async function requestBackendInsight(ctx, apiKey, useHouseKey) {
         const controller = new AbortController();
@@ -604,147 +508,6 @@
     // evidence (setupType) and how wide the stop should be relative to current volatility
     // (stopATRMultiple), so the plan reflects real conditions instead of a fixed "5% of range"
     // guess. Without an AI read (local/offline mode), sane defaults stand in for both.
-    function computeTradePlan(ctx, trend, ai) {
-        const support = ctx.recentSwingLow;
-        const resistance = ctx.recentSwingHigh;
-        const range = resistance - support;
-        const setupType = ai?.setupType || (trend === 'neutral' ? 'no-setup' : 'pullback-entry');
-
-        if (!(range > 0) || trend === 'neutral' || setupType === 'no-setup') {
-            return { bias: 'no-clear-setup', setupType: 'no-setup', support, resistance };
-        }
-
-        // ATR-based stop distance: falls back to a range-derived estimate if ATR wasn't
-        // available for this asset/window, so the plan never breaks, just gets less precise.
-        const atr = (typeof ctx.atr14 === 'number' && ctx.atr14 > 0) ? ctx.atr14 : range * 0.08;
-        const stopMult = (typeof ai?.stopATRMultiple === 'number') ? ai.stopATRMultiple : 1.5;
-        const stopDistance = atr * stopMult;
-
-        const isBreakout = setupType === 'breakout-continuation';
-        const isFade = setupType === 'range-fade';
-        const bias = trend === 'bullish' ? 'long-leaning' : 'short-leaning';
-
-        let entryLow, entryHigh, invalidation, target1, target2;
-        if (trend === 'bullish') {
-            if (isBreakout) {
-                // Enter on strength near resistance, stop below it, project the range beyond.
-                entryLow = resistance - range * 0.03;
-                entryHigh = resistance + range * 0.02;
-                invalidation = resistance - stopDistance;
-                target1 = resistance + range * 0.4;
-                target2 = resistance + range * 0.9;
-            } else if (isFade) {
-                entryLow = support;
-                entryHigh = support + range * 0.12;
-                invalidation = support - stopDistance;
-                target1 = support + range * 0.5;
-                target2 = resistance;
-            } else { // pullback-entry (default)
-                entryLow = support + range * 0.08;
-                entryHigh = support + range * 0.3;
-                invalidation = Math.min(support, entryLow) - stopDistance;
-                target1 = support + range * 0.7;
-                target2 = resistance;
-            }
-        } else {
-            if (isBreakout) {
-                entryLow = support - range * 0.02;
-                entryHigh = support + range * 0.03;
-                invalidation = support + stopDistance;
-                target1 = support - range * 0.4;
-                target2 = support - range * 0.9;
-            } else if (isFade) {
-                entryLow = resistance - range * 0.12;
-                entryHigh = resistance;
-                invalidation = resistance + stopDistance;
-                target1 = resistance - range * 0.5;
-                target2 = support;
-            } else { // pullback-entry (default)
-                entryLow = resistance - range * 0.3;
-                entryHigh = resistance - range * 0.08;
-                invalidation = Math.max(resistance, entryHigh) + stopDistance;
-                target1 = resistance - range * 0.7;
-                target2 = support;
-            }
-        }
-
-        const entryMid = (entryLow + entryHigh) / 2;
-        const risk = Math.abs(entryMid - invalidation);
-        const reward1 = Math.abs(target1 - entryMid);
-        const reward2 = Math.abs(target2 - entryMid);
-
-        return {
-            bias, setupType, entryLow, entryHigh, invalidation,
-            target: target2, target1, target2, support, resistance,
-            atr, stopMult,
-            rr: risk > 0 ? reward1 / risk : null,
-            rr2: risk > 0 ? reward2 / risk : null,
-        };
-    }
-
-    function fmtPrice(n) {
-        return Number(n).toLocaleString(undefined, priceFmt(n));
-    }
-
-    const SETUP_TYPE_LABELS = {
-        'breakout-continuation': 'Breakout continuation',
-        'pullback-entry': 'Pullback entry',
-        'range-fade': 'Range fade',
-    };
-
-    function renderTradePlanCard(plan, ctx) {
-        if (plan.bias === 'no-clear-setup') {
-            return `<div class="mt-3 rounded-lg border cw-tradeplan-neutral p-3">
-                <span class="text-[10.5px] font-bold uppercase tracking-wide text-gray-400 flex items-center gap-1.5 mb-1.5">🎯 Trade plan structure</span>
-                <p class="text-gray-500 text-[11px] leading-relaxed">Signals are too mixed (or a live catalyst makes technical structure unreliable right now) for a defensible setup, so none is shown — a plan built on an unclear read is worse than no plan at all.</p>
-            </div>`;
-        }
-        const isLong = plan.bias === 'long-leaning';
-        const cardClass = isLong ? 'cw-tradeplan-long' : 'cw-tradeplan-short';
-        const biasLabel = isLong ? '▲ Long-leaning structure' : '▼ Short-leaning structure';
-        const biasColor = isLong ? 'text-[#14d38a]' : 'text-[#ff4d6a]';
-        const setupLabel = SETUP_TYPE_LABELS[plan.setupType] || 'Structured setup';
-
-        // Position markers along a simple visual bar spanning invalidation → far target.
-        const lo = Math.min(plan.invalidation, plan.target2);
-        const hi = Math.max(plan.invalidation, plan.target2);
-        const span = hi - lo || 1;
-        const pct = (v) => Math.max(2, Math.min(98, ((v - lo) / span) * 100));
-
-        return `<div class="mt-3 rounded-lg border ${cardClass} p-3">
-            <div class="flex items-center justify-between mb-2 flex-wrap gap-1">
-                <span class="text-[10.5px] font-bold uppercase tracking-wide ${biasColor} flex items-center gap-1.5">🎯 Trade plan structure</span>
-                <span class="${biasColor} text-[10.5px] font-bold">${biasLabel} · ${setupLabel}</span>
-            </div>
-            <div class="cw-level-bar my-4 mx-1">
-                <div class="cw-level-marker" style="left:${pct(plan.invalidation)}%; background:#ff4d6a;" title="Stop / invalidation"></div>
-                <div class="cw-level-marker" style="left:${pct((plan.entryLow + plan.entryHigh) / 2)}%; background:#e5b324;" title="Entry zone"></div>
-                <div class="cw-level-marker" style="left:${pct(ctx.price)}%; background:#3b82f6;" title="Current price"></div>
-                <div class="cw-level-marker" style="left:${pct(plan.target1)}%; background:#7dd3a8;" title="Target 1"></div>
-                <div class="cw-level-marker" style="left:${pct(plan.target2)}%; background:#14d38a;" title="Target 2"></div>
-            </div>
-            <div class="grid grid-cols-2 gap-2 text-[10.5px] font-mono">
-                <div class="bg-gray-900/50 rounded px-2 py-1.5">
-                    <div class="text-gray-600 text-[9px] uppercase mb-0.5">Entry zone</div>
-                    <div class="text-amber-300">$${fmtPrice(plan.entryLow)} – $${fmtPrice(plan.entryHigh)}</div>
-                </div>
-                <div class="bg-gray-900/50 rounded px-2 py-1.5">
-                    <div class="text-gray-600 text-[9px] uppercase mb-0.5">Stop (~${plan.stopMult ? plan.stopMult.toFixed(1) : '1.5'}× ATR)</div>
-                    <div class="text-[#ff4d6a]">$${fmtPrice(plan.invalidation)}</div>
-                </div>
-                <div class="bg-gray-900/50 rounded px-2 py-1.5">
-                    <div class="text-gray-600 text-[9px] uppercase mb-0.5">Target 1 <span class="text-gray-600">${plan.rr ? `(1:${plan.rr.toFixed(1)})` : ''}</span></div>
-                    <div class="text-[#7dd3a8]">$${fmtPrice(plan.target1)}</div>
-                </div>
-                <div class="bg-gray-900/50 rounded px-2 py-1.5">
-                    <div class="text-gray-600 text-[9px] uppercase mb-0.5">Target 2 <span class="text-gray-600">${plan.rr2 ? `(1:${plan.rr2.toFixed(1)})` : ''}</span></div>
-                    <div class="text-[#14d38a]">$${fmtPrice(plan.target2)}</div>
-                </div>
-            </div>
-            <p class="text-gray-500 text-[9.5px] mt-2.5 leading-relaxed">Every price here is plain math — support/resistance from real swing points, stop distance from live ATR(14) volatility — never an AI-invented number. The AI only chooses the setup shape (${setupLabel.toLowerCase()}) and stop width given current volatility and news; a common approach is taking partial profit at Target 1 and trailing the rest toward Target 2. Not personalized risk advice — size any position to your own risk tolerance.</p>
-        </div>`;
-    }
-
     function renderAIInsight(parsed, ctx) {
         const body = document.getElementById('ai-insight-body');
         const trendColor = parsed.trend === 'bullish' ? 'text-[#14d38a] bg-[#14d38a]/10 border-[#14d38a]/30' : parsed.trend === 'bearish' ? 'text-[#ff4d6a] bg-[#ff4d6a]/10 border-[#ff4d6a]/30' : 'text-gray-300 bg-gray-800 border-gray-700';
@@ -816,15 +579,14 @@
                 <p class="text-gray-400 text-[10.5px] leading-relaxed px-3 pb-3">${escapeHtml(parsed.research)}</p>
             </details>` : '';
 
-        const tradePlan = computeTradePlan(ctx, parsed.trend, parsed);
-        const tradePlanBlock = renderTradePlanCard(tradePlan, ctx);
-
-        // Only genuine AI reads with an actual setup count toward the track record — a
-        // locally-calculated fallback (no API key / backend unreachable) never picked a
-        // setup shape via the model, so it isn't an "AI call" to hold to account.
-        if (!parsed.isLocalCalculation) {
-            logAiCallForTrackRecord(ctx, tradePlan);
-        }
+        const gaugeBlock = (typeof renderMarketConditionsGauge === 'function')
+            ? renderMarketConditionsGauge({
+                atrPct: ctx.atrPct,
+                fundingRatePct: ctx.market === 'perpetual futures' ? ctx.fundingRatePct : null,
+                fearGreed: parsed.fearGreed,
+                market: ctx.market,
+            })
+            : '';
 
         body.innerHTML = `
             ${sourceBanner}
@@ -845,9 +607,9 @@
             ${keyRiskBlock}
             ${researchBlock}
             ${sourcesBlock}
-            ${tradePlanBlock}
+            ${gaugeBlock}
             <p class="text-gray-600 text-[9px] mt-3">Based on ${escapeHtml(ctx.interval)} chart data for ${escapeHtml(ctx.asset)} (${ctx.market}) as of ${new Date().toLocaleTimeString(undefined, { hour12: false })}.</p>
-            <p class="mt-3 px-3 py-2.5 rounded border border-red-500/20 bg-red-500/5 text-gray-400 text-[9.5px] leading-relaxed">🚫 <strong class="text-gray-300">Not financial advice, not personalized to you, and can be wrong.</strong> ${parsed.isLocalCalculation ? 'This is a locally calculated technical summary' : 'This is an automated AI technical read'}, plus a rule-based illustrative trade structure — none of it knows your risk tolerance, position size, or portfolio. Always do your own research and consider your own risk before trading.</p>
+            <p class="mt-3 px-3 py-2.5 rounded border border-red-500/20 bg-red-500/5 text-gray-400 text-[9.5px] leading-relaxed">🚫 <strong class="text-gray-300">Not financial advice, not personalized to you, and can be wrong.</strong> ${parsed.isLocalCalculation ? 'This is a locally calculated technical summary' : 'This is an automated AI technical read'} — none of it knows your risk tolerance, position size, or portfolio. Always do your own research and consider your own risk before trading.</p>
         `;
 
         lastRenderedInsight = { parsed, ctx, assetId: selectedAsset ? selectedAsset.id : null };

@@ -79,7 +79,7 @@
     </script>
 
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
-    <link rel="stylesheet" href="css/styles.css?v=20260827">
+    <link rel="stylesheet" href="css/styles.css?v=20260906">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
     <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
     <link rel="stylesheet" href="css/premium.css?v=20260828">
@@ -327,6 +327,8 @@
 
                 <div id="analysis-result" class="hidden">
 
+                    <div id="result-banner"></div>
+
                     <div class="analysis-grid">
 
                         <div class="analysis-box">
@@ -356,6 +358,11 @@
                         <p id="result-summary"></p>
                     </div>
 
+                    <div id="result-outlook-wrap" class="analysis-section hidden">
+                        <h3>🔮 Next-move outlook</h3>
+                        <p id="result-outlook"></p>
+                    </div>
+
                     <div class="analysis-section">
                         <h3>Why?</h3>
                         <ul id="result-reasoning"></ul>
@@ -365,6 +372,23 @@
                         <h3>Market Risk</h3>
                         <p id="result-risk"></p>
                     </div>
+
+                    <div id="result-news-wrap" class="analysis-section hidden">
+                        <h3>📰 News & sentiment</h3>
+                        <p id="result-news"></p>
+                    </div>
+
+                    <div id="result-catalyst-wrap" class="analysis-section hidden">
+                        <h3>👀 Watch</h3>
+                        <p id="result-catalyst"></p>
+                    </div>
+
+                    <div id="result-sources-wrap" class="analysis-section hidden">
+                        <h3>Headlines checked (last 72h)</h3>
+                        <ul id="result-sources"></ul>
+                    </div>
+
+                    <div id="result-gauge"></div>
 
                 </div>
 
@@ -396,6 +420,8 @@
                     </div>
 
                 </div>
+
+                <div id="chat-followups" class="chat-followups"></div>
 
                 <div class="chat-suggestions">
                     <button>Why is BTC moving?</button>
@@ -467,7 +493,8 @@
 
 </div>
 
-<script src="js/ai-chat.js?v=20260902"></script>
+<script src="js/market-conditions-gauge.js?v=20260906"></script>
+<script src="js/ai-chat.js?v=20260906"></script>
 
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>

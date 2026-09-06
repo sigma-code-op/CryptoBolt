@@ -121,8 +121,8 @@
         });
     });
 
-    // ---------- On-chart overlay toggles (support/resistance, alerts, trade plan) ----------
-    ['toggle-sr-lines-btn', 'toggle-alert-lines-btn', 'toggle-tradeplan-lines-btn'].forEach(id => {
+    // ---------- On-chart overlay toggles (support/resistance, alerts) ----------
+    ['toggle-sr-lines-btn', 'toggle-alert-lines-btn'].forEach(id => {
         document.getElementById(id)?.addEventListener('click', (e) => {
             e.target.classList.toggle('active');
             if (typeof updateChartOverlayLines === 'function') updateChartOverlayLines();

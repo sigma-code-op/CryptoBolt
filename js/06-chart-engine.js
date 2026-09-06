@@ -409,7 +409,7 @@
         });
     }
 
-    // ---------- On-chart overlay lines: support/resistance, active alerts, AI trade plan ----------
+    // ---------- On-chart overlay lines: support/resistance, active alerts ----------
     // Drawn as native chart price lines (not a canvas overlay), so they scale/pan with the
     // chart for free. Redrawn on explicit triggers (asset change, toggle click, alert added/
     // removed, new AI insight) rather than on every live tick, to avoid needless churn.
@@ -427,7 +427,6 @@
 
         const srOn = document.getElementById('toggle-sr-lines-btn')?.classList.contains('active');
         const alertsOn = document.getElementById('toggle-alert-lines-btn')?.classList.contains('active');
-        const planOn = document.getElementById('toggle-tradeplan-lines-btn')?.classList.contains('active');
 
         if (srOn) {
             const recent = cachedCandlesArray.slice(-60);
@@ -455,15 +454,6 @@
             });
         }
 
-        if (planOn && lastRenderedInsight && lastRenderedInsight.ctx && selectedAsset.id === lastRenderedInsight.assetId) {
-            const plan = computeTradePlan(lastRenderedInsight.ctx, lastRenderedInsight.parsed.trend);
-            if (plan.bias !== 'no-clear-setup') {
-                const entryMid = (plan.entryLow + plan.entryHigh) / 2;
-                overlayPriceLines.push(candlestickSeries.createPriceLine({ price: entryMid, color: '#e5b324', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '🎯 Entry' }));
-                overlayPriceLines.push(candlestickSeries.createPriceLine({ price: plan.invalidation, color: '#ff4d6a', lineWidth: 1, lineStyle: 0, axisLabelVisible: true, title: '🚫 Invalidation' }));
-                overlayPriceLines.push(candlestickSeries.createPriceLine({ price: plan.target, color: '#14d38a', lineWidth: 1, lineStyle: 0, axisLabelVisible: true, title: '🏁 Target' }));
-            }
-        }
     }
 
     function updateIndicatorsData() {

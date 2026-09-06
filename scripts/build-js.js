@@ -51,6 +51,7 @@ const BUNDLES = {
     '07-alerts.js',
     '08-portfolio.js',
     '09-sound-compare.js',
+    'market-conditions-gauge.js',
     '10-ai-insight.js',
     '11-performance-notes-funding.js',
     '12-events-init.js',

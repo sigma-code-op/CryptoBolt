@@ -137,6 +137,25 @@ function resolveApiKey(req) {
   };
 }
 
+// Validates the client-sent conversation history for /api/ai-chat. Best-effort and
+// defensive: any malformed entry just gets dropped rather than rejecting the whole
+// request — chat memory is a nice-to-have, never a reason to fail someone's question.
+// Capped at 8 turns and 1200 chars/turn to keep prompt size and cost bounded.
+function sanitizeHistory(raw) {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter(
+      (m) =>
+        m &&
+        typeof m === 'object' &&
+        (m.role === 'user' || m.role === 'assistant') &&
+        typeof m.content === 'string' &&
+        m.content.trim().length > 0
+    )
+    .slice(-8)
+    .map((m) => ({ role: m.role, content: m.content.trim().slice(0, 1200) }));
+}
+
 router.post(
   '/api/ai-chat',
   aiRateLimit,
@@ -221,6 +240,8 @@ router.post(
         .catch(() => null),
     ]);
 
+    const history = sanitizeHistory(req.body?.history);
+
     const contextText =
       JSON.stringify({
 
@@ -260,6 +281,11 @@ router.post(
               content:
                 CHAT_SYSTEM_PROMPT,
             },
+
+            // Prior turns of this conversation, if the client sent any — lets the
+            // model handle follow-ups ("what about on the 4h chart?") instead of
+            // treating every message as a cold start. See sanitizeHistory() above.
+            ...history,
 
             {
               role:

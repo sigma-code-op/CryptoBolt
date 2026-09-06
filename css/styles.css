@@ -1246,27 +1246,70 @@ header::after {
 }
 .cw-shine:hover::after { left: 130%; }
 
-/* ---------- Trade plan card ---------- */
-.cw-tradeplan-long { border-color: rgba(20, 211, 138, 0.35) !important; background: linear-gradient(160deg, rgba(20, 211, 138, 0.08), transparent 60%); }
-.cw-tradeplan-short { border-color: rgba(255, 77, 106, 0.35) !important; background: linear-gradient(160deg, rgba(255, 77, 106, 0.08), transparent 60%); }
-.cw-tradeplan-neutral { border-color: rgba(107, 114, 128, 0.35) !important; background: rgba(255, 255, 255, 0.02); }
-.cw-level-bar {
-    height: 6px;
+/* ---------- Market Conditions gauge (replaces the old trade-plan card) ---------- */
+.cb-gauge-card {
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 12px;
+}
+.cb-gauge-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #9aa3ad;
+    margin-bottom: 8px;
+}
+.cb-gauge-row { margin-bottom: 10px; }
+.cb-gauge-row:last-of-type { margin-bottom: 0; }
+.cb-gauge-row-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10.5px;
+    margin-bottom: 4px;
+}
+.cb-gauge-row-title { color: #7d8794; }
+.cb-gauge-row-value { font-weight: 700; }
+.cb-gauge-row-num { color: #7d8794; font-weight: 400; font-family: "JetBrains Mono", monospace; }
+.cb-gauge-bar {
+    height: 5px;
     border-radius: 3px;
-    background: linear-gradient(90deg, var(--cw-red), var(--cw-amber), var(--cw-green));
-    position: relative;
-    overflow: visible;
+    background: rgba(255, 255, 255, 0.06);
+    overflow: hidden;
 }
-.cw-level-marker {
-    position: absolute;
-    top: -3px;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: #fff;
-    border: 2px solid #090a0f;
-    transform: translateX(-50%);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+.cb-gauge-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease;
 }
+.cb-gauge-footnote {
+    margin-top: 8px;
+    font-size: 9px;
+    color: #5b6472;
+    line-height: 1.5;
+}
+
+/* ---------- Chat follow-up suggestion chips (ai.html) ---------- */
+.chat-followups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 4px 8px;
+}
+.chat-followups button {
+    font-size: 10.5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(79, 216, 232, 0.3);
+    background: rgba(79, 216, 232, 0.08);
+    color: #4fd8e8;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.chat-followups button:hover { background: rgba(79, 216, 232, 0.18); }
 
 /* ---------- Badges / pills (e.g. "Enterprise Matrix Feed") get a hairline + micro-dot ---------- */
 .bg-emerald-500\/10.text-\[\#14d38a\] {

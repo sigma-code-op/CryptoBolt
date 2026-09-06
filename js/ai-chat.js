@@ -11,10 +11,46 @@
         "https://api.cryptobolt.io";
 
     const AI_ENDPOINT = `${String(API_BASE).replace(/\/$/, "")}/api/ai-chat`;
+    const AI_INSIGHT_ENDPOINT = `${String(API_BASE).replace(/\/$/, "")}/api/ai-insight`;
 
     const $ = (id) => document.getElementById(id);
 
     let marketData = null;
+
+    /* -----------------------------
+       CHAT MEMORY
+       Kept client-side (last CHAT_HISTORY_LIMIT turns) and sent with every
+       question so the backend can answer follow-ups ("what about the 4h
+       chart?") instead of treating every message as a cold start. Persisted
+       to localStorage so a reload doesn't lose the conversation.
+    ----------------------------- */
+    const CHAT_HISTORY_LIMIT = 8; // messages (user+assistant combined), not full transcript
+    const CHAT_HISTORY_KEY = "cw_ai_chat_history";
+
+    function loadChatHistory() {
+        try {
+            const raw = JSON.parse(localStorage.getItem(CHAT_HISTORY_KEY) || "[]");
+            return Array.isArray(raw) ? raw.filter((m) => m && typeof m.content === "string" && (m.role === "user" || m.role === "assistant")) : [];
+        } catch {
+            return [];
+        }
+    }
+
+    let chatHistory = loadChatHistory();
+
+    function saveChatHistory() {
+        try {
+            localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(chatHistory.slice(-CHAT_HISTORY_LIMIT)));
+        } catch {
+            /* storage full/unavailable — memory still works for this session */
+        }
+    }
+
+    function pushChatHistory(role, content) {
+        chatHistory.push({ role, content: String(content).slice(0, 1200) });
+        chatHistory = chatHistory.slice(-CHAT_HISTORY_LIMIT);
+        saveChatHistory();
+    }
 
     /* -----------------------------
        API KEY
@@ -316,6 +352,7 @@
 
             const payload = {
                 message: question,
+                history: chatHistory.slice(-CHAT_HISTORY_LIMIT),
                 context: {
                     selectedAsset: marketData?.asset || symbol().replace("USDT", ""),
                     asset: marketData?.asset || symbol().replace("USDT", ""),
@@ -483,6 +520,13 @@
         return wrapper;
     }
 
+    // Replay any persisted conversation so a page reload doesn't lose it. The static
+    // welcome bubble already in the HTML stays as the first message either way.
+    (function restoreChatHistory() {
+        if (!chatHistory.length) return;
+        chatHistory.forEach((m) => addMessage(m.role === "assistant" ? "ai" : "user", m.content));
+    })();
+
     function setMessageText(wrapper, type, text) {
         const el = wrapper?.querySelector(".message-text");
         if (!el) return;
@@ -504,7 +548,45 @@
         if (thinking) {
             setMessageText(thinking, "ai", answer);
         }
+        pushChatHistory("user", question);
+        pushChatHistory("assistant", answer);
+        renderFollowups(question, answer);
     });
+
+    /* -----------------------------
+       FOLLOW-UP SUGGESTIONS
+       A small, rotating pool of natural next questions shown under the AI's
+       latest reply — makes the chat feel like a conversation instead of a
+       one-shot Q&A box. Purely client-side (no extra AI call to generate
+       them), so there's no added latency or cost.
+    ----------------------------- */
+    const FOLLOWUP_POOL = [
+        "What would change this view?",
+        "How does this compare to yesterday?",
+        "Explain that more simply",
+        "What's the main risk here?",
+        "How does this look on a longer timeframe?",
+        "What should I watch next?",
+    ];
+
+    function renderFollowups() {
+        const container = $("chat-followups");
+        if (!container) return;
+        const picks = FOLLOWUP_POOL.slice().sort(() => Math.random() - 0.5).slice(0, 3);
+        container.innerHTML = "";
+        picks.forEach((text) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = text;
+            btn.addEventListener("click", () => {
+                if ($("chat-input")) {
+                    $("chat-input").value = text;
+                    $("chat-input").focus();
+                }
+            });
+            container.appendChild(btn);
+        });
+    }
 
     /* -----------------------------
        QUICK QUESTIONS
@@ -527,6 +609,9 @@
 
     $("clear-chat")?.addEventListener("click", () => {
         if (!$("chat-messages")) return;
+        chatHistory = [];
+        saveChatHistory();
+        if ($("chat-followups")) $("chat-followups").innerHTML = "";
         $("chat-messages").innerHTML = `
             <div class="chat-message ai">
                 <div class="message-avatar">⚡</div>
@@ -539,11 +624,185 @@
     });
 
     /* -----------------------------
-       ANALYZE BUTTON
+       ANALYZE BUTTON — now backed by the real /api/ai-insight endpoint (the
+       same Groq-backed, news+sentiment-grounded analysis app.html's Terminal
+       uses), instead of a page-local MA(7)/MA(25) crossover. Falls back to
+       that local calculation — clearly labeled as such — only when no key is
+       available or the backend can't be reached.
     ----------------------------- */
 
     function setLoading(on) {
         $("analysis-loading")?.classList.toggle("hidden", !on);
+    }
+
+    // ATR(14) from raw klines (index 2=high, 3=low, 4=close), plus the same value
+    // expressed as a % of price so a gauge/threshold reads sensibly across assets.
+    function computeATR14(candles) {
+        if (!Array.isArray(candles) || candles.length < 15) return null;
+        const trs = [];
+        for (let i = 1; i < candles.length; i++) {
+            const high = Number(candles[i][2]), low = Number(candles[i][3]), prevClose = Number(candles[i - 1][4]);
+            trs.push(Math.max(high - low, Math.abs(high - prevClose), Math.abs(low - prevClose)));
+        }
+        const last14 = trs.slice(-14);
+        if (last14.length < 14) return null;
+        return last14.reduce((a, b) => a + b, 0) / last14.length;
+    }
+
+    function computeVolumeTrend(candles) {
+        if (!Array.isArray(candles) || candles.length < 20) return null;
+        const vols = candles.slice(-10).map((c) => Number(c[5])).filter(Number.isFinite);
+        const prevVols = candles.slice(-20, -10).map((c) => Number(c[5])).filter(Number.isFinite);
+        if (vols.length < 5 || prevVols.length < 5) return null;
+        const avgRecent = vols.reduce((a, b) => a + b, 0) / vols.length;
+        const avgPrior = prevVols.reduce((a, b) => a + b, 0) / prevVols.length;
+        if (!(avgPrior > 0)) return null;
+        const pct = ((avgRecent - avgPrior) / avgPrior) * 100;
+        return pct > 15 ? "rising" : pct < -15 ? "falling" : "flat";
+    }
+
+    // Builds the exact context shape the backend's validateContext() expects
+    // (see server/src/validators.js) from this page's own fetched ticker+klines —
+    // no chart-engine dependency needed, unlike app.html's richer version.
+    function buildInsightContext() {
+        if (!marketData || !Array.isArray(marketData.candles) || marketData.candles.length < 20) return null;
+        const tech = technicalContext();
+        const highs = marketData.candles.slice(-60).map((c) => Number(c[2])).filter(Number.isFinite);
+        const lows = marketData.candles.slice(-60).map((c) => Number(c[3])).filter(Number.isFinite);
+        if (!highs.length || !lows.length) return null;
+        const atr14 = computeATR14(marketData.candles);
+        return {
+            asset: marketData.asset,
+            market: marketData.isFutures ? "perpetual futures" : "spot",
+            interval: marketData.timeframe,
+            price: marketData.price,
+            change24hPct: marketData.change24h,
+            high24h: marketData.high24h,
+            low24h: marketData.low24h,
+            volume24hUSDT: marketData.volume,
+            ma7: tech.ma7,
+            ma25: tech.ma25,
+            rsi14: tech.rsi14,
+            atr14,
+            atrPct: atr14 !== null && marketData.price ? Number(((atr14 / marketData.price) * 100).toFixed(3)) : null,
+            volumeTrend: computeVolumeTrend(marketData.candles),
+            recentSwingHigh: Math.max(...highs),
+            recentSwingLow: Math.min(...lows),
+            recentClosesTrend: tech.recentCloses,
+        };
+    }
+
+    // Deterministic, non-AI fallback — same shape as the backend's parsed result so
+    // renderInsight() can treat both identically. Used when no key is set/selected,
+    // or when the backend request fails outright.
+    function computeLocalRead(ctx) {
+        const trend = ctx.ma7 != null && ctx.ma25 != null
+            ? (ctx.ma7 > ctx.ma25 ? "bullish" : ctx.ma7 < ctx.ma25 ? "bearish" : "neutral")
+            : "neutral";
+        const momentum = ctx.rsi14 == null ? "moderate" : (ctx.rsi14 >= 70 || ctx.rsi14 <= 30) ? "strong" : "moderate";
+        return {
+            trend, momentum, confidence: null,
+            support: ctx.recentSwingLow, resistance: ctx.recentSwingHigh,
+            summary: `Price is currently $${formatPrice(ctx.price)}. The 24-hour move is ${Number(ctx.change24hPct).toFixed(2)}%. ` +
+                (ctx.ma7 != null && ctx.ma25 != null ? `MA(7) is ${ctx.ma7 > ctx.ma25 ? "above" : "below"} MA(25), ` : "") +
+                `while RSI(14) is ${ctx.rsi14 != null ? ctx.rsi14.toFixed(1) : "unavailable"}.`,
+            reasoningSteps: [
+                `Current price: $${formatPrice(ctx.price)}`,
+                `MA(7): ${ctx.ma7 != null ? "$" + formatPrice(ctx.ma7) : "—"}`,
+                `MA(25): ${ctx.ma25 != null ? "$" + formatPrice(ctx.ma25) : "—"}`,
+                `24h change: ${Number(ctx.change24hPct).toFixed(2)}%`,
+            ],
+            keyRisk: "Technical indicators can disagree and sudden news can invalidate a market read. Treat this as research, not a prediction.",
+            isLocalCalculation: true,
+        };
+    }
+
+    async function requestBackendInsight(ctx) {
+        const useHouseKey = getKeyMode() === "house";
+        const key = getKey();
+        const headers = { "Content-Type": "application/json" };
+        if (useHouseKey) headers["x-use-house-key"] = "1"; else headers["x-groq-key"] = key;
+
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 20000);
+        try {
+            const res = await fetch(AI_INSIGHT_ENDPOINT, {
+                method: "POST",
+                headers,
+                body: JSON.stringify({ context: ctx }),
+                signal: controller.signal,
+            });
+            const data = await res.json().catch(() => null);
+            if (!res.ok) throw new Error(data?.error || `AI service responded with status ${res.status}`);
+            if (!data?.result) throw new Error("AI service returned an unexpected response.");
+            return { ...data.result, sources: Array.isArray(data.sources) ? data.sources : [], fearGreed: data.fearGreed || null };
+        } finally {
+            clearTimeout(timer);
+        }
+    }
+
+    function setSection(id, html) {
+        const wrap = $(id + "-wrap");
+        const inner = $(id);
+        if (!inner) return;
+        if (html) {
+            inner.innerHTML = html;
+            wrap?.classList.remove("hidden");
+        } else {
+            wrap?.classList.add("hidden");
+        }
+    }
+
+    function renderInsight(parsed, ctx) {
+        if ($("result-trend")) $("result-trend").textContent = parsed.trend ? parsed.trend[0].toUpperCase() + parsed.trend.slice(1) : "—";
+        if ($("result-momentum")) $("result-momentum").textContent = parsed.momentum ? parsed.momentum[0].toUpperCase() + parsed.momentum.slice(1) : "—";
+        if ($("result-rsi")) $("result-rsi").textContent = ctx.rsi14 != null ? ctx.rsi14.toFixed(1) : "—";
+        if ($("result-sentiment")) {
+            $("result-sentiment").textContent = (parsed.fearGreed && typeof parsed.fearGreed.value === "number")
+                ? `${parsed.fearGreed.value}/100 (${parsed.fearGreed.classification || "—"})`
+                : (parsed.confidence ? `${parsed.confidence[0].toUpperCase()}${parsed.confidence.slice(1)} confidence` : "Ask AI in chat");
+        }
+
+        if ($("analysis-title")) $("analysis-title").textContent = `${ctx.asset} Market Read`;
+
+        const banner = $("result-banner");
+        if (banner) {
+            banner.innerHTML = parsed.isLocalCalculation
+                ? `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#e5b324;">⚠️ <strong>Not AI-generated.</strong> No API key is set, so this is a locally calculated technical read — not by an AI model, with no live news or sentiment research. Add an API key above for the full AI-generated read.</p></div>`
+                : `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#c084fc;">🤖 AI-generated read from Llama (via Groq) — grounded in live indicators, news headlines, and market sentiment researched for this request.</p></div>`;
+        }
+
+        if ($("result-summary")) $("result-summary").textContent = parsed.summary || "";
+        setSection("result-outlook", parsed.outlook ? esc(parsed.outlook) : "");
+        if ($("result-reasoning")) {
+            $("result-reasoning").innerHTML = (Array.isArray(parsed.reasoningSteps) ? parsed.reasoningSteps : [])
+                .map((s) => `<li>${esc(s)}</li>`).join("");
+        }
+        if ($("result-risk")) $("result-risk").textContent = parsed.keyRisk || "Technical indicators can disagree and sudden news can invalidate a market read. Treat this as research, not a prediction.";
+        setSection("result-news", parsed.newsContext ? esc(parsed.newsContext) : "");
+        setSection("result-catalyst", parsed.catalystWatch ? esc(parsed.catalystWatch) : "");
+        setSection(
+            "result-sources",
+            Array.isArray(parsed.sources) && parsed.sources.length
+                ? parsed.sources.map((s) => `<li>${esc(s.title)} — ${esc(s.source)}, ${esc(String(s.hoursAgo))}h ago</li>`).join("")
+                : ""
+        );
+
+        const gaugeHost = $("result-gauge");
+        if (gaugeHost) {
+            gaugeHost.innerHTML = (typeof renderMarketConditionsGauge === "function")
+                ? renderMarketConditionsGauge({
+                    atrPct: ctx.atrPct,
+                    fundingRatePct: null, // ai.html doesn't fetch funding rate (spot ticker only)
+                    fearGreed: parsed.fearGreed,
+                    market: ctx.market,
+                })
+                : "";
+        }
+    }
+
+    function esc(s) {
+        return escapeHtmlChat(s);
     }
 
     $("analyze-button")?.addEventListener("click", async () => {
@@ -554,65 +813,25 @@
 
         try {
             await fetchMarket();
-            const tech = technicalContext();
+            const ctx = buildInsightContext();
+            if (!ctx) throw new Error("Not enough chart data loaded yet — try again in a moment.");
 
-            const trend =
-                tech.ma7 != null && tech.ma25 != null
-                    ? tech.ma7 > tech.ma25
-                        ? "Bullish"
-                        : tech.ma7 < tech.ma25
-                          ? "Bearish"
-                          : "Neutral"
-                    : "—";
+            const useHouseKey = getKeyMode() === "house";
+            const key = getKey();
 
-            if ($("result-trend")) $("result-trend").textContent = trend;
-
-            if ($("result-momentum")) {
-                $("result-momentum").textContent =
-                    tech.rsi14 == null
-                        ? "—"
-                        : tech.rsi14 >= 70
-                          ? "Strong / Overbought"
-                          : tech.rsi14 <= 30
-                            ? "Strong / Oversold"
-                            : "Moderate";
+            let parsed;
+            if (!useHouseKey && !key) {
+                parsed = computeLocalRead(ctx);
+            } else {
+                try {
+                    parsed = await requestBackendInsight(ctx);
+                } catch (err) {
+                    console.warn("[CryptoBolt AI] backend insight failed, falling back to local calc:", err);
+                    parsed = computeLocalRead(ctx);
+                }
             }
 
-            if ($("result-rsi")) {
-                $("result-rsi").textContent =
-                    tech.rsi14 != null ? tech.rsi14.toFixed(1) : "—";
-            }
-
-            if ($("result-sentiment")) $("result-sentiment").textContent = "Ask AI in chat";
-
-            if ($("analysis-title")) {
-                $("analysis-title").textContent = `${marketData.asset} Market Read`;
-            }
-
-            if ($("result-summary")) {
-                $("result-summary").textContent =
-                    `Price is currently $${formatPrice(marketData.price)}. ` +
-                    `The 24-hour move is ${Number(marketData.change24h).toFixed(2)}%. ` +
-                    (tech.ma7 != null && tech.ma25 != null
-                        ? `MA(7) is ${tech.ma7 > tech.ma25 ? "above" : "below"} MA(25), `
-                        : "") +
-                    `while RSI(14) is ${tech.rsi14?.toFixed(1) ?? "unavailable"}.`;
-            }
-
-            if ($("result-reasoning")) {
-                $("result-reasoning").innerHTML = `
-                    <li>Current price: $${formatPrice(marketData.price)}</li>
-                    <li>MA(7): ${tech.ma7 != null ? "$" + formatPrice(tech.ma7) : "—"}</li>
-                    <li>MA(25): ${tech.ma25 != null ? "$" + formatPrice(tech.ma25) : "—"}</li>
-                    <li>24h change: ${Number(marketData.change24h).toFixed(2)}%</li>
-                `;
-            }
-
-            if ($("result-risk")) {
-                $("result-risk").textContent =
-                    "Technical indicators can disagree and sudden news can invalidate a market read. Treat this as research, not a prediction.";
-            }
-
+            renderInsight(parsed, ctx);
             $("analysis-result")?.classList.remove("hidden");
             if ($("analysis-status")) $("analysis-status").textContent = "READY";
         } catch (error) {

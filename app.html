@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-/eV5UwTChsrw9psZ/pwqtULtkPqBc6k74D2+4F9Sk5Y=' 'sha256-G9D1ONwVJJmjAaVcYxwR4yPyyKmecuEDxuSszGB+OXA=' 'sha256-BIEnahnLfnnHdG43Zqkz4yjH8jU34YI9ZgOozvNjg7M='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-+1ATsJIcy4OfJSpy6/2I3ysVSd/V7tWStk4sLoW3YcM=' 'sha256-G9D1ONwVJJmjAaVcYxwR4yPyyKmecuEDxuSszGB+OXA=' 'sha256-BIEnahnLfnnHdG43Zqkz4yjH8jU34YI9ZgOozvNjg7M=' 'sha256-vlYvxw2kx849dDSVczQWFrvc1WSxw0sUQuXjhzsSjoM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
@@ -78,7 +78,7 @@
         "Portfolio and futures position tracking with liquidation risk",
         "Price alerts",
         "AI market insight grounded in live news and Fear & Greed sentiment",
-        "Volatility-aware, ATR-based trade plan structure"
+        "Read-only market conditions gauge (volatility, sentiment, funding)"
       ]
     }
     </script>
@@ -130,7 +130,7 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <!-- TradingView Lightweight Charts -->
     <script src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
-    <link rel="stylesheet" href="css/styles.css?v=20260827">
+    <link rel="stylesheet" href="css/styles.css?v=20260906">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
     <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
     <link rel="stylesheet" href="css/premium.css?v=20260828">
@@ -446,7 +446,6 @@
                         <span class="text-[10px] uppercase font-bold text-gray-500 px-2 tracking-wider">On-chart:</span>
                         <button id="toggle-sr-lines-btn" class="chart-overlay-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 active transition-all cursor-pointer">S/R Lines</button>
                         <button id="toggle-alert-lines-btn" class="chart-overlay-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 active transition-all cursor-pointer">Alerts</button>
-                        <button id="toggle-tradeplan-lines-btn" class="chart-overlay-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 active transition-all cursor-pointer">Trade Plan</button>
                     </div>
 
                     <button id="fullscreen-btn" title="Fullscreen chart" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer ml-auto">⛶ Fullscreen</button>
@@ -588,17 +587,15 @@
                 </div>
             </div>
             <div id="ai-insight-body" class="p-5">
-                <p class="text-gray-600 text-[11px]">Select an asset, then click "Analyze Selected Coin" for a read that combines technicals, live news, and market sentiment — trend, momentum, a hedged outlook, and a volatility-aware trade plan structure, not just indicator math.</p>
+                <p class="text-gray-600 text-[11px]">Select an asset, then click "Analyze Selected Coin" for a read that combines technicals, live news, and market sentiment — trend, momentum, a hedged outlook, and current market conditions, not just indicator math.</p>
             </div>
             <div class="px-5 pb-3 flex items-center gap-3 flex-wrap">
                 <button id="ai-copy-snapshot-btn" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">📋 Copy snapshot</button>
                 <button id="ai-history-toggle" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">📜 Show read history</button>
-                <button id="ai-track-record-toggle" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">📊 Show track record</button>
             </div>
             <div id="ai-history-list" class="hidden px-5 pb-3"></div>
-            <div id="ai-track-record-body" class="hidden px-5 pb-3"></div>
             <div class="px-5 pb-4 text-[9px] text-gray-600 border-t border-gray-800/60 pt-2 leading-relaxed">
-                🚫 Generated by an AI model (or, without an API key, this page's own rule-based math) reading recent price data. This includes a technical read, a hedged "next-move outlook," and an illustrative trade plan structure built from support/resistance levels. None of this is financial advice, none of it is personalized to your risk tolerance or portfolio, none of it is a guarantee of future price movement, and all of it can be wrong. Always do your own research before trading.
+                🚫 Generated by an AI model (or, without an API key, this page's own rule-based math) reading recent price data. This includes a technical read, a hedged "next-move outlook," and read-only market conditions context. None of this is financial advice, none of it is personalized to your risk tolerance or portfolio, none of it is a guarantee of future price movement, and all of it can be wrong. Always do your own research before trading.
             </div>
         </div>
 
