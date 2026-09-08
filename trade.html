@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
-    <script src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
+                    <script defer src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="css/styles.css?v=20260827">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
@@ -481,13 +481,13 @@
 
         <!-- Sign in / sign up modal -->
         <div id="auth-modal" class="cw-modal-backdrop">
-            <div class="cw-modal-card" style="max-width:380px;" role="dialog" aria-modal="true" aria-label="Sign in or create an account">
+                <div class="cw-modal-card" style="max-width:380px;" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
                 <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#1e222b]">
-                    <div class="flex items-center gap-4">
+                    <div id="auth-modal-title" class="flex items-center gap-4">
                         <button id="auth-tab-signin" type="button" class="auth-tab-btn auth-tab-active text-sm font-bold pb-1 cursor-pointer">Sign In</button>
                         <button id="auth-tab-signup" type="button" class="auth-tab-btn text-sm font-bold pb-1 cursor-pointer">Sign Up</button>
                     </div>
-                    <button id="auth-modal-close" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
+                    <button id="auth-modal-close" type="button" aria-label="Close sign in dialog" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
                 </div>
                 <div class="p-4 space-y-3">
                     <div id="auth-config-warning" class="hidden text-[10.5px] leading-relaxed text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded p-2.5">

@@ -32,6 +32,13 @@ test('GET /api/health returns ok', async () => {
   assert.equal(typeof body.mailerConfigured, 'boolean');
 });
 
+test('requests from a null origin are rejected', async () => {
+  const res = await fetch(`${baseUrl}/api/health`, {
+    headers: { Origin: 'null' },
+  });
+  assert.equal(res.status, 403);
+});
+
 test('GET /api/health reports a currently-supported Groq model, not a retired one', async () => {
   // Regression guard: server.js's GROQ_MODEL default previously pointed at
   // llama-3.3-70b-versatile, which Groq retires 2026-08-16. This fails loudly if that default
@@ -130,7 +137,7 @@ test('server refuses to start in production with ALLOWED_ORIGINS unset (fails cl
   // otherwise kill the whole test runner rather than just this one test.
   const result = spawnSync(
     process.execPath,
-    ['src/server.js'],
+    ['src/start.js'],
     {
       cwd: fileURLToPath(new URL('..', import.meta.url)),
       env: { ...process.env, NODE_ENV: 'production', ALLOWED_ORIGINS: '', PORT: '0' },

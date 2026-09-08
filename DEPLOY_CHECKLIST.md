@@ -1,8 +1,7 @@
 # CryptoBolt Deployment Checklist
 
-Use the complete step-by-step guide in
-[CryptoBolt_Complete_Deployment_Guide.md](./CryptoBolt_Complete_Deployment_Guide.md). It is the
-single source of truth for deployment configuration and covers:
+Use this checklist with the focused setup notes in
+[`ACCOUNTS_SETUP.md`](./ACCOUNTS_SETUP.md). It covers:
 
 - The Tailwind CSS build step (`npm run build:css`)
 - The Content-Security-Policy build step (`npm run build:csp` — see README.md, "Content-Security-Policy")

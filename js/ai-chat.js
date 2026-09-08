@@ -55,12 +55,12 @@
     /* -----------------------------
        API KEY
        Two modes, same idea as the app.html AI panel: 'own' (classic BYOK, key stays in
-       this browser's localStorage) or 'house' (no key needed — the request is flagged
+    this browser's sessionStorage) or 'house' (no key needed — the request is flagged
        with x-use-house-key and the backend's own shared Groq key is used instead, if the
        deployment has one configured).
     ----------------------------- */
 
-    const getKey = () => localStorage.getItem("cw_groq_api_key") || "";
+    const getKey = () => sessionStorage.getItem("cw_groq_api_key") || "";
 
     const getKeyMode = () => (localStorage.getItem("cw_ai_key_mode") === "house" ? "house" : "own");
     const setKeyMode = (mode) => localStorage.setItem("cw_ai_key_mode", mode === "house" ? "house" : "own");
@@ -103,13 +103,13 @@
             alert("Please enter a valid Groq API key (starts with gsk_).");
             return;
         }
-        localStorage.setItem("cw_groq_api_key", key);
-        alert("API key saved to this browser.");
+        sessionStorage.setItem("cw_groq_api_key", key);
+        alert("API key saved for this browser tab.");
         $("api-panel")?.classList.add("hidden");
     });
 
     $("clear-key")?.addEventListener("click", () => {
-        localStorage.removeItem("cw_groq_api_key");
+        sessionStorage.removeItem("cw_groq_api_key");
         if ($("groq-key")) $("groq-key").value = "";
     });
 

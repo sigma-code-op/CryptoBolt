@@ -12,7 +12,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SOURCE_PATH = path.resolve(__dirname, '../../js/05-indicators.js');
+const SOURCE_PATH = path.resolve(__dirname, '../../../js/05-indicators.js');
 
 export function loadIndicators() {
   const source = readFileSync(SOURCE_PATH, 'utf8');

@@ -1,6 +1,6 @@
-# Moved
+# CryptoBolt Deployment Guide
 
-This guide has been superseded by
-[`CryptoBolt_Complete_Deployment_Guide.md`](./CryptoBolt_Complete_Deployment_Guide.md), which
-covers everything this file used to plus the Tailwind CSS build step, cross-device cloud sync
-setup, and CI — all added in the latest pass. Please use that file going forward.
+Use this repository's documented build and deployment checks. The quick checklist is in
+[`DEPLOY_CHECKLIST.md`](./DEPLOY_CHECKLIST.md); account-specific Supabase setup is in
+[`ACCOUNTS_SETUP.md`](./ACCOUNTS_SETUP.md). Run `npm run build` before publishing frontend
+changes, and run `npm test` plus `npm --prefix server test` after installing dependencies.

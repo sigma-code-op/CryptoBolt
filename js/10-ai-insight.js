@@ -1,7 +1,8 @@
 // ---------- AI Market Insight ----------
-    // Two key modes, chosen per-visitor and remembered in localStorage:
+    // Two key modes, chosen per-visitor and remembered in localStorage. The actual BYOK
+    // secret is kept in sessionStorage so it is cleared when the browser tab closes.
     //  - 'own'   (default, classic BYOK): the visitor's Groq key lives only in their own
-    //            browser's localStorage and is sent per-request to this app's backend
+    //            browser's sessionStorage and is sent per-request to this app's backend
     //            (CW_CONFIG.aiInsightUrl) in the x-groq-key header. The backend uses it
     //            once and never stores it.
     //  - 'house': no key needed from the visitor — the request is sent with an
@@ -13,7 +14,7 @@
     // panel falls back to a clearly-labeled local, rule-based read.
 
     function getStoredApiKey() {
-        return localStorage.getItem('cw_groq_api_key') || '';
+        return sessionStorage.getItem('cw_groq_api_key') || '';
     }
 
     function getAIKeyMode() {
@@ -74,7 +75,7 @@
         const input = document.getElementById('ai-key-input');
         const key = input.value.trim();
         if (!key) { showToast('Paste a valid Groq API key first.', 'error'); return; }
-        localStorage.setItem('cw_groq_api_key', key);
+        sessionStorage.setItem('cw_groq_api_key', key);
         input.value = '';
         syncAIKeyUI();
         document.getElementById('ai-key-panel').classList.add('hidden');
@@ -82,7 +83,7 @@
     });
 
     document.getElementById('ai-key-clear-btn').addEventListener('click', () => {
-        localStorage.removeItem('cw_groq_api_key');
+        sessionStorage.removeItem('cw_groq_api_key');
         syncAIKeyUI();
         showToast('API key removed.', 'info');
     });
@@ -493,7 +494,10 @@
             } else {
                 msg = (err && err.message) || 'Unknown error contacting the AI service.';
             }
-            body.innerHTML = `<p class="text-[#ff4d6a] text-[11px]">Couldn't generate an insight: ${msg}</p>`;
+            const error = document.createElement('p');
+            error.className = 'text-[#ff4d6a] text-[11px]';
+            error.textContent = `Couldn't generate an insight: ${msg}`;
+            body.replaceChildren(error);
         } finally {
             aiInsightLoading = false;
             btn.disabled = false;

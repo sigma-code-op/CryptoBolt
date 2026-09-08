@@ -6,9 +6,9 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node --watch src/server.js",
-    "test": "NODE_ENV=test node --test",
+    "start": "node src/start.js",
+    "dev": "node --watch src/start.js",
+    "test": "node --test",
     "build": "echo 'No build step needed — server/ is plain Node/Express, nothing to compile.'"
   },
   "engines": {

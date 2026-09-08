@@ -12,7 +12,8 @@ Follow / find CryptoBolt: [YouTube](https://youtube.com/@cryptobolt) ·
 [GitHub](https://github.com/sigma-code-op/CryptoBolt)
 
 **First time deploying a website?** Start with
-[`CryptoBolt_Complete_Deployment_Guide.md`](./CryptoBolt_Complete_Deployment_Guide.md) — it walks
+[`DEPLOYMENT_GUIDE.md`](./DEPLOYMENT_GUIDE.md) — it points to the current deployment
+instructions and walks
 through every click, in order, in plain English. `DEPLOY_CHECKLIST.md` is the fast reference
 version once you've done it once.
 
@@ -111,7 +112,7 @@ flatter another's.
 
 ## Deploying & going live
 
-Use the complete [single deployment guide](./CryptoBolt_Complete_Deployment_Guide.md). It is the
+Use the complete [deployment guide](./DEPLOYMENT_GUIDE.md). It is the
 source of truth for the Tailwind build step, frontend hosting, Node backend deployment, Supabase
 (accounts + cross-device cloud sync), Transak, SMTP, DNS, HTTPS, CI, configuration, testing, and
 troubleshooting. The short [deployment checklist](./DEPLOY_CHECKLIST.md) is only a final reminder

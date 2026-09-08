@@ -90,6 +90,8 @@
         const configWarning = document.getElementById('auth-config-warning');
         const USERNAME_RE = /^[A-Za-z0-9_]{3,20}$/;
         let mode = 'signin'; // 'signin' | 'signup'
+        let previousFocus = null;
+        const modalCard = modal.querySelector('[role="dialog"]');
 
         function setMode(next) {
             mode = next;
@@ -105,6 +107,7 @@
         tabSignUp?.addEventListener('click', () => setMode('signup'));
 
         function openModal() {
+            previousFocus = document.activeElement;
             if (!configured) {
                 configWarning?.classList.remove('hidden');
             } else {
@@ -117,13 +120,27 @@
             if (usernameInput) usernameInput.value = '';
             modal.classList.add('cw-visible');
             setMode('signin');
+            emailInput?.focus();
         }
-        function closeModal() { modal.classList.remove('cw-visible'); }
+        function closeModal() {
+            modal.classList.remove('cw-visible');
+            previousFocus?.focus?.();
+        }
 
         openBtn?.addEventListener('click', openModal);
         document.getElementById('auth-modal-close')?.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('cw-visible')) closeModal(); });
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('cw-visible')) return;
+            if (e.key === 'Escape') { closeModal(); return; }
+            if (e.key !== 'Tab' || !modalCard) return;
+            const focusable = [...modalCard.querySelectorAll('button:not([disabled]), input, a[href]')];
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        });
 
         function showError(msg) { errorEl.innerText = msg; errorEl.classList.remove('hidden'); infoEl.classList.add('hidden'); }
         function showInfo(msg) { infoEl.innerText = msg; infoEl.classList.remove('hidden'); errorEl.classList.add('hidden'); }

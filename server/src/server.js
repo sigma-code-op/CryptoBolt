@@ -2,12 +2,11 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { PORT, ALLOWED_ORIGINS, GROQ_MODEL, IS_PRODUCTION } from './config.js';
+import { ALLOWED_ORIGINS, IS_PRODUCTION } from './config.js';
 import healthRouter from './routes/health.js';
 import contactRouter from './routes/contact.js';
 import aiRouter from './routes/ai.js';
 import pushRouter from './routes/push.js';
-import { startAlertChecker } from './lib/alert-checker.js';
 
 // =========================================================
 // APP
@@ -44,9 +43,8 @@ app.use(
       // the convenient default. In production, ALLOWED_ORIGINS is guaranteed non-empty here.
       if (
         !origin ||
-        origin === 'null' ||
-        (!IS_PRODUCTION && ALLOWED_ORIGINS.length === 0) ||
-        ALLOWED_ORIGINS.includes(origin)
+        (origin !== 'null' && !IS_PRODUCTION && ALLOWED_ORIGINS.length === 0) ||
+        (origin !== 'null' && ALLOWED_ORIGINS.includes(origin))
       ) {
         return callback(null, true);
       }
@@ -113,28 +111,6 @@ app.use(
     });
   }
 );
-
-// =========================================================
-// START SERVER
-// =========================================================
-
-if (
-  process.env.NODE_ENV !==
-  'test'
-) {
-
-  app.listen(
-    PORT,
-    () => {
-
-      console.log(
-        `[cryptobolt-server] listening on port ${PORT} (bring-your-own-key mode, model: ${GROQ_MODEL})`
-      );
-    }
-  );
-
-  startAlertChecker();
-}
 
 export {
   app,

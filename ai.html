@@ -198,7 +198,7 @@
                     Market Research
                 </div>
 
-                <label>Asset</label>
+                <label for="asset-input">Asset</label>
 
                 <div class="asset-input">
                     <input id="asset-input" value="BTC" maxlength="15">
@@ -214,14 +214,14 @@
                     <button type="button" class="asset-chip" data-asset="BNB">BNB</button>
                 </div>
 
-                <label>Market</label>
+                <label for="market-type">Market</label>
 
                 <select id="market-type">
                     <option value="spot">Spot</option>
                     <option value="futures">Perpetual Futures</option>
                 </select>
 
-                <label>Chart timeframe</label>
+                <label for="timeframe">Chart timeframe</label>
 
                 <select id="timeframe">
                     <option value="15m">15 minutes</option>
@@ -450,10 +450,11 @@
                     <textarea
                         id="chat-input"
                         rows="1"
+                        aria-label="Ask CryptoBolt about the market"
                         placeholder="Ask CryptoBolt about the market..."
                     ></textarea>
 
-                    <button type="submit" id="send-chat">
+                    <button type="submit" id="send-chat" aria-label="Send message" title="Send message">
                         ➤
                     </button>
 
