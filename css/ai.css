@@ -294,6 +294,68 @@ body {
     border-color: rgba(20,211,138,.25);
 }
 
+.asset-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.asset-chip {
+    flex: 1 1 auto;
+    background: rgba(255,255,255,.025);
+    color: #9099a6;
+    border: 1px solid #252b33;
+    padding: 6px 4px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.asset-chip:hover {
+    color: white;
+    border-color: rgba(20,211,138,.35);
+}
+
+.asset-chip.active {
+    color: #04110b;
+    background: linear-gradient(135deg, #14d38a, #0da96e);
+    border-color: transparent;
+}
+
+.analysis-share-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 19px;
+    border-bottom: 1px solid var(--ai-border);
+}
+
+.analysis-share-btn {
+    background: rgba(255,255,255,.025);
+    color: #9099a6;
+    border: 1px solid #252b33;
+    padding: 6px 11px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease;
+}
+
+.analysis-share-btn:hover {
+    color: white;
+    border-color: rgba(20,211,138,.35);
+}
+
+.analysis-share-msg {
+    font-size: 11px;
+    color: #14d38a;
+}
+
 .ai-disclaimer {
     padding: 13px;
     border-radius: 10px;

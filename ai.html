@@ -84,7 +84,7 @@
     <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
     <link rel="stylesheet" href="css/premium.css?v=20260828">
     <link rel="stylesheet" href="css/home.css?v=20260827">
-    <link rel="stylesheet" href="css/ai.css?v=20260822">
+    <link rel="stylesheet" href="css/ai.css?v=20260908">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -205,6 +205,15 @@
                     <span>/USDT</span>
                 </div>
 
+                <div class="asset-chip-row" role="group" aria-label="Popular assets">
+                    <button type="button" class="asset-chip" data-asset="BTC">BTC</button>
+                    <button type="button" class="asset-chip" data-asset="ETH">ETH</button>
+                    <button type="button" class="asset-chip" data-asset="SOL">SOL</button>
+                    <button type="button" class="asset-chip" data-asset="XRP">XRP</button>
+                    <button type="button" class="asset-chip" data-asset="DOGE">DOGE</button>
+                    <button type="button" class="asset-chip" data-asset="BNB">BNB</button>
+                </div>
+
                 <label>Market</label>
 
                 <select id="market-type">
@@ -310,6 +319,12 @@
                     <div id="analysis-status" class="status-pill">
                         WAITING
                     </div>
+                </div>
+
+                <div id="analysis-share-row" class="analysis-share-row hidden">
+                    <button id="copy-analysis-btn" type="button" class="analysis-share-btn">📋 Copy summary</button>
+                    <button id="share-analysis-btn" type="button" class="analysis-share-btn">𝕏 Share</button>
+                    <span id="analysis-share-msg" class="analysis-share-msg" aria-live="polite"></span>
                 </div>
 
                 <div id="analysis-loading" class="ai-loading hidden">
@@ -494,7 +509,7 @@
 </div>
 
 <script src="js/market-conditions-gauge.js?v=20260906"></script>
-<script src="js/ai-chat.js?v=20260906"></script>
+<script src="js/ai-chat.js?v=20260908"></script>
 
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>

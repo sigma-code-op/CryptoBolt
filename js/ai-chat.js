@@ -754,6 +754,8 @@
     }
 
     function renderInsight(parsed, ctx) {
+        lastInsight = { parsed, ctx };
+        $("analysis-share-row")?.classList.remove("hidden");
         if ($("result-trend")) $("result-trend").textContent = parsed.trend ? parsed.trend[0].toUpperCase() + parsed.trend.slice(1) : "—";
         if ($("result-momentum")) $("result-momentum").textContent = parsed.momentum ? parsed.momentum[0].toUpperCase() + parsed.momentum.slice(1) : "—";
         if ($("result-rsi")) $("result-rsi").textContent = ctx.rsi14 != null ? ctx.rsi14.toFixed(1) : "—";
@@ -847,6 +849,99 @@
         } finally {
             setLoading(false);
         }
+    });
+
+    /* -----------------------------
+       POPULAR ASSET CHIPS
+       One-click swap of the researched asset — sets the input, mirrors the
+       active state onto the chip row, and re-runs analysis immediately.
+    ----------------------------- */
+    function syncActiveAssetChip() {
+        const current = ($("asset-input")?.value || "").trim().toUpperCase();
+        document.querySelectorAll(".asset-chip").forEach((chip) => {
+            chip.classList.toggle("active", chip.dataset.asset === current);
+        });
+    }
+
+    document.querySelectorAll(".asset-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+            if ($("asset-input")) $("asset-input").value = chip.dataset.asset;
+            syncActiveAssetChip();
+            $("analyze-button")?.click();
+        });
+    });
+
+    $("asset-input")?.addEventListener("input", syncActiveAssetChip);
+    syncActiveAssetChip();
+
+    /* -----------------------------
+       REMEMBER LAST RESEARCH
+       Prefills asset/market/timeframe from the last visit so a returning user
+       doesn't have to re-type their usual pair. Doesn't auto-run analysis —
+       that stays a deliberate click, since it costs an AI request.
+    ----------------------------- */
+    const LAST_RESEARCH_KEY = "cw_ai_last_research";
+    try {
+        const last = JSON.parse(localStorage.getItem(LAST_RESEARCH_KEY) || "null");
+        if (last && typeof last === "object") {
+            if (last.asset && $("asset-input")) $("asset-input").value = last.asset;
+            if (last.market && $("market-type")) $("market-type").value = last.market;
+            if (last.timeframe && $("timeframe")) $("timeframe").value = last.timeframe;
+            syncActiveAssetChip();
+        }
+    } catch {
+        /* corrupt/unavailable storage — just start from the page's defaults */
+    }
+
+    $("analyze-button")?.addEventListener("click", () => {
+        try {
+            localStorage.setItem(LAST_RESEARCH_KEY, JSON.stringify({
+                asset: $("asset-input")?.value || "BTC",
+                market: $("market-type")?.value || "spot",
+                timeframe: $("timeframe")?.value || "1h",
+            }));
+        } catch {
+            /* non-essential — analysis still runs fine without persistence */
+        }
+    });
+
+    /* -----------------------------
+       SHARE / COPY THE ANALYSIS
+       Turns the last rendered read into a short plain-text summary, either
+       copied to the clipboard or handed to X's share-intent URL. lastInsight
+       is populated by renderInsight() below.
+    ----------------------------- */
+    let lastInsight = null;
+
+    function buildShareText() {
+        if (!lastInsight) return "";
+        const { parsed, ctx } = lastInsight;
+        const trend = parsed.trend ? parsed.trend[0].toUpperCase() + parsed.trend.slice(1) : "Neutral";
+        const lines = [
+            `${ctx.asset}/USDT — ${trend} (via CryptoBolt AI Research)`,
+            parsed.summary ? String(parsed.summary).slice(0, 220) : "",
+            "https://cryptobolt.io/ai.html",
+        ].filter(Boolean);
+        return lines.join("\n");
+    }
+
+    $("copy-analysis-btn")?.addEventListener("click", async () => {
+        const text = buildShareText();
+        const msg = $("analysis-share-msg");
+        if (!text) return;
+        try {
+            await navigator.clipboard.writeText(text);
+            if (msg) { msg.textContent = "Copied!"; setTimeout(() => { msg.textContent = ""; }, 3000); }
+        } catch {
+            if (msg) { msg.textContent = "Couldn't copy — select and copy manually."; setTimeout(() => { msg.textContent = ""; }, 4000); }
+        }
+    });
+
+    $("share-analysis-btn")?.addEventListener("click", () => {
+        const text = buildShareText();
+        if (!text) return;
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+        window.open(url, "_blank", "noopener,noreferrer");
     });
 
     /* -----------------------------
