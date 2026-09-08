@@ -62,6 +62,7 @@ const BUNDLES = {
     '15-risk-triggers.js',
     '20-scroll-reveal.js',
     '23-push-alerts.js',
+    '24-referrals.js',
   ],
   // trade.html
   'bundle-trade.js': [
@@ -70,6 +71,7 @@ const BUNDLES = {
     '17-auth.js',
     '19-cloud-sync.js',
     '22-leaderboard.js',
+    '24-referrals.js',
     '20-scroll-reveal.js',
   ],
   // account.html
@@ -78,6 +80,7 @@ const BUNDLES = {
     '17-auth.js',
     '19-cloud-sync.js',
     '18-account.js',
+    '24-referrals.js',
     '20-scroll-reveal.js',
   ],
   // invest.html (dedicated real-money buy/sell page — separate from paper trading)
@@ -87,6 +90,7 @@ const BUNDLES = {
     '21-invest.js',
     '14-buy-sell-redirect.js',
     '20-scroll-reveal.js',
+    '24-referrals.js',
   ],
 };
 

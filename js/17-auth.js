@@ -151,7 +151,12 @@
                     // created, so it works identically for this form and for "Continue with
                     // Google" (which never touches this code path but still gets a
                     // fallback username from that same trigger).
-                    const { data, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { username } } });
+                    // ref: this signup's referral code, if the visitor arrived via a friend's
+                    // ?ref= link (js/24-referrals.js stashes it in localStorage on arrival).
+                    // handle_new_user() in supabase/schema.sql records the referral from it.
+                    const ref = window.cwReferral ? window.cwReferral.getStoredRefCode() : '';
+                    const signUpData = ref ? { username, ref } : { username };
+                    const { data, error } = await supabaseClient.auth.signUp({ email, password, options: { data: signUpData } });
                     if (error) {
                         // Some Supabase configs throw this outright for a duplicate email.
                         if (/already registered|already exists|user already/i.test(error.message || '')) {

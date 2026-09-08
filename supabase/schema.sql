@@ -208,6 +208,11 @@ create policy "Users can update their own username"
 -- Auto-generates a safe fallback username (userXXXXXXXX) when raw_user_meta_data has none
 -- (Google sign-in) or when the chosen one is already taken by someone else — a user can
 -- always rename themselves afterward from the Account page.
+-- NOTE: the real, current body of this function lives further down this file, right after the
+-- "referrals" table — it does everything described here PLUS records a referral when the
+-- signup carries a '?ref=' code. It's a `create or replace`, so re-running this whole file
+-- always leaves that later, fuller version in effect; this earlier stub only exists so the
+-- trigger below has something to attach to on a brand-new database.
 create or replace function public.handle_new_user()
 returns trigger
 language plpgsql
@@ -224,8 +229,6 @@ begin
     begin
         insert into public.profiles (id, username) values (new.id, desired);
     exception when unique_violation then
-        -- Desired name taken — fall back to a name that can't collide, rather than
-        -- blocking account creation entirely. The user can pick something nicer later.
         insert into public.profiles (id, username)
         values (new.id, 'user' || substr(replace(new.id::text, '-', ''), 1, 8))
         on conflict (id) do nothing;
@@ -331,6 +334,122 @@ end;
 $$;
 
 grant execute on function public.submit_paper_equity(numeric) to authenticated;
+
+-- ============================================================================
+-- Referrals — "Invite friends, both of you get $500 virtual cash". A signed-in
+-- visitor shares a link like trade.html?ref=THEIR_USERNAME (see js/24-referrals.js).
+-- When someone new signs up through that link, handle_new_user() below records the
+-- referral automatically; claim_referral_bonus() is what actually hands out the
+-- virtual cash the next time either person's paper trading page loads.
+-- ============================================================================
+create table if not exists public.referrals (
+    id                      uuid primary key default gen_random_uuid(),
+    referrer_id             uuid not null references auth.users(id) on delete cascade,
+    referred_id             uuid not null unique references auth.users(id) on delete cascade,
+    bonus_claimed_referrer  boolean not null default false,
+    bonus_claimed_referred  boolean not null default false,
+    created_at              timestamptz not null default now()
+);
+
+comment on table public.referrals is 'One row per successful invite: referrer_id invited referred_id. Bonus virtual cash ($500 each side) is granted once via claim_referral_bonus(), tracked by the two bonus_claimed_* flags so it can never be claimed twice.';
+
+create index if not exists referrals_referrer_idx on public.referrals (referrer_id);
+
+alter table public.referrals enable row level security;
+
+-- A person can see rows where they're either side of the invite (so they can show
+-- "you invited 4 friends" or "you joined via a friend's link"), but nobody else's.
+drop policy if exists "Users can view their own referrals" on public.referrals;
+create policy "Users can view their own referrals"
+    on public.referrals
+    for select
+    using (auth.uid() = referrer_id or auth.uid() = referred_id);
+
+-- No public INSERT policy — rows are only ever created by handle_new_user() below (security
+-- definer), the same way profiles rows are, so a visitor can't fabricate free referrals.
+
+-- Extends the earlier handle_new_user() (defined above, right before the profiles table) to
+-- also record a referral when the new signup carries a '?ref=' code. Recreated in full here
+-- since Postgres doesn't support partially altering a function body.
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+    desired text;
+    ref_code text;
+    referrer_id uuid;
+begin
+    desired := trim(new.raw_user_meta_data->>'username');
+    if desired is null or desired !~ '^[A-Za-z0-9_]{3,20}$' then
+        desired := 'user' || substr(replace(new.id::text, '-', ''), 1, 8);
+    end if;
+
+    begin
+        insert into public.profiles (id, username) values (new.id, desired);
+    exception when unique_violation then
+        -- Desired name taken — fall back to a name that can't collide, rather than
+        -- blocking account creation entirely. The user can pick something nicer later.
+        insert into public.profiles (id, username)
+        values (new.id, 'user' || substr(replace(new.id::text, '-', ''), 1, 8))
+        on conflict (id) do nothing;
+    end;
+
+    -- Referral: 'ref' in raw_user_meta_data is the referring visitor's username, captured
+    -- from a ?ref= link by js/24-referrals.js and passed through at signUp(). Silently
+    -- ignored if missing, unrecognized, or someone tries to refer themselves.
+    ref_code := trim(new.raw_user_meta_data->>'ref');
+    if ref_code is not null and ref_code <> '' then
+        select id into referrer_id from public.profiles where username = ref_code;
+        if referrer_id is not null and referrer_id <> new.id then
+            insert into public.referrals (referrer_id, referred_id)
+            values (referrer_id, new.id)
+            on conflict (referred_id) do nothing;
+        end if;
+    end if;
+
+    return new;
+end;
+$$;
+
+-- Pays out the $500-per-side virtual cash bonus for any of this visitor's referrals that
+-- haven't been paid out yet, and marks them paid so a bonus can never be claimed twice —
+-- including across two different browsers/devices for the same account. Called by
+-- js/24-referrals.js right after trade.html's paper trading account finishes loading.
+-- Returns the total amount (possibly $0) the caller should add to local paper trading cash.
+create or replace function public.claim_referral_bonus()
+returns numeric
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+    v_uid uuid := auth.uid();
+    v_bonus constant numeric := 500;
+    v_total numeric := 0;
+    v_count int;
+begin
+    if v_uid is null then
+        return 0;
+    end if;
+
+    update public.referrals
+        set bonus_claimed_referrer = true
+        where referrer_id = v_uid and bonus_claimed_referrer = false;
+    get diagnostics v_count = row_count;
+    v_total := v_total + (v_count * v_bonus);
+
+    update public.referrals
+        set bonus_claimed_referred = true
+        where referred_id = v_uid and bonus_claimed_referred = false;
+    get diagnostics v_count = row_count;
+    v_total := v_total + (v_count * v_bonus);
+
+    return v_total;
+end;
+$$;
+
+grant execute on function public.claim_referral_bonus() to authenticated;
 
 -- ============================================================================
 -- Push subscriptions — lets price alerts (js/07-alerts.js) fire even when the
