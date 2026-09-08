@@ -540,6 +540,22 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 
 /* ---------- Footer ---------- */
 .mk-footer { border-top: 1px solid var(--mk-line); padding: 56px clamp(16px, 4vw, 48px) 32px; }
+.mk-footer-links {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+}
+.mk-footer-links a {
+    color: var(--mk-text-dim);
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: color .15s ease;
+}
+.mk-footer-links a:hover { color: var(--mk-green); }
 .mk-footer-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; }
 .mk-footer-brand p { color: var(--mk-text-dim); font-size: 13px; margin-top: 12px; max-width: 260px; line-height: 1.55; }
 .mk-footer-social { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
@@ -658,6 +674,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     .mk-compare { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
+    .mk-footer-links { justify-content: flex-start; gap: 10px 18px; }
     .mk-footer-grid { grid-template-columns: 1fr; }
 }
 /* Narrow phones (~360-400px CSS width): logo + "Launch Terminal →" + burger were still a
