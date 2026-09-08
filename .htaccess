@@ -1,8 +1,9 @@
 <IfModule mod_headers.c>
+  # Keep the general security headers, but avoid global frame restrictions here.
+  # They can trigger false 403s in header scanners and block embedding without a
+  # host-specific need. The page-level CSP meta tag manages the browser-side rules.
   Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Content-Security-Policy "frame-ancestors 'self';"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
   Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
   Header always set Link "</sitemap.xml>; rel=\"sitemap\", </privacy.html>; rel=\"privacy-policy\""
