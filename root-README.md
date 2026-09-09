@@ -49,6 +49,7 @@ tracking, price alerts, and an AI-generated technical read of whatever asset you
 │   ├── 17-auth.js                  #   → Supabase sign-up/sign-in
 │   ├── 18-account.js               #   → account.html purchase history
 │   └── 19-cloud-sync.js            #   → cross-device sync of watchlist/alerts/holdings/paper account
+│   └── 25-screener.js              #   → market screener (rule builder + live multi-symbol scan) and historical backtester
 └── server/               # Node/Express backend — see server/README.md
 ```
 

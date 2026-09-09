@@ -1000,9 +1000,24 @@ body {
     .market-overview {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .ai-seo-features {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media(max-width: 650px) {
+    .ai-seo-hero {
+        grid-template-columns: 1fr;
+        margin-top: 16px;
+        padding-top: 16px;
+    }
+
+    .ai-seo-copy,
+    .ai-seo-card {
+        padding: 16px 18px;
+    }
+
     .ai-shell {
         width: min(100% - 20px, 1500px);
         padding-top: 12px;

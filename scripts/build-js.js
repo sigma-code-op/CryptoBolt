@@ -63,6 +63,7 @@ const BUNDLES = {
     '20-scroll-reveal.js',
     '23-push-alerts.js',
     '24-referrals.js',
+    '25-screener.js',
   ],
   // trade.html
   'bundle-trade.js': [
