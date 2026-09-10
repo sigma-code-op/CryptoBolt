@@ -8,13 +8,6 @@ import nodemailer from 'nodemailer';
 let cachedTransporter = null;
 
 function isMailerConfigured() {
-  // TEMP DEBUG — remove after diagnosing. Logs only true/false, never the actual secret values.
-  console.log('[cryptobolt-server] SMTP env check:', {
-    SMTP_HOST: Boolean(process.env.SMTP_HOST),
-    SMTP_USER: Boolean(process.env.SMTP_USER),
-    SMTP_PASS: Boolean(process.env.SMTP_PASS),
-    CONTACT_TO_EMAIL: Boolean(process.env.CONTACT_TO_EMAIL),
-  });
   return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS && process.env.CONTACT_TO_EMAIL);
 }
 
@@ -30,6 +23,15 @@ function getTransporter() {
     },
   });
   return cachedTransporter;
+}
+
+// Strips characters that have no legitimate place in an email header value: CR/LF (the
+// injection vector for adding extra headers/recipients — see the nodemailer CRLF-injection
+// advisories this project upgraded past) and other control characters. Applied to any
+// user-supplied value that gets interpolated into `from`/`replyTo`/`subject`, in addition to
+// nodemailer's own header encoding — defense in depth, not a replacement for it.
+function sanitizeHeaderValue(str) {
+  return String(str).replace(/[\r\n\x00-\x1F\x7F]/g, '').trim();
 }
 
 function escapeHtml(str) {
@@ -53,12 +55,15 @@ async function sendContactEmail({ name, email, topic, message }) {
   }
   const transporter = getTransporter();
   const fromAddress = process.env.CONTACT_FROM_EMAIL || process.env.SMTP_USER;
+  const safeName = sanitizeHeaderValue(name);
+  const safeTopic = sanitizeHeaderValue(topic);
+  const safeEmail = sanitizeHeaderValue(email);
 
   await transporter.sendMail({
     from: `"CryptoBolt Contact Form" <${fromAddress}>`,
     to: process.env.CONTACT_TO_EMAIL,
-    replyTo: `"${name}" <${email}>`,
-    subject: `[CryptoBolt] ${topic} — from ${name}`,
+    replyTo: `"${safeName}" <${safeEmail}>`,
+    subject: `[CryptoBolt] ${safeTopic} — from ${safeName}`,
     text: `${message}\n\n—\nFrom: ${name} (${email})\nTopic: ${topic}`,
     html: `<p>${escapeHtml(message).replace(/\n/g, '<br>')}</p><hr><p>From: ${escapeHtml(name)} (${escapeHtml(email)})<br>Topic: ${escapeHtml(topic)}</p>`,
   });
