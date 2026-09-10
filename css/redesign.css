@@ -1,0 +1,170 @@
+/* ============================================================
+   CryptoBolt — 2026 visual refresh ("Signal" pass)
+   Loaded last on every page, after tailwind.css / styles.css /
+   home.css / premium.css / ui-elevate.css / shadcn-ui.css, so it
+   wins the cascade without editing those files' internals.
+
+   What this file does:
+   1. Re-tunes the existing --cw-, --cbx- and --mk- prefixed custom
+      properties that the rest of the site already reads from —
+      most of the palette shift below needs no other file touched.
+   2. Fixes the handful of places where every panel/card shares
+      one identical radius+shadow regardless of role, and where
+      decorative uppercase eyebrow labels were doing no real job.
+   3. Gives the one thing this product actually is — a live feed —
+      a single consistent visual signature (a live-pulse mark),
+      instead of scattering glow/gradient accents everywhere.
+
+   Design tokens (for reference):
+     ink     #0A0C10   base background
+     panel   #14171F   card/surface
+     line    #262B35   hairline border
+     paper   #EDEFF3   primary text
+     bull    #22C58C   up / long (semantic — do not repurpose)
+     bear    #F1495F   down / short (semantic — do not repurpose)
+     signal  #E8A93A   caution / leverage only
+     wire    #46B8C9   the one "live" accent — pulse + focus only
+   ============================================================ */
+
+/* ---------- 1. Palette re-tune via existing custom properties ---------- */
+:root {
+  --cw-bg: #0A0C10;
+  --cw-panel: #14171F;
+  --cw-panel-alt: #171B24;
+  --cw-panel-hi: #1B202B;
+  --cw-border: #232833;
+  --cw-border-hi: #34404E;
+
+  --cw-green: #22C58C;
+  --cw-green-dim: #1A9A6C;
+  --cw-red: #F1495F;
+  --cw-amber: #E8A93A;
+  --cw-cyan: #46B8C9;
+  --cw-purple: #9C7CF2;
+
+  --cw-text: #EDEFF3;
+  --cw-text-dim: #8B93A3;
+
+  --cw-radius: 10px;
+
+  --cbx-bg: #0A0C10;
+  --cbx-surface: rgba(20, 23, 31, 0.82);
+  --cbx-surface-strong: rgba(23, 27, 36, 0.95);
+  --cbx-line: rgba(237, 239, 243, 0.07);
+  --cbx-line-hi: rgba(237, 239, 243, 0.13);
+  --cbx-glow: rgba(34, 197, 140, 0.18);
+  --cbx-glow-cyan: rgba(70, 184, 201, 0.16);
+}
+
+.mk {
+  --mk-bg: #0A0C10;
+  --mk-surface: rgba(20, 23, 31, 0.6);
+  --mk-surface-strong: rgba(23, 27, 36, 0.92);
+  --mk-line: rgba(237, 239, 243, 0.08);
+  --mk-line-hi: rgba(237, 239, 243, 0.14);
+  --mk-text: #EDEFF3;
+  --mk-text-dim: #8B93A3;
+  --mk-green: #22C58C;
+  --mk-cyan: #46B8C9;
+  --mk-purple: #9C7CF2;
+  --mk-amber: #E8A93A;
+}
+
+/* ---------- 2. Card & panel hierarchy (stop the uniform rounded-lg/shadow-2xl look) ---------- */
+/* Dense data surfaces (tables, order book, ticker rows): flatter, tighter, no shadow —
+   density should read as density, not as a stack of identical cards. */
+.cw-card-interactive {
+  background: linear-gradient(180deg, rgba(20, 23, 31, 0.96), rgba(14, 16, 22, 0.98)) !important;
+  border: 1px solid var(--cw-border) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease !important;
+}
+.cw-card-interactive:hover {
+  border-color: var(--cw-border-hi) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.cw-card-interactive::before,
+.cw-card-interactive::after {
+  opacity: 0 !important;
+}
+
+/* Hero / premium surfaces keep a touch more presence — larger radius, one hairline
+   top highlight instead of a heavy drop shadow — reserved for the panels that are
+   genuinely the page's focal point. */
+.cw-panel-premium,
+.mt-6.cw-panel-accent {
+  border-radius: 14px !important;
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 20px 44px rgba(0, 0, 0, 0.28) !important;
+}
+
+.bg-\[\#181a20\] {
+  background: linear-gradient(180deg, rgba(20, 23, 31, 0.96), rgba(14, 16, 22, 0.98)) !important;
+}
+
+/* ---------- 3. Buttons: two clear tiers instead of one repeated grey pill ---------- */
+.filter-btn, .tf-btn, .ind-btn, .ctype-btn, .heatmap-scope-btn {
+  background: transparent !important;
+  border-color: var(--cw-border) !important;
+  color: var(--cw-text-dim) !important;
+}
+.filter-btn:hover, .tf-btn:hover, .ind-btn:hover, .ctype-btn:hover, .heatmap-scope-btn:hover {
+  border-color: var(--cw-border-hi) !important;
+  color: var(--cw-text) !important;
+}
+.filter-btn.active, .tf-btn.active, .ind-btn.active, .ctype-btn.active, .heatmap-scope-btn.active {
+  background: rgba(70, 184, 201, 0.12) !important;
+  border-color: rgba(70, 184, 201, 0.5) !important;
+  color: #7FD3DF !important;
+}
+
+/* ---------- 4. Retire the decorative tracked-uppercase eyebrow; keep the dot,
+   it's the one signal that's actually meaningful (data is live right now). ---------- */
+.mk-eyebrow {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+}
+.mk-eyebrow::before {
+  animation: cb-pulse 2.2s ease-in-out infinite;
+}
+@keyframes cb-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 140, 0.35); }
+  50% { box-shadow: 0 0 0 5px rgba(34, 197, 140, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mk-eyebrow::before { animation: none; }
+}
+
+/* ---------- 5. Nav / footer polish ---------- */
+.mk-nav {
+  background: rgba(10, 12, 16, 0.72) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--mk-line, rgba(237, 239, 243, 0.08));
+}
+.mk-footer {
+  border-top: 1px solid var(--mk-line, rgba(237, 239, 243, 0.08));
+}
+
+/* ---------- 6. Type scale discipline on headings ---------- */
+.mk h1, .mk .mk-display {
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+.mk h2 {
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+/* ---------- 7. Accessibility floor: visible keyboard focus everywhere ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #46B8C9 !important;
+  outline-offset: 2px !important;
+}
