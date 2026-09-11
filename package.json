@@ -8,6 +8,7 @@
     "build": "npm run build:css && npm run build:js && npm run build:csp",
     "build:css": "tailwindcss -i css/tailwind-input.css -o css/tailwind.css --minify",
     "build:js": "node scripts/build-js.js",
+    "build:blog": "node scripts/build-blog.js",
     "build:csp": "node scripts/build-csp.js",
     "test": "node --test"
   },
