@@ -82,6 +82,7 @@ const CONNECT_SRC = [
   'https://data-api.binance.vision',
   'https://stream.binance.com',
   'wss://stream.binance.com',
+  'wss://stream.binance.com:9443',
   'https://fstream.binance.com',
   'wss://fstream.binance.com',
   'https://api.coingecko.com',
