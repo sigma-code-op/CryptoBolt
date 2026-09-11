@@ -70,7 +70,7 @@ const STYLE_SRC = [
 
 const FONT_SRC = ["'self'", 'https://fonts.gstatic.com', 'data:'];
 
-const IMG_SRC = ["'self'", 'data:', 'https://pagead2.googlesyndication.com', 'https://www.googletagmanager.com'];
+const IMG_SRC = ["'self'", 'data:', 'https://pagead2.googlesyndication.com', 'https://www.googletagmanager.com', 'https://api.producthunt.com'];
 
 // Live price/chart data (Binance REST + WS, CoinGecko, alternative.me Fear &
 // Greed), our own backend (js/00-config.js apiBaseUrl), Supabase (accounts +
