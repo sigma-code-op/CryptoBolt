@@ -131,7 +131,7 @@ function inlineMarkdown(text) {
 }
 
 // Converts the Markdown body into the same HTML shape the hand-written posts
-// use: <p> paragraphs and <h2>/<h3> headings, no wrapping <div>.
+// use: <p> paragraphs and <h2>/<h3> headings, plus <ul> for "- " bullet lists.
 function markdownToHtml(markdown) {
   const escaped = escapeHtml(markdown);
   const blocks = escaped.trim().split(/\r?\n\s*\r?\n/);
@@ -139,7 +139,17 @@ function markdownToHtml(markdown) {
     const trimmed = block.trim();
     if (trimmed.startsWith('### ')) return `    <h3>${inlineMarkdown(trimmed.slice(4))}</h3>`;
     if (trimmed.startsWith('## ')) return `    <h2>${inlineMarkdown(trimmed.slice(3))}</h2>`;
-    const joined = trimmed.split(/\r?\n/).join(' ');
+
+    const lines = trimmed.split(/\r?\n/);
+    const isList = lines.every((line) => line.trim().startsWith('- '));
+    if (isList) {
+      const items = lines
+        .map((line) => `        <li>${inlineMarkdown(line.trim().slice(2))}</li>`)
+        .join('\n');
+      return `    <ul>\n${items}\n    </ul>`;
+    }
+
+    const joined = lines.join(' ');
     return `    <p>${inlineMarkdown(joined)}</p>`;
   });
   return html.join('\n');
