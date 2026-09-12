@@ -581,7 +581,6 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 .mk-footer-badges { display: flex; flex-wrap: nowrap; flex-shrink: 0; align-items: center; gap: 10px; }
 .mk-footer-badges img { display: block; width: auto; max-width: none; opacity: .85; transition: opacity .15s ease; }
 .mk-footer-badges a:hover img { opacity: 1; }
-.mk-footer-badges .badge-producthunt img { height: 30px; }
 .mk-footer-badges .badge-launchzone img { height: 30px; }
 .mk-footer-badges .badge-dmca img { height: 15px; }
 
