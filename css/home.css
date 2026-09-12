@@ -578,6 +578,9 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
     font-size: 12px; color: var(--mk-text-dim); font-family: 'JetBrains Mono', monospace;
 }
+.mk-footer-badges { display: flex; align-items: center; gap: 10px; }
+.mk-footer-badges img { display: block; height: 22px; width: auto; opacity: .85; transition: opacity .15s ease; }
+.mk-footer-badges a:hover img { opacity: 1; }
 
 /* ---------- Feature page ---------- */
 .mk-fhero { text-align: left; max-width: 780px; margin: 0 auto; padding-top: clamp(48px,7vw,84px); }
