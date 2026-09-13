@@ -578,9 +578,10 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
     font-size: 12px; color: var(--mk-text-dim); font-family: 'JetBrains Mono', monospace;
 }
-.mk-footer-badges { display: flex; flex-wrap: nowrap; flex-shrink: 0; align-items: center; gap: 10px; }
+.mk-footer-badges { display: flex; flex-wrap: wrap; min-width: 0; max-width: 100%; flex-shrink: 1; align-items: center; gap: 10px; }
 .mk-footer-badges img { display: block; width: auto; max-width: none; opacity: .85; transition: opacity .15s ease; }
 .mk-footer-badges a:hover img { opacity: 1; }
+.mk-footer-badges .badge-boost img { height: 40px; }
 .mk-footer-badges .badge-launchzone img { height: 30px; }
 .mk-footer-badges .badge-dmca img { height: 15px; }
 
@@ -683,6 +684,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 @media (max-width: 560px) {
     .mk-footer-links { justify-content: flex-start; gap: 10px 18px; }
     .mk-footer-grid { grid-template-columns: 1fr; }
+    .mk-footer-badges { width: 100%; }
 }
 /* Narrow phones (~360-400px CSS width): logo + "Launch Terminal →" + burger were still a
    few pixels wider than the viewport at this size even after the 880px breakpoint above
