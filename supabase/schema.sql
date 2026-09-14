@@ -14,14 +14,13 @@
 --   - CryptoBolt never holds anyone's money or crypto. The Buy/Sell buttons just open Binance
 --     in a new tab; the trade itself happens entirely on Binance's side. This table is a
 --     personal receipt log so a signed-in visitor can see their own purchase history and P&L
---     on the site afterward — but nothing in this codebase currently writes to it, since a
---     plain new-tab redirect has no way to report back whether/how the trade actually went.
---     It's here for anyone who wants to log purchases manually, or wire up their own
---     provider-specific integration later (an exchange webhook, a manual entry form, etc.).
---   - If you do wire something up: have it insert rows using the signed-in visitor's own
---     Supabase session (RLS below only allows a person to insert their own rows), or, for a
---     tamper-resistant log, verify server-side and insert using the service_role key instead —
---     see the note at the bottom of this file.
+--     on the site afterward. By default it's populated by the "+ Log Trade" manual entry form
+--     on account.html (see js/18-account.js) — a plain new-tab redirect has no way to report
+--     back whether/how the trade actually went, so there's no automatic import out of the box.
+--   - If you want automatic logging instead: have your integration insert rows using the
+--     signed-in visitor's own Supabase session (RLS below only allows a person to insert their
+--     own rows), or, for a tamper-resistant log, verify server-side and insert using the
+--     service_role key instead — see the note at the bottom of this file.
 --
 -- MIGRATING FROM AN EARLIER VERSION OF THIS SCHEMA?
 -- Older copies of this file named the dedupe column `alchemypay_order_no` and defaulted
@@ -496,6 +495,45 @@ drop policy if exists "Users can delete their own push subscriptions" on public.
 create policy "Users can delete their own push subscriptions"
     on public.push_subscriptions
     for delete
+    using (auth.uid() = user_id);
+
+-- ============================================================================
+-- notification_settings: per-user Telegram chat id for alert delivery.
+-- Deliberately its OWN table rather than a column on `profiles` — `profiles` has a
+-- public "Anyone can view usernames" SELECT policy (see above, needed for the
+-- leaderboard), and a Telegram chat id is effectively a private contact address that
+-- should never be exposed by that same public policy. Written by the visitor themselves
+-- from account.html (js/18-account.js) using their own session; read by
+-- server/src/lib/alert-checker.js with the service-role key, same pattern as
+-- push_subscriptions above.
+-- ============================================================================
+
+create table if not exists public.notification_settings (
+    user_id            uuid primary key references auth.users(id) on delete cascade,
+    telegram_chat_id   text,
+    updated_at         timestamptz not null default now()
+);
+
+comment on table public.notification_settings is 'Per-user opt-in alert delivery channels beyond Web Push (currently: Telegram chat id). Kept separate from profiles because profiles is publicly readable.';
+
+alter table public.notification_settings enable row level security;
+
+drop policy if exists "Users can view their own notification settings" on public.notification_settings;
+create policy "Users can view their own notification settings"
+    on public.notification_settings
+    for select
+    using (auth.uid() = user_id);
+
+drop policy if exists "Users can upsert their own notification settings" on public.notification_settings;
+create policy "Users can upsert their own notification settings"
+    on public.notification_settings
+    for insert
+    with check (auth.uid() = user_id);
+
+drop policy if exists "Users can update their own notification settings" on public.notification_settings;
+create policy "Users can update their own notification settings"
+    on public.notification_settings
+    for update
     using (auth.uid() = user_id);
 
 -- ============================================================================

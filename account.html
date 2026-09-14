@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://launchzone.co; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
     <script src="js/consent-default.js"></script>
+    <script src="js/error-reporter.js"></script>
+    <script src="js/theme-init.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
@@ -34,14 +36,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="css/styles.css?v=20260827">
+    <link rel="stylesheet" href="css/styles.css?v=20260915">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
     <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
     <link rel="stylesheet" href="css/premium.css?v=20260828">
-    <link rel="stylesheet" href="css/home.css?v=20260827">
+    <link rel="stylesheet" href="css/home.css?v=20260915">
     <link rel="stylesheet" href="css/redesign.css?v=20260910">
 </head>
-<body class="cb-has-rail bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
+<body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
         <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home">⚡</a>
         <div class="cb-rail-nav">
@@ -76,6 +78,12 @@
                 </h1>
             </div>
             <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap justify-end">
+                <button type="button" data-theme-toggle aria-pressed="false"
+                    class="flex items-center gap-1.5 text-[11px] font-bold bg-gray-900 border border-gray-800 hover:border-[#4fd8e8]/50 hover:text-[#4fd8e8] text-gray-300 rounded px-3 py-1.5 transition-colors"
+                    aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+                    <span data-theme-toggle-icon aria-hidden="true">🌙</span>
+                    <span data-theme-toggle-label class="hidden sm:inline">Dark</span>
+                </button>
                 <button id="auth-open-btn" type="button" class="hidden text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">👤 Sign In</button>
                 <div id="auth-user-chip" class="hidden items-center gap-1.5">
                     <span id="cloud-sync-status" class="hidden items-center gap-1 text-[10px] font-mono px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 cursor-pointer" title="Cloud sync status — click to sync now">
@@ -125,6 +133,24 @@
                     </div>
                 </div>
                 <div id="username-msg" class="hidden text-[11px] px-6 pb-3"></div>
+            </div>
+
+            <!-- Telegram alert delivery (optional second channel alongside browser push — see
+                 server/src/lib/telegram.js and supabase/schema.sql's notification_settings table) -->
+            <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden mb-6">
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1">📨 Telegram Alerts</span>
+                        <span class="text-[11px] text-gray-500">Get price alerts on Telegram even with every tab closed. Message this deployment's bot once (so it's allowed to message you back), then paste your numeric Telegram chat id below — <a href="https://t.me/userinfobot" target="_blank" rel="noopener" class="text-[#4fd8e8] hover:underline">@userinfobot</a> will tell you that id if you don't already know it.</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="telegram-chat-id-input" type="text" inputmode="numeric" placeholder="Telegram chat id" maxlength="32"
+                            class="w-44 bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a] font-mono">
+                        <button id="telegram-save-btn" class="text-[11px] font-bold px-3 py-2 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer whitespace-nowrap">Save</button>
+                        <button id="telegram-remove-btn" class="hidden text-[11px] font-bold px-3 py-2 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer whitespace-nowrap">Unlink</button>
+                    </div>
+                </div>
+                <div id="telegram-msg" class="hidden text-[11px] px-6 pb-3"></div>
             </div>
 
             <!-- Invite & Earn (referral program) -->
@@ -219,8 +245,49 @@
                 <div class="cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
                     <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center">
                         <span class="text-xs font-bold uppercase tracking-wider text-gray-400">🧾 Order History</span>
-                        <button id="refresh-btn" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#4fd8e8] hover:border-[#4fd8e8]/40 transition-all cursor-pointer">⟳ Refresh</button>
+                        <div class="flex items-center gap-2">
+                            <button id="log-trade-toggle-btn" aria-expanded="false" aria-controls="log-trade-form" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer">+ Log Trade</button>
+                            <button id="refresh-btn" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#4fd8e8] hover:border-[#4fd8e8]/40 transition-all cursor-pointer">⟳ Refresh</button>
+                        </div>
                     </div>
+
+                    <!-- Manual trade log form — inserts one row into Supabase's `purchases` table under
+                         the signed-in visitor's own user_id (RLS: see supabase/schema.sql, "Users can
+                         insert their own purchases"). Buy/Sell redirects to Binance in a new tab with no
+                         way to report back what happened, so this is the only way this table gets rows
+                         unless a site owner wires up their own provider-specific integration. -->
+                    <form id="log-trade-form" class="hidden px-4 py-3 border-b border-gray-800 bg-[#14161c] grid grid-cols-2 sm:grid-cols-6 gap-2 items-end text-xs">
+                        <div class="col-span-1">
+                            <label for="log-trade-side" class="block text-[10px] text-gray-500 mb-1">Side</label>
+                            <select id="log-trade-side" class="w-full bg-gray-900 border border-gray-800 rounded px-2 py-1.5 text-gray-200">
+                                <option value="buy">Buy</option>
+                                <option value="sell">Sell</option>
+                            </select>
+                        </div>
+                        <div class="col-span-1">
+                            <label for="log-trade-symbol" class="block text-[10px] text-gray-500 mb-1">Asset</label>
+                            <input id="log-trade-symbol" type="text" maxlength="15" placeholder="BTC" class="w-full bg-gray-900 border border-gray-800 rounded px-2 py-1.5 text-gray-200 uppercase" />
+                        </div>
+                        <div class="col-span-1">
+                            <label for="log-trade-qty" class="block text-[10px] text-gray-500 mb-1">Quantity</label>
+                            <input id="log-trade-qty" type="number" step="any" min="0" placeholder="0.05" class="w-full bg-gray-900 border border-gray-800 rounded px-2 py-1.5 text-gray-200" />
+                        </div>
+                        <div class="col-span-1">
+                            <label for="log-trade-fiat" class="block text-[10px] text-gray-500 mb-1">USD amount</label>
+                            <input id="log-trade-fiat" type="number" step="any" min="0" placeholder="3000" class="w-full bg-gray-900 border border-gray-800 rounded px-2 py-1.5 text-gray-200" />
+                        </div>
+                        <div class="col-span-1">
+                            <label for="log-trade-date" class="block text-[10px] text-gray-500 mb-1">Date</label>
+                            <input id="log-trade-date" type="datetime-local" class="w-full bg-gray-900 border border-gray-800 rounded px-2 py-1.5 text-gray-200" />
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 flex gap-2">
+                            <button type="submit" id="log-trade-submit-btn" class="flex-1 bg-[#14d38a] hover:bg-[#0f9c67] text-black font-bold rounded px-2 py-1.5 transition-colors cursor-pointer">Save</button>
+                        </div>
+                        <p class="col-span-2 sm:col-span-6 text-[10px] text-gray-600 -mt-1">
+                            Logs a receipt only — this doesn't place a real order anywhere, it just records one you already made on Binance (or elsewhere) so it shows up in your history and P&amp;L above.
+                        </p>
+                    </form>
+
                     <div class="overflow-x-auto max-h-[360px]">
                         <table class="w-full text-left border-collapse whitespace-nowrap">
                             <thead>
@@ -242,7 +309,7 @@
             </div>
 
             <p class="text-[10px] text-gray-600 leading-relaxed px-1 mt-6">
-                ℹ️ This page is a personal receipt log. Buy/Sell opens Binance in a new tab, so completed orders must be added manually; CryptoBolt never holds your money or crypto and cannot verify exchange orders.
+                ℹ️ This page is a personal receipt log. Buy/Sell opens Binance in a new tab, so completed orders must be added manually — use "+ Log Trade" above, or the same Supabase insert from your own tooling; CryptoBolt never holds your money or crypto and cannot verify exchange orders.
             </p>
         </div>
     </div>

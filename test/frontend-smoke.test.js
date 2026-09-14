@@ -39,7 +39,7 @@ test('deployment documentation links resolve to repository files', () => {
   for (const file of ['DEPLOYMENT_GUIDE.md', 'DEPLOY_CHECKLIST.md', 'ACCOUNTS_SETUP.md']) {
     assert.doesNotThrow(() => read(file));
   }
-  for (const file of ['root-README.md', 'DEPLOY_CHECKLIST.md', 'ACCOUNTS_SETUP.md']) {
+  for (const file of ['README.md', 'DEPLOY_CHECKLIST.md', 'ACCOUNTS_SETUP.md']) {
     assert.doesNotMatch(read(file), /CryptoBolt_Complete_Deployment_Guide\.md/);
   }
 });

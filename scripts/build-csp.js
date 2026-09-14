@@ -70,7 +70,19 @@ const STYLE_SRC = [
 
 const FONT_SRC = ["'self'", 'https://fonts.gstatic.com', 'data:'];
 
-const IMG_SRC = ["'self'", 'data:', 'https://pagead2.googlesyndication.com', 'https://www.googletagmanager.com', 'https://api.producthunt.com', 'https://launchzone.co'];
+const IMG_SRC = [
+  "'self'",
+  'data:',
+  'https://pagead2.googlesyndication.com',
+  'https://www.googletagmanager.com',
+  // Footer badges (index.html only — see .mk-footer-badges) and the images they load:
+  'https://api.producthunt.com',
+  'https://ph-files.imgix.net', // Product Hunt embed card's own icon image
+  'https://launchzone.co',
+  'https://sellwithboost.com', // "Listed on Sell With Boost" badge image
+  'https://images.dmca.com', // DMCA Protection Status badge image
+  'https://www.nxgntools.com', // "Featured on NxGn Tools" badge image
+];
 
 // Live price/chart data (Binance REST + WS, CoinGecko, alternative.me Fear &
 // Greed), our own backend (js/00-config.js apiBaseUrl), Supabase (accounts +
@@ -87,6 +99,9 @@ const CONNECT_SRC = [
   'wss://fstream.binance.com',
   'https://api.coingecko.com',
   'https://api.alternative.me',
+  // Multi-exchange price comparison widget (js/26-exchange-compare.js) — Coinbase's public,
+  // unauthenticated spot-price endpoint, same trust tier as the CoinGecko/Fear&Greed calls above.
+  'https://api.coinbase.com',
   'https://api.cryptobolt.io',
   'https://xdfkumkkfskdmlemelso.supabase.co',
   'wss://xdfkumkkfskdmlemelso.supabase.co',

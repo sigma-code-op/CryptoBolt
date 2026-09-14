@@ -64,6 +64,7 @@ const BUNDLES = {
     '23-push-alerts.js',
     '24-referrals.js',
     '25-screener.js',
+    '26-exchange-compare.js',
   ],
   // trade.html
   'bundle-trade.js': [

@@ -4,6 +4,47 @@
 // holdings tracker on the terminal (cw_holdings) so the two never collide. Prices come straight
 // from Binance's public REST API — no backend, no account, no real money anywhere in this file.
 
+// ---------- Pure math, deliberately kept OUTSIDE the IIFE below (same script-global scope, so
+// the IIFE still calls them exactly as before) purely so server/test/paper-trading-math.test.js
+// can load this exact file with vm and test the real shipped formulas — no separate copy to
+// drift out of sync with production. Every function here is a pure function of its arguments:
+// no DOM, no localStorage, no closure state. ----------
+
+const PT_MAINTENANCE_MARGIN_RATE = 0.004; // 0.4% — see note on estimateLiqPrice below
+
+// side is 'long' or 'short'. Long liquidates on the way down, short on the way up — the
+// distance from entry to liq price shrinks as leverage rises because there's less margin
+// cushioning each dollar of notional exposure. Simplified isolated-margin model: a single flat
+// maintenance-margin rate stands in for Binance's real tiered maintenance-margin table (which
+// varies by symbol and notional size). Good enough for a practice account to teach "higher
+// leverage = closer liquidation", not a promise of matching real-exchange liquidation prices.
+function estimateLiqPrice(side, entryPrice, leverage) {
+    const cushion = (1 / leverage) - PT_MAINTENANCE_MARGIN_RATE;
+    if (cushion <= 0) return side === 'long' ? entryPrice * 1.001 : entryPrice * 0.999; // extreme leverage edge case
+    return side === 'long' ? entryPrice * (1 - cushion) : entryPrice * (1 + cushion);
+}
+function futuresPnl(position, markPrice) {
+    return position.side === 'long'
+        ? (markPrice - position.entryPrice) * position.qty
+        : (position.entryPrice - markPrice) * position.qty;
+}
+// Fee charged on one side of a trade (buy or sell notional).
+function computeFee(value, feeRate) {
+    return value * feeRate;
+}
+// Weighted-average cost after adding `addQty` more units for `addValue` (+ its fee) on top of an
+// existing position. Used by executeBuy — both for opening a fresh holding (existingQty = 0) and
+// topping one up.
+function computeBuyAvgCost(existingQty, existingAvgCost, addQty, addValue, addFee) {
+    const newQty = existingQty + addQty;
+    return (existingQty * existingAvgCost + addValue + addFee) / newQty;
+}
+// Realized P&L on a sell: what you received (net of fee) minus what those units cost you
+// on average when you bought them.
+function computeRealizedPnl(proceeds, costBasis) {
+    return proceeds - costBasis;
+}
+
 (function () {
     const FEE_RATE = 0.001; // 0.10% simulated trading fee, applied on both buy and sell notional
     const STARTING_BALANCE = 10000;
@@ -13,28 +54,9 @@
     const POPULAR_COINS = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'ADA', 'AVAX', 'LINK', 'DOT', 'TRX', 'LTC', 'SHIB', 'SUI', 'PEPE'];
 
     // ---------- Futures constants ----------
-    // Simplified isolated-margin model: a single flat maintenance-margin rate stands in for
-    // Binance's real tiered maintenance-margin table (which varies by symbol and notional
-    // size). Good enough for a practice account to teach "higher leverage = closer
-    // liquidation", not a promise of matching real-exchange liquidation prices exactly.
-    const MAINTENANCE_MARGIN_RATE = 0.004; // 0.4%
     const MAX_LEVERAGE = 50;
     const MIN_LEVERAGE = 1;
     const DEFAULT_LEVERAGE = 10;
-
-    // side is 'long' or 'short'. Long liquidates on the way down, short on the way up — the
-    // distance from entry to liq price shrinks as leverage rises because there's less margin
-    // cushioning each dollar of notional exposure.
-    function estimateLiqPrice(side, entryPrice, leverage) {
-        const cushion = (1 / leverage) - MAINTENANCE_MARGIN_RATE;
-        if (cushion <= 0) return side === 'long' ? entryPrice * 1.001 : entryPrice * 0.999; // extreme leverage edge case
-        return side === 'long' ? entryPrice * (1 - cushion) : entryPrice * (1 + cushion);
-    }
-    function futuresPnl(position, markPrice) {
-        return position.side === 'long'
-            ? (markPrice - position.entryPrice) * position.qty
-            : (position.entryPrice - markPrice) * position.qty;
-    }
 
     // ---------- Small utilities (duplicated here so this page has zero dependency on the terminal's JS modules) ----------
     function safeJSONParse(str, fallback) {
@@ -504,21 +526,21 @@
     // ---------- Trade execution ----------
     function executeBuy(symbol, qty, price, type, tpPrice, slPrice) {
         const value = qty * price;
-        const fee = value * FEE_RATE;
+        const fee = computeFee(value, FEE_RATE);
         const totalCost = value + fee;
         if (totalCost > cash + 1e-9) { showToast(`Not enough cash — need ${fmtUsd(totalCost)}, have ${fmtUsd(cash)}.`, 'error'); return false; }
         cash -= totalCost;
         let h = findHolding(symbol);
         if (h) {
             const newQty = h.qty + qty;
-            h.avgCost = (h.qty * h.avgCost + value + fee) / newQty;
+            h.avgCost = computeBuyAvgCost(h.qty, h.avgCost, qty, value, fee);
             h.qty = newQty;
             // A new TP/SL on a top-up order replaces the old one — only one active exit target
             // per symbol. Leaving both blank on the top-up keeps whatever was already set.
             if (tpPrice !== undefined) h.tpPrice = tpPrice;
             if (slPrice !== undefined) h.slPrice = slPrice;
         } else {
-            holdings.push({ symbol, qty, avgCost: (value + fee) / qty, tpPrice: tpPrice || null, slPrice: slPrice || null });
+            holdings.push({ symbol, qty, avgCost: computeBuyAvgCost(0, 0, qty, value, fee), tpPrice: tpPrice || null, slPrice: slPrice || null });
         }
         trades.unshift({ id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, ts: Date.now(), symbol, side: 'buy', type, qty, price, value, fee, realizedPnl: null });
         showToast(`Bought ${fmtQty(qty)} ${symbol} at ${fmtUsd(price, priceFmt(price))}.`, 'success');
@@ -529,10 +551,10 @@
         const h = findHolding(symbol);
         if (!h || qty > h.qty + 1e-9) { showToast(`You only hold ${h ? fmtQty(h.qty) : '0'} ${symbol}.`, 'error'); return false; }
         const value = qty * price;
-        const fee = value * FEE_RATE;
+        const fee = computeFee(value, FEE_RATE);
         const proceeds = value - fee;
         const costBasis = qty * h.avgCost;
-        const realizedPnl = proceeds - costBasis;
+        const realizedPnl = computeRealizedPnl(proceeds, costBasis);
         cash += proceeds;
         h.qty -= qty;
         if (h.qty <= 1e-9) holdings = holdings.filter(x => x !== h);

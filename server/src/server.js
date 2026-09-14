@@ -1,12 +1,16 @@
 import 'dotenv/config';
+import crypto from 'node:crypto';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { ALLOWED_ORIGINS, IS_PRODUCTION } from './config.js';
+import { logError } from './lib/logger.js';
 import healthRouter from './routes/health.js';
 import contactRouter from './routes/contact.js';
 import aiRouter from './routes/ai.js';
 import pushRouter from './routes/push.js';
+import telegramRouter from './routes/telegram.js';
+import clientErrorRouter from './routes/client-error.js';
 
 // =========================================================
 // APP
@@ -23,6 +27,16 @@ app.use(
     },
   })
 );
+
+// A short id per request, attached before anything else runs so every downstream log line
+// (and the error response body, if this request ends up in the error handler below) can be
+// tied together and to whatever a visitor reports back — "it broke, request id abc123" is
+// searchable in the structured logs in a way "it broke" alone never is.
+app.use((req, res, next) => {
+  req.requestId = crypto.randomUUID();
+  res.setHeader('X-Request-Id', req.requestId);
+  next();
+});
 
 app.use(
   express.json({
@@ -76,6 +90,8 @@ app.use(healthRouter);
 app.use(contactRouter);
 app.use(aiRouter);
 app.use(pushRouter);
+app.use(telegramRouter);
+app.use(clientErrorRouter);
 
 // =========================================================
 // ERROR HANDLER
@@ -84,7 +100,7 @@ app.use(pushRouter);
 app.use(
   (
     err,
-    _req,
+    req,
     res,
     _next
   ) => {
@@ -100,14 +116,16 @@ app.use(
       });
     }
 
-    console.error(
-      '[cryptobolt-server] Unhandled error:',
-      err
-    );
+    logError('Unhandled request error', err, {
+      requestId: req.requestId,
+      method: req.method,
+      path: req.path,
+    });
 
     return res.status(500).json({
       error:
         'Internal server error.',
+      requestId: req.requestId,
     });
   }
 );

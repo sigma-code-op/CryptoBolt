@@ -584,6 +584,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 .mk-footer-badges .badge-boost img { height: 40px; }
 .mk-footer-badges .badge-launchzone img { height: 30px; }
 .mk-footer-badges .badge-dmca img { height: 15px; }
+.mk-footer-badges .badge-nxgn img { height: 32px; }
 
 /* ---------- Feature page ---------- */
 .mk-fhero { text-align: left; max-width: 780px; margin: 0 auto; padding-top: clamp(48px,7vw,84px); }
@@ -684,7 +685,35 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 @media (max-width: 560px) {
     .mk-footer-links { justify-content: flex-start; gap: 10px 18px; }
     .mk-footer-grid { grid-template-columns: 1fr; }
-    .mk-footer-badges { width: 100%; }
+
+    /* ---------- Footer badge row on mobile ----------
+       The 4 badges in .mk-footer-badges are not visually uniform: three (Sell With
+       Boost/LaunchZone/DMCA/NxGn Tools) are small single-image badges, but the Product Hunt
+       one is a full embed CARD — its own bright white background, 20px padding, an 80x80
+       icon, a heading, and a pill button — all sized with INLINE styles (pasted straight from
+       Product Hunt's embed generator), which is why it can't just be resized by giving
+       `.badge-producthunt` a height rule the way the others are above: inline styles beat an
+       external stylesheet's rules unless those rules use !important, which is what the block
+       below does, deliberately and only here.
+       On a ~1180px desktop footer this card has room to sit at its natural ~380px width
+       next to the small badges. Below 560px there usually isn't 380px of width left after
+       the footer's own padding, so left uncontained the card would either overflow
+       horizontally or dominate the whole footer — a jarring white rectangle sitting alone in
+       an otherwise dark footer. The fixes below: (1) stack every badge on its own full-width
+       row instead of trying to wrap a giant card and three tiny badges together, and (2)
+       scale the Product Hunt card's own internals down so it reads as a compact footer credit
+       rather than a promo card. */
+    .mk-footer-badges { flex-direction: column; align-items: flex-start; width: 100%; gap: 14px; }
+    .mk-footer-badges .badge-producthunt { width: 100%; }
+    .mk-footer-badges .badge-producthunt > div {
+        max-width: 100% !important;
+        padding: 14px !important;
+        box-sizing: border-box;
+    }
+    .mk-footer-badges .badge-producthunt img { width: 44px !important; height: 44px !important; }
+    .mk-footer-badges .badge-producthunt h3 { font-size: 15px !important; }
+    .mk-footer-badges .badge-producthunt p { font-size: 12.5px !important; }
+    .mk-footer-badges .badge-producthunt span { font-size: 13px !important; padding: 6px 12px !important; }
 }
 /* Narrow phones (~360-400px CSS width): logo + "Launch Terminal →" + burger were still a
    few pixels wider than the viewport at this size even after the 880px breakpoint above

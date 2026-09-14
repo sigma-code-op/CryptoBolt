@@ -1,12 +1,13 @@
 // ---------- My Account page logic ----------
 // Reads the signed-in visitor's real purchase history from Supabase's `purchases` table and
-// renders holdings + P&L + order history. Nothing in this codebase currently writes to that
-// table — it was originally populated by the AlchemyPay integration on order completion, which
-// has since been removed in favor of a plain Binance redirect (see
-// js/14-buy-sell-redirect.js) — so this section will show empty unless something else (a manual
-// insert, a different ramp integration, etc.) populates `purchases`. This page is entirely
-// dependent on js/17-auth.js having already set up window.cwAuth — it reacts to the 'cw:auth'
-// event rather than assuming a load order.
+// renders holdings + P&L + order history. Buy/Sell redirects to Binance in a new tab (see
+// js/14-buy-sell-redirect.js) with no way to report back what happened, so the "+ Log Trade"
+// form further down in this file is the row-source for `purchases` by default — a manual
+// receipt entry, not an automated import. A site owner can still wire up their own
+// provider-specific integration (an exchange webhook, etc.) on top of the same table if they
+// want automatic logging later. This page is entirely dependent on js/17-auth.js having
+// already set up window.cwAuth — it reacts to the 'cw:auth' event rather than assuming a load
+// order.
 
 (function () {
     function fmtUsd(n, opts) {
@@ -203,6 +204,175 @@
         showToast('Refreshed.', 'success');
     });
 
+    // ---------- Manual trade log (see account.html for the form + supabase/schema.sql for the
+    // `purchases` table + RLS policy this insert relies on) ----------
+    const logTradeToggleBtn = document.getElementById('log-trade-toggle-btn');
+    const logTradeForm = document.getElementById('log-trade-form');
+    const logTradeSubmitBtn = document.getElementById('log-trade-submit-btn');
+
+    logTradeToggleBtn?.addEventListener('click', () => {
+        const willShow = logTradeForm.classList.contains('hidden');
+        logTradeForm.classList.toggle('hidden', !willShow);
+        logTradeToggleBtn.setAttribute('aria-expanded', String(willShow));
+        if (willShow) {
+            // Default the date field to "now" each time the form is opened, in the visitor's
+            // own local time (datetime-local has no timezone of its own).
+            const dateInput = document.getElementById('log-trade-date');
+            if (dateInput && !dateInput.value) {
+                const now = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+                dateInput.value = now.toISOString().slice(0, 16);
+            }
+            document.getElementById('log-trade-symbol')?.focus();
+        }
+    });
+
+    logTradeForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user) { showToast('You need to be signed in to log a trade.', 'error'); return; }
+
+        const side = document.getElementById('log-trade-side').value;
+        const symbol = document.getElementById('log-trade-symbol').value.trim().toUpperCase();
+        const qty = parseFloat(document.getElementById('log-trade-qty').value);
+        const fiat = parseFloat(document.getElementById('log-trade-fiat').value);
+        const dateVal = document.getElementById('log-trade-date').value;
+
+        if (!symbol || !/^[A-Z0-9]{1,15}$/.test(symbol)) { showToast('Enter a valid asset symbol, e.g. BTC.', 'error'); return; }
+        if (!Number.isFinite(qty) || qty <= 0) { showToast('Enter a quantity greater than 0.', 'error'); return; }
+        if (!Number.isFinite(fiat) || fiat <= 0) { showToast('Enter a USD amount greater than 0.', 'error'); return; }
+
+        const createdAt = dateVal ? new Date(dateVal).toISOString() : new Date().toISOString();
+
+        logTradeSubmitBtn.disabled = true;
+        const originalLabel = logTradeSubmitBtn.innerText;
+        logTradeSubmitBtn.innerText = 'Saving…';
+        try {
+            const { error } = await client.from('purchases').insert({
+                user_id: user.id,
+                side,
+                symbol,
+                crypto_amount: qty,
+                fiat_amount: fiat,
+                fiat_currency: 'USD',
+                price_usd: fiat / qty,
+                provider: 'manual',
+                status: 'completed',
+                created_at: createdAt,
+            });
+            if (error) {
+                showToast(error.message || 'Could not save that trade.', 'error');
+                console.error('[CryptoBolt] manual trade log insert error:', error.message);
+                return;
+            }
+            showToast(`Logged ${side} of ${fmtQty(qty)} ${symbol}.`, 'success');
+            logTradeForm.reset();
+            logTradeForm.classList.add('hidden');
+            logTradeToggleBtn.setAttribute('aria-expanded', 'false');
+            await loadPurchases();
+        } catch (err) {
+            showToast(err.message || 'Could not save that trade.', 'error');
+        } finally {
+            logTradeSubmitBtn.disabled = false;
+            logTradeSubmitBtn.innerText = originalLabel;
+        }
+    });
+
+    // ---------- Telegram alert delivery ----------
+    // Chat id lives in its own table (notification_settings), not `profiles`, because
+    // `profiles` has a public "Anyone can view usernames" SELECT policy — see
+    // supabase/schema.sql. The card itself is hidden entirely on deployments that haven't set
+    // TELEGRAM_BOT_TOKEN server-side (checked via GET /api/telegram/configured), same "stay
+    // quiet if not configured" pattern as js/23-push-alerts.js.
+    function resolveApiUrl(path) {
+        const base = (typeof CW_CONFIG !== 'undefined' && CW_CONFIG.apiBaseUrl ? CW_CONFIG.apiBaseUrl : '').replace(/\/$/, '');
+        return /^https?:\/\//i.test(path) ? path : `${base}${path}`;
+    }
+
+    const telegramCard = document.getElementById('telegram-chat-id-input')?.closest('.cw-card-interactive');
+    const telegramInput = document.getElementById('telegram-chat-id-input');
+    const telegramSaveBtn = document.getElementById('telegram-save-btn');
+    const telegramRemoveBtn = document.getElementById('telegram-remove-btn');
+    const telegramMsg = document.getElementById('telegram-msg');
+
+    function showTelegramMsg(msg, tone) {
+        if (!telegramMsg) return;
+        telegramMsg.innerText = msg;
+        telegramMsg.className = `text-[11px] px-6 pb-3 ${tone === 'error' ? 'text-[#ff4d6a]' : 'text-[#14d38a]'}`;
+        telegramMsg.classList.remove('hidden');
+    }
+
+    async function loadTelegramLink() {
+        if (!telegramCard) return;
+        try {
+            const res = await fetch(resolveApiUrl('/api/telegram/configured'));
+            const cfg = res.ok ? await res.json() : { configured: false };
+            if (!cfg.configured) { telegramCard.classList.add('hidden'); return; }
+        } catch {
+            telegramCard.classList.add('hidden'); // network hiccup or no backend at all — stay quiet, same as push
+            return;
+        }
+        telegramCard.classList.remove('hidden');
+
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user) return;
+        const { data, error } = await client
+            .from('notification_settings')
+            .select('telegram_chat_id')
+            .eq('user_id', user.id)
+            .maybeSingle();
+        if (!error && data?.telegram_chat_id) {
+            telegramInput.value = data.telegram_chat_id;
+            telegramRemoveBtn.classList.remove('hidden');
+        }
+    }
+
+    telegramSaveBtn?.addEventListener('click', async () => {
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user || !telegramInput) return;
+        const chatId = telegramInput.value.trim();
+        if (!/^-?\d{4,15}$/.test(chatId)) {
+            showTelegramMsg('Enter the numeric chat id Telegram gave you (see the instructions above).', 'error');
+            return;
+        }
+        telegramSaveBtn.disabled = true;
+        const original2 = telegramSaveBtn.innerText;
+        telegramSaveBtn.innerText = 'Saving…';
+        try {
+            const { error } = await client
+                .from('notification_settings')
+                .upsert({ user_id: user.id, telegram_chat_id: chatId, updated_at: new Date().toISOString() });
+            if (error) { showTelegramMsg(error.message || 'Could not link Telegram.', 'error'); return; }
+            showTelegramMsg("Telegram linked — you'll get alerts there even with every tab closed.", 'success');
+            telegramRemoveBtn.classList.remove('hidden');
+        } catch (err) {
+            showTelegramMsg(err.message || 'Could not link Telegram.', 'error');
+        } finally {
+            telegramSaveBtn.disabled = false;
+            telegramSaveBtn.innerText = original2;
+        }
+    });
+
+    telegramRemoveBtn?.addEventListener('click', async () => {
+        const client = window.cwAuth?.getClient?.();
+        const user = window.cwAuth?.getUser?.();
+        if (!client || !user) return;
+        try {
+            const { error } = await client
+                .from('notification_settings')
+                .update({ telegram_chat_id: null })
+                .eq('user_id', user.id);
+            if (error) { showTelegramMsg(error.message || 'Could not unlink Telegram.', 'error'); return; }
+            telegramInput.value = '';
+            telegramRemoveBtn.classList.add('hidden');
+            showTelegramMsg('Telegram unlinked.', 'success');
+        } catch (err) {
+            showTelegramMsg(err.message || 'Could not unlink Telegram.', 'error');
+        }
+    });
+
     // ---------- Leaderboard username ----------
     const USERNAME_RE = /^[A-Za-z0-9_]{3,20}$/;
     const usernameInput = document.getElementById('username-input');
@@ -270,6 +440,7 @@
             if (emailEl) emailEl.innerText = user.email || '';
             loadPurchases();
             loadUsername();
+            loadTelegramLink();
         } else {
             dashboard.classList.add('hidden');
             signedOutPanel.classList.remove('hidden');

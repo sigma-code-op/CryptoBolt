@@ -160,6 +160,7 @@
         fetchMultiTimeframeTrend(item);
         renderNotesPanel();
         if (typeof syncRiskCalcForAsset === 'function') syncRiskCalcForAsset();
+        if (typeof updateExchangeCompare === 'function') updateExchangeCompare(item);
     }
 
     function updateHUDDisplayValues(item) {

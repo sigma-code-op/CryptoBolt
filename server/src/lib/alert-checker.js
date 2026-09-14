@@ -17,16 +17,23 @@
 //     visitor's alerts, written by js/19-cloud-sync.js.
 //   - push_subscriptions (schema.sql)   — new table, but same shape as the
 //     rest of this project's Supabase usage.
+//   - notification_settings (schema.sql) — new table, holds an opt-in
+//     Telegram chat id per visitor (see lib/telegram.js).
 //   - server/db.js's admin-client style — lib/supabase-admin.js.
 //   - mailer.js                          — reused for the email fallback.
 // ---------------------------------------------------------------------------
 
 import { getSupabaseAdmin, SUPABASE_ADMIN_CONFIGURED } from './supabase-admin.js';
 import { sendPush, PUSH_CONFIGURED } from './push.js';
+import { sendTelegramMessage, TELEGRAM_CONFIGURED } from './telegram.js';
 import { sendAlertEmail, isMailerConfigured } from '../mailer.js';
 import { fetchAllBinancePrices } from './market-data.js';
 
-export const ALERT_CHECKER_CONFIGURED = SUPABASE_ADMIN_CONFIGURED && PUSH_CONFIGURED;
+// Push and Telegram are independent, optional delivery channels — a deployment (or a visitor)
+// can have neither, either, or both. The checker itself only needs Supabase to know who has
+// pending alerts at all, so it stays on as long as that's configured; individual sends below
+// silently no-op per-channel when that channel isn't set up (same pattern as PUSH_CONFIGURED).
+export const ALERT_CHECKER_CONFIGURED = SUPABASE_ADMIN_CONFIGURED && (PUSH_CONFIGURED || TELEGRAM_CONFIGURED);
 
 // Mirrors checkPriceAlerts()'s hit test in js/07-alerts.js exactly, so an alert fires under
 // the same rule server-side as it would have client-side.
@@ -71,9 +78,24 @@ export async function runAlertCheckCycle() {
     console.error('[cryptobolt-server] alert-checker: could not read push_subscriptions:', subsErr.message);
     return;
   }
-  if (!subs || subs.length === 0) return; // nobody has enabled push alerts — nothing to do
 
-  const userIds = [...new Set(subs.map((s) => s.user_id))];
+  let telegramProfiles = [];
+  if (TELEGRAM_CONFIGURED) {
+    const { data, error } = await supabase
+      .from('notification_settings')
+      .select('user_id, telegram_chat_id')
+      .not('telegram_chat_id', 'is', null);
+    if (error) {
+      console.error('[cryptobolt-server] alert-checker: could not read notification_settings:', error.message);
+    } else {
+      telegramProfiles = data || [];
+    }
+  }
+  const telegramChatIdByUser = new Map(telegramProfiles.map((p) => [p.user_id, p.telegram_chat_id]));
+
+  const userIds = [...new Set([...(subs || []).map((s) => s.user_id), ...telegramChatIdByUser.keys()])];
+  if (userIds.length === 0) return; // nobody has any delivery channel set up — nothing to do
+
   const { data: stateRows, error: stateErr } = await supabase
     .from('app_state')
     .select('user_id, state')
@@ -113,12 +135,13 @@ export async function runAlertCheckCycle() {
   if (!prices) return; // Binance unreachable this cycle — try again next tick, don't guess
 
   const subsByUser = new Map();
-  for (const s of subs) {
+  for (const s of subs || []) {
     if (!subsByUser.has(s.user_id)) subsByUser.set(s.user_id, []);
     subsByUser.get(s.user_id).push(s);
   }
 
   const expiredSubIds = [];
+  const invalidTelegramUserIds = [];
 
   for (const [userId, alertsByAsset] of perUserAlerts) {
     const triggeredMessages = [];
@@ -165,9 +188,19 @@ export async function runAlertCheckCycle() {
       else if (result.expired) expiredSubIds.push(sub.id);
     }
 
+    // Telegram: independent of push outcome above — a visitor who linked a chat id wants
+    // alerts there regardless of whether their push subscription also happened to fire.
+    const chatId = telegramChatIdByUser.get(userId);
+    if (chatId) {
+      const tgResult = await sendTelegramMessage(chatId, `📡 CryptoBolt Alert\n${body}`);
+      if (!tgResult.ok && tgResult.invalid) invalidTelegramUserIds.push(userId);
+    }
+
     // Email fallback: only when push didn't actually reach the device this cycle (no
     // subscriptions left, or every send failed) — not a duplicate channel on top of a push
-    // that already worked.
+    // that already worked. Telegram succeeding doesn't suppress this fallback: email and
+    // Telegram are both "in case push didn't land" / "in addition to push", not substitutes
+    // for each other from the visitor's point of view.
     if (!pushedOk && isMailerConfigured()) {
       const { data: userRecord } = await supabase.auth.admin.getUserById(userId);
       const email = userRecord?.user?.email;
@@ -184,6 +217,9 @@ export async function runAlertCheckCycle() {
   if (expiredSubIds.length > 0) {
     await supabase.from('push_subscriptions').delete().in('id', expiredSubIds);
   }
+  if (invalidTelegramUserIds.length > 0) {
+    await supabase.from('notification_settings').update({ telegram_chat_id: null }).in('user_id', invalidTelegramUserIds);
+  }
 }
 
 let intervalHandle = null;
@@ -198,8 +234,9 @@ export function startAlertChecker() {
   if (intervalHandle) return;
   if (!ALERT_CHECKER_CONFIGURED) {
     console.info(
-      '[cryptobolt-server] Closed-tab push alerts are OFF — set SUPABASE_URL, SUPABASE_API_KEY, ' +
-        'PUSH_VAPID_PUBLIC_KEY, and PUSH_VAPID_PRIVATE_KEY to enable (see server/.env.example).'
+      '[cryptobolt-server] Closed-tab alerts are OFF — set SUPABASE_URL and SUPABASE_API_KEY, ' +
+        'plus at least one delivery channel (PUSH_VAPID_PUBLIC_KEY/PUSH_VAPID_PRIVATE_KEY for ' +
+        'push, or TELEGRAM_BOT_TOKEN for Telegram), to enable (see server/.env.example).'
     );
     return;
   }
@@ -209,7 +246,8 @@ export function startAlertChecker() {
       console.error('[cryptobolt-server] alert-checker cycle failed:', err?.message || err);
     });
   }, seconds * 1000);
-  console.log(`[cryptobolt-server] Closed-tab push alerts ON — checking every ${seconds}s.`);
+  const channels = [PUSH_CONFIGURED && 'push', TELEGRAM_CONFIGURED && 'Telegram'].filter(Boolean).join(' + ');
+  console.log(`[cryptobolt-server] Closed-tab alerts ON (${channels}) — checking every ${seconds}s.`);
 }
 
 export function stopAlertChecker() {

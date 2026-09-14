@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-9zxE+gA/FrRc1G928e1+iHhB8hm6NGuCXQ3+eDdTJVY=' 'sha256-+/j4J3ueXCAX72OrGuWWa4kw+x6JIBRbxCE3yXbBETI=' 'sha256-zppIHWkg97ySiPILq4TBmquxwbRvbKyj74S3oSYGXdY=' 'sha256-zm2WiS2Z9yv/9KX1Ez+XkgB5Czdmftzgs95AzuryhYA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://launchzone.co; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-9zxE+gA/FrRc1G928e1+iHhB8hm6NGuCXQ3+eDdTJVY=' 'sha256-+/j4J3ueXCAX72OrGuWWa4kw+x6JIBRbxCE3yXbBETI=' 'sha256-zppIHWkg97ySiPILq4TBmquxwbRvbKyj74S3oSYGXdY=' 'sha256-zm2WiS2Z9yv/9KX1Ez+XkgB5Czdmftzgs95AzuryhYA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
     <script src="js/consent-default.js"></script>
+    <script src="js/error-reporter.js"></script>
+    <script src="js/theme-init.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
 
@@ -130,14 +132,14 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <!-- TradingView Lightweight Charts -->
     <script defer src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
-    <link rel="stylesheet" href="css/styles.css?v=20260906">
+    <link rel="stylesheet" href="css/styles.css?v=20260915">
     <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
     <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
     <link rel="stylesheet" href="css/premium.css?v=20260828">
-    <link rel="stylesheet" href="css/home.css?v=20260827">
+    <link rel="stylesheet" href="css/home.css?v=20260915">
     <link rel="stylesheet" href="css/redesign.css?v=20260910">
 </head>
-<body class="cb-has-rail bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
+<body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
         <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home">⚡</a>
         <div class="cb-rail-nav">
@@ -202,6 +204,12 @@
                     aria-label="Share CryptoBolt" title="Share CryptoBolt">
                     <span aria-hidden="true">🔗</span> Share
                 </button>
+                <button type="button" data-theme-toggle aria-pressed="false"
+                    class="flex items-center gap-1.5 text-[11px] font-bold bg-[#181a20] border border-gray-800 hover:border-[#4fd8e8]/50 hover:text-[#4fd8e8] text-gray-300 rounded px-3 py-1.5 transition-colors"
+                    aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+                    <span data-theme-toggle-icon aria-hidden="true">🌙</span>
+                    <span data-theme-toggle-label class="hidden sm:inline">Dark</span>
+                </button>
                 <button id="auth-open-btn" type="button" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">👤 Sign In</button>
                 <div id="auth-user-chip" class="hidden items-center gap-1.5">
                     <span id="cloud-sync-status" class="hidden items-center gap-1 text-[10px] font-mono px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 cursor-pointer" title="Cloud sync status — click to sync now">
@@ -209,7 +217,7 @@
                         <span id="cloud-sync-label" class="hidden sm:inline">synced</span>
                     </span>
                     <a href="account.html" id="auth-user-email" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all" title="My Account">👤 My Account</a>
-                    <button id="auth-signout-btn" type="button" class="text-[11px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer" title="Sign out">⎋</button>
+                    <button id="auth-signout-btn" type="button" aria-label="Sign out" class="text-[11px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer" title="Sign out">⎋</button>
                 </div>
             </div>
         </header>
@@ -345,7 +353,7 @@
                                 <h2 id="chart-title" class="text-lg font-bold text-white tracking-tight">Select Asset</h2>
                                 <span id="chart-market-badge" class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded"></span>
                                 <span id="mtf-badge" class="hidden text-[9px] font-bold uppercase px-1.5 py-0.5 rounded" title="Higher-timeframe trend agreement"></span>
-                                <button id="alert-bell" title="Add price alert" class="ml-1 text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-sm">🔔</button>
+                                <button id="alert-bell" title="Add price alert" aria-label="Add price alert" class="ml-1 text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-sm">🔔</button>
                                 <button id="chart-buy-btn" title="Buy this asset on Binance" class="ml-2 text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Buy</button>
                                 <button id="chart-sell-btn" title="Sell this asset on Binance" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell</button>
                             </div>
@@ -377,6 +385,10 @@
                         <div id="hud-funding-wrap" class="hidden">
                             <span class="text-[10px] text-gray-500 block uppercase font-bold">Funding / Next</span>
                             <span id="hud-funding" class="text-sm font-mono font-bold text-gray-300">--</span>
+                        </div>
+                        <div id="hud-exchange-compare-wrap" class="hidden" title="Binance index price vs. Coinbase spot price for the same asset">
+                            <span class="text-[10px] text-gray-500 block uppercase font-bold">vs Coinbase</span>
+                            <span id="hud-exchange-compare" class="text-sm font-mono font-bold text-gray-300">--</span>
                         </div>
                     </div>
                 </div>
@@ -443,7 +455,7 @@
                         <input id="compare-input" type="text" placeholder="e.g. ETH" list="compare-symbol-list"
                             class="w-24 bg-gray-900 border border-gray-800/80 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#24a0e5]">
                         <datalist id="compare-symbol-list"></datalist>
-                        <button id="compare-clear-btn" title="Clear comparison" class="hidden text-[11px] px-2 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">✕</button>
+                        <button id="compare-clear-btn" title="Clear comparison" aria-label="Clear comparison" class="hidden text-[11px] px-2 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">✕</button>
                     </div>
 
                     <div class="flex items-center gap-1.5 flex-wrap">
@@ -534,7 +546,7 @@
                     <div class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col">
                         <div class="px-3 py-2 border-b border-gray-800 bg-[#1e222b] text-[10px] font-bold uppercase tracking-wider text-gray-400 flex justify-between items-center">
                             <span>Price Alerts</span>
-                            <button id="sound-toggle-btn" title="Toggle alert sound" class="text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-xs">🔊</button>
+                            <button id="sound-toggle-btn" title="Toggle alert sound" aria-label="Toggle alert sound" class="text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-xs">🔊</button>
                         </div>
                         <div class="p-3 flex gap-2 flex-wrap">
                             <select id="alert-direction" class="flex-shrink-0 bg-gray-900 border border-gray-800 rounded text-[10px] px-1.5 py-1 text-gray-300">
