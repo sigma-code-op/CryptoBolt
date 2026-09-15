@@ -37,57 +37,6 @@
     --el-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ---------- Light theme ----------
-   --el-* is its own depth/surface scale, entirely hardcoded (no --cw-* references at all —
-   see the comment above), so it stayed fully dark under the toggle even after the styles.css
-   and shadcn-ui.css fixes. Re-point every surface/border/shadow token at the light palette;
-   the shadow values in particular are tuned for a dark backdrop (a white 4% inset "highlight"
-   is invisible on a light card, and pure-black shadows read as dirty smudges rather than
-   depth on white) so those get light-appropriate replacements, not just color swaps. */
-:root[data-theme="light"] {
-    --el-bg-0: var(--cw-bg);
-    --el-bg-1: var(--cw-panel-alt);
-    --el-surface: var(--cw-panel);
-    --el-surface-2: var(--cw-panel-alt);
-    --el-surface-hi: var(--cw-panel-hi);
-    --el-border: var(--cw-border);
-    --el-border-hi: var(--cw-border-hi);
-    --el-shadow-card:
-        0 1px 0 rgba(255, 255, 255, 0.6) inset,
-        0 18px 40px -18px rgba(23, 26, 33, 0.16),
-        0 4px 14px -6px rgba(23, 26, 33, 0.1);
-    --el-shadow-card-hover:
-        0 1px 0 rgba(255, 255, 255, 0.7) inset,
-        0 28px 60px -20px rgba(23, 26, 33, 0.18),
-        0 0 0 1px var(--el-border-hi),
-        0 0 36px -6px var(--el-glow-cyan);
-}
-
-:root[data-theme="light"] {
-    /* The header bar, scrollbar, and these two text colors are hardcoded directly on their
-       selectors rather than routed through the --el-* variables above, so they need their own
-       overrides here — this is exactly the "header bar stayed fully dark" gap. */
-}
-
-[data-theme="light"] header.flex {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.8)) !important;
-}
-[data-theme="light"] ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #c7cedb, #aeb7c8) !important;
-    border-color: var(--el-bg-1) !important;
-}
-[data-theme="light"] table thead th {
-    color: #5a6478 !important;
-}
-[data-theme="light"] .cw-footer-col-title {
-    color: #5a6478 !important;
-}
-[data-theme="light"] .cw-card-interactive .uppercase.tracking-wide {
-    color: #6b7385 !important;
-}
-[data-theme="light"] .bg-\[\#1e222b\]\/50 { background: rgba(23, 26, 33, 0.035) !important; }
-[data-theme="light"] .bg-\[\#14161c\] { background: var(--cw-panel-alt) !important; }
-
 /* ---------- Page backdrop: layered mesh instead of flat black ---------- */
 html { background: var(--el-bg-0); }
 
