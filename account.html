@@ -37,11 +37,11 @@
     <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="css/styles.css?v=20260916">
-    <link rel="stylesheet" href="css/shadcn-ui.css?v=20260823">
-    <link rel="stylesheet" href="css/ui-elevate.css?v=20260823">
+    <link rel="stylesheet" href="css/shadcn-ui.css?v=20260917">
+    <link rel="stylesheet" href="css/ui-elevate.css?v=20260917">
     <link rel="stylesheet" href="css/premium.css?v=20260828">
     <link rel="stylesheet" href="css/home.css?v=20260915">
-    <link rel="stylesheet" href="css/redesign.css?v=20260910">
+    <link rel="stylesheet" href="css/redesign.css?v=20260917">
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
@@ -78,6 +78,12 @@
                 </h1>
             </div>
             <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap justify-end">
+                <button type="button" data-theme-toggle aria-pressed="false"
+                    class="flex items-center gap-1.5 text-[11px] font-bold bg-gray-900 border border-gray-800 hover:border-[#4fd8e8]/50 hover:text-[#4fd8e8] text-gray-300 rounded px-3 py-1.5 transition-colors"
+                    aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+                    <span data-theme-toggle-icon aria-hidden="true">🌙</span>
+                    <span data-theme-toggle-label class="hidden sm:inline">Dark</span>
+                </button>
                 <button id="auth-open-btn" type="button" class="hidden text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">👤 Sign In</button>
                 <div id="auth-user-chip" class="hidden items-center gap-1.5">
                     <span id="cloud-sync-status" class="hidden items-center gap-1 text-[10px] font-mono px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 cursor-pointer" title="Cloud sync status — click to sync now">

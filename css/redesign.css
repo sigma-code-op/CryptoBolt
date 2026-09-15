@@ -70,6 +70,45 @@
   --mk-amber: #E8A93A;
 }
 
+/* ---------- Light theme ----------
+   THIS BLOCK IS THE ACTUAL FIX for "the toggle barely does anything" — this file loads dead
+   last (see the header comment above) and its plain `:root` block right above unconditionally
+   redeclares --cw-bg/--cw-panel/--cw-text/etc. to hardcoded dark values with no [data-theme]
+   condition at all. That silently overwrote EVERY light-theme value css/styles.css's own
+   `:root[data-theme="light"]` block set — including --cw-bg and --cw-text, which is why even
+   the page background barely changed. `:root[data-theme="light"]` has higher specificity than
+   plain `:root` (an attribute selector beats none), so this wins regardless of file load order
+   — but it still needs to physically exist, which it didn't until now. */
+:root[data-theme="light"] {
+  --cw-bg: #f4f6f9;
+  --cw-panel: #ffffff;
+  --cw-panel-alt: #eef1f6;
+  --cw-panel-hi: #e4e8f0;
+  --cw-border: #d7dce6;
+  --cw-border-hi: #c1c8d6;
+
+  --cw-green: #0e9c67;
+  --cw-green-dim: #0b7a51;
+  --cw-red: #d63753;
+  --cw-amber: #b3760a;
+  --cw-cyan: #1591a3;
+  --cw-purple: #7c3aed;
+
+  --cw-text: #171a21;
+  --cw-text-dim: #545b6b;
+
+  /* --cbx-* backs .cw-panel-premium/.cw-panel-accent (styles.css) — those get their own
+     gradient/shadow override below since they're hardcoded gradients, not pure var() reads,
+     but --cbx-line still needs a light value since that's what the border reads directly. */
+  --cbx-bg: #f4f6f9;
+  --cbx-surface: rgba(255, 255, 255, 0.82);
+  --cbx-surface-strong: rgba(255, 255, 255, 0.95);
+  --cbx-line: rgba(23, 26, 33, 0.1);
+  --cbx-line-hi: rgba(23, 26, 33, 0.16);
+  --cbx-glow: rgba(14, 156, 103, 0.14);
+  --cbx-glow-cyan: rgba(21, 145, 163, 0.12);
+}
+
 /* ---------- 2. Card & panel hierarchy (stop the uniform rounded-lg/shadow-2xl look) ---------- */
 /* Dense data surfaces (tables, order book, ticker rows): flatter, tighter, no shadow —
    density should read as density, not as a stack of identical cards. */
@@ -103,6 +142,30 @@
   background: linear-gradient(180deg, rgba(20, 23, 31, 0.96), rgba(14, 16, 22, 0.98)) !important;
 }
 
+/* Light-mode overrides for the two rules directly above. Both are unconditional !important
+   declarations with no [data-theme] condition, so they always win the cascade over anything
+   set earlier (including css/styles.css's own light-theme rules) regardless of the toggle —
+   [data-theme="light"] + the class is MORE specific than the class alone, so this correctly
+   wins back over them when light mode is active without needing to touch the rules above. */
+[data-theme="light"] .cw-card-interactive,
+[data-theme="light"] .bg-\[\#181a20\] {
+  background: var(--cw-panel) !important;
+}
+[data-theme="light"] .cw-card-interactive:hover {
+  border-color: var(--cw-border-hi) !important;
+}
+[data-theme="light"] .cw-panel-premium,
+[data-theme="light"] .mt-6.cw-panel-accent {
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 20px 44px rgba(23, 26, 33, 0.12) !important;
+}
+/* header.flex is also styled by ui-elevate.css AND premium.css, both with their own
+   unconditional !important dark gradients — premium.css loads after ui-elevate.css and wins
+   over it, and this file loads last of all three, so THIS is the rule that actually has final
+   say for the header bar under light mode, regardless of what the other two files do. */
+[data-theme="light"] header.flex {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.8)) !important;
+}
+
 /* ---------- 3. Buttons: two clear tiers instead of one repeated grey pill ---------- */
 .filter-btn, .tf-btn, .ind-btn, .ctype-btn, .heatmap-scope-btn {
   background: transparent !important;
@@ -117,6 +180,15 @@
   background: rgba(70, 184, 201, 0.12) !important;
   border-color: rgba(70, 184, 201, 0.5) !important;
   color: #7FD3DF !important;
+}
+[data-theme="light"] .filter-btn.active, [data-theme="light"] .tf-btn.active,
+[data-theme="light"] .ind-btn.active, [data-theme="light"] .ctype-btn.active,
+[data-theme="light"] .heatmap-scope-btn.active {
+  /* #7FD3DF is a pale cyan tuned to pop on a near-black background — on a white/light panel
+     that same color is too low-contrast to read comfortably, so it gets a darker cyan here. */
+  background: rgba(21, 145, 163, 0.12) !important;
+  border-color: rgba(21, 145, 163, 0.5) !important;
+  color: #0e6b78 !important;
 }
 
 /* ---------- 4. Retire the decorative tracked-uppercase eyebrow; keep the dot,
