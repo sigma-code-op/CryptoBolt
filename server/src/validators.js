@@ -45,6 +45,28 @@ function validateContext(ctx) {
   return null;
 }
 
+/**
+ * Validate the payload sent by the frontend for /api/alert-explain — a price alert that
+ * just fired client-side, asking for a one-sentence AI note on why. Deliberately much
+ * smaller than validateContext(ctx) above: this endpoint only needs enough to write one
+ * sentence, not a full technical read, so it accepts a narrower, cheaper payload.
+ * Returns an error message string, or null if the payload is valid.
+ */
+function validateAlertExplainPayload(body) {
+  if (!body || typeof body !== 'object') return 'Missing alert data.';
+  const { asset, direction, target, price, market } = body;
+  if (typeof asset !== 'string' || asset.length < 1 || asset.length > 20) return 'Invalid field: asset';
+  const allowedDirections = ['above', 'below', 'pct_up', 'pct_down'];
+  if (typeof direction !== 'string' || !allowedDirections.includes(direction)) return 'Invalid field: direction';
+  if (typeof target !== 'number' || !Number.isFinite(target)) return 'Invalid field: target';
+  if (typeof price !== 'number' || !Number.isFinite(price)) return 'Invalid field: price';
+  if (typeof market !== 'string' || !['spot', 'perpetual futures'].includes(market)) return 'Invalid field: market';
+  if (body.changePercent24h !== undefined && body.changePercent24h !== null && typeof body.changePercent24h !== 'number') {
+    return 'Invalid field: changePercent24h';
+  }
+  return null;
+}
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
@@ -77,4 +99,4 @@ function validateContact(body) {
   return null;
 }
 
-export { validateContext, validateContact };
+export { validateContext, validateContact, validateAlertExplainPayload };

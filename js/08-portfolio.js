@@ -1,4 +1,85 @@
 // ---------- Spot portfolio and futures position tracking, PnL/liquidation math, CSV export. ----------
+
+    // ---------- Feature: portfolio risk score ----------
+    // Extends js/13-risk-calculator.js's per-trade risk math to the account as a whole.
+    // A pure function of its arguments (no DOM, no localStorage) — same pattern as
+    // js/16-paper-trading.js's PT_MAINTENANCE_MARGIN_RATE/estimateLiqPrice, kept outside
+    // updateAccountSummary() below so it stays independently testable/reviewable.
+    //
+    // Three components, each scaled 0-100 then weighted:
+    //   - leverage:      margin-weighted average leverage across open futures positions
+    //                     (1x -> 0, 20x+ -> 100). Ignored (0) if there are no positions.
+    //   - concentration:  the single largest position's notional exposure as a % of total
+    //                     notional exposure (spot value + futures notional combined).
+    //                     A one-asset account scores 100 here regardless of leverage.
+    //   - leveragedShare: how much of total notional exposure is leveraged futures vs.
+    //                     unlevered spot — an account that's all spot scores 0 here even
+    //                     if concentrated in one coin.
+    // Weights (40/35/25) favor leverage first, then concentration, then leveraged share —
+    // leverage is what turns an ordinary drawdown into a liquidation, so it's weighted the
+    // heaviest of the three.
+    function computeRiskScoreInputs(holdings, futuresPositions, findSpotAssetByBase, findFuturesAssetByBase) {
+        let spotNotional = 0, futuresNotional = 0, marginWeightedLeverage = 0, totalMargin = 0;
+        const exposureBySymbol = {};
+
+        holdings.forEach(h => {
+            const asset = findSpotAssetByBase(h.symbol);
+            const value = asset ? asset.price * h.qty : 0;
+            spotNotional += value;
+            exposureBySymbol[h.symbol] = (exposureBySymbol[h.symbol] || 0) + value;
+        });
+
+        futuresPositions.forEach(p => {
+            const asset = findFuturesAssetByBase(p.symbol);
+            const markPrice = asset ? asset.price : p.entryPrice;
+            const notional = markPrice * p.qty;
+            const margin = (p.entryPrice * p.qty) / p.leverage;
+            futuresNotional += notional;
+            totalMargin += margin;
+            marginWeightedLeverage += margin * p.leverage;
+            exposureBySymbol[p.symbol] = (exposureBySymbol[p.symbol] || 0) + notional;
+        });
+
+        const totalNotional = spotNotional + futuresNotional;
+        const largestExposure = Math.max(0, ...Object.values(exposureBySymbol));
+        const avgLeverage = totalMargin > 0 ? marginWeightedLeverage / totalMargin : 1;
+
+        return {
+            totalNotional,
+            concentrationPct: totalNotional > 0 ? (largestExposure / totalNotional) * 100 : 0,
+            leveragedSharePct: totalNotional > 0 ? (futuresNotional / totalNotional) * 100 : 0,
+            avgLeverage,
+            hasFutures: futuresPositions.length > 0,
+        };
+    }
+    function computeRiskScore(inputs) {
+        if (inputs.totalNotional <= 0) return { score: 0, label: 'None', color: 'text-gray-500 bg-gray-800 border-gray-700' };
+        const leverageIntensity = inputs.hasFutures ? Math.min(1, Math.max(0, (inputs.avgLeverage - 1) / 19)) : 0;
+        const leverageScore = leverageIntensity * 100;
+        const concentrationScore = Math.min(100, inputs.concentrationPct);
+        // Scaled by leverageIntensity too — a 1x futures position carries essentially the
+        // same risk as holding the same notional in spot, so it shouldn't be flagged as
+        // "leveraged" here just for being on the futures side of the account.
+        const leveragedShareScore = Math.min(100, inputs.leveragedSharePct) * leverageIntensity;
+        const score = leverageScore * 0.40 + concentrationScore * 0.35 + leveragedShareScore * 0.25;
+        let label, color;
+        if (score < 25) { label = 'Low'; color = 'text-[#14d38a] bg-[#14d38a]/10 border-[#14d38a]/30'; }
+        else if (score < 50) { label = 'Moderate'; color = 'text-amber-400 bg-amber-500/10 border-amber-500/30'; }
+        else if (score < 75) { label = 'High'; color = 'text-[#ff4d6a] bg-[#ff4d6a]/10 border-[#ff4d6a]/30'; }
+        else { label = 'Extreme'; color = 'text-[#ff4d6a] bg-[#ff4d6a]/20 border-[#ff4d6a]/50'; }
+        return { score: Math.round(score), label, color };
+    }
+    function renderRiskScore(inputs) {
+        const el = document.getElementById('summary-risk-score');
+        if (!el) return; // page doesn't have the risk-score badge — skip quietly
+        const { score, label, color } = computeRiskScore(inputs);
+        el.innerText = inputs.totalNotional > 0 ? `${label} · ${score}/100` : '—';
+        el.className = `text-[10px] font-bold uppercase px-2 py-1 rounded border ${color}`;
+        el.title = inputs.totalNotional > 0
+            ? `Concentration: ${inputs.concentrationPct.toFixed(0)}% in largest position · Leveraged share: ${inputs.leveragedSharePct.toFixed(0)}% of exposure${inputs.hasFutures ? ` · Avg leverage: ${inputs.avgLeverage.toFixed(1)}x` : ''}. Not a recommendation — just a read on how concentrated/leveraged this account currently is.`
+            : 'Add holdings or open a position to see a risk read here.';
+    }
+
     function updateAccountSummary() {
         let spotValue = 0;
         holdings.forEach(h => {
@@ -24,6 +105,7 @@
         fPnlEl.innerText = `${futuresPnl >= 0 ? '+' : ''}$${futuresPnl.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
         fPnlEl.className = `text-sm font-mono font-bold ${futuresPnl >= 0 ? 'text-[#14d38a]' : 'text-[#ff4d6a]'}`;
         document.getElementById('summary-net-value').innerText = `$${netValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+        renderRiskScore(computeRiskScoreInputs(holdings, futuresPositions, findSpotAssetByBase, findFuturesAssetByBase));
     }
 
     // ---------- Live conversion hints (Coins <-> USDT) ----------

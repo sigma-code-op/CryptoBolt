@@ -46,8 +46,23 @@
     const ALERT_HISTORY_MAX = 20;
     function logAlertHistory(asset, alertDesc) {
         const history = safeJSONParse(localStorage.getItem('cw_alert_history'), []);
-        history.unshift({ time: Date.now(), asset: asset.baseAsset, desc: alertDesc, price: asset.price });
+        // id lets requestAlertExplanation() (below) find this exact entry again once its
+        // async AI note comes back, without disturbing anything else in the log.
+        const id = `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+        history.unshift({ id, time: Date.now(), asset: asset.baseAsset, desc: alertDesc, price: asset.price, aiNote: null });
         localStorage.setItem('cw_alert_history', JSON.stringify(history.slice(0, ALERT_HISTORY_MAX)));
+        if (!document.getElementById('alert-history-list').classList.contains('hidden')) renderAlertHistory();
+        return id;
+    }
+    // Patches a single history entry's aiNote once the async /api/alert-explain call
+    // (requestAlertExplanation, below) resolves. Best-effort: if the entry has since rolled
+    // off the end of the ALERT_HISTORY_MAX-item log, this is just a silent no-op.
+    function updateAlertHistoryNote(id, note) {
+        const history = safeJSONParse(localStorage.getItem('cw_alert_history'), []);
+        const entry = history.find(h => h.id === id);
+        if (!entry) return;
+        entry.aiNote = note;
+        localStorage.setItem('cw_alert_history', JSON.stringify(history));
         if (!document.getElementById('alert-history-list').classList.contains('hidden')) renderAlertHistory();
     }
     function renderAlertHistory() {
@@ -56,11 +71,67 @@
         if (history.length === 0) { container.innerHTML = '<p class="text-gray-600 text-[9.5px]">No alerts have triggered yet.</p>'; return; }
         container.innerHTML = history.map(h => {
             const time = new Date(h.time).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-            return `<div class="flex items-center justify-between text-[9.5px] px-1.5 py-1 rounded bg-gray-900/50">
-                <span class="text-gray-400"><strong class="text-gray-300">${h.asset}</strong> ${h.desc}</span>
-                <span class="text-gray-600">${time}</span>
+            const noteLine = h.aiNote
+                ? `<div class="text-[9px] text-[#a855f7] mt-0.5 leading-snug">🤖 ${escapeHtml(h.aiNote)}</div>`
+                : '';
+            return `<div class="text-[9.5px] px-1.5 py-1 rounded bg-gray-900/50">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-400"><strong class="text-gray-300">${h.asset}</strong> ${h.desc}</span>
+                    <span class="text-gray-600">${time}</span>
+                </div>
+                ${noteLine}
             </div>`;
         }).join('');
+    }
+
+    // ---------- Feature: AI explanation for a triggered alert ----------
+    // Fires automatically right after an alert triggers (see checkPriceAlerts below) —
+    // never something the visitor has to click for. Entirely best-effort and non-blocking:
+    // the toast/beep/browser-notification/history-log flow already completed synchronously
+    // before this is even called, so if this fails or is skipped, nothing about the core
+    // alert experience changes — the history entry just never grows its 🤖 note line.
+    // Reuses the exact key-mode plumbing from js/10-ai-insight.js (getAIKeyMode,
+    // getStoredApiKey, resolveApiUrl — all plain globals, loaded earlier in the same bundle)
+    // rather than duplicating it, so "own key" vs "CryptoBolt's shared key" stays one choice
+    // for the whole app, not a separate toggle per feature.
+    async function requestAlertExplanation(asset, alert, historyId) {
+        if (!CW_CONFIG.aiInsightUrl) return; // no AI backend configured on this deployment
+        const useHouseKey = typeof getAIKeyMode === 'function' && getAIKeyMode() === 'house';
+        const apiKey = typeof getStoredApiKey === 'function' ? getStoredApiKey() : '';
+        if (!useHouseKey && !apiKey) return; // no key available — stay silent, same as AI Insight's local fallback
+
+        try {
+            const headers = { 'content-type': 'application/json' };
+            if (useHouseKey) headers['x-use-house-key'] = '1';
+            else headers['x-groq-key'] = apiKey;
+
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 15000);
+            let res;
+            try {
+                res = await fetch(resolveApiUrl('/api/alert-explain'), {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({
+                        asset: asset.baseAsset,
+                        direction: alert.direction,
+                        target: alert.target,
+                        price: asset.price,
+                        market: asset.isFutures ? 'perpetual futures' : 'spot',
+                        changePercent24h: typeof asset.changePct === 'number' ? asset.changePct : null,
+                    }),
+                    signal: controller.signal
+                });
+            } finally {
+                clearTimeout(timer);
+            }
+            if (!res.ok) return; // rate-limited, invalid key, etc. — the alert itself already fired fine
+            const data = await res.json().catch(() => null);
+            if (data?.explanation) updateAlertHistoryNote(historyId, data.explanation);
+        } catch (e) {
+            // Network error, timeout, aborted — never surface this as a user-facing error;
+            // the alert already did its job without the AI note.
+        }
     }
     document.getElementById('alert-history-toggle').addEventListener('click', () => {
         const list = document.getElementById('alert-history-list');
@@ -100,10 +171,13 @@
                 const isPositive = a.direction === 'above' || a.direction === 'pct_up';
                 showToast(msg, isPositive ? 'success' : 'error');
                 playAlertBeep();
-                logAlertHistory(asset, describeAlert(a));
+                const historyId = logAlertHistory(asset, describeAlert(a));
                 if ('Notification' in window && Notification.permission === 'granted') {
                     new Notification('CryptoBolt Alert', { body: msg });
                 }
+                // Fire-and-forget — the alert has already done its job above regardless of
+                // whether this resolves, fails, or is skipped entirely (see the function).
+                requestAlertExplanation(asset, a, historyId);
             }
         });
         if (changed) {

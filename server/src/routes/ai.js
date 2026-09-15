@@ -6,7 +6,7 @@ import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
 import Groq from 'groq-sdk';
 import { GROQ_MODEL, GROQ_HOUSE_API_KEY, HOUSE_KEY_ENABLED } from '../config.js';
-import { validateContext } from '../validators.js';
+import { validateContext, validateAlertExplainPayload } from '../validators.js';
 import { fetchCryptoNews, fetchFearGreedIndex } from '../lib/market-data.js';
 import {
   synthesisSystemPrompt,
@@ -15,6 +15,8 @@ import {
   softenList,
   CHAT_SYSTEM_PROMPT,
   RESEARCH_SYSTEM_PROMPT,
+  ALERT_EXPLAIN_SYSTEM_PROMPT,
+  buildAlertExplainPrompt,
 } from '../lib/ai-prompts.js';
 
 const router = Router();
@@ -771,6 +773,102 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
         error:
           'AI service request failed.',
       });
+    }
+  }
+);
+
+// =========================================================
+// ALERT TRIGGER EXPLANATION
+// =========================================================
+// Called by js/07-alerts.js right after a price alert fires client-side. Deliberately the
+// cheapest of the three AI endpoints here — one short completion, no multi-pass research —
+// since it's firing automatically (not on an explicit "Analyze" click) and shouldn't feel
+// like it's burning through someone's rate limit for a one-line note. Uses the same
+// resolveApiKey/aiRateLimit plumbing as /api/ai-chat and /api/ai-insight above, so it's
+// still subject to the visitor's own BYOK limit or the stricter shared house-key limit.
+
+router.post(
+  '/api/alert-explain',
+  aiRateLimit,
+  async (req, res) => {
+
+    const {
+      apiKey,
+      errorStatus,
+      errorBody,
+    } = resolveApiKey(req);
+
+    if (errorStatus) {
+      return res.status(errorStatus).json(errorBody);
+    }
+
+    const payload = req.body || {};
+
+    const validationError = validateAlertExplainPayload(payload);
+
+    if (validationError) {
+      return res.status(400).json({ error: validationError });
+    }
+
+    const asset = String(payload.asset).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 15) || 'BTC';
+
+    const groq = new Groq({ apiKey });
+
+    // Best-effort context, same as /api/ai-chat — a failed news/sentiment fetch should
+    // never block the note, it just gets written with less grounding.
+    const [newsItems, fearGreed] = await Promise.all([
+      fetchCryptoNews(asset).catch(() => []),
+      fetchFearGreedIndex().catch(() => null),
+    ]);
+
+    const userPrompt = buildAlertExplainPrompt({
+      asset,
+      direction: payload.direction,
+      target: payload.target,
+      price: payload.price,
+      market: payload.market,
+      changePercent24h: payload.changePercent24h ?? null,
+      fearGreed: fearGreed?.value ?? fearGreed ?? null,
+      newsItems,
+    });
+
+    try {
+
+      const completion = await groq.chat.completions.create({
+        model: GROQ_MODEL,
+        max_tokens: 90,
+        reasoning_effort: 'low',
+        messages: [
+          { role: 'system', content: ALERT_EXPLAIN_SYSTEM_PROMPT },
+          { role: 'user', content: userPrompt },
+        ],
+      });
+
+      let explanation = (completion.choices?.[0]?.message?.content || '').trim();
+
+      if (!explanation) {
+        return res.status(502).json({ error: 'AI model returned an empty response.' });
+      }
+
+      explanation = softenOverconfidentLanguage(explanation);
+
+      return res.json({ explanation });
+
+    } catch (err) {
+
+      const status = err?.status;
+
+      if (status === 401) {
+        return res.status(401).json({ error: 'Invalid API key. Check the key you entered and try again.' });
+      }
+
+      if (status === 429) {
+        return res.status(429).json({ error: 'Rate limited by Groq. Please wait a moment and try again.' });
+      }
+
+      console.error('[cryptobolt-server] Groq alert-explain error:', err?.message || err);
+
+      return res.status(502).json({ error: 'AI alert explanation request failed.' });
     }
   }
 );

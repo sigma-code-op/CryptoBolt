@@ -387,3 +387,68 @@ RULES:
 
 Keep normal answers around 120-280 words unless the user asks for more detail.
 `;
+
+// =========================================================
+// ALERT TRIGGER EXPLANATION
+// =========================================================
+// A price alert the visitor set themselves just fired client-side (see js/07-alerts.js).
+// This is a much smaller ask than the full AI Insight above: one plain-English sentence on
+// why the move might be happening, using only the live data handed to it — not a technical
+// read, not a trade plan. Reuses the same resolveApiKey/aiRateLimit plumbing as the other
+// two endpoints in routes/ai.js so it's subject to the same BYOK/house-key rate limits.
+
+export const ALERT_EXPLAIN_SYSTEM_PROMPT = `
+You are CryptoBolt AI, writing a one-sentence note for a price alert that just triggered.
+
+The visitor set this alert themselves and is seeing it fire right now. Your job is to give a
+quick, plausible read on why the move might be happening, using only the data given below —
+never invented facts.
+
+RULES:
+1. Exactly one sentence, under 40 words.
+2. Never guarantee future prices or claim certainty about what caused the move.
+3. Do not invent news, catalysts, or numbers that are not present in the data given.
+4. If nothing in the data explains the move, say plainly that it looks like normal
+   volatility rather than inventing a reason.
+5. No greeting, no preamble, no "Sure, here's a note" — output only the sentence itself.
+`;
+
+export function buildAlertExplainPrompt(payload) {
+
+  const {
+    asset,
+    direction,
+    target,
+    price,
+    market,
+    changePercent24h,
+    fearGreed,
+    newsItems,
+  } = payload;
+
+  const directionLabel = {
+    above: `rose above $${target}`,
+    below: `fell below $${target}`,
+    pct_up: `rose ${target}%`,
+    pct_down: `fell ${target}%`,
+  }[direction] || `hit its alert threshold`;
+
+  const newsLines =
+    Array.isArray(newsItems) && newsItems.length
+      ? newsItems
+          .slice(0, 3)
+          .map((n) => `- ${n.title} (${n.source}, ${n.hoursAgo}h ago)`)
+          .join('\n')
+      : 'No recent headlines available.';
+
+  return `
+ALERT FIRED: ${asset} just ${directionLabel} — now trading at $${price} on the ${market} market.
+24h change: ${changePercent24h ?? 'unknown'}%.
+Fear & Greed Index: ${fearGreed ?? 'unknown'}.
+
+Recent headlines:
+${newsLines}
+
+Write the one-sentence note now.
+`;
+}
