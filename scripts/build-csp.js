@@ -79,6 +79,7 @@ const IMG_SRC = [
   'https://api.producthunt.com',
   'https://ph-files.imgix.net', // Product Hunt embed card's own icon image
   'https://launchzone.co',
+  'https://r2.direasy-multi-tenant.focusapps.app', // "Featured on TinyHunt" badge image
   'https://sellwithboost.com', // "Listed on Sell With Boost" badge image
   'https://images.dmca.com', // DMCA Protection Status badge image
   'https://www.nxgntools.com', // "Featured on NxGn Tools" badge image
