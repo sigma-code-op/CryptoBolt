@@ -39,7 +39,9 @@ const DIST_DIR = path.join(JS_DIR, 'dist');
 // remove, or reorder a module in a page's <script> tags, update the matching
 // list below and re-run `npm run build:js`.
 const BUNDLES = {
-  // index.html
+  // index.html — core module list only. Everything needed for first paint / first
+  // interaction: prices, chart, portfolio, alerts, auth state. Kept deliberately lean —
+  // see bundle-home-lazy.js below for the modules split out of this list and why.
   'bundle-home.js': [
     '00-config.js',
     '01-state.js',
@@ -52,7 +54,6 @@ const BUNDLES = {
     '08-portfolio.js',
     '09-sound-compare.js',
     'market-conditions-gauge.js',
-    '10-ai-insight.js',
     '11-performance-notes-funding.js',
     '12-events-init.js',
     '13-risk-calculator.js',
@@ -61,6 +62,21 @@ const BUNDLES = {
     '14-buy-sell-redirect.js',
     '15-risk-triggers.js',
     '20-scroll-reveal.js',
+  ],
+  // index.html — everything below is NOT needed for first paint or first interaction:
+  // the AI insight panel, closed-tab push alerts, the referral panel, the screener modal,
+  // and the exchange-price-compare column are all opt-in features a visitor reaches by
+  // clicking something, well after the terminal itself is usable. Loaded lazily by the
+  // small inline loader in app.html (after `load`/idle, or immediately on first pointer/
+  // keyboard interaction) instead of blocking the initial script execution — this is what
+  // was previously the second half of bundle-home.js. Every module here already guards its
+  // calls into this list with `typeof x === 'function'` / truthy checks (see e.g.
+  // 07-alerts.js's requestAlertExplanation, 04-ticker-sockets.js's updateExchangeCompare
+  // call, 17-auth.js's cwReferral lookup) specifically so load order between the two
+  // bundles doesn't matter — each feature just silently stays inactive until its module
+  // has loaded, same as it would if the visitor's connection was merely slow.
+  'bundle-home-lazy.js': [
+    '10-ai-insight.js',
     '23-push-alerts.js',
     '24-referrals.js',
     '25-screener.js',

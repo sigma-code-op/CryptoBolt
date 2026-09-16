@@ -5,8 +5,9 @@
   "description": "CryptoBolt frontend build tooling — Tailwind CSS compile, JS bundling/minification, and CSP <meta> tag generation for the static site. The backend proxy lives in server/ with its own package.json.",
   "type": "module",
   "scripts": {
-    "build": "npm run build:css && npm run build:js && npm run build:csp",
+    "build": "npm run build:css && npm run build:css-bundle && npm run build:js && npm run build:csp",
     "build:css": "tailwindcss -i css/tailwind-input.css -o css/tailwind.css --minify",
+    "build:css-bundle": "node scripts/build-css.js",
     "build:js": "node scripts/build-js.js",
     "build:blog": "node scripts/build-blog.js",
     "build:csp": "node scripts/build-csp.js",

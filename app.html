@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-9zxE+gA/FrRc1G928e1+iHhB8hm6NGuCXQ3+eDdTJVY=' 'sha256-+/j4J3ueXCAX72OrGuWWa4kw+x6JIBRbxCE3yXbBETI=' 'sha256-zppIHWkg97ySiPILq4TBmquxwbRvbKyj74S3oSYGXdY=' 'sha256-zm2WiS2Z9yv/9KX1Ez+XkgB5Czdmftzgs95AzuryhYA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-+1ATsJIcy4OfJSpy6/2I3ysVSd/V7tWStk4sLoW3YcM=' 'sha256-1887jAL+UM3dDoBOHFpmo+YarFeKPwADyzbjT2VVRlY=' 'sha256-BIEnahnLfnnHdG43Zqkz4yjH8jU34YI9ZgOozvNjg7M=' 'sha256-vlYvxw2kx849dDSVczQWFrvc1WSxw0sUQuXjhzsSjoM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
@@ -119,24 +119,25 @@
     </script>
 
     <!-- ============ Performance ============ -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preconnect" href="https://stream.binance.com">
-    <link rel="dns-prefetch" href="https://api.binance.com">
+    <!-- Only the hosts that gate first paint get a full preconnect (Lighthouse flags -->
+    <!-- >4 as wasteful — each one opens a TCP+TLS connection whether it's used or not). -->
+    <!-- unpkg/jsdelivr/binance-REST get the cheaper DNS-only hint since those requests -->
+    <!-- either fire later (deferred chart lib, lazy-loaded auth) or aren't render-blocking. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://stream.binance.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://api.binance.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
 
-    <!-- Tailwind CSS v4 -->
-    <link rel="stylesheet" href="css/tailwind.css?v=20260820">
     <!-- TradingView Lightweight Charts -->
     <script defer src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
-    <link rel="stylesheet" href="css/styles.css?v=20260916">
-    <link rel="stylesheet" href="css/shadcn-ui.css?v=20260917">
-    <link rel="stylesheet" href="css/ui-elevate.css?v=20260917">
-    <link rel="stylesheet" href="css/premium.css?v=20260828">
-    <link rel="stylesheet" href="css/home.css?v=20260915">
-    <link rel="stylesheet" href="css/redesign.css?v=20260917">
+    <!-- Tailwind v4 + styles.css + shadcn-ui.css + ui-elevate.css + premium.css + home.css +
+         redesign.css, concatenated in the same cascade order by scripts/build-css.js — was
+         7 render-blocking requests, now 1. Edit the source files in css/*.css, not this file;
+         regenerate with `npm run build:css-bundle`. -->
+    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20260916">
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
@@ -1027,9 +1028,13 @@
     <!-- App modules load in order; they share the global scope (no bundler needed). -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
-         files, not this bundle — it's a generated build artifact. -->
-    <script src="js/dist/bundle-home.js?v=20260908c"></script>
+         files, not this bundle — it's a generated build artifact. Core modules only: prices,
+         chart, portfolio, alerts, auth. bundle-home-lazy.js (AI insight, push alerts,
+         referrals, screener, exchange-compare) loads separately, below, once the page is
+         idle — see the comment there for why that split is safe. -->
+    <script src="js/dist/bundle-home.js?v=20260916"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
+    <script src="js/lazy-bundle-loader.js?v=20260916" defer></script>
 </body>
 </html>

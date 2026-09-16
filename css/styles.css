@@ -1138,6 +1138,13 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
+/* Cards revealed instantly by js/20-scroll-reveal.js because they were already in the
+   viewport on load (see that file) — no transition, so there's nothing for Lighthouse's
+   CLS metric to measure. Combined-class selector so this wins over the plain .cw-reveal
+   `!important` transition rules regardless of which CSS file loads last. */
+.cw-reveal.cw-reveal-instant {
+    transition: none !important;
+}
 
 /* ---------- Header scan sweep: a single orchestrated moment on load ---------- */
 header { position: relative; overflow: hidden; }
