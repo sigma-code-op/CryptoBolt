@@ -85,6 +85,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cryptobolt.io/funding-rate-explained.html</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cryptobolt.io/ai-research-grounded-data.html</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
