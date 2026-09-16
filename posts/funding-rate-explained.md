@@ -1,12 +1,12 @@
 title: Crypto funding rates: what the number on your futures screen means
-meta_title: Crypto Funding Rate Explained: Positive vs Negative
+meta_title: Crypto Funding Rate: Positive vs Negative
 og_title: Crypto Funding Rates Explained: What the Number Actually Means
 date: 2026-09-16
 section: Mechanics
 readtime: 5 min read
 emoji: 💸
 color: rgba(74,222,128,.08)
-summary: What the crypto funding rate on a perpetual futures contract actually measures, why it flips between positive and negative, and how to read it alongside open interest instead of as a standalone signal.
+summary: What the crypto funding rate on a perpetual contract measures, why it flips positive and negative, and how to read it alongside open interest.
 card_summary: The small percentage next to every perpetual contract quietly tells you which side of the market is crowded — here's how to actually read it.
 keywords: crypto funding rate, funding rate explained, perpetual futures funding, positive vs negative funding rate, funding rate arbitrage, crypto funding rate history
 ---

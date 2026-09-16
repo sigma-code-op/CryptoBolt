@@ -3,7 +3,7 @@ date: 2026-09-11
 section: Mechanics
 readtime: 4 min read
 emoji: 🎯
-summary: Price often stalls at $30,000 or $50,000 for reasons that have nothing to do with charts — here's the psychology and the order-flow mechanics behind round-number levels.
+summary: Price often stalls at $30,000 or $50,000 for reasons that have nothing to do with charts — the psychology and order-flow behind round-number levels.
 card_summary: Price stalls at $30,000 and $50,000 more often than chance would suggest. Here's why round numbers actually matter.
 keywords: round number effect trading, support and resistance crypto, psychological price levels, bitcoin round numbers, crypto order book levels
 ---

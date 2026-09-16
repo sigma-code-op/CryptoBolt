@@ -6,7 +6,7 @@ section: Mechanics
 readtime: 5 min read
 emoji: ⚖️
 color: rgba(79,216,232,.08)
-summary: Spot vs perpetual futures crypto trading explained: ownership, leverage, liquidation price, and funding rate — the mechanics that actually change between them.
+summary: Spot vs perpetual futures crypto trading explained: ownership, leverage, liquidation price, and the funding rate — the mechanics that actually differ.
 card_summary: Ownership, leverage, liquidation, and funding rate — the mechanics that actually differ between holding the asset and trading a derivative on it.
 keywords: spot vs futures crypto, perpetual futures explained, crypto funding rate, liquidation price crypto, spot trading vs futures trading, crypto leverage explained
 ---

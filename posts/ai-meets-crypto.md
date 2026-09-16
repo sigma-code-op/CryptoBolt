@@ -1,9 +1,10 @@
 title: When AI Meets Crypto: The New Frontier of Autonomous Finance
+meta_title: When AI Meets Crypto: Autonomous Finance
 date: 2026-09-11
 section: Analysis
 readtime: 6 min read
 emoji: 🤖
-summary: AI and blockchain are converging into financial systems that can think, verify, and transact without a human in the loop — here's where the overlap is happening and what's risky about it.
+summary: AI and blockchain are converging into financial systems that can think, verify, and transact without a human in the loop — and it's not without real risk.
 card_summary: Two technologies built for opposite reasons — centralized intelligence and decentralized trust — are converging into autonomous, agent-driven finance.
 keywords: AI and crypto, autonomous finance, AI trading agents, agentic economy, decentralized AI compute, on-chain AI
 ---

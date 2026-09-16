@@ -6,7 +6,7 @@ section: Sentiment
 readtime: 4 min read
 emoji: 😨
 color: rgba(255,176,32,.08)
-summary: What the crypto Fear & Greed index actually measures, why it isn't a trade signal on its own, and how to use it as context alongside trend, volume, and funding.
+summary: What the crypto Fear & Greed index measures, why it isn't a trade signal on its own, and how to use it alongside trend, volume, and funding.
 card_summary: The Fear & Greed index compresses volatility, momentum, and sentiment into one 0–100 score. Here's what it's actually good for, and why it isn't a trade signal on its own.
 keywords: fear and greed index, crypto fear and greed index, how to read fear and greed index, crypto market sentiment, alternative.me fear and greed, crypto sentiment indicator
 ---
