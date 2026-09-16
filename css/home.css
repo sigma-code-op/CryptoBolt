@@ -605,6 +605,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     display: inline-block; color: var(--mk-text); opacity: .9;
 }
 .mk-footer-badges .badge-launchzone img { height: 30px; }
+.mk-footer-badges .badge-tinyhunt img { height: 44px; }
 .mk-footer-badges .badge-dmca img { height: 15px; }
 .mk-footer-badges .badge-nxgn img { height: 32px; }
 
