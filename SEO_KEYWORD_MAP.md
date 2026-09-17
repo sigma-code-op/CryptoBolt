@@ -16,6 +16,9 @@ This map assigns one primary search intent to each indexable page. Supporting te
 | `/blog.html` | crypto trading blog | market sentiment, funding, spot vs futures, AI research | all three articles, terminal, AI research |
 | `/fear-and-greed-index.html` | crypto Fear and Greed index | sentiment indicator, market context, trading psychology | terminal, BTC, blog, AI research |
 | `/spot-vs-futures.html` | spot vs futures crypto | perpetual futures, leverage, liquidation, funding rate | terminal, paper trading, features, blog |
+| `/funding-rate-explained.html` | crypto funding rate | positive vs negative funding, perpetual futures, open interest | spot vs futures, terminal, blog |
+| `/ai-meets-crypto.html` | AI and crypto convergence | autonomous finance, AI agents, on-chain automation | AI research, grounded-data article, blog |
+| `/round-number-levels.html` | round number support and resistance | psychological price levels, order flow, technical analysis | spot vs futures, terminal, blog |
 | `/crypto-paper-trading.html` | crypto paper trading | virtual trading account, simulator, P&L, practice | trade account, portfolio features, spot vs futures |
 | `/trade.html` | crypto paper trading account | simulated buy/sell, virtual funds, equity curve | paper-trading guide, terminal, investing |
 | `/invest.html` | buy crypto with fiat | Binance on-ramp, buy Bitcoin, buy Ethereum, wallet | paper trading, terminal, terms, contact |
@@ -33,4 +36,4 @@ This map assigns one primary search intent to each indexable page. Supporting te
 
 ## Content gaps for future pages
 
-The current site has no dedicated search landing page for Solana live price, crypto funding rates, liquidation-price calculation, crypto trading fees, price alerts, or portfolio tracking. Create those only when each page can provide genuinely distinct data and copy; otherwise keep them as sections on the existing pillar pages.
+The current site has no dedicated search landing page for Solana live price, liquidation-price calculation, crypto trading fees, price alerts, or portfolio tracking. (Crypto funding rate is now covered by `/funding-rate-explained.html`.) Create those only when each page can provide genuinely distinct data and copy; otherwise keep them as sections on the existing pillar pages.
