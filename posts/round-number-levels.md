@@ -1,5 +1,7 @@
 title: Why round numbers act like support and resistance
+meta_title: Round Numbers as Support & Resistance
 date: 2026-09-11
+updated: 2026-09-17
 section: Mechanics
 readtime: 4 min read
 emoji: 🎯

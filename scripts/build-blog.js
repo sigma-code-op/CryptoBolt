@@ -30,6 +30,10 @@
 //   og_title: Headline used for social previews + JSON-LD (optional, falls
 //             back to title)
 //   date: 2026-09-10                  (YYYY-MM-DD)
+//   updated: 2026-09-15               (optional, YYYY-MM-DD — set this when
+//            you edit a published post; falls back to `date` if omitted.
+//            Feeds dateModified in the BlogPosting schema, a freshness
+//            signal search engines use.)
 //   section: Sentiment                (shown as the small eyebrow label)
 //   readtime: 4 min read
 //   emoji: 📊                          (blog-card icon)
@@ -99,6 +103,7 @@ function parsePost(raw, slug) {
     metaTitle: fields.meta_title || fields.title,
     ogTitle: fields.og_title || fields.title,
     date: fields.date,
+    updated: fields.updated || fields.date,
     section: fields.section,
     readtime: fields.readtime,
     emoji: fields.emoji || '📄',
@@ -194,6 +199,7 @@ function renderPostPage(template, post, related) {
     .split('{{SECTION_UPPER}}').join(escapeHtml(post.section).toUpperCase())
     .split('{{READTIME_UPPER}}').join(escapeHtml(post.readtime).toUpperCase())
     .split('{{DATE}}').join(post.date)
+    .split('{{UPDATED_DATE}}').join(post.updated)
     .split('{{WORD_COUNT}}').join(String(wordCount(post.body)))
     .split('{{BODY_HTML}}').join(markdownToHtml(post.body))
     .split('{{RELATED_HTML}}').join(relatedHtml);
