@@ -689,6 +689,14 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
           );
       }
 
+      if (parsed.positionNote) {
+
+        parsed.positionNote =
+          softenOverconfidentLanguage(
+            parsed.positionNote
+          );
+      }
+
       if (
         typeof parsed.stopATRMultiple ===
         'number'

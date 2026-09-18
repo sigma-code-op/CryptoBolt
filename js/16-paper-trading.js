@@ -45,6 +45,38 @@ function computeRealizedPnl(proceeds, costBasis) {
     return proceeds - costBasis;
 }
 
+// ---------- Execution realism: spread + size-scaled slippage ----------
+// Real exchanges never fill a market order at the exact last-trade price — you cross the
+// spread (pay the ask / receive the bid) and, past a certain size, walk the book, paying more
+// (or receiving less) the bigger the order is relative to available liquidity. This models
+// that with a simple square-root market-impact curve (a common rough approximation used in
+// real transaction-cost-analysis tools: impact grows with the square root of order size, not
+// linearly) on top of the live bid/ask — good enough for a practice account to teach "big
+// orders and illiquid pairs cost more to trade", not a promise of matching any specific
+// exchange's real order-book depth.
+const PT_MIN_SLIPPAGE_BPS = 2; // 0.02% floor — stands in for half-spread on a liquid pair
+const PT_SLIPPAGE_REF_NOTIONAL_USD = 5000; // order size at which slippage starts climbing above the floor
+const PT_MAX_SLIPPAGE_BPS = 150; // 1.5% cap so an extreme paper order size can't run away
+
+function computeSlippageBps(notionalUsd) {
+    if (!(notionalUsd > 0)) return PT_MIN_SLIPPAGE_BPS;
+    const scaled = PT_MIN_SLIPPAGE_BPS * Math.sqrt(notionalUsd / PT_SLIPPAGE_REF_NOTIONAL_USD);
+    return Math.min(PT_MAX_SLIPPAGE_BPS, Math.max(PT_MIN_SLIPPAGE_BPS, scaled));
+}
+
+// side is 'buy' (pays the ask, plus slippage) or 'sell' (receives the bid, minus slippage).
+// bid/ask bracket the reference (last-trade) price; either can be missing/stale, in which case
+// this falls back to referencePrice itself so a fill is never blocked by a quote gap.
+function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
+    const slippageBps = computeSlippageBps(notionalUsd);
+    const baseline = side === 'buy'
+        ? (ask && ask > 0 ? ask : referencePrice)
+        : (bid && bid > 0 ? bid : referencePrice);
+    if (!baseline) return baseline;
+    const slip = baseline * (slippageBps / 10000);
+    return side === 'buy' ? baseline + slip : Math.max(0, baseline - slip);
+}
+
 (function () {
     const FEE_RATE = 0.001; // 0.10% simulated trading fee, applied on both buy and sell notional
     const STARTING_BALANCE = 10000;
@@ -151,9 +183,18 @@ function computeRealizedPnl(proceeds, costBasis) {
 
     // ---------- Live prices ----------
     let priceMap = {};       // BASE -> price (USDT pairs only)
+    let bidMap = {};         // BASE -> best bid (live order-book top), used for realistic sell fills
+    let askMap = {};         // BASE -> best ask (live order-book top), used for realistic buy fills
     let changeMap = {};      // BASE -> 24h % change, filled lazily per selected symbol
     let validSymbols = new Set();
     let lastEquitySnapshot = 0;
+
+    // Best bid/ask for a symbol, falling back to the last-trade price (both sides) if a fresh
+    // quote hasn't loaded yet — keeps every call site safe even before the first bookTicker poll.
+    function getBidAsk(symbol) {
+        const last = priceMap[symbol] || 0;
+        return { bid: bidMap[symbol] || last, ask: askMap[symbol] || last };
+    }
 
     function findHolding(symbol) { return holdings.find(h => h.symbol === symbol); }
 
@@ -195,15 +236,33 @@ function computeRealizedPnl(proceeds, costBasis) {
         if (pairs.length === 0) return;
         try {
             const symbolsParam = encodeURIComponent(JSON.stringify(pairs));
-            const res = await fetchWithTimeout(`https://api.binance.com/api/v3/ticker/price?symbols=${symbolsParam}`);
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const arr = await res.json();
+            const [priceRes, bookRes] = await Promise.all([
+                fetchWithTimeout(`https://api.binance.com/api/v3/ticker/price?symbols=${symbolsParam}`),
+                // Best bid/ask top-of-book — this is what makes fills realistic (spread), not just
+                // the last-trade price. Best-effort: if this call fails we simply fall back to
+                // last-trade for both sides (see getBidAsk) rather than blocking the price refresh.
+                fetchWithTimeout(`https://api.binance.com/api/v3/ticker/bookTicker?symbols=${symbolsParam}`).catch(() => null),
+            ]);
+            if (!priceRes.ok) throw new Error(`HTTP ${priceRes.status}`);
+            const arr = await priceRes.json();
             if (Array.isArray(arr)) {
                 arr.forEach(row => {
                     if (row.symbol && row.symbol.endsWith('USDT')) {
                         priceMap[row.symbol.replace('USDT', '')] = parseFloat(row.price) || 0;
                     }
                 });
+            }
+            if (bookRes && bookRes.ok) {
+                const bookArr = await bookRes.json();
+                if (Array.isArray(bookArr)) {
+                    bookArr.forEach(row => {
+                        if (row.symbol && row.symbol.endsWith('USDT')) {
+                            const base = row.symbol.replace('USDT', '');
+                            bidMap[base] = parseFloat(row.bidPrice) || 0;
+                            askMap[base] = parseFloat(row.askPrice) || 0;
+                        }
+                    });
+                }
             }
             setFeedStatus('live', 'Live');
             checkPendingOrders();
@@ -212,6 +271,7 @@ function computeRealizedPnl(proceeds, costBasis) {
             checkFuturesLiquidations();
             renderAll();
             maybeSnapshotEquity();
+            updateChartLiveCandle();
         } catch (err) {
             setFeedStatus('error', 'Retry pending…');
         }
@@ -313,6 +373,7 @@ function computeRealizedPnl(proceeds, costBasis) {
         renderOrderTicketPrice();
         renderAvailableHint();
         renderOrderSummary();
+        loadPriceChart();
     }
 
     // ---------- Order ticket rendering ----------
@@ -461,6 +522,7 @@ function computeRealizedPnl(proceeds, costBasis) {
         updateTpSlVisibility();
         renderAvailableHint();
         renderOrderSummary();
+        loadPriceChart();
     }
 
     marketModeButtons.forEach(b => b.addEventListener('click', () => setMarket(b.getAttribute('data-market'))));
@@ -573,29 +635,45 @@ function computeRealizedPnl(proceeds, costBasis) {
             if (!h.tpPrice && !h.slPrice) return;
             const price = getPrice(h.symbol);
             if (!price) return;
-            if (h.tpPrice && price >= h.tpPrice) { if (executeSell(h.symbol, h.qty, price, 'tp')) filledAny = true; return; }
-            if (h.slPrice && price <= h.slPrice) { if (executeSell(h.symbol, h.qty, price, 'sl')) filledAny = true; }
+            // Take-profit behaves like a resting limit order: it fills at exactly the price you
+            // set. Stop-loss is a forced market exit once triggered, so it crosses the spread and
+            // takes size-scaled slippage on top of wherever price already is by the time it fires.
+            if (h.tpPrice && price >= h.tpPrice) { if (executeSell(h.symbol, h.qty, h.tpPrice, 'tp')) filledAny = true; return; }
+            if (h.slPrice && price <= h.slPrice) {
+                const { bid, ask } = getBidAsk(h.symbol);
+                const fillPrice = estimateFillPrice('sell', price, bid, ask, h.qty * price);
+                if (executeSell(h.symbol, h.qty, fillPrice, 'sl')) filledAny = true;
+            }
         });
         if (filledAny) { persist(); renderAll(); maybeSnapshotEquity(true); }
     }
 
     // ---------- Futures execution ----------
-    function handleFuturesSubmit() {
+    async function handleFuturesSubmit() {
         const symbol = orderSymbolInput.value.toUpperCase().trim();
         if (!symbol) { showToast('Enter an asset symbol, e.g. BTC.', 'error'); return; }
         if (!validSymbols.has(symbol) && !getPrice(symbol)) { showToast(`${symbol} isn't a tracked USDT market.`, 'error'); return; }
-        const entryPrice = getPrice(symbol);
-        if (!entryPrice) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
+        const refPrice = getPrice(symbol);
+        if (!refPrice) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
         const margin = parseFloat(amountInput.value);
         if (isNaN(margin) || margin <= 0) { showToast('Enter a valid margin amount.', 'error'); return; }
         const leverage = currentLeverage;
         const side = currentSide === 'buy' ? 'long' : 'short';
-        const { tpPrice, slPrice, error } = readTpSl(side, entryPrice);
+        const { tpPrice, slPrice, error } = readTpSl(side, refPrice);
         if (error) { showToast(error, 'error'); return; }
         const notional = margin * leverage;
         const fee = notional * FEE_RATE;
         const totalRequired = margin + fee;
         if (totalRequired > cash + 1e-9) { showToast(`Not enough free cash — need ${fmtUsd(totalRequired)} (margin + fee), have ${fmtUsd(cash)}.`, 'error'); return; }
+
+        await simulateExecutionLatency(submitBtn);
+
+        // A leveraged position opens with a market order too — same spread + slippage model,
+        // applied to the notional (margin × leverage), not just the margin. Opening a long
+        // "buys" (crosses the ask); opening a short "sells" (crosses the bid).
+        const { bid, ask } = getBidAsk(symbol);
+        const entryPrice = estimateFillPrice(side === 'long' ? 'buy' : 'sell', refPrice, bid, ask, notional);
+        if (!entryPrice) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
         const qty = notional / entryPrice;
         const liqPrice = estimateLiqPrice(side, entryPrice, leverage);
         // A stop loss tighter than the liquidation price would never fire — liquidation gets
@@ -618,7 +696,20 @@ function computeRealizedPnl(proceeds, costBasis) {
     function closeFuturesPosition(id, reason) {
         const p = futuresPositions.find(x => x.id === id);
         if (!p) return;
-        const markPrice = reason ? (reason === 'tp' ? p.tpPrice : reason === 'sl' ? p.slPrice : getPrice(p.symbol)) : getPrice(p.symbol);
+        // Closing a long means selling (hits the bid); closing a short means buying (hits the
+        // ask). Take-profit behaves like a limit order — it fills at the exact price you set,
+        // never worse. Stop-loss and a manual close are both forced market exits, so they cross
+        // the live spread and take size-scaled slippage on top of wherever price already is.
+        let markPrice;
+        if (reason === 'tp') {
+            markPrice = p.tpPrice;
+        } else {
+            const live = getPrice(p.symbol) || (reason === 'sl' ? p.slPrice : null);
+            if (live) {
+                const { bid, ask } = getBidAsk(p.symbol);
+                markPrice = estimateFillPrice(p.side === 'long' ? 'sell' : 'buy', live, bid, ask, p.notional);
+            }
+        }
         if (!markPrice) { showToast('Live price unavailable — try again in a moment.', 'error'); return; }
         const pnl = futuresPnl(p, markPrice);
         const closeNotional = p.qty * markPrice;
@@ -679,8 +770,26 @@ function computeRealizedPnl(proceeds, costBasis) {
         closeFuturesPosition(btn.getAttribute('data-id'));
     });
 
-    submitBtn.addEventListener('click', () => {
-        if (currentMarket === 'futures') { handleFuturesSubmit(); return; }
+    // Simulated order-routing latency for a market order — a real exchange round-trip isn't
+    // instant, and a chart that fills the same millisecond a button is clicked teaches "trading
+    // has no timing risk", which isn't true. Deliberately short and randomized rather than a
+    // fixed delay, and the button is disabled for its duration so a double-click can't double-fill.
+    function simulateExecutionLatency(btn) {
+        const original = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = 'Submitting…';
+        btn.classList.add('opacity-60', 'cursor-wait');
+        const ms = 180 + Math.random() * 320;
+        return new Promise(resolve => setTimeout(() => {
+            btn.disabled = false;
+            btn.innerText = original;
+            btn.classList.remove('opacity-60', 'cursor-wait');
+            resolve();
+        }, ms));
+    }
+
+    submitBtn.addEventListener('click', async () => {
+        if (currentMarket === 'futures') { await handleFuturesSubmit(); return; }
         const symbol = orderSymbolInput.value.toUpperCase().trim();
         if (!symbol) { showToast('Enter an asset symbol, e.g. BTC.', 'error'); return; }
         if (!validSymbols.has(symbol) && !getPrice(symbol)) { showToast(`${symbol} isn't a tracked USDT market.`, 'error'); return; }
@@ -711,17 +820,32 @@ function computeRealizedPnl(proceeds, costBasis) {
             return;
         }
 
-        const { qty, price } = amountToQtyAndValue();
-        if (!price) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
+        const { qty, price: refPrice } = amountToQtyAndValue();
+        if (!refPrice) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
         if (!qty || qty <= 0) { showToast('Enter a valid amount.', 'error'); return; }
+
+        // TP/SL trigger prices are validated against the reference (last-trade) price the
+        // ticket was showing, before slippage is applied to the actual fill below.
+        if (currentSide === 'buy') {
+            const rCheck = readTpSl('buy', refPrice);
+            if (rCheck.error) { showToast(rCheck.error, 'error'); return; }
+        }
+
+        await simulateExecutionLatency(submitBtn);
+
+        // Realistic fill: cross the live spread and pay/receive size-scaled slippage instead of
+        // filling exactly at the reference price (see estimateFillPrice above).
+        const { bid, ask } = getBidAsk(symbol);
+        const notional = qty * refPrice;
+        const fillPrice = estimateFillPrice(currentSide === 'buy' ? 'buy' : 'sell', refPrice, bid, ask, notional);
+        if (!fillPrice) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
 
         let ok;
         if (currentSide === 'buy') {
-            const r = readTpSl('buy', price);
-            if (r.error) { showToast(r.error, 'error'); return; }
-            ok = executeBuy(symbol, qty, price, 'market', r.tpPrice, r.slPrice);
+            const r = readTpSl('buy', refPrice);
+            ok = executeBuy(symbol, qty, fillPrice, 'market', r.tpPrice, r.slPrice);
         } else {
-            ok = executeSell(symbol, qty, price, 'market');
+            ok = executeSell(symbol, qty, fillPrice, 'market');
         }
         if (ok) {
             amountInput.value = '';
@@ -855,7 +979,10 @@ function computeRealizedPnl(proceeds, costBasis) {
                     <td class="py-2 px-3 text-right text-gray-400">${fmtUsd(p.margin)}</td>
                     <td class="py-2 px-3 text-right text-amber-400/80">${fmtUsd(p.liqPrice, priceFmt(p.liqPrice))}</td>
                     <td class="py-2 px-3 text-right ${pnlColorClass(pnl)}">${fmtSigned(pnl)}<br><span class="text-[10px]">${pnl >= 0 ? '+' : ''}${roe.toFixed(1)}%</span></td>
-                    <td class="py-2 px-3 text-center"><button class="close-position-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-id="${p.id}">Close</button></td>
+                    <td class="py-2 px-3 text-center whitespace-nowrap">
+                        <button class="pt-ai-btn text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#c084fc] hover:border-[#a855f7]/40 cursor-pointer" data-id="${p.id}" title="Ask AI about this position">🤖</button>
+                        <button class="close-position-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-id="${p.id}">Close</button>
+                    </td>
                 </tr>`;
         }).join('');
     }
@@ -885,7 +1012,10 @@ function computeRealizedPnl(proceeds, costBasis) {
                     <td class="py-2 px-3 text-right text-gray-200">${fmtUsd(value)}</td>
                     <td class="py-2 px-3 text-right text-gray-500">${alloc.toFixed(1)}%</td>
                     <td class="py-2 px-3 text-right ${pnlColorClass(pnl)}">${fmtSigned(pnl)}<br><span class="text-[10px]">${pnl >= 0 ? '+' : ''}${pnlPct.toFixed(2)}%</span></td>
-                    <td class="py-2 px-3 text-center"><button class="quick-sell-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-symbol="${escapeHtml(h.symbol)}">Sell</button></td>
+                    <td class="py-2 px-3 text-center whitespace-nowrap">
+                        <button class="pt-ai-btn text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#c084fc] hover:border-[#a855f7]/40 cursor-pointer" data-symbol="${escapeHtml(h.symbol)}" title="Ask AI about this holding">🤖</button>
+                        <button class="quick-sell-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-symbol="${escapeHtml(h.symbol)}">Sell</button>
+                    </td>
                 </tr>`;
         }).join('');
     }
@@ -946,6 +1076,7 @@ function computeRealizedPnl(proceeds, costBasis) {
         renderOrderTicketPrice();
         renderAvailableHint();
         renderOrderSummary();
+        updateChartOverlays();
     }
 
     // ---------- Equity chart (TradingView Lightweight Charts, same lib the terminal uses) ----------
@@ -985,6 +1116,334 @@ function computeRealizedPnl(proceeds, costBasis) {
         equitySeries.setData(data);
         equityChart.timeScale().fitContent();
     }
+
+    // ---------- Live price chart (candles for the symbol on the order ticket, plus this
+    // account's own entries/exits and active TP/SL/liq levels drawn straight on top) ----------
+    const CHART_INTERVALS = ['15m', '1h', '4h', '1d'];
+    let priceChart = null, priceCandleSeries = null;
+    let chartInterval = '1h';
+    let chartSymbol = null, chartIsFutures = false;
+    let chartCandles = [];       // cached candles for the symbol currently on the chart
+    let chartRequestToken = 0;   // guards against a slow earlier fetch overwriting a newer one
+
+    function klinesUrl(symbol, isFutures, interval, limit) {
+        return isFutures
+            ? `https://fapi.binance.com/fapi/v1/klines?symbol=${symbol}USDT&interval=${interval}&limit=${limit}`
+            : `https://api.binance.com/api/v3/klines?symbol=${symbol}USDT&interval=${interval}&limit=${limit}`;
+    }
+
+    function initPriceChart() {
+        const container = document.getElementById('pt-price-chart');
+        if (!container || typeof LightweightCharts === 'undefined') return;
+        priceChart = LightweightCharts.createChart(container, {
+            layout: { background: { type: 'solid', color: 'transparent' }, textColor: '#8b93a7', fontFamily: "'JetBrains Mono', monospace", fontSize: 10 },
+            grid: { vertLines: { color: 'rgba(255,255,255,0.03)' }, horzLines: { color: 'rgba(255,255,255,0.04)' } },
+            rightPriceScale: { borderVisible: false },
+            timeScale: { borderVisible: false, timeVisible: true, secondsVisible: false },
+            crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+        });
+        priceCandleSeries = priceChart.addCandlestickSeries({
+            upColor: '#14d38a', downColor: '#ff4d6a', borderVisible: false,
+            wickUpColor: '#14d38a', wickDownColor: '#ff4d6a',
+        });
+        new ResizeObserver(entries => {
+            const { width, height } = entries[0].contentRect;
+            priceChart.resize(width, height);
+        }).observe(container);
+    }
+
+    // Full reload: called when the symbol, market (spot/futures), or timeframe changes.
+    async function loadPriceChart() {
+        if (!priceCandleSeries) return;
+        const symbol = orderSymbolInput.value.toUpperCase().trim();
+        const isFutures = currentMarket === 'futures';
+        if (!symbol) return;
+        chartSymbol = symbol; chartIsFutures = isFutures;
+        const myToken = ++chartRequestToken;
+        const statusEl = document.getElementById('pt-chart-status');
+        if (statusEl) statusEl.innerText = 'Loading…';
+        try {
+            const res = await fetchWithTimeout(klinesUrl(symbol, isFutures, chartInterval, 250), 12000);
+            if (myToken !== chartRequestToken) return;
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            if (myToken !== chartRequestToken) return;
+            if (!Array.isArray(data) || data.length === 0) throw new Error('No candle data.');
+            chartCandles = data.map(d => ({
+                time: Math.floor(d[0] / 1000), open: parseFloat(d[1]), high: parseFloat(d[2]),
+                low: parseFloat(d[3]), close: parseFloat(d[4]), volume: parseFloat(d[5]),
+            }));
+            priceCandleSeries.setData(chartCandles);
+            priceChart.timeScale().fitContent();
+            updateChartOverlays();
+            if (statusEl) statusEl.innerText = `${symbol}/USDT · ${isFutures ? 'Futures' : 'Spot'} · ${chartInterval}`;
+        } catch (err) {
+            if (myToken !== chartRequestToken) return;
+            if (statusEl) statusEl.innerText = 'Chart data unavailable — everything else on this page still works.';
+        }
+    }
+
+    // Lightweight per-poll update: patches the live (in-progress) candle from the latest ticker
+    // price instead of refetching the whole series every 5s. Keeps the chart moving in near
+    // real time without hammering the klines endpoint.
+    function updateChartLiveCandle() {
+        if (!priceCandleSeries || chartCandles.length === 0) return;
+        const symbol = orderSymbolInput.value.toUpperCase().trim();
+        if (symbol !== chartSymbol || (currentMarket === 'futures') !== chartIsFutures) return;
+        const price = getPrice(symbol);
+        if (!price) return;
+        const last = chartCandles[chartCandles.length - 1];
+        last.close = price;
+        if (price > last.high) last.high = price;
+        if (price < last.low) last.low = price;
+        priceCandleSeries.update(last);
+    }
+
+    // Markers for this account's own trades in the symbol on screen, plus price lines for any
+    // active holding (spot) or open position (futures) in it — entry/avg cost, TP, SL, and for
+    // futures, the estimated liquidation price. This is the "AI/you can see your live trades on
+    // the chart" link between the order ticket, the trade log, and the chart itself.
+    let chartPriceLines = [];
+    function updateChartOverlays() {
+        if (!priceCandleSeries || !chartSymbol) return;
+        chartPriceLines.forEach(line => { try { priceCandleSeries.removePriceLine(line); } catch (e) {} });
+        chartPriceLines = [];
+
+        const candleTimes = chartCandles.map(c => c.time);
+        const minTime = candleTimes[0], maxTime = candleTimes[candleTimes.length - 1];
+        // Snap a trade's timestamp onto the nearest loaded candle so old trades still show up
+        // pinned to the edge of the visible range instead of silently vanishing.
+        function snapTime(ts) {
+            const t = Math.floor(ts / 1000);
+            if (t <= minTime) return minTime;
+            if (t >= maxTime) return maxTime;
+            return candleTimes.reduce((best, cand) => Math.abs(cand - t) < Math.abs(best - t) ? cand : best, candleTimes[0]);
+        }
+
+        const relevantTrades = trades.filter(t => t.symbol === chartSymbol && (t.leverage ? chartIsFutures : !chartIsFutures));
+        const markers = relevantTrades.slice(0, 200).map(t => {
+            const isEntry = t.side === 'buy' || t.type === 'open';
+            const isBad = typeof t.realizedPnl === 'number' && t.realizedPnl < 0;
+            const color = isEntry ? '#4fd8e8' : (isBad ? '#ff4d6a' : '#14d38a');
+            const text = t.type === 'tp' ? 'TP' : t.type === 'sl' ? 'SL' : t.type === 'liquidated' ? 'LIQ' : (isEntry ? (t.side === 'short' ? 'Short' : (t.side === 'long' ? 'Long' : 'Buy')) : 'Sell');
+            return { time: snapTime(t.ts), position: isEntry ? 'belowBar' : 'aboveBar', color, shape: isEntry ? 'arrowUp' : 'arrowDown', text };
+        }).sort((a, b) => a.time - b.time);
+        priceCandleSeries.setMarkers(markers);
+
+        if (!chartIsFutures) {
+            const h = findHolding(chartSymbol);
+            if (h) {
+                chartPriceLines.push(priceCandleSeries.createPriceLine({ price: h.avgCost, color: '#8b93a7', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Avg cost' }));
+                if (h.tpPrice) chartPriceLines.push(priceCandleSeries.createPriceLine({ price: h.tpPrice, color: '#14d38a', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'TP' }));
+                if (h.slPrice) chartPriceLines.push(priceCandleSeries.createPriceLine({ price: h.slPrice, color: '#ff4d6a', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'SL' }));
+            }
+        } else {
+            const p = futuresPositions.find(x => x.symbol === chartSymbol);
+            if (p) {
+                chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.entryPrice, color: '#8b93a7', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: `Entry (${p.side})` }));
+                if (p.tpPrice) chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.tpPrice, color: '#14d38a', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'TP' }));
+                if (p.slPrice) chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.slPrice, color: '#ff4d6a', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'SL' }));
+                chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.liqPrice, color: '#e5b324', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'Liq.' }));
+            }
+        }
+    }
+
+    document.querySelectorAll('.pt-chart-tf-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            chartInterval = btn.getAttribute('data-tf');
+            document.querySelectorAll('.pt-chart-tf-btn').forEach(b => b.classList.toggle('active', b === btn));
+            loadPriceChart();
+        });
+    });
+
+    // ---------- AI trade read: send this account's own live position in an asset, alongside
+    // fresh technicals, to the same backend the Terminal's AI Insight panel uses. Shares its
+    // API-key storage (sessionStorage/localStorage keys) so a key saved on the Terminal or AI
+    // Research page already works here — nothing new to set up. ----------
+    function getStoredGroqKey() { return sessionStorage.getItem('cw_groq_api_key') || ''; }
+    function getAiKeyMode() { return localStorage.getItem('cw_ai_key_mode') === 'house' ? 'house' : 'own'; }
+    function setAiKeyMode(mode) { localStorage.setItem('cw_ai_key_mode', mode === 'house' ? 'house' : 'own'); }
+    function resolveApiUrl(path) {
+        const base = (CW_CONFIG.apiBaseUrl || '').replace(/\/$/, '');
+        return /^https?:\/\//i.test(path) ? path : `${base}${path}`;
+    }
+
+    function sma(values, n) {
+        if (values.length < n) return null;
+        const slice = values.slice(-n);
+        return slice.reduce((a, b) => a + b, 0) / n;
+    }
+    function rsi14FromCloses(closes) {
+        if (closes.length < 15) return null;
+        let gains = 0, losses = 0;
+        for (let i = closes.length - 14; i < closes.length; i++) {
+            const diff = closes[i] - closes[i - 1];
+            if (diff >= 0) gains += diff; else losses -= diff;
+        }
+        const avgGain = gains / 14, avgLoss = losses / 14;
+        if (avgLoss === 0) return 100;
+        return 100 - (100 / (1 + avgGain / avgLoss));
+    }
+    async function fetch24hStats(symbol, isFutures) {
+        const url = isFutures
+            ? `https://fapi.binance.com/fapi/v1/ticker/24hr?symbol=${symbol}USDT`
+            : `https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}USDT`;
+        const res = await fetchWithTimeout(url, 9000);
+        if (!res.ok) throw new Error('24h stats unavailable right now.');
+        const row = await res.json();
+        return {
+            price: parseFloat(row.lastPrice), change24hPct: parseFloat(row.priceChangePercent),
+            high24h: parseFloat(row.highPrice), low24h: parseFloat(row.lowPrice), volume24hUSDT: parseFloat(row.quoteVolume),
+        };
+    }
+
+    async function buildAiContext(symbol, isFutures, position) {
+        const [stats, klines] = await Promise.all([
+            fetch24hStats(symbol, isFutures),
+            fetchWithTimeout(klinesUrl(symbol, isFutures, '1h', 60), 12000).then(r => {
+                if (!r.ok) throw new Error('Chart data unavailable right now.');
+                return r.json();
+            }),
+        ]);
+        const candles = klines.map(d => ({ high: parseFloat(d[2]), low: parseFloat(d[3]), close: parseFloat(d[4]) }));
+        const closes = candles.map(c => c.close);
+        const highs = candles.map(c => c.high).slice(-30);
+        const lows = candles.map(c => c.low).slice(-30);
+        const ctx = {
+            asset: symbol, market: isFutures ? 'perpetual futures' : 'spot', interval: '1h',
+            price: stats.price, change24hPct: stats.change24hPct, high24h: stats.high24h,
+            low24h: stats.low24h, volume24hUSDT: stats.volume24hUSDT,
+            ma7: sma(closes, 7), ma25: sma(closes, 25), rsi14: rsi14FromCloses(closes),
+            recentSwingHigh: Math.max(...highs), recentSwingLow: Math.min(...lows),
+            recentClosesTrend: closes.slice(-30),
+        };
+        if (isFutures) {
+            // fapi's 24hr ticker doesn't return a funding rate — leaving fundingRatePct unset is
+            // fine, the backend's prompt builder only mentions funding when the number is present.
+        }
+        if (position) ctx.position = position;
+        return ctx;
+    }
+
+    async function requestAiPositionRead(ctx) {
+        const useHouseKey = getAiKeyMode() === 'house';
+        const apiKey = getStoredGroqKey();
+        if (!useHouseKey && !apiKey) { const e = new Error('NEEDS_KEY'); e.code = 'NEEDS_KEY'; throw e; }
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 20000);
+        try {
+            const headers = { 'content-type': 'application/json' };
+            if (useHouseKey) headers['x-use-house-key'] = '1'; else headers['x-groq-key'] = apiKey;
+            const res = await fetch(resolveApiUrl(CW_CONFIG.aiInsightUrl), {
+                method: 'POST', headers, body: JSON.stringify({ context: ctx }), signal: controller.signal,
+            });
+            if (res.status === 401) throw new Error('Invalid API key — re-check the key saved in the AI panel.');
+            if (res.status === 429) throw new Error('Rate limited — wait a moment and try again.');
+            if (!res.ok) {
+                const errBody = await res.json().catch(() => null);
+                throw new Error(errBody?.error || `AI service responded with status ${res.status}`);
+            }
+            const data = await res.json();
+            if (!data?.result) throw new Error('AI service returned an unexpected response.');
+            return data.result;
+        } finally {
+            clearTimeout(timer);
+        }
+    }
+
+    const aiPanel = document.getElementById('pt-ai-panel');
+    const aiPanelBody = document.getElementById('pt-ai-panel-body');
+    const aiPanelTitle = document.getElementById('pt-ai-panel-title');
+    document.getElementById('pt-ai-panel-close')?.addEventListener('click', () => aiPanel.classList.add('hidden'));
+    aiPanel?.addEventListener('click', (e) => { if (e.target === aiPanel) aiPanel.classList.add('hidden'); });
+
+    function renderAiPanelLoading(label) {
+        aiPanelTitle.innerText = `🤖 AI read — ${label}`;
+        aiPanelBody.innerHTML = `<div class="flex items-center gap-2 text-gray-500 text-xs py-6 justify-center"><div class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#a855f7]"></div>Reading live technicals + your open position…</div>`;
+        aiPanel.classList.remove('hidden');
+    }
+    function renderAiPanelNeedsKey(retry) {
+        aiPanelBody.innerHTML = `
+            <p class="text-xs text-gray-400 mb-3">Needs a Groq API key to generate a read (free at <a href="https://console.groq.com/keys" target="_blank" rel="noopener" class="text-[#4fd8e8] hover:underline">console.groq.com</a>), or use CryptoBolt's shared key.</p>
+            <div class="flex items-center gap-2 mb-2">
+                <input id="pt-ai-key-input" type="password" placeholder="gsk_..." class="flex-1 bg-gray-900 border border-gray-800 rounded text-xs px-2 py-1.5 text-gray-200 font-mono focus:outline-none focus:border-[#a855f7]">
+                <button id="pt-ai-key-save-btn" class="text-[10px] font-bold px-2 py-1.5 rounded bg-[#a855f7]/20 text-[#c084fc] cursor-pointer">Save &amp; Retry</button>
+            </div>
+            <button id="pt-ai-key-house-btn" class="text-[10px] text-gray-500 hover:text-[#4fd8e8] cursor-pointer underline">Use CryptoBolt's shared key instead</button>
+        `;
+        document.getElementById('pt-ai-key-save-btn').addEventListener('click', () => {
+            const key = document.getElementById('pt-ai-key-input').value.trim();
+            if (!key) { showToast('Paste a valid Groq API key first.', 'error'); return; }
+            sessionStorage.setItem('cw_groq_api_key', key);
+            setAiKeyMode('own');
+            retry();
+        });
+        document.getElementById('pt-ai-key-house-btn').addEventListener('click', () => { setAiKeyMode('house'); retry(); });
+    }
+    function renderAiPanelError(message, retry) {
+        aiPanelBody.innerHTML = `<p class="text-xs text-[#ff4d6a] mb-3">${escapeHtml(message)}</p><button id="pt-ai-retry-btn" class="text-[10px] font-bold px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#a855f7] cursor-pointer">Try again</button>`;
+        document.getElementById('pt-ai-retry-btn').addEventListener('click', retry);
+    }
+    function renderAiPanelResult(result) {
+        const trendColor = result.trend === 'bullish' ? 'text-[#14d38a]' : result.trend === 'bearish' ? 'text-[#ff4d6a]' : 'text-gray-400';
+        aiPanelBody.innerHTML = `
+            <div class="flex items-center gap-2 mb-2 text-xs">
+                <span class="font-bold uppercase ${trendColor}">${escapeHtml(result.trend || '--')}</span>
+                <span class="text-gray-600">·</span>
+                <span class="text-gray-400">${escapeHtml(result.momentum || '--')} momentum</span>
+                ${result.confidence ? `<span class="text-gray-600">·</span><span class="text-gray-500">${escapeHtml(result.confidence)} confidence</span>` : ''}
+            </div>
+            ${result.positionNote ? `<div class="rounded border border-[#a855f7]/30 bg-[#a855f7]/10 px-3 py-2 mb-3"><span class="text-[9px] font-bold uppercase text-[#c084fc] block mb-1">On your open position</span><p class="text-xs text-gray-300 leading-snug">${escapeHtml(result.positionNote)}</p></div>` : ''}
+            <p class="text-xs text-gray-400 leading-snug mb-2">${escapeHtml(result.summary || '')}</p>
+            ${result.keyRisk ? `<p class="text-[11px] text-gray-500 leading-snug"><span class="text-gray-400 font-bold">Key risk:</span> ${escapeHtml(result.keyRisk)}</p>` : ''}
+            <p class="text-[9px] text-gray-600 mt-3">⚠️ AI-generated, can be wrong — not financial advice, and this account is practice money regardless of what it says.</p>
+        `;
+    }
+
+    async function openAiPositionRead(symbol, isFutures, position, label) {
+        renderAiPanelLoading(label);
+        const attempt = async () => {
+            renderAiPanelLoading(label);
+            try {
+                const ctx = await buildAiContext(symbol, isFutures, position);
+                const result = await requestAiPositionRead(ctx);
+                renderAiPanelResult(result);
+            } catch (err) {
+                if (err.code === 'NEEDS_KEY') { renderAiPanelNeedsKey(attempt); return; }
+                renderAiPanelError(err.message || 'Something went wrong generating the read.', attempt);
+            }
+        };
+        attempt();
+    }
+
+    document.getElementById('holdings-rows').addEventListener('click', (e) => {
+        const btn = e.target.closest('.pt-ai-btn');
+        if (!btn) return;
+        const symbol = btn.getAttribute('data-symbol');
+        const h = findHolding(symbol);
+        if (!h) return;
+        const price = getPrice(symbol) || h.avgCost;
+        const position = {
+            side: 'long', entryPrice: h.avgCost, qty: h.qty,
+            unrealizedPnlPct: h.avgCost ? ((price - h.avgCost) / h.avgCost) * 100 : 0,
+            tpPrice: h.tpPrice || undefined, slPrice: h.slPrice || undefined,
+        };
+        openAiPositionRead(symbol, false, position, `${symbol} holding`);
+    });
+
+    document.getElementById('futures-rows').addEventListener('click', (e) => {
+        const btn = e.target.closest('.pt-ai-btn');
+        if (!btn) return;
+        const p = futuresPositions.find(x => x.id === btn.getAttribute('data-id'));
+        if (!p) return;
+        const mark = getPrice(p.symbol) || p.entryPrice;
+        const position = {
+            side: p.side, entryPrice: p.entryPrice, qty: p.qty, leverage: p.leverage,
+            unrealizedPnlPct: p.margin ? (futuresPnl(p, mark) / p.margin) * 100 : 0,
+            tpPrice: p.tpPrice || undefined, slPrice: p.slPrice || undefined, liqPrice: p.liqPrice,
+        };
+        openAiPositionRead(p.symbol, true, position, `${p.symbol} ${p.leverage}x ${p.side}`);
+    });
 
     // ---------- Reset / add funds ----------
     const resetModal = document.getElementById('reset-modal');
@@ -1027,6 +1486,7 @@ function computeRealizedPnl(proceeds, costBasis) {
         if (e.key !== 'Escape') return;
         resetModal.classList.remove('cw-visible');
         fundsModal.classList.remove('cw-visible');
+        aiPanel?.classList.add('hidden');
     });
 
     // ---------- CSV exports ----------
@@ -1088,6 +1548,8 @@ function computeRealizedPnl(proceeds, costBasis) {
         await refreshNeededPrices();
         initEquityChart();
         updateEquityChart();
+        initPriceChart();
+        loadPriceChart();
         setInterval(refreshNeededPrices, PRICE_POLL_MS);
     })();
 })();

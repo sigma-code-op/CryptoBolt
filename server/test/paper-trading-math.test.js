@@ -113,3 +113,42 @@ test('estimateLiqPrice: extreme leverage edge case (cushion <= 0) still returns 
   assert.equal(pt.estimateLiqPrice('long', 100, 300), 100.1);
   assert.equal(pt.estimateLiqPrice('short', 100, 300), 99.9);
 });
+// ---------------------------------------------------------------------------
+// computeSlippageBps / estimateFillPrice (execution realism)
+// ---------------------------------------------------------------------------
+
+test('computeSlippageBps: small orders sit at the floor', () => {
+  assert.equal(pt.computeSlippageBps(10), 2);
+  assert.equal(pt.computeSlippageBps(0), 2);
+});
+
+test('computeSlippageBps: grows past the reference notional', () => {
+  const small = pt.computeSlippageBps(5000);
+  const big = pt.computeSlippageBps(500000);
+  assert.equal(small, 2); // at the reference notional itself, still at the floor
+  assert.ok(big > small, `expected larger-order slippage (${big}) to exceed smaller (${small})`);
+});
+
+test('computeSlippageBps: caps at the max for extreme size', () => {
+  assert.equal(pt.computeSlippageBps(999999999), 150);
+});
+
+test('estimateFillPrice: buy pays at/above the ask', () => {
+  const fill = pt.estimateFillPrice('buy', 100, 99.9, 100.1, 1000);
+  assert.ok(fill >= 100.1, `expected buy fill (${fill}) >= ask (100.1)`);
+});
+
+test('estimateFillPrice: sell receives at/below the bid', () => {
+  const fill = pt.estimateFillPrice('sell', 100, 99.9, 100.1, 1000);
+  assert.ok(fill <= 99.9, `expected sell fill (${fill}) <= bid (99.9)`);
+});
+
+test('estimateFillPrice: a bigger order slips further from the quote than a small one', () => {
+  const small = pt.estimateFillPrice('buy', 100, 99.9, 100.1, 100);
+  const big = pt.estimateFillPrice('buy', 100, 99.9, 100.1, 1000000);
+  assert.ok(big > small, `expected larger order fill (${big}) to slip further than small order (${small})`);
+});
+
+test('estimateFillPrice: falls back to reference price when bid/ask are missing', () => {
+  assert.equal(pt.estimateFillPrice('buy', 100, 0, 0, 0), pt.estimateFillPrice('buy', 100, null, null, 0));
+});

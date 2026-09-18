@@ -71,6 +71,42 @@ test('validateContext validates optional mtf rows', () => {
   assert.match(validateContext(badMtf), /mtf\[\]\.pct/);
 });
 
+test('validateContext accepts a well-formed optional position field', () => {
+  const withPosition = {
+    ...validContext,
+    position: { side: 'long', entryPrice: 60000, qty: 0.1, leverage: 10, unrealizedPnlPct: 2.5, tpPrice: 65000, slPrice: 58000, liqPrice: 55000 },
+  };
+  assert.equal(validateContext(withPosition), null);
+});
+
+test('validateContext accepts position with only the required fields (spot, no TP/SL/liq)', () => {
+  const withPosition = {
+    ...validContext,
+    position: { side: 'long', entryPrice: 60000, qty: 0.1, unrealizedPnlPct: -1.2 },
+  };
+  assert.equal(validateContext(withPosition), null);
+});
+
+test('validateContext rejects an invalid position.side', () => {
+  const bad = { ...validContext, position: { side: 'sideways', entryPrice: 1, qty: 1, unrealizedPnlPct: 0 } };
+  assert.match(validateContext(bad), /position\.side/);
+});
+
+test('validateContext rejects a missing required position number', () => {
+  const bad = { ...validContext, position: { side: 'short', entryPrice: 1, qty: 1 } };
+  assert.match(validateContext(bad), /position\.unrealizedPnlPct/);
+});
+
+test('validateContext rejects an out-of-range position.leverage', () => {
+  const bad = { ...validContext, position: { side: 'long', entryPrice: 1, qty: 1, unrealizedPnlPct: 0, leverage: 500 } };
+  assert.match(validateContext(bad), /position\.leverage/);
+});
+
+test('validateContext rejects a non-numeric optional position field', () => {
+  const bad = { ...validContext, position: { side: 'long', entryPrice: 1, qty: 1, unrealizedPnlPct: 0, tpPrice: 'high' } };
+  assert.match(validateContext(bad), /position\.tpPrice/);
+});
+
 test('validateContext rejects more than 5 mtf rows', () => {
   const tooMany = Array.from({ length: 6 }, () => ({ tf: '1h', trend: 'up', pct: 1 }));
   assert.match(validateContext({ ...validContext, mtf: tooMany }), /Invalid field: mtf/);

@@ -101,11 +101,32 @@ export function synthesisSystemPrompt(ctx) {
       ? `,"fundingContext":"1 sentence explaining funding and crowding risk, or null"`
       : '';
 
+  const hasPosition =
+    ctx.position &&
+    typeof ctx.position === 'object';
+
+  const positionField =
+    hasPosition
+      ? `,"positionNote":"1-2 sentence factual note about the trader's own open position below relative to this read — e.g. whether the technical picture supports or conflicts with it, and how close price is to their stop/target/liquidation. Never tell them to add, close, or hold it."`
+      : '';
+
+  const positionInstructions =
+    hasPosition
+      ? `
+The trader has a LIVE, ALREADY-OPEN practice position in this asset (see "Trader's own
+position" below). Reference it factually in positionNote — proximity to their stop/target/
+liquidation, and whether current technicals agree or disagree with the direction they're
+already in. This is a practice/paper position, not real money, but treat the read with the
+same care: never instruct them to add to it, close it, or hold it, and never imply the
+position itself is a signal you're endorsing.
+`
+      : '';
+
   return `
 ${SYNTHESIS_SYSTEM_PROMPT_HEADER}
 
 ${marketFramingBlock(ctx)}
-
+${positionInstructions}
 Use recent news and Fear & Greed when supplied.
 
 If no relevant news exists,
@@ -132,7 +153,7 @@ Use this exact structure:
   "newsContext": "news interpretation or null",
   "setupType": "breakout-continuation|pullback-entry|range-fade|no-setup",
   "stopATRMultiple": 1.0,
-  "catalystWatch": "short catalyst or null"${fundingField}
+  "catalystWatch": "short catalyst or null"${fundingField}${positionField}
 }
 `;
 }
@@ -262,6 +283,24 @@ export function buildUserPrompt(ctx) {
     lines.push(
       `Fear & Greed: ${ctx.fearGreed.value}/100 (${ctx.fearGreed.classification})`
     );
+  }
+
+  if (
+    ctx.position &&
+    typeof ctx.position === 'object'
+  ) {
+
+    const p = ctx.position;
+
+    lines.push('');
+    lines.push(`Trader's own position (LIVE, already open — this is a practice/paper position, not real money):`);
+    lines.push(`- Direction: ${p.side}${p.leverage ? ` at ${p.leverage}x leverage` : ' (spot)'}`);
+    lines.push(`- Entry price: $${p.entryPrice}`);
+    lines.push(`- Size: ${p.qty} ${ctx.asset}`);
+    lines.push(`- Unrealized P&L: ${p.unrealizedPnlPct >= 0 ? '+' : ''}${p.unrealizedPnlPct.toFixed(2)}%`);
+    if (typeof p.tpPrice === 'number') lines.push(`- Take profit set at: $${p.tpPrice}`);
+    if (typeof p.slPrice === 'number') lines.push(`- Stop loss set at: $${p.slPrice}`);
+    if (typeof p.liqPrice === 'number') lines.push(`- Estimated liquidation price: $${p.liqPrice}`);
   }
 
   return lines.join('\n');

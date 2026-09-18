@@ -42,6 +42,30 @@ function validateContext(ctx) {
       if (typeof row.pct !== 'number' || !Number.isFinite(row.pct)) return 'Invalid field: mtf[].pct';
     }
   }
+  // ---- Optional: the visitor's own LIVE paper-trading position in this asset (trade.html's
+  // "Ask AI about this trade" button). Numbers/enums only, same as everything else here — the
+  // browser can only report what it computed itself, never free text, so the model can't be
+  // steered by anything injected through this field. Entirely absent for the plain terminal
+  // AI Insight panel, which has no position to report.
+  if (ctx.position !== undefined && ctx.position !== null) {
+    const pos = ctx.position;
+    if (typeof pos !== 'object') return 'Invalid field: position';
+    if (typeof pos.side !== 'string' || !['long', 'short'].includes(pos.side)) return 'Invalid field: position.side';
+    const requiredPosNumbers = ['entryPrice', 'qty', 'unrealizedPnlPct'];
+    for (const key of requiredPosNumbers) {
+      if (typeof pos[key] !== 'number' || !Number.isFinite(pos[key])) return `Invalid field: position.${key}`;
+    }
+    if (pos.leverage !== undefined && pos.leverage !== null) {
+      if (typeof pos.leverage !== 'number' || !Number.isFinite(pos.leverage) || pos.leverage < 1 || pos.leverage > 200) {
+        return 'Invalid field: position.leverage';
+      }
+    }
+    for (const key of ['tpPrice', 'slPrice', 'liqPrice']) {
+      if (pos[key] !== undefined && pos[key] !== null && (typeof pos[key] !== 'number' || !Number.isFinite(pos[key]))) {
+        return `Invalid field: position.${key}`;
+      }
+    }
+  }
   return null;
 }
 

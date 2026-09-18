@@ -56,7 +56,12 @@ alert section below, so it can be on with no Web Push setup at all.
 
 - `GET /api/health` — liveness check, also reports which model is configured.
 - `POST /api/ai-insight` — header `x-groq-key: gsk_...` (the visitor's own key), body
-  `{ "context": { asset, market, interval, price, change24hPct, high24h, low24h, volume24hUSDT, ma7, ma25, rsi14, atr14, atrPct, recentSwingHigh, recentSwingLow, recentClosesTrend, ... } }`.
+  `{ "context": { asset, market, interval, price, change24hPct, high24h, low24h, volume24hUSDT, ma7, ma25, rsi14, atr14, atrPct, recentSwingHigh, recentSwingLow, recentClosesTrend, position, ... } }`.
+  `position` is optional — sent only by trade.html's "🤖 Ask AI about this trade" button, describing
+  the visitor's own live *paper* position in that asset: `{ side, entryPrice, qty, leverage, unrealizedPnlPct, tpPrice, slPrice, liqPrice }`. Same validation model as everything else (see
+  `validators.js`): numbers/enums only, never free text, so the browser still can't steer the prompt.
+  When present, the synthesis pass adds a `positionNote` field to its JSON response — a factual,
+  non-advisory note on how the read relates to the trader's own open position.
   Returns `{ "result": { trend, momentum, support, resistance, summary, outlook, confidence, reasoningSteps, keyRisk, newsContext, setupType, stopATRMultiple, catalystWatch }, "research": "...", "sources": [{title, source, hoursAgo}], "fearGreed": {value, classification} }`.
 - `POST /api/ai-calls` — logs one AI-generated trade setup for the track record (called
   automatically by the frontend; see above). Body: `{ asset, market, interval, bias,
