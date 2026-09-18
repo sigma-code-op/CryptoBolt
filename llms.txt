@@ -15,6 +15,7 @@
   - [When AI meets crypto: the new frontier of autonomous finance](https://cryptobolt.io/ai-meets-crypto.html)
   - [Crypto funding rates: what the number on your futures screen means](https://cryptobolt.io/funding-rate-explained.html)
   - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns.html)
+  - ["$1000 in a day": why that headline is a trap, and why you clicked it](https://cryptobolt.io/1000-dollar-day-trap.html)
 - [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.
 - [Contact CryptoBolt](https://cryptobolt.io/contact.html) — Contact and partnership inquiries.
 - [Privacy Policy](https://cryptobolt.io/privacy.html) — Privacy and data-handling information.
