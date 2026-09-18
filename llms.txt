@@ -14,6 +14,7 @@
   - [Why round numbers act like support and resistance](https://cryptobolt.io/round-number-levels.html)
   - [When AI meets crypto: the new frontier of autonomous finance](https://cryptobolt.io/ai-meets-crypto.html)
   - [Crypto funding rates: what the number on your futures screen means](https://cryptobolt.io/funding-rate-explained.html)
+  - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns.html)
 - [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.
 - [Contact CryptoBolt](https://cryptobolt.io/contact.html) — Contact and partnership inquiries.
 - [Privacy Policy](https://cryptobolt.io/privacy.html) — Privacy and data-handling information.
