@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <script src="js/error-reporter.js"></script>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-BakLIQlb+Nk9HVVKdEvcRXOsUCGBGD5Xze5bgl++PiU=' 'sha256-VkvoJmWzXWuaOHZHt0rw55fwwJQqlyZWqMqFO4Yn13M='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-BakLIQlb+Nk9HVVKdEvcRXOsUCGBGD5Xze5bgl++PiU=' 'sha256-jGcMHgzXL0sSoD2nRYQCJPjrQkLg7XvMKIwMd2X/4GI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="CryptoBolt">
@@ -49,6 +49,7 @@
             "@type": "FAQPage",
             "mainEntity": [
                 { "@type": "Question", "name": "Where does the ETH price come from?", "acceptedAnswer": { "@type": "Answer", "text": "CryptoBolt uses Binance public live market feeds so the Ethereum price updates in real time with live market context." } },
+                { "@type": "Question", "name": "Does CryptoBolt predict where ETH price is headed?", "acceptedAnswer": { "@type": "Answer", "text": "No. CryptoBolt shows live ETH data, trend context, and AI-assisted analysis grounded in current market conditions — not price predictions or guaranteed forecasts. Treat any AI read as research context, not a signal to trade on." } },
                 { "@type": "Question", "name": "Can I research ETH with AI?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. CryptoBolt AI can summarize ETH trend, sentiment, funding conditions, and technical structure in a clear read." } },
                 { "@type": "Question", "name": "Is this a free ETH market tracker?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can browse live ETH prices and chart data without paying or signing up." } }
             ]
@@ -120,6 +121,10 @@
             <p>CryptoBolt uses Binance public live market feeds so the Ethereum price updates in real time with live market context.</p>
         </div>
         <div class="mk-card mk-span-2">
+            <h3>Does CryptoBolt predict where ETH price is headed?</h3>
+            <p>No. CryptoBolt shows live ETH data, trend context, and AI-assisted analysis grounded in current market conditions — not price predictions or guaranteed forecasts. Treat any AI read as research context, not a signal to trade on.</p>
+        </div>
+        <div class="mk-card mk-span-2">
             <h3>Can I research ETH with AI?</h3>
             <p>Yes. CryptoBolt AI can summarize ETH trend, sentiment, funding conditions, and technical structure in a clear read.</p>
         </div>
@@ -134,6 +139,7 @@
     <div class="mk-section-head"><span class="mk-eyebrow">Related market pages</span><h2>Connect ETH price action to the wider market.</h2></div>
     <div class="mk-bento">
         <a href="bitcoin-live-price.html" class="mk-card mk-span-2"><h3>Bitcoin live price</h3><p>Compare ETH movement with the benchmark BTC market.</p></a>
+        <a href="solana-live-price.html" class="mk-card mk-span-2"><h3>Solana live price</h3><p>Compare ETH movement with the faster-moving SOL market.</p></a>
         <a href="ai-crypto-research.html" class="mk-card mk-span-2"><h3>AI crypto research</h3><p>Turn ETH chart movement into a structured research question.</p></a>
         <a href="crypto-trading-terminal.html" class="mk-card mk-span-2"><h3>Crypto trading terminal</h3><p>Open charts, indicators, and order flow for deeper ETH monitoring.</p></a>
     </div>
@@ -148,7 +154,7 @@
             <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
             <div class="mk-footer-social"><a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a><a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a><a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a></div>
         </div>
-        <div class="mk-footer-col"><h4>Product</h4><a href="app.html">Terminal</a><a href="features.html">Features</a><a href="trade.html">Paper trading</a><a href="ai.html">AI research</a><a href="bitcoin-live-price.html">Bitcoin live price</a><a href="ethereum-live-price.html">Ethereum live price</a><a href="crypto-trading-terminal.html">Crypto trading terminal</a><a href="crypto-paper-trading.html">Crypto paper trading</a><a href="ai-crypto-research.html">AI crypto research</a></div>
+        <div class="mk-footer-col"><h4>Product</h4><a href="app.html">Terminal</a><a href="features.html">Features</a><a href="trade.html">Paper trading</a><a href="ai.html">AI research</a><a href="bitcoin-live-price.html">Bitcoin live price</a><a href="ethereum-live-price.html">Ethereum live price</a><a href="solana-live-price.html">Solana live price</a><a href="crypto-trading-terminal.html">Crypto trading terminal</a><a href="crypto-paper-trading.html">Crypto paper trading</a><a href="ai-crypto-research.html">AI crypto research</a></div>
         <div class="mk-footer-col"><h4>Company</h4><a href="about.html">About</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a></div>
         <div class="mk-footer-col"><h4>Legal</h4><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of service</a></div>
     </div>

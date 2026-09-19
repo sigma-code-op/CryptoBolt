@@ -9,6 +9,7 @@ color: rgba(74,222,128,.08)
 summary: What the crypto funding rate on a perpetual contract measures, why it flips positive and negative, and how to read it alongside open interest.
 card_summary: The small percentage next to every perpetual contract quietly tells you which side of the market is crowded — here's how to actually read it.
 keywords: crypto funding rate, funding rate explained, perpetual futures funding, positive vs negative funding rate, funding rate arbitrage, crypto funding rate history
+updated: 2026-09-19
 ---
 Open any perpetual futures contract and there's a small percentage sitting next to the price, updating every few hours. Most traders glance past it. It's worth slowing down on, because the funding rate is one of the few numbers on the screen that tells you what other traders are actually positioned for, not just where price has been.
 
@@ -26,6 +27,10 @@ Neither direction is inherently bullish or bearish on its own. A modest positive
 ## Why it matters more paired with open interest
 
 Funding rate alone tells you the direction of the crowd. Open interest tells you the size of it. A high funding rate with flat or falling open interest often just means a small, stubborn group of traders is paying up to stay positioned — not much fuel for a violent move either way. The same funding rate with open interest climbing fast is a more crowded, more fragile setup: more leveraged positions sitting on one side, more that would need to unwind if price turns against them. CryptoBolt's terminal surfaces both side by side for exactly this reason — funding rate by itself is a data point, funding rate next to open interest starts to look like a read on positioning risk.
+
+## What counts as a "good" or normal funding rate?
+
+There's no fixed threshold, but as a rough anchor: funding in the roughly 0.01%–0.02% range per 8-hour period (about 3–6% annualized) is typical, unremarkable positioning on most major pairs. Rates that push toward 0.05%–0.1% per period, especially while climbing, mean the crowd is leaning hard on one side and paying a real premium to stay there — that's the range where leveraged positioning starts getting fragile. If you're holding a leveraged position while funding runs against you, remember that funding is a running cost that eats into your margin over time, on top of — not instead of — your liquidation price, which is set by leverage and entry price, not by funding. CryptoBolt's terminal shows estimated liquidation price alongside live funding for exactly this reason: they're two separate risks that both need watching.
 
 ## The catch
 

@@ -5,6 +5,7 @@
 ## Primary Pages
 
 - [CryptoBolt Home](https://cryptobolt.io/) — Live crypto prices, charts, market data, technical indicators, portfolio tools, alerts, and market analysis.
+- [Solana Live Price](https://cryptobolt.io/solana-live-price.html) — Real-time SOL price, chart context, and AI research.
 - [CryptoBolt AI Research](https://cryptobolt.io/ai.html) — AI-assisted crypto market research and conversational market analysis using current market context.
 - [CryptoBolt Trading Practice](https://cryptobolt.io/trade.html) — Paper-trading environment for practicing buy/sell decisions with virtual funds.
 - [CryptoBolt Blog](https://cryptobolt.io/blog.html) — Practical notes on market mechanics and how CryptoBolt's tools work.

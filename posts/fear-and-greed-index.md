@@ -2,7 +2,7 @@ title: Reading the Fear & Greed index without overreacting to it
 meta_title: Fear & Greed Index Explained: How to Read It
 og_title: Fear & Greed Index Explained: How to Read It Without Overreacting
 date: 2026-08-24
-updated: 2026-09-17
+updated: 2026-09-19
 section: Sentiment
 readtime: 4 min read
 emoji: 😨
@@ -14,6 +14,12 @@ keywords: fear and greed index, crypto fear and greed index, how to read fear an
 The Fear & Greed index (often written "fear and greed index") — the number CryptoBolt pulls from Alternative.me into the Global Market Pulse strip — compresses a handful of inputs (volatility, momentum, social volume, dominance, and survey data) into a single 0–100 score. Near 0 is "extreme fear," near 100 is "extreme greed."
 
 It's easy to treat that number like a trade signal: buy the fear, sell the greed. Sometimes that works. Often it doesn't, because the index describes the current mood of the market, not where it's headed next. Extreme fear can sit at extreme fear for weeks during a genuine downtrend. Extreme greed can grind higher for months in a strong bull run before anything mean-reverts.
+
+## How the index is actually calculated
+
+The score blends several inputs into one number: price volatility relative to recent averages, momentum and trading volume versus their moving averages, social media volume and sentiment mentions, Bitcoin's dominance of total market cap, and periodic survey data. No single input dominates — a sharp volatility spike can pull the score toward fear even while price is flat, and a rush of momentum with rising volume can pull it toward greed before price has moved much at all. That's part of why the number can feel disconnected from price action on any given day.
+
+What "extreme fear" actually means in practice: it's the market pricing in unusually high uncertainty or downside risk, not a guarantee that a bottom is near. It shows up during sharp selloffs, sudden volatility spikes, and periods of heavy negative sentiment — sometimes right before a reversal, sometimes in the middle of a downtrend that has much further to fall. The reading tells you the crowd is scared; it doesn't tell you whether the crowd is right.
 
 ## What it's actually useful for
 
