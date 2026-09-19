@@ -1325,6 +1325,25 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         return ctx;
     }
 
+    // When using CryptoBolt's shared house key, attach the visitor's own Supabase session (if
+    // they're signed in) so the backend can rate-limit per account instead of per IP address —
+    // otherwise unrelated visitors sharing a Wi-Fi network or mobile carrier's NAT would land
+    // in the same bucket and rate-limit each other. Signing in was never required to use the
+    // house key and still isn't: this only upgrades the key when it can, and any failure here
+    // (not signed in, auth not configured, a hiccup fetching the session) just falls back to
+    // IP-based limiting server-side, same as before.
+    async function getHouseKeyAuthHeader() {
+        try {
+            const client = window.cwAuth && window.cwAuth.isConfigured() && window.cwAuth.getClient();
+            if (!client) return {};
+            const { data } = await client.auth.getSession();
+            const token = data?.session?.access_token;
+            return token ? { authorization: `Bearer ${token}` } : {};
+        } catch (err) {
+            return {};
+        }
+    }
+
     async function requestAiPositionRead(ctx) {
         const useHouseKey = getAiKeyMode() === 'house';
         const apiKey = getStoredGroqKey();
@@ -1333,7 +1352,8 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         const timer = setTimeout(() => controller.abort(), 20000);
         try {
             const headers = { 'content-type': 'application/json' };
-            if (useHouseKey) headers['x-use-house-key'] = '1'; else headers['x-groq-key'] = apiKey;
+            if (useHouseKey) { headers['x-use-house-key'] = '1'; Object.assign(headers, await getHouseKeyAuthHeader()); }
+            else headers['x-groq-key'] = apiKey;
             const res = await fetch(resolveApiUrl(CW_CONFIG.aiInsightUrl), {
                 method: 'POST', headers, body: JSON.stringify({ context: ctx }), signal: controller.signal,
             });

@@ -416,6 +416,22 @@
         return /^https?:\/\//i.test(path) ? path : `${base}${path}`;
     }
 
+    // When using CryptoBolt's shared house key, attach the visitor's own Supabase session (if
+    // signed in) so the server can rate-limit per account instead of per IP address — see
+    // js/16-paper-trading.js's copy of this same helper for the full rationale. Falls back to
+    // {} (and therefore IP-based limiting server-side) for any reason, never blocks the request.
+    async function getHouseKeyAuthHeader() {
+        try {
+            const client = window.cwAuth && window.cwAuth.isConfigured() && window.cwAuth.getClient();
+            if (!client) return {};
+            const { data } = await client.auth.getSession();
+            const token = data?.session?.access_token;
+            return token ? { authorization: `Bearer ${token}` } : {};
+        } catch (err) {
+            return {};
+        }
+    }
+
     async function requestBackendInsight(ctx, apiKey, useHouseKey) {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 20000);
@@ -423,6 +439,7 @@
             const headers = { 'content-type': 'application/json' };
             if (useHouseKey) {
                 headers['x-use-house-key'] = '1';
+                Object.assign(headers, await getHouseKeyAuthHeader());
             } else {
                 headers['x-groq-key'] = apiKey;
             }

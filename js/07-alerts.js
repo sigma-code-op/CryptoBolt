@@ -102,8 +102,17 @@
 
         try {
             const headers = { 'content-type': 'application/json' };
-            if (useHouseKey) headers['x-use-house-key'] = '1';
-            else headers['x-groq-key'] = apiKey;
+            if (useHouseKey) {
+                headers['x-use-house-key'] = '1';
+                // Attaches the visitor's Supabase session (if signed in and 10-ai-insight.js has
+                // loaded) so the backend can rate-limit the shared house key per account instead
+                // of per IP — see that file's copy of this helper for the full rationale. Guarded
+                // the same way getAIKeyMode/getStoredApiKey are above: silently skipped (falls
+                // back to IP-based limiting server-side) if that module hasn't loaded yet.
+                if (typeof getHouseKeyAuthHeader === 'function') {
+                    Object.assign(headers, await getHouseKeyAuthHeader());
+                }
+            } else headers['x-groq-key'] = apiKey;
 
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), 15000);

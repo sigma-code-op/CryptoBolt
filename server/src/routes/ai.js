@@ -8,6 +8,7 @@ import Groq from 'groq-sdk';
 import { GROQ_MODEL, GROQ_HOUSE_API_KEY, HOUSE_KEY_ENABLED } from '../config.js';
 import { validateContext, validateAlertExplainPayload } from '../validators.js';
 import { fetchCryptoNews, fetchFearGreedIndex } from '../lib/market-data.js';
+import { getSupabaseAdmin, SUPABASE_ADMIN_CONFIGURED } from '../lib/supabase-admin.js';
 import {
   synthesisSystemPrompt,
   buildUserPrompt,
@@ -48,6 +49,37 @@ const aiLimiter = rateLimit({
   },
 });
 
+// Pulls a bearer token out of a raw Authorization header value. Pure/testable on purpose —
+// separated from anything that touches Supabase or the network.
+export function extractBearerToken(authHeaderValue) {
+  const raw = typeof authHeaderValue === 'string' ? authHeaderValue : '';
+  return raw.startsWith('Bearer ') ? raw.slice(7).trim() : '';
+}
+
+// Keys the shared house-key limiter by the visitor's own Supabase account when they're signed
+// in and send a valid session token, instead of always falling back to IP address. Two
+// different accounts on the same Wi-Fi network — or, just as commonly, the same mobile
+// carrier's shared NAT — would otherwise collide in one IP-keyed bucket and rate-limit each
+// other. Signing in isn't required to use the house key at all, so this only upgrades the key
+// when it can — any missing/invalid/unverifiable token silently falls back to IP, exactly like
+// today, rather than ever blocking the request over it.
+export async function houseKeyRateLimitKey(req) {
+  const token = extractBearerToken(req.get('authorization'));
+  if (token && SUPABASE_ADMIN_CONFIGURED) {
+    try {
+      const supabase = getSupabaseAdmin();
+      const { data, error } = await supabase.auth.getUser(token);
+      if (!error && data?.user?.id) {
+        return `user:${data.user.id}`;
+      }
+    } catch (err) {
+      // Network hiccup or malformed token talking to Supabase — fall through to IP below
+      // rather than let a broken verification call bypass rate limiting entirely.
+    }
+  }
+  return `ip:${req.ip}`;
+}
+
 // Separate, stricter limiter for requests using CryptoBolt's own shared "house" key —
 // that usage is billed to the deployment owner, not the visitor, so it needs a tighter
 // cap than the BYOK limiter above. Only reachable when HOUSE_KEY_ENABLED is true.
@@ -67,6 +99,8 @@ const houseKeyLimiter = rateLimit({
   standardHeaders: true,
 
   legacyHeaders: false,
+
+  keyGenerator: houseKeyRateLimitKey,
 
   message: {
     error:
