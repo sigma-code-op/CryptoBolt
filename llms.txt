@@ -5,9 +5,17 @@
 ## Primary Pages
 
 - [CryptoBolt Home](https://cryptobolt.io/) — Live crypto prices, charts, market data, technical indicators, portfolio tools, alerts, and market analysis.
+- [CryptoBolt Terminal](https://cryptobolt.io/app.html) — Live crypto trading terminal with charts, order book, spot and futures data, and portfolio tracking.
+- [Crypto Trading Terminal Guide](https://cryptobolt.io/crypto-trading-terminal.html) — Explanatory landing page for the CryptoBolt terminal and what it covers.
+- [Bitcoin Live Price](https://cryptobolt.io/bitcoin-live-price.html) — Real-time BTC price, chart context, and AI research.
+- [Ethereum Live Price](https://cryptobolt.io/ethereum-live-price.html) — Real-time ETH price, chart context, and AI research.
 - [Solana Live Price](https://cryptobolt.io/solana-live-price.html) — Real-time SOL price, chart context, and AI research.
-- [CryptoBolt AI Research](https://cryptobolt.io/ai.html) — AI-assisted crypto market research and conversational market analysis using current market context.
-- [CryptoBolt Trading Practice](https://cryptobolt.io/trade.html) — Paper-trading environment for practicing buy/sell decisions with virtual funds.
+- [CryptoBolt AI Research](https://cryptobolt.io/ai.html) — Crypto AI research and conversational market analysis using current market context.
+- [Crypto AI Research Guide](https://cryptobolt.io/ai-crypto-research.html) — Explanatory landing page on how CryptoBolt's crypto AI research works.
+- [CryptoBolt Trading Practice](https://cryptobolt.io/trade.html) — Paper-trading environment for practicing buy/sell decisions with virtual funds, including a leaderboard.
+- [Crypto Paper Trading Guide](https://cryptobolt.io/crypto-paper-trading.html) — Explanatory landing page for the free crypto paper trading simulator.
+- [CryptoBolt Features](https://cryptobolt.io/features.html) — Overview of charting, alerts, portfolio tracker, and order book features.
+- [Invest](https://cryptobolt.io/invest.html) — Real-money on-ramp for buying Bitcoin, Ethereum, and other assets.
 - [CryptoBolt Blog](https://cryptobolt.io/blog.html) — Practical notes on market mechanics and how CryptoBolt's tools work.
   - [Reading the Fear & Greed index without overreacting to it](https://cryptobolt.io/fear-and-greed-index.html)
   - [Spot vs. perpetual futures: what actually changes](https://cryptobolt.io/spot-vs-futures.html)
