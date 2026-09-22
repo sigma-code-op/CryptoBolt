@@ -3792,6 +3792,7 @@ select:focus-visible,
 
 /* ---------- 1. Lucide icon base ---------- */
 svg.lucide {
+  display: inline-block; /* overrides Tailwind preflight's `svg { display: block }` — see comment above */
   stroke: currentColor;
   fill: none;
   flex-shrink: 0;
