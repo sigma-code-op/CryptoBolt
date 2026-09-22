@@ -26,7 +26,7 @@
         list.innerHTML = alerts.map(a => `
             <div class="flex items-center justify-between bg-gray-900/60 border border-gray-800 rounded px-2 py-1">
                 <span class="${a.direction === 'above' || a.direction === 'pct_up' ? 'text-[#14d38a]' : 'text-[#ff4d6a]'}">${describeAlert(a)}</span>
-                <button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer alert-remove" data-id="${a.id}">✕</button>
+                <button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer alert-remove" data-id="${a.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button>
             </div>
         `).join('');
 
@@ -72,7 +72,7 @@
         container.innerHTML = history.map(h => {
             const time = new Date(h.time).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
             const noteLine = h.aiNote
-                ? `<div class="text-[9px] text-[#a855f7] mt-0.5 leading-snug">🤖 ${escapeHtml(h.aiNote)}</div>`
+                ? `<div class="text-[9px] text-[#a855f7] mt-0.5 leading-snug"><i data-lucide="bot" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> ${escapeHtml(h.aiNote)}</div>`
                 : '';
             return `<div class="text-[9.5px] px-1.5 py-1 rounded bg-gray-900/50">
                 <div class="flex items-center justify-between">
@@ -89,7 +89,7 @@
     // never something the visitor has to click for. Entirely best-effort and non-blocking:
     // the toast/beep/browser-notification/history-log flow already completed synchronously
     // before this is even called, so if this fails or is skipped, nothing about the core
-    // alert experience changes — the history entry just never grows its 🤖 note line.
+    // alert experience changes — the history entry just never grows its AI note line.
     // Reuses the exact key-mode plumbing from js/10-ai-insight.js (getAIKeyMode,
     // getStoredApiKey, resolveApiUrl — all plain globals, loaded earlier in the same bundle)
     // rather than duplicating it, so "own key" vs "CryptoBolt's shared key" stays one choice
@@ -147,7 +147,9 @@
         const btn = document.getElementById('alert-history-toggle');
         const willShow = list.classList.contains('hidden');
         list.classList.toggle('hidden');
-        btn.innerText = willShow ? '🕘 Hide triggered history' : '🕘 Show triggered history';
+        btn.innerHTML = willShow
+            ? '<i data-lucide="history" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> Hide triggered history'
+            : '<i data-lucide="history" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> Show triggered history';
         if (willShow) renderAlertHistory();
     });
 

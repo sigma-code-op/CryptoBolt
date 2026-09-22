@@ -31,7 +31,11 @@
         const toggleBtn = document.getElementById('ai-key-toggle-btn');
         if (toggleBtn) {
             const ready = mode === 'house' || hasKey;
-            toggleBtn.innerText = mode === 'house' ? '🤖 CryptoBolt Key ✓' : (hasKey ? '⚙ API Key ✓' : '⚙ API Key');
+            toggleBtn.innerHTML = mode === 'house'
+                ? '<i data-lucide="bot" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> CryptoBolt Key <i data-lucide="check" width="11" height="11" stroke-width="2.5" style="vertical-align:-1px;"></i>'
+                : (hasKey
+                    ? '<i data-lucide="settings" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> API Key <i data-lucide="check" width="11" height="11" stroke-width="2.5" style="vertical-align:-1px;"></i>'
+                    : '<i data-lucide="settings" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> API Key');
             toggleBtn.classList.toggle('text-[#14d38a]', ready);
             toggleBtn.classList.toggle('border-[#14d38a]/40', ready);
         }
@@ -370,7 +374,7 @@
         const btn = document.getElementById('ai-history-toggle');
         const showing = !list.classList.contains('hidden');
         list.classList.toggle('hidden');
-        btn.innerText = showing ? '📜 Show read history' : '📜 Hide read history';
+        btn.innerHTML = (showing ? 'Show read history' : 'Hide read history').replace(/^/, '<i data-lucide="scroll-text" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> ');
         if (!showing) renderInsightHistory();
     });
 
@@ -537,27 +541,27 @@
 
         const sourceBanner = parsed.isLocalCalculation
             ? `<div class="mb-3 px-3 py-2 rounded border border-amber-500/40 bg-amber-500/10 text-amber-300 text-[10.5px] leading-relaxed flex gap-2">
-                 <span>⚠️</span>
+                 <span><i data-lucide="triangle-alert" width="13" height="13" stroke-width="2.1"></i></span>
                  <span><strong>Not AI-generated.</strong> No API key is set, so this reading was calculated directly by this page's own code from RSI/moving-average math — not by an AI model, and with no live news or sentiment research. Add an API key above for an AI-generated read backed by live internet research.</span>
                </div>`
             : `<div class="mb-3 px-3 py-2 rounded border border-[#a855f7]/30 bg-[#a855f7]/10 text-[#c084fc] text-[10.5px] leading-relaxed flex gap-2">
-                 <span>🤖</span>
+                 <span><i data-lucide="bot" width="13" height="13" stroke-width="2.1"></i></span>
                  <span>AI-generated read from Llama (via Groq) — grounded in live indicators below, plus live news headlines and market sentiment researched server-side for this request.</span>
                </div>`;
 
         const outlookBlock = parsed.outlook ? `
             <div class="mt-3 rounded-lg border border-amber-500/30 bg-gradient-to-br from-amber-500/10 to-transparent p-3">
                 <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[10.5px] font-bold uppercase tracking-wide text-amber-300 flex items-center gap-1.5">🔮 Next-move outlook</span>
+                    <span class="text-[10.5px] font-bold uppercase tracking-wide text-amber-300 flex items-center gap-1.5"><i data-lucide="telescope" width="12" height="12" stroke-width="2.1"></i> Next-move outlook</span>
                     ${parsed.confidence ? `<span class="text-[9.5px] font-bold uppercase px-2 py-0.5 rounded border ${confidenceColor}">${escapeHtml(parsed.confidence)} confidence</span>` : ''}
                 </div>
                 <p class="text-gray-300 text-[11.5px] leading-relaxed">${escapeHtml(parsed.outlook)}</p>
-                <p class="text-amber-400/80 text-[9px] mt-2 leading-relaxed">⚠️ This is a conditional technical scenario, not a price prediction or a guarantee. Markets can and do move against any read like this.</p>
+                <p class="text-amber-400/80 text-[9px] mt-2 leading-relaxed"><i data-lucide="triangle-alert" width="11" height="11" stroke-width="2.1" style="vertical-align:-1px;"></i> This is a conditional technical scenario, not a price prediction or a guarantee. Markets can and do move against any read like this.</p>
             </div>` : '';
 
         const reasoningBlock = (Array.isArray(parsed.reasoningSteps) && parsed.reasoningSteps.length) ? `
             <div class="mt-3 rounded-lg border border-gray-800 bg-gray-900/40 p-3">
-                <span class="text-[10.5px] font-bold uppercase tracking-wide text-gray-400 flex items-center gap-1.5 mb-1.5">⚖️ For / against this read</span>
+                <span class="text-[10.5px] font-bold uppercase tracking-wide text-gray-400 flex items-center gap-1.5 mb-1.5"><i data-lucide="scale" width="12" height="12" stroke-width="2.1"></i> For / against this read</span>
                 <ul class="space-y-1">
                     ${parsed.reasoningSteps.map(step => `<li class="text-gray-400 text-[10.5px] leading-snug flex gap-1.5"><span class="text-gray-600">·</span>${escapeHtml(step)}</li>`).join('')}
                 </ul>
@@ -570,15 +574,15 @@
             <p class="mt-2.5 px-3 py-2 rounded border border-amber-500/25 bg-amber-500/5 text-amber-200/90 text-[10.5px] leading-relaxed"><strong>Positioning:</strong> ${escapeHtml(parsed.fundingContext)}</p>` : '';
 
         const newsContextBlock = parsed.newsContext ? `
-            <p class="mt-2.5 px-3 py-2 rounded border border-[#4fd8e8]/25 bg-[#4fd8e8]/5 text-gray-300 text-[10.5px] leading-relaxed"><strong class="text-[#4fd8e8]">📰 News & sentiment:</strong> ${escapeHtml(parsed.newsContext)}</p>` : '';
+            <p class="mt-2.5 px-3 py-2 rounded border border-[#4fd8e8]/25 bg-[#4fd8e8]/5 text-gray-300 text-[10.5px] leading-relaxed"><strong class="text-[#4fd8e8]"><i data-lucide="newspaper" width="11" height="11" stroke-width="2.1" style="vertical-align:-1px;"></i> News & sentiment:</strong> ${escapeHtml(parsed.newsContext)}</p>` : '';
 
         const catalystBlock = parsed.catalystWatch ? `
-            <p class="mt-2.5 px-3 py-2 rounded border border-amber-500/25 bg-amber-500/5 text-amber-200/90 text-[10.5px] leading-relaxed"><strong>👀 Watch:</strong> ${escapeHtml(parsed.catalystWatch)}</p>` : '';
+            <p class="mt-2.5 px-3 py-2 rounded border border-amber-500/25 bg-amber-500/5 text-amber-200/90 text-[10.5px] leading-relaxed"><strong><i data-lucide="eye" width="11" height="11" stroke-width="2.1" style="vertical-align:-1px;"></i> Watch:</strong> ${escapeHtml(parsed.catalystWatch)}</p>` : '';
 
         const sourcesBlock = (Array.isArray(parsed.sources) && parsed.sources.length) ? `
             <details class="mt-3 rounded-lg border border-gray-800 bg-gray-900/40 group">
                 <summary class="cursor-pointer list-none px-3 py-2 flex items-center justify-between text-[10.5px] font-bold uppercase tracking-wide text-gray-400">
-                    <span class="flex items-center gap-1.5">📰 Headlines checked (last 72h)</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="newspaper" width="11" height="11" stroke-width="2.1"></i> Headlines checked (last 72h)</span>
                     <span class="text-[9px] text-gray-500 font-normal normal-case group-open:hidden">Show</span>
                     <span class="text-[9px] text-gray-500 font-normal normal-case hidden group-open:inline">Hide</span>
                 </summary>
@@ -593,7 +597,7 @@
         const researchBlock = parsed.research ? `
             <details class="mt-3 rounded-lg border border-[#4fd8e8]/25 bg-[#4fd8e8]/5 group">
                 <summary class="cursor-pointer list-none px-3 py-2 flex items-center justify-between text-[10.5px] font-bold uppercase tracking-wide text-[#4fd8e8]">
-                    <span class="flex items-center gap-1.5">🔍 Research trail — what was weighed before this read</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="search" width="12" height="12" stroke-width="2.1"></i> Research trail — what was weighed before this read</span>
                     <span class="text-[9px] text-gray-500 font-normal normal-case group-open:hidden">Show</span>
                     <span class="text-[9px] text-gray-500 font-normal normal-case hidden group-open:inline">Hide</span>
                 </summary>
@@ -630,7 +634,7 @@
             ${sourcesBlock}
             ${gaugeBlock}
             <p class="text-gray-600 text-[9px] mt-3">Based on ${escapeHtml(ctx.interval)} chart data for ${escapeHtml(ctx.asset)} (${ctx.market}) as of ${new Date().toLocaleTimeString(undefined, { hour12: false })}.</p>
-            <p class="mt-3 px-3 py-2.5 rounded border border-red-500/20 bg-red-500/5 text-gray-400 text-[9.5px] leading-relaxed">🚫 <strong class="text-gray-300">Not financial advice, not personalized to you, and can be wrong.</strong> ${parsed.isLocalCalculation ? 'This is a locally calculated technical summary' : 'This is an automated AI technical read'} — none of it knows your risk tolerance, position size, or portfolio. Always do your own research and consider your own risk before trading.</p>
+            <p class="mt-3 px-3 py-2.5 rounded border border-red-500/20 bg-red-500/5 text-gray-400 text-[9.5px] leading-relaxed"><i data-lucide="info" width="11" height="11" stroke-width="2.1" style="vertical-align:-1px;"></i> <strong class="text-gray-300">Not financial advice, not personalized to you, and can be wrong.</strong> ${parsed.isLocalCalculation ? 'This is a locally calculated technical summary' : 'This is an automated AI technical read'} — none of it knows your risk tolerance, position size, or portfolio. Always do your own research and consider your own risk before trading.</p>
         `;
 
         lastRenderedInsight = { parsed, ctx, assetId: selectedAsset ? selectedAsset.id : null };

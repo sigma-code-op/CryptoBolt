@@ -507,7 +507,7 @@
         const wrapper = document.createElement("div");
         wrapper.className = `chat-message ${type}`;
         wrapper.innerHTML = `
-            <div class="message-avatar">${type === "ai" ? "⚡" : "👤"}</div>
+            <div class="message-avatar">${type === "ai" ? '<i data-lucide="zap" width="14" height="14" stroke-width="2.3"></i>' : '<i data-lucide="user" width="14" height="14" stroke-width="2.1"></i>'}</div>
             <div class="message-body">
                 <strong>${type === "ai" ? "CryptoBolt AI" : "You"}</strong>
                 <div class="message-text"></div>
@@ -614,7 +614,7 @@
         if ($("chat-followups")) $("chat-followups").innerHTML = "";
         $("chat-messages").innerHTML = `
             <div class="chat-message ai">
-                <div class="message-avatar">⚡</div>
+                <div class="message-avatar"><i data-lucide="zap" width="14" height="14" stroke-width="2.3"></i></div>
                 <div class="message-body">
                     <strong>CryptoBolt AI</strong>
                     <div class="message-text"><p>Chat cleared. Ask me another market research question.</p></div>
@@ -770,8 +770,8 @@
         const banner = $("result-banner");
         if (banner) {
             banner.innerHTML = parsed.isLocalCalculation
-                ? `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#e5b324;">⚠️ <strong>Not AI-generated.</strong> No API key is set, so this is a locally calculated technical read — not by an AI model, with no live news or sentiment research. Add an API key above for the full AI-generated read.</p></div>`
-                : `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#c084fc;">🤖 AI-generated read from Llama (via Groq) — grounded in live indicators, news headlines, and market sentiment researched for this request.</p></div>`;
+                ? `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#e5b324;"><i data-lucide="triangle-alert" width="13" height="13" stroke-width="2.1" style="vertical-align:-2px;"></i> <strong>Not AI-generated.</strong> No API key is set, so this is a locally calculated technical read — not by an AI model, with no live news or sentiment research. Add an API key above for the full AI-generated read.</p></div>`
+                : `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#c084fc;"><i data-lucide="bot" width="13" height="13" stroke-width="2.1" style="vertical-align:-2px;"></i> AI-generated read from Llama (via Groq) — grounded in live indicators, news headlines, and market sentiment researched for this request.</p></div>`;
         }
 
         if ($("result-summary")) $("result-summary").textContent = parsed.summary || "";

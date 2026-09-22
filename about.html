@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-nzjOidb762oMnkAQ9ADjHO90pNLIc1FOSohkdQ/Rxjs=' 'sha256-B3aW36A5vLdDt526GEMkFBQo87e7W9JRr/JPMQd0p48='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-AxFIcSNQfAyAH89gG+eUSxwqXkz4fjd/NCULc0mzf2k=' 'sha256-OdxFOt4TgN5FUIHfxDgldeV8lvHUSCuhgIaJR01LGDM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
+    <script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+    <script src="js/icons-init.js"></script>
     <script src="js/consent-default.js"></script>
     <script src="js/error-reporter.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
@@ -44,8 +46,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20260917">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20260922">
 
     <script type="application/ld+json">
     {
@@ -81,9 +83,9 @@
     <div class="container mx-auto px-4 py-6 max-w-[820px]">
         <header class="flex items-center justify-between border-b border-gray-800 pb-4 mb-8">
             <a href="index.html" class="text-xl font-bold flex items-center gap-2 tracking-tight">
-                🪙 <span class="cw-logo-gradient">CryptoBolt</span>
+                <i data-lucide="zap" width="18" height="18" stroke-width="2.3" style="color:#22c58c;"></i> <span class="cw-logo-gradient">CryptoBolt</span>
             </a>
-            <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all">← Back to terminal</a>
+            <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all"><i data-lucide="arrow-left" width="12" height="12" stroke-width="2.4" style="vertical-align:-1px;"></i> Back to terminal</a>
         </header>
 
         <main class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-6 sm:p-8">

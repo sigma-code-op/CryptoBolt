@@ -175,7 +175,7 @@
         const banner = document.createElement('div');
         banner.id = 'offline-banner';
         banner.className = 'cw-offline-banner';
-        banner.textContent = "⚠ You're offline — live prices are paused. Reconnecting automatically once you're back.";
+        banner.innerHTML = '<i data-lucide="wifi-off" width="14" height="14" stroke-width="2.2" style="vertical-align:-2px;"></i> You\'re offline — live prices are paused. Reconnecting automatically once you\'re back.';
         document.body.prepend(banner);
 
         function updateBannerVisibility() {
@@ -217,7 +217,7 @@
             <div class="cw-modal-card" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-bold text-white">Keyboard shortcuts</h2>
-                    <button id="shortcuts-close-btn" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
+                    <button id="shortcuts-close-btn" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none"><i data-lucide="x" width="15" height="15" stroke-width="2.4"></i></button>
                 </div>
                 <div class="space-y-2.5 text-[11px] text-gray-300">
                     <div class="flex items-center justify-between"><span>Quick jump to asset</span><span class="cw-kbd">Ctrl/⌘</span> <span class="cw-kbd">K</span></div>

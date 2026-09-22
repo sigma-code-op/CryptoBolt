@@ -162,9 +162,9 @@
 
     function showToast(message, tone = 'info') {
         const toneMap = {
-            success: { color: 'var(--cw-green)', icon: '✓' },
-            error: { color: 'var(--cw-red)', icon: '✕' },
-            info: { color: 'var(--cw-cyan)', icon: 'ℹ' },
+            success: { color: 'var(--cw-green)', icon: '<i data-lucide="check" width="14" height="14" stroke-width="2.5"></i>' },
+            error: { color: 'var(--cw-red)', icon: '<i data-lucide="x" width="14" height="14" stroke-width="2.5"></i>' },
+            info: { color: 'var(--cw-cyan)', icon: '<i data-lucide="info" width="14" height="14" stroke-width="2.3"></i>' },
         };
         const { color, icon } = toneMap[tone] || toneMap.info;
         const el = document.createElement('div');
@@ -172,7 +172,9 @@
         el.style.setProperty('--cw-tone', color);
         const iconEl = document.createElement('span');
         iconEl.className = 'cw-toast-icon text-[13px]';
-        iconEl.innerText = icon;
+        // Safe as innerHTML: `icon` is always one of the fixed strings in toneMap above,
+        // never user input (contrast with msgEl below, which stays textContent for that reason).
+        iconEl.innerHTML = icon;
         const msgEl = document.createElement('span');
         msgEl.className = 'font-mono leading-snug pt-px';
         msgEl.style.color = color;

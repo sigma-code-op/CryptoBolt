@@ -23,7 +23,9 @@
 
             row.innerHTML = `
                 <td class="py-3 px-4 text-center star-cell cursor-pointer text-sm select-none ${isStarred ? 'text-amber-400' : 'text-gray-600 hover:text-gray-400'}">
-                    ${isStarred ? '★' : '☆'}
+                    ${isStarred
+                        ? '<i data-lucide="star" width="13" height="13" stroke-width="2" style="color:#fbbf24;fill:#fbbf24;"></i>'
+                        : '<i data-lucide="star" width="13" height="13" stroke-width="2"></i>'}
                 </td>
                 <td class="py-3 px-2 main-click-zone">
                     <div class="flex items-center gap-2">
@@ -194,11 +196,11 @@
         const idx = watchlist.indexOf(assetId);
         if (idx > -1) {
             watchlist.splice(idx, 1);
-            element.innerText = '☆';
+            element.innerHTML = '<i data-lucide="star" width="13" height="13" stroke-width="2"></i>';
             element.className = "py-3 px-4 text-center star-cell cursor-pointer text-sm select-none text-gray-600 hover:text-gray-400";
         } else {
             watchlist.push(assetId);
-            element.innerText = '★';
+            element.innerHTML = '<i data-lucide="star" width="13" height="13" stroke-width="2" style="color:#fbbf24;fill:#fbbf24;"></i>';
             element.className = "py-3 px-4 text-center star-cell cursor-pointer text-sm select-none text-amber-400";
         }
         localStorage.setItem('cw_watchlist', JSON.stringify(watchlist));

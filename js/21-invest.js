@@ -32,9 +32,9 @@ function priceFmt(price) {
 }
 function showToast(message, tone = 'info') {
     const toneMap = {
-        success: { color: 'var(--cw-green)', icon: '✓' },
-        error: { color: 'var(--cw-red)', icon: '✕' },
-        info: { color: 'var(--cw-cyan)', icon: 'ℹ' },
+        success: { color: 'var(--cw-green)', icon: '<i data-lucide="check" width="14" height="14" stroke-width="2.5"></i>' },
+        error: { color: 'var(--cw-red)', icon: '<i data-lucide="x" width="14" height="14" stroke-width="2.5"></i>' },
+        info: { color: 'var(--cw-cyan)', icon: '<i data-lucide="info" width="14" height="14" stroke-width="2.3"></i>' },
     };
     const { color, icon } = toneMap[tone] || toneMap.info;
     const el = document.createElement('div');
@@ -42,7 +42,7 @@ function showToast(message, tone = 'info') {
     el.style.setProperty('--cw-tone', color);
     const iconEl = document.createElement('span');
     iconEl.className = 'cw-toast-icon text-[13px]';
-    iconEl.innerText = icon;
+    iconEl.innerHTML = icon; // icon is always a fixed string from toneMap above, never user input
     const msgEl = document.createElement('span');
     msgEl.className = 'font-mono leading-snug pt-px';
     msgEl.innerText = message;

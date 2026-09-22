@@ -1,0 +1,149 @@
+/* ============================================================
+   CryptoBolt — Lucide icon system + "Studio" polish pass
+   ------------------------------------------------------------
+   Loaded LAST (after redesign.css), so it wins the cascade
+   without touching styles.css / home.css / premium.css /
+   redesign.css internals. Pure presentation — no JS-read class
+   or ID is renamed here.
+
+   What this adds:
+   1. A consistent Lucide icon system (size, stroke, color,
+      alignment) replacing the emoji icons used across the
+      marketing pages.
+   2. A display type upgrade — Plus Jakarta Sans on headings,
+      swapped in for Space Grotesk — for a more premium,
+      geometric fintech feel, with a tighter, more deliberate
+      type scale.
+   3. Icon-badge and button refinements: circular ringed badges
+      instead of flat squares, a trailing arrow that nudges on
+      hover instead of a static "→" glyph.
+   4. A touch more depth in the hero/panel/section rhythm.
+   ============================================================ */
+
+/* ---------- 1. Lucide icon base ---------- */
+svg.lucide {
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+  vertical-align: -3px;
+}
+
+/* Icons inside colored icon badges (feature cards) inherit the badge's color */
+.mk-card-icon svg.lucide,
+.mk-blog-cover svg.lucide,
+.mk-logo-mark svg.lucide {
+  color: inherit;
+  vertical-align: middle;
+}
+
+/* Trailing arrow on CTA links: sits inline, nudges right on hover */
+svg.lucide.mk-btn-icon {
+  margin-left: 1px;
+  transition: transform 0.2s var(--pm-ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+a:hover > svg.lucide.mk-btn-icon,
+.mk-btn:hover svg.lucide.mk-btn-icon {
+  transform: translateX(3px);
+}
+
+/* Trust-bar icons: centered above the number, quiet until hovered */
+svg.lucide.mk-trust-icon {
+  display: block;
+  margin: 0 auto 8px;
+  color: var(--mk-text-dim, #8b93a3);
+  opacity: 0.85;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+.mk-trust-item:hover svg.lucide.mk-trust-icon { opacity: 1; color: var(--mk-green, #22c58c); }
+a.mk-trust-item-cta svg.lucide.mk-trust-icon { color: var(--mk-green, #22c58c); opacity: 1; }
+
+/* ---------- 2. Typography: a more deliberate display face ---------- */
+.mk h1, .mk h2, .mk h3, .mk .mk-display,
+.mk-logo, .mk-ai-poster-copy h2, .mk-section-head h2 {
+  font-family: 'Plus Jakarta Sans', 'Space Grotesk', 'Inter', sans-serif !important;
+}
+.mk h1 {
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.08 !important;
+}
+.mk h2 { font-weight: 700 !important; letter-spacing: -0.028em !important; }
+.mk h3 { font-weight: 700 !important; letter-spacing: -0.015em !important; }
+.mk-eyebrow {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  opacity: 0.9;
+}
+
+/* ---------- 3. Logo mark: circular, ringed, icon-native ---------- */
+.mk-logo-mark {
+  border-radius: 50% !important;
+  background: linear-gradient(155deg, rgba(34, 197, 140, 0.22), rgba(70, 184, 201, 0.10)) !important;
+  border: 1px solid rgba(34, 197, 140, 0.32) !important;
+  color: #22c58c;
+  box-shadow: 0 0 0 3px rgba(34, 197, 140, 0.06);
+}
+
+/* ---------- 4. Feature-card icon badges: circular, ringed, lift on hover ---------- */
+.mk-card-icon {
+  border-radius: 50% !important;
+  border: 1px solid currentColor;
+  position: relative;
+  transition: transform 0.25s var(--pm-ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+.mk-card-icon::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.16;
+}
+.mk-card:hover .mk-card-icon { transform: scale(1.06) rotate(-4deg); }
+
+/* ---------- 5. Blog cover icons: quiet monochrome tile instead of a big flat emoji ---------- */
+.mk-blog-cover {
+  background: linear-gradient(155deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)) !important;
+  color: var(--mk-text-dim, #8b93a3);
+  transition: color 0.2s ease;
+}
+.mk-blog-card:hover .mk-blog-cover { color: var(--mk-green, #22c58c); }
+
+/* ---------- 6. Trust bar: icon-led, slightly more generous ---------- */
+.mk-trust-item { padding: 18px 14px 16px !important; }
+
+/* ---------- 7. Buttons: icon-aware spacing already handled by .mk-btn gap; add a
+   touch more weight to the primary CTA and a crisper ghost outline ---------- */
+.mk-btn-primary {
+  background: linear-gradient(155deg, #29d99a, #1fae7e) !important;
+  box-shadow: 0 0 0 1px rgba(34, 197, 140, 0.45), 0 12px 26px -10px rgba(34, 197, 140, 0.55) !important;
+}
+.mk-btn-ghost {
+  border-color: var(--mk-line-hi, rgba(237,239,243,0.14)) !important;
+}
+
+/* ---------- 8. Section rhythm: a little more air, one consistent max-width ---------- */
+.mk-section { padding-top: 84px !important; padding-bottom: 84px !important; }
+.mk-hero { padding-top: 76px !important; }
+
+/* ---------- 9. Hero panel: subtle radial glow behind the live ticker, not just a flat card ---------- */
+.mk-hero { position: relative; }
+.mk-panel { position: relative; }
+.mk-panel::before {
+  content: "";
+  position: absolute;
+  inset: -40px -20px auto;
+  height: 180px;
+  background: radial-gradient(ellipse at center, rgba(34, 197, 140, 0.14), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ---------- 10. AI poster list arrow -> keep glyph but align with the icon system's spacing ---------- */
+.mk-ai-poster-list li::before { font-family: 'JetBrains Mono', monospace; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-card-icon, svg.lucide.mk-btn-icon { transition: none !important; }
+}

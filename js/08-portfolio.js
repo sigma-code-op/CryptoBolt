@@ -247,7 +247,7 @@
                     <td class="py-2 px-3 text-right text-white font-bold">$${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td>
                     <td class="py-2 px-3 text-right">${slTpHtml}</td>
                     <td class="py-2 px-3 text-right">${pnlHtml}</td>
-                    <td class="py-2 px-3 text-center"><button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer holding-remove" data-id="${h.id}">✕</button></td>
+                    <td class="py-2 px-3 text-center"><button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer holding-remove" data-id="${h.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
                 </tr>
             `;
         }).join('');
@@ -377,7 +377,7 @@
                 slRisk = Math.abs(risk);
                 const riskPct = margin > 0 ? (risk / margin) * 100 : 0;
                 const beyondLiq = p.side === 'long' ? p.stopLoss < liqPrice : p.stopLoss > liqPrice;
-                slHtml = `<span class="text-gray-400">$${p.stopLoss.toLocaleString(undefined, priceFmt(p.stopLoss))}</span>${p.slHit ? ' <span class="text-[8px] px-1 rounded bg-[#ff4d6a]/20 text-[#ff4d6a] font-bold">HIT</span>' : ''}<br><span class="text-[10px] ${risk >= 0 ? 'text-[#ff4d6a]' : 'text-[#14d38a]'}">${risk >= 0 ? '-' : '+'}$${Math.abs(risk).toLocaleString(undefined, { maximumFractionDigits: 2 })} (${riskPct.toFixed(1)}%)</span>${beyondLiq ? '<br><span class="text-[9px] text-amber-400">⚠ past liq.</span>' : ''}`;
+                slHtml = `<span class="text-gray-400">$${p.stopLoss.toLocaleString(undefined, priceFmt(p.stopLoss))}</span>${p.slHit ? ' <span class="text-[8px] px-1 rounded bg-[#ff4d6a]/20 text-[#ff4d6a] font-bold">HIT</span>' : ''}<br><span class="text-[10px] ${risk >= 0 ? 'text-[#ff4d6a]' : 'text-[#14d38a]'}">${risk >= 0 ? '-' : '+'}$${Math.abs(risk).toLocaleString(undefined, { maximumFractionDigits: 2 })} (${riskPct.toFixed(1)}%)</span>${beyondLiq ? '<br><span class="text-[9px] text-amber-400"><i data-lucide="triangle-alert" width="10" height="10" stroke-width="2.3" style="vertical-align:-1px;"></i> past liq.</span>' : ''}`;
             }
 
             // Take-profit reward: same shape as the stop-loss risk cell above, plus a combined
@@ -414,7 +414,7 @@
                     <td class="py-2 px-3 text-right leading-tight">${tpHtml}</td>
                     <td class="py-2 px-3 text-right">${rrHtml}</td>
                     <td class="py-2 px-3 text-right">${pnlHtml}</td>
-                    <td class="py-2 px-3 text-center"><button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer futures-remove" data-id="${p.id}">✕</button></td>
+                    <td class="py-2 px-3 text-center"><button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer futures-remove" data-id="${p.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
                 </tr>
             `;
         }).join('');

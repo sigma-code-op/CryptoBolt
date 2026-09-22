@@ -107,6 +107,7 @@ function parsePost(raw, slug) {
     section: fields.section,
     readtime: fields.readtime,
     emoji: fields.emoji || '📄',
+    icon: EMOJI_TO_ICON[fields.emoji] || 'file-text',
     color: fields.color || DEFAULT_COLORS[hashSlug(slug) % DEFAULT_COLORS.length],
     summary: fields.summary,
     cardSummary: fields.card_summary || fields.summary,
@@ -114,6 +115,20 @@ function parsePost(raw, slug) {
     body,
   };
 }
+
+// Maps each post's `emoji:` front-matter value to the Lucide icon rendered on its
+// blog card instead. Add an entry here whenever a new post introduces a new emoji.
+const EMOJI_TO_ICON = {
+  '🪝': 'triangle-alert',
+  '🤖': 'bot',
+  '🧠': 'brain',
+  '🎲': 'dice-5',
+  '😨': 'gauge',
+  '💸': 'banknote',
+  '🎯': 'target',
+  '⚖️': 'scale',
+  '📄': 'file-text',
+};
 
 function hashSlug(slug) {
   let h = 0;
@@ -175,12 +190,12 @@ function wordCount(markdown) {
 function renderBlogCard(post, headingTag) {
   return [
     `        <a href="${post.slug}.html" class="mk-blog-card">`,
-    `            <div class="mk-blog-cover" style="background:${post.color};">${post.emoji}</div>`,
+    `            <div class="mk-blog-cover" style="background:${post.color};"><i data-lucide="${post.icon}" width="26" height="26" stroke-width="1.8"></i></div>`,
     `            <div class="mk-blog-body">`,
     `                <span class="mk-blog-meta">${escapeHtml(post.section)} · ${escapeHtml(post.readtime)}</span>`,
     `                <${headingTag}>${escapeHtml(post.title)}</${headingTag}>`,
     `                <p>${escapeHtml(post.cardSummary)}</p>`,
-    `                <span class="mk-blog-read">Read the post →</span>`,
+    `                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>`,
     `            </div>`,
     `        </a>`,
   ].join('\n');

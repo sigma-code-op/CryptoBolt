@@ -449,7 +449,7 @@
                 else if (a.direction === 'pct_down') price = a.basePrice * (1 - a.target / 100);
                 if (price === null) return;
                 overlayPriceLines.push(candlestickSeries.createPriceLine({
-                    price, color: '#e5b324', lineWidth: 1, lineStyle: 1, axisLabelVisible: true, title: '🔔 Alert'
+                    price, color: '#e5b324', lineWidth: 1, lineStyle: 1, axisLabelVisible: true, title: 'Alert'
                 }));
             });
         }

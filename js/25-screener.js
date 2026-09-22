@@ -292,7 +292,7 @@
             <div class="screener-cond-row flex flex-wrap items-center gap-1.5 bg-gray-900/60 border border-gray-800 rounded px-2 py-1.5" data-id="${cond.id}">
                 <select data-role="type" class="${INPUT_CLS} font-bold text-gray-200">${typeOptions}</select>
                 ${fields}
-                <button data-role="remove" class="ml-auto text-gray-600 hover:text-[#ff4d6a] cursor-pointer text-xs px-1" aria-label="Remove condition">✕</button>
+                <button data-role="remove" class="ml-auto text-gray-600 hover:text-[#ff4d6a] cursor-pointer text-xs px-1" aria-label="Remove condition"><i data-lucide="x" width="11" height="11" stroke-width="2.4"></i></button>
             </div>`;
     }
 
@@ -349,7 +349,7 @@
                 <div class="flex items-center gap-1.5 bg-gray-900/60 border border-gray-800 rounded-full pl-3 pr-1.5 py-1 text-[10.5px]">
                     <button data-load="${r.id}" class="text-gray-300 hover:text-[#4fd8e8] cursor-pointer font-bold">${escapeHtml(r.name)}</button>
                     <span class="text-gray-700">(${r.conditions.length})</span>
-                    <button data-del="${r.id}" class="text-gray-600 hover:text-[#ff4d6a] cursor-pointer px-1" aria-label="Delete rule">✕</button>
+                    <button data-del="${r.id}" class="text-gray-600 hover:text-[#ff4d6a] cursor-pointer px-1" aria-label="Delete rule"><i data-lucide="x" width="11" height="11" stroke-width="2.4"></i></button>
                 </div>`).join('')
             : '<p class="text-gray-600 text-[10px]">No saved rules yet.</p>';
 
@@ -398,9 +398,9 @@
                 <td class="py-1.5 px-2 font-mono text-gray-400">${rsiTxt}</td>
                 <td class="py-1.5 px-2">
                     <div class="flex items-center gap-1.5 flex-wrap">
-                        <button data-act="chart" data-id="${asset.id}" class="text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#4fd8e8] hover:border-[#4fd8e8]/40 cursor-pointer">📈 Chart</button>
-                        <button data-act="watch" data-id="${asset.id}" class="text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 hover:border-amber-400/40 cursor-pointer">★ Watch</button>
-                        <button data-act="alert" data-id="${asset.id}" class="text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 cursor-pointer">🔔 +3%</button>
+                        <button data-act="chart" data-id="${asset.id}" class="text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#4fd8e8] hover:border-[#4fd8e8]/40 cursor-pointer"><i data-lucide="trending-up" width="11" height="11" stroke-width="2.1" style="vertical-align:-1px;"></i> Chart</button>
+                        <button data-act="watch" data-id="${asset.id}" class="text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 hover:border-amber-400/40 cursor-pointer"><i data-lucide="star" width="11" height="11" stroke-width="2.1" style="vertical-align:-1px;"></i> Watch</button>
+                        <button data-act="alert" data-id="${asset.id}" class="text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 cursor-pointer"><i data-lucide="bell" width="11" height="11" stroke-width="2.1" style="vertical-align:-1px;"></i> +3%</button>
                     </div>
                 </td>
             </tr>`;
@@ -470,7 +470,7 @@
             showToast('Scan failed — check your connection and try again.', 'error');
         } finally {
             if (myToken === scanToken) {
-                runBtn.disabled = false; runBtn.innerText = '🔎 Run Live Scan';
+                runBtn.disabled = false; runBtn.innerHTML = '<i data-lucide="search" width="12" height="12" stroke-width="2.3" style="vertical-align:-2px;"></i> Run Live Scan';
                 progressTrack.classList.add('hidden');
             }
         }
@@ -592,7 +592,7 @@
             console.error('[CryptoBolt] Backtest failed:', err);
             showToast(`Backtest failed: ${err.message}`, 'error');
         } finally {
-            if (myToken === backtestToken) { runBtn.disabled = false; runBtn.innerText = '⏱ Run Backtest'; }
+            if (myToken === backtestToken) { runBtn.disabled = false; runBtn.innerHTML = '<i data-lucide="timer" width="12" height="12" stroke-width="2.3" style="vertical-align:-2px;"></i> Run Backtest'; }
         }
     }
 
@@ -607,10 +607,10 @@
             <div class="cw-modal-card" style="max-width:920px;" role="dialog" aria-modal="true" aria-label="Market screener and backtester">
                 <div class="flex items-center justify-between mb-3">
                     <div>
-                        <h2 class="text-sm font-bold text-white flex items-center gap-2">🔎 Market Screener &amp; Backtester</h2>
+                        <h2 class="text-sm font-bold text-white flex items-center gap-2"><i data-lucide="search" width="14" height="14" stroke-width="2.1"></i> Market Screener &amp; Backtester</h2>
                         <p class="text-[10.5px] text-gray-500 mt-0.5">Build a rule from live indicators, scan the whole market for it, or see how it would have performed historically.</p>
                     </div>
-                    <button id="screener-close-btn" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none" aria-label="Close screener">✕</button>
+                    <button id="screener-close-btn" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none" aria-label="Close screener"><i data-lucide="x" width="16" height="16" stroke-width="2.3"></i></button>
                 </div>
 
                 <div class="bg-[#12141c] border border-gray-800 rounded-lg p-3 mb-3">
@@ -621,7 +621,7 @@
                     <div id="screener-cond-list" class="space-y-1.5"></div>
                     <div class="flex flex-wrap items-center gap-1.5 mt-3 pt-3 border-t border-gray-800">
                         <input id="screener-rule-name" type="text" maxlength="40" placeholder="Name this rule (e.g. Oversold Bounce)" class="${INPUT_CLS} flex-1 min-w-[160px]">
-                        <button id="screener-save-rule-btn" class="text-[10.5px] font-bold px-2.5 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white cursor-pointer">💾 Save Rule</button>
+                        <button id="screener-save-rule-btn" class="text-[10.5px] font-bold px-2.5 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white cursor-pointer"><i data-lucide="save" width="11" height="11" stroke-width="2.2" style="vertical-align:-1px;"></i> Save Rule</button>
                     </div>
                     <div id="screener-saved-rules" class="flex flex-wrap gap-1.5 mt-2"></div>
                 </div>
@@ -658,7 +658,7 @@
                                 <option value="80">80 by volume</option>
                             </select>
                         </div>
-                        <button id="screener-scan-run-btn" class="text-[11px] font-bold uppercase px-4 py-2 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">🔎 Run Live Scan</button>
+                        <button id="screener-scan-run-btn" class="text-[11px] font-bold uppercase px-4 py-2 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer"><i data-lucide="search" width="12" height="12" stroke-width="2.3" style="vertical-align:-2px;"></i> Run Live Scan</button>
                     </div>
                     <div id="screener-scan-progress-track" class="hidden h-1.5 bg-gray-900 rounded-full overflow-hidden mb-3">
                         <div id="screener-scan-progress-fill" class="h-full bg-[#14d38a] transition-all" style="width:0%"></div>

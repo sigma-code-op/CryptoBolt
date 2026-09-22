@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-+1ATsJIcy4OfJSpy6/2I3ysVSd/V7tWStk4sLoW3YcM=' 'sha256-1887jAL+UM3dDoBOHFpmo+YarFeKPwADyzbjT2VVRlY=' 'sha256-BIEnahnLfnnHdG43Zqkz4yjH8jU34YI9ZgOozvNjg7M=' 'sha256-vlYvxw2kx849dDSVczQWFrvc1WSxw0sUQuXjhzsSjoM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-9zxE+gA/FrRc1G928e1+iHhB8hm6NGuCXQ3+eDdTJVY=' 'sha256-+/j4J3ueXCAX72OrGuWWa4kw+x6JIBRbxCE3yXbBETI=' 'sha256-zppIHWkg97ySiPILq4TBmquxwbRvbKyj74S3oSYGXdY=' 'sha256-zm2WiS2Z9yv/9KX1Ez+XkgB5Czdmftzgs95AzuryhYA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
+    <script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+    <script src="js/icons-init.js"></script>
     <script src="js/consent-default.js"></script>
     <script src="js/error-reporter.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
@@ -129,7 +131,7 @@
     <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://api.binance.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
 
     <!-- TradingView Lightweight Charts -->
     <script defer src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
@@ -137,21 +139,21 @@
          redesign.css, concatenated in the same cascade order by scripts/build-css.js — was
          7 render-blocking requests, now 1. Edit the source files in css/*.css, not this file;
          regenerate with `npm run build:css-bundle`. -->
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20260916">
+    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20260922">
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
-        <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home">⚡</a>
+        <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home"><i data-lucide="zap" width="16" height="16" stroke-width="2.3"></i></a>
         <div class="cb-rail-nav">
-            <a href="app.html" class="cb-rail-item is-active" aria-label="Terminal">📈<span class="cb-rail-tip">Terminal</span></a>
-            <a href="trade.html" class="cb-rail-item " aria-label="Trade">📊<span class="cb-rail-tip">Trade</span></a>
-            <a href="invest.html" class="cb-rail-item" aria-label="Invest (Real)">💳<span class="cb-rail-tip">Invest (Real)</span></a>
-            <a href="ai.html" class="cb-rail-item " aria-label="AI Research">🤖<span class="cb-rail-tip">AI Research</span></a>
-            <a href="account.html" class="cb-rail-item " aria-label="Account">👤<span class="cb-rail-tip">Account</span></a>
+            <a href="app.html" class="cb-rail-item is-active" aria-label="Terminal"><i data-lucide="trending-up" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Terminal</span></a>
+            <a href="trade.html" class="cb-rail-item " aria-label="Trade"><i data-lucide="bar-chart-3" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Trade</span></a>
+            <a href="invest.html" class="cb-rail-item" aria-label="Invest (Real)"><i data-lucide="credit-card" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Invest (Real)</span></a>
+            <a href="ai.html" class="cb-rail-item " aria-label="AI Research"><i data-lucide="bot" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">AI Research</span></a>
+            <a href="account.html" class="cb-rail-item " aria-label="Account"><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Account</span></a>
         </div>
         <div class="cb-rail-foot">
-            <a href="features.html" class="cb-rail-item" aria-label="Features">✨<span class="cb-rail-tip">Features</span></a>
-            <a href="index.html" class="cb-rail-item" aria-label="Home">🏠<span class="cb-rail-tip">Home</span></a>
+            <a href="features.html" class="cb-rail-item" aria-label="Features"><i data-lucide="sparkles" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Features</span></a>
+            <a href="index.html" class="cb-rail-item" aria-label="Home"><i data-lucide="home" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Home</span></a>
         </div>
     </nav>
 
@@ -165,7 +167,7 @@
         <header class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-800 pb-4 mb-3 gap-4">
             <div>
                 <h1 class="text-2xl font-bold flex items-center gap-2 tracking-tight flex-wrap">
-                    🪙 <span class="cw-logo-gradient">CryptoBolt</span> <span class="text-[10px] tracking-widest bg-emerald-500/10 text-[#14d38a] px-2 py-0.5 rounded font-bold uppercase border border-emerald-500/20">Enterprise Matrix Feed</span>
+                    <i data-lucide="zap" width="18" height="18" stroke-width="2.3" style="color:#22c58c;vertical-align:-3px;"></i> <span class="cw-logo-gradient">CryptoBolt</span> <span class="text-[10px] tracking-widest bg-emerald-500/10 text-[#14d38a] px-2 py-0.5 rounded font-bold uppercase border border-emerald-500/20">Enterprise Matrix Feed</span>
                     <span class="sr-only"> — Live Crypto Prices, Charts &amp; AI Market Analysis</span>
                 </h1>
                 <p class="text-gray-400 text-xs mt-0.5 flex items-center gap-3 flex-wrap">
@@ -190,27 +192,27 @@
                 </div>
                 <a href="ai.html"
                     class="flex items-center gap-1.5 text-[11px] font-bold bg-[#a855f7]/15 text-[#d8b4fe] border border-[#a855f7]/30 rounded px-3 py-1.5 transition-all hover:bg-[#a855f7]/25"
-                    title="Chat with CryptoBolt AI about the market">🤖 AI Research</a>
+                    title="Chat with CryptoBolt AI about the market"><i data-lucide="bot" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> AI Research</a>
                 <button id="screener-open-btn" type="button"
                     class="flex items-center gap-1.5 text-[11px] font-bold bg-[#4fd8e8]/15 text-[#4fd8e8] border border-[#4fd8e8]/30 rounded px-3 py-1.5 transition-all hover:bg-[#4fd8e8]/25 cursor-pointer"
-                    title="Scan the market for a rule, or backtest it against history">🔎 Screener</button>
+                    title="Scan the market for a rule, or backtest it against history"><i data-lucide="search" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Screener</button>
                 <a href="trade.html"
                     class="flex items-center gap-1.5 text-[11px] font-bold bg-[#14d38a] text-[#0b0e11] rounded px-3 py-1.5 transition-all hover:opacity-90"
                     title="Practice buy/sell with a free virtual trading account">
-                    <span aria-hidden="true">📊</span> Trading Account
+                    <span aria-hidden="true"><i data-lucide="bar-chart-3" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></span> Trading Account
                 </a>
                 <button id="share-btn" type="button"
                     class="flex items-center gap-1.5 text-[11px] font-bold bg-[#181a20] border border-gray-800 hover:border-[#14d38a]/50 hover:text-[#14d38a] text-gray-300 rounded px-3 py-1.5 transition-colors"
                     aria-label="Share CryptoBolt" title="Share CryptoBolt">
-                    <span aria-hidden="true">🔗</span> Share
+                    <span aria-hidden="true"><i data-lucide="share-2" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></span> Share
                 </button>
-                <button id="auth-open-btn" type="button" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">👤 Sign In</button>
+                <button id="auth-open-btn" type="button" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer"><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Sign In</button>
                 <div id="auth-user-chip" class="hidden items-center gap-1.5">
                     <span id="cloud-sync-status" class="hidden items-center gap-1 text-[10px] font-mono px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 cursor-pointer" title="Cloud sync status — click to sync now">
                         <span id="cloud-sync-dot" class="status-dot status-connecting"></span>
                         <span id="cloud-sync-label" class="hidden sm:inline">synced</span>
                     </span>
-                    <a href="account.html" id="auth-user-email" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all" title="My Account">👤 My Account</a>
+                    <a href="account.html" id="auth-user-email" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all" title="My Account"><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> My Account</a>
                     <button id="auth-signout-btn" type="button" aria-label="Sign out" class="text-[11px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer" title="Sign out">⎋</button>
                 </div>
             </div>
@@ -230,7 +232,7 @@
         <!-- Global Market Pulse -->
         <div class="mb-6 cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-2.5 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400">🌐 Global Market Pulse</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400"><i data-lucide="globe" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Global Market Pulse</span>
                 <span class="text-[9px] text-gray-600">via CoinGecko &amp; Alternative.me</span>
             </div>
             <div class="px-6 py-3 flex items-center flex-wrap gap-6">
@@ -255,7 +257,7 @@
                     <span id="pulse-fng-label" class="text-[9px] font-bold uppercase px-2 py-1 rounded border border-gray-700 text-gray-400">--</span>
                 </div>
                 <div class="flex items-center gap-1.5 flex-wrap ml-auto">
-                    <span class="text-[9px] uppercase font-bold text-gray-600 tracking-wider px-1">🔥 Trending:</span>
+                    <span class="text-[9px] uppercase font-bold text-gray-600 tracking-wider px-1"><i data-lucide="flame" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Trending:</span>
                     <div id="trending-coins-strip" class="flex items-center gap-1 flex-wrap">
                         <span class="text-gray-600 text-[10px]">Loading...</span>
                     </div>
@@ -273,7 +275,7 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Market Monitor Grid</span>
                     <div class="flex items-center gap-3 flex-wrap">
                         <span id="grid-count" class="text-[10px] text-gray-500 font-mono"></span>
-                        <button id="export-csv-btn" title="Export visible rows to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer">⭳ CSV</button>
+                        <button id="export-csv-btn" title="Export visible rows to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer"><i data-lucide="download" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> CSV</button>
                     </div>
                 </div>
 
@@ -284,7 +286,7 @@
                     <button class="filter-btn text-[11px] px-3 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer" data-filter="futures">Futures</button>
                     <button class="filter-btn text-[11px] px-3 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer" data-filter="gainers">▲ Gainers</button>
                     <button class="filter-btn text-[11px] px-3 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer" data-filter="losers">▼ Losers</button>
-                    <button class="filter-btn text-[11px] px-3 py-1 rounded bg-gray-900 border border-gray-800/80 text-amber-500 hover:bg-gray-800/50 transition-all cursor-pointer" data-filter="watchlist">★ Watchlist</button>
+                    <button class="filter-btn text-[11px] px-3 py-1 rounded bg-gray-900 border border-gray-800/80 text-amber-500 hover:bg-gray-800/50 transition-all cursor-pointer" data-filter="watchlist"><i data-lucide="star" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Watchlist</button>
                 </div>
 
                 <!-- Popular Coins Quick-Select -->
@@ -299,7 +301,7 @@
                 </div>
 
                 <div id="init-error" class="hidden flex flex-col items-center justify-center py-24 px-6 text-center gap-3">
-                    <span class="text-2xl">⚠️</span>
+                    <i data-lucide="triangle-alert" width="24" height="24" stroke-width="2"></i>
                     <p class="text-[#ff4d6a] text-xs font-bold">Could not reach Binance market data.</p>
                     <p class="text-gray-500 text-[11px]">This is usually a network/CORS block or a regional restriction. Retrying automatically...</p>
                 </div>
@@ -347,7 +349,7 @@
                                 <h2 id="chart-title" class="text-lg font-bold text-white tracking-tight">Select Asset</h2>
                                 <span id="chart-market-badge" class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded"></span>
                                 <span id="mtf-badge" class="hidden text-[9px] font-bold uppercase px-1.5 py-0.5 rounded" title="Higher-timeframe trend agreement"></span>
-                                <button id="alert-bell" title="Add price alert" aria-label="Add price alert" class="ml-1 text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-sm">🔔</button>
+                                <button id="alert-bell" title="Add price alert" aria-label="Add price alert" class="ml-1 text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-sm"><i data-lucide="bell" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
                                 <button id="chart-buy-btn" title="Buy this asset on Binance" class="ml-2 text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Buy</button>
                                 <button id="chart-sell-btn" title="Sell this asset on Binance" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell</button>
                             </div>
@@ -449,7 +451,7 @@
                         <input id="compare-input" type="text" placeholder="e.g. ETH" list="compare-symbol-list"
                             class="w-24 bg-gray-900 border border-gray-800/80 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#24a0e5]">
                         <datalist id="compare-symbol-list"></datalist>
-                        <button id="compare-clear-btn" title="Clear comparison" aria-label="Clear comparison" class="hidden text-[11px] px-2 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">✕</button>
+                        <button id="compare-clear-btn" title="Clear comparison" aria-label="Clear comparison" class="hidden text-[11px] px-2 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
                     </div>
 
                     <div class="flex items-center gap-1.5 flex-wrap">
@@ -458,10 +460,10 @@
                         <button id="toggle-alert-lines-btn" class="chart-overlay-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 active transition-all cursor-pointer">Alerts</button>
                     </div>
 
-                    <button id="fullscreen-btn" title="Fullscreen chart" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer ml-auto">⛶ Fullscreen</button>
+                    <button id="fullscreen-btn" title="Fullscreen chart" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer ml-auto"><i data-lucide="maximize" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Fullscreen</button>
                     <button id="logscale-toggle-btn" title="Toggle logarithmic price scale" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">Log</button>
                     <button id="reset-zoom-btn" title="Reset chart zoom" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">⤢ Reset Zoom</button>
-                    <button id="screenshot-btn" title="Download chart as PNG" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">📷 Save</button>
+                    <button id="screenshot-btn" title="Download chart as PNG" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="camera" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Save</button>
                 </div>
 
                 <!-- Main Chart Layout Card -->
@@ -540,7 +542,7 @@
                     <div class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col">
                         <div class="px-3 py-2 border-b border-gray-800 bg-[#1e222b] text-[10px] font-bold uppercase tracking-wider text-gray-400 flex justify-between items-center">
                             <span>Price Alerts</span>
-                            <button id="sound-toggle-btn" title="Toggle alert sound" aria-label="Toggle alert sound" class="text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-xs">🔊</button>
+                            <button id="sound-toggle-btn" title="Toggle alert sound" aria-label="Toggle alert sound" class="text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-xs"><i data-lucide="volume-2" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
                         </div>
                         <div class="p-3 flex gap-2 flex-wrap">
                             <select id="alert-direction" class="flex-shrink-0 bg-gray-900 border border-gray-800 rounded text-[10px] px-1.5 py-1 text-gray-300">
@@ -556,7 +558,7 @@
                             <p class="text-gray-600 text-[10px]">No alerts set for this asset.</p>
                         </div>
                         <div class="px-3 pb-2 border-t border-gray-800/60 pt-2">
-                            <button id="alert-history-toggle" class="text-[10px] text-gray-500 hover:text-white transition-colors cursor-pointer">🕘 Show triggered history</button>
+                            <button id="alert-history-toggle" class="text-[10px] text-gray-500 hover:text-white transition-colors cursor-pointer"><i data-lucide="history" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Show triggered history</button>
                             <div id="alert-history-list" class="hidden mt-2 space-y-1 max-h-[140px] overflow-y-auto"></div>
                         </div>
                     </div>
@@ -568,11 +570,11 @@
         <!-- AI Market Insight -->
         <div class="mt-6 cw-card-interactive cw-panel-premium bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2">🤖 AI Market Insight <span id="ai-asset-label" class="text-gray-600 normal-case font-normal"></span></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="bot" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> AI Market Insight <span id="ai-asset-label" class="text-gray-600 normal-case font-normal"></span></span>
                 <div class="flex items-center gap-2 flex-wrap">
-                    <button id="ai-key-toggle-btn" title="Set your Groq API key" class="text-[11px] px-2.5 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">⚙ API Key</button>
+                    <button id="ai-key-toggle-btn" title="Set your Groq API key" class="text-[11px] px-2.5 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="settings" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> API Key</button>
                     <button id="ai-generate-btn" class="cw-shine text-[11px] px-3 py-1.5 rounded bg-[#a855f7]/15 text-[#c084fc] border border-[#a855f7]/30 font-bold hover:bg-[#a855f7]/25 transition-all cursor-pointer flex items-center gap-1.5">
-                        ✨ Analyze Selected Coin
+                        <i data-lucide="sparkles" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Analyze Selected Coin
                     </button>
                 </div>
             </div>
@@ -589,7 +591,7 @@
                         class="flex-1 min-w-[220px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#a855f7]">
                     <button id="ai-key-save-btn" class="text-[11px] px-3 py-1.5 rounded bg-[#a855f7] text-white font-bold hover:opacity-90 transition-all cursor-pointer">Save</button>
                     <button id="ai-key-clear-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">Clear</button>
-                    <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="text-[10px] text-[#c084fc] hover:underline ml-1">Get an API key →</a>
+                    <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="text-[10px] text-[#c084fc] hover:underline ml-1">Get an API key <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></a>
                     <p class="w-full text-[9px] text-gray-600 mt-1">Stored only in this browser's local storage. Sent to this app's own backend on each analysis, used once, and never stored server-side.</p>
                 </div>
                 <div id="ai-key-house-row" class="hidden w-full">
@@ -600,19 +602,19 @@
                 <p class="text-gray-600 text-[11px]">Select an asset, then click "Analyze Selected Coin" for a read that combines technicals, live news, and market sentiment — trend, momentum, a hedged outlook, and current market conditions, not just indicator math.</p>
             </div>
             <div class="px-5 pb-3 flex items-center gap-3 flex-wrap">
-                <button id="ai-copy-snapshot-btn" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">📋 Copy snapshot</button>
-                <button id="ai-history-toggle" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">📜 Show read history</button>
+                <button id="ai-copy-snapshot-btn" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="clipboard" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Copy snapshot</button>
+                <button id="ai-history-toggle" class="text-[10.5px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="scroll-text" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Show read history</button>
             </div>
             <div id="ai-history-list" class="hidden px-5 pb-3"></div>
             <div class="px-5 pb-4 text-[9px] text-gray-600 border-t border-gray-800/60 pt-2 leading-relaxed">
-                🚫 Generated by an AI model (or, without an API key, this page's own rule-based math) reading recent price data. This includes a technical read, a hedged "next-move outlook," and read-only market conditions context. None of this is financial advice, none of it is personalized to your risk tolerance or portfolio, none of it is a guarantee of future price movement, and all of it can be wrong. Always do your own research before trading.
+                <i data-lucide="info" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Generated by an AI model (or, without an API key, this page's own rule-based math) reading recent price data. This includes a technical read, a hedged "next-move outlook," and read-only market conditions context. None of this is financial advice, none of it is personalized to your risk tolerance or portfolio, none of it is a guarantee of future price movement, and all of it can be wrong. Always do your own research before trading.
             </div>
         </div>
 
         <!-- Position Size & Risk Calculator -->
         <div class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2">🧮 Position Size &amp; Risk Calculator <span id="risk-asset-label" class="text-gray-600 normal-case font-normal"></span></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="calculator" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Position Size &amp; Risk Calculator <span id="risk-asset-label" class="text-gray-600 normal-case font-normal"></span></span>
                 <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-[#4fd8e8]/10 text-[#4fd8e8] border border-[#4fd8e8]/20 normal-case">Works for spot &amp; futures</span>
             </div>
             <div class="p-4 grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -681,14 +683,14 @@
                 </div>
             </div>
             <div class="px-4 pb-3 text-[9px] text-gray-600 leading-relaxed border-t border-gray-800/60 pt-2.5">
-                ⚠️ This is a plain arithmetic sizing tool, not a recommendation to enter any trade — it does not know your broader portfolio, other open exposure, or true liquidation mechanics on any specific exchange. Numbers are estimates only.
+                <i data-lucide="triangle-alert" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> This is a plain arithmetic sizing tool, not a recommendation to enter any trade — it does not know your broader portfolio, other open exposure, or true liquidation mechanics on any specific exchange. Numbers are estimates only.
             </div>
         </div>
 
         <!-- Asset Notes / Trade Journal -->
         <div class="mt-6 cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2">📝 Notes / Trade Journal <span id="notes-asset-label" class="text-gray-600 normal-case font-normal"></span></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="notebook-pen" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Notes / Trade Journal <span id="notes-asset-label" class="text-gray-600 normal-case font-normal"></span></span>
                 <span id="notes-save-status" class="text-[9px] text-gray-600"></span>
             </div>
             <div class="p-4">
@@ -700,7 +702,7 @@
         <!-- Combined Account Summary -->
         <div class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-2.5 border-b border-gray-800 bg-[#1e222b] flex items-center justify-between gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400">💰 Account Summary</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400"><i data-lucide="wallet" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Account Summary</span>
                 <span id="summary-risk-score" title="Add holdings or open a position to see a risk read here." class="text-[10px] font-bold uppercase px-2 py-1 rounded border text-gray-500 bg-gray-800 border-gray-700">—</span>
             </div>
             <div class="px-6 py-3 flex items-center flex-wrap gap-8">
@@ -726,7 +728,7 @@
         <!-- Portfolio Tracker -->
         <div class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-green bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2">💼 Portfolio Tracker</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="briefcase" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Portfolio Tracker</span>
                 <div class="flex items-center gap-4 flex-wrap">
                     <div class="text-right">
                         <span class="text-[9px] text-gray-500 block uppercase font-bold">Total Value</span>
@@ -736,12 +738,12 @@
                         <span class="text-[9px] text-gray-500 block uppercase font-bold">Unrealized P&amp;L</span>
                         <span id="portfolio-total-pnl" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
                     </div>
-                    <a href="trade.html" title="Open the full practice trading account — market/limit orders, live account P&L, trade history" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">🎯 Practice Trading →</a>
+                    <a href="trade.html" title="Open the full practice trading account — market/limit orders, live account P&L, trade history" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer"><i data-lucide="target" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Practice Trading <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></a>
                     <div class="flex items-center gap-1.5">
                         <button id="portfolio-buy-btn" title="Buy real crypto on Binance" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Buy (real)</button>
                         <button id="portfolio-sell-btn" title="Sell real crypto on Binance" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell (real)</button>
                     </div>
-                    <button id="portfolio-csv-btn" title="Export holdings to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer">⭳ CSV</button>
+                    <button id="portfolio-csv-btn" title="Export holdings to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer"><i data-lucide="download" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> CSV</button>
                 </div>
             </div>
 
@@ -794,7 +796,7 @@
         <!-- Futures Positions (Leverage) Tracker -->
         <div class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-amber bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2">⚡ Futures Positions <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 normal-case">Leverage</span></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="zap" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Futures Positions <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 normal-case">Leverage</span></span>
                 <div class="flex items-center gap-4 flex-wrap">
                     <div class="text-right">
                         <span class="text-[9px] text-gray-500 block uppercase font-bold">Margin Used</span>
@@ -808,7 +810,7 @@
                         <button id="futures-buy-btn" class="text-[10px] px-2.5 py-1 rounded bg-amber-500 text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Fund ⓘ</button>
                         <button id="futures-sell-btn" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Cash Out</button>
                     </div>
-                    <button id="futures-csv-btn" title="Export positions to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 hover:border-amber-500/40 transition-all cursor-pointer">⭳ CSV</button>
+                    <button id="futures-csv-btn" title="Export positions to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 hover:border-amber-500/40 transition-all cursor-pointer"><i data-lucide="download" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> CSV</button>
                 </div>
             </div>
 
@@ -868,7 +870,7 @@
                 </table>
             </div>
             <div class="px-4 py-2.5 border-t border-gray-800/60 text-[9px] text-gray-600 leading-relaxed">
-                ⚠️ Liquidation price is a simplified isolated-margin estimate (entry × (1 ∓ 1/leverage)) that ignores maintenance margin rate, fees, and funding — the real liquidation price on any exchange will differ. This tracker doesn't place real orders; it's for tracking positions you already hold elsewhere.
+                <i data-lucide="triangle-alert" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Liquidation price is a simplified isolated-margin estimate (entry × (1 ∓ 1/leverage)) that ignores maintenance margin rate, fees, and funding — the real liquidation price on any exchange will differ. This tracker doesn't place real orders; it's for tracking positions you already hold elsewhere.
             </div>
         </div>
 
@@ -933,7 +935,7 @@
         <footer class="mk mk-footer">
             <div class="mk-footer-grid">
                 <div class="mk-footer-brand">
-                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark">⚡</span>CryptoBolt</a>
+                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
                     <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
                 <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
         <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
@@ -983,7 +985,7 @@
                     <button id="auth-tab-signin" type="button" class="auth-tab-btn auth-tab-active text-sm font-bold pb-1 cursor-pointer">Sign In</button>
                     <button id="auth-tab-signup" type="button" class="auth-tab-btn text-sm font-bold pb-1 cursor-pointer">Sign Up</button>
                 </div>
-                <button id="auth-modal-close" aria-label="Close sign in dialog" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
+                <button id="auth-modal-close" aria-label="Close sign in dialog" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
             </div>
             <div class="p-4 space-y-3">
                 <div id="auth-config-warning" class="hidden text-[10.5px] leading-relaxed text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded p-2.5">
@@ -1032,7 +1034,7 @@
          chart, portfolio, alerts, auth. bundle-home-lazy.js (AI insight, push alerts,
          referrals, screener, exchange-compare) loads separately, below, once the page is
          idle — see the comment there for why that split is safe. -->
-    <script src="js/dist/bundle-home.js?v=20260916"></script>
+    <script src="js/dist/bundle-home.js?v=20260922"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/lazy-bundle-loader.js?v=20260916" defer></script>

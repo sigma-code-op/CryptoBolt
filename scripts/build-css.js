@@ -40,6 +40,7 @@ const BUNDLES = {
     'premium.css',
     'home.css',
     'redesign.css',
+    'pro-redesign.css',
   ],
   // index.html, features.html (no shadcn-ui.css)
   'bundle-marketing.css': [
@@ -49,6 +50,7 @@ const BUNDLES = {
     'premium.css',
     'home.css',
     'redesign.css',
+    'pro-redesign.css',
   ],
   // ai.html
   'bundle-ai.css': [
@@ -60,6 +62,7 @@ const BUNDLES = {
     'home.css',
     'ai.css',
     'redesign.css',
+    'pro-redesign.css',
   ],
 };
 

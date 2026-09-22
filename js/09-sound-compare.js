@@ -18,7 +18,9 @@
 
     function syncSoundButton() {
         const btn = document.getElementById('sound-toggle-btn');
-        if (btn) btn.innerText = soundEnabled ? '🔊' : '🔇';
+        if (btn) btn.innerHTML = soundEnabled
+            ? '<i data-lucide="volume-2" width="13" height="13" stroke-width="2.1"></i>'
+            : '<i data-lucide="volume-x" width="13" height="13" stroke-width="2.1"></i>';
     }
     syncSoundButton();
     document.getElementById('sound-toggle-btn').addEventListener('click', () => {

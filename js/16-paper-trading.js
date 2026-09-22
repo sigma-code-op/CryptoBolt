@@ -123,9 +123,9 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     }
     function showToast(message, tone = 'info') {
         const toneMap = {
-            success: { color: 'var(--cw-green)', icon: '✓' },
-            error: { color: 'var(--cw-red)', icon: '✕' },
-            info: { color: 'var(--cw-cyan)', icon: 'ℹ' },
+            success: { color: 'var(--cw-green)', icon: '<i data-lucide="check" width="14" height="14" stroke-width="2.5"></i>' },
+            error: { color: 'var(--cw-red)', icon: '<i data-lucide="x" width="14" height="14" stroke-width="2.5"></i>' },
+            info: { color: 'var(--cw-cyan)', icon: '<i data-lucide="info" width="14" height="14" stroke-width="2.3"></i>' },
         };
         const { color, icon } = toneMap[tone] || toneMap.info;
         const el = document.createElement('div');
@@ -133,7 +133,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         el.style.setProperty('--cw-tone', color);
         const iconEl = document.createElement('span');
         iconEl.className = 'cw-toast-icon text-[13px]';
-        iconEl.innerText = icon;
+        iconEl.innerHTML = icon; // icon is always a fixed string from toneMap above, never user input
         const msgEl = document.createElement('span');
         msgEl.className = 'font-mono leading-snug pt-px';
         msgEl.style.color = color;
@@ -980,7 +980,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
                     <td class="py-2 px-3 text-right text-amber-400/80">${fmtUsd(p.liqPrice, priceFmt(p.liqPrice))}</td>
                     <td class="py-2 px-3 text-right ${pnlColorClass(pnl)}">${fmtSigned(pnl)}<br><span class="text-[10px]">${pnl >= 0 ? '+' : ''}${roe.toFixed(1)}%</span></td>
                     <td class="py-2 px-3 text-center whitespace-nowrap">
-                        <button class="pt-ai-btn text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#c084fc] hover:border-[#a855f7]/40 cursor-pointer" data-id="${p.id}" title="Ask AI about this position">🤖</button>
+                        <button class="pt-ai-btn text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#c084fc] hover:border-[#a855f7]/40 cursor-pointer" data-id="${p.id}" title="Ask AI about this position"><i data-lucide="bot" width="12" height="12" stroke-width="2.2"></i></button>
                         <button class="close-position-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-id="${p.id}">Close</button>
                     </td>
                 </tr>`;
@@ -1013,7 +1013,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
                     <td class="py-2 px-3 text-right text-gray-500">${alloc.toFixed(1)}%</td>
                     <td class="py-2 px-3 text-right ${pnlColorClass(pnl)}">${fmtSigned(pnl)}<br><span class="text-[10px]">${pnl >= 0 ? '+' : ''}${pnlPct.toFixed(2)}%</span></td>
                     <td class="py-2 px-3 text-center whitespace-nowrap">
-                        <button class="pt-ai-btn text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#c084fc] hover:border-[#a855f7]/40 cursor-pointer" data-symbol="${escapeHtml(h.symbol)}" title="Ask AI about this holding">🤖</button>
+                        <button class="pt-ai-btn text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#c084fc] hover:border-[#a855f7]/40 cursor-pointer" data-symbol="${escapeHtml(h.symbol)}" title="Ask AI about this holding"><i data-lucide="bot" width="12" height="12" stroke-width="2.2"></i></button>
                         <button class="quick-sell-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-symbol="${escapeHtml(h.symbol)}">Sell</button>
                     </td>
                 </tr>`;
@@ -1036,7 +1036,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
                     <td class="py-2 px-3 text-right text-gray-300">${fmtQty(o.qty)}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${fmtUsd(o.limitPrice, priceFmt(o.limitPrice))}</td>
                     <td class="py-2 px-3 text-right text-gray-500">${new Date(o.ts).toLocaleTimeString()}</td>
-                    <td class="py-2 px-3 text-center"><button class="cancel-order-btn text-gray-500 hover:text-[#ff4d6a] cursor-pointer" data-id="${o.id}">✕</button></td>
+                    <td class="py-2 px-3 text-center"><button class="cancel-order-btn text-gray-500 hover:text-[#ff4d6a] cursor-pointer" data-id="${o.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
                 </tr>`;
         }).join('');
     }
@@ -1378,7 +1378,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     aiPanel?.addEventListener('click', (e) => { if (e.target === aiPanel) aiPanel.classList.add('hidden'); });
 
     function renderAiPanelLoading(label) {
-        aiPanelTitle.innerText = `🤖 AI read — ${label}`;
+        aiPanelTitle.innerHTML = `<i data-lucide="bot" width="13" height="13" stroke-width="2.2" style="vertical-align:-2px;"></i> AI read — ${label}`;
         aiPanelBody.innerHTML = `<div class="flex items-center gap-2 text-gray-500 text-xs py-6 justify-center"><div class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#a855f7]"></div>Reading live technicals + your open position…</div>`;
         aiPanel.classList.remove('hidden');
     }
@@ -1416,7 +1416,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
             ${result.positionNote ? `<div class="rounded border border-[#a855f7]/30 bg-[#a855f7]/10 px-3 py-2 mb-3"><span class="text-[9px] font-bold uppercase text-[#c084fc] block mb-1">On your open position</span><p class="text-xs text-gray-300 leading-snug">${escapeHtml(result.positionNote)}</p></div>` : ''}
             <p class="text-xs text-gray-400 leading-snug mb-2">${escapeHtml(result.summary || '')}</p>
             ${result.keyRisk ? `<p class="text-[11px] text-gray-500 leading-snug"><span class="text-gray-400 font-bold">Key risk:</span> ${escapeHtml(result.keyRisk)}</p>` : ''}
-            <p class="text-[9px] text-gray-600 mt-3">⚠️ AI-generated, can be wrong — not financial advice, and this account is practice money regardless of what it says.</p>
+            <p class="text-[9px] text-gray-600 mt-3"><i data-lucide="triangle-alert" width="10" height="10" stroke-width="2.2" style="vertical-align:-1px;"></i> AI-generated, can be wrong — not financial advice, and this account is practice money regardless of what it says.</p>
         `;
     }
 

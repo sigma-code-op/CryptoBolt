@@ -298,7 +298,7 @@
             <div class="cw-modal-card" style="max-width:380px;" role="dialog" aria-modal="true" aria-label="Set a new password">
                 <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#1e222b]">
                     <span class="text-sm font-bold">Set a new password</span>
-                    <button type="button" data-recovery-close aria-label="Close" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
+                    <button type="button" data-recovery-close aria-label="Close" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none"><i data-lucide="x" width="15" height="15" stroke-width="2.4"></i></button>
                 </div>
                 <div class="p-4 space-y-3">
                     <p class="text-[11px] text-gray-500 leading-relaxed">You followed a password reset link. Choose a new password below to finish resetting it.</p>

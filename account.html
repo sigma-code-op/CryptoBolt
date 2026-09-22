@@ -6,6 +6,8 @@
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
+    <script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+    <script src="js/icons-init.js"></script>
     <script src="js/consent-default.js"></script>
     <script src="js/error-reporter.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
@@ -32,23 +34,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20260917">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20260922">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
-        <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home">⚡</a>
+        <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home"><i data-lucide="zap" width="16" height="16" stroke-width="2.3"></i></a>
         <div class="cb-rail-nav">
-            <a href="app.html" class="cb-rail-item " aria-label="Terminal">📈<span class="cb-rail-tip">Terminal</span></a>
-            <a href="trade.html" class="cb-rail-item " aria-label="Trade">📊<span class="cb-rail-tip">Trade</span></a>
-            <a href="invest.html" class="cb-rail-item" aria-label="Invest (Real)">💳<span class="cb-rail-tip">Invest (Real)</span></a>
-            <a href="ai.html" class="cb-rail-item " aria-label="AI Research">🤖<span class="cb-rail-tip">AI Research</span></a>
-            <a href="account.html" class="cb-rail-item is-active" aria-label="Account">👤<span class="cb-rail-tip">Account</span></a>
+            <a href="app.html" class="cb-rail-item " aria-label="Terminal"><i data-lucide="trending-up" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Terminal</span></a>
+            <a href="trade.html" class="cb-rail-item " aria-label="Trade"><i data-lucide="bar-chart-3" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Trade</span></a>
+            <a href="invest.html" class="cb-rail-item" aria-label="Invest (Real)"><i data-lucide="credit-card" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Invest (Real)</span></a>
+            <a href="ai.html" class="cb-rail-item " aria-label="AI Research"><i data-lucide="bot" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">AI Research</span></a>
+            <a href="account.html" class="cb-rail-item is-active" aria-label="Account"><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Account</span></a>
         </div>
         <div class="cb-rail-foot">
-            <a href="features.html" class="cb-rail-item" aria-label="Features">✨<span class="cb-rail-tip">Features</span></a>
-            <a href="index.html" class="cb-rail-item" aria-label="Home">🏠<span class="cb-rail-tip">Home</span></a>
+            <a href="features.html" class="cb-rail-item" aria-label="Features"><i data-lucide="sparkles" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Features</span></a>
+            <a href="index.html" class="cb-rail-item" aria-label="Home"><i data-lucide="home" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i><span class="cb-rail-tip">Home</span></a>
         </div>
     </nav>
 
@@ -63,15 +65,15 @@
         <header class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-800 pb-4 mb-6 gap-4">
             <div>
                 <a href="index.html" class="text-2xl font-bold flex items-center gap-2 tracking-tight w-fit">
-                    🪙 <span class="cw-logo-gradient">CryptoBolt</span>
+                    <i data-lucide="zap" width="18" height="18" stroke-width="2.3" style="color:#22c58c;vertical-align:-3px;"></i> <span class="cw-logo-gradient">CryptoBolt</span>
                 </a>
                 <h1 class="text-gray-400 text-xs mt-0.5 flex items-center gap-2 flex-wrap font-normal">
-                    <span>👤 My Account — Purchase Receipt Log</span>
+                    <span><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> My Account — Purchase Receipt Log</span>
                     <span class="text-[9px] tracking-widest bg-cyan-500/10 text-[#4fd8e8] px-2 py-0.5 rounded font-bold uppercase border border-cyan-500/20">Manual receipts</span>
                 </h1>
             </div>
             <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap justify-end">
-                <button id="auth-open-btn" type="button" class="hidden text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">👤 Sign In</button>
+                <button id="auth-open-btn" type="button" class="hidden text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer"><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Sign In</button>
                 <div id="auth-user-chip" class="hidden items-center gap-1.5">
                     <span id="cloud-sync-status" class="hidden items-center gap-1 text-[10px] font-mono px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 cursor-pointer" title="Cloud sync status — click to sync now">
                         <span id="cloud-sync-dot" class="status-dot status-connecting"></span>
@@ -80,14 +82,14 @@
                     <span id="auth-user-email" class="text-[11px] font-mono px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300"></span>
                     <button id="auth-signout-btn" type="button" class="text-[11px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-500 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer" title="Sign out">⎋ Sign Out</button>
                 </div>
-                <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all">← Terminal</a>
+                <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all"><i data-lucide="arrow-left" width="12" height="12" stroke-width="2.4" style="vertical-align:-1px;"></i> Terminal</a>
             </div>
         </header>
 
         <!-- Signed-out state -->
         <div id="signed-out-panel" class="hidden">
             <div class="cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-8 text-center max-w-md mx-auto mt-10">
-                <div class="text-4xl mb-3">👤</div>
+                <div class="text-4xl mb-3"><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></div>
                 <h2 class="text-lg font-bold text-white mb-2">Sign in to manage your receipt log</h2>
                 <p class="text-xs text-gray-500 leading-relaxed mb-5">CryptoBolt's Buy/Sell buttons open Binance in a new tab. Add completed trades here manually; CryptoBolt cannot verify or import Binance orders automatically.</p>
                 <button id="signed-out-signin-btn" class="text-sm font-bold px-5 py-2.5 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">Sign In / Sign Up</button>
@@ -97,7 +99,7 @@
         <!-- Not configured state -->
         <div id="not-configured-panel" class="hidden">
             <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-8 text-center max-w-lg mx-auto mt-10">
-                <div class="text-4xl mb-3">⚙️</div>
+                <i data-lucide="settings" width="36" height="36" stroke-width="1.7"></i>
                 <h2 class="text-lg font-bold text-white mb-2">Accounts aren't set up yet</h2>
                 <p class="text-xs text-gray-500 leading-relaxed">Add <code class="cw-kbd">supabaseUrl</code> and <code class="cw-kbd">supabaseAnonKey</code> to <code class="cw-kbd">js/00-config.js</code>, and run <code class="cw-kbd">/supabase/schema.sql</code> in your Supabase project's SQL Editor.</p>
             </div>
@@ -110,7 +112,7 @@
             <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden mb-6">
                 <div class="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
-                        <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1">🏆 Leaderboard Username</span>
+                        <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1"><i data-lucide="trophy" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Leaderboard Username</span>
                         <span class="text-[11px] text-gray-500">Shown on the <a href="trade.html" class="text-[#4fd8e8] hover:underline">paper trading leaderboard</a> instead of your email.</span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -127,7 +129,7 @@
             <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden mb-6">
                 <div class="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
-                        <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1">📨 Telegram Alerts</span>
+                        <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1"><i data-lucide="send" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Telegram Alerts</span>
                         <span class="text-[11px] text-gray-500">Get price alerts on Telegram even with every tab closed. Message this deployment's bot once (so it's allowed to message you back), then paste your numeric Telegram chat id below — <a href="https://t.me/userinfobot" target="_blank" rel="noopener" class="text-[#4fd8e8] hover:underline">@userinfobot</a> will tell you that id if you don't already know it.</span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -145,7 +147,7 @@
                 <div class="px-6 py-4">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                         <div>
-                            <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1">🎁 Invite &amp; Earn</span>
+                            <span class="text-[10px] text-gray-500 block uppercase font-bold tracking-wider mb-1"><i data-lucide="gift" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Invite &amp; Earn</span>
                             <span class="text-[11px] text-gray-500">Share your link — you and your friend each get <span class="text-[#14d38a] font-bold">$500</span> in virtual paper trading cash when they sign up.</span>
                         </div>
                         <div id="referral-stats" class="text-right shrink-0">
@@ -206,7 +208,7 @@
                 <!-- Holdings -->
                 <div class="cw-card-interactive cw-panel-accent cw-accent-green bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
                     <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400">💼 Holdings (from logged receipts)</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400"><i data-lucide="briefcase" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Holdings (from logged receipts)</span>
                         <a href="app.html" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">+ Buy More</a>
                     </div>
                     <div class="overflow-x-auto max-h-[360px]">
@@ -231,7 +233,7 @@
                 <!-- Order history -->
                 <div class="cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
                     <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400">🧾 Order History</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400"><i data-lucide="receipt" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Order History</span>
                         <div class="flex items-center gap-2">
                             <button id="log-trade-toggle-btn" aria-expanded="false" aria-controls="log-trade-form" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer">+ Log Trade</button>
                             <button id="refresh-btn" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#4fd8e8] hover:border-[#4fd8e8]/40 transition-all cursor-pointer">⟳ Refresh</button>
@@ -309,7 +311,7 @@
                     <button id="auth-tab-signin" type="button" class="auth-tab-btn auth-tab-active text-sm font-bold pb-1 cursor-pointer">Sign In</button>
                     <button id="auth-tab-signup" type="button" class="auth-tab-btn text-sm font-bold pb-1 cursor-pointer">Sign Up</button>
                 </div>
-                <button id="auth-modal-close" type="button" aria-label="Close sign in dialog" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none">✕</button>
+                <button id="auth-modal-close" type="button" aria-label="Close sign in dialog" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
             </div>
             <div class="p-4 space-y-3">
                 <div id="auth-config-warning" class="hidden text-[10.5px] leading-relaxed text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded p-2.5">
@@ -354,7 +356,7 @@
             <footer class="mk mk-footer">
             <div class="mk-footer-grid">
                 <div class="mk-footer-brand">
-                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark">⚡</span>CryptoBolt</a>
+                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
                     <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
                 <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
         <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
@@ -390,7 +392,7 @@
             </div>
         </footer>
 
-    <script src="js/dist/bundle-account.js?v=20260908"></script>
+    <script src="js/dist/bundle-account.js?v=20260922"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>
