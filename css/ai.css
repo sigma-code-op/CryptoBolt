@@ -282,6 +282,10 @@ body {
     margin-top: 18px;
 }
 
+.ai-main > .ai-seo-features {
+    grid-column: 1 / -1;
+}
+
 .ai-seo-features article {
     background: rgba(16, 21, 28, 0.82);
     border: 1px solid var(--ai-border);
