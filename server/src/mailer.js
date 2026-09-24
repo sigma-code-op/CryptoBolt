@@ -94,4 +94,7 @@ async function sendAlertEmail({ to, messages }) {
   });
 }
 
-export { sendContactEmail, sendAlertEmail, isMailerConfigured };
+// sanitizeHeaderValue/escapeHtml are exported alongside the rest purely so tests can check
+// the CRLF-header-injection and HTML-escaping logic directly, without needing a real (or
+// mocked) SMTP transporter just to reach it.
+export { sendContactEmail, sendAlertEmail, isMailerConfigured, sanitizeHeaderValue, escapeHtml };

@@ -35,28 +35,39 @@ import { fetchAllBinancePrices } from './market-data.js';
 // silently no-op per-channel when that channel isn't set up (same pattern as PUSH_CONFIGURED).
 export const ALERT_CHECKER_CONFIGURED = SUPABASE_ADMIN_CONFIGURED && (PUSH_CONFIGURED || TELEGRAM_CONFIGURED);
 
+// Exported (alongside symbolForAssetId below) purely so tests can exercise this threshold
+// math directly — the actual dollar/percent comparisons are the part of this module most
+// worth pinning down with unit tests, and mocking the Supabase chain runAlertCheckCycle()
+// drives just to reach this logic would test a lot of plumbing without adding confidence in
+// the part that actually decides whether an alert fires.
+//
 // Mirrors checkPriceAlerts()'s hit test in js/07-alerts.js exactly, so an alert fires under
 // the same rule server-side as it would have client-side.
-function alertHit(alert, livePrice) {
+export function alertHit(alert, livePrice) {
   switch (alert.direction) {
     case 'above':
       return livePrice >= alert.target ? `rose above $${alert.target}` : null;
     case 'below':
       return livePrice <= alert.target ? `fell below $${alert.target}` : null;
     case 'pct_up': {
+      // Floating-point-safe: alert.basePrice * (1 + alert.target / 100) can round to a hair
+      // above the mathematically intended threshold (e.g. 100 * 1.10 -> 110.00000000000001),
+      // which would silently miss an alert set for exactly that price until the next tick
+      // nudges it further up. A relative epsilon absorbs that without weakening the check for
+      // any price a live market would actually produce.
       const threshold = alert.basePrice * (1 + alert.target / 100);
-      return livePrice >= threshold ? `rose ${alert.target}% (now $${livePrice})` : null;
+      return livePrice >= threshold * (1 - 1e-9) ? `rose ${alert.target}% (now $${livePrice})` : null;
     }
     case 'pct_down': {
       const threshold = alert.basePrice * (1 - alert.target / 100);
-      return livePrice <= threshold ? `fell ${alert.target}% (now $${livePrice})` : null;
+      return livePrice <= threshold * (1 + 1e-9) ? `fell ${alert.target}% (now $${livePrice})` : null;
     }
     default:
       return null;
   }
 }
 
-function symbolForAssetId(assetId) {
+export function symbolForAssetId(assetId) {
   // Asset ids are built client-side as `${BINANCE_SYMBOL}_S` (spot) or `_F` (futures) — see
   // js/02-api.js / js/04-ticker-sockets.js. Spot and futures share the same Binance symbol
   // and therefore the same price for alert purposes.
