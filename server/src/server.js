@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import compression from 'compression';
 import { ALLOWED_ORIGINS, IS_PRODUCTION } from './config.js';
 import { logError } from './lib/logger.js';
 import healthRouter from './routes/health.js';
@@ -27,6 +28,11 @@ app.use(
     },
   })
 );
+
+// Gzip/brotli-negotiated compression for every JSON response this API sends. The AI
+// endpoints in particular (routes/ai.js) return multi-KB research/insight payloads, and
+// this costs nothing for the small ones (compression only kicks in above ~1kb by default).
+app.use(compression());
 
 // A short id per request, attached before anything else runs so every downstream log line
 // (and the error response body, if this request ends up in the error handler below) can be
