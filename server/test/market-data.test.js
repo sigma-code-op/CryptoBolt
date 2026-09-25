@@ -162,7 +162,7 @@ test('fetchCryptoNews filters to recent items, shapes fields, and caps at 6', as
     async () => jsonResponse({ Data: items }),
     async () => {
       const { fetchCryptoNews } = await freshModule();
-      const news = await fetchCryptoNews('sol'); // lowercase in, uppercase symbol used internally
+      const news = await fetchCryptoNews('sol'); // lower-case in, upper-case symbol used internally
       assert.equal(news.length, 6, 'should cap at 6 items');
       assert.ok(news.every((n) => n.title !== 'Ancient news'));
       assert.equal(news[0].title, 'Headline 0');

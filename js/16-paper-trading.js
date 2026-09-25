@@ -5,7 +5,7 @@
 // from Binance's public REST API — no backend, no account, no real money anywhere in this file.
 
 // ---------- Pure math, deliberately kept OUTSIDE the IIFE below (same script-global scope, so
-// the IIFE still calls them exactly as before) purely so server/test/paper-trading-math.test.js
+// the IIFE still calls them exactly as before) purely so test/paper-trading-math.test.js
 // can load this exact file with vm and test the real shipped formulas — no separate copy to
 // drift out of sync with production. Every function here is a pure function of its arguments:
 // no DOM, no localStorage, no closure state. ----------

@@ -15,7 +15,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SOURCE_PATH = path.resolve(__dirname, '../../../js/16-paper-trading.js');
+const SOURCE_PATH = path.resolve(__dirname, '../../js/16-paper-trading.js');
 
 const IIFE_MARKER = '\n(function () {';
 

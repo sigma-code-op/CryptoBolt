@@ -11,10 +11,10 @@
     "build:js": "node scripts/build-js.js",
     "build:blog": "node scripts/build-blog.js",
     "build:csp": "node scripts/build-csp.js",
-    "test": "node --test"
+    "test": "node --test test/*.test.js"
   },
   "engines": {
-    "node": ">=18.17"
+    "node": ">=20"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
