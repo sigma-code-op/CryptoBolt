@@ -52,7 +52,7 @@ already supports them.
 | positive vs negative funding rate explained | P1 | Already the page's core content |
 | funding rate calculator | P2 | You don't have a calculator; if you ever build one this is a strong standalone page |
 | highest funding rate exchange comparison | P3 | Cross-exchange comparison content — out of scope unless you pull multi-exchange data |
-| liquidation price calculator crypto | P1 | **Content gap**, listed in `SEO_KEYWORD_MAP.md` already — real user need, pairs naturally with the existing futures/risk copy on `app.html` |
+| liquidation price calculator crypto | P1 | **Done** — `/liquidation-price-calculator.html` now covers this with an interactive long/short, isolated/cross calculator plus FAQ schema. |
 | crypto trading fees comparison | P3 | Content gap; lower priority since you're not an exchange |
 | spot trading vs futures trading for beginners | P1 | `spot-vs-futures.html` targets this conceptually but the exact phrase "spot vs futures" only appears once in 431 words — thin for how competitive this query is |
 | how is the fear and greed index calculated | P1 | Commonly asked; `fear-and-greed-index.html` doesn't currently break down the calculation inputs beyond a one-line list — worth a short dedicated paragraph or FAQ item |

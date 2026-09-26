@@ -39,4 +39,6 @@ This map assigns one primary search intent to each indexable page. Supporting te
 
 ## Content gaps for future pages
 
-The current site has no dedicated search landing page for liquidation-price calculation, crypto trading fees, price alerts, or portfolio tracking. (Crypto funding rate is covered by `/funding-rate-explained.html`; Solana live price is now covered by `/solana-live-price.html`.) Create those only when each page can provide genuinely distinct data and copy; otherwise keep them as sections on the existing pillar pages.
+The current site has no dedicated search landing page for crypto trading fees, price alerts, or portfolio tracking. (Crypto funding rate is covered by `/funding-rate-explained.html`; Solana live price is covered by `/solana-live-price.html`; liquidation-price calculation is now covered by `/liquidation-price-calculator.html`.) Create those only when each page can provide genuinely distinct data and copy; otherwise keep them as sections on the existing pillar pages.
+
+| `/liquidation-price-calculator.html` | liquidation price calculator | isolated vs cross margin, leverage, maintenance margin rate | funding rate explained, spot vs futures, terminal |

@@ -23,6 +23,7 @@
   - [Why round numbers act like support and resistance](https://cryptobolt.io/round-number-levels.html)
   - [When AI meets crypto: the new frontier of autonomous finance](https://cryptobolt.io/ai-meets-crypto.html)
   - [Crypto funding rates: what the number on your futures screen means](https://cryptobolt.io/funding-rate-explained.html)
+  - [Liquidation Price Calculator](https://cryptobolt.io/liquidation-price-calculator.html) — Free calculator estimating liquidation price for leveraged crypto futures positions, long or short, isolated or cross margin.
   - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns.html)
   - ["$1000 in a day": why that headline is a trap, and why you clicked it](https://cryptobolt.io/1000-dollar-day-trap.html)
 - [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.

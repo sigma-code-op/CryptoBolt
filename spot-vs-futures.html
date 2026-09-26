@@ -129,11 +129,11 @@
 </header>
 
 <article class="mk-article" id="spot-vs-futures">
-    <p>Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath.</p>
+    <p>Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath. The spot vs futures distinction isn't cosmetic — it changes what you own, what you can lose, and how fast you can lose it.</p>
     <h2>Ownership</h2>
     <p>A spot trade means you hold the asset itself — buy 0.1 BTC and you own 0.1 BTC, full stop. A perpetual futures contract is a derivative: you're holding a position that tracks BTC's price without ever owning the coin. That distinction is why spot has no liquidation risk and futures does.</p>
     <h2>Leverage and liquidation</h2>
-    <p>Futures let you open a position larger than your posted margin — 5x, 10x, sometimes more. That amplifies gains and losses equally, and if the market moves far enough against you, the exchange closes the position automatically at the liquidation price to prevent your balance from going negative. CryptoBolt's portfolio view estimates that price for every open futures position so it's never a surprise mid-move.</p>
+    <p>Futures let you open a position larger than your posted margin — 5x, 10x, sometimes more. That amplifies gains and losses equally, and if the market moves far enough against you, the exchange closes the position automatically at the liquidation price to prevent your balance from going negative. CryptoBolt's portfolio view estimates that price for every open futures position so it's never a surprise mid-move. Want to check a hypothetical position before opening it? Use the <a href="liquidation-price-calculator.html">liquidation price calculator</a>.</p>
     <h2>Funding rate</h2>
     <p>Perpetuals never expire, so exchanges use a periodic funding payment between longs and shorts to keep the contract price anchored near spot. When funding is positive, longs pay shorts, which usually means positioning is leaning long — one more piece of context the AI research pass folds in.</p>
     <h2>Spot vs futures trading for beginners</h2>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Liquidation Price Calculator (Crypto Futures) | CryptoBolt</title>
+    <meta name="description" content="Free crypto liquidation price calculator for long and short futures positions. Enter entry price, leverage, and margin mode to estimate where a position gets liquidated.">
+    <meta name="keywords" content="liquidation price calculator, crypto liquidation price, futures liquidation calculator, isolated margin liquidation, cross margin liquidation, how to calculate liquidation price crypto">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/liquidation-price-calculator.html">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/liquidation-price-calculator.html">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/liquidation-price-calculator.html">
+    <meta property="og:title" content="Liquidation Price Calculator for Crypto Futures | CryptoBolt">
+    <meta property="og:description" content="Estimate where a leveraged long or short futures position gets liquidated. Free calculator, isolated or cross margin, no signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt liquidation price calculator for crypto futures">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Liquidation Price Calculator for Crypto Futures | CryptoBolt">
+    <meta name="twitter:description" content="Estimate where a leveraged long or short futures position gets liquidated. Free calculator, isolated or cross margin, no signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og-image.png">
+    <meta name="twitter:image:alt" content="CryptoBolt liquidation price calculator for crypto futures">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Liquidation Price Calculator",
+      "url": "https://cryptobolt.io/liquidation-price-calculator.html",
+      "description": "A free calculator that estimates the liquidation price for a leveraged long or short crypto futures position under isolated or cross margin.",
+      "isPartOf": { "@type": "WebSite", "name": "CryptoBolt", "url": "https://cryptobolt.io/" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptobolt.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Liquidation Price Calculator", "item": "https://cryptobolt.io/liquidation-price-calculator.html" }
+        ]
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How is liquidation price calculated?", "acceptedAnswer": { "@type": "Answer", "text": "For an isolated-margin position, liquidation price is approximately entry price times (1 minus 1/leverage plus maintenance margin rate) for a long, or entry price times (1 plus 1/leverage minus maintenance margin rate) for a short. Real exchange formulas also factor in fees and, on some venues, unrealized funding." } },
+        { "@type": "Question", "name": "What's the difference between isolated and cross margin liquidation?", "acceptedAnswer": { "@type": "Answer", "text": "Isolated margin only risks the margin assigned to that one position, so its liquidation price is fixed by that position alone. Cross margin shares your whole futures wallet balance across positions, which usually pushes the liquidation price further away but means a loss on one position can now draw down margin backing your other positions." } },
+        { "@type": "Question", "name": "Does higher leverage mean a closer liquidation price?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Liquidation price moves closer to your entry price as leverage increases, since less price movement is needed to wipe out the smaller margin backing a higher-leverage position." } },
+        { "@type": "Question", "name": "Is this calculator exact?", "acceptedAnswer": { "@type": "Answer", "text": "No — it's an estimate using the standard isolated-margin formula, ignoring trading fees and funding payments. Your exchange's actual liquidation price for an open position is the only fully accurate number; use this to plan position size before you open a trade, not to time an exit." } }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CryptoBolt", "item": "https://cryptobolt.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Liquidation Price Calculator", "item": "https://cryptobolt.io/liquidation-price-calculator.html" }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20260922">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body class="mk">
+<div class="mk-field"></div>
+
+<nav class="mk-nav">
+    <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app.html">Terminal</a>
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="spot-vs-futures.html">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app.html">Terminal</a>
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="spot-vs-futures.html">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool</span>
+    <h1>Liquidation price calculator</h1>
+    <p>Estimate where a leveraged crypto futures position gets liquidated — long or short, isolated or cross margin.</p>
+</header>
+
+<section class="mk-section" id="lc-calculator">
+    <div class="lc-calc">
+        <div class="lc-toggle" role="tablist" aria-label="Position side">
+            <button type="button" id="lc-side-long" class="active" onclick="lcSetSide('long')">Long</button>
+            <button type="button" id="lc-side-short" onclick="lcSetSide('short')">Short</button>
+        </div>
+        <div class="lc-grid">
+            <div class="lc-field">
+                <label for="lc-entry">Entry price (USD)</label>
+                <input type="number" id="lc-entry" inputmode="decimal" placeholder="e.g. 65000" value="65000">
+            </div>
+            <div class="lc-field">
+                <label for="lc-leverage">Leverage</label>
+                <input type="number" id="lc-leverage" inputmode="decimal" min="1" max="125" placeholder="e.g. 10" value="10">
+            </div>
+            <div class="lc-field">
+                <label for="lc-mmr">Maintenance margin rate (%)</label>
+                <input type="number" id="lc-mmr" inputmode="decimal" step="0.1" placeholder="e.g. 0.5" value="0.5">
+            </div>
+            <div class="lc-field">
+                <label for="lc-margin-mode">Margin mode</label>
+                <select id="lc-margin-mode">
+                    <option value="isolated">Isolated</option>
+                    <option value="cross">Cross (rough estimate)</option>
+                </select>
+            </div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="lc-out-price">$58,825.00</div>
+            <div class="lc-sub" id="lc-out-sub">Estimated liquidation price · 9.50% away from entry</div>
+        </div>
+        <div class="lc-warning" id="lc-warning"></div>
+        <p style="margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);">Estimate only — ignores trading fees and funding payments, and cross-margin liquidation depends on your whole wallet balance, not just this position. <a href="app.html" style="color:var(--mk-green,#22C58C);">Track real positions and estimated liquidation prices live in the terminal →</a></p>
+    </div>
+</section>
+
+<article class="mk-article" id="liquidation-price-explained">
+    <h2>What "liquidation price" means</h2>
+    <p>A leveraged futures position is backed by a fraction of its full value — the margin. If the market moves against you far enough that your remaining margin can no longer cover the position's losses plus the exchange's maintenance margin requirement, the exchange force-closes the position. The price at which that happens is the liquidation price, and it's fixed the moment you open the position, not something that drifts based on sentiment.</p>
+    <h2>How to calculate liquidation price</h2>
+    <p>For an isolated-margin position, the standard approximation is:</p>
+    <ul>
+        <li><strong>Long:</strong> Liquidation price ≈ Entry price × (1 − 1/Leverage + Maintenance margin rate)</li>
+        <li><strong>Short:</strong> Liquidation price ≈ Entry price × (1 + 1/Leverage − Maintenance margin rate)</li>
+    </ul>
+    <p>Higher leverage divides your margin thinner, so 1/Leverage shrinks and the liquidation price sits closer to entry. The maintenance margin rate is small on major pairs like BTC and ETH (often 0.4%–0.5% at lower leverage tiers) but climbs on lower-liquidity altcoins and at higher leverage tiers, so it's worth checking your exchange's actual tier table rather than assuming a flat number.</p>
+    <h2>Isolated vs cross margin</h2>
+    <p>Isolated margin caps your risk at the margin assigned to that one position — lose it all, and only that position is liquidated. Cross margin pools your entire futures wallet balance as backing for every open position, which typically pushes each individual liquidation price further away, but it also means a bad move on one position can eat into the margin backing an unrelated position. Cross margin's real liquidation price depends on your total account state at the moment of the move, so treat the cross-margin estimate above as a rough anchor, not an exact number.</p>
+    <h2>Funding rate and fees aren't in this number</h2>
+    <p>This calculator, like most public ones, uses the standard formula above and leaves out two things that move the real number slightly: trading fees (charged on entry and on the forced liquidation itself) and accumulated funding payments on a perpetual contract held across funding periods. Both nudge liquidation price a little closer to entry over time on a losing position. See <a href="funding-rate-explained.html">how funding rate works</a> for why that running cost matters over a multi-day hold.</p>
+    <p><a href="app.html">See estimated liquidation price update live next to your open positions in the terminal →</a></p>
+</article>
+
+<section class="mk-section" id="lc-faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Liquidation price calculator FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>How is liquidation price calculated?</h3>
+            <p>For isolated margin, it's approximately entry price × (1 − 1/leverage + maintenance margin rate) for a long, or entry price × (1 + 1/leverage − maintenance margin rate) for a short. Real exchange formulas also factor in fees and, on some venues, unrealized funding.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What's the difference between isolated and cross margin liquidation?</h3>
+            <p>Isolated margin only risks the margin assigned to that one position. Cross margin shares your whole futures wallet balance across positions — usually a further-away liquidation price, but a loss on one position can now draw down margin backing another.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does higher leverage mean a closer liquidation price?</h3>
+            <p>Yes. Liquidation price moves closer to entry as leverage increases, since less price movement wipes out the smaller margin behind a higher-leverage position.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Is this calculator exact?</h3>
+            <p>No — it's an estimate using the standard isolated-margin formula, ignoring fees and funding. Use it to plan position size before opening a trade, not to time an exit; your exchange's own figure on an open position is the accurate one.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep reading</span>
+        <h2 id="related-heading">More from the blog</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="spot-vs-futures.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(70,184,201,.08);"><i data-lucide="scale" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 5 min read</span>
+                <h3>Spot vs. perpetual futures: what actually changes</h3>
+                <p>Ownership, leverage, funding, and why one has liquidation risk and the other doesn't.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="funding-rate-explained.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="percent" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 5 min read</span>
+                <h3>Crypto funding rates: what the number on your futures screen means</h3>
+                <p>What positive and negative funding actually tell you, and why it matters more paired with open interest.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Product</h4>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+            <a href="spot-vs-futures.html">Spot vs futures</a>
+            <a href="funding-rate-explained.html">Funding rate explained</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Company</h4>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script>
+(function () {
+    var side = 'long';
+    function fmtUSD(n) {
+        if (!Number.isFinite(n)) return '--';
+        return '$' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    window.lcSetSide = function (s) {
+        side = s;
+        document.getElementById('lc-side-long').classList.toggle('active', s === 'long');
+        document.getElementById('lc-side-short').classList.toggle('active', s === 'short');
+        recalc();
+    };
+    function recalc() {
+        var entry = parseFloat(document.getElementById('lc-entry').value);
+        var lev = parseFloat(document.getElementById('lc-leverage').value);
+        var mmr = parseFloat(document.getElementById('lc-mmr').value) / 100;
+        var mode = document.getElementById('lc-margin-mode').value;
+        var out = document.getElementById('lc-out-price');
+        var sub = document.getElementById('lc-out-sub');
+        var warn = document.getElementById('lc-warning');
+        warn.classList.remove('show');
+        warn.innerText = '';
+
+        if (!(entry > 0) || !(lev >= 1) || !Number.isFinite(mmr) || mmr < 0) {
+            out.innerText = '--';
+            sub.innerText = 'Enter a valid entry price and leverage.';
+            return;
+        }
+        var liq = side === 'long'
+            ? entry * (1 - (1 / lev) + mmr)
+            : entry * (1 + (1 / lev) - mmr);
+        if (liq <= 0) liq = 0;
+        var distPct = Math.abs((liq - entry) / entry) * 100;
+
+        out.innerText = fmtUSD(liq);
+        sub.innerText = 'Estimated liquidation price · ' + distPct.toFixed(2) + '% away from entry' + (mode === 'cross' ? ' (cross — rough estimate)' : '');
+
+        if (lev > 20) {
+            warn.innerText = 'At ' + lev + 'x, this position liquidates on a ' + distPct.toFixed(2) + '% move — a routine intraday swing on many pairs.';
+            warn.classList.add('show');
+        } else if (mode === 'cross') {
+            warn.innerText = 'Cross margin pools your whole futures wallet, so your real liquidation price depends on your total account balance and other open positions, not just this one.';
+            warn.classList.add('show');
+        }
+    }
+    ['lc-entry', 'lc-leverage', 'lc-mmr', 'lc-margin-mode'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', recalc);
+        document.getElementById(id).addEventListener('change', recalc);
+    });
+    recalc();
+})();
+</script>
+</body>
+</html>
