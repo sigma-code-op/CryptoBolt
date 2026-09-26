@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-c7UWlIp/f1y2D3r9a9LVD8bdtRZAFgYA00MiViFXi40=' 'sha256-3CSjTblI3/t+0QUgojW8Zh1u2AtvHql1nIPRXHuLBpE=' 'sha256-QZ8jEoilldaq6r7k+d0qDYdR6Ds/A+g13Gd2ct6B9lU=' 'sha256-du7TKA5s/p7uT1QfZ0HF40FEq0sAWh0BrveO9uqOLR0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-zpvZeJT9v2brfvWf8RI+kwgSrRGRXA7F35qiSgw614M=' 'sha256-5VZCXzjEgYrli1Aw1vceA0UHyELXyMLmQWk2E+yliYo=' 'sha256-FsA/kvw5phnR2hZgqaJTSJAIFUfW76j+5crZ58P96es='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <script src="js/consent-default.js"></script>
@@ -149,8 +149,8 @@
 <section class="mk-section" id="lc-calculator">
     <div class="lc-calc">
         <div class="lc-toggle" role="tablist" aria-label="Position side">
-            <button type="button" id="lc-side-long" class="active" onclick="lcSetSide('long')">Long</button>
-            <button type="button" id="lc-side-short" onclick="lcSetSide('short')">Short</button>
+            <button type="button" id="lc-side-long" class="active">Long</button>
+            <button type="button" id="lc-side-short">Short</button>
         </div>
         <div class="lc-grid">
             <div class="lc-field">
@@ -296,58 +296,6 @@
 <script defer src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
-<script>
-(function () {
-    var side = 'long';
-    function fmtUSD(n) {
-        if (!Number.isFinite(n)) return '--';
-        return '$' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-    window.lcSetSide = function (s) {
-        side = s;
-        document.getElementById('lc-side-long').classList.toggle('active', s === 'long');
-        document.getElementById('lc-side-short').classList.toggle('active', s === 'short');
-        recalc();
-    };
-    function recalc() {
-        var entry = parseFloat(document.getElementById('lc-entry').value);
-        var lev = parseFloat(document.getElementById('lc-leverage').value);
-        var mmr = parseFloat(document.getElementById('lc-mmr').value) / 100;
-        var mode = document.getElementById('lc-margin-mode').value;
-        var out = document.getElementById('lc-out-price');
-        var sub = document.getElementById('lc-out-sub');
-        var warn = document.getElementById('lc-warning');
-        warn.classList.remove('show');
-        warn.innerText = '';
-
-        if (!(entry > 0) || !(lev >= 1) || !Number.isFinite(mmr) || mmr < 0) {
-            out.innerText = '--';
-            sub.innerText = 'Enter a valid entry price and leverage.';
-            return;
-        }
-        var liq = side === 'long'
-            ? entry * (1 - (1 / lev) + mmr)
-            : entry * (1 + (1 / lev) - mmr);
-        if (liq <= 0) liq = 0;
-        var distPct = Math.abs((liq - entry) / entry) * 100;
-
-        out.innerText = fmtUSD(liq);
-        sub.innerText = 'Estimated liquidation price · ' + distPct.toFixed(2) + '% away from entry' + (mode === 'cross' ? ' (cross — rough estimate)' : '');
-
-        if (lev > 20) {
-            warn.innerText = 'At ' + lev + 'x, this position liquidates on a ' + distPct.toFixed(2) + '% move — a routine intraday swing on many pairs.';
-            warn.classList.add('show');
-        } else if (mode === 'cross') {
-            warn.innerText = 'Cross margin pools your whole futures wallet, so your real liquidation price depends on your total account balance and other open positions, not just this one.';
-            warn.classList.add('show');
-        }
-    }
-    ['lc-entry', 'lc-leverage', 'lc-mmr', 'lc-margin-mode'].forEach(function (id) {
-        document.getElementById(id).addEventListener('input', recalc);
-        document.getElementById(id).addEventListener('change', recalc);
-    });
-    recalc();
-})();
-</script>
+<script src="js/liquidation-calculator.js?v=20260926" defer></script>
 </body>
 </html>
