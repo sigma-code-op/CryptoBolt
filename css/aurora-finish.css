@@ -1,0 +1,301 @@
+/* ============================================================
+   CryptoBolt — "Aurora" finishing pass (2026)
+   ------------------------------------------------------------
+   Loaded LAST in every bundle (after pro-redesign.css), so it
+   wins the cascade. Pure presentation layer — no markup, no IDs,
+   no JS-read class changed (.active, data-*, .cw-reveal, etc. are
+   left alone). Safe to ship on every page, marketing + terminal.
+
+   What it adds:
+   1. A living aurora-mesh background (slow drifting radial glow)
+      instead of a flat void — subtle enough not to fight live data.
+   2. Frosted-glass surfaces: nav, cards, panels get real depth via
+      backdrop-blur + gradient hairlines instead of flat borders.
+   3. A proper gradient/glow treatment for primary actions, with a
+      hover "sheen" sweep instead of a flat brightness bump.
+   4. A gradient-accent type treatment for hero/section headlines.
+   5. Consistent hover/lift physics and focus-visible rings across
+      buttons, cards, links, inputs.
+   6. Terminal (app.html/trade.html/invest.html) gets a calmer,
+      glassier ambient background and card treatment WITHOUT
+      touching layout, data density, or Tailwind utility colors —
+      the read-out itself is left completely alone.
+   7. prefers-reduced-motion is respected throughout.
+   ============================================================ */
+
+:root {
+  --au-green: #14d38a;
+  --au-green-2: #37e6a4;
+  --au-cyan: #4fd8e8;
+  --au-purple: #a855f7;
+  --au-line: rgba(255, 255, 255, 0.09);
+  --au-line-hi: rgba(255, 255, 255, 0.18);
+  --au-glass: rgba(18, 21, 29, 0.55);
+  --au-glass-strong: rgba(20, 24, 33, 0.72);
+  --au-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --au-radius: 16px;
+  --au-radius-sm: 11px;
+  --au-shadow-lift:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 26px 60px -24px rgba(0, 0, 0, 0.7),
+    0 8px 20px -10px rgba(0, 0, 0, 0.5);
+  --au-shadow-glow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 0 0 1px var(--au-line-hi),
+    0 30px 70px -20px rgba(0, 0, 0, 0.75),
+    0 0 46px -10px rgba(20, 211, 138, 0.30);
+}
+
+/* ---------- 1. Aurora mesh background ---------- */
+body {
+  position: relative;
+  isolation: isolate;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: -10vh -10vw;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(38vw 38vw at 12% 8%, rgba(20, 211, 138, 0.16), transparent 60%),
+    radial-gradient(34vw 34vw at 88% 18%, rgba(79, 216, 232, 0.13), transparent 60%),
+    radial-gradient(42vw 42vw at 50% 92%, rgba(168, 85, 247, 0.10), transparent 62%);
+  filter: blur(10px) saturate(120%);
+  animation: au-drift 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+body::after {
+  /* film-grain: kills the "flat gradient template" look */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+@keyframes au-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-2%, 2%, 0) scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+}
+
+/* ---------- 2. Nav: frosted glass ---------- */
+.mk-nav, header.cw-topbar, [class*="topbar"] {
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: linear-gradient(180deg, rgba(9, 11, 16, 0.72), rgba(9, 11, 16, 0.52)) !important;
+}
+.mk-nav {
+  border-bottom: 1px solid transparent;
+  background-image:
+    linear-gradient(180deg, rgba(9, 11, 16, 0.72), rgba(9, 11, 16, 0.52)),
+    linear-gradient(90deg, transparent, rgba(20, 211, 138, 0.35), rgba(79, 216, 232, 0.3), transparent);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.mk-logo-mark, .cw-logo-gradient {
+  position: relative;
+}
+
+/* ---------- 3. Typography: gradient accent headlines ---------- */
+.mk-hero h1 .mk-accent,
+.mk-section-head h2 .mk-accent {
+  background: linear-gradient(120deg, var(--au-green) 0%, var(--au-green-2) 45%, var(--au-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.mk-hero h1 {
+  text-shadow: 0 1px 40px rgba(20, 211, 138, 0.10);
+}
+.mk-eyebrow {
+  letter-spacing: 0.14em;
+}
+
+/* ---------- 4. Buttons: gradient fill + sheen sweep ---------- */
+.mk-btn, .cw-shine, button.mk-btn, a.mk-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s var(--au-ease), box-shadow .25s var(--au-ease), filter .25s var(--au-ease);
+}
+.mk-btn-primary {
+  background: linear-gradient(135deg, var(--au-green-2), var(--au-green) 60%, #0f9c67) !important;
+  box-shadow:
+    0 0 0 1px rgba(20, 211, 138, 0.45),
+    0 14px 32px -10px rgba(20, 211, 138, 0.55),
+    0 2px 8px -2px rgba(0, 0, 0, 0.4) !important;
+}
+.mk-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(20, 211, 138, 0.6),
+    0 20px 42px -10px rgba(20, 211, 138, 0.65),
+    0 4px 14px -2px rgba(0, 0, 0, 0.45) !important;
+  filter: none !important;
+}
+.mk-btn-purple {
+  background: linear-gradient(135deg, #c084fc, var(--au-purple) 65%, #7e22ce) !important;
+}
+.mk-btn-purple:hover { transform: translateY(-2px); }
+.mk-btn-ghost {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(6px);
+}
+.mk-btn-ghost:hover { transform: translateY(-1px); }
+.mk-btn::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left .7s var(--au-ease);
+  pointer-events: none;
+}
+.mk-btn:hover::after { left: 130%; }
+@media (prefers-reduced-motion: reduce) {
+  .mk-btn-primary:hover, .mk-btn-purple:hover, .mk-btn-ghost:hover { transform: none; }
+  .mk-btn::after { display: none; }
+}
+
+/* ---------- 5. Cards & panels: glass + gradient hairline + lift ---------- */
+.mk-card, .mk-panel, .mk-blog-card, .mk-ai-poster-card {
+  background: var(--au-glass) !important;
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  border: 1px solid var(--au-line) !important;
+  border-radius: var(--au-radius) !important;
+  box-shadow: var(--au-shadow-lift);
+  transition: transform .35s var(--au-ease), box-shadow .35s var(--au-ease), border-color .35s var(--au-ease);
+}
+.mk-card:hover, .mk-blog-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--au-line-hi) !important;
+  box-shadow: var(--au-shadow-glow);
+}
+.mk-card-icon {
+  background: linear-gradient(135deg, rgba(20, 211, 138, 0.18), rgba(79, 216, 232, 0.12));
+  border: 1px solid rgba(20, 211, 138, 0.25);
+}
+
+/* Trust bar: subtle glass strip instead of flat panel */
+.mk-trust-bar {
+  background: var(--au-glass) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--au-shadow-lift);
+}
+.mk-trust-item { transition: background .3s var(--au-ease); }
+.mk-trust-item:hover { background: rgba(255, 255, 255, 0.03); }
+
+/* CTA band: gradient glass slab with glow */
+.mk-cta-band {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(20, 211, 138, 0.10), rgba(79, 216, 232, 0.06) 55%, rgba(168, 85, 247, 0.06)),
+    var(--au-glass-strong);
+  border: 1px solid var(--au-line-hi);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--au-shadow-lift);
+}
+.mk-cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 140% at 15% 20%, rgba(20, 211, 138, 0.14), transparent 70%);
+  pointer-events: none;
+}
+
+/* Footer: soft top glow line */
+.mk-footer {
+  position: relative;
+  border-top-color: transparent !important;
+}
+.mk-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(20, 211, 138, 0.4), rgba(79, 216, 232, 0.3), transparent);
+}
+.mk-footer-social a, .mk-footer-links a { transition: transform .25s var(--au-ease), color .2s ease, border-color .2s ease; }
+.mk-footer-social a:hover { transform: translateY(-2px); }
+
+/* ---------- 6. Live indicator: pulsing ring ---------- */
+.mk-live-dot, .cw-accent-green.mk-live-dot {
+  position: relative;
+}
+.mk-live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid var(--au-green);
+  opacity: 0;
+  animation: au-pulse-ring 2.4s ease-out infinite;
+}
+@keyframes au-pulse-ring {
+  0%   { opacity: .55; transform: scale(0.6); }
+  70%  { opacity: 0;   transform: scale(1.8); }
+  100% { opacity: 0;   transform: scale(1.8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mk-live-dot::after { animation: none; display: none; }
+}
+
+/* ---------- 7. Focus accessibility ---------- */
+a:focus-visible, button:focus-visible, input:focus-visible, .mk-btn:focus-visible {
+  outline: 2px solid var(--au-cyan);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ================================================================
+   Terminal pages (app.html / trade.html / invest.html) — lighter
+   touch: keep every data readout exactly as-is, just calm + glass
+   the chrome around it.
+   ================================================================ */
+.cw-ambient-orb {
+  filter: blur(90px);
+  opacity: 0.5;
+  animation: au-orb-float 18s ease-in-out infinite alternate;
+}
+.cw-orb-1 { animation-delay: 0s; }
+.cw-orb-2 { animation-delay: -6s; }
+.cw-orb-3 { animation-delay: -12s; }
+@keyframes au-orb-float {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(3%, -4%, 0) scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cw-ambient-orb { animation: none; }
+}
+
+.cw-card-interactive {
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  transition: transform .3s var(--au-ease), box-shadow .3s var(--au-ease), border-color .3s var(--au-ease) !important;
+}
+.cw-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--au-shadow-glow);
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cw-card-interactive:hover { transform: none; }
+}
+
+/* Scrollbars: consistent everywhere */
+::-webkit-scrollbar-thumb { background: #2d3140; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--au-cyan); }
+
+/* Small screens: turn off the heaviest blur/animation to protect battery + perf */
+@media (max-width: 600px) {
+  body::before { animation: none; filter: blur(16px) saturate(115%); }
+  .cw-ambient-orb { animation: none; }
+}

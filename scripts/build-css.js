@@ -41,6 +41,7 @@ const BUNDLES = {
     'home.css',
     'redesign.css',
     'pro-redesign.css',
+    'aurora-finish.css',
   ],
   // index.html, features.html (no shadcn-ui.css)
   'bundle-marketing.css': [
@@ -51,6 +52,7 @@ const BUNDLES = {
     'home.css',
     'redesign.css',
     'pro-redesign.css',
+    'aurora-finish.css',
   ],
   // ai.html
   'bundle-ai.css': [
@@ -63,6 +65,7 @@ const BUNDLES = {
     'ai.css',
     'redesign.css',
     'pro-redesign.css',
+    'aurora-finish.css',
   ],
 };
 
