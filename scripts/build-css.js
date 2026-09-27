@@ -30,6 +30,12 @@ const DIST_DIR = path.join(CSS_DIR, 'dist');
 // remove, or reorder a local stylesheet on a page, update the matching list below and
 // re-run `npm run build:css`. (The Google Fonts stylesheet stays a separate cross-origin
 // <link> — it can't be bundled in.)
+// 2026 redesign: the site used to load four extra "polish pass" files after
+// home.css on every page (premium.css, redesign.css, pro-redesign.css,
+// aurora-finish.css), each overriding the last with !important. They've been
+// folded into home.css (marketing) / ui-elevate.css (app chrome) / styles.css
+// (shared tokens) and are kept only as empty files so nothing 404s — see the
+// header comment in each for where its rules live now.
 const BUNDLES = {
   // app.html, trade.html, invest.html, account.html, about.html, contact.html
   'bundle-home.css': [
@@ -37,22 +43,14 @@ const BUNDLES = {
     'styles.css',
     'shadcn-ui.css',
     'ui-elevate.css',
-    'premium.css',
     'home.css',
-    'redesign.css',
-    'pro-redesign.css',
-    'aurora-finish.css',
   ],
   // index.html, features.html (no shadcn-ui.css)
   'bundle-marketing.css': [
     'tailwind.css',
     'styles.css',
     'ui-elevate.css',
-    'premium.css',
     'home.css',
-    'redesign.css',
-    'pro-redesign.css',
-    'aurora-finish.css',
   ],
   // ai.html
   'bundle-ai.css': [
@@ -60,12 +58,8 @@ const BUNDLES = {
     'styles.css',
     'shadcn-ui.css',
     'ui-elevate.css',
-    'premium.css',
     'home.css',
     'ai.css',
-    'redesign.css',
-    'pro-redesign.css',
-    'aurora-finish.css',
   ],
 };
 

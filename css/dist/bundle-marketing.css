@@ -35,13 +35,16 @@
 }
 
 :root {
-    /* Surfaces */
-    --cw-bg: #090a0f;
-    --cw-panel: #11131a;
+    /* Surfaces (this is the single source of truth for these tokens — a
+       second :root block used to redefine several of these further down
+       this file, and a third pass lived in redesign.css; both have been
+       folded in here so there's one value per token, not three). */
+    --cw-bg: #0a0b0f;
+    --cw-panel: #12141b;
     --cw-panel-alt: #151822;
     --cw-panel-hi: #191c27;
-    --cw-border: #21242f;
-    --cw-border-hi: #2d3140;
+    --cw-border: rgba(151, 177, 183, 0.16);
+    --cw-border-hi: rgba(111, 224, 211, 0.4);
 
     /* Signal colors */
     --cw-green: #14d38a;    /* bull / brand */
@@ -52,12 +55,22 @@
     --cw-purple: #a855f7;   /* legacy accent, kept for compat */
 
     /* Text */
-    --cw-text: #e9ebf1;
-    --cw-text-dim: #8b93a7;
+    --cw-text: #eaf3f1;
+    --cw-text-dim: #8da1a6;
 
     --cw-radius: 10px;
     --cw-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --cw-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Icon system (Lucide via data-lucide -> icons-init.js), used
+   on every page — app terminal panels as well as the marketing site. ---------- */
+svg.lucide {
+    display: inline-block; /* overrides Tailwind preflight's `svg { display: block }` */
+    stroke: currentColor;
+    fill: none;
+    flex-shrink: 0;
+    vertical-align: -3px;
 }
 
 /* ---------- Typography ---------- */
@@ -587,31 +600,10 @@ input, select, textarea {
     }
 }
 
-/* Modern finish: keep the final cascade calm, soft, and consistent. */
-:root {
-    --cw-bg: #080c10;
-    --cw-panel: #11181e;
-    --cw-panel-alt: #141e25;
-    --cw-panel-hi: #1b2930;
-    --cw-border: rgba(151, 177, 183, 0.16);
-    --cw-border-hi: rgba(111, 224, 211, 0.4);
-    --cw-text: #eaf3f1;
-    --cw-text-dim: #8da1a6;
-    --cw-radius: 10px;
-}
-
-body {
-    background:
-        radial-gradient(ellipse 60% 42% at 0% 0%, rgba(39, 151, 135, 0.12), transparent 72%),
-        radial-gradient(ellipse 52% 42% at 100% 14%, rgba(55, 136, 166, 0.1), transparent 72%),
-        linear-gradient(150deg, #080c10 0%, #0b1217 52%, #080c10 100%);
-}
-
-body::before {
-    opacity: 0.55;
-    background-size: 40px 40px;
-    mask-image: linear-gradient(to bottom, black, transparent 74%);
-}
+/* Modern finish: kept for the rules below that are still live (ui-elevate.css
+   loads after this file and repeats the background/:root tokens with
+   !important — both of those have been removed here since they were fully
+   dead code; everything from here down still applies). */
 
 .container {
     max-width: 1680px !important;
@@ -2373,230 +2365,49 @@ span[class*="rounded"][class*="uppercase"][class*="px-2"] {
     .cw-card-interactive, .cw-card-interactive:hover { transition: none !important; }
 }
 
-/* ==== premium.css ==== */
-/* ============================================================
-   CryptoBolt — "Premium" finishing pass
-   ------------------------------------------------------------
-   Pure presentation layer, loaded LAST (after ui-elevate.css) so
-   it wins the cascade. Does not touch markup, IDs, or any class
-   JS reads for behaviour (.active, .filter-btn, data-*, etc.) —
-   only restyles appearance, so it's safe to drop into every page.
-
-   What this adds over the existing Signal Deck / Elevate system:
-   - A believable gradient + grain background instead of flat black
-   - Buttons with real depth (gradient fill, sheen sweep, glow)
-   - Cards with a soft gradient hairline border + hover glow lift
-   - A refined type scale: tighter tracking, gradient hero heading
-   - A glassier nav bar and calmer, more consistent motion
-   ============================================================ */
-
-:root {
-    --pm-radius: 16px;
-    --pm-radius-sm: 10px;
-    --pm-ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --pm-green: #14d38a;
-    --pm-green-2: #37e6a4;
-    --pm-cyan: #4fd8e8;
-    --pm-border: rgba(148, 163, 194, 0.14);
-    --pm-border-hi: rgba(148, 163, 194, 0.28);
-    --pm-shadow-lg:
-        0 1px 0 rgba(255, 255, 255, 0.05) inset,
-        0 24px 60px -22px rgba(0, 0, 0, 0.72),
-        0 6px 18px -8px rgba(0, 0, 0, 0.55);
-    --pm-shadow-glow:
-        0 1px 0 rgba(255, 255, 255, 0.07) inset,
-        0 30px 70px -20px rgba(0, 0, 0, 0.75),
-        0 0 0 1px var(--pm-border-hi),
-        0 0 42px -8px rgba(20, 211, 138, 0.28);
-}
-
-/* ---------- Grain: the single biggest "cheap template" tell is a
-   perfectly flat gradient background. A whisper of noise fixes it. ---------- */
-body {
-    position: relative;
-}
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.035;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* ---------- Type scale: tighter, more confident tracking on display type ---------- */
-h1, .mk-display, h1 * {
-    letter-spacing: -0.03em !important;
-    font-weight: 700;
-}
-h2, .mk-feature-copy h2, .mk-cta-band h2 {
-    letter-spacing: -0.025em;
-}
-.mk-hero h1 {
-    background: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, rgba(255, 255, 255, 0.78) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.mk-hero h1 .mk-accent {
-    background: linear-gradient(120deg, var(--pm-green-2), var(--pm-cyan));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 24px rgba(20, 211, 138, 0.35));
-}
-
-/* ---------- Buttons: real depth instead of a flat fill ---------- */
-.mk-btn-primary, .cta-btn, button.bg-\[var\(--cw-green\)\] {
-    position: relative;
-    background: linear-gradient(155deg, var(--pm-green-2) 0%, var(--pm-green) 55%, #0f9c67 100%);
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.35) inset,
-        0 -2px 0 rgba(0, 0, 0, 0.18) inset,
-        0 14px 30px -10px rgba(20, 211, 138, 0.55),
-        0 4px 10px -4px rgba(20, 211, 138, 0.4);
-    overflow: hidden;
-    isolation: isolate;
-}
-.mk-btn-primary::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 48%, transparent 60%);
-    transform: translateX(-120%);
-    transition: transform 0.65s var(--pm-ease);
-}
-.mk-btn-primary:hover::before { transform: translateX(120%); }
-.mk-btn-primary:hover {
-    filter: none;
-    transform: translateY(-1.5px);
-    box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.4) inset,
-        0 -2px 0 rgba(0, 0, 0, 0.18) inset,
-        0 18px 38px -10px rgba(20, 211, 138, 0.65),
-        0 6px 14px -4px rgba(20, 211, 138, 0.5);
-}
-.mk-btn-ghost {
-    backdrop-filter: blur(6px);
-    background: rgba(255, 255, 255, 0.02);
-}
-.mk-btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-1px);
-}
-.mk-btn, .cw-btn, button, a.mk-btn {
-    transition: transform 0.2s var(--pm-ease), box-shadow 0.2s var(--pm-ease),
-                background 0.2s var(--pm-ease), border-color 0.2s var(--pm-ease), filter 0.2s var(--pm-ease);
-}
-
-/* ---------- Cards: soft gradient hairline border + hover glow lift ---------- */
-.mk-card, .mk-panel, .cw-card {
-    position: relative;
-    border-color: var(--pm-border);
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
-        var(--mk-surface, var(--cw-panel, #12141c));
-    box-shadow: var(--pm-shadow-lg);
-    transition: transform 0.35s var(--pm-ease), box-shadow 0.35s var(--pm-ease), border-color 0.35s var(--pm-ease);
-}
-.mk-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 40%);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
-.mk-card:hover, .cw-card-interactive:hover {
-    transform: translateY(-4px);
-    border-color: var(--pm-border-hi);
-    box-shadow: var(--pm-shadow-glow);
-}
-.mk-card-icon {
-    background: linear-gradient(155deg, rgba(20, 211, 138, 0.22), rgba(79, 216, 232, 0.10));
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 8px 18px -8px rgba(20, 211, 138, 0.4);
-}
-
-/* ---------- Nav: glassier, with a soft top highlight ---------- */
-.mk-nav, header.flex {
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    background: linear-gradient(180deg, rgba(10, 12, 17, 0.82), rgba(10, 12, 17, 0.62)) !important;
-    border-bottom: 1px solid var(--pm-border);
-}
-
-/* ---------- Live/signature panel: stronger presence ---------- */
-.mk-panel {
-    box-shadow: var(--pm-shadow-lg), 0 0 60px -20px rgba(20, 211, 138, 0.18);
-}
-
-/* ---------- CTA band: richer gradient, not a flat tint ---------- */
-.mk-cta-band {
-    position: relative;
-    background:
-        radial-gradient(600px 260px at 15% 0%, rgba(20, 211, 138, 0.14), transparent 65%),
-        radial-gradient(600px 260px at 85% 100%, rgba(79, 216, 232, 0.12), transparent 65%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
-    border: 1px solid var(--pm-border);
-}
-
-/* ---------- Eyebrow / tags: subtle glass chip instead of flat text ---------- */
-.mk-eyebrow {
-    padding: 5px 10px 5px 8px;
-    border-radius: 999px;
-    background: rgba(20, 211, 138, 0.08);
-    border: 1px solid rgba(20, 211, 138, 0.18);
-}
-
-/* ---------- Links inside body copy: animated underline instead of instant color swap ---------- */
-.mk-feature-copy a:not(.mk-btn) {
-    background-image: linear-gradient(var(--pm-green), var(--pm-green));
-    background-size: 0% 1px;
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    transition: background-size 0.25s var(--pm-ease);
-}
-.mk-feature-copy a:not(.mk-btn):hover { background-size: 100% 1px; }
-
-/* ---------- Scroll-reveal elements land slightly softer ---------- */
-[data-reveal] {
-    transition: opacity 0.7s var(--pm-ease), transform 0.7s var(--pm-ease) !important;
-}
-
-/* ---------- Motion respect ---------- */
-@media (prefers-reduced-motion: reduce) {
-    .mk-btn-primary::before { display: none; }
-    .mk-card, .mk-btn-primary, .mk-btn-ghost { transition: none !important; }
-}
-
 /* ==== home.css ==== */
 /* ============================================================
-   CryptoBolt — Marketing site ("Signal Deck" front door)
-   Shares the product's instrument-panel language (hairline grid,
-   reticle corner brackets, phosphor-green signal, mono data type)
-   but built for reading and scanning rather than watching.
+   CryptoBolt — Marketing & content site design system
+   ------------------------------------------------------------
+   Single source of truth for every `.mk-*` component used on the
+   public-facing pages (home, features, about, contact, blog +
+   articles, the standalone explainer pages). Previously this look
+   was assembled from six stacked files (home/redesign/pro-redesign/
+   aurora-finish/premium/ui-elevate) that had drifted out of sync and
+   fought each other with !important. This file replaces that stack:
+   one token set, one component definition per class, no overrides.
+
+   Direction: confident, editorial fintech. One accent used with
+   restraint (signal green), a warm near-black surface instead of
+   pure black, real type hierarchy, quiet motion. Green/red keep
+   their semantic meaning (bull/bear) everywhere in the product;
+   purple is reserved for the AI research feature; cyan is reserved
+   for "live" telemetry + focus rings. Nothing else borrows them.
    ============================================================ */
 
 .mk {
-    --mk-bg: #07090d;
-    --mk-surface: rgba(17, 20, 28, 0.6);
-    --mk-surface-strong: rgba(20, 24, 32, 0.92);
+    --mk-bg: #0a0b0f;
+    --mk-surface: rgba(255, 255, 255, 0.028);
+    --mk-surface-strong: #14161d;
     --mk-line: rgba(255, 255, 255, 0.08);
-    --mk-line-hi: rgba(255, 255, 255, 0.14);
+    --mk-line-hi: rgba(255, 255, 255, 0.16);
     --mk-text: #eef1f4;
-    --mk-text-dim: #8b95a1;
-    --mk-green: #14d38a;
+    --mk-text-dim: #929aa8;
+
+    --mk-green: #1fcf8c;
+    --mk-green-ink: #06120d;
     --mk-cyan: #4fd8e8;
-    --mk-purple: #a855f7;
-    --mk-amber: #ffb020;
+    --mk-purple: #a78bfa;
+    --mk-amber: #f5a623;
+    --mk-red: #ff5d7a;
+
+    --mk-radius-sm: 8px;
+    --mk-radius: 12px;
+    --mk-radius-lg: 20px;
+    --mk-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --mk-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.55);
+    --mk-shadow-lg: 0 32px 80px -32px rgba(0, 0, 0, 0.6);
+
     font-family: 'Inter', system-ui, sans-serif;
     color: var(--mk-text);
     background: var(--mk-bg);
@@ -2604,7 +2415,8 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
 
 .mk h1, .mk h2, .mk h3, .mk .mk-display {
     font-family: 'Space Grotesk', 'Inter', sans-serif;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    font-weight: 700;
 }
 
 .mk-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
@@ -2612,12 +2424,10 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
 .mk-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    gap: 8px;
+    font-size: 12.5px;
     font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
     color: var(--mk-green);
 }
 .mk-eyebrow::before {
@@ -2626,31 +2436,50 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
     height: 6px;
     border-radius: 50%;
     background: var(--mk-green);
-    box-shadow: 0 0 0 3px rgba(20, 211, 138, 0.18);
+    box-shadow: 0 0 0 3px rgba(31, 207, 140, 0.16);
+    flex-shrink: 0;
 }
+.mk-eyebrow-purple { color: var(--mk-purple); }
+.mk-eyebrow-purple::before { background: var(--mk-purple); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.18); }
 
-/* ---------- Background field ---------- */
+/* ---------- Icon system (Lucide via data-lucide -> icons-init.js) ---------- */
+.mk-card-icon svg.lucide,
+.mk-blog-cover svg.lucide,
+.mk-logo-mark svg.lucide { color: inherit; vertical-align: middle; }
+svg.lucide.mk-btn-icon { margin-left: 1px; transition: transform 0.2s var(--mk-ease); }
+a:hover > svg.lucide.mk-btn-icon,
+.mk-btn:hover svg.lucide.mk-btn-icon { transform: translateX(3px); }
+svg.lucide.mk-trust-icon {
+    display: block;
+    margin: 0 auto 8px;
+    color: var(--mk-text-dim);
+    opacity: 0.9;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+.mk-trust-item:hover svg.lucide.mk-trust-icon,
+a.mk-trust-item-cta svg.lucide.mk-trust-icon { opacity: 1; color: var(--mk-green); }
+
+/* ---------- Background field: one calm treatment, no moving parts ---------- */
 .mk-field {
     position: fixed;
     inset: 0;
     z-index: -1;
     pointer-events: none;
     background:
-        radial-gradient(900px 520px at 10% -8%, rgba(20, 211, 138, 0.10), transparent 60%),
-        radial-gradient(800px 480px at 96% 6%, rgba(79, 216, 232, 0.08), transparent 58%),
-        radial-gradient(760px 560px at 50% 115%, rgba(168, 85, 247, 0.06), transparent 65%),
+        radial-gradient(1000px 560px at 12% -10%, rgba(31, 207, 140, 0.09), transparent 62%),
+        radial-gradient(760px 460px at 96% 4%, rgba(79, 216, 232, 0.06), transparent 58%),
         var(--mk-bg);
 }
 .mk-field::after {
     content: "";
     position: absolute;
     inset: 0;
-    opacity: 0.22;
+    opacity: 0.16;
     background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: linear-gradient(to bottom, black, transparent 78%);
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: linear-gradient(to bottom, black, transparent 70%);
 }
 
 /* ---------- Nav ---------- */
@@ -2663,15 +2492,15 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
     justify-content: space-between;
     gap: 20px;
     padding: 14px clamp(16px, 4vw, 48px);
-    background: rgba(7, 9, 13, 0.72);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(10, 11, 15, 0.78);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
     border-bottom: 1px solid var(--mk-line);
 }
 .mk-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 9px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 18px;
@@ -2687,8 +2516,9 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    background: rgba(20, 211, 138, 0.12);
-    border: 1px solid rgba(20, 211, 138, 0.28);
+    background: rgba(31, 207, 140, 0.12);
+    border: 1px solid rgba(31, 207, 140, 0.3);
+    color: var(--mk-green);
     font-size: 14px;
 }
 .mk-nav-links {
@@ -2703,25 +2533,28 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
 .mk-nav-links a:hover { color: var(--mk-text); }
 .mk-nav-cta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
+/* ---------- Buttons: two tiers, one radius scale ---------- */
 .mk-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 7px;
     padding: 9px 16px;
-    border-radius: 8px;
+    border-radius: var(--mk-radius-sm);
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: all .15s ease;
+    transition: border-color .18s ease, color .18s ease, background .18s ease, transform .18s var(--mk-ease);
     white-space: nowrap;
 }
 .mk-btn-ghost { color: var(--mk-text-dim); border-color: var(--mk-line); }
-.mk-btn-ghost:hover { color: var(--mk-text); border-color: var(--mk-line-hi); background: rgba(255,255,255,0.03); }
-.mk-btn-primary { background: var(--mk-green); color: #06110c; box-shadow: 0 0 0 1px rgba(20,211,138,.4), 0 10px 24px -8px rgba(20,211,138,.55); }
-.mk-btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.mk-btn-ghost:hover { color: var(--mk-text); border-color: var(--mk-line-hi); background: rgba(255, 255, 255, 0.03); }
+.mk-btn-primary { background: var(--mk-green); color: var(--mk-green-ink); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 8px 22px -10px rgba(31, 207, 140, 0.6); }
+.mk-btn-primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.mk-btn-purple { background: var(--mk-purple); color: #17102e; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 8px 22px -10px rgba(167, 139, 250, 0.55); }
+.mk-btn-purple:hover { filter: brightness(1.06); transform: translateY(-1px); }
 .mk-btn-lg { padding: 12px 22px; font-size: 14px; border-radius: 10px; }
 
 .mk-burger {
@@ -2734,7 +2567,7 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
     height: 36px;
     padding: 0;
     border: 1px solid var(--mk-line);
-    border-radius: 8px;
+    border-radius: var(--mk-radius-sm);
     background: transparent;
     cursor: pointer;
     flex-shrink: 0;
@@ -2752,17 +2585,16 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
 .mk-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Off-canvas mobile menu: hidden by default, shown only below 880px, and only
-   expanded when the burger toggles aria-expanded on .mk-nav. Keeping the
-   panel outside .mk-nav means it can never contribute to the nav row's own
-   width, so it can't be the thing causing the CTA to overflow/get clipped. */
+   expanded when the burger toggles aria-expanded on .mk-nav. Kept outside
+   .mk-nav so it can't contribute to the nav row's own width. */
 .mk-mobile-panel {
     display: none;
     flex-direction: column;
     gap: 2px;
     padding: 10px clamp(16px, 4vw, 48px) 18px;
-    background: rgba(7, 9, 13, 0.97);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(10, 11, 15, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--mk-line);
     position: sticky;
     top: 63px;
@@ -2783,23 +2615,22 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
 
 /* ---------- Hero ---------- */
 .mk-hero {
-    padding: clamp(56px, 9vw, 108px) clamp(16px, 4vw, 48px) 40px;
+    padding: clamp(64px, 9vw, 116px) clamp(16px, 4vw, 48px) 40px;
     max-width: 1180px;
     margin: 0 auto;
     text-align: center;
 }
 .mk-hero h1 {
-    font-size: clamp(34px, 6vw, 62px);
-    font-weight: 700;
-    line-height: 1.06;
+    font-size: clamp(34px, 6vw, 60px);
+    line-height: 1.08;
     margin: 18px 0 16px;
 }
 .mk-hero h1 .mk-accent { color: var(--mk-green); }
 .mk-hero p.mk-sub {
-    max-width: 620px;
+    max-width: 600px;
     margin: 0 auto;
     color: var(--mk-text-dim);
-    font-size: clamp(15px, 2vw, 17.5px);
+    font-size: clamp(15px, 2vw, 17px);
     line-height: 1.6;
 }
 .mk-hero-cta {
@@ -2822,70 +2653,51 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
     max-width: 900px;
     margin: 48px auto 0;
     border: 1px solid var(--mk-line);
-    border-radius: 14px;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--mk-surface);
-    box-shadow: 0 30px 80px -30px rgba(0,0,0,.6);
+    border-radius: var(--mk-radius-lg);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%), var(--mk-surface-strong);
+    box-shadow: var(--mk-shadow-lg);
     overflow: hidden;
 }
-.mk-panel::before, .mk-panel::after,
-.mk-panel .mk-corner-l, .mk-panel .mk-corner-r {
-    content: "";
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    pointer-events: none;
-}
-.mk-panel::before { top: -1px; left: -1px; border-top: 2px solid var(--mk-green); border-left: 2px solid var(--mk-green); border-radius: 14px 0 0 0; opacity: .7; }
-.mk-panel::after { top: -1px; right: -1px; border-top: 2px solid var(--mk-cyan); border-right: 2px solid var(--mk-cyan); border-radius: 0 14px 0 0; opacity: .7; }
 .mk-panel-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 11px 16px;
+    padding: 12px 18px;
     border-bottom: 1px solid var(--mk-line);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     color: var(--mk-text-dim);
 }
-.mk-live-dot { display:inline-flex; align-items:center; gap:6px; color: var(--mk-green); }
-.mk-live-dot span.dot { width:6px; height:6px; border-radius:50%; background: var(--mk-green); animation: mk-pulse 1.8s ease-in-out infinite; }
-@keyframes mk-pulse { 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
-.mk-ticker-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
-.mk-ticker-cell {
-    padding: 16px 18px;
-    border-right: 1px solid var(--mk-line);
-    text-align: left;
-}
+.mk-live-dot { display: inline-flex; align-items: center; gap: 6px; color: var(--mk-green); }
+.mk-live-dot span.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mk-green); animation: mk-pulse 1.8s ease-in-out infinite; }
+@keyframes mk-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.mk-ticker-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.mk-ticker-cell { padding: 18px; border-right: 1px solid var(--mk-line); text-align: left; }
 .mk-ticker-cell:last-child { border-right: none; }
 .mk-ticker-sym { font-size: 12px; color: var(--mk-text-dim); font-family: 'JetBrains Mono', monospace; margin-bottom: 4px; }
 .mk-ticker-px { font-size: 19px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
 .mk-ticker-chg { font-size: 12px; font-family: 'JetBrains Mono', monospace; font-weight: 600; margin-top: 2px; }
 .mk-up { color: var(--mk-green); }
-.mk-down { color: #ff5d7a; }
+.mk-down { color: var(--mk-red); }
 
-/* ---------- Trust bar: quick-scan proof points under the hero panel ---------- */
+/* ---------- Trust bar ---------- */
 .mk-trust-bar {
     max-width: 900px;
     margin: 22px auto 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0;
     border: 1px solid var(--mk-line);
-    border-radius: 12px;
+    border-radius: var(--mk-radius);
     overflow: hidden;
     background: var(--mk-surface);
 }
 .mk-trust-item {
     flex: 1 1 180px;
-    padding: 16px 14px;
+    padding: 18px 14px 16px;
     text-align: center;
     border-right: 1px solid var(--mk-line);
     text-decoration: none;
@@ -2893,22 +2705,10 @@ h2, .mk-feature-copy h2, .mk-cta-band h2 {
     transition: background .15s ease;
 }
 .mk-trust-item:last-child { border-right: none; }
-.mk-trust-num {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--mk-text);
-}
-.mk-trust-label {
-    display: block;
-    margin-top: 3px;
-    font-size: 11.5px;
-    color: var(--mk-text-dim);
-    line-height: 1.35;
-}
-a.mk-trust-item-cta { background: linear-gradient(180deg, rgba(20,211,138,.10), rgba(20,211,138,.03)); cursor: pointer; }
-a.mk-trust-item-cta:hover { background: linear-gradient(180deg, rgba(20,211,138,.18), rgba(20,211,138,.05)); }
+.mk-trust-num { display: block; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: var(--mk-text); }
+.mk-trust-label { display: block; margin-top: 3px; font-size: 11.5px; color: var(--mk-text-dim); line-height: 1.35; }
+a.mk-trust-item-cta { background: linear-gradient(180deg, rgba(31, 207, 140, 0.1), rgba(31, 207, 140, 0.03)); cursor: pointer; }
+a.mk-trust-item-cta:hover { background: linear-gradient(180deg, rgba(31, 207, 140, 0.18), rgba(31, 207, 140, 0.05)); }
 a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 @media (max-width: 700px) {
     .mk-trust-item { flex: 1 1 45%; border-bottom: 1px solid var(--mk-line); }
@@ -2916,71 +2716,83 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 }
 
 /* ---------- Section shell ---------- */
-.mk-section { max-width: 1180px; margin: 0 auto; padding: 88px clamp(16px, 4vw, 48px); }
+.mk-section { max-width: 1180px; margin: 0 auto; padding: 92px clamp(16px, 4vw, 48px); }
 .mk-section-head { max-width: 620px; margin-bottom: 44px; }
-.mk-section-head h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; margin: 12px 0 10px; }
+.mk-section-head h2 { font-size: clamp(26px, 4vw, 36px); margin: 12px 0 10px; }
 .mk-section-head p { color: var(--mk-text-dim); font-size: 15px; line-height: 1.6; }
-.mk-section-foot { display:flex; justify-content:center; margin-top: 40px; }
+.mk-section-foot { display: flex; justify-content: center; margin-top: 40px; }
 
 /* ---------- Bento feature grid ---------- */
-.mk-bento {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
-}
+.mk-bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
 .mk-card {
     position: relative;
     grid-column: span 3;
     padding: 26px;
     border: 1px solid var(--mk-line);
-    border-radius: 14px;
+    border-radius: var(--mk-radius);
     background: var(--mk-surface);
     overflow: hidden;
     text-decoration: none;
     color: inherit;
     display: block;
-    transition: border-color .18s ease, transform .18s ease;
+    transition: border-color .18s ease, transform .18s var(--mk-ease), box-shadow .18s var(--mk-ease);
 }
-.mk-card:hover { border-color: var(--mk-line-hi); transform: translateY(-2px); }
+.mk-card:hover { border-color: var(--mk-line-hi); transform: translateY(-2px); box-shadow: var(--mk-shadow); }
 .mk-card.mk-span-2 { grid-column: span 2; }
 .mk-card.mk-span-4 { grid-column: span 4; }
 .mk-card-icon {
-    width: 38px; height: 38px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 9px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     font-size: 17px;
     margin-bottom: 16px;
 }
 .mk-card h3 { font-size: 16.5px; font-weight: 700; margin-bottom: 7px; }
 .mk-card p { font-size: 13.5px; color: var(--mk-text-dim); line-height: 1.55; }
 .mk-card-tag {
-    position: absolute; top: 22px; right: 22px;
+    position: absolute;
+    top: 22px;
+    right: 22px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-    padding: 3px 8px; border-radius: 5px;
-    color: var(--mk-text-dim); border: 1px solid var(--mk-line);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    color: var(--mk-text-dim);
+    border: 1px solid var(--mk-line);
 }
 
 /* ---------- Blog ---------- */
 .mk-blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .mk-blog-card {
     border: 1px solid var(--mk-line);
-    border-radius: 14px;
+    border-radius: var(--mk-radius);
     background: var(--mk-surface);
     overflow: hidden;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    transition: border-color .18s ease, transform .18s ease;
+    transition: border-color .18s ease, transform .18s var(--mk-ease), box-shadow .18s var(--mk-ease);
 }
-.mk-blog-card:hover { border-color: var(--mk-line-hi); transform: translateY(-2px); }
+.mk-blog-card:hover { border-color: var(--mk-line-hi); transform: translateY(-2px); box-shadow: var(--mk-shadow); }
 .mk-blog-cover {
     height: 128px;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 26px;
+    color: var(--mk-text-dim);
+    background: rgba(255, 255, 255, 0.02);
     border-bottom: 1px solid var(--mk-line);
+    transition: color .2s ease;
 }
+.mk-blog-card:hover .mk-blog-cover { color: var(--mk-green); }
 .mk-blog-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .mk-blog-meta { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mk-text-dim); letter-spacing: .06em; text-transform: uppercase; }
 .mk-blog-body h3 { font-size: 15.5px; font-weight: 700; line-height: 1.35; }
@@ -2992,13 +2804,12 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 .mk-ai-poster {
     position: relative;
     max-width: 1180px;
-    margin: 0 auto 88px;
+    margin: 0 auto 92px;
     padding: clamp(28px, 4vw, 52px);
-    border-radius: 22px;
-    border: 1px solid rgba(168, 85, 247, 0.22);
+    border-radius: var(--mk-radius-lg);
+    border: 1px solid rgba(167, 139, 250, 0.22);
     background:
-        radial-gradient(700px 320px at 88% 12%, rgba(168, 85, 247, 0.16), transparent 62%),
-        radial-gradient(500px 280px at 6% 100%, rgba(79, 216, 232, 0.08), transparent 60%),
+        radial-gradient(700px 320px at 88% 12%, rgba(167, 139, 250, 0.14), transparent 62%),
         var(--mk-surface-strong);
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -3006,52 +2817,50 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     align-items: center;
     overflow: hidden;
 }
-.mk-eyebrow-purple { color: var(--mk-purple); }
-.mk-eyebrow-purple::before { background: var(--mk-purple); box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18); }
-.mk-ai-poster-copy h2 { font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; margin: 12px 0 10px; line-height: 1.15; }
+.mk-ai-poster-copy h2 { font-size: clamp(24px, 3.4vw, 34px); margin: 12px 0 10px; line-height: 1.15; }
 .mk-ai-poster-copy > p { color: var(--mk-text-dim); font-size: 14.5px; line-height: 1.6; max-width: 480px; margin-bottom: 18px; }
 .mk-ai-poster-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
-.mk-ai-poster-list li {
-    display: flex; align-items: baseline; gap: 9px;
-    font-size: 13.5px; color: var(--mk-text);
-}
-.mk-ai-poster-list li::before { content: "→"; color: var(--mk-purple); font-weight: 700; }
+.mk-ai-poster-list li { display: flex; align-items: baseline; gap: 9px; font-size: 13.5px; color: var(--mk-text); }
+.mk-ai-poster-list li::before { content: "→"; color: var(--mk-purple); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
 .mk-ai-poster-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.mk-btn-purple { background: var(--mk-purple); color: #fff; box-shadow: 0 0 0 1px rgba(168,85,247,.45), 0 10px 24px -8px rgba(168,85,247,.55); }
-.mk-btn-purple:hover { filter: brightness(1.08); transform: translateY(-1px); }
 .mk-ai-poster-note { font-size: 12px; color: var(--mk-text-dim); font-family: 'JetBrains Mono', monospace; }
-
 .mk-ai-poster-visual { position: relative; }
 .mk-ai-poster-card {
     position: relative;
-    border-radius: 16px;
-    border: 1px solid rgba(168, 85, 247, 0.25);
-    background: rgba(12, 14, 20, 0.85);
+    border-radius: var(--mk-radius);
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    background: rgba(14, 15, 21, 0.9);
     padding: 20px 22px 22px;
-    box-shadow: 0 24px 60px -24px rgba(168, 85, 247, 0.45);
+    box-shadow: 0 24px 60px -24px rgba(167, 139, 250, 0.4);
 }
 .mk-ai-poster-card-head {
-    display: flex; align-items: center; gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11.5px; letter-spacing: 0.04em; color: var(--mk-text-dim);
-    padding-bottom: 14px; margin-bottom: 14px;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: var(--mk-text-dim);
+    padding-bottom: 14px;
+    margin-bottom: 14px;
     border-bottom: 1px solid var(--mk-line);
 }
-.mk-ai-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mk-purple); box-shadow: 0 0 0 3px rgba(168,85,247,.2); flex-shrink: 0; }
-.mk-ai-poster-line { height: 8px; border-radius: 5px; background: rgba(255,255,255,0.08); margin-bottom: 10px; }
+.mk-ai-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mk-purple); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2); flex-shrink: 0; }
+.mk-ai-poster-line { height: 8px; border-radius: 5px; background: rgba(255, 255, 255, 0.08); margin-bottom: 10px; }
 .mk-ai-poster-line.mk-w-90 { width: 90%; }
-.mk-ai-poster-line.mk-w-80 { width: 80%; background: rgba(168,85,247,0.18); }
+.mk-ai-poster-line.mk-w-80 { width: 80%; background: rgba(167, 139, 250, 0.18); }
 .mk-ai-poster-line.mk-w-70 { width: 62%; }
 .mk-ai-poster-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .mk-ai-poster-tags span {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px; letter-spacing: 0.03em;
-    padding: 5px 9px; border-radius: 999px;
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    padding: 5px 9px;
+    border-radius: 999px;
     border: 1px solid var(--mk-line-hi);
     color: var(--mk-text-dim);
 }
-.mk-ai-poster-tags span:first-child { color: var(--mk-green); border-color: rgba(20,211,138,.3); background: rgba(20,211,138,.08); }
-
+.mk-ai-poster-tags span:first-child { color: var(--mk-green); border-color: rgba(31, 207, 140, .3); background: rgba(31, 207, 140, .08); }
 @media (max-width: 860px) {
     .mk-ai-poster { grid-template-columns: 1fr; }
     .mk-ai-poster-copy > p { max-width: none; }
@@ -3060,43 +2869,18 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 
 /* ---------- How it works (steps) ---------- */
 .mk-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.mk-step {
-    border: 1px solid var(--mk-line);
-    border-radius: 14px;
-    background: var(--mk-surface);
-    padding: 26px;
-}
-.mk-step-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--mk-green);
-    margin-bottom: 16px;
-}
+.mk-step { border: 1px solid var(--mk-line); border-radius: var(--mk-radius); background: var(--mk-surface); padding: 26px; }
+.mk-step-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--mk-green); margin-bottom: 16px; }
 .mk-step h3 { font-size: 16.5px; font-weight: 700; margin-bottom: 7px; }
 .mk-step p { font-size: 13.5px; color: var(--mk-text-dim); line-height: 1.55; }
 
 /* ---------- Why CryptoBolt (comparison) ---------- */
 .mk-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.mk-compare-col {
-    border-radius: 14px;
-    padding: 28px 26px;
-    border: 1px solid var(--mk-line);
-    background: var(--mk-surface);
-}
-.mk-compare-col h3 {
-    font-size: 15px; font-weight: 700; margin-bottom: 18px;
-    display: flex; align-items: center; gap: 9px;
-}
-.mk-compare-us {
-    border-color: rgba(20, 211, 138, .3);
-    background: linear-gradient(180deg, rgba(20,211,138,.07), var(--mk-surface) 60%);
-}
+.mk-compare-col { border-radius: var(--mk-radius); padding: 28px 26px; border: 1px solid var(--mk-line); background: var(--mk-surface); }
+.mk-compare-col h3 { font-size: 15px; font-weight: 700; margin-bottom: 18px; display: flex; align-items: center; gap: 9px; }
+.mk-compare-us { border-color: rgba(31, 207, 140, .3); background: linear-gradient(180deg, rgba(31, 207, 140, .07), var(--mk-surface) 60%); }
 .mk-compare-col ul { display: flex; flex-direction: column; gap: 12px; }
-.mk-compare-col li {
-    font-size: 13.5px; color: var(--mk-text-dim);
-    display: flex; gap: 10px; align-items: flex-start; line-height: 1.5;
-}
+.mk-compare-col li { font-size: 13.5px; color: var(--mk-text-dim); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
 .mk-compare-us li { color: var(--mk-text); }
 .mk-compare-us li::before { content: "✓"; color: var(--mk-green); font-weight: 700; flex-shrink: 0; }
 .mk-compare-them li::before { content: "–"; color: var(--mk-text-dim); flex-shrink: 0; }
@@ -3104,52 +2888,37 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 /* ---------- CTA band ---------- */
 .mk-cta-band {
     max-width: 1180px;
-    margin: 0 auto 88px;
+    margin: 0 auto 92px;
     padding: 52px clamp(20px, 5vw, 64px);
-    border-radius: 20px;
+    border-radius: var(--mk-radius-lg);
     border: 1px solid var(--mk-line);
-    background: linear-gradient(135deg, rgba(20,211,138,.09), rgba(79,216,232,.05));
+    background:
+        radial-gradient(600px 260px at 12% 0%, rgba(31, 207, 140, 0.1), transparent 65%),
+        radial-gradient(600px 260px at 88% 100%, rgba(79, 216, 232, 0.08), transparent 65%),
+        var(--mk-surface);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
     flex-wrap: wrap;
 }
-.mk-cta-band h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; margin-bottom: 6px; }
+.mk-cta-band h2 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 6px; }
 .mk-cta-band p { color: var(--mk-text-dim); font-size: 14px; }
 
 /* ---------- Footer ---------- */
 .mk-footer { border-top: 1px solid var(--mk-line); padding: 56px clamp(16px, 4vw, 48px) 32px; }
-.mk-footer-links {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px 24px;
-}
-.mk-footer-links a {
-    color: var(--mk-text-dim);
-    font-size: 13.5px;
-    text-decoration: none;
-    transition: color .15s ease;
-}
+.mk-footer-links { max-width: 1180px; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px 24px; }
+.mk-footer-links a { color: var(--mk-text-dim); font-size: 13.5px; text-decoration: none; transition: color .15s ease; }
 .mk-footer-links a:hover { color: var(--mk-green); }
 .mk-footer-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; }
 .mk-footer-brand p { color: var(--mk-text-dim); font-size: 13px; margin-top: 12px; max-width: 260px; line-height: 1.55; }
 .mk-footer-social { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
-.mk-footer-social a {
-    display: flex; align-items: center; justify-content: center;
-    width: 34px; height: 34px; border-radius: 8px;
-    border: 1px solid var(--mk-line); color: var(--mk-text-dim);
-    transition: all .15s ease;
-}
-.mk-footer-social a:hover { color: var(--mk-green); border-color: var(--mk-line-hi); background: rgba(20,211,138,.08); }
+.mk-footer-social a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: var(--mk-radius-sm); border: 1px solid var(--mk-line); color: var(--mk-text-dim); transition: all .15s ease; }
+.mk-footer-social a:hover { color: var(--mk-green); border-color: var(--mk-line-hi); background: rgba(31, 207, 140, .08); }
 .mk-footer-social svg { width: 16px; height: 16px; fill: currentColor; }
 .mk-footer-social a.mk-social-disabled { opacity: .35; cursor: not-allowed; pointer-events: none; }
 .mk-footer-social a.mk-social-disabled:hover { color: var(--mk-text-dim); border-color: var(--mk-line); background: none; }
-.mk-footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mk-text-dim); margin-bottom: 14px; }
+.mk-footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--mk-text-dim); margin-bottom: 14px; }
 .mk-footer-col a { display: block; font-size: 13.5px; color: var(--mk-text); text-decoration: none; margin-bottom: 10px; opacity: .82; }
 .mk-footer-col a:hover { opacity: 1; color: var(--mk-green); }
 .mk-footer-bottom {
@@ -3165,33 +2934,29 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 .mk-footer-badges .badge-launchigniter {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 7px 12px 7px 8px; border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.03); color: var(--mk-text);
+    border: 1px solid var(--mk-line-hi);
+    background: rgba(255, 255, 255, .03); color: var(--mk-text);
     text-decoration: none; font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
     line-height: 1; white-space: nowrap; transition: border-color .15s ease, transform .15s ease;
 }
-.mk-footer-badges .badge-launchigniter:hover {
-    border-color: rgba(79,216,232,.45); transform: translateY(-1px);
-}
+.mk-footer-badges .badge-launchigniter:hover { border-color: rgba(79, 216, 232, .45); transform: translateY(-1px); }
 .mk-footer-badges .badge-launchigniter-mark {
     display: inline-flex; align-items: center; justify-content: center;
     width: 18px; height: 18px; border-radius: 50%;
-    background: linear-gradient(135deg, #4fd8e8, #7c3aed);
+    background: linear-gradient(135deg, var(--mk-cyan), var(--mk-purple));
     color: #081117; font-weight: 800; font-size: 10px;
-    box-shadow: 0 0 0 1px rgba(255,255,255,.12);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .12);
 }
-.mk-footer-badges .badge-launchigniter span:last-child {
-    display: inline-block; color: var(--mk-text); opacity: .9;
-}
+.mk-footer-badges .badge-launchigniter span:last-child { display: inline-block; color: var(--mk-text); opacity: .9; }
 .mk-footer-badges .badge-launchzone img { height: 30px; }
 .mk-footer-badges .badge-dmca img { height: 15px; }
 .mk-footer-badges .badge-nxgn img { height: 32px; }
 
 /* ---------- Feature page ---------- */
-.mk-fhero { text-align: left; max-width: 780px; margin: 0 auto; padding-top: clamp(48px,7vw,84px); }
+.mk-fhero { text-align: left; max-width: 780px; margin: 0 auto; padding-top: clamp(48px, 7vw, 84px); }
 .mk-fhero .mk-eyebrow { margin-bottom: 14px; }
-.mk-fhero h1 { font-size: clamp(32px,5vw,50px); font-weight: 700; line-height: 1.08; margin-bottom: 16px; }
+.mk-fhero h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.08; margin-bottom: 16px; }
 .mk-fhero p { color: var(--mk-text-dim); font-size: 16px; line-height: 1.6; max-width: 640px; }
 
 .mk-feature-row {
@@ -3199,7 +2964,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     grid-template-columns: 1fr 1fr;
     gap: 56px;
     align-items: center;
-    padding: 72px clamp(16px, 4vw, 48px);
+    padding: 76px clamp(16px, 4vw, 48px);
     max-width: 1180px;
     margin: 0 auto;
     border-bottom: 1px solid var(--mk-line);
@@ -3208,49 +2973,43 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 .mk-feature-row.mk-flip { direction: rtl; }
 .mk-feature-row.mk-flip > * { direction: ltr; }
 .mk-feature-copy .mk-eyebrow { margin-bottom: 14px; }
-.mk-feature-copy h2 { font-size: clamp(22px,3vw,30px); font-weight: 700; margin-bottom: 12px; }
+.mk-feature-copy h2 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 12px; }
 .mk-feature-copy p { color: var(--mk-text-dim); font-size: 14.5px; line-height: 1.65; margin-bottom: 18px; }
+.mk-feature-copy a:not(.mk-btn) {
+    color: var(--mk-text);
+    background-image: linear-gradient(var(--mk-green), var(--mk-green));
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size .25s var(--mk-ease);
+}
+.mk-feature-copy a:not(.mk-btn):hover { background-size: 100% 1px; }
 .mk-feature-specs { display: flex; flex-wrap: wrap; gap: 10px; }
-.mk-spec {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 600;
-    padding: 6px 10px; border-radius: 7px;
-    border: 1px solid var(--mk-line); color: var(--mk-text-dim);
-}
+.mk-spec { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; padding: 6px 10px; border-radius: 7px; border: 1px solid var(--mk-line); color: var(--mk-text-dim); }
 
-.mk-mockup {
-    border: 1px solid var(--mk-line);
-    border-radius: 14px;
-    background: var(--mk-surface);
-    padding: 4px;
-    box-shadow: 0 30px 70px -30px rgba(0,0,0,.6);
-}
-.mk-mockup-inner { border: 1px solid var(--mk-line); border-radius: 10px; padding: 18px; background: rgba(0,0,0,.18); min-height: 220px; }
+.mk-mockup { border: 1px solid var(--mk-line); border-radius: var(--mk-radius); background: var(--mk-surface); padding: 4px; box-shadow: var(--mk-shadow-lg); }
+.mk-mockup-inner { border: 1px solid var(--mk-line); border-radius: 9px; padding: 18px; background: rgba(0, 0, 0, .18); min-height: 220px; }
 
-/* mini chart mockup */
 .mk-mock-chart { display: flex; align-items: flex-end; gap: 5px; height: 140px; padding-top: 10px; }
-.mk-mock-chart i { flex: 1; background: linear-gradient(180deg, rgba(20,211,138,.55), rgba(20,211,138,.08)); border-radius: 3px 3px 0 0; }
+.mk-mock-chart i { flex: 1; background: linear-gradient(180deg, rgba(31, 207, 140, .55), rgba(31, 207, 140, .08)); border-radius: 3px 3px 0 0; }
 
-/* mini orderbook mockup */
 .mk-mock-book { display: flex; flex-direction: column; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
-.mk-mock-book .row { display:flex; justify-content:space-between; position:relative; padding: 3px 8px; border-radius: 4px; overflow:hidden; }
-.mk-mock-book .row .bar { position:absolute; inset:0; z-index:0; opacity:.16; }
-.mk-mock-book .row span { position:relative; z-index:1; }
-.mk-mock-book .ask .bar { background: #ff5d7a; right:0; left:auto; }
+.mk-mock-book .row { display: flex; justify-content: space-between; position: relative; padding: 3px 8px; border-radius: 4px; overflow: hidden; }
+.mk-mock-book .row .bar { position: absolute; inset: 0; z-index: 0; opacity: .16; }
+.mk-mock-book .row span { position: relative; z-index: 1; }
+.mk-mock-book .ask .bar { background: var(--mk-red); right: 0; left: auto; }
 .mk-mock-book .bid .bar { background: var(--mk-green); }
 
-/* mini AI chat mockup */
-.mk-mock-chat { display:flex; flex-direction:column; gap:10px; }
-.mk-mock-bubble { border:1px solid var(--mk-line); border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height:1.5; color: var(--mk-text-dim); }
-.mk-mock-bubble.user { align-self: flex-end; background: rgba(168,85,247,.10); border-color: rgba(168,85,247,.3); color: #e9d5ff; max-width: 78%; }
-.mk-mock-bubble.ai { background: rgba(255,255,255,.03); max-width: 92%; }
+.mk-mock-chat { display: flex; flex-direction: column; gap: 10px; }
+.mk-mock-bubble { border: 1px solid var(--mk-line); border-radius: var(--mk-radius-sm); padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: var(--mk-text-dim); }
+.mk-mock-bubble.user { align-self: flex-end; background: rgba(167, 139, 250, .1); border-color: rgba(167, 139, 250, .3); color: #ece5fe; max-width: 78%; }
+.mk-mock-bubble.ai { background: rgba(255, 255, 255, .03); max-width: 92%; }
 
-/* more-features grid on features page */
-.mk-more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px,4vw,48px) 96px; }
+.mk-more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) 96px; }
 
 /* ---------- Blog article page ---------- */
-.mk-article { max-width: 720px; margin: 0 auto; padding: clamp(48px,7vw,84px) clamp(16px,4vw,24px) 40px; }
-.mk-article h1, .mk-article h2 { font-size: clamp(28px,4vw,40px); font-weight: 700; line-height: 1.1; margin: 14px 0 10px; }
+.mk-article { max-width: 720px; margin: 0 auto; padding: clamp(48px, 7vw, 84px) clamp(16px, 4vw, 24px) 40px; }
+.mk-article h1, .mk-article h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; margin: 14px 0 10px; }
 .mk-article .mk-article-meta { color: var(--mk-text-dim); font-size: 12.5px; font-family: 'JetBrains Mono', monospace; margin-bottom: 8px; }
 .mk-article p { color: #cbd3da; font-size: 15.5px; line-height: 1.75; margin-bottom: 18px; }
 .mk-article ul { margin: 0 0 18px; padding-left: 22px; }
@@ -3261,13 +3020,8 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
     .mk-nav-links { display: none; }
-    /* Previously only .mk-nav-links was hidden here, leaving the logo + both
-       CTA buttons to fight for space in the nav row with no wrap — on
-       narrow phones (~360-400px) that overflowed and got sliced off by the
-       site-wide overflow-x:hidden guard (see ui-elevate.css), which is why
-       "Launch Terminal" was rendering cut off. Sign in now moves into the
-       burger panel and Launch Terminal shrinks slightly, so the row always
-       fits within the viewport. */
+    /* Sign-in moves into the burger panel and Launch Terminal shrinks slightly
+       on narrow phones so the nav row never overflows the viewport. */
     .mk-nav-cta .mk-btn-ghost { display: none; }
     .mk-nav-cta .mk-btn-primary { padding: 8px 12px; font-size: 12.5px; }
     .mk-burger { display: flex; }
@@ -3288,23 +3042,11 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     .mk-footer-links { justify-content: flex-start; gap: 10px 18px; }
     .mk-footer-grid { grid-template-columns: 1fr; }
 
-    /* ---------- Footer badge row on mobile ----------
-       The 4 badges in .mk-footer-badges are not visually uniform: three (Sell With
-       Boost/LaunchZone/DMCA/NxGn Tools) are small single-image badges, but the Product Hunt
-       one is a full embed CARD — its own bright white background, 20px padding, an 80x80
-       icon, a heading, and a pill button — all sized with INLINE styles (pasted straight from
-       Product Hunt's embed generator), which is why it can't just be resized by giving
-       `.badge-producthunt` a height rule the way the others are above: inline styles beat an
-       external stylesheet's rules unless those rules use !important, which is what the block
-       below does, deliberately and only here.
-       On a ~1180px desktop footer this card has room to sit at its natural ~380px width
-       next to the small badges. Below 560px there usually isn't 380px of width left after
-       the footer's own padding, so left uncontained the card would either overflow
-       horizontally or dominate the whole footer — a jarring white rectangle sitting alone in
-       an otherwise dark footer. The fixes below: (1) stack every badge on its own full-width
-       row instead of trying to wrap a giant card and three tiny badges together, and (2)
-       scale the Product Hunt card's own internals down so it reads as a compact footer credit
-       rather than a promo card. */
+    /* Footer badge row on mobile: the badges aren't visually uniform — the
+       Product Hunt embed is a full white card with inline styles pasted from
+       its embed generator, so it needs !important to be resized at all.
+       Stack every badge on its own row and shrink the PH card's internals so
+       it reads as a compact credit instead of a dominant white rectangle. */
     .mk-footer-badges { flex-direction: column; align-items: flex-start; width: 100%; gap: 14px; }
     .mk-footer-badges .badge-producthunt { width: 100%; }
     .mk-footer-badges .badge-producthunt > div {
@@ -3317,10 +3059,6 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     .mk-footer-badges .badge-producthunt p { font-size: 12.5px !important; }
     .mk-footer-badges .badge-producthunt span { font-size: 13px !important; padding: 6px 12px !important; }
 }
-/* Narrow phones (~360-400px CSS width): logo + "Launch Terminal →" + burger were still a
-   few pixels wider than the viewport at this size even after the 880px breakpoint above
-   shrank the button, so the burger kept getting sliced off by the site-wide
-   overflow-x:hidden guard. Shrink the remaining pieces further so the row always fits. */
 @media (max-width: 400px) {
     .mk-logo { font-size: 15.5px; gap: 6px; }
     .mk-logo-mark { width: 24px; height: 24px; font-size: 12px; }
@@ -3328,524 +3066,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     .mk-nav { gap: 6px; padding-left: 12px; padding-right: 12px; }
     .mk-burger { width: 32px; height: 32px; }
 }
-
-/* ==== redesign.css ==== */
-/* ============================================================
-   CryptoBolt — 2026 visual refresh ("Signal" pass)
-   Loaded last on every page, after tailwind.css / styles.css /
-   home.css / premium.css / ui-elevate.css / shadcn-ui.css, so it
-   wins the cascade without editing those files' internals.
-
-   What this file does:
-   1. Re-tunes the existing --cw-, --cbx- and --mk- prefixed custom
-      properties that the rest of the site already reads from —
-      most of the palette shift below needs no other file touched.
-   2. Fixes the handful of places where every panel/card shares
-      one identical radius+shadow regardless of role, and where
-      decorative uppercase eyebrow labels were doing no real job.
-   3. Gives the one thing this product actually is — a live feed —
-      a single consistent visual signature (a live-pulse mark),
-      instead of scattering glow/gradient accents everywhere.
-
-   Design tokens (for reference):
-     ink     #0A0C10   base background
-     panel   #14171F   card/surface
-     line    #262B35   hairline border
-     paper   #EDEFF3   primary text
-     bull    #22C58C   up / long (semantic — do not repurpose)
-     bear    #F1495F   down / short (semantic — do not repurpose)
-     signal  #E8A93A   caution / leverage only
-     wire    #46B8C9   the one "live" accent — pulse + focus only
-   ============================================================ */
-
-/* ---------- 1. Palette re-tune via existing custom properties ---------- */
-:root {
-  --cw-bg: #0A0C10;
-  --cw-panel: #14171F;
-  --cw-panel-alt: #171B24;
-  --cw-panel-hi: #1B202B;
-  --cw-border: #232833;
-  --cw-border-hi: #34404E;
-
-  --cw-green: #22C58C;
-  --cw-green-dim: #1A9A6C;
-  --cw-red: #F1495F;
-  --cw-amber: #E8A93A;
-  --cw-cyan: #46B8C9;
-  --cw-purple: #9C7CF2;
-
-  --cw-text: #EDEFF3;
-  --cw-text-dim: #8B93A3;
-
-  --cw-radius: 10px;
-
-  --cbx-bg: #0A0C10;
-  --cbx-surface: rgba(20, 23, 31, 0.82);
-  --cbx-surface-strong: rgba(23, 27, 36, 0.95);
-  --cbx-line: rgba(237, 239, 243, 0.07);
-  --cbx-line-hi: rgba(237, 239, 243, 0.13);
-  --cbx-glow: rgba(34, 197, 140, 0.18);
-  --cbx-glow-cyan: rgba(70, 184, 201, 0.16);
-}
-
-.mk {
-  --mk-bg: #0A0C10;
-  --mk-surface: rgba(20, 23, 31, 0.6);
-  --mk-surface-strong: rgba(23, 27, 36, 0.92);
-  --mk-line: rgba(237, 239, 243, 0.08);
-  --mk-line-hi: rgba(237, 239, 243, 0.14);
-  --mk-text: #EDEFF3;
-  --mk-text-dim: #8B93A3;
-  --mk-green: #22C58C;
-  --mk-cyan: #46B8C9;
-  --mk-purple: #9C7CF2;
-  --mk-amber: #E8A93A;
-}
-
-/* ---------- 2. Card & panel hierarchy (stop the uniform rounded-lg/shadow-2xl look) ---------- */
-/* Dense data surfaces (tables, order book, ticker rows): flatter, tighter, no shadow —
-   density should read as density, not as a stack of identical cards. */
-.cw-card-interactive {
-  background: linear-gradient(180deg, rgba(20, 23, 31, 0.96), rgba(14, 16, 22, 0.98)) !important;
-  border: 1px solid var(--cw-border) !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  transition: border-color 0.2s ease !important;
-}
-.cw-card-interactive:hover {
-  border-color: var(--cw-border-hi) !important;
-  box-shadow: none !important;
-  transform: none !important;
-}
-.cw-card-interactive::before,
-.cw-card-interactive::after {
-  opacity: 0 !important;
-}
-
-/* Hero / premium surfaces keep a touch more presence — larger radius, one hairline
-   top highlight instead of a heavy drop shadow — reserved for the panels that are
-   genuinely the page's focal point. */
-.cw-panel-premium,
-.mt-6.cw-panel-accent {
-  border-radius: 14px !important;
-  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 20px 44px rgba(0, 0, 0, 0.28) !important;
-}
-
-.bg-\[\#181a20\] {
-  background: linear-gradient(180deg, rgba(20, 23, 31, 0.96), rgba(14, 16, 22, 0.98)) !important;
-}
-
-/* ---------- 3. Buttons: two clear tiers instead of one repeated grey pill ---------- */
-.filter-btn, .tf-btn, .ind-btn, .ctype-btn, .heatmap-scope-btn {
-  background: transparent !important;
-  border-color: var(--cw-border) !important;
-  color: var(--cw-text-dim) !important;
-}
-.filter-btn:hover, .tf-btn:hover, .ind-btn:hover, .ctype-btn:hover, .heatmap-scope-btn:hover {
-  border-color: var(--cw-border-hi) !important;
-  color: var(--cw-text) !important;
-}
-.filter-btn.active, .tf-btn.active, .ind-btn.active, .ctype-btn.active, .heatmap-scope-btn.active {
-  background: rgba(70, 184, 201, 0.12) !important;
-  border-color: rgba(70, 184, 201, 0.5) !important;
-  color: #7FD3DF !important;
-}
-/* ---------- 4. Retire the decorative tracked-uppercase eyebrow; keep the dot,
-   it's the one signal that's actually meaningful (data is live right now). ---------- */
-.mk-eyebrow {
-  text-transform: none;
-  letter-spacing: 0.01em;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 12.5px;
-}
-.mk-eyebrow::before {
-  animation: cb-pulse 2.2s ease-in-out infinite;
-}
-@keyframes cb-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 140, 0.35); }
-  50% { box-shadow: 0 0 0 5px rgba(34, 197, 140, 0); }
-}
 @media (prefers-reduced-motion: reduce) {
-  .mk-eyebrow::before { animation: none; }
+    .mk-live-dot span.dot { animation: none; }
+    .mk-card, .mk-blog-card, .mk-btn-primary, .mk-btn-purple { transition: none !important; }
 }
-
-/* ---------- 5. Nav / footer polish ---------- */
-.mk-nav {
-  background: rgba(10, 12, 16, 0.72) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--mk-line, rgba(237, 239, 243, 0.08));
-}
-.mk-footer {
-  border-top: 1px solid var(--mk-line, rgba(237, 239, 243, 0.08));
-}
-
-/* ---------- 6. Type scale discipline on headings ---------- */
-.mk h1, .mk .mk-display {
-  letter-spacing: -0.025em;
-  font-weight: 600;
-}
-.mk h2 {
-  letter-spacing: -0.02em;
-  font-weight: 600;
-}
-
-/* ---------- 7. Accessibility floor: visible keyboard focus everywhere ---------- */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-[tabindex]:focus-visible {
-  outline: 2px solid #46B8C9 !important;
-  outline-offset: 2px !important;
-}
-
-/* ==== pro-redesign.css ==== */
-/* ============================================================
-   CryptoBolt — Lucide icon system + "Studio" polish pass
-   ------------------------------------------------------------
-   Loaded LAST (after redesign.css), so it wins the cascade
-   without touching styles.css / home.css / premium.css /
-   redesign.css internals. Pure presentation — no JS-read class
-   or ID is renamed here.
-
-   What this adds:
-   1. A consistent Lucide icon system (size, stroke, color,
-      alignment) replacing the emoji icons used across the
-      marketing pages.
-   2. A display type upgrade — Plus Jakarta Sans on headings,
-      swapped in for Space Grotesk — for a more premium,
-      geometric fintech feel, with a tighter, more deliberate
-      type scale.
-   3. Icon-badge and button refinements: circular ringed badges
-      instead of flat squares, a trailing arrow that nudges on
-      hover instead of a static "→" glyph.
-   4. A touch more depth in the hero/panel/section rhythm.
-   ============================================================ */
-
-/* ---------- 1. Lucide icon base ---------- */
-svg.lucide {
-  display: inline-block; /* overrides Tailwind preflight's `svg { display: block }` — see comment above */
-  stroke: currentColor;
-  fill: none;
-  flex-shrink: 0;
-  vertical-align: -3px;
-}
-
-/* Icons inside colored icon badges (feature cards) inherit the badge's color */
-.mk-card-icon svg.lucide,
-.mk-blog-cover svg.lucide,
-.mk-logo-mark svg.lucide {
-  color: inherit;
-  vertical-align: middle;
-}
-
-/* Trailing arrow on CTA links: sits inline, nudges right on hover */
-svg.lucide.mk-btn-icon {
-  margin-left: 1px;
-  transition: transform 0.2s var(--pm-ease, cubic-bezier(0.16, 1, 0.3, 1));
-}
-a:hover > svg.lucide.mk-btn-icon,
-.mk-btn:hover svg.lucide.mk-btn-icon {
-  transform: translateX(3px);
-}
-
-/* Trust-bar icons: centered above the number, quiet until hovered */
-svg.lucide.mk-trust-icon {
-  display: block;
-  margin: 0 auto 8px;
-  color: var(--mk-text-dim, #8b93a3);
-  opacity: 0.85;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-.mk-trust-item:hover svg.lucide.mk-trust-icon { opacity: 1; color: var(--mk-green, #22c58c); }
-a.mk-trust-item-cta svg.lucide.mk-trust-icon { color: var(--mk-green, #22c58c); opacity: 1; }
-
-/* ---------- 2. Typography: a more deliberate display face ---------- */
-.mk h1, .mk h2, .mk h3, .mk .mk-display,
-.mk-logo, .mk-ai-poster-copy h2, .mk-section-head h2 {
-  font-family: 'Plus Jakarta Sans', 'Space Grotesk', 'Inter', sans-serif !important;
-}
-.mk h1 {
-  font-weight: 700 !important;
-  letter-spacing: -0.035em !important;
-  line-height: 1.08 !important;
-}
-.mk h2 { font-weight: 700 !important; letter-spacing: -0.028em !important; }
-.mk h3 { font-weight: 700 !important; letter-spacing: -0.015em !important; }
-.mk-eyebrow {
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 11.5px !important;
-  letter-spacing: 0.04em !important;
-  text-transform: uppercase !important;
-  opacity: 0.9;
-}
-
-/* ---------- 3. Logo mark: circular, ringed, icon-native ---------- */
-.mk-logo-mark {
-  border-radius: 50% !important;
-  background: linear-gradient(155deg, rgba(34, 197, 140, 0.22), rgba(70, 184, 201, 0.10)) !important;
-  border: 1px solid rgba(34, 197, 140, 0.32) !important;
-  color: #22c58c;
-  box-shadow: 0 0 0 3px rgba(34, 197, 140, 0.06);
-}
-
-/* ---------- 4. Feature-card icon badges: circular, ringed, lift on hover ---------- */
-.mk-card-icon {
-  border-radius: 50% !important;
-  border: 1px solid currentColor;
-  position: relative;
-  transition: transform 0.25s var(--pm-ease, cubic-bezier(0.16, 1, 0.3, 1));
-}
-.mk-card-icon::after {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 1px solid currentColor;
-  opacity: 0.16;
-}
-.mk-card:hover .mk-card-icon { transform: scale(1.06) rotate(-4deg); }
-
-/* ---------- 5. Blog cover icons: quiet monochrome tile instead of a big flat emoji ---------- */
-.mk-blog-cover {
-  background: linear-gradient(155deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)) !important;
-  color: var(--mk-text-dim, #8b93a3);
-  transition: color 0.2s ease;
-}
-.mk-blog-card:hover .mk-blog-cover { color: var(--mk-green, #22c58c); }
-
-/* ---------- 6. Trust bar: icon-led, slightly more generous ---------- */
-.mk-trust-item { padding: 18px 14px 16px !important; }
-
-/* ---------- 7. Buttons: icon-aware spacing already handled by .mk-btn gap; add a
-   touch more weight to the primary CTA and a crisper ghost outline ---------- */
-.mk-btn-primary {
-  background: linear-gradient(155deg, #29d99a, #1fae7e) !important;
-  box-shadow: 0 0 0 1px rgba(34, 197, 140, 0.45), 0 12px 26px -10px rgba(34, 197, 140, 0.55) !important;
-}
-.mk-btn-ghost {
-  border-color: var(--mk-line-hi, rgba(237,239,243,0.14)) !important;
-}
-
-/* ---------- 8. Section rhythm: a little more air, one consistent max-width ---------- */
-.mk-section { padding-top: 84px !important; padding-bottom: 84px !important; }
-.mk-hero { padding-top: 76px !important; }
-
-/* ---------- 9. Hero panel: subtle radial glow behind the live ticker, not just a flat card ---------- */
-.mk-hero { position: relative; }
-.mk-panel { position: relative; }
-.mk-panel::before {
-  content: "";
-  position: absolute;
-  inset: -40px -20px auto;
-  height: 180px;
-  background: radial-gradient(ellipse at center, rgba(34, 197, 140, 0.14), transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* ---------- 10. AI poster list arrow -> keep glyph but align with the icon system's spacing ---------- */
-.mk-ai-poster-list li::before { font-family: 'JetBrains Mono', monospace; }
-
-@media (prefers-reduced-motion: reduce) {
-  .mk-card-icon, svg.lucide.mk-btn-icon { transition: none !important; }
-}
-
-/* ==== aurora-finish.css ==== */
-/* ============================================================
-   CryptoBolt — "Prism" finishing pass (v2)
-   ------------------------------------------------------------
-   Loaded LAST in every bundle, after premium.css / redesign.css /
-   pro-redesign.css. Those files already do "gradient sheen button +
-   gradient-hairline card + grain" — so this pass does NOT repeat
-   that recipe. It introduces a distinct visual signature instead:
-
-   1. A second, non-green brand accent (violet/cyan) used ONLY for
-      chrome/branding — nav, hero glow, focus rings — while every
-      bull/bear price color (.cw-green/.cw-red, up/down, P&L) is
-      left completely untouched. Financial semantics don't change.
-   2. Much rounder geometry (pill buttons, 22px cards) — a clearly
-      different shape language, not just new numbers on old shapes.
-   3. A rotating conic-gradient ring around the hero ticker panel —
-      an element that doesn't exist anywhere else in the CSS.
-   4. Per-card cycling top accent bar (green / cyan / violet) on
-      feature grids, so the bento grid reads as designed, not
-      uniform-green.
-   5. A bolder, more saturated background mesh + fine dot-grid
-      texture (in addition to, not instead of, the existing grain).
-   Pure presentation layer — no markup/JS/CSP touched anywhere.
-   ============================================================ */
-
-:root {
-  --pr-radius-lg: 22px;
-  --pr-radius-pill: 999px;
-  --pr-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --pr-violet: #8b5cf6;
-  --pr-violet-2: #c4b5fd;
-  --pr-cyan: #22d3ee;
-  --pr-green: #14d38a;
-}
-
-/* ---------- 1. Bolder background mesh + dot grid (adds to, doesn't replace, grain) ---------- */
-body { position: relative; isolation: isolate; }
-body::before {
-  content: "";
-  position: fixed;
-  inset: -15vh -15vw;
-  z-index: -2;
-  pointer-events: none;
-  background:
-    radial-gradient(32vw 32vw at 8% 6%, rgba(139, 92, 246, 0.22), transparent 62%),
-    radial-gradient(30vw 30vw at 94% 12%, rgba(34, 211, 238, 0.16), transparent 60%),
-    radial-gradient(36vw 36vw at 50% 100%, rgba(20, 211, 138, 0.14), transparent 62%),
-    radial-gradient(22vw 22vw at 70% 60%, rgba(251, 113, 133, 0.08), transparent 65%);
-  filter: blur(6px) saturate(135%);
-  animation: pr-drift 30s ease-in-out infinite alternate;
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.5;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 26px 26px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 85%);
-}
-@keyframes pr-drift {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(-3%, 3%, 0) scale(1.08); }
-}
-@media (prefers-reduced-motion: reduce) { body::before { animation: none; } }
-@media (max-width: 600px) {
-  body::before { animation: none; filter: blur(10px) saturate(120%); }
-  body::after { opacity: 0.3; }
-}
-
-/* ---------- 2. Rounder geometry: pill buttons ---------- */
-.mk-btn {
-  border-radius: var(--pr-radius-pill) !important;
-}
-.mk-btn-lg { padding: 13px 26px !important; }
-.mk-card, .mk-panel, .mk-blog-card, .mk-cta-band, .mk-ai-poster-card {
-  border-radius: var(--pr-radius-lg) !important;
-}
-.mk-card-icon { border-radius: var(--pr-radius-pill) !important; }
-
-/* ---------- 3. Violet/cyan as the BRAND accent (chrome only — never price data) ---------- */
-.mk-nav {
-  border-bottom: 1px solid transparent !important;
-  background-image:
-    linear-gradient(180deg, rgba(8, 9, 13, 0.86), rgba(8, 9, 13, 0.66)),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.5), rgba(34, 211, 238, 0.35), rgba(20, 211, 138, 0.35)) !important;
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-}
-/* NOTE: .mk-logo-mark contains a live `zap` icon colored via `color:` —
-   never set an opaque `background` here, it hides the icon. A soft
-   outer ring is safe because it sits outside the icon's box. */
-.mk-logo-mark {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 0 3px rgba(139, 92, 246, 0.14),
-    0 0 14px -2px rgba(34, 211, 238, 0.35) !important;
-}
-a:focus-visible, button:focus-visible, .mk-btn:focus-visible {
-  outline: 2px solid var(--pr-violet-2);
-  outline-offset: 2px;
-}
-.mk-eyebrow-purple, .mk-eyebrow { letter-spacing: 0.16em; }
-
-/* Hero: gradient now spans brand palette, not just green→cyan */
-.mk-hero h1 .mk-accent {
-  background: linear-gradient(115deg, var(--pr-violet-2) 0%, var(--pr-cyan) 50%, var(--pr-green) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-/* ---------- 4. Signature ticker panel glow ----------
-   Deliberately NOT touching ::before/::after here — home.css already
-   draws the green/cyan corner-bracket accents on this panel via those
-   pseudo-elements, and they're kept as-is. This just adds a soft
-   ambient glow around the whole panel using box-shadow, which can't
-   render incorrectly the way a masked gradient border can. */
-.mk-panel {
-  box-shadow:
-    0 0 0 1px rgba(139, 92, 246, 0.16),
-    0 30px 70px -30px rgba(0, 0, 0, 0.7),
-    0 0 50px -18px rgba(34, 211, 238, 0.25);
-}
-
-/* ---------- 5. Cycling top accent bar on bento/feature cards ---------- */
-.mk-card {
-  position: relative;
-  overflow: hidden;
-}
-.mk-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--pr-green);
-  opacity: 0.85;
-}
-.mk-card:nth-of-type(3n+2)::before { background: var(--pr-cyan); }
-.mk-card:nth-of-type(3n+3)::before { background: var(--pr-violet); }
-.mk-card:hover { transform: translateY(-5px) !important; }
-
-/* ---------- 6. Trust bar + CTA band pick up the rounder, cooler treatment ---------- */
-.mk-trust-bar { border-radius: var(--pr-radius-lg) !important; }
-.mk-cta-band {
-  background:
-    radial-gradient(560px 260px at 12% 0%, rgba(139, 92, 246, 0.16), transparent 65%),
-    radial-gradient(560px 260px at 88% 100%, rgba(34, 211, 238, 0.14), transparent 65%),
-    var(--mk-surface-strong, rgba(20, 24, 32, 0.9)) !important;
-}
-
-/* ---------- 7. Footer: gradient hairline matches the new palette ---------- */
-.mk-footer { position: relative; border-top-color: transparent !important; }
-.mk-footer::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.45), rgba(34, 211, 238, 0.35), transparent);
-}
-
-/* ================================================================
-   Terminal (app.html / trade.html / invest.html) — chrome only,
-   price/PnL/chart colors untouched.
-   ================================================================ */
-.cw-ambient-orb {
-  filter: blur(85px);
-  opacity: 0.6;
-  animation: pr-orb-float 16s ease-in-out infinite alternate;
-}
-.cw-orb-1 { background: radial-gradient(circle, rgba(139, 92, 246, 0.5), transparent 70%) !important; animation-delay: 0s; }
-.cw-orb-2 { background: radial-gradient(circle, rgba(34, 211, 238, 0.45), transparent 70%) !important; animation-delay: -5s; }
-.cw-orb-3 { background: radial-gradient(circle, rgba(20, 211, 138, 0.4), transparent 70%) !important; animation-delay: -10s; }
-@keyframes pr-orb-float {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(4%, -5%, 0) scale(1.15); }
-}
-@media (prefers-reduced-motion: reduce) { .cw-ambient-orb { animation: none; } }
-
-.cw-card-interactive {
-  border-radius: 14px !important;
-  transition: transform .3s var(--pr-ease), box-shadow .3s var(--pr-ease), border-color .3s var(--pr-ease) !important;
-}
-.cw-card-interactive:hover {
-  transform: translateY(-2px);
-  border-color: rgba(139, 92, 246, 0.35) !important;
-  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.2), 0 24px 50px -20px rgba(0, 0, 0, 0.7);
-}
-@media (prefers-reduced-motion: reduce) { .cw-card-interactive:hover { transform: none; } }
-
-::-webkit-scrollbar-thumb:hover { background: var(--pr-violet); }

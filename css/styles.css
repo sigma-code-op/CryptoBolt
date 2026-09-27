@@ -27,13 +27,16 @@
 }
 
 :root {
-    /* Surfaces */
-    --cw-bg: #090a0f;
-    --cw-panel: #11131a;
+    /* Surfaces (this is the single source of truth for these tokens — a
+       second :root block used to redefine several of these further down
+       this file, and a third pass lived in redesign.css; both have been
+       folded in here so there's one value per token, not three). */
+    --cw-bg: #0a0b0f;
+    --cw-panel: #12141b;
     --cw-panel-alt: #151822;
     --cw-panel-hi: #191c27;
-    --cw-border: #21242f;
-    --cw-border-hi: #2d3140;
+    --cw-border: rgba(151, 177, 183, 0.16);
+    --cw-border-hi: rgba(111, 224, 211, 0.4);
 
     /* Signal colors */
     --cw-green: #14d38a;    /* bull / brand */
@@ -44,12 +47,22 @@
     --cw-purple: #a855f7;   /* legacy accent, kept for compat */
 
     /* Text */
-    --cw-text: #e9ebf1;
-    --cw-text-dim: #8b93a7;
+    --cw-text: #eaf3f1;
+    --cw-text-dim: #8da1a6;
 
     --cw-radius: 10px;
     --cw-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --cw-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Icon system (Lucide via data-lucide -> icons-init.js), used
+   on every page — app terminal panels as well as the marketing site. ---------- */
+svg.lucide {
+    display: inline-block; /* overrides Tailwind preflight's `svg { display: block }` */
+    stroke: currentColor;
+    fill: none;
+    flex-shrink: 0;
+    vertical-align: -3px;
 }
 
 /* ---------- Typography ---------- */
@@ -579,31 +592,10 @@ input, select, textarea {
     }
 }
 
-/* Modern finish: keep the final cascade calm, soft, and consistent. */
-:root {
-    --cw-bg: #080c10;
-    --cw-panel: #11181e;
-    --cw-panel-alt: #141e25;
-    --cw-panel-hi: #1b2930;
-    --cw-border: rgba(151, 177, 183, 0.16);
-    --cw-border-hi: rgba(111, 224, 211, 0.4);
-    --cw-text: #eaf3f1;
-    --cw-text-dim: #8da1a6;
-    --cw-radius: 10px;
-}
-
-body {
-    background:
-        radial-gradient(ellipse 60% 42% at 0% 0%, rgba(39, 151, 135, 0.12), transparent 72%),
-        radial-gradient(ellipse 52% 42% at 100% 14%, rgba(55, 136, 166, 0.1), transparent 72%),
-        linear-gradient(150deg, #080c10 0%, #0b1217 52%, #080c10 100%);
-}
-
-body::before {
-    opacity: 0.55;
-    background-size: 40px 40px;
-    mask-image: linear-gradient(to bottom, black, transparent 74%);
-}
+/* Modern finish: kept for the rules below that are still live (ui-elevate.css
+   loads after this file and repeats the background/:root tokens with
+   !important — both of those have been removed here since they were fully
+   dead code; everything from here down still applies). */
 
 .container {
     max-width: 1680px !important;
