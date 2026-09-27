@@ -1094,6 +1094,22 @@ footer {
 @keyframes floatOrb3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(40px, -50px) scale(1.05); } }
 .container { position: relative; z-index: 1; }
 
+/* Ambient 3D network backdrop (app.html, ai.html — js/terminal-motion.js,
+   Three.js). Sits behind the ambient orbs and all real content; if the
+   script never runs (CDN blocked, WebGL unavailable, reduced motion, narrow
+   viewport) this is just an empty transparent canvas. */
+#cw-terminal-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+@media (max-width: 900px) {
+    #cw-terminal-canvas { display: none; } /* js/terminal-motion.js also skips WebGL init below this width */
+}
+
 /* ---------- Card surfaces ---------- */
 .cw-card-interactive {
     background: linear-gradient(165deg, #161923 0%, #101219 100%) !important;
@@ -1131,12 +1147,19 @@ footer {
 /* ---------- Scroll-reveal (JS toggles .cw-in-view via IntersectionObserver) ---------- */
 .cw-reveal {
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.6s var(--cw-ease), transform 0.6s var(--cw-ease);
+    transform: translateY(18px) scale(0.97);
+    transition: opacity 0.6s var(--cw-ease), transform 0.6s var(--cw-ease), box-shadow 0.6s var(--cw-ease);
 }
 .cw-reveal.cw-in-view {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    animation: cwRevealGlow 0.9s var(--cw-ease);
+}
+/* One-shot glow flash as a panel lands, rather than just fading in flat. */
+@keyframes cwRevealGlow {
+    0% { box-shadow: 0 0 0 1px rgba(20, 211, 138, 0), 0 0 0 rgba(20, 211, 138, 0); }
+    35% { box-shadow: 0 0 0 1px rgba(20, 211, 138, 0.35), 0 0 26px rgba(20, 211, 138, 0.22); }
+    100% { box-shadow: 0 0 0 1px rgba(20, 211, 138, 0), 0 0 0 rgba(20, 211, 138, 0); }
 }
 /* Cards revealed instantly by js/20-scroll-reveal.js because they were already in the
    viewport on load (see that file) — no transition, so there's nothing for Lighthouse's
@@ -1144,6 +1167,7 @@ footer {
    `!important` transition rules regardless of which CSS file loads last. */
 .cw-reveal.cw-reveal-instant {
     transition: none !important;
+    animation: none !important; /* also skip the landing-glow flash — see comment above */
 }
 
 /* ---------- Header scan sweep: a single orchestrated moment on load ---------- */

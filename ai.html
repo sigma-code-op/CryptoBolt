@@ -6,6 +6,11 @@
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
     <script defer src="js/icons-init.js"></script>
+<!-- Ambient 3D backdrop for this terminal page — see js/terminal-motion.js header
+     comment. Fully independent of the trading terminal's own scripts below;
+     no-ops silently if the CDN is blocked or WebGL is unavailable. -->
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script defer src="js/terminal-motion.js"></script>
     <script src="js/consent-default.js"></script>
     <script src="js/error-reporter.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
@@ -132,7 +137,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="css/dist/bundle-ai.css?v=20260929">
+    <link rel="stylesheet" href="css/dist/bundle-ai.css?v=20260930">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,6 +167,7 @@
 
 
 
+<canvas id="cw-terminal-canvas" aria-hidden="true"></canvas>
 <div class="ai-background">
     <div class="ai-orb ai-orb-one"></div>
     <div class="ai-orb ai-orb-two"></div>
