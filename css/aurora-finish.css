@@ -91,9 +91,14 @@ body::after {
   backdrop-filter: blur(16px) saturate(150%);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
 }
+/* NOTE: .mk-logo-mark contains a live `zap` icon colored via `color:` —
+   never set an opaque `background` here, it hides the icon. A soft
+   outer ring is safe because it sits outside the icon's box. */
 .mk-logo-mark {
-  background: conic-gradient(from 180deg, var(--pr-violet), var(--pr-cyan), var(--pr-green), var(--pr-violet)) !important;
-  border: none !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 0 3px rgba(139, 92, 246, 0.14),
+    0 0 14px -2px rgba(34, 211, 238, 0.35) !important;
 }
 a:focus-visible, button:focus-visible, .mk-btn:focus-visible {
   outline: 2px solid var(--pr-violet-2);
@@ -110,41 +115,17 @@ a:focus-visible, button:focus-visible, .mk-btn:focus-visible {
   color: transparent;
 }
 
-/* ---------- 4. Rotating conic ring around the signature ticker panel ---------- */
+/* ---------- 4. Signature ticker panel glow ----------
+   Deliberately NOT touching ::before/::after here — home.css already
+   draws the green/cyan corner-bracket accents on this panel via those
+   pseudo-elements, and they're kept as-is. This just adds a soft
+   ambient glow around the whole panel using box-shadow, which can't
+   render incorrectly the way a masked gradient border can. */
 .mk-panel {
-  position: relative;
-  z-index: 0;
-}
-.mk-panel::before {
-  content: "";
-  position: absolute;
-  inset: -1.5px;
-  z-index: -1;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(
-    from var(--pr-angle, 0deg),
-    rgba(139, 92, 246, 0.55),
-    rgba(34, 211, 238, 0.5),
-    rgba(20, 211, 138, 0.5),
-    rgba(139, 92, 246, 0.55)
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  animation: pr-rotate 6s linear infinite;
-}
-@property --pr-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-@keyframes pr-rotate {
-  to { --pr-angle: 360deg; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .mk-panel::before { animation: none; }
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.16),
+    0 30px 70px -30px rgba(0, 0, 0, 0.7),
+    0 0 50px -18px rgba(34, 211, 238, 0.25);
 }
 
 /* ---------- 5. Cycling top accent bar on bento/feature cards ---------- */
