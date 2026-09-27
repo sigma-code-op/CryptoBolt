@@ -247,10 +247,30 @@ a.mk-trust-item-cta svg.lucide.mk-trust-icon { opacity: 1; color: var(--mk-green
 
 /* ---------- Hero ---------- */
 .mk-hero {
+    position: relative;
+    isolation: isolate;
     padding: clamp(64px, 9vw, 116px) clamp(16px, 4vw, 48px) 40px;
     max-width: 1180px;
     margin: 0 auto;
     text-align: center;
+}
+/* Ambient 3D scene (js/marketing-motion.js, Three.js) — sits behind every
+   other hero child. If the script never runs (CDN blocked, WebGL disabled)
+   this is just an empty transparent canvas; nothing depends on it. */
+#mk-hero-canvas {
+    position: absolute;
+    inset: -10% 0 0 0;
+    width: 100%;
+    height: 120%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+    -webkit-mask-image: linear-gradient(to bottom, black 45%, transparent 88%);
+    mask-image: linear-gradient(to bottom, black 45%, transparent 88%);
+}
+.mk-hero > *:not(#mk-hero-canvas) { position: relative; z-index: 1; }
+@media (max-width: 880px) {
+    #mk-hero-canvas { display: none; } /* js/marketing-motion.js also skips WebGL init below this width */
 }
 .mk-hero h1 {
     font-size: clamp(34px, 6vw, 60px);
@@ -367,8 +387,11 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     text-decoration: none;
     color: inherit;
     display: block;
+    will-change: transform;
     transition: border-color .18s ease, transform .18s var(--mk-ease), box-shadow .18s var(--mk-ease);
 }
+/* Base hover lift (no-JS / touch fallback). js/marketing-motion.js replaces
+   this with a mousemove-driven 3D tilt on pointer devices — see initTilt(). */
 .mk-card:hover { border-color: var(--mk-line-hi); transform: translateY(-2px); box-shadow: var(--mk-shadow); }
 .mk-card.mk-span-2 { grid-column: span 2; }
 .mk-card.mk-span-4 { grid-column: span 4; }
@@ -410,6 +433,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     color: inherit;
     display: flex;
     flex-direction: column;
+    will-change: transform;
     transition: border-color .18s ease, transform .18s var(--mk-ease), box-shadow .18s var(--mk-ease);
 }
 .mk-blog-card:hover { border-color: var(--mk-line-hi); transform: translateY(-2px); box-shadow: var(--mk-shadow); }

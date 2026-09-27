@@ -144,6 +144,7 @@
 
 <!-- ============ Hero ============ -->
 <header class="mk-hero">
+    <canvas id="mk-hero-canvas" aria-hidden="true"></canvas>
     <span class="mk-eyebrow">Live · Spot &amp; Futures · No signup to browse</span>
     <h1>Live Bitcoin, Ethereum &amp; altcoin prices<br>with a free crypto trading terminal <span class="mk-accent">and AI market research.</span></h1>
     <p class="mk-sub">Track real-time Binance spot and futures data, pro-grade charting, order book depth, portfolio tracking, alerts, and AI-powered crypto research in one fast, free terminal.</p>
@@ -474,6 +475,15 @@
 
 <script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
 <script defer src="js/icons-init.js"></script>
+<!-- Motion layer (2026 redesign pass 2): scroll reveal, 3D card tilt, magnetic
+     CTA, and the ambient hero visual. All three CDN libraries are already
+     allow-listed in script-src (see scripts/build-csp.js); js/marketing-motion.js
+     checks for each one and no-ops if it's missing, so a blocked CDN just
+     means "no animation", never a broken page. -->
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script defer src="js/marketing-motion.js"></script>
 <script src="js/index-ticker-ribbon.js"></script>
 
 <script src="js/index-ai-status.js"></script>
