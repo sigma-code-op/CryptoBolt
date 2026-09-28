@@ -88,7 +88,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261001">
+    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20260928">
 </head>
 <body class="mk">
 <div class="mk-field"></div>
@@ -141,7 +141,7 @@
     <h2>Why it matters more paired with open interest</h2>
     <p>Funding rate alone tells you the direction of the crowd. Open interest tells you the size of it. A high funding rate with flat or falling open interest often just means a small, stubborn group of traders is paying up to stay positioned — not much fuel for a violent move either way. The same funding rate with open interest climbing fast is a more crowded, more fragile setup: more leveraged positions sitting on one side, more that would need to unwind if price turns against them. CryptoBolt's terminal surfaces both side by side for exactly this reason — funding rate by itself is a data point, funding rate next to open interest starts to look like a read on positioning risk.</p>
     <h2>What counts as a "good" or normal funding rate?</h2>
-    <p>There's no fixed threshold, but as a rough anchor: funding in the roughly 0.01%–0.02% range per 8-hour period (about 3–6% annualized) is typical, unremarkable positioning on most major pairs. Rates that push toward 0.05%–0.1% per period, especially while climbing, mean the crowd is leaning hard on one side and paying a real premium to stay there — that's the range where leveraged positioning starts getting fragile. If you're holding a leveraged position while funding runs against you, remember that funding is a running cost that eats into your margin over time, on top of — not instead of — your liquidation price, which is set by leverage and entry price, not by funding. CryptoBolt's terminal shows estimated liquidation price alongside live funding for exactly this reason: they're two separate risks that both need watching. Run your own numbers with the <a href="liquidation-price-calculator.html">liquidation price calculator</a>.</p>
+    <p>There's no fixed threshold, but as a rough anchor: funding in the roughly 0.01%–0.02% range per 8-hour period (about 3–6% annualized) is typical, unremarkable positioning on most major pairs. Rates that push toward 0.05%–0.1% per period, especially while climbing, mean the crowd is leaning hard on one side and paying a real premium to stay there — that's the range where leveraged positioning starts getting fragile. If you're holding a leveraged position while funding runs against you, remember that funding is a running cost that eats into your margin over time, on top of — not instead of — your liquidation price, which is set by leverage and entry price, not by funding. CryptoBolt's terminal shows estimated liquidation price alongside live funding for exactly this reason: they're two separate risks that both need watching.</p>
     <h2>The catch</h2>
     <p>Funding resets every eight hours on most venues, so a single reading is a snapshot, not a trend. What's more useful is watching how it moves over the funding periods leading into a big move: rate climbing steadily into a rally, then spiking right before it stalls, is a very different picture than a rate that's been calm the whole way up. Treat it the same way you'd treat the Fear &amp; Greed index or round-number levels — informative in isolation, more useful stacked with price action, volume, and open interest than read alone.</p>
     <p><a href="app.html">See live funding rates next to open interest in the terminal →</a></p>
@@ -153,21 +153,21 @@
         <h2 id="related-heading">More from the blog</h2>
     </div>
     <div class="mk-blog-grid">
+        <a href="why-we-dont-predict-crypto-prices.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(248,113,113,.08);"><i data-lucide="dice-5" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Reality Check · 5 min read</span>
+                <h3>Why CryptoBolt doesn't predict crypto prices (and what to look at instead)</h3>
+                <p>"Bitcoin price prediction today" is one of the most-searched phrases in crypto. Here's why we don't answer it, and what's more useful to look at instead.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
         <a href="1000-dollar-day-trap.html" class="mk-blog-card">
             <div class="mk-blog-cover" style="background:rgba(255,176,32,.08);"><i data-lucide="triangle-alert" width="26" height="26" stroke-width="1.8"></i></div>
             <div class="mk-blog-body">
                 <span class="mk-blog-meta">Reality Check · 6 min read</span>
                 <h3>"$1000 in a day": why that headline is a trap, and why you clicked it</h3>
                 <p>Round number, single day, screenshot of gains — the "$1000 in a day" headline is engineered, not accidental. Here's exactly how it pulls you in.</p>
-                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
-            </div>
-        </a>
-        <a href="day-trading-crypto-realistic-returns.html" class="mk-blog-card">
-            <div class="mk-blog-cover" style="background:rgba(248,113,113,.08);"><i data-lucide="dice-5" width="26" height="26" stroke-width="1.8"></i></div>
-            <div class="mk-blog-body">
-                <span class="mk-blog-meta">Reality Check · 6 min read</span>
-                <h3>How much can you realistically make day trading crypto?</h3>
-                <p>"Make $1000 a day" is everywhere. Here's what peer-reviewed research on day traders actually found — and a more honest way to test a strategy first.</p>
                 <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
             </div>
         </a>
@@ -213,8 +213,8 @@
     </div>
 </footer>
 
-<script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
-<script defer src="js/icons-init.js"></script>
+<script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+<script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 </body>
