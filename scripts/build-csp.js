@@ -119,7 +119,11 @@ const FRAME_SRC = [
 ];
 
 function sha256Base64(text) {
-  return createHash('sha256').update(text, 'utf8').digest('base64');
+  // Normalize CRLF -> LF before hashing. Browsers normalize newlines while parsing HTML (per the
+  // HTML spec), so the LF form is the text a CSP hash is checked against; and it makes the result
+  // identical whether this runs on a Windows checkout (CRLF) or in Linux CI (LF). Without this,
+  // hashes committed from Windows never matched CI's, failing "CSP meta tag is up to date".
+  return createHash('sha256').update(text.replace(/\r\n/g, '\n'), 'utf8').digest('base64');
 }
 
 // Finds inline <script>...</script> blocks that have no src="" attribute
