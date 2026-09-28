@@ -17,6 +17,15 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const noHover = window.matchMedia('(hover: none)').matches;
+    // Phones/tablets get a lighter version of the same effects rather than none:
+    // fewer particles, no antialiasing, lower pixel ratio, ~30fps cap, and touch
+    // input (finger parallax + scroll-linked rotation) instead of a mouse.
+    const isTouch = noHover || window.matchMedia('(pointer: coarse)').matches;
+    const conn = navigator.connection || {};
+    // Data-saver or clearly low-end hardware: draw one static frame, no animation loop.
+    const lowPower = !!conn.saveData ||
+        (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
+        (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
 
     /* ================= Scroll reveal (GSAP + ScrollTrigger) ================= */
     // Targets plain marketing classes already in the HTML — no data-* markup
@@ -98,6 +107,28 @@
         });
     }
 
+    /* ================= Touch "press tilt" on cards (phones/tablets) ================= */
+    // Same 3D feel as the desktop hover tilt, driven by where a finger presses.
+    // Passive listeners only, so scrolling is never blocked; the browser sends
+    // touchcancel when a drag turns into a scroll, which resets the card.
+    function initTouchTilt() {
+        if (reduceMotion || !isTouch) return;
+        document.querySelectorAll('.mk-card, .mk-blog-card').forEach((card) => {
+            const tiltTo = (t) => {
+                const r = card.getBoundingClientRect();
+                const px = (t.clientX - r.left) / r.width - 0.5;
+                const py = (t.clientY - r.top) / r.height - 0.5;
+                card.style.transform =
+                    `perspective(700px) rotateX(${(-py * 9).toFixed(2)}deg) rotateY(${(px * 12).toFixed(2)}deg) scale(0.985)`;
+            };
+            const reset = () => { card.style.transform = ''; };
+            card.addEventListener('touchstart', (e) => tiltTo(e.touches[0]), { passive: true });
+            card.addEventListener('touchmove', (e) => tiltTo(e.touches[0]), { passive: true });
+            card.addEventListener('touchend', reset, { passive: true });
+            card.addEventListener('touchcancel', reset, { passive: true });
+        });
+    }
+
     /* ================= Magnetic primary CTA in the hero ================= */
     function initMagnetic() {
         if (reduceMotion || noHover) return;
@@ -113,22 +144,20 @@
     }
 
     /* ================= 3D hero visual (Three.js) ================= */
-    // A quiet wireframe + particle field behind the hero copy — not a full
-    // interactive scene, just ambient depth. Skipped on touch/narrow viewports
-    // (CSS also hides the canvas there) and on reduced-motion, and paused
-    // whenever the hero scrolls out of view or the tab is hidden, since this
-    // page also runs a live WebSocket ticker and shouldn't compete with it
-    // for battery/GPU.
+    // A wireframe + particle field behind the hero copy. Runs on every device:
+    // desktop gets mouse parallax and the full particle count; phones get a
+    // lighter scene (fewer particles, no antialiasing, lower pixel ratio, ~30fps)
+    // driven by finger movement and scroll position. Paused whenever the hero is
+    // off-screen or the tab is hidden, since this page also runs a live ticker.
     function initHero3D() {
         const canvas = document.getElementById('mk-hero-canvas');
         if (!canvas || typeof THREE === 'undefined') return;
-        if (noHover || window.innerWidth < 880) return;
 
         let renderer;
         try {
-            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isTouch });
         } catch (e) { return; }
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isTouch ? 1.25 : 1.5));
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
@@ -147,7 +176,7 @@
             group.add(mesh);
         });
 
-        const count = 160;
+        const count = isTouch ? 70 : 160;
         const positions = new Float32Array(count * 3);
         for (let i = 0; i < count; i++) {
             const r = 4.6 + Math.random() * 2.4;
@@ -159,46 +188,68 @@
         }
         const pgeo = new THREE.BufferGeometry();
         pgeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const particles = new THREE.Points(pgeo, new THREE.PointsMaterial({ color: 0x1fcf8c, size: 0.045, transparent: true, opacity: 0.5 }));
+        const particles = new THREE.Points(pgeo, new THREE.PointsMaterial({ color: 0x1fcf8c, size: isTouch ? 0.06 : 0.045, transparent: true, opacity: 0.5 }));
         group.add(particles);
 
-        let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) - 0.5;
-            mouseY = (e.clientY / window.innerHeight) - 0.5;
-        }, { passive: true });
+        // Input: mouse on desktop, finger on touch, plus scroll position on both.
+        let inX = 0, inY = 0, curX = 0, curY = 0, scrollRot = 0;
+        if (isTouch) {
+            const onTouch = (e) => {
+                const t = e.touches[0];
+                inX = (t.clientX / window.innerWidth) - 0.5;
+                inY = (t.clientY / window.innerHeight) - 0.5;
+            };
+            window.addEventListener('touchstart', onTouch, { passive: true });
+            window.addEventListener('touchmove', onTouch, { passive: true });
+        } else {
+            window.addEventListener('mousemove', (e) => {
+                inX = (e.clientX / window.innerWidth) - 0.5;
+                inY = (e.clientY / window.innerHeight) - 0.5;
+            }, { passive: true });
+        }
+        window.addEventListener('scroll', () => { scrollRot = window.scrollY * 0.0016; }, { passive: true });
 
         function resize() {
             const w = canvas.clientWidth, h = canvas.clientHeight;
             if (!w || !h) return;
             renderer.setSize(w, h, false);
-            camera.aspect = w / h;
+            const aspect = w / h;
+            camera.aspect = aspect;
+            // Portrait screens: pull the camera back so the shape fits the narrow
+            // width, and lift it toward the top of the hero (behind the headline).
+            camera.position.z = aspect < 1.2 ? Math.min(20, 8.2 / (0.828 * aspect)) : 9;
+            group.position.y = aspect < 1 ? 0.25 * 0.828 * camera.position.z : 0;
             camera.updateProjectionMatrix();
         }
         window.addEventListener('resize', resize, { passive: true });
         resize();
 
         const clock = new THREE.Clock();
-        let raf = null;
+        const minFrameMs = isTouch ? 33 : 0; // ~30fps on phones
+        let raf = null, lastDraw = 0;
         let tabVisible = !document.hidden;
         let heroVisible = true;
 
-        function frame() {
-            raf = requestAnimationFrame(frame);
-            const dt = Math.min(clock.getDelta(), 0.1);
+        function draw(dt) {
             group.children.forEach((m) => { if (m.userData.speed) m.rotation.y += m.userData.speed * dt; });
             particles.rotation.y -= 0.012 * dt;
-            curX += (mouseX - curX) * 0.04;
-            curY += (mouseY - curY) * 0.04;
-            group.rotation.y = curX * 0.6;
-            group.rotation.x = curY * 0.35;
+            curX += (inX - curX) * 0.05;
+            curY += (inY - curY) * 0.05;
+            group.rotation.y = curX * 0.6 + scrollRot;
+            group.rotation.x = curY * 0.35 + scrollRot * 0.4;
             renderer.render(scene, camera);
         }
-        function start() { if (!raf) frame(); }
+        function frame(now) {
+            raf = requestAnimationFrame(frame);
+            if (minFrameMs && now - lastDraw < minFrameMs) return;
+            lastDraw = now;
+            draw(Math.min(clock.getDelta(), 0.1));
+        }
+        function start() { if (!raf) { clock.getDelta(); raf = requestAnimationFrame(frame); } }
         function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
-        if (reduceMotion) {
-            renderer.render(scene, camera);
+        if (reduceMotion || lowPower) {
+            renderer.render(scene, camera); // one static frame, no loop
             return;
         }
 
@@ -217,6 +268,7 @@
         initReveal();
         initCounters();
         initTilt();
+        initTouchTilt();
         initMagnetic();
         initHero3D();
     }

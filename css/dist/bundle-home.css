@@ -1107,7 +1107,7 @@ footer {
     pointer-events: none;
 }
 @media (max-width: 900px) {
-    #cw-terminal-canvas { display: none; } /* js/terminal-motion.js also skips WebGL init below this width */
+    #cw-terminal-canvas { opacity: 0.6; } /* lighter mobile scene — see js/terminal-motion.js; dimmer so data stays readable */
 }
 
 /* ---------- Card surfaces ---------- */
@@ -2929,8 +2929,15 @@ a.mk-trust-item-cta svg.lucide.mk-trust-icon { opacity: 1; color: var(--mk-green
     mask-image: linear-gradient(to bottom, black 45%, transparent 88%);
 }
 .mk-hero > *:not(#mk-hero-canvas) { position: relative; z-index: 1; }
+/* Phones: the scene is a lighter version (see js/marketing-motion.js), sized to
+   the whole hero and a touch dimmer so headline text stays crisp. */
 @media (max-width: 880px) {
-    #mk-hero-canvas { display: none; } /* js/marketing-motion.js also skips WebGL init below this width */
+    #mk-hero-canvas { inset: 0; height: 100%; opacity: 0.6; }
+}
+/* Touch devices have no hover, so give taps the same tactile feel. */
+@media (hover: none) {
+    .mk-card:active, .mk-blog-card:active { border-color: var(--mk-line-hi); }
+    .mk-btn:active { transform: scale(0.97); }
 }
 .mk-hero h1 {
     font-size: clamp(34px, 6vw, 60px);

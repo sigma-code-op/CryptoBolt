@@ -1099,7 +1099,7 @@ footer {
     pointer-events: none;
 }
 @media (max-width: 900px) {
-    #cw-terminal-canvas { display: none; } /* js/terminal-motion.js also skips WebGL init below this width */
+    #cw-terminal-canvas { opacity: 0.6; } /* lighter mobile scene — see js/terminal-motion.js; dimmer so data stays readable */
 }
 
 /* ---------- Card surfaces ---------- */
