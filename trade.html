@@ -189,6 +189,14 @@
                         <span class="text-[9px] text-gray-500 block uppercase font-bold">Futures Unrealized</span>
                         <span id="stat-futures-unrealized" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
                     </div>
+                    <div title="Gross profit divided by gross loss on closed trades. Above 1 means winners outweigh losers.">
+                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Profit Factor</span>
+                        <span id="stat-profit-factor" class="text-sm font-mono font-bold text-gray-200">--</span>
+                    </div>
+                    <div title="Largest peak-to-trough fall in account equity (over the most recent equity snapshots).">
+                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Max Drawdown</span>
+                        <span id="stat-max-dd" class="text-sm font-mono font-bold text-gray-200">--</span>
+                    </div>
                 </div>
             </div>
             <!-- Equity curve -->
@@ -643,7 +651,7 @@
 
     <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
          files, not this bundle — it's a generated build artifact. -->
-    <script src="js/dist/bundle-trade.js?v=20260922"></script>
+    <script src="js/dist/bundle-trade.js?v=20260928"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>

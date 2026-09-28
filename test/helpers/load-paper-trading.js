@@ -42,6 +42,8 @@ export function loadPaperTradingMath() {
       return {
         estimateLiqPrice, futuresPnl, computeFee, computeBuyAvgCost, computeRealizedPnl,
         computeSlippageBps, estimateFillPrice,
+        countFundingSettlements, computeFundingCharge, effectiveLiqPrice,
+        isClosingTrade, computeMaxDrawdown, computePerformanceStats,
       };
     })();
   `;

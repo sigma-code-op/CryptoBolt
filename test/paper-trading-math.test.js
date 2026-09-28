@@ -152,3 +152,140 @@ test('estimateFillPrice: a bigger order slips further from the quote than a smal
 test('estimateFillPrice: falls back to reference price when bid/ask are missing', () => {
   assert.equal(pt.estimateFillPrice('buy', 100, 0, 0, 0), pt.estimateFillPrice('buy', 100, null, null, 0));
 });
+
+// ---------------------------------------------------------------------------
+// Funding fees
+// ---------------------------------------------------------------------------
+
+const H = 60 * 60 * 1000;
+const utc = (iso) => Date.parse(iso);
+
+test('countFundingSettlements: counts 00:00/08:00/16:00 UTC boundaries in (from, to]', () => {
+  // Same 8h window -> nothing
+  assert.equal(pt.countFundingSettlements(utc('2026-09-28T08:01:00Z'), utc('2026-09-28T15:59:00Z')), 0);
+  // Crossing 08:00 exactly once
+  assert.equal(pt.countFundingSettlements(utc('2026-09-28T07:59:59Z'), utc('2026-09-28T08:00:01Z')), 1);
+  // A boundary exactly at `to` counts, one exactly at `from` does not (already settled)
+  assert.equal(pt.countFundingSettlements(utc('2026-09-28T07:00:00Z'), utc('2026-09-28T08:00:00Z')), 1);
+  assert.equal(pt.countFundingSettlements(utc('2026-09-28T08:00:00Z'), utc('2026-09-28T09:00:00Z')), 0);
+  // A full day always crosses three
+  assert.equal(pt.countFundingSettlements(utc('2026-09-28T03:30:00Z'), utc('2026-09-29T03:30:00Z')), 3);
+});
+
+test('countFundingSettlements: zero or negative spans are 0', () => {
+  assert.equal(pt.countFundingSettlements(1000, 1000), 0);
+  assert.equal(pt.countFundingSettlements(2000, 1000), 0);
+});
+
+test('computeFundingCharge: positive rate -> longs pay, shorts receive', () => {
+  // $10,000 notional at 0.01% = $1
+  assert.ok(Math.abs(pt.computeFundingCharge('long', 10000, 0.0001) - 1) < 1e-9);
+  assert.ok(Math.abs(pt.computeFundingCharge('short', 10000, 0.0001) + 1) < 1e-9);
+});
+
+test('computeFundingCharge: negative rate flips who pays', () => {
+  assert.ok(Math.abs(pt.computeFundingCharge('long', 10000, -0.0002) + 2) < 1e-9);
+  assert.ok(Math.abs(pt.computeFundingCharge('short', 10000, -0.0002) - 2) < 1e-9);
+});
+
+test('computeFundingCharge: matches the blog worked example ($10,000 long, 0.01%/8h = ~$1,095/yr)', () => {
+  const perYear = pt.computeFundingCharge('long', 10000, 0.0001) * 3 * 365;
+  assert.ok(Math.abs(perYear - 1095) < 1e-6);
+});
+
+test('effectiveLiqPrice: funding paid pulls the liquidation price toward the market', () => {
+  // Long: liq below entry, moves UP when funding is paid
+  assert.equal(pt.effectiveLiqPrice('long', 90, 2, 10), 95);
+  // Short: liq above entry, moves DOWN when funding is paid
+  assert.equal(pt.effectiveLiqPrice('short', 110, 2, 10), 105);
+});
+
+test('effectiveLiqPrice: net funding received pushes liquidation further away; none leaves it alone', () => {
+  assert.equal(pt.effectiveLiqPrice('long', 90, 2, -10), 85);
+  assert.equal(pt.effectiveLiqPrice('long', 90, 2, 0), 90);
+  assert.equal(pt.effectiveLiqPrice('long', 90, 2, undefined), 90);
+});
+
+test('effectiveLiqPrice: agrees with reducing the margin directly', () => {
+  // 10x long, entry 100, qty 10 (notional 1000, margin 100). Original liq via the shipped formula.
+  const liq = pt.estimateLiqPrice('long', 100, 10);
+  const funding = 20; // margin effectively 80
+  // Liquidates when loss = margin - maintenance; loss = (entry - p) * qty
+  const maintenance = 0.004 * 1000;
+  const expected = 100 - (100 - funding - maintenance) / 10;
+  assert.ok(Math.abs(pt.effectiveLiqPrice('long', liq, 10, funding) - expected) < 1e-9);
+});
+
+// ---------------------------------------------------------------------------
+// Closed-trade detection + performance stats
+// ---------------------------------------------------------------------------
+
+test('isClosingTrade: spot sells and every futures exit type count; opens and buys do not', () => {
+  assert.equal(pt.isClosingTrade({ side: 'sell', type: 'market' }), true);
+  assert.equal(pt.isClosingTrade({ side: 'long', type: 'close' }), true);
+  assert.equal(pt.isClosingTrade({ side: 'short', type: 'liquidated' }), true);
+  assert.equal(pt.isClosingTrade({ side: 'long', type: 'open' }), false);
+  assert.equal(pt.isClosingTrade({ side: 'buy', type: 'market' }), false);
+});
+
+test('isClosingTrade: REGRESSION - futures take-profit and stop-loss exits are closing trades', () => {
+  // These used to be excluded, so wins/losses closed via TP/SL never reached the win rate.
+  assert.equal(pt.isClosingTrade({ side: 'long', type: 'tp' }), true);
+  assert.equal(pt.isClosingTrade({ side: 'short', type: 'sl' }), true);
+});
+
+test('computePerformanceStats: no closed trades -> nulls, not NaN', () => {
+  const s = pt.computePerformanceStats([{ side: 'buy', type: 'market' }, { side: 'long', type: 'open' }], []);
+  assert.equal(s.closedCount, 0);
+  assert.equal(s.winRate, null);
+  assert.equal(s.profitFactor, null);
+  assert.equal(s.expectancy, null);
+  assert.equal(s.bestTrade, null);
+});
+
+test('computePerformanceStats: win rate, profit factor, averages and expectancy', () => {
+  const trades = [
+    { side: 'sell', type: 'market', realizedPnl: 300 },
+    { side: 'long', type: 'tp', realizedPnl: 100 },     // futures TP win (previously ignored)
+    { side: 'short', type: 'sl', realizedPnl: -100 },    // futures SL loss (previously ignored)
+    { side: 'long', type: 'liquidated', realizedPnl: -200 },
+    { side: 'long', type: 'open', realizedPnl: null },   // opens never count
+  ];
+  const s = pt.computePerformanceStats(trades, []);
+  assert.equal(s.closedCount, 4);
+  assert.equal(s.wins, 2);
+  assert.equal(s.losses, 2);
+  assert.equal(s.winRate, 50);
+  assert.equal(s.avgWin, 200);
+  assert.equal(s.avgLoss, 150);
+  assert.equal(s.profitFactor, 400 / 300);
+  assert.equal(s.expectancy, 25); // (300+100-100-200)/4
+  assert.equal(s.bestTrade, 300);
+  assert.equal(s.worstTrade, -200);
+});
+
+test('computePerformanceStats: all winners -> Infinity profit factor; break-even trades are neither win nor loss', () => {
+  const allWins = pt.computePerformanceStats([{ side: 'sell', realizedPnl: 50 }, { side: 'sell', realizedPnl: 10 }], []);
+  assert.equal(allWins.profitFactor, Infinity);
+  assert.equal(allWins.winRate, 100);
+  const flat = pt.computePerformanceStats([{ side: 'sell', realizedPnl: 0 }], []);
+  assert.equal(flat.wins, 0);
+  assert.equal(flat.losses, 0);
+  assert.equal(flat.closedCount, 1);
+  assert.equal(flat.profitFactor, null);
+});
+
+test('computeMaxDrawdown: peak-to-trough percentage, recovers do not erase it', () => {
+  const curve = [
+    { equity: 10000 }, { equity: 12000 }, { equity: 9000 }, { equity: 13000 }, { equity: 12500 },
+  ];
+  // Worst fall: 12000 -> 9000 = 25%; later 13000 -> 12500 is only ~3.8%
+  assert.ok(Math.abs(pt.computeMaxDrawdown(curve) - 25) < 1e-9);
+});
+
+test('computeMaxDrawdown: rising, empty, or junk curves give 0', () => {
+  assert.equal(pt.computeMaxDrawdown([{ equity: 1 }, { equity: 2 }, { equity: 3 }]), 0);
+  assert.equal(pt.computeMaxDrawdown([]), 0);
+  assert.equal(pt.computeMaxDrawdown(undefined), 0);
+  assert.equal(pt.computeMaxDrawdown([{ equity: 0 }, { equity: NaN }, null]), 0);
+});

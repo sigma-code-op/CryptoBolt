@@ -45,6 +45,80 @@ function computeRealizedPnl(proceeds, costBasis) {
     return proceeds - costBasis;
 }
 
+// ---------- Funding fees (perpetual futures) ----------
+// Real perpetual contracts exchange a funding payment between longs and shorts every 8 hours
+// (00:00 / 08:00 / 16:00 UTC on Binance, the venue whose prices this page uses). A practice
+// account that never charges it makes holding a leveraged position look cheaper than it is,
+// so open paper futures positions are charged/credited at the live funding rate too.
+const PT_FUNDING_INTERVAL_MS = 8 * 60 * 60 * 1000;
+
+// How many funding settlements fall in (fromTs, toTs]. Settlements sit on multiples of 8h
+// since the Unix epoch, which is exactly 00:00/08:00/16:00 UTC.
+function countFundingSettlements(fromTs, toTs) {
+    if (!(toTs > fromTs)) return 0;
+    return Math.floor(toTs / PT_FUNDING_INTERVAL_MS) - Math.floor(fromTs / PT_FUNDING_INTERVAL_MS);
+}
+// Funding for ONE settlement, in USD, from the trader's point of view: positive = the trader
+// pays, negative = the trader receives. rate > 0 means longs pay shorts; rate < 0 the reverse.
+function computeFundingCharge(side, notionalUsd, rate) {
+    const amount = notionalUsd * rate;
+    return side === 'long' ? amount : -amount;
+}
+// Funding paid comes out of the position's margin, leaving a thinner cushion — so the price
+// that liquidates it moves closer to the market by fundingPaid / qty (further away if funding
+// has been net-received). Same simplified isolated-margin model as estimateLiqPrice.
+function effectiveLiqPrice(side, liqPrice, qty, fundingPaid) {
+    if (!fundingPaid || !(qty > 0)) return liqPrice;
+    const shift = fundingPaid / qty;
+    return side === 'long' ? liqPrice + shift : liqPrice - shift;
+}
+
+// ---------- Performance analytics ----------
+// A trade-log row that ends a position (as opposed to opening one). Spot exits are logged with
+// side 'sell'; futures exits keep side 'long'/'short' and are distinguished by type.
+// Futures take-profit ('tp') and stop-loss ('sl') exits were previously missing from this test,
+// so they were silently left out of the win rate.
+function isClosingTrade(t) {
+    return t.side === 'sell' || t.type === 'close' || t.type === 'tp' || t.type === 'sl' || t.type === 'liquidated';
+}
+// Largest peak-to-trough fall in the equity curve, as a positive percentage (0 = never fell).
+// Only covers the points the account retains (the most recent MAX_EQUITY_POINTS snapshots).
+function computeMaxDrawdown(equityCurve) {
+    let peak = 0, maxDd = 0;
+    (equityCurve || []).forEach(pt => {
+        const eq = pt && pt.equity;
+        if (!(eq > 0)) return;
+        if (eq > peak) peak = eq;
+        if (peak > 0) maxDd = Math.max(maxDd, (peak - eq) / peak);
+    });
+    return maxDd * 100;
+}
+// Win rate, profit factor, average win/loss and expectancy over closed trades.
+// profitFactor = gross profit / gross loss: null with no closed trades, Infinity with wins but
+// no losses. avgLoss is returned as a positive magnitude.
+function computePerformanceStats(trades, equityCurve) {
+    const closed = (trades || []).filter(isClosingTrade);
+    const pnls = closed.map(t => t.realizedPnl || 0);
+    const winsArr = pnls.filter(x => x > 0);
+    const lossesArr = pnls.filter(x => x < 0);
+    const grossProfit = winsArr.reduce((a, b) => a + b, 0);
+    const grossLoss = -lossesArr.reduce((a, b) => a + b, 0);
+    const n = closed.length;
+    return {
+        closedCount: n,
+        wins: winsArr.length,
+        losses: lossesArr.length,
+        winRate: n ? (winsArr.length / n) * 100 : null,
+        avgWin: winsArr.length ? grossProfit / winsArr.length : null,
+        avgLoss: lossesArr.length ? grossLoss / lossesArr.length : null,
+        profitFactor: n === 0 ? null : (grossLoss > 0 ? grossProfit / grossLoss : (grossProfit > 0 ? Infinity : null)),
+        expectancy: n ? pnls.reduce((a, b) => a + b, 0) / n : null,
+        bestTrade: n ? Math.max(...pnls) : null,
+        worstTrade: n ? Math.min(...pnls) : null,
+        maxDrawdownPct: computeMaxDrawdown(equityCurve),
+    };
+}
+
 // ---------- Execution realism: spread + size-scaled slippage ----------
 // Real exchanges never fill a market order at the exact last-trade price — you cross the
 // spread (pay the ask / receive the bid) and, past a certain size, walk the book, paying more
@@ -163,7 +237,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     // Kept entirely separate from the terminal's manual futures tracker (cw_futures_positions
     // in 01-state.js) — that one is a hand-entered log with no cash account behind it, this one
     // is funded from (and settles back into) this page's own paper cash balance.
-    let futuresPositions = safeJSONParse(localStorage.getItem('cw_paper_futures'), []); // [{id, ts, symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice}]
+    let futuresPositions = safeJSONParse(localStorage.getItem('cw_paper_futures'), []); // [{id, ts, symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice, tpPrice, slPrice, fundingPaid, lastFundingTs}]
 
     if (cash === null || totalDeposited === null) {
         cash = STARTING_BALANCE;
@@ -188,6 +262,9 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     let changeMap = {};      // BASE -> 24h % change, filled lazily per selected symbol
     let validSymbols = new Set();
     let lastEquitySnapshot = 0;
+    let fundingRates = {};   // BASE -> latest funding rate per 8h settlement (e.g. 0.0001 = 0.01%)
+    let lastFundingFetch = 0;
+    const FUNDING_REFRESH_MS = 60000;
 
     // Best bid/ask for a symbol, falling back to the last-trade price (both sides) if a fresh
     // quote hasn't loaded yet — keeps every call site safe even before the first bookTicker poll.
@@ -267,6 +344,8 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
             setFeedStatus('live', 'Live');
             checkPendingOrders();
             checkHoldingsTpSl();
+            await refreshFundingRates();
+            if (applyFundingSettlements()) persist();
             checkFuturesTpSl();
             checkFuturesLiquidations();
             renderAll();
@@ -517,7 +596,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         amountUnitSelect.classList.toggle('hidden', market === 'futures');
         if (market === 'futures') amountUnitSelect.value = 'usd';
         amountLabelEl.innerText = market === 'futures' ? 'Margin (USD)' : 'Amount';
-        orderFeeNote.innerText = market === 'futures' ? '0.10% simulated taker fee' : '0.10% simulated fee';
+        orderFeeNote.innerText = market === 'futures' ? '0.10% simulated taker fee + 8h funding' : '0.10% simulated fee';
         updateSideLabels();
         updateTpSlVisibility();
         renderAvailableHint();
@@ -685,12 +764,56 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
 
         cash -= totalRequired;
         const id = `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
-        futuresPositions.push({ id, ts: Date.now(), symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice, tpPrice, slPrice });
+        futuresPositions.push({ id, ts: Date.now(), symbol, side, entryPrice, qty, leverage, margin, notional, liqPrice, tpPrice, slPrice, fundingPaid: 0, lastFundingTs: Date.now() });
         trades.unshift({ id: `${id}_open`, ts: Date.now(), symbol, side, type: 'open', qty, price: entryPrice, value: notional, fee, realizedPnl: null, leverage });
         showToast(`Opened ${leverage}x ${side.toUpperCase()} on ${symbol} @ ${fmtUsd(entryPrice, priceFmt(entryPrice))}. Est. liq. ${fmtUsd(liqPrice, priceFmt(liqPrice))}.`, 'success');
         amountInput.value = '';
         clearTpSlInputs();
         persist(); renderAll(); maybeSnapshotEquity(true);
+    }
+
+    // Latest funding rate for each symbol that has an open futures position. Best-effort: if the
+    // request fails nothing is charged this tick — applyFundingSettlements() only advances a
+    // position's lastFundingTs once it has a rate, so missed settlements are caught up later.
+    async function refreshFundingRates() {
+        if (futuresPositions.length === 0) return;
+        if (Date.now() - lastFundingFetch < FUNDING_REFRESH_MS) return;
+        lastFundingFetch = Date.now();
+        const symbols = Array.from(new Set(futuresPositions.map(p => p.symbol)));
+        await Promise.all(symbols.map(async (sym) => {
+            try {
+                const res = await fetchWithTimeout(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${encodeURIComponent(sym)}USDT`);
+                if (!res.ok) return;
+                const row = await res.json();
+                const rate = parseFloat(row && row.lastFundingRate);
+                if (Number.isFinite(rate)) fundingRates[sym] = rate;
+            } catch (err) { /* keep the previous rate, if any */ }
+        }));
+    }
+
+    // Charges (or credits) every funding settlement that has passed since a position's
+    // lastFundingTs, at the latest known rate. Positions saved before this feature existed have
+    // no lastFundingTs: they start accruing from the first time they're seen, NOT retroactively
+    // from when they were opened — charging for rules that didn't exist when the trade was
+    // placed would surprise anyone holding a position on deploy day.
+    // Note: if the page was closed across several settlements they're all applied at the
+    // current rate on return — an approximation, since past rates aren't fetched.
+    function applyFundingSettlements() {
+        if (futuresPositions.length === 0) return false;
+        const now = Date.now();
+        let changed = false;
+        futuresPositions.forEach(p => {
+            if (!p.lastFundingTs) { p.lastFundingTs = now; p.fundingPaid = p.fundingPaid || 0; changed = true; return; }
+            const n = countFundingSettlements(p.lastFundingTs, now);
+            if (n <= 0) return;
+            const rate = fundingRates[p.symbol];
+            const mark = getPrice(p.symbol);
+            if (rate === undefined || !mark) return; // no rate yet — try again next refresh
+            p.fundingPaid = (p.fundingPaid || 0) + n * computeFundingCharge(p.side, p.qty * mark, rate);
+            p.lastFundingTs = now;
+            changed = true;
+        });
+        return changed;
     }
 
     function closeFuturesPosition(id, reason) {
@@ -714,7 +837,8 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         const pnl = futuresPnl(p, markPrice);
         const closeNotional = p.qty * markPrice;
         const fee = closeNotional * FEE_RATE;
-        const netPnl = pnl - fee;
+        const funding = p.fundingPaid || 0; // net funding paid while the position was open (negative = received)
+        const netPnl = pnl - fee - funding;
         // Margin is returned alongside net P&L; floored at 0 as a safety net in case an
         // extreme, un-liquidated move (e.g. a price gap between polls) pushes the loss past
         // the margin itself — real exchanges liquidate before that happens, which is what the
@@ -723,7 +847,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         cash += proceeds;
         futuresPositions = futuresPositions.filter(x => x.id !== id);
         const type = reason === 'tp' ? 'tp' : reason === 'sl' ? 'sl' : 'close';
-        trades.unshift({ id: `${p.id}_close_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type, qty: p.qty, price: markPrice, value: closeNotional, fee, realizedPnl: netPnl, leverage: p.leverage });
+        trades.unshift({ id: `${p.id}_close_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type, qty: p.qty, price: markPrice, value: closeNotional, fee, funding, realizedPnl: netPnl, leverage: p.leverage });
         const reasonLabel = reason === 'tp' ? 'take-profit hit' : reason === 'sl' ? 'stop-loss hit' : (netPnl >= 0 ? 'profit' : 'loss');
         showToast(`Closed ${p.leverage}x ${p.side.toUpperCase()} ${p.symbol} — ${reasonLabel} of ${fmtSigned(netPnl)}.`, netPnl >= 0 ? 'success' : 'info');
         persist(); renderAll(); maybeSnapshotEquity(true);
@@ -750,14 +874,15 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         futuresPositions.forEach(p => {
             const mark = getPrice(p.symbol);
             if (!mark) { survivors.push(p); return; }
-            const hit = p.side === 'long' ? mark <= p.liqPrice : mark >= p.liqPrice;
+            const liq = effectiveLiqPrice(p.side, p.liqPrice, p.qty, p.fundingPaid);
+            const hit = p.side === 'long' ? mark <= liq : mark >= liq;
             if (!hit) { survivors.push(p); return; }
             // Liquidated: the position is force-closed at (roughly) the liquidation price and
             // the margin is forfeited entirely — no proceeds credited back, and no separate fee
             // charged (the forfeited margin already absorbs the loss) — matching how
             // isolated-margin liquidation works on real exchanges.
-            trades.unshift({ id: `${p.id}_liq_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type: 'liquidated', qty: p.qty, price: p.liqPrice, value: p.notional, fee: 0, realizedPnl: -p.margin, leverage: p.leverage });
-            showToast(`${p.symbol} ${p.side.toUpperCase()} position liquidated near ${fmtUsd(p.liqPrice, priceFmt(p.liqPrice))}.`, 'error');
+            trades.unshift({ id: `${p.id}_liq_${Date.now()}`, ts: Date.now(), symbol: p.symbol, side: p.side, type: 'liquidated', qty: p.qty, price: liq, value: p.notional, fee: 0, realizedPnl: -p.margin, leverage: p.leverage });
+            showToast(`${p.symbol} ${p.side.toUpperCase()} position liquidated near ${fmtUsd(liq, priceFmt(liq))}.`, 'error');
             liquidatedAny = true;
         });
         futuresPositions = survivors;
@@ -905,7 +1030,8 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         let marginLocked = 0, futuresUnrealized = 0;
         futuresPositions.forEach(p => {
             marginLocked += p.margin;
-            futuresUnrealized += futuresPnl(p, getPrice(p.symbol) || p.entryPrice);
+            // Funding already paid on an open position is a real cost, so it counts against equity now.
+            futuresUnrealized += futuresPnl(p, getPrice(p.symbol) || p.entryPrice) - (p.fundingPaid || 0);
         });
         // realized/fees pull straight from the trade log, which already carries futures
         // open/close/liquidation entries alongside spot ones — no separate accumulator needed.
@@ -913,10 +1039,8 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         const fees = trades.reduce((sum, t) => sum + (t.fee || 0), 0);
         const equity = cash + holdingsValue + marginLocked + futuresUnrealized;
         const totalPnl = equity - totalDeposited;
-        const closedTrades = trades.filter(t => t.side === 'sell' || t.type === 'close' || t.type === 'liquidated');
-        const wins = closedTrades.filter(t => (t.realizedPnl || 0) > 0).length;
-        const winRate = closedTrades.length ? (wins / closedTrades.length) * 100 : null;
-        return { holdingsValue, unrealized, realized, fees, equity, totalPnl, totalTrades: trades.length, winRate, marginLocked, futuresUnrealized };
+        const perf = computePerformanceStats(trades, equityCurve);
+        return { holdingsValue, unrealized, realized, fees, equity, totalPnl, totalTrades: trades.length, winRate: perf.winRate, marginLocked, futuresUnrealized, perf };
     }
 
     function maybeSnapshotEquity(force) {
@@ -949,6 +1073,9 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         document.getElementById('stat-trade-count').innerText = s.totalTrades;
         document.getElementById('stat-winrate').innerText = s.winRate === null ? '--' : `${s.winRate.toFixed(0)}%`;
         document.getElementById('stat-fees').innerText = fmtUsd(s.fees);
+        const pf = s.perf.profitFactor;
+        document.getElementById('stat-profit-factor').innerText = pf === null ? '--' : (pf === Infinity ? '\u221e' : pf.toFixed(2));
+        document.getElementById('stat-max-dd').innerText = s.perf.maxDrawdownPct > 0 ? `-${s.perf.maxDrawdownPct.toFixed(1)}%` : '0.0%';
         document.getElementById('stat-margin-locked').innerText = fmtUsd(s.marginLocked);
         const futUnrealEl = document.getElementById('stat-futures-unrealized');
         futUnrealEl.innerText = fmtSigned(s.futuresUnrealized); futUnrealEl.className = `text-sm font-mono font-bold ${pnlColorClass(s.futuresUnrealized)}`;
@@ -962,8 +1089,13 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         }
         tbody.innerHTML = futuresPositions.slice().sort((a, b) => b.ts - a.ts).map(p => {
             const mark = getPrice(p.symbol);
-            const pnl = mark ? futuresPnl(p, mark) : 0;
+            const funding = p.fundingPaid || 0;
+            const pnl = (mark ? futuresPnl(p, mark) : 0) - funding; // net of funding paid so far
+            const liq = effectiveLiqPrice(p.side, p.liqPrice, p.qty, funding);
             const roe = p.margin ? (pnl / p.margin) * 100 : 0;
+            const fundingNote = funding !== 0
+                ? `<br><span class="text-[9px] font-normal text-gray-500" title="Funding ${funding > 0 ? 'paid' : 'received'} on this position so far">funding ${fmtSigned(-funding)}</span>`
+                : '';
             const sideColor = p.side === 'long' ? 'text-[#14d38a] bg-[#14d38a]/10 border-[#14d38a]/30' : 'text-[#ff4d6a] bg-[#ff4d6a]/10 border-[#ff4d6a]/30';
             const tpSlNote = (p.tpPrice || p.slPrice)
                 ? `<div class="text-[9px] font-normal mt-0.5">${p.tpPrice ? `<span class="text-[#14d38a]">TP ${fmtUsd(p.tpPrice, priceFmt(p.tpPrice))}</span>` : ''}${p.tpPrice && p.slPrice ? ' <span class="text-gray-700">·</span> ' : ''}${p.slPrice ? `<span class="text-[#ff4d6a]">SL ${fmtUsd(p.slPrice, priceFmt(p.slPrice))}</span>` : ''}</div>`
@@ -977,8 +1109,8 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
                     <td class="py-2 px-3 text-right text-gray-300">${fmtUsd(p.entryPrice, priceFmt(p.entryPrice))}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${mark ? fmtUsd(mark, priceFmt(mark)) : '<span class="text-gray-600">--</span>'}</td>
                     <td class="py-2 px-3 text-right text-gray-400">${fmtUsd(p.margin)}</td>
-                    <td class="py-2 px-3 text-right text-amber-400/80">${fmtUsd(p.liqPrice, priceFmt(p.liqPrice))}</td>
-                    <td class="py-2 px-3 text-right ${pnlColorClass(pnl)}">${fmtSigned(pnl)}<br><span class="text-[10px]">${pnl >= 0 ? '+' : ''}${roe.toFixed(1)}%</span></td>
+                    <td class="py-2 px-3 text-right text-amber-400/80">${fmtUsd(liq, priceFmt(liq))}</td>
+                    <td class="py-2 px-3 text-right ${pnlColorClass(pnl)}">${fmtSigned(pnl)}<br><span class="text-[10px]">${pnl >= 0 ? '+' : ''}${roe.toFixed(1)}%</span>${fundingNote}</td>
                     <td class="py-2 px-3 text-center whitespace-nowrap">
                         <button class="pt-ai-btn text-[10px] px-1.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#c084fc] hover:border-[#a855f7]/40 cursor-pointer" data-id="${p.id}" title="Ask AI about this position"><i data-lucide="bot" width="12" height="12" stroke-width="2.2"></i></button>
                         <button class="close-position-btn text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 cursor-pointer" data-id="${p.id}">Close</button>
@@ -1243,7 +1375,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
                 chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.entryPrice, color: '#8b93a7', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: `Entry (${p.side})` }));
                 if (p.tpPrice) chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.tpPrice, color: '#14d38a', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'TP' }));
                 if (p.slPrice) chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.slPrice, color: '#ff4d6a', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'SL' }));
-                chartPriceLines.push(priceCandleSeries.createPriceLine({ price: p.liqPrice, color: '#e5b324', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'Liq.' }));
+                chartPriceLines.push(priceCandleSeries.createPriceLine({ price: effectiveLiqPrice(p.side, p.liqPrice, p.qty, p.fundingPaid), color: '#e5b324', lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: 'Liq.' }));
             }
         }
     }
@@ -1460,7 +1592,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         const position = {
             side: p.side, entryPrice: p.entryPrice, qty: p.qty, leverage: p.leverage,
             unrealizedPnlPct: p.margin ? (futuresPnl(p, mark) / p.margin) * 100 : 0,
-            tpPrice: p.tpPrice || undefined, slPrice: p.slPrice || undefined, liqPrice: p.liqPrice,
+            tpPrice: p.tpPrice || undefined, slPrice: p.slPrice || undefined, liqPrice: effectiveLiqPrice(p.side, p.liqPrice, p.qty, p.fundingPaid),
         };
         openAiPositionRead(p.symbol, true, position, `${p.symbol} ${p.leverage}x ${p.side}`);
     });
@@ -1521,19 +1653,19 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     });
     document.getElementById('futures-csv-btn').addEventListener('click', () => {
         if (futuresPositions.length === 0) { showToast('No open positions to export.', 'error'); return; }
-        const lines = [['Asset', 'Side', 'Leverage', 'Qty', 'Entry', 'Mark', 'Margin', 'LiqPrice', 'PnL'].join(',')];
+        const lines = [['Asset', 'Side', 'Leverage', 'Qty', 'Entry', 'Mark', 'Margin', 'LiqPrice', 'PnL', 'FundingPaid'].join(',')];
         futuresPositions.forEach(p => {
             const mark = getPrice(p.symbol);
             const pnl = mark ? futuresPnl(p, mark) : '';
-            lines.push([p.symbol, p.side, p.leverage, p.qty, p.entryPrice, mark || '', p.margin.toFixed(2), p.liqPrice.toFixed(6), pnl === '' ? '' : pnl.toFixed(2)].join(','));
+            lines.push([p.symbol, p.side, p.leverage, p.qty, p.entryPrice, mark || '', p.margin.toFixed(2), effectiveLiqPrice(p.side, p.liqPrice, p.qty, p.fundingPaid).toFixed(6), pnl === '' ? '' : pnl.toFixed(2), (p.fundingPaid || 0).toFixed(4)].join(','));
         });
         downloadCSV(lines.join('\n'), `paper_futures_positions_${Date.now()}.csv`);
     });
     document.getElementById('trades-csv-btn').addEventListener('click', () => {
         if (trades.length === 0) { showToast('No trades to export.', 'error'); return; }
-        const lines = [['Time', 'Asset', 'Side', 'Type', 'Qty', 'Price', 'Value', 'Fee', 'RealizedPnL'].join(',')];
+        const lines = [['Time', 'Asset', 'Side', 'Type', 'Qty', 'Price', 'Value', 'Fee', 'RealizedPnL', 'Funding'].join(',')];
         trades.forEach(t => {
-            lines.push([new Date(t.ts).toISOString(), t.symbol, t.side, t.type, t.qty, t.price, t.value.toFixed(2), t.fee.toFixed(2), t.realizedPnl === null ? '' : t.realizedPnl.toFixed(2)].join(','));
+            lines.push([new Date(t.ts).toISOString(), t.symbol, t.side, t.type, t.qty, t.price, t.value.toFixed(2), t.fee.toFixed(2), t.realizedPnl === null ? '' : t.realizedPnl.toFixed(2), (t.funding || 0).toFixed(4)].join(','));
         });
         downloadCSV(lines.join('\n'), `paper_trades_${Date.now()}.csv`);
     });
