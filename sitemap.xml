@@ -139,6 +139,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cryptobolt.io/releases.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://cryptobolt.io/contact.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>

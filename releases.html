@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com 'sha256-HijG9hMVmopy9FxnI0Spm0jTDK9ecmGXN4eAgLk3KIY=' 'sha256-PVCkEu0HdIUWbBb7tB68qB70bD3UeH+r05a3UomRiTM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
+         the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
+    <script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+    <script defer src="js/icons-init.js"></script>
+    <script src="js/consent-default.js"></script>
+    <script src="js/error-reporter.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>Releases | CryptoBolt Changelog</title>
+    <meta name="description" content="What's new in CryptoBolt — a running log of shipped features across the terminal, paper trading, AI research, and the market pages.">
+    <meta name="keywords" content="CryptoBolt releases, CryptoBolt changelog, CryptoBolt updates, crypto terminal changelog, what's new CryptoBolt">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cryptobolt.io/releases.html">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0b0e11">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/releases.html">
+    <meta property="og:title" content="Releases — CryptoBolt Changelog">
+    <meta property="og:description" content="A running log of what's shipped in CryptoBolt — paper trading, AI research, market pages, and more.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt Releases">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Releases — CryptoBolt Changelog">
+    <meta name="twitter:description" content="A running log of what's shipped in CryptoBolt — paper trading, AI research, market pages, and more.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og-image.png">
+    <meta name="twitter:image:alt" content="CryptoBolt Releases">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261001">
+    <style>
+        .mkx-rel-wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 100px; display: grid; grid-template-columns: 200px 1fr; gap: 56px; align-items: start; }
+        .mkx-rel-side { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 22px; }
+        .mkx-rel-side a { display: block; text-decoration: none; color: var(--mk-text-dim); border-left: 2px solid var(--mk-line); padding-left: 14px; transition: color .15s ease, border-color .15s ease; }
+        .mkx-rel-side a:hover, .mkx-rel-side a:focus-visible { color: var(--mk-text); border-color: var(--mk-line-hi); }
+        .mkx-rel-side .mkx-rel-date { display: block; font-size: 12.5px; font-weight: 600; }
+        .mkx-rel-side .mkx-rel-ver { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5b6472; margin-top: 2px; }
+        .mkx-rel-entry { padding: 40px 0; border-bottom: 1px solid var(--mk-line); scroll-margin-top: 96px; }
+        .mkx-rel-entry:last-child { border-bottom: none; }
+        .mkx-rel-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+        .mkx-rel-meta .mkx-rel-tag { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--mk-green); background: rgba(31,207,140,.1); border: 1px solid rgba(31,207,140,.25); border-radius: 5px; padding: 2px 8px; }
+        .mkx-rel-meta .mkx-rel-when { font-size: 12.5px; color: var(--mk-text-dim); }
+        .mkx-rel-entry h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(21px, 2.4vw, 26px); font-weight: 700; line-height: 1.3; color: var(--mk-text); margin: 0 0 18px; }
+        .mkx-rel-label { font-size: 11.5px; font-weight: 700; letter-spacing: .02em; color: #5b6472; text-transform: uppercase; margin: 0 0 10px; }
+        .mkx-rel-entry ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .mkx-rel-entry li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.65; color: var(--mk-text-dim); }
+        .mkx-rel-entry li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--mk-cyan); }
+        .mkx-rel-entry li a { color: var(--mk-cyan); text-decoration: underline; text-underline-offset: 2px; }
+        @media (max-width: 760px) {
+            .mkx-rel-wrap { grid-template-columns: 1fr; padding: 32px 20px 80px; }
+            .mkx-rel-side { position: static; flex-direction: row; flex-wrap: wrap; gap: 10px 18px; }
+            .mkx-rel-side a { border-left: none; border-bottom: 2px solid var(--mk-line); padding: 0 0 6px; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "url": "https://cryptobolt.io/releases.html",
+      "name": "CryptoBolt Releases",
+      "description": "A running changelog of shipped features in CryptoBolt.",
+      "isPartOf": { "@type": "WebSite", "name": "CryptoBolt", "url": "https://cryptobolt.io/" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CryptoBolt", "item": "https://cryptobolt.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Releases", "item": "https://cryptobolt.io/releases.html" }
+      ]
+    }
+    </script>
+</head>
+
+<body class="mk">
+<div class="mk-field"></div>
+
+<nav class="mk-nav">
+    <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Changelog</span>
+    <h1>Releases</h1>
+    <p>What's shipped in CryptoBolt, release by release. Small fixes and behind-the-scenes tweaks aren't listed here — this is the running log of things that actually changed what you can do.</p>
+</header>
+
+<section class="mkx-rel-wrap">
+    <nav class="mkx-rel-side" aria-label="Jump to release">
+            <a href="#rel-1-11-0"><span class="mkx-rel-date">Sep 28, 2026</span><span class="mkx-rel-ver">v1.11.0</span></a>
+            <a href="#rel-1-10-0"><span class="mkx-rel-date">Sep 26, 2026</span><span class="mkx-rel-ver">v1.10.0</span></a>
+            <a href="#rel-1-9-0"><span class="mkx-rel-date">Sep 19, 2026</span><span class="mkx-rel-ver">v1.9.0</span></a>
+            <a href="#rel-1-8-0"><span class="mkx-rel-date">Sep 15, 2026</span><span class="mkx-rel-ver">v1.8.0</span></a>
+            <a href="#rel-1-7-0"><span class="mkx-rel-date">Sep 11, 2026</span><span class="mkx-rel-ver">v1.7.0</span></a>
+            <a href="#rel-1-6-0"><span class="mkx-rel-date">Sep 10, 2026</span><span class="mkx-rel-ver">v1.6.0</span></a>
+            <a href="#rel-1-5-0"><span class="mkx-rel-date">Sep 8, 2026</span><span class="mkx-rel-ver">v1.5.0</span></a>
+            <a href="#rel-1-4-0"><span class="mkx-rel-date">Aug 29, 2026</span><span class="mkx-rel-ver">v1.4.0</span></a>
+            <a href="#rel-1-3-0"><span class="mkx-rel-date">Aug 27, 2026</span><span class="mkx-rel-ver">v1.3.0</span></a>
+            <a href="#rel-1-2-0"><span class="mkx-rel-date">Aug 25, 2026</span><span class="mkx-rel-ver">v1.2.0</span></a>
+            <a href="#rel-1-1-0"><span class="mkx-rel-date">Aug 21, 2026</span><span class="mkx-rel-ver">v1.1.0</span></a>
+            <a href="#rel-1-0-0"><span class="mkx-rel-date">Aug 11, 2026</span><span class="mkx-rel-ver">v1.0.0</span></a>
+    </nav>
+    <div>
+        <article class="mkx-rel-entry" id="rel-1-11-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.11.0</span><span class="mkx-rel-when">September 28, 2026</span></div>
+            <h2>Paper trading tracks profit factor and max drawdown.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Funding fees are now factored into paper trading's P&amp;L and effective liquidation price for futures positions.</li>
+                <li>Added profit factor and max drawdown to the trading performance stats on the paper trading page.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-10-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.10.0</span><span class="mkx-rel-when">September 26, 2026</span></div>
+            <h2>Liquidation price calculator.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>New calculator page for estimating liquidation prices on leveraged crypto futures positions.</li>
+                <li>Added liquidation-price and margin-type FAQs to the AI research, trading terminal, and invest pages.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-9-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.9.0</span><span class="mkx-rel-when">September 19, 2026</span></div>
+            <h2>Solana joins the live price pages.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Added a dedicated Solana (SOL) live price page with real-time market data and AI research.</li>
+                <li>Linked the new page from navigation across the Bitcoin and Ethereum live price pages.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-8-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.8.0</span><span class="mkx-rel-when">September 15, 2026</span></div>
+            <h2>Price alerts can explain themselves.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>When a price alert triggers, CryptoBolt can now generate a one-sentence AI explanation of why it fired, grounded in the live market data at that moment.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-7-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.7.0</span><span class="mkx-rel-when">September 11, 2026</span></div>
+            <h2>The CryptoBolt blog launches.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Added a blog section with the first posts: how the AI research stays grounded in real data, reading the Fear &amp; Greed index without overreacting, and what actually changes between spot and perpetual futures.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-6-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.6.0</span><span class="mkx-rel-when">September 10, 2026</span></div>
+            <h2>A visual refresh across the site.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Restyled the marketing and app pages with a cleaner, more consistent look and feel.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-5-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.5.0</span><span class="mkx-rel-when">September 8, 2026</span></div>
+            <h2>Referrals, shareable AI reads, and new market pages.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Added a referral program — invite links with bonus tracking on signup.</li>
+                <li>The AI research page got quick chips for popular assets and a way to share a generated analysis.</li>
+                <li>New dedicated pages for Bitcoin live price, Ethereum live price, the crypto trading terminal, paper trading, and AI crypto research.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-4-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.4.0</span><span class="mkx-rel-when">August 29, 2026</span></div>
+            <h2>AI insight and chat panels overhauled.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Reworked how the AI insight and chat panels are generated, with deeper backend support for grounding responses in live market data.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-3-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.3.0</span><span class="mkx-rel-when">August 27, 2026</span></div>
+            <h2>Paper trading adds futures.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>The paper trading simulator now supports leveraged futures positions alongside spot, with updated P&amp;L and position tracking on the trade page.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-2-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.2.0</span><span class="mkx-rel-when">August 25, 2026</span></div>
+            <h2>Invest page separated from paper trading.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Added a dedicated Invest page for real-money purchases, kept intentionally separate from the risk-free paper trading account so the two are never mixed up.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-1-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.1.0</span><span class="mkx-rel-when">August 21, 2026</span></div>
+            <h2>Switched fiat on-ramp provider.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>Real-money crypto purchases now route through AlchemyPay instead of the previous provider.</li>
+            </ul>
+        </article>
+        <article class="mkx-rel-entry" id="rel-1-0-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.0.0</span><span class="mkx-rel-when">August 11, 2026</span></div>
+            <h2>CryptoBolt launches.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>First public release: live Binance spot &amp; futures data, charting, and an AI-backed market read, free with no paywall.</li>
+            </ul>
+        </article>
+    </div>
+</section>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Product</h4>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="releases.html">Releases</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Company</h4>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
+        <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+<script src="js/icons-init.js"></script>
+<script src="js/footer-year.js"></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/shadcn-ui.js?v=20260823" defer></script>
+</body>
+</html>
