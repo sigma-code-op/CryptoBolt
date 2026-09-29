@@ -23,6 +23,26 @@ function estimateLiqPrice(side, entryPrice, leverage) {
     if (cushion <= 0) return side === 'long' ? entryPrice * 1.001 : entryPrice * 0.999; // extreme leverage edge case
     return side === 'long' ? entryPrice * (1 - cushion) : entryPrice * (1 + cushion);
 }
+// ---------- Per-coin maximum leverage ----------
+// Like Binance Futures, the highest leverage you can pick depends on the coin: deep, liquid
+// markets allow a lot, thin/volatile ones only a little. Values below are a practice-account
+// approximation of that idea (Binance sets and changes its real limits per contract, and also
+// lowers the cap as position size grows) — edit this table to tune any coin. Anything not
+// listed falls back to PT_DEFAULT_MAX_LEVERAGE, so obscure coins are never offered high leverage.
+const PT_DEFAULT_MAX_LEVERAGE = 10;
+const PT_MAX_LEVERAGE_BY_SYMBOL = {
+    BTC: 200,
+    ETH: 100,
+    BNB: 75, SOL: 75, XRP: 75, DOGE: 75, ADA: 75, LINK: 75, LTC: 75,
+    AVAX: 50, DOT: 50, TRX: 50, SUI: 50, SHIB: 50, PEPE: 50,
+    BCH: 50, ATOM: 50, NEAR: 50, UNI: 50, AAVE: 50, APT: 50, ARB: 50, OP: 50, ETC: 50, FIL: 50,
+};
+function maxLeverageForSymbol(symbol) {
+    const key = String(symbol || '').toUpperCase().trim();
+    return Object.prototype.hasOwnProperty.call(PT_MAX_LEVERAGE_BY_SYMBOL, key)
+        ? PT_MAX_LEVERAGE_BY_SYMBOL[key]
+        : PT_DEFAULT_MAX_LEVERAGE;
+}
 function futuresPnl(position, markPrice) {
     return position.side === 'long'
         ? (markPrice - position.entryPrice) * position.qty
@@ -160,7 +180,6 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     const POPULAR_COINS = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'ADA', 'AVAX', 'LINK', 'DOT', 'TRX', 'LTC', 'SHIB', 'SUI', 'PEPE'];
 
     // ---------- Futures constants ----------
-    const MAX_LEVERAGE = 50;
     const MIN_LEVERAGE = 1;
     const DEFAULT_LEVERAGE = 10;
 
@@ -407,6 +426,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     const leverageRow = document.getElementById('leverage-row');
     const leverageSlider = document.getElementById('leverage-slider');
     const leverageValueEl = document.getElementById('leverage-value');
+    const leverageMaxEl = document.getElementById('leverage-max');
     const leverageButtons = document.querySelectorAll('.leverage-btn');
     const tpslRow = document.getElementById('tpsl-row');
     const tpInput = document.getElementById('order-tp-input');
@@ -447,6 +467,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         const symbol = orderSymbolInput.value.toUpperCase().trim();
         orderSymbolInput.value = symbol;
         highlightActiveChip();
+        applyLeverageLimit();
         refresh24hChange(symbol);
         refreshNeededPrices();
         renderOrderTicketPrice();
@@ -576,12 +597,29 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         limitPriceRow.classList.toggle('hidden', type !== 'limit');
         renderOrderSummary();
     }
+    // Highest leverage allowed for the coin currently typed into the order ticket.
+    function currentMaxLeverage() { return maxLeverageForSymbol(orderSymbolInput.value); }
     function setLeverage(lev) {
-        currentLeverage = Math.max(MIN_LEVERAGE, Math.min(MAX_LEVERAGE, Math.round(lev) || DEFAULT_LEVERAGE));
+        const maxLev = currentMaxLeverage();
+        currentLeverage = Math.max(MIN_LEVERAGE, Math.min(maxLev, Math.round(lev) || Math.min(DEFAULT_LEVERAGE, maxLev)));
         leverageSlider.value = currentLeverage;
         leverageValueEl.innerText = `${currentLeverage}x`;
         leverageButtons.forEach(b => b.classList.toggle('active', parseInt(b.getAttribute('data-lev'), 10) === currentLeverage));
         renderOrderSummary();
+    }
+    // Re-fit the leverage controls to the selected coin: slider range, which preset buttons are
+    // shown, the "max" label — and pull the chosen leverage down if the new coin can't do it.
+    function applyLeverageLimit() {
+        const maxLev = currentMaxLeverage();
+        const previous = currentLeverage;
+        leverageSlider.max = maxLev;
+        leverageButtons.forEach(b => b.classList.toggle('hidden', parseInt(b.getAttribute('data-lev'), 10) > maxLev));
+        if (leverageMaxEl) leverageMaxEl.innerText = `Max ${maxLev}x`;
+        setLeverage(currentLeverage);
+        if (currentLeverage < previous) {
+            const symbol = orderSymbolInput.value.toUpperCase().trim();
+            showToast(`${symbol} allows up to ${maxLev}x — leverage lowered to ${currentLeverage}x.`, 'info');
+        }
     }
     function setMarket(market) {
         currentMarket = market;
@@ -736,6 +774,8 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         if (!refPrice) { showToast('Live price unavailable for that asset right now.', 'error'); return; }
         const margin = parseFloat(amountInput.value);
         if (isNaN(margin) || margin <= 0) { showToast('Enter a valid margin amount.', 'error'); return; }
+        const maxLev = maxLeverageForSymbol(symbol);
+        if (currentLeverage > maxLev) { showToast(`${symbol} allows a maximum of ${maxLev}x leverage.`, 'error'); applyLeverageLimit(); return; }
         const leverage = currentLeverage;
         const side = currentSide === 'buy' ? 'long' : 'short';
         const { tpPrice, slPrice, error } = readTpSl(side, refPrice);
@@ -1689,6 +1729,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     setSide('buy');
     setType('market');
     setLeverage(DEFAULT_LEVERAGE);
+    applyLeverageLimit();
     renderChips();
     renderAll();
 

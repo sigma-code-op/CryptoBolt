@@ -40,7 +40,7 @@ export function loadPaperTradingMath() {
     (function () {
       ${pureMathSource}
       return {
-        estimateLiqPrice, futuresPnl, computeFee, computeBuyAvgCost, computeRealizedPnl,
+        estimateLiqPrice, maxLeverageForSymbol, PT_DEFAULT_MAX_LEVERAGE, futuresPnl, computeFee, computeBuyAvgCost, computeRealizedPnl,
         computeSlippageBps, estimateFillPrice,
         countFundingSettlements, computeFundingCharge, effectiveLiqPrice,
         isClosingTrade, computeMaxDrawdown, computePerformanceStats,

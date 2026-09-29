@@ -289,3 +289,35 @@ test('computeMaxDrawdown: rising, empty, or junk curves give 0', () => {
   assert.equal(pt.computeMaxDrawdown(undefined), 0);
   assert.equal(pt.computeMaxDrawdown([{ equity: 0 }, { equity: NaN }, null]), 0);
 });
+
+// ---------------------------------------------------------------------------
+// maxLeverageForSymbol
+// ---------------------------------------------------------------------------
+
+test('maxLeverageForSymbol: BTC allows the most leverage', () => {
+  assert.equal(pt.maxLeverageForSymbol('BTC'), 200);
+});
+
+test('maxLeverageForSymbol: majors and mid-caps get progressively less than BTC', () => {
+  assert.ok(pt.maxLeverageForSymbol('ETH') < pt.maxLeverageForSymbol('BTC'));
+  assert.ok(pt.maxLeverageForSymbol('SOL') < pt.maxLeverageForSymbol('ETH'));
+  assert.ok(pt.maxLeverageForSymbol('AVAX') < pt.maxLeverageForSymbol('SOL'));
+});
+
+test('maxLeverageForSymbol: unlisted coins fall back to the low default (10x)', () => {
+  assert.equal(pt.PT_DEFAULT_MAX_LEVERAGE, 10);
+  assert.equal(pt.maxLeverageForSymbol('SOMEOBSCURECOIN'), 10);
+  assert.equal(pt.maxLeverageForSymbol(''), 10);
+  assert.equal(pt.maxLeverageForSymbol(undefined), 10);
+});
+
+test('maxLeverageForSymbol: case and whitespace insensitive, ignores inherited object keys', () => {
+  assert.equal(pt.maxLeverageForSymbol(' btc '), 200);
+  assert.equal(pt.maxLeverageForSymbol('constructor'), 10);
+  assert.equal(pt.maxLeverageForSymbol('toString'), 10);
+});
+
+test('maxLeverageForSymbol: BTC at its 200x cap still yields a valid liquidation price', () => {
+  const liq = pt.estimateLiqPrice('long', 100, pt.maxLeverageForSymbol('BTC'));
+  assert.ok(liq > 0 && liq < 100);
+});
