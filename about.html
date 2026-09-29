@@ -50,7 +50,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261001">
+    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261001">
+    <style>
+        .mkx-operator {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 20px 22px;
+            margin: 28px 0 8px;
+            border: 1px solid var(--mk-line);
+            border-radius: var(--mk-radius);
+            background: var(--mk-surface);
+        }
+        .mkx-operator-avatar {
+            width: 44px; height: 44px; flex-shrink: 0;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px;
+            color: var(--mk-green-ink);
+            background: var(--mk-green);
+        }
+        .mkx-operator-name { font-weight: 700; color: var(--mk-text); font-size: 15px; }
+        .mkx-operator-role { color: var(--mk-text-dim); font-size: 12.5px; margin-top: 2px; }
+        .mkx-operator-cta { margin-left: auto; font-size: 12.5px !important; padding: 8px 14px !important; }
+        @media (max-width: 520px) { .mkx-operator-cta { margin-left: 0; width: 100%; justify-content: center; } }
+    </style>
 
     <script type="application/ld+json">
     {
@@ -78,106 +103,142 @@
     }
     </script>
 </head>
-<body class="bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
-    <div class="cw-ambient-orb cw-orb-1"></div>
-    <div class="cw-ambient-orb cw-orb-2"></div>
-    <div class="cw-ambient-orb cw-orb-3"></div>
 
-    <div class="container mx-auto px-4 py-6 max-w-[820px]">
-        <header class="flex items-center justify-between border-b border-gray-800 pb-4 mb-8">
-            <a href="index.html" class="text-xl font-bold flex items-center gap-2 tracking-tight">
-                <i data-lucide="zap" width="18" height="18" stroke-width="2.3" style="color:#22c58c;"></i> <span class="cw-logo-gradient">CryptoBolt</span>
-            </a>
-            <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all"><i data-lucide="arrow-left" width="12" height="12" stroke-width="2.4" style="vertical-align:-1px;"></i> Back to terminal</a>
-        </header>
+<body class="mk">
+<div class="mk-field"></div>
 
-        <main class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-6 sm:p-8">
-            <div class="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#4fd8e8]">Who we are</div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-white mb-4" style="font-family:'Space Grotesk','Inter',sans-serif;">About CryptoBolt</h1>
+<nav class="mk-nav">
+    <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html" style="color:#eef1f4;">About</a>
+        <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
 
-            <div class="space-y-5 text-[13px] text-gray-400 leading-relaxed">
-                <p>CryptoBolt (also written Crypto Bolt) is an independent, self-funded crypto market terminal — live spot &amp; futures prices, charting, an AI-generated market read, and a risk-free paper trading simulator. It's built and maintained by a single developer, not a company or exchange.</p>
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Who we are</span>
+    <h1>One person, one screen, no paywall.</h1>
+    <p>CryptoBolt (also written Crypto Bolt) is an independent, self-funded crypto market terminal — live spot &amp; futures prices, charting, an AI-generated market read, and a risk-free paper trading simulator. It's built and maintained by one person, not a company or exchange.</p>
+</header>
 
-                <div class="bg-gray-900/60 border border-gray-800 rounded p-4">
-                    <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-2">Operator</div>
-                    <p class="text-gray-300"><span class="font-semibold text-white">NandLal</span><br>Based in Pakistan</p>
-                    <p class="mt-2 text-[12px]">Reachable at <a href="mailto:info@cryptobolt.io" class="text-[#4fd8e8] hover:underline">info@cryptobolt.io</a> or via the <a href="contact.html" class="text-[#4fd8e8] hover:underline">contact form</a>.</p>
-                </div>
-
-                <h2 class="text-white font-bold text-base pt-2">What CryptoBolt is</h2>
-                <ul class="list-disc pl-5 space-y-1.5">
-                    <li>Live market data sourced from Binance and CoinGecko public APIs</li>
-                    <li>AI-generated market commentary (technical + sentiment) via Groq, using your own API key</li>
-                    <li>A paper trading simulator with virtual funds — for practice only</li>
-                    <li>A portfolio tracker for coins you already hold elsewhere</li>
-                </ul>
-
-                <h2 class="text-white font-bold text-base pt-2">What CryptoBolt is not</h2>
-                <ul class="list-disc pl-5 space-y-1.5">
-                    <li>It is <strong class="text-gray-200">not</strong> a cryptocurrency exchange, broker, or custodian</li>
-                    <li>It does <strong class="text-gray-200">not</strong> hold, transfer, or have access to your funds</li>
-                    <li>It does <strong class="text-gray-200">not</strong> place real trades — paper trading uses simulated balances only</li>
-                    <li>Buy/sell of real crypto is handled entirely by <a href="https://www.binance.com" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Binance</a>, a separate third-party exchange — CryptoBolt never touches that transaction</li>
-                    <li>Nothing on this site is financial advice</li>
-                </ul>
-
-                <h2 class="text-white font-bold text-base pt-2">Why it exists</h2>
-                <p>Most free crypto terminals are cluttered or paywalled. CryptoBolt started as a personal project to have one clean, fast screen with live prices, charts, and an AI second opinion — and grew into something worth sharing publicly.</p>
-
-                <h2 class="text-white font-bold text-base pt-2">How the AI research works</h2>
-                <p>The AI market read isn't a black box guessing at numbers. It's grounded in live inputs — current price action, funding rates, and the Fear &amp; Greed Index — and run through your own Groq API key rather than a shared, rate-limited backend. That means the commentary reflects what the market is actually doing right now, not a stale training snapshot. See <a href="ai-research-grounded-data.html" class="text-[#4fd8e8] hover:underline">how the pipeline stays grounded</a> for the technical breakdown.</p>
-
-                <h2 class="text-white font-bold text-base pt-2">Where the data comes from</h2>
-                <p>Prices and order flow are pulled from Binance's public market-data API; supplementary market data comes from CoinGecko. Nothing is proxied through a paid data vendor, which is part of why the terminal stays free to use.</p>
-
-                <h2 class="text-white font-bold text-base pt-2">Roadmap</h2>
-                <p>Development is ongoing and mostly driven by user feedback submitted through the <a href="contact.html" class="text-[#4fd8e8] hover:underline">contact form</a>. Recent additions include a paper trading leaderboard, portfolio tracking, and price alerts — see the <a href="features.html" class="text-[#4fd8e8] hover:underline">features page</a> for the current list.</p>
-            </div>
-        </main>
-
-        <footer class="mk mk-footer">
-            <div class="mk-footer-grid">
-                <div class="mk-footer-brand">
-                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark">⚡</span>CryptoBolt</a>
-                    <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
-                <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
-        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
-                <div class="mk-footer-social">
-                    <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
-                    <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
-                    <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
-                </div>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Product</h4>
-                    <a href="app.html">Terminal</a>
-                    <a href="trade.html">Paper trading</a>
-                    <a href="invest.html">Invest (real)</a>
-                    <a href="ai.html">AI research</a>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Company</h4>
-                    <a href="about.html">About</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Legal</h4>
-                    <a href="privacy.html">Privacy policy</a>
-                    <a href="terms.html">Terms of service</a>
-                </div>
-            </div>
-            <div class="mk-footer-bottom">
-                <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
-                <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
-            </div>
-        </footer>
+<article class="mk-article">
+    <div class="mkx-operator">
+        <div class="mkx-operator-avatar" aria-hidden="true">N</div>
+        <div>
+            <div class="mkx-operator-name">NandLal</div>
+            <div class="mkx-operator-role">Founder &amp; developer · based in Pakistan</div>
+        </div>
+        <a href="mailto:info@cryptobolt.io" class="mk-btn mk-btn-ghost mkx-operator-cta"><i data-lucide="mail" width="14" height="14" stroke-width="2.3"></i> info@cryptobolt.io</a>
     </div>
 
-    <script src="js/00-config.js?v=20260820"></script>
-    <script src="js/footer-year.js"></script>
-    <script src="js/cookie-consent.js?v=20260823" defer></script>
-    <script src="js/shadcn-ui.js?v=20260823" defer></script>
+    <h2>What it is, and isn't</h2>
+    <p>CryptoBolt tracks markets and helps you think about them. It doesn't touch your money.</p>
+</article>
+
+<section class="mk-section" style="padding-top:0;">
+    <div class="mk-compare">
+        <div class="mk-compare-col mk-compare-us">
+            <h3><span class="mk-logo-mark" style="width:22px;height:22px;"><i data-lucide="check" width="12" height="12" stroke-width="2.5"></i></span> What CryptoBolt is</h3>
+            <ul>
+                <li>Live market data sourced from Binance and CoinGecko public APIs</li>
+                <li>AI-generated market commentary (technical + sentiment) via Groq, using your own API key</li>
+                <li>A paper trading simulator with virtual funds — for practice only</li>
+                <li>A portfolio tracker for coins you already hold elsewhere</li>
+            </ul>
+        </div>
+        <div class="mk-compare-col mk-compare-them">
+            <h3>What CryptoBolt is not</h3>
+            <ul>
+                <li>Not a cryptocurrency exchange, broker, or custodian</li>
+                <li>Does not hold, transfer, or have access to your funds</li>
+                <li>Does not place real trades — paper trading uses simulated balances only</li>
+                <li>Not a source of financial advice</li>
+            </ul>
+        </div>
+    </div>
+    <p style="max-width:720px;margin:20px auto 0;color:var(--mk-text-dim);font-size:13.5px;line-height:1.6;">Buy/sell of real crypto is handled entirely by <a href="https://www.binance.com" target="_blank" rel="noopener noreferrer" style="color:var(--mk-cyan);">Binance</a>, a separate third-party exchange — CryptoBolt never touches that transaction.</p>
+</section>
+
+<article class="mk-article" style="padding-top:0;">
+    <h2>Why it exists</h2>
+    <p>Most free crypto terminals are cluttered or paywalled. CryptoBolt started as a personal project to have one clean, fast screen with live prices, charts, and an AI second opinion — and grew into something worth sharing publicly.</p>
+
+    <h2>How the AI research works</h2>
+    <p>The AI market read isn't a black box guessing at numbers. It's grounded in live inputs — current price action, funding rates, and the Fear &amp; Greed Index — and run through your own Groq API key rather than a shared, rate-limited backend. That means the commentary reflects what the market is actually doing right now, not a stale training snapshot. See <a href="ai-research-grounded-data.html" style="color:var(--mk-cyan);">how the pipeline stays grounded</a> for the technical breakdown.</p>
+
+    <h2>Where the data comes from</h2>
+    <p>Prices and order flow are pulled from Binance's public market-data API; supplementary market data comes from CoinGecko. Nothing is proxied through a paid data vendor, which is part of why the terminal stays free to use.</p>
+
+    <h2>Roadmap</h2>
+    <p>Development is ongoing and mostly driven by user feedback submitted through the <a href="contact.html" style="color:var(--mk-cyan);">contact form</a>. Recent additions include a paper trading leaderboard, portfolio tracking, and price alerts — see the <a href="features.html" style="color:var(--mk-cyan);">features page</a> for the current list.</p>
+
+    <hr class="mk-article-divider">
+    <p style="text-align:center;color:var(--mk-text-dim);font-size:13.5px;">Questions? <a href="contact.html" style="color:var(--mk-cyan);">Get in touch</a>.</p>
+</article>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Product</h4>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Company</h4>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
+        <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
+    </div>
+</footer>
+
+<script src="js/footer-year.js"></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>
 </html>

@@ -56,128 +56,145 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261001">
+    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261001">
+    <style>
+        .mkx-updated { font-family: 'JetBrains Mono', monospace; font-size: 12px !important; color: var(--mk-text-dim) !important; }
+        .mk-article a { color: var(--mk-cyan); text-decoration: underline; text-underline-offset: 2px; }
+        .mk-article a:hover { color: #7de6f2; }
+        .mkx-callout { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; margin: 4px 0 32px; border: 1px solid rgba(31,207,140,.25); border-radius: var(--mk-radius); background: linear-gradient(180deg, rgba(31,207,140,.06), var(--mk-surface) 70%); }
+        .mkx-callout svg { color: var(--mk-green); flex-shrink: 0; margin-top: 2px; }
+        .mkx-callout p { margin: 0 !important; color: var(--mk-text) !important; font-size: 14.5px !important; }
+        .mkx-linkbtn { color: var(--mk-cyan); text-decoration: underline; text-underline-offset: 2px; background: none; border: none; padding: 0; font: inherit; cursor: pointer; }
+        .cw-kbd { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: rgba(255,255,255,.06); padding: 1px 5px; border-radius: 4px; }
+    </style>
 </head>
-<body class="bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
-    <div class="cw-ambient-orb cw-orb-1"></div>
-    <div class="cw-ambient-orb cw-orb-2"></div>
-    <div class="cw-ambient-orb cw-orb-3"></div>
 
-    <div class="container mx-auto px-4 py-6 max-w-[820px]">
-        <header class="flex items-center justify-between border-b border-gray-800 pb-4 mb-8">
-            <a href="index.html" class="text-xl font-bold flex items-center gap-2 tracking-tight">
-                <i data-lucide="zap" width="18" height="18" stroke-width="2.3" style="color:#22c58c;"></i> <span class="cw-logo-gradient">CryptoBolt</span>
-            </a>
-            <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all"><i data-lucide="arrow-left" width="12" height="12" stroke-width="2.4" style="vertical-align:-1px;"></i> Back to terminal</a>
-        </header>
+<body class="mk">
+<div class="mk-field"></div>
 
-        <main class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-6 sm:p-9">
-            <div class="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#4fd8e8]">Legal</div>
-            <h1 class="text-2xl font-bold text-white mb-1" style="font-family:'Space Grotesk','Inter',sans-serif;">Privacy Policy</h1>
-            <p class="text-gray-500 text-[11px] mb-8">Last updated: August 23, 2026</p>
+<nav class="mk-nav">
+    <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
 
-            <div class="space-y-7 text-[13px] leading-relaxed text-gray-300">
-                <section>
-                    <h2 class="text-sm font-bold text-white mb-2">The short version</h2>
-                    <p>CryptoBolt is a client-side market terminal. There is no user account, no server-side database, and no server-side tracking of individual visitors. Almost everything the app remembers — your watchlist, alerts, portfolio entries, notes, and settings — is written directly to your browser's own storage and never leaves your device. The one exception is optional analytics/ad cookies, covered in "Cookies &amp; analytics" below.</p>
-                </section>
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="mkx-updated">Last updated: August 23, 2026</p>
+</header>
 
-                <section>
-                    <h2 class="text-sm font-bold text-white mb-2">What's stored in your browser (localStorage)</h2>
-                    <p class="mb-2">CryptoBolt saves the following to your browser's <code class="cw-kbd">localStorage</code>, scoped to the site's origin. None of it is sent to any server owned by this project:</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-400">
-                        <li>Watchlist, price alerts, and alert-trigger history</li>
-                        <li>Spot holdings and futures positions you enter into the portfolio trackers</li>
-                        <li>Per-asset notes / trade journal entries</li>
-                        <li>AI Insight read history (a rolling log of past technical reads per asset)</li>
-                        <li>Your Groq API key, if you choose to add one (see below)</li>
-                        <li>Interface preferences: accent color, last-selected asset, chart interval, sound toggle</li>
-                    </ul>
-                    <p class="mt-2">Clearing your browser's site data for this domain permanently deletes all of it. There is no backup or recovery — nothing exists outside your browser.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-sm font-bold text-white mb-2">Your Groq API key</h2>
-                    <p>If you add a Groq API key to unlock AI-generated reads, that key is stored only in your browser's <code class="cw-kbd">localStorage</code>. When you request an AI read, the key is sent once, over HTTPS, to this app's own lightweight backend proxy in a request header — the backend uses it to call Groq on your behalf and immediately discards it. The key is never written to a database, a log file, or any persistent storage on the backend. If you don't add a key, the AI panel never makes a network call at all and instead computes a locally-calculated, clearly-labeled technical read using plain math already running in your browser.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-sm font-bold text-white mb-2">Third-party services this app talks to</h2>
-                    <p class="mb-2">To show live data, your browser makes direct requests to these services. Each is governed by its own privacy policy, which we don't control:</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-400">
-                        <li><a href="https://www.binance.com/en/privacy" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Binance</a> — spot &amp; futures price, order book, and trade data (REST + WebSocket)</li>
-                        <li><a href="https://www.coingecko.com/en/privacy" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">CoinGecko</a> — global market cap, volume, and trending-coins data</li>
-                        <li><a href="https://alternative.me/" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Alternative.me</a> — the Fear &amp; Greed Index</li>
-                        <li><a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Groq</a> — only if you've added your own API key, for AI-generated technical reads</li>
-                    </ul>
-                    <p class="mt-2">These requests carry standard network metadata (like your IP address) to the respective provider, the same as visiting any website that calls their API — this project has no visibility into what each provider does with that traffic beyond what their own policy describes.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-sm font-bold text-white mb-2">Cookies &amp; analytics</h2>
-                    <p class="mb-2">CryptoBolt uses <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Google Analytics</a> (GA4) to understand traffic at a high level, and <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Google AdSense</a> to show ads. Both set cookies in your browser and are how this free tool is funded.</p>
-                    <p class="mb-2">A banner asks for your choice the first time you visit. If you accept, analytics and ad-personalization cookies are enabled; if you reject, they stay off and ads are shown without personalization instead. You can change your mind anytime: <button type="button" onclick="window.cwOpenCookiePreferences && window.cwOpenCookiePreferences()" class="text-[#4fd8e8] hover:underline">open cookie preferences</button>.</p>
-                    <p>This is separate from the <code class="cw-kbd">localStorage</code> data described above, which is not a cookie, is never sent to Google or any analytics provider, and has no consent toggle because it never leaves your device.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-sm font-bold text-white mb-2">Children's privacy</h2>
-                    <p>This app is a financial-market data tool intended for adults and is not directed at children. It does not knowingly collect information from children, in part because it does not collect personal information from anyone.</p>
-                </section>
-
-                <section>
-                    <h2 class="text-sm font-bold text-white mb-2">Changes to this policy</h2>
-                    <p>If this policy changes, the "last updated" date at the top of this page will change with it. Since this is a static page shipped with the app itself, checking back here after an update is the way to see the current version.</p>
-                </section>
-
-                <section class="pt-4 border-t border-gray-800/60">
-                    <p class="text-gray-500 text-[11.5px]">Questions about this policy or how the app handles your data? <a href="contact.html" class="text-[#4fd8e8] hover:underline">Get in touch</a>.</p>
-                </section>
-            </div>
-        </main>
-
-        <footer class="mk mk-footer">
-            <div class="mk-footer-grid">
-                <div class="mk-footer-brand">
-                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark">⚡</span>CryptoBolt</a>
-                    <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
-                <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
-        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
-                <div class="mk-footer-social">
-                    <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
-                    <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
-                    <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
-                </div>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Product</h4>
-                    <a href="app.html">Terminal</a>
-                    <a href="trade.html">Paper trading</a>
-                    <a href="invest.html">Invest (real)</a>
-                    <a href="ai.html">AI research</a>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Company</h4>
-                    <a href="about.html">About</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Legal</h4>
-                    <a href="privacy.html">Privacy policy</a>
-                    <a href="terms.html">Terms of service</a>
-                </div>
-            </div>
-            <div class="mk-footer-bottom">
-                <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
-                <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
-            </div>
-        </footer>
+<article class="mk-article">
+    <div class="mkx-callout">
+        <i data-lucide="shield-check" width="18" height="18" stroke-width="2"></i>
+        <p>CryptoBolt is a client-side market terminal. There's no user account, no server-side database, and no server-side tracking of individual visitors. Almost everything the app remembers — your watchlist, alerts, portfolio entries, notes, and settings — is written directly to your browser's own storage and never leaves your device. The one exception is optional analytics/ad cookies, covered in "Cookies &amp; analytics" below.</p>
     </div>
 
-    <script src="js/footer-year.js"></script>
-    <script src="js/cookie-consent.js?v=20260823" defer></script>
-    <script src="js/shadcn-ui.js?v=20260823" defer></script>
+    <h2>What's stored in your browser (localStorage)</h2>
+    <p>CryptoBolt saves the following to your browser's <code class="cw-kbd">localStorage</code>, scoped to the site's origin. None of it is sent to any server owned by this project:</p>
+    <ul>
+        <li>Watchlist, price alerts, and alert-trigger history</li>
+        <li>Spot holdings and futures positions you enter into the portfolio trackers</li>
+        <li>Per-asset notes / trade journal entries</li>
+        <li>AI Insight read history (a rolling log of past technical reads per asset)</li>
+        <li>Your Groq API key, if you choose to add one (see below)</li>
+        <li>Interface preferences: accent color, last-selected asset, chart interval, sound toggle</li>
+    </ul>
+    <p>Clearing your browser's site data for this domain permanently deletes all of it. There is no backup or recovery — nothing exists outside your browser.</p>
+
+    <h2>Your Groq API key</h2>
+    <p>If you add a Groq API key to unlock AI-generated reads, that key is stored only in your browser's <code class="cw-kbd">localStorage</code>. When you request an AI read, the key is sent once, over HTTPS, to this app's own lightweight backend proxy in a request header — the backend uses it to call Groq on your behalf and immediately discards it. The key is never written to a database, a log file, or any persistent storage on the backend. If you don't add a key, the AI panel never makes a network call at all and instead computes a locally-calculated, clearly-labeled technical read using plain math already running in your browser.</p>
+
+    <h2>Third-party services this app talks to</h2>
+    <p>To show live data, your browser makes direct requests to these services. Each is governed by its own privacy policy, which we don't control:</p>
+    <ul>
+        <li><a href="https://www.binance.com/en/privacy" target="_blank" rel="noopener noreferrer">Binance</a> — spot &amp; futures price, order book, and trade data (REST + WebSocket)</li>
+        <li><a href="https://www.coingecko.com/en/privacy" target="_blank" rel="noopener noreferrer">CoinGecko</a> — global market cap, volume, and trending-coins data</li>
+        <li><a href="https://alternative.me/" target="_blank" rel="noopener noreferrer">Alternative.me</a> — the Fear &amp; Greed Index</li>
+        <li><a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Groq</a> — only if you've added your own API key, for AI-generated technical reads</li>
+    </ul>
+    <p>These requests carry standard network metadata (like your IP address) to the respective provider, the same as visiting any website that calls their API — this project has no visibility into what each provider does with that traffic beyond what their own policy describes.</p>
+
+    <h2>Cookies &amp; analytics</h2>
+    <p>CryptoBolt uses <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Analytics</a> (GA4) to understand traffic at a high level, and <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google AdSense</a> to show ads. Both set cookies in your browser and are how this free tool is funded.</p>
+    <p>A banner asks for your choice the first time you visit. If you accept, analytics and ad-personalization cookies are enabled; if you reject, they stay off and ads are shown without personalization instead. You can change your mind anytime: <button type="button" onclick="window.cwOpenCookiePreferences && window.cwOpenCookiePreferences()" class="mkx-linkbtn">open cookie preferences</button>.</p>
+    <p>This is separate from the <code class="cw-kbd">localStorage</code> data described above, which is not a cookie, is never sent to Google or any analytics provider, and has no consent toggle because it never leaves your device.</p>
+
+    <h2>Children's privacy</h2>
+    <p>This app is a financial-market data tool intended for adults and is not directed at children. It does not knowingly collect information from children, in part because it does not collect personal information from anyone.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, the "last updated" date at the top of this page will change with it. Since this is a static page shipped with the app itself, checking back here after an update is the way to see the current version.</p>
+
+    <hr class="mk-article-divider">
+    <p style="text-align:center;color:var(--mk-text-dim);font-size:13.5px;">Questions about this policy or how the app handles your data? <a href="contact.html">Get in touch</a>.</p>
+</article>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Product</h4>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Company</h4>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
+        <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
+    </div>
+</footer>
+
+<script src="js/footer-year.js"></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/shadcn-ui.js?v=20260823" defer></script>
 </body>
 </html>

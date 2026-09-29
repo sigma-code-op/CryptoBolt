@@ -70,140 +70,185 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261001">
+    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261001">
+    <style>
+        .mkx-contact-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; max-width: 1000px; margin: 0 auto; align-items: start; }
+        .mkx-panel { border: 1px solid var(--mk-line); border-radius: var(--mk-radius); background: var(--mk-surface); padding: 26px; margin-bottom: 20px; }
+        .mkx-side { display: flex; flex-direction: column; }
+        .mkx-side-label { font-size: 12px; font-weight: 700; color: var(--mk-text-dim); margin-bottom: 14px; }
+        .mkx-field { margin-bottom: 16px; }
+        .mkx-field label { display: block; font-size: 12px; font-weight: 600; color: var(--mk-text-dim); margin-bottom: 6px; }
+        .mkx-field input, .mkx-field select, .mkx-field textarea {
+            width: 100%; background: var(--mk-bg); border: 1px solid var(--mk-line);
+            border-radius: var(--mk-radius-sm); padding: 10px 12px; font-size: 14px;
+            color: var(--mk-text); font-family: inherit;
+        }
+        .mkx-field input::placeholder, .mkx-field textarea::placeholder { color: #5b6472; }
+        .mkx-field input:focus, .mkx-field select:focus, .mkx-field textarea:focus { outline: none; border-color: var(--mk-cyan); }
+        .mkx-field textarea { resize: vertical; }
+        .mkx-status { margin-top: 14px; font-size: 12.5px; line-height: 1.5; border-radius: var(--mk-radius-sm); padding: 10px 12px; }
+        .mkx-status.hidden { display: none; }
+        .text-\[\#14d38a\] { color: #14d38a; }
+        .bg-\[\#14d38a\]\/10 { background: rgba(20, 211, 138, .1); border: 1px solid rgba(20, 211, 138, .2); }
+        .text-\[\#ff4d6a\] { color: #ff4d6a; }
+        .bg-\[\#ff4d6a\]\/10 { background: rgba(255, 77, 106, .1); border: 1px solid rgba(255, 77, 106, .2); }
+        .mkx-links { display: flex; flex-direction: column; gap: 12px; font-size: 13px; }
+        .mkx-links a { display: flex; align-items: center; gap: 10px; color: var(--mk-text-dim); text-decoration: none; transition: color .15s ease; }
+        .mkx-links a:hover { color: var(--mk-cyan); }
+        .mkx-fineprint { color: #5b6472; font-size: 11px; line-height: 1.6; margin-top: 16px; }
+        .mkx-checklist { display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 0; list-style: none; }
+        .mkx-checklist li { font-size: 12.5px; color: var(--mk-text-dim); line-height: 1.6; padding-left: 18px; position: relative; }
+        .mkx-checklist li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--mk-line-hi); }
+        .mkx-checklist a { color: var(--mk-cyan); }
+        .cw-kbd { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: rgba(255,255,255,.06); padding: 1px 5px; border-radius: 4px; }
+        @media (max-width: 760px) { .mkx-contact-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
-<body class="bg-[#0b0e11] text-gray-200 min-h-screen font-sans antialiased">
-    <div class="cw-ambient-orb cw-orb-1"></div>
-    <div class="cw-ambient-orb cw-orb-2"></div>
-    <div class="cw-ambient-orb cw-orb-3"></div>
 
-    <div class="container mx-auto px-4 py-6 max-w-[820px]">
-        <header class="flex items-center justify-between border-b border-gray-800 pb-4 mb-8">
-            <a href="index.html" class="text-xl font-bold flex items-center gap-2 tracking-tight">
-                <i data-lucide="zap" width="18" height="18" stroke-width="2.3" style="color:#22c58c;"></i> <span class="cw-logo-gradient">CryptoBolt</span>
-            </a>
-            <a href="app.html" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all"><i data-lucide="arrow-left" width="12" height="12" stroke-width="2.4" style="vertical-align:-1px;"></i> Back to terminal</a>
-        </header>
+<body class="mk">
+<div class="mk-field"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-            <!-- Contact form -->
-            <main class="md:col-span-3 cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl p-6 sm:p-8">
-                <div class="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#4fd8e8]">Get in touch</div>
-                <h1 class="text-2xl font-bold text-white mb-1" style="font-family:'Space Grotesk','Inter',sans-serif;">Contact us</h1>
-                <p class="text-gray-500 text-[12px] mb-6 leading-relaxed">Found a bug, have a feature idea, or something not working right? Send it straight to the team below.</p>
+<nav class="mk-nav">
+    <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
 
-                <form id="contact-form" class="space-y-4">
-                    <!-- Honeypot: hidden from real visitors via CSS, but a bot that fills every field will populate it, flagging the submission as spam server-side. -->
-                    <div class="hc-honeypot" aria-hidden="true">
-                        <label for="contact-company">Company</label>
-                        <input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off">
-                    </div>
-                    <div>
-                        <label for="contact-name" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Your name</label>
-                        <input id="contact-name" type="text" required placeholder="Jane Trader"
-                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#4fd8e8]">
-                    </div>
-                    <div>
-                        <label for="contact-email" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Your email</label>
-                        <input id="contact-email" type="email" required placeholder="you@example.com"
-                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#4fd8e8]">
-                    </div>
-                    <div>
-                        <label for="contact-topic" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Topic</label>
-                        <select id="contact-topic" class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 focus:outline-none focus:border-[#4fd8e8]">
-                            <option value="Bug report">Bug report</option>
-                            <option value="Feature request">Feature request</option>
-                            <option value="AI Insight / Groq key question">AI Insight / Groq key question</option>
-                            <option value="Privacy question">Privacy question</option>
-                            <option value="Something else">Something else</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="contact-message" class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Message</label>
-                        <textarea id="contact-message" required rows="5" placeholder="What's going on? The more detail (asset, browser, steps to reproduce) the faster it's useful."
-                            class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#4fd8e8] resize-y"></textarea>
-                    </div>
-                    <button type="submit" id="contact-submit-btn" class="cw-shine w-full sm:w-auto text-sm px-5 py-2.5 rounded bg-[#14d38a] text-[#06110d] font-bold hover:opacity-90 transition-all cursor-pointer">
-                        <i data-lucide="send" width="14" height="14" stroke-width="2.3" style="vertical-align:-2px;"></i> Send message
-                    </button>
-                    <div id="contact-status" class="hidden text-[11px] leading-relaxed rounded p-2.5" role="status" aria-live="polite"></div>
-                </form>
-            </main>
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Get in touch</span>
+    <h1>Talk to the person who built this.</h1>
+    <p>Found a bug, have a feature idea, or just want to talk shop? Send it below and it's read by the person who built this, not a ticket queue.</p>
+</header>
 
-            <!-- Direct channels -->
-            <aside class="md:col-span-2 flex flex-col gap-4">
-                <div class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-xl p-5">
-                    <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Direct channels</div>
-                    <div class="space-y-3 text-[12.5px]">
-                        <a href="mailto:info@cryptobolt.io" class="flex items-center gap-2.5 text-gray-300 hover:text-[#4fd8e8] transition-colors">
-                            <i data-lucide="mail" width="16" height="16" stroke-width="2"></i> info@cryptobolt.io
-                        </a>
-                        <a href="https://github.com/sigma-code-op/CRYPTOBOLT/issues" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 text-gray-300 hover:text-[#4fd8e8] transition-colors">
-                            <i data-lucide="github" width="16" height="16" stroke-width="2"></i> Report an issue on GitHub
-                        </a>
-                        <a href="https://github.com/sigma-code-op/CRYPTOBOLT" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 text-gray-300 hover:text-[#4fd8e8] transition-colors">
-                            <i data-lucide="file-text" width="16" height="16" stroke-width="2"></i> Source &amp; documentation
-                        </a>
-                    </div>
-                    <p class="text-gray-600 text-[10px] mt-4 leading-relaxed">The form above sends to your mailbox via the backend in <code class="cw-kbd">/server</code> — set <code class="cw-kbd">SMTP_*</code> and <code class="cw-kbd">CONTACT_TO_EMAIL</code> in its <code class="cw-kbd">.env</code> (see <code class="cw-kbd">.env.example</code>). Until then it falls back to opening an email app.</p>
+<section class="mk-section" style="padding-top:0;">
+    <div class="mkx-contact-grid">
+        <div class="mkx-panel mkx-form-panel">
+            <form id="contact-form">
+                <!-- Honeypot: hidden from real visitors via CSS, but a bot that fills every field will populate it, flagging the submission as spam server-side. -->
+                <div class="hc-honeypot" aria-hidden="true">
+                    <label for="contact-company">Company</label>
+                    <input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off">
                 </div>
-
-                <div class="cw-card-interactive cw-reveal cw-in-view bg-[#181a20] border border-gray-800 rounded-lg shadow-xl p-5">
-                    <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Before you write in</div>
-                    <ul class="space-y-2 text-[11.5px] text-gray-400 list-disc pl-4">
-                        <li>Market data issues are usually Binance/CoinGecko-side — check <a href="https://www.binance.com/en/support/announcement" target="_blank" rel="noopener noreferrer" class="text-[#4fd8e8] hover:underline">Binance's status page</a> first.</li>
-                        <li>AI panel not working? Confirm a Groq key is saved and the backend in <code class="cw-kbd">/server</code> is running and reachable.</li>
-                        <li>This app doesn't place real trades or hold funds — nothing here can affect an actual exchange account.</li>
-                        <li>This is a small, independently-run project — expect a personal reply, not an auto-response.</li>
-                    </ul>
+                <div class="mkx-field">
+                    <label for="contact-name">Your name</label>
+                    <input id="contact-name" type="text" required placeholder="Jane Trader">
                 </div>
-            </aside>
+                <div class="mkx-field">
+                    <label for="contact-email">Your email</label>
+                    <input id="contact-email" type="email" required placeholder="you@example.com">
+                </div>
+                <div class="mkx-field">
+                    <label for="contact-topic">Topic</label>
+                    <select id="contact-topic">
+                        <option value="Bug report">Bug report</option>
+                        <option value="Feature request">Feature request</option>
+                        <option value="AI Insight / Groq key question">AI Insight / Groq key question</option>
+                        <option value="Privacy question">Privacy question</option>
+                        <option value="Something else">Something else</option>
+                    </select>
+                </div>
+                <div class="mkx-field">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" required rows="5" placeholder="What's going on? The more detail (asset, browser, steps to reproduce) the faster it's useful."></textarea>
+                </div>
+                <button type="submit" id="contact-submit-btn" class="mk-btn mk-btn-primary" style="width:100%;justify-content:center;">
+                    <i data-lucide="send" width="14" height="14" stroke-width="2.3"></i> Send message
+                </button>
+                <div id="contact-status" class="hidden mkx-status" role="status" aria-live="polite"></div>
+            </form>
         </div>
 
-        <footer class="mk mk-footer">
-            <div class="mk-footer-grid">
-                <div class="mk-footer-brand">
-                    <a href="index.html" class="mk-logo"><span class="mk-logo-mark">⚡</span>CryptoBolt</a>
-                    <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
-                <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
-        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
-                <div class="mk-footer-social">
-                    <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
-                    <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
-                    <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        <aside class="mkx-side">
+            <div class="mkx-panel">
+                <div class="mkx-side-label">Direct channels</div>
+                <div class="mkx-links">
+                    <a href="mailto:info@cryptobolt.io"><i data-lucide="mail" width="16" height="16" stroke-width="2"></i> info@cryptobolt.io</a>
+                    <a href="https://github.com/sigma-code-op/CRYPTOBOLT/issues" target="_blank" rel="noopener noreferrer"><i data-lucide="github" width="16" height="16" stroke-width="2"></i> Report an issue on GitHub</a>
+                    <a href="https://github.com/sigma-code-op/CRYPTOBOLT" target="_blank" rel="noopener noreferrer"><i data-lucide="file-text" width="16" height="16" stroke-width="2"></i> Source &amp; documentation</a>
                 </div>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Product</h4>
-                    <a href="app.html">Terminal</a>
-                    <a href="trade.html">Paper trading</a>
-                    <a href="invest.html">Invest (real)</a>
-                    <a href="ai.html">AI research</a>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Company</h4>
-                    <a href="about.html">About</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
-                </div>
-                <div class="mk-footer-col">
-                    <h4>Legal</h4>
-                    <a href="privacy.html">Privacy policy</a>
-                    <a href="terms.html">Terms of service</a>
-                </div>
+                <p class="mkx-fineprint">The form above sends to your mailbox via the backend in <code class="cw-kbd">/server</code> — set <code class="cw-kbd">SMTP_*</code> and <code class="cw-kbd">CONTACT_TO_EMAIL</code> in its <code class="cw-kbd">.env</code> (see <code class="cw-kbd">.env.example</code>). Until then it falls back to opening an email app.</p>
             </div>
-            <div class="mk-footer-bottom">
-                <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
-                <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
-            </div>
-        </footer>
-    </div>
 
-    <script src="js/00-config.js?v=20260820"></script>
-    <script src="js/footer-year.js"></script>
-    <script src="js/contact-form.js"></script>
-    <script src="js/cookie-consent.js?v=20260823" defer></script>
-    <script src="js/shadcn-ui.js?v=20260823" defer></script>
+            <div class="mkx-panel">
+                <div class="mkx-side-label">Before you write in</div>
+                <ul class="mkx-checklist">
+                    <li>Market data issues are usually Binance/CoinGecko-side — check <a href="https://www.binance.com/en/support/announcement" target="_blank" rel="noopener noreferrer">Binance's status page</a> first.</li>
+                    <li>AI panel not working? Confirm a Groq key is saved and the backend in <code class="cw-kbd">/server</code> is running and reachable.</li>
+                    <li>This app doesn't place real trades or hold funds — nothing here can affect an actual exchange account.</li>
+                    <li>This is a small, independently-run project — expect a personal reply, not an auto-response.</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Product</h4>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Company</h4>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© <span id="footer-year">2026</span> CryptoBolt. All rights reserved.</span>
+        <span>Not financial advice — data can be delayed, incomplete, or wrong.</span>
+    </div>
+</footer>
+
+<script src="js/footer-year.js"></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/shadcn-ui.js?v=20260823" defer></script>
+<script src="js/00-config.js?v=20260820"></script>
+<script src="js/contact-form.js"></script>
 </body>
 </html>
