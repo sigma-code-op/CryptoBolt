@@ -170,3 +170,50 @@ test('extractActions gives a fallback sentence when the answer was only the bloc
   assert.equal(r.actions.length, 1);
   assert.ok(r.text.length > 0);
 });
+
+// ---------------------------------------------------------------------------
+// The model printing the action JSON in the visible answer (seen in production)
+// ---------------------------------------------------------------------------
+
+const ACTION = { type: 'set_tp_sl', market: 'futures', id: 'pos_1', tpPrice: 120, slPrice: 98, reason: 'Add exits.' };
+
+test('extractActions removes a printed ```json copy and its "Proposed actions" lead-in when tags are also present', () => {
+  const raw = [
+    'Your 10x BTC long has no stop-loss.',
+    '',
+    '**Proposed actions** (nothing may change until you confirm):',
+    '```json',
+    JSON.stringify([ACTION], null, 2),
+    '```',
+    '',
+    '<cw-actions>' + JSON.stringify([ACTION]) + '</cw-actions>',
+  ].join('\n');
+  const { text, actions } = extractActions(raw, trades());
+  assert.equal(text, 'Your 10x BTC long has no stop-loss.');
+  assert.equal(actions.length, 1);
+  assert.equal(actions[0].id, 'pos_1');
+});
+
+test('extractActions uses a printed ```json block as the payload when the tags are missing, and hides it', () => {
+  const raw = 'Add exits.\n\nProposed actions:\n```json\n' + JSON.stringify([ACTION]) + '\n```';
+  const { text, actions } = extractActions(raw, trades());
+  assert.equal(text, 'Add exits.');
+  assert.equal(actions.length, 1);
+});
+
+test('extractActions handles a bare (unfenced) action array in the text', () => {
+  const raw = 'Add exits. ' + JSON.stringify([ACTION]) + ' Nothing changes until you confirm.';
+  const { text, actions } = extractActions(raw, trades());
+  assert.equal(actions.length, 1);
+  assert.equal(text.includes('set_tp_sl'), false);
+  assert.match(text, /Nothing changes until you confirm/);
+});
+
+test('extractActions still validates printed JSON against the snapshot and leaves other code fences alone', () => {
+  const bad = { ...ACTION, id: 'pos_999' };
+  const r1 = extractActions('Hi.\n```json\n' + JSON.stringify([bad]) + '\n```', trades());
+  assert.deepEqual(r1, { text: 'Hi.', actions: [] });
+  const r2 = extractActions('Example:\n```js\nconst x = [1, 2, 3];\n```', trades());
+  assert.match(r2.text, /const x = \[1, 2, 3\];/);
+  assert.deepEqual(r2.actions, []);
+});

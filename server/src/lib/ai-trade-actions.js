@@ -155,8 +155,10 @@ Allowed proposal objects:
 Rules: ids and symbols must be copied exactly from paperTrades. Include tpPrice/slPrice only for
 the level you want to change (null clears it). For a long, take-profit must be above the current
 price and stop-loss below it (and above the liquidation price); for a short it is the reverse.
-Describe each proposal in your written answer too, and say that nothing changes until they
-confirm. Keep "reason" plain text with no markup.
+Describe each proposal in your written answer too, in plain sentences, and say that nothing
+changes until they confirm. The <cw-actions> block is read by the app and hidden from the user:
+never print the JSON anywhere else in your answer, never put it in a code fence, and never
+introduce it with a line like "Proposed actions:". Keep "reason" plain text with no markup.
 `;
 
 function cleanReason(v) {
@@ -171,6 +173,27 @@ function priceOrNull(v) {
   if (v === null) return null;
   const n = num(v);
   return n !== null && n > 0 ? n : undefined; // undefined = invalid
+}
+
+// Models sometimes print the action JSON in the visible answer as well — usually in a ```json
+// fence, sometimes bare — often after a lead-in like "Proposed actions (...):". Those copies are
+// removed from the text (the app shows real confirm cards instead), and if the model forgot the
+// <cw-actions> tags entirely, the first such copy is used as the payload.
+const ACTION_TYPES_RE = '(?:set_tp_sl|cancel_order|close_futures)';
+const FENCED_ACTIONS_RE = new RegExp('```[a-z]*\\s*(\\[[\\s\\S]*?"type"\\s*:\\s*"' + ACTION_TYPES_RE + '"[\\s\\S]*?\\])\\s*```', 'gi');
+const BARE_ACTIONS_RE = new RegExp('(\\[\\s*\\{[^\\[\\]]*?"type"\\s*:\\s*"' + ACTION_TYPES_RE + '"[\\s\\S]*?\\}\\s*\\])', 'gi');
+const LEAD_IN_RE = /^[ \t>*_#-]*(?:proposed|suggested|recommended)\s+(?:actions?|changes?|proposals?)\b[^\n]*:\s*\**\s*$/gim;
+
+function stripPrintedActions(text) {
+  let fallbackPayload = null;
+  const take = (_m, json) => {
+    if (fallbackPayload === null) fallbackPayload = json;
+    return '';
+  };
+  let out = text.replace(FENCED_ACTIONS_RE, take).replace(BARE_ACTIONS_RE, take);
+  if (out !== text) out = out.replace(LEAD_IN_RE, '');
+  out = out.replace(/\n{3,}/g, '\n\n').trim();
+  return { text: out, fallbackPayload };
 }
 
 // Splits the model's raw answer into { text, actions }. The action block is always removed from
@@ -191,6 +214,10 @@ export function extractActions(rawAnswer, trades) {
     .replace(/<cw-actions>[\s\S]*?<\/cw-actions>/gi, '')
     .replace(/<cw-actions>[\s\S]*$/i, '') // an unterminated block (cut off by max_tokens)
     .trim();
+
+  const printed = stripPrintedActions(text);
+  text = printed.text;
+  if (payload === null) payload = printed.fallbackPayload;
 
   if (!trades || payload === null) return { text, actions: [] };
 
