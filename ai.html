@@ -137,7 +137,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="css/dist/bundle-ai.css?v=20261001">
+    <link rel="stylesheet" href="css/dist/bundle-ai.css?v=20261002">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -564,7 +564,16 @@
                     <button>Explain RSI</button>
                     <button>What's the current market risk?</button>
                     <button>Explain this market simply</button>
+                    <button>Review my open paper trades</button>
                 </div>
+
+                <label id="ai-trades-row" class="ai-trades-row" for="ai-trades-toggle">
+                    <input type="checkbox" id="ai-trades-toggle" checked>
+                    <span>
+                        <strong>Let AI see my paper trades</strong> — it can review them and suggest changes you confirm before anything happens.
+                        <br><span id="ai-trades-note"></span>
+                    </span>
+                </label>
 
                 <form id="chat-form" class="chat-input-area">
 
@@ -668,7 +677,8 @@
 </div>
 
 <script src="js/market-conditions-gauge.js?v=20260906"></script>
-<script src="js/ai-chat.js?v=20260922"></script>
+<script src="js/ai-trades.js?v=20260930"></script>
+<script src="js/ai-chat.js?v=20260930"></script>
 
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>

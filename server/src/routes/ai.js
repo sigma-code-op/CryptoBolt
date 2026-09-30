@@ -19,6 +19,11 @@ import {
   ALERT_EXPLAIN_SYSTEM_PROMPT,
   buildAlertExplainPrompt,
 } from '../lib/ai-prompts.js';
+import {
+  sanitizeTradesContext,
+  extractActions,
+  CHAT_TRADES_PROMPT,
+} from '../lib/ai-trade-actions.js';
 
 const router = Router();
 
@@ -278,6 +283,10 @@ router.post(
 
     const history = sanitizeHistory(req.body?.history);
 
+    // Optional snapshot of the visitor's practice (paper) account, sent only when they've left
+    // "Let AI see my paper trades" on. Best-effort like history: malformed → treated as absent.
+    const trades = sanitizeTradesContext(req.body?.trades);
+
     const contextText =
       JSON.stringify({
 
@@ -290,8 +299,12 @@ router.post(
         recentNews:
           newsItems,
 
+        ...(trades ? { paperTrades: trades } : {}),
+
         note:
-          'This is market research context, not personalized portfolio or account state.',
+          trades
+            ? 'paperTrades is the visitor\'s simulated practice account (virtual money). The rest is market research context.'
+            : 'This is market research context, not personalized portfolio or account state.',
       });
 
     try {
@@ -303,7 +316,7 @@ router.post(
             GROQ_MODEL,
 
           max_tokens:
-            900,
+            trades ? 1300 : 900,
 
           reasoning_effort:
             'low',
@@ -315,7 +328,9 @@ router.post(
                 'system',
 
               content:
-                CHAT_SYSTEM_PROMPT,
+                trades
+                  ? `${CHAT_SYSTEM_PROMPT}\n${CHAT_TRADES_PROMPT}`
+                  : CHAT_SYSTEM_PROMPT,
             },
 
             // Prior turns of this conversation, if the client sent any — lets the
@@ -350,14 +365,25 @@ router.post(
         });
       }
 
+      // Pull the model's proposed practice-account actions (if any) out of the text and
+      // validate them against the snapshot this request carried. Only proposals — the browser
+      // makes the visitor confirm each one before anything changes.
+      const { text: visibleAnswer, actions } =
+        extractActions(
+          answer,
+          trades
+        );
+
       answer =
         softenOverconfidentLanguage(
-          answer
+          visibleAnswer
         );
 
       return res.json({
 
         answer,
+
+        actions,
 
         sources:
           newsItems.map(

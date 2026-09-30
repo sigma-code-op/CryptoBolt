@@ -336,7 +336,7 @@
         const useHouseKey = getKeyMode() === "house";
         const key = getKey();
         if (!useHouseKey && !key) {
-            return 'Please add your Groq API key first using the ⚙ API Key button — or switch it to "Use CryptoBolt\'s key".';
+            return { answer: 'Please add your Groq API key first using the ⚙ API Key button — or switch it to "Use CryptoBolt\'s key".', actions: [] };
         }
 
         try {
@@ -371,6 +371,12 @@
                 },
             };
 
+            // Practice-account snapshot, only when the visitor has left the toggle on and the
+            // account has something in it. Live prices are fetched here so the AI sees real
+            // P&L / distance-to-liquidation, not stale saved numbers.
+            const tradesContext = await collectTradesContext();
+            if (tradesContext) payload.trades = tradesContext;
+
             const headers = { "Content-Type": "application/json" };
             if (useHouseKey) {
                 headers["x-use-house-key"] = "1";
@@ -390,11 +396,148 @@
                 throw new Error(data.error || `AI request failed (${response.status}).`);
             }
 
-            return data.answer || "No answer returned.";
+            return {
+                answer: data.answer || "No answer returned.",
+                actions: Array.isArray(data.actions) ? data.actions : [],
+            };
         } catch (error) {
             console.error("[CryptoBolt AI]", error);
-            return "I couldn't complete the market research right now. " + (error.message || error);
+            return { answer: "I couldn't complete the market research right now. " + (error.message || error), actions: [] };
         }
+    }
+
+    /* -----------------------------
+       PAPER TRADES x AI
+       Lets the chat see the visitor's practice account (js/ai-trades.js) and lets them
+       confirm changes the AI proposes. Nothing is applied without a click on a card.
+    ----------------------------- */
+
+    const SHARE_TRADES_KEY = "cw_ai_share_trades";
+    const tradesApi = () => window.cwAiTrades || null;
+    const shareTradesOn = () => localStorage.getItem(SHARE_TRADES_KEY) !== "0";
+
+    async function collectTradesContext() {
+        const api = tradesApi();
+        if (!api || !shareTradesOn()) return null;
+        try {
+            const state = api.readState(localStorage);
+            if (!api.hasActivity(state)) return null;
+            const quotes = await api.fetchQuotes(api.neededSymbols(state));
+            return api.buildTradesContext(state, quotes);
+        } catch (err) {
+            console.warn("[CryptoBolt AI] couldn't read paper trades:", err);
+            return null;
+        }
+    }
+
+    function syncTradesToggle() {
+        const box = $("ai-trades-toggle");
+        const api = tradesApi();
+        const row = $("ai-trades-row");
+        if (!box || !row) return;
+        if (!api) { row.classList.add("hidden"); return; }
+        box.checked = shareTradesOn();
+        const state = api.readState(localStorage);
+        const note = $("ai-trades-note");
+        if (note) {
+            note.textContent = api.hasActivity(state)
+                ? "Sends your practice-account positions and results to the AI so it can review them."
+                : "No practice trades yet — place some on the Trading Account page and the AI can review them.";
+        }
+    }
+    $("ai-trades-toggle")?.addEventListener("change", (e) => {
+        localStorage.setItem(SHARE_TRADES_KEY, e.target.checked ? "1" : "0");
+    });
+    syncTradesToggle();
+    // Trades placed in another tab show up here without a reload.
+    window.addEventListener("storage", (e) => { if (e.key && e.key.startsWith("cw_paper_")) syncTradesToggle(); });
+
+    // Cards for the actions the AI proposed. Each needs its own Confirm click; on confirm the
+    // account and live prices are re-read and the action is re-validated before it's applied.
+    function renderActionCards(wrapper, actions) {
+        const api = tradesApi();
+        if (!wrapper || !api || !actions || !actions.length) return;
+        const body = wrapper.querySelector(".message-body");
+        if (!body) return;
+
+        const list = document.createElement("div");
+        list.className = "ai-actions";
+        const heading = document.createElement("div");
+        heading.className = "ai-actions-heading";
+        heading.textContent = "Proposed changes to your practice account — nothing happens until you confirm";
+        list.appendChild(heading);
+
+        actions.forEach((action) => {
+            const card = document.createElement("div");
+            card.className = "ai-action-card";
+            const title = document.createElement("div");
+            title.className = "ai-action-title";
+            const detail = document.createElement("div");
+            detail.className = "ai-action-detail";
+            const reason = document.createElement("div");
+            reason.className = "ai-action-reason";
+            const status = document.createElement("div");
+            status.className = "ai-action-status hidden";
+            const buttons = document.createElement("div");
+            buttons.className = "ai-action-buttons";
+            const confirmBtn = document.createElement("button");
+            confirmBtn.type = "button";
+            confirmBtn.className = "ai-action-confirm";
+            confirmBtn.textContent = "Confirm";
+            const dismissBtn = document.createElement("button");
+            dismissBtn.type = "button";
+            dismissBtn.className = "ai-action-dismiss";
+            dismissBtn.textContent = "Dismiss";
+            buttons.append(confirmBtn, dismissBtn);
+
+            const label = { set_tp_sl: "Update exits", cancel_order: "Cancel order", close_futures: "Close position" }[action.type] || "Change";
+            title.textContent = label;
+            detail.textContent = "Checking the current account…";
+            if (action.reason) reason.textContent = `Why: ${action.reason}`;
+            card.append(title, detail, reason, status, buttons);
+            list.appendChild(card);
+
+            const finish = (text, ok) => {
+                buttons.classList.add("hidden");
+                status.textContent = text;
+                status.classList.remove("hidden");
+                status.classList.toggle("ok", !!ok);
+                card.classList.add(ok ? "done" : "closed");
+            };
+
+            // Fill in a live preview (title/detail) as soon as prices load.
+            (async () => {
+                const state = api.readState(localStorage);
+                const quotes = await api.fetchQuotes(api.neededSymbols(state));
+                const pv = api.previewAction(state, action, quotes);
+                if (pv.ok) { title.textContent = pv.title; detail.textContent = pv.detail; }
+                else { detail.textContent = pv.error; confirmBtn.disabled = true; }
+            })();
+
+            dismissBtn.addEventListener("click", () => finish("Dismissed.", false));
+            confirmBtn.addEventListener("click", async () => {
+                confirmBtn.disabled = true;
+                detail.textContent = "Applying…";
+                try {
+                    const state = api.readState(localStorage);
+                    const quotes = await api.fetchQuotes(api.neededSymbols(state));
+                    // Re-read right before writing so we never clobber a change made in the meantime.
+                    const fresh = api.readState(localStorage);
+                    const result = api.applyAction(fresh, action, quotes);
+                    if (!result.ok) { detail.textContent = result.error; finish(result.error, false); return; }
+                    api.persistState(fresh, localStorage, result.changed);
+                    finish(result.message + " Open the Trading Account page to see it.", true);
+                    syncTradesToggle();
+                } catch (err) {
+                    console.error("[CryptoBolt AI] action failed:", err);
+                    finish("Couldn't apply that change. Nothing was changed.", false);
+                }
+            });
+        });
+
+        body.appendChild(list);
+        const container = $("chat-messages");
+        if (container) container.scrollTop = container.scrollHeight;
     }
 
     /* -----------------------------
@@ -544,9 +687,10 @@
         addMessage("user", question);
 
         const thinking = addMessage("ai", "Researching the current market...");
-        const answer = await askAI(question);
+        const { answer, actions } = await askAI(question);
         if (thinking) {
             setMessageText(thinking, "ai", answer);
+            renderActionCards(thinking, actions);
         }
         pushChatHistory("user", question);
         pushChatHistory("assistant", answer);

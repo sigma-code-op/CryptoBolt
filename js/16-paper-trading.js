@@ -1709,6 +1709,25 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         });
         downloadCSV(lines.join('\n'), `paper_trades_${Date.now()}.csv`);
     });
+    // Changes made to the practice account from another tab — e.g. a take-profit/stop-loss or
+    // a close the visitor confirmed in the AI chat on ai.html — arrive as 'storage' events.
+    // Reload just the key that changed so this tab doesn't keep stale state and then overwrite
+    // the other tab's change the next time it saves.
+    window.addEventListener('storage', (e) => {
+        if (!e.key || !e.key.startsWith('cw_paper_')) return;
+        const v = e.newValue;
+        switch (e.key) {
+            case 'cw_paper_cash': cash = safeJSONParse(v, cash); break;
+            case 'cw_paper_deposited': totalDeposited = safeJSONParse(v, totalDeposited); break;
+            case 'cw_paper_holdings': holdings = safeJSONParse(v, []); break;
+            case 'cw_paper_trades': trades = safeJSONParse(v, []); break;
+            case 'cw_paper_orders': pendingOrders = safeJSONParse(v, []); break;
+            case 'cw_paper_equity_curve': equityCurve = safeJSONParse(v, []); break;
+            case 'cw_paper_futures': futuresPositions = safeJSONParse(v, []); break;
+            default: return;
+        }
+        renderAll();
+    });
     // Accessor for other modules on this page. getEquity() is read by js/22-leaderboard.js;
     // must be assigned unconditionally at boot (not inside any button handler) so the
     // leaderboard can read live equity from the moment the page loads. addBonusCash() is used
