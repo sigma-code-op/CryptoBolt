@@ -1637,7 +1637,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
         openAiPositionRead(p.symbol, true, position, `${p.symbol} ${p.leverage}x ${p.side}`);
     });
 
-    // ---------- Reset / add funds ----------
+    // ---------- Reset ----------
     const resetModal = document.getElementById('reset-modal');
     document.getElementById('reset-account-btn').addEventListener('click', () => resetModal.classList.add('cw-visible'));
     document.getElementById('reset-modal-close').addEventListener('click', () => resetModal.classList.remove('cw-visible'));
@@ -1654,30 +1654,9 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     });
     resetModal.addEventListener('click', (e) => { if (e.target === resetModal) resetModal.classList.remove('cw-visible'); });
 
-    const fundsModal = document.getElementById('funds-modal');
-    document.getElementById('add-funds-btn').addEventListener('click', () => fundsModal.classList.add('cw-visible'));
-    document.getElementById('funds-modal-close').addEventListener('click', () => fundsModal.classList.remove('cw-visible'));
-    fundsModal.addEventListener('click', (e) => { if (e.target === fundsModal) fundsModal.classList.remove('cw-visible'); });
-    function addFunds(amount) {
-        if (isNaN(amount) || amount <= 0) { showToast('Enter a valid amount.', 'error'); return; }
-        cash += amount; totalDeposited += amount;
-        persist(); renderAll(); maybeSnapshotEquity(true);
-        fundsModal.classList.remove('cw-visible');
-        showToast(`Added ${fmtUsd(amount)} to your account.`, 'success');
-    }
-    document.querySelectorAll('.funds-preset-btn').forEach(btn => {
-        btn.addEventListener('click', () => addFunds(parseFloat(btn.getAttribute('data-amount'))));
-    });
-    document.getElementById('funds-custom-add-btn').addEventListener('click', () => {
-        const val = parseFloat(document.getElementById('funds-custom-input').value);
-        addFunds(val);
-        document.getElementById('funds-custom-input').value = '';
-    });
-
     document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
         resetModal.classList.remove('cw-visible');
-        fundsModal.classList.remove('cw-visible');
         aiPanel?.classList.add('hidden');
     });
 

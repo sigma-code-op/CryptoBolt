@@ -122,7 +122,6 @@
                     <span class="text-gray-400 uppercase">Live Prices</span>
                     <span id="feed-status-text" class="text-gray-500">connecting…</span>
                 </div>
-                <button id="add-funds-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer"><i data-lucide="plus" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Add Funds</button>
                 <button id="reset-account-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#ff4d6a] hover:border-[#ff4d6a]/40 transition-all cursor-pointer"><i data-lucide="rotate-ccw" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Reset</button>
                 <button id="auth-open-btn" type="button" class="text-[11px] font-bold px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer"><i data-lucide="user" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Sign In</button>
                 <div id="auth-user-chip" class="hidden items-center gap-1.5">
@@ -610,29 +609,6 @@
                 <div class="flex gap-2">
                     <button id="reset-modal-cancel" class="flex-1 text-xs font-bold py-2 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white transition-all cursor-pointer">Cancel</button>
                     <button id="reset-modal-confirm" class="flex-1 text-xs font-bold py-2 rounded bg-[#ff4d6a] text-white hover:opacity-90 transition-all cursor-pointer">Reset account</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add funds modal -->
-    <div id="funds-modal" class="cw-modal-backdrop">
-        <div class="cw-modal-card" style="max-width:380px;" role="dialog" aria-modal="true" aria-label="Add virtual funds">
-            <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#1e222b]">
-                <h2 class="text-sm font-bold text-white">Add virtual funds</h2>
-                <button id="funds-modal-close" aria-label="Close add funds dialog" class="text-gray-500 hover:text-white cursor-pointer text-lg leading-none"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
-            </div>
-            <div class="p-4">
-                <p class="text-[11px] text-gray-500 leading-relaxed mb-3">Top up your practice cash balance. This is virtual money for this account only.</p>
-                <div class="grid grid-cols-3 gap-2 mb-3">
-                    <button class="funds-preset-btn text-xs font-bold py-2 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:border-[#14d38a]/50 hover:text-[#14d38a] transition-all cursor-pointer" data-amount="1000">+$1,000</button>
-                    <button class="funds-preset-btn text-xs font-bold py-2 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:border-[#14d38a]/50 hover:text-[#14d38a] transition-all cursor-pointer" data-amount="10000">+$10,000</button>
-                    <button class="funds-preset-btn text-xs font-bold py-2 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:border-[#14d38a]/50 hover:text-[#14d38a] transition-all cursor-pointer" data-amount="100000">+$100,000</button>
-                </div>
-                <div class="flex items-center gap-2">
-                    <input id="funds-custom-input" type="number" step="any" placeholder="Custom amount"
-                        class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 font-mono focus:outline-none focus:border-[#14d38a]">
-                    <button id="funds-custom-add-btn" class="text-xs font-bold px-3 py-2 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer whitespace-nowrap">Add</button>
                 </div>
             </div>
         </div>
