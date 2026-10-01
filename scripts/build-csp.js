@@ -60,6 +60,7 @@ const SCRIPT_SRC = [
   'https://pagead2.googlesyndication.com', // adsbygoogle.js
   'https://cdn.jsdelivr.net', // @supabase/supabase-js
   'https://unpkg.com', // lightweight-charts
+  'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
 const STYLE_SRC = [
@@ -82,6 +83,7 @@ const IMG_SRC = [
   'https://sellwithboost.com', // "Listed on Sell With Boost" badge image
   'https://images.dmca.com', // DMCA Protection Status badge image
   'https://www.nxgntools.com', // "Featured on NxGn Tools" badge image
+  'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
 // Live price/chart data (Binance REST + WS, CoinGecko, alternative.me Fear &
@@ -109,6 +111,7 @@ const CONNECT_SRC = [
   'https://analytics.google.com',
   'https://pagead2.googlesyndication.com',
   'https://www.googletagmanager.com',
+  'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
 // AdSense creatives render inside iframes from these origins.
@@ -116,6 +119,7 @@ const FRAME_SRC = [
   'https://googleads.g.doubleclick.net',
   'https://tpc.googlesyndication.com',
   'https://www.google.com',
+  'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
 function sha256Base64(text) {
