@@ -13,6 +13,7 @@
 (function () {
     'use strict';
 
+    function run() {
     const canvas = document.getElementById('cw-terminal-canvas');
     if (!canvas) return;
     if (typeof THREE === 'undefined') return;
@@ -136,4 +137,27 @@
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) stop(); else start();
     });
+    }
+
+    // three.js is decorative here: load it when idle, and not at all on the
+    // devices/settings run() would bail out on anyway.
+    if (!document.getElementById('cw-terminal-canvas')) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var conn0 = navigator.connection || {};
+    if (conn0.saveData) return;
+    if (navigator.deviceMemory && navigator.deviceMemory <= 2) return;
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) return;
+    function load() {
+        if (typeof THREE !== 'undefined') return run();
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+        s.onload = run;
+        document.head.appendChild(s);
+    }
+    function sched() {
+        if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 3000 });
+        else setTimeout(load, 1500);
+    }
+    if (document.readyState === 'complete') sched();
+    else window.addEventListener('load', sched);
 })();

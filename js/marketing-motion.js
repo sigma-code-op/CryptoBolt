@@ -264,13 +264,32 @@
         });
     }
 
+
+    // three.js (~0.7 MB to parse) is only decorative here, so fetch it when the
+    // browser is idle instead of blocking startup; the hero just fades in later.
+    function loadThreeThen(cb) {
+        if (typeof THREE !== 'undefined') return cb();
+        var go = function () {
+            var s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+            s.onload = cb;
+            document.head.appendChild(s);
+        };
+        var sched = function () {
+            if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 3000 });
+            else setTimeout(go, 1500);
+        };
+        if (document.readyState === 'complete') sched();
+        else window.addEventListener('load', sched);
+    }
+
     function boot() {
         initReveal();
         initCounters();
         initTilt();
         initTouchTilt();
         initMagnetic();
-        initHero3D();
+        if (document.getElementById('mk-hero-canvas') && !reduceMotion && !lowPower) loadThreeThen(initHero3D);
     }
 
     if (document.readyState === 'loading') {
