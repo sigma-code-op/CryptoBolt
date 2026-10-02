@@ -77,24 +77,34 @@ const DEFAULT_COLORS = [
 function parsePost(raw, slug) {
   const sep = raw.indexOf('\n---');
   if (sep === -1) {
-    throw new Error(`${slug}.md is missing the "---" line separating frontmatter from the body`);
+    throw new Error(
+      `${slug}.md is missing the "---" line separating frontmatter from the body`
+    );
   }
+
   const frontRaw = raw.slice(0, sep);
   const body = raw.slice(sep + 4).replace(/^\r?\n/, '');
 
   const fields = {};
+
   for (const line of frontRaw.split(/\r?\n/)) {
     if (!line.trim()) continue;
+
     const idx = line.indexOf(':');
     if (idx === -1) continue;
+
     const key = line.slice(0, idx).trim();
     const value = line.slice(idx + 1).trim();
+
     fields[key] = value;
   }
 
   const required = ['title', 'date', 'section', 'readtime', 'summary'];
+
   for (const key of required) {
-    if (!fields[key]) throw new Error(`${slug}.md is missing required field "${key}:"`);
+    if (!fields[key]) {
+      throw new Error(`${slug}.md is missing required field "${key}:"`);
+    }
   }
 
   return {
@@ -108,7 +118,9 @@ function parsePost(raw, slug) {
     readtime: fields.readtime,
     emoji: fields.emoji || '📄',
     icon: EMOJI_TO_ICON[fields.emoji] || 'file-text',
-    color: fields.color || DEFAULT_COLORS[hashSlug(slug) % DEFAULT_COLORS.length],
+    color:
+      fields.color ||
+      DEFAULT_COLORS[hashSlug(slug) % DEFAULT_COLORS.length],
     summary: fields.summary,
     cardSummary: fields.card_summary || fields.summary,
     keywords: fields.keywords || '',
@@ -116,8 +128,9 @@ function parsePost(raw, slug) {
   };
 }
 
-// Maps each post's `emoji:` front-matter value to the Lucide icon rendered on its
-// blog card instead. Add an entry here whenever a new post introduces a new emoji.
+// Maps each post's `emoji:` front-matter value to the Lucide icon rendered on
+// its blog card instead. Add an entry here whenever a new post introduces a
+// new emoji.
 const EMOJI_TO_ICON = {
   '🪝': 'triangle-alert',
   '🤖': 'bot',
@@ -132,12 +145,19 @@ const EMOJI_TO_ICON = {
 
 function hashSlug(slug) {
   let h = 0;
-  for (const ch of slug) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+
+  for (const ch of slug) {
+    h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  }
+
   return h;
 }
 
 function escapeHtml(text) {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 function escapeAttr(text) {
@@ -154,24 +174,44 @@ function inlineMarkdown(text) {
 // use: <p> paragraphs and <h2>/<h3> headings, plus <ul> for "- " bullet lists.
 function markdownToHtml(markdown) {
   const escaped = escapeHtml(markdown);
+
   const blocks = escaped.trim().split(/\r?\n\s*\r?\n/);
+
   const html = blocks.map((block) => {
     const trimmed = block.trim();
-    if (trimmed.startsWith('### ')) return `    <h3>${inlineMarkdown(trimmed.slice(4))}</h3>`;
-    if (trimmed.startsWith('## ')) return `    <h2>${inlineMarkdown(trimmed.slice(3))}</h2>`;
+
+    if (trimmed.startsWith('### ')) {
+      return `    <h3>${inlineMarkdown(trimmed.slice(4))}</h3>`;
+    }
+
+    if (trimmed.startsWith('## ')) {
+      return `    <h2>${inlineMarkdown(trimmed.slice(3))}</h2>`;
+    }
 
     const lines = trimmed.split(/\r?\n/);
-    const isList = lines.every((line) => line.trim().startsWith('- '));
+
+    const isList = lines.every((line) =>
+      line.trim().startsWith('- ')
+    );
+
     if (isList) {
       const items = lines
-        .map((line) => `        <li>${inlineMarkdown(line.trim().slice(2))}</li>`)
+        .map(
+          (line) =>
+            `        <li>${inlineMarkdown(
+              line.trim().slice(2)
+            )}</li>`
+        )
         .join('\n');
+
       return `    <ul>\n${items}\n    </ul>`;
     }
 
     const joined = lines.join(' ');
+
     return `    <p>${inlineMarkdown(joined)}</p>`;
   });
+
   return html.join('\n');
 }
 
@@ -182,7 +222,11 @@ function toCrlf(text) {
 }
 
 function wordCount(markdown) {
-  return markdown.trim().split(/\s+/).filter(Boolean).length;
+  return markdown
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .length;
 }
 
 // ---- rendering --------------------------------------------------------------
@@ -192,8 +236,12 @@ function renderBlogCard(post, headingTag) {
     `        <a href="${post.slug}.html" class="mk-blog-card">`,
     `            <div class="mk-blog-cover" style="background:${post.color};"><i data-lucide="${post.icon}" width="26" height="26" stroke-width="1.8"></i></div>`,
     `            <div class="mk-blog-body">`,
-    `                <span class="mk-blog-meta">${escapeHtml(post.section)} · ${escapeHtml(post.readtime)}</span>`,
-    `                <${headingTag}>${escapeHtml(post.title)}</${headingTag}>`,
+    `                <span class="mk-blog-meta">${escapeHtml(
+      post.section
+    )} · ${escapeHtml(post.readtime)}</span>`,
+    `                <${headingTag}>${escapeHtml(
+      post.title
+    )}</${headingTag}>`,
     `                <p>${escapeHtml(post.cardSummary)}</p>`,
     `                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>`,
     `            </div>`,
@@ -202,39 +250,65 @@ function renderBlogCard(post, headingTag) {
 }
 
 function renderPostPage(template, post, related) {
-  const relatedHtml = related.map((p) => renderBlogCard(p, 'h3')).join('\n');
+  const relatedHtml = related
+    .map((p) => renderBlogCard(p, 'h3'))
+    .join('\n');
+
   return template
-    .split('{{META_TITLE}}').join(escapeHtml(post.metaTitle))
-    .split('{{SUMMARY}}').join(escapeAttr(post.summary))
-    .split('{{KEYWORDS}}').join(escapeAttr(post.keywords))
-    .split('{{SLUG}}').join(post.slug)
-    .split('{{OG_TITLE}}').join(escapeAttr(post.ogTitle))
-    .split('{{TITLE}}').join(escapeHtml(post.title))
-    .split('{{SECTION}}').join(escapeAttr(post.section))
-    .split('{{SECTION_UPPER}}').join(escapeHtml(post.section).toUpperCase())
-    .split('{{READTIME_UPPER}}').join(escapeHtml(post.readtime).toUpperCase())
-    .split('{{DATE}}').join(post.date)
-    .split('{{UPDATED_DATE}}').join(post.updated)
-    .split('{{WORD_COUNT}}').join(String(wordCount(post.body)))
-    .split('{{BODY_HTML}}').join(markdownToHtml(post.body))
-    .split('{{RELATED_HTML}}').join(relatedHtml);
+    .split('{{META_TITLE}}')
+    .join(escapeHtml(post.metaTitle))
+    .split('{{SUMMARY}}')
+    .join(escapeAttr(post.summary))
+    .split('{{KEYWORDS}}')
+    .join(escapeAttr(post.keywords))
+    .split('{{SLUG}}')
+    .join(post.slug)
+    .split('{{OG_TITLE}}')
+    .join(escapeAttr(post.ogTitle))
+    .split('{{TITLE}}')
+    .join(escapeHtml(post.title))
+    .split('{{SECTION}}')
+    .join(escapeAttr(post.section))
+    .split('{{SECTION_UPPER}}')
+    .join(escapeHtml(post.section).toUpperCase())
+    .split('{{READTIME_UPPER}}')
+    .join(escapeHtml(post.readtime).toUpperCase())
+    .split('{{DATE}}')
+    .join(post.date)
+    .split('{{UPDATED_DATE}}')
+    .join(post.updated)
+    .split('{{WORD_COUNT}}')
+    .join(String(wordCount(post.body)))
+    .split('{{BODY_HTML}}')
+    .join(markdownToHtml(post.body))
+    .split('{{RELATED_HTML}}')
+    .join(relatedHtml);
 }
 
 function renderBlogGrid(posts) {
-  const cards = posts.map((p) => renderBlogCard(p, 'h2')).join('\n');
+  const cards = posts
+    .map((p) => renderBlogCard(p, 'h2'))
+    .join('\n');
+
   return `<div class="mk-blog-grid">\n${cards}\n</div>`;
 }
 
 function renderBlogSchema(posts) {
-  const entries = posts.map((p) => [
-    '        {',
-    '          "@type": "BlogPosting",',
-    `          "headline": "${escapeAttr(p.ogTitle)}",`,
-    `          "url": "https://cryptobolt.io/${p.slug}.html",`,
-    `          "datePublished": "${p.date}",`,
-    '          "author": { "@type": "Organization", "name": "CryptoBolt" }',
-    '        }',
-  ].join('\n')).join(',\n');
+  const entries = posts
+    .map((p) =>
+      [
+        '        {',
+        '          "@type": "BlogPosting",',
+        `          "headline": ${JSON.stringify(p.ogTitle)},`,
+        `          "url": ${JSON.stringify(
+          `https://cryptobolt.io/${p.slug}.html`
+        )},`,
+        `          "datePublished": ${JSON.stringify(p.date)},`,
+        '          "author": { "@type": "Organization", "name": "CryptoBolt" }',
+        '        }',
+      ].join('\n')
+    )
+    .join(',\n');
 
   return [
     '<script type="application/ld+json">',
@@ -256,55 +330,122 @@ function replaceBetweenMarkers(html, marker, replacement) {
   const re = new RegExp(
     `(<!-- BUILD:${marker}:START[^>]*-->\\r?\\n)[\\s\\S]*?(\\r?\\n[ \\t]*<!-- BUILD:${marker}:END -->)`
   );
+
   if (!re.test(html)) {
-    throw new Error(`Could not find BUILD:${marker} markers in blog.html — did someone remove them?`);
+    throw new Error(
+      `Could not find BUILD:${marker} markers in blog.html — did someone remove them?`
+    );
   }
-  return html.replace(re, (_, start, end) => `${start}${replacement}${end}`);
+
+  return html.replace(
+    re,
+    (_, start, end) => `${start}${replacement}${end}`
+  );
 }
 
 // ---- main -------------------------------------------------------------------
 
 function main() {
   if (!existsSync(POSTS_DIR)) {
-    console.log('[build-blog] No posts/ directory found — nothing to do.');
+    console.log(
+      '[build-blog] No posts/ directory found — nothing to do.'
+    );
     return;
   }
 
   const template = readFileSync(TEMPLATE_PATH, 'utf8');
 
-  const files = readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
+  const files = readdirSync(POSTS_DIR).filter((f) =>
+    f.endsWith('.md')
+  );
+
   if (files.length === 0) {
-    console.log('[build-blog] No .md files in posts/ — nothing to do.');
+    console.log(
+      '[build-blog] No .md files in posts/ — nothing to do.'
+    );
     return;
   }
 
   const posts = files.map((file) => {
     const slug = file.replace(/\.md$/, '');
-    const raw = readFileSync(path.join(POSTS_DIR, file), 'utf8');
+
+    const raw = readFileSync(
+      path.join(POSTS_DIR, file),
+      'utf8'
+    );
+
     return parsePost(raw, slug);
   });
 
   // Newest first, everywhere (grid, schema, related lists).
-  posts.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  posts.sort((a, b) =>
+    a.date < b.date ? 1 : a.date > b.date ? -1 : 0
+  );
 
   for (const post of posts) {
-    const related = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
-    const html = toCrlf(renderPostPage(template, post, related));
-    const outPath = path.join(ROOT, `${post.slug}.html`);
+    const related = posts
+      .filter((p) => p.slug !== post.slug)
+      .slice(0, 2);
+
+    const html = toCrlf(
+      renderPostPage(template, post, related)
+    );
+
+    const outPath = path.join(
+      ROOT,
+      `${post.slug}.html`
+    );
+
     writeFileSync(outPath, html);
-    console.log(`[build-blog] wrote ${post.slug}.html`);
+
+    console.log(
+      `[build-blog] wrote ${post.slug}.html`
+    );
   }
 
-  let blogHtml = readFileSync(BLOG_HTML_PATH, 'utf8');
-  blogHtml = replaceBetweenMarkers(blogHtml, 'BLOG_GRID', toCrlf(renderBlogGrid(posts)));
-  blogHtml = replaceBetweenMarkers(blogHtml, 'BLOG_SCHEMA', toCrlf(renderBlogSchema(posts)));
-  writeFileSync(BLOG_HTML_PATH, blogHtml);
-  console.log(`[build-blog] updated blog.html (${posts.length} post${posts.length === 1 ? '' : 's'})`);
+  let blogHtml = readFileSync(
+    BLOG_HTML_PATH,
+    'utf8'
+  );
 
-  console.log('[build-blog] refreshing CSP hashes for the pages we just wrote...');
-  execFileSync(process.execPath, [path.join(__dirname, 'build-csp.js')], { stdio: 'inherit' });
+  blogHtml = replaceBetweenMarkers(
+    blogHtml,
+    'BLOG_GRID',
+    toCrlf(renderBlogGrid(posts))
+  );
 
-  console.log('[build-blog] Done. Review the diff, then deploy as usual.');
+  blogHtml = replaceBetweenMarkers(
+    blogHtml,
+    'BLOG_SCHEMA',
+    toCrlf(renderBlogSchema(posts))
+  );
+
+  writeFileSync(
+    BLOG_HTML_PATH,
+    blogHtml
+  );
+
+  console.log(
+    `[build-blog] updated blog.html (${posts.length} post${
+      posts.length === 1 ? '' : 's'
+    })`
+  );
+
+  console.log(
+    '[build-blog] refreshing CSP hashes for the pages we just wrote...'
+  );
+
+  execFileSync(
+    process.execPath,
+    [path.join(__dirname, 'build-csp.js')],
+    {
+      stdio: 'inherit',
+    }
+  );
+
+  console.log(
+    '[build-blog] Done. Review the diff, then deploy as usual.'
+  );
 }
 
 main();
