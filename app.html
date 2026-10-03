@@ -144,7 +144,7 @@
          redesign.css, concatenated in the same cascade order by scripts/build-css.js — was
          7 render-blocking requests, now 1. Edit the source files in css/*.css, not this file;
          regenerate with `npm run build:css-bundle`. -->
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261001">
+    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261002">
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
     <nav class="cb-rail" aria-label="Product navigation">
@@ -312,7 +312,7 @@
                     <p class="text-gray-500 text-[11px]">This is usually a network/CORS block or a regional restriction. Retrying automatically...</p>
                 </div>
 
-                <div id="table-container" class="hidden overflow-x-auto max-h-[600px]">
+                <div id="table-container" class="cw-table-scroll hidden overflow-x-auto max-h-[600px]">
                     <table class="w-full text-left border-collapse whitespace-nowrap">
                         <thead>
                             <tr class="text-[11px] font-bold uppercase text-gray-400 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0 z-20">
@@ -420,8 +420,8 @@
                 </div>
 
                 <!-- Comprehensive Timeframe & Technical Analysis Toolbars -->
-                <div class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg p-2 flex flex-wrap items-center justify-between gap-3 shadow-xl">
-                    <div class="flex items-center gap-1.5 cw-scroll-row">
+                <div id="chart-toolbar" class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg p-2 flex flex-wrap items-center justify-between gap-3 shadow-xl">
+                    <div class="flex items-center gap-1.5 cw-scroll-row cw-tb-interval">
                         <span class="text-[10px] uppercase font-bold text-gray-500 px-2 tracking-wider">Interval:</span>
                         <button class="tf-btn text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer" data-tf="1m">1m</button>
                         <button class="tf-btn text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer" data-tf="5m">5m</button>
@@ -431,14 +431,14 @@
                         <button class="tf-btn text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer" data-tf="1d">1D</button>
                     </div>
 
-                    <div class="flex items-center gap-1.5 cw-scroll-row">
+                    <div class="flex items-center gap-1.5 cw-scroll-row cw-tb-type">
                         <span class="text-[10px] uppercase font-bold text-gray-500 px-2 tracking-wider">Type:</span>
                         <button class="ctype-btn text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 transition-all cursor-pointer active" data-ctype="candles">Candles</button>
                         <button class="ctype-btn text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 transition-all cursor-pointer" data-ctype="heikinashi">Heikin Ashi</button>
                         <button class="ctype-btn text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 transition-all cursor-pointer" data-ctype="line">Line</button>
                     </div>
 
-                    <div class="flex items-center gap-1.5 cw-scroll-row">
+                    <div class="flex items-center gap-1.5 cw-scroll-row cw-tb-tools">
                         <span class="text-[10px] uppercase font-bold text-gray-500 px-2 tracking-wider">Overlays:</span>
                         <button class="ind-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 active transition-all cursor-pointer" data-ind="ma7">MA(7)</button>
                         <button class="ind-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 transition-all cursor-pointer" data-ind="ma25">MA(25)</button>
@@ -452,28 +452,30 @@
                         <button class="ind-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 transition-all cursor-pointer" data-ind="stoch">Stoch RSI</button>
                     </div>
 
-                    <div class="flex items-center gap-1.5 flex-wrap">
+                    <div class="flex items-center gap-1.5 flex-wrap cw-tb-tools">
                         <span class="text-[10px] uppercase font-bold text-gray-500 px-2 tracking-wider">Compare:</span>
-                        <input id="compare-input" type="text" placeholder="e.g. ETH" list="compare-symbol-list"
+                        <input id="compare-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="e.g. ETH" list="compare-symbol-list"
                             class="w-24 bg-gray-900 border border-gray-800/80 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#24a0e5]">
                         <datalist id="compare-symbol-list"></datalist>
                         <button id="compare-clear-btn" title="Clear comparison" aria-label="Clear comparison" class="hidden text-[11px] px-2 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
                     </div>
 
-                    <div class="flex items-center gap-1.5 flex-wrap">
+                    <div class="flex items-center gap-1.5 flex-wrap cw-tb-tools">
                         <span class="text-[10px] uppercase font-bold text-gray-500 px-2 tracking-wider">On-chart:</span>
                         <button id="toggle-sr-lines-btn" class="chart-overlay-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 active transition-all cursor-pointer">S/R Lines</button>
                         <button id="toggle-alert-lines-btn" class="chart-overlay-btn text-[11px] px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-400 active transition-all cursor-pointer">Alerts</button>
                     </div>
 
-                    <button id="fullscreen-btn" title="Fullscreen chart" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer ml-auto"><i data-lucide="maximize" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Fullscreen</button>
-                    <button id="logscale-toggle-btn" title="Toggle logarithmic price scale" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">Log</button>
-                    <button id="reset-zoom-btn" title="Reset chart zoom" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">⤢ Reset Zoom</button>
-                    <button id="screenshot-btn" title="Download chart as PNG" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="camera" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Save</button>
+                    <div class="cw-tb-actions flex items-center gap-1.5 cw-scroll-row ml-auto">
+                        <button id="fullscreen-btn" title="Fullscreen chart" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="maximize" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Fullscreen</button>
+                        <button id="logscale-toggle-btn" title="Toggle logarithmic price scale" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">Log</button>
+                        <button id="reset-zoom-btn" title="Reset chart zoom" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer">⤢ Reset Zoom</button>
+                        <button id="screenshot-btn" title="Download chart as PNG" class="text-[11px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="camera" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Save</button>
+                    </div>
                 </div>
 
                 <!-- Main Chart Layout Card -->
-                <div id="chart-card" class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg p-4 shadow-2xl relative">
+                <div id="chart-card" data-cw-panel="chart" data-cw-title="Chart" class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg p-4 shadow-2xl relative">
                     <!-- Overlay Legend Block -->
                     <div id="ohlv-legend" class="absolute left-6 top-6 z-10 font-mono text-[11px] text-gray-400 space-x-2 pointer-events-none hidden bg-[#181a20]/90 px-3 py-1 rounded backdrop-blur-md border border-gray-800">
                         <span class="text-gray-400 font-bold" id="legend-sym">--</span>
@@ -518,7 +520,7 @@
                 <!-- Order Book + Trades + Alerts -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <!-- Order Book -->
-                    <div class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden">
+                    <div data-cw-panel="orderbook" class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <div class="px-3 py-2 border-b border-gray-800 bg-[#1e222b] text-[10px] font-bold uppercase tracking-wider text-gray-400 flex justify-between items-center">
                             <span>Order Book</span>
                             <span id="depth-status" class="status-dot status-connecting"></span>
@@ -533,7 +535,7 @@
                     </div>
 
                     <!-- Recent Trades -->
-                    <div class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden">
+                    <div data-cw-panel="trades" class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <div class="px-3 py-2 border-b border-gray-800 bg-[#1e222b] text-[10px] font-bold uppercase tracking-wider text-gray-400 flex justify-between items-center">
                             <span>Recent Trades</span>
                             <span id="trades-status" class="status-dot status-connecting"></span>
@@ -545,19 +547,19 @@
                     </div>
 
                     <!-- Price Alerts -->
-                    <div class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col">
+                    <div data-cw-panel="alerts" class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col">
                         <div class="px-3 py-2 border-b border-gray-800 bg-[#1e222b] text-[10px] font-bold uppercase tracking-wider text-gray-400 flex justify-between items-center">
                             <span>Price Alerts</span>
                             <button id="sound-toggle-btn" title="Toggle alert sound" aria-label="Toggle alert sound" class="text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-xs"><i data-lucide="volume-2" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
                         </div>
-                        <div class="p-3 flex gap-2 flex-wrap">
+                        <div class="cw-form-grid p-3 flex gap-2 flex-wrap">
                             <select id="alert-direction" class="flex-shrink-0 bg-gray-900 border border-gray-800 rounded text-[10px] px-1.5 py-1 text-gray-300">
                                 <option value="above">Above $</option>
                                 <option value="below">Below $</option>
                                 <option value="pct_up">Rises by %</option>
                                 <option value="pct_down">Falls by %</option>
                             </select>
-                            <input id="alert-price-input" type="number" step="any" placeholder="Target price" class="flex-1 min-w-[90px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                            <input id="alert-price-input" inputmode="decimal" type="number" step="any" placeholder="Target price" class="flex-1 min-w-[90px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                             <button id="alert-add-btn" class="flex-shrink-0 text-[11px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add</button>
                         </div>
                         <div id="alerts-list" class="px-3 pb-3 font-mono text-[10px] space-y-1.5 overflow-y-auto max-h-[160px]">
@@ -732,7 +734,7 @@
         </div>
 
         <!-- Portfolio Tracker -->
-        <div class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-green bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
+        <div data-cw-panel="portfolio" class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-green bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
                 <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="briefcase" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Portfolio Tracker</span>
                 <div class="flex items-center gap-4 flex-wrap">
@@ -753,12 +755,12 @@
                 </div>
             </div>
 
-            <div class="p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
-                <input id="holding-symbol-input" type="text" placeholder="Asset e.g. BTC" list="holding-symbol-list"
+            <div class="cw-form-grid p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
+                <input id="holding-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="holding-symbol-list"
                     class="w-28 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 <datalist id="holding-symbol-list"></datalist>
                 <div class="flex items-center gap-1">
-                    <input id="holding-qty-input" type="number" step="any" placeholder="Amount"
+                    <input id="holding-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
                         class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                     <select id="holding-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-[#14d38a]">
                         <option value="coins">Coins</option>
@@ -767,19 +769,19 @@
                 </div>
                 <span id="holding-qty-hint" class="text-[10px] text-gray-500 font-mono min-w-[90px]"></span>
                 <div class="flex items-center gap-1">
-                    <input id="holding-cost-input" type="number" step="any" placeholder="Avg cost / unit (optional)"
+                    <input id="holding-cost-input" inputmode="decimal" type="number" step="any" placeholder="Avg cost / unit (optional)"
                         class="w-36 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                     <button id="holding-uselive-btn" title="Fill with current price" class="text-[10px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] transition-all cursor-pointer">Live</button>
                 </div>
-                <input id="holding-sl-input" type="number" step="any" placeholder="Stop-loss (optional)"
+                <input id="holding-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#ff4d6a]">
-                <input id="holding-tp-input" type="number" step="any" placeholder="Take-profit (optional)"
+                <input id="holding-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 <button id="holding-add-btn" class="text-[11px] px-3 py-1.5 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add Holding</button>
             </div>
 
-            <div class="overflow-x-auto max-h-[280px]">
-                <table class="w-full text-left border-collapse whitespace-nowrap">
+            <div class="cw-table-scroll overflow-x-auto max-h-[280px]">
+                <table class="cw-sticky-first w-full text-left border-collapse whitespace-nowrap">
                     <thead>
                         <tr class="text-[10px] font-bold uppercase text-gray-500 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0">
                             <th class="py-2 px-3">Asset</th>
@@ -800,7 +802,7 @@
         </div>
 
         <!-- Futures Positions (Leverage) Tracker -->
-        <div class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-amber bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
+        <div data-cw-panel="futures" class="mt-6 cw-card-interactive cw-reveal cw-panel-accent cw-accent-amber bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
             <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
                 <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="zap" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Futures Positions <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 normal-case">Leverage</span></span>
                 <div class="flex items-center gap-4 flex-wrap">
@@ -820,8 +822,8 @@
                 </div>
             </div>
 
-            <div class="p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
-                <input id="futures-symbol-input" type="text" placeholder="Asset e.g. BTC" list="futures-symbol-list"
+            <div class="cw-form-grid p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
+                <input id="futures-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="futures-symbol-list"
                     class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
                 <datalist id="futures-symbol-list"></datalist>
                 <select id="futures-side-input" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 focus:outline-none focus:border-amber-500">
@@ -829,12 +831,12 @@
                     <option value="short">Short</option>
                 </select>
                 <div class="flex items-center gap-1">
-                    <input id="futures-entry-input" type="number" step="any" placeholder="Entry price"
+                    <input id="futures-entry-input" inputmode="decimal" type="number" step="any" placeholder="Entry price"
                         class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
                     <button id="futures-uselive-btn" title="Fill with current price" class="text-[10px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 transition-all cursor-pointer">Live</button>
                 </div>
                 <div class="flex items-center gap-1">
-                    <input id="futures-qty-input" type="number" step="any" placeholder="Amount"
+                    <input id="futures-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
                         class="w-20 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
                     <select id="futures-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-amber-500">
                         <option value="coins">Coins</option>
@@ -842,17 +844,17 @@
                     </select>
                 </div>
                 <span id="futures-qty-hint" class="text-[10px] text-gray-500 font-mono min-w-[90px]"></span>
-                <input id="futures-leverage-input" type="number" step="1" min="1" max="125" placeholder="Leverage (x)" value="10"
+                <input id="futures-leverage-input" inputmode="numeric" type="number" step="1" min="1" max="125" placeholder="Leverage (x)" value="10"
                     class="w-20 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
-                <input id="futures-sl-input" type="number" step="any" placeholder="Stop-loss (optional)"
+                <input id="futures-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#ff4d6a]">
-                <input id="futures-tp-input" type="number" step="any" placeholder="Take-profit (optional)"
+                <input id="futures-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 <button id="futures-add-btn" class="text-[11px] px-3 py-1.5 rounded bg-amber-500 text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add Position</button>
             </div>
 
-            <div class="overflow-x-auto max-h-[300px]">
-                <table class="w-full text-left border-collapse whitespace-nowrap">
+            <div class="cw-table-scroll overflow-x-auto max-h-[300px]">
+                <table class="cw-sticky-first w-full text-left border-collapse whitespace-nowrap">
                     <thead>
                         <tr class="text-[10px] font-bold uppercase text-gray-500 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0">
                             <th class="py-2 px-3">Asset</th>
@@ -1041,7 +1043,7 @@
          chart, portfolio, alerts, auth. bundle-home-lazy.js (AI insight, push alerts,
          referrals, screener, exchange-compare) loads separately, below, once the page is
          idle — see the comment there for why that split is safe. -->
-    <script src="js/dist/bundle-home.js?v=20260922"></script>
+    <script src="js/dist/bundle-home.js?v=20261002"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/lazy-bundle-loader.js?v=20260916" defer></script>

@@ -195,6 +195,7 @@
             ohlvLegend.classList.remove('hidden');
 
             chartInstance = LightweightCharts.createChart(container, {
+                handleScroll: { vertTouchDrag: false }, // vertical swipe over a chart scrolls the page; horizontal still pans
                 layout: { background: { color: '#12141c' }, textColor: '#848e9c', fontSize: 11, fontFamily: 'monospace' },
                 grid: { vertLines: { color: '#2b2f3a' }, horzLines: { color: '#2b2f3a' } },
                 crosshair: {
@@ -284,7 +285,10 @@
             
             resizeObserver = new ResizeObserver(entries => {
                 if (chartInstance && entries[0].contentRect.width > 0) {
-                    chartInstance.resize(entries[0].contentRect.width, 400);
+                    // Follow the container's real height (it shrinks on short/landscape phones and
+                    // grows in fullscreen — see css/styles.css) instead of a hard-coded 400.
+                    const chartH = Math.round(entries[0].contentRect.height) || 400;
+                    chartInstance.resize(entries[0].contentRect.width, chartH);
                     if (rsiChartInstance) rsiChartInstance.resize(entries[0].contentRect.width, 110);
                     if (macdChartInstance) macdChartInstance.resize(entries[0].contentRect.width, 110);
                 }
@@ -310,6 +314,7 @@
         rsiWorkspace.innerHTML = '';
 
         rsiChartInstance = LightweightCharts.createChart(rsiWorkspace, {
+            handleScroll: { vertTouchDrag: false }, // vertical swipe over a chart scrolls the page; horizontal still pans
             layout: { background: { color: '#12141c' }, textColor: '#848e9c', fontSize: 10, fontFamily: 'monospace' },
             grid: { vertLines: { color: '#2b2f3a' }, horzLines: { color: '#2b2f3a' } },
             rightPriceScale: { borderColor: '#2b2f3a' },
@@ -337,6 +342,7 @@
         macdWorkspace.innerHTML = '';
 
         macdChartInstance = LightweightCharts.createChart(macdWorkspace, {
+            handleScroll: { vertTouchDrag: false }, // vertical swipe over a chart scrolls the page; horizontal still pans
             layout: { background: { color: '#12141c' }, textColor: '#848e9c', fontSize: 10, fontFamily: 'monospace' },
             grid: { vertLines: { color: '#2b2f3a' }, horzLines: { color: '#2b2f3a' } },
             rightPriceScale: { borderColor: '#2b2f3a' },
@@ -364,6 +370,7 @@
         atrWorkspace.innerHTML = '';
 
         atrChartInstance = LightweightCharts.createChart(atrWorkspace, {
+            handleScroll: { vertTouchDrag: false }, // vertical swipe over a chart scrolls the page; horizontal still pans
             layout: { background: { color: '#12141c' }, textColor: '#848e9c', fontSize: 10, fontFamily: 'monospace' },
             grid: { vertLines: { color: '#2b2f3a' }, horzLines: { color: '#2b2f3a' } },
             rightPriceScale: { borderColor: '#2b2f3a' },
@@ -389,6 +396,7 @@
         stochWorkspace.innerHTML = '';
 
         stochChartInstance = LightweightCharts.createChart(stochWorkspace, {
+            handleScroll: { vertTouchDrag: false }, // vertical swipe over a chart scrolls the page; horizontal still pans
             layout: { background: { color: '#12141c' }, textColor: '#848e9c', fontSize: 10, fontFamily: 'monospace' },
             grid: { vertLines: { color: '#2b2f3a' }, horzLines: { color: '#2b2f3a' } },
             rightPriceScale: { borderColor: '#2b2f3a' },

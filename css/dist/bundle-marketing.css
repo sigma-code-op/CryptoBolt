@@ -2080,6 +2080,110 @@ body.cb-has-rail {
         bottom: calc(60px + env(safe-area-inset-bottom));
     }
 }
+/* =====================================================================================
+   Mobile usability pass (app.html) — collapsible panels, chart toolbar, tables, inputs.
+   Behaviour lives in js/27-mobile-panels.js; this block is deliberately last in the file.
+   ===================================================================================== */
+
+/* ---------- Collapsible panels ---------- */
+.cw-panel-title { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+.cw-collapse-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; min-height: 0; padding: 0; flex: 0 0 auto;
+    border: 0; border-radius: 6px; background: transparent; color: inherit; cursor: pointer;
+}
+.cw-collapse-btn:hover, .cw-collapse-btn:focus-visible { color: #fff; background: rgba(255, 255, 255, 0.06); }
+.cw-collapse-btn svg { transition: transform 0.18s ease; }
+.cw-collapse-btn[aria-expanded="false"] svg { transform: rotate(-90deg); }
+@media (pointer: coarse) {
+    /* Bigger target than the generic 40px rule; the whole title is tappable too. */
+    .cw-collapse-btn { width: 32px; height: 32px; min-height: 32px; }
+    .cw-panel-title { min-height: 32px; }
+}
+.cw-collapsed > :not(.cw-panel-head) { display: none !important; }
+.cw-collapsed > .cw-panel-head { border-bottom-color: transparent; margin-bottom: 0; }
+#chart-toolbar.cw-panel-hidden { display: none !important; }
+
+.cw-chart-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.cw-chart-head-title { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #9ca3af; display: inline-flex; align-items: center; gap: 6px; }
+/* the OHLC legend floats over the chart; keep it clear of the slim header */
+#chart-card.cw-has-head #ohlv-legend { top: 3.75rem; }
+.cw-fs-exit { display: none; align-items: center; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 6px; background: #1e222b; border: 1px solid #2b2f3a; color: #e5e7eb; cursor: pointer; }
+
+/* ---------- Chart fullscreen (native + iOS fallback) ---------- */
+#chart-card:fullscreen .cw-fs-exit,
+#chart-card.cw-fs-fallback .cw-fs-exit { display: inline-flex; }
+#chart-card:fullscreen, #chart-card.cw-fs-fallback { overflow-y: auto; }
+#chart-card.cw-fs-fallback {
+    position: fixed; inset: 0; z-index: 9999; margin: 0 !important; border-radius: 0 !important;
+    background: var(--cw-panel-alt, #181a20); padding: 16px;
+    padding-top: calc(12px + env(safe-area-inset-top)); padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    transform: none !important; animation: none !important;
+}
+#chart-card:fullscreen #chart-workspace,
+#chart-card.cw-fs-fallback #chart-workspace { height: calc(100vh - 150px) !important; height: calc(100dvh - 150px) !important; }
+html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
+
+/* ---------- Tables ---------- */
+.cw-table-scroll { overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+/* Keep the asset name visible while the numeric columns scroll sideways. */
+.cw-sticky-first th:first-child, .cw-sticky-first td:first-child { position: sticky; left: 0; background: #181a20; z-index: 1; box-shadow: 1px 0 0 rgba(255, 255, 255, 0.05); }
+.cw-sticky-first thead th:first-child { background: #1e222b; z-index: 3; }
+/* The right-edge fade (see max-width:767px block above) only makes sense while more remains to scroll. */
+@media (max-width: 767px) {
+    .cw-table-scroll.cw-at-end { -webkit-mask-image: none !important; mask-image: none !important; }
+}
+
+/* ---------- Phones ---------- */
+.cw-tools-toggle { display: none; }
+@media (max-width: 767px) {
+    /* Chart height follows the screen: the page-wide 340px was too tall in landscape and fixed in portrait. */
+    #chart-card #chart-workspace { height: 340px !important; height: clamp(260px, 52vh, 380px) !important; height: clamp(260px, 52dvh, 380px) !important; }
+
+    /* Toolbar order: Interval, Type, [Indicators & tools], (tools), actions. */
+    #chart-toolbar { gap: 8px; }
+    .cw-tb-interval { order: 1; }
+    .cw-tb-type { order: 2; }
+    .cw-tools-toggle {
+        order: 3; flex: 1 1 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        min-height: 40px; padding: 6px 12px; font-size: 12px; font-weight: 600; color: #d1d5db;
+        background: #14161c; border: 1px solid #2b2f3a; border-radius: 8px; cursor: pointer;
+    }
+    .cw-tools-toggle .cw-count { margin-left: auto; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: rgba(20, 211, 138, 0.15); color: #14d38a; }
+    .cw-tools-toggle svg { transition: transform 0.18s ease; flex: 0 0 auto; }
+    .cw-tools-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+    #chart-toolbar .cw-tb-tools { order: 4; flex: 1 1 100%; display: none; }
+    #chart-toolbar.cw-tools-open .cw-tb-tools { display: flex; }
+    #chart-toolbar .cw-tb-tools.flex-wrap { row-gap: 8px; }
+    .cw-tb-actions { order: 5; flex: 1 1 100%; margin-left: 0 !important; }
+    #compare-input { width: 7rem; }
+
+    /* Form rows (add holding / add futures position / alerts): tidy grid instead of ragged wrapping. */
+    .cw-form-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+    .cw-form-grid > input, .cw-form-grid > select { width: 100%; min-width: 0; }
+    .cw-form-grid > div { display: flex; align-items: stretch; gap: 6px; min-width: 0; }
+    .cw-form-grid > div > input { flex: 1 1 0; width: auto; min-width: 0; }
+    .cw-form-grid > div > select { flex: 0 0 auto; width: auto; }
+    .cw-form-grid > span { grid-column: 1 / -1; min-width: 0 !important; }
+    .cw-form-grid > span:empty { display: none; }
+    .cw-form-grid > button, #holding-add-btn, #futures-add-btn { min-height: 44px; }
+    #holding-add-btn, #futures-add-btn { grid-column: 1 / -1; width: 100%; font-size: 13px; }
+    /* Alerts card is narrower: select | price | Add on one line. */
+    .cw-form-grid:has(#alert-direction) { grid-template-columns: auto minmax(0, 1fr) auto; }
+    .cw-form-grid:has(#alert-direction) > select { width: auto; }
+    .cw-form-grid:has(#alert-direction) > button { grid-column: auto; width: auto; }
+}
+
+/* Short landscape phones: don't let the chart eat the whole viewport. */
+@media (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #chart-card #chart-workspace { height: clamp(200px, 70vh, 320px) !important; height: clamp(200px, 70dvh, 320px) !important; }
+}
+
+/* Terminal inputs get the same touch-target floor that buttons/selects already have. */
+@media (pointer: coarse) {
+    .cw-form-grid input, #compare-input, #search-input { min-height: 40px; }
+}
+
 
 /* ==== ui-elevate.css ==== */
 /* ============================================================

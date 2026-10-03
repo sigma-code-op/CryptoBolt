@@ -43,6 +43,9 @@
     // ---------- Fullscreen ----------
     document.getElementById('fullscreen-btn').addEventListener('click', () => {
         const card = document.getElementById('chart-card');
+        // js/27-mobile-panels.js adds a CSS fullscreen fallback for browsers (iPhone Safari)
+        // where Element.requestFullscreen() doesn't exist for non-video elements.
+        if (typeof window.cwToggleChartFullscreen === 'function') { window.cwToggleChartFullscreen(); return; }
         if (!document.fullscreenElement) {
             card.requestFullscreen?.();
         } else {

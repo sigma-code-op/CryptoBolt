@@ -43,3 +43,28 @@ test('deployment documentation links resolve to repository files', () => {
     assert.doesNotMatch(read(file), /CryptoBolt_Complete_Deployment_Guide\.md/);
   }
 });
+
+test('terminal panels are collapsible and the module ships in the home bundle', () => {
+  const html = read('app.html');
+  for (const id of ['chart', 'orderbook', 'trades', 'alerts', 'portfolio', 'futures']) {
+    assert.match(html, new RegExp('data-cw-panel="' + id + '"'));
+  }
+  assert.match(read('scripts/build-js.js'), /'27-mobile-panels\.js'/);
+  assert.match(read('js/dist/bundle-home.js'), /cw_panel_prefs/);
+  assert.match(read('js/27-mobile-panels.js'), /localStorage\.setItem\(PREFS_KEY/);
+});
+
+test('chart follows its container height instead of a hard-coded 400px', () => {
+  const engine = read('js/06-chart-engine.js');
+  assert.doesNotMatch(engine, /chartInstance\.resize\([^)]*,\s*400\)/);
+  assert.match(engine, /vertTouchDrag: false/);
+});
+
+test('mobile form rows, numeric keypads and table scroll hooks are present', () => {
+  const html = read('app.html');
+  assert.equal((html.match(/class="cw-form-grid /g) || []).length, 3);
+  assert.match(html, /id="holding-qty-input" inputmode="decimal"/);
+  assert.match(html, /id="futures-leverage-input" inputmode="numeric"/);
+  assert.ok((html.match(/cw-table-scroll/g) || []).length >= 3);
+  assert.match(read('css/dist/bundle-home.css'), /\.cw-collapsed > :not\(\.cw-panel-head\)/);
+});
