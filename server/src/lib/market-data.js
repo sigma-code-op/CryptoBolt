@@ -160,6 +160,14 @@ async function fetchCryptoNewsUncached(symbol) {
             3600
         )
       ),
+
+      // Exact publish time + link, so the UI can show precisely which items fed an analysis.
+      publishedAt: new Date(item.published_on * 1000).toISOString(),
+
+      // Only pass through plain https links (this is rendered as an <a href> in the browser).
+      ...(typeof item.url === 'string' && /^https:\/\//i.test(item.url) && item.url.length <= 400
+        ? { url: item.url }
+        : {}),
     }));
 }
 
@@ -214,11 +222,18 @@ async function fetchFearGreedIndexUncached() {
     return null;
   }
 
+  const publishedSec = Number(entry.timestamp);
+
   return {
     value: Number(entry.value),
     classification:
       String(
         entry.value_classification || ''
       ),
+
+    // When alternative.me published this reading (it updates once per day).
+    ...(Number.isFinite(publishedSec) && publishedSec > 0
+      ? { timestamp: new Date(publishedSec * 1000).toISOString() }
+      : {}),
   };
 }

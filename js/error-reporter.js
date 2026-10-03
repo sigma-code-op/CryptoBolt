@@ -20,9 +20,17 @@
         return base + path;
     }
 
+    // Scrub anything shaped like a Groq API key before it leaves the browser — a visitor's key
+    // must never end up in a log, even inside an error message.
+    function redact(text) {
+        return String(text || '').replace(/gsk_[A-Za-z0-9_-]{6,}/g, '[redacted-key]');
+    }
+
     function report(message, stack) {
         if (sentCount >= MAX_REPORTS_PER_PAGE) return;
         sentCount++;
+        message = redact(message);
+        stack = redact(stack);
         try {
             fetch(resolveApiUrl('/api/client-error'), {
                 method: 'POST',

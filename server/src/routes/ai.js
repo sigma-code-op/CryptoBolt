@@ -24,12 +24,38 @@ import {
   extractActions,
   CHAT_TRADES_PROMPT,
 } from '../lib/ai-trade-actions.js';
+import {
+  AI_ERROR_CODES,
+  classifyAiError,
+  aiErrorBody,
+} from '../lib/ai-errors.js';
+import { logError } from '../lib/logger.js';
 
 const router = Router();
 
 // =========================================================
 // AI RATE LIMIT
 // =========================================================
+
+// Replies to a rate-limited request with the same structured error shape every other AI
+// failure uses ({ error, code, retryable, retryAfterSeconds }), so the browser can show a
+// countdown + retry instead of a dead-end message. retryAfterSeconds lives in the JSON body
+// (not only a Retry-After header) because browsers hide non-safelisted response headers from
+// cross-origin fetches.
+function rateLimitHandler(error, code) {
+  return (req, res) => {
+    const resetAt = req.rateLimit?.resetTime;
+    const ms = resetAt instanceof Date ? resetAt.getTime() - Date.now() : 0;
+    const retryAfterSeconds = ms > 0 ? Math.ceil(ms / 1000) : null;
+
+    res.status(429).json({
+      error,
+      code,
+      retryable: true,
+      ...(retryAfterSeconds ? { retryAfterSeconds } : {}),
+    });
+  };
+}
 
 const aiLimiter = rateLimit({
   windowMs:
@@ -48,10 +74,10 @@ const aiLimiter = rateLimit({
 
   legacyHeaders: false,
 
-  message: {
-    error:
-      'Too many AI requests from this address. Please wait and try again.',
-  },
+  handler: rateLimitHandler(
+    'Too many AI requests from this address. Please wait and try again.',
+    AI_ERROR_CODES.RATE_LIMITED
+  ),
 });
 
 // Pulls a bearer token out of a raw Authorization header value. Pure/testable on purpose —
@@ -107,10 +133,10 @@ const houseKeyLimiter = rateLimit({
 
   keyGenerator: houseKeyRateLimitKey,
 
-  message: {
-    error:
-      "You've hit the shared AI key's usage limit for now. Add your own Groq key for unlimited use, or try again later.",
-  },
+  handler: rateLimitHandler(
+    "You've hit the shared AI key's usage limit for now. Add your own Groq key for unlimited use, or try again later.",
+    AI_ERROR_CODES.HOUSE_RATE_LIMITED
+  ),
 });
 
 // Picks the BYOK or house-key limiter for a request *before* either limiter's handler
@@ -147,6 +173,8 @@ function resolveApiKey(req) {
         errorBody: {
           error:
             "CryptoBolt's shared AI key isn't enabled on this deployment. Switch to your own Groq key instead.",
+          code: AI_ERROR_CODES.HOUSE_KEY_DISABLED,
+          retryable: false,
         },
       };
     }
@@ -169,6 +197,8 @@ function resolveApiKey(req) {
       errorBody: {
         error:
           'Missing or invalid Groq API key. Add your key, or switch on "Use CryptoBolt\'s key" instead.',
+        code: AI_ERROR_CODES.MISSING_KEY,
+        retryable: false,
       },
     };
   }
@@ -176,6 +206,82 @@ function resolveApiKey(req) {
   return {
     apiKey,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Source transparency helpers.
+// Every AI response says exactly what fed it: which news items (with publish times), which
+// sentiment reading, which model, and when it ran — so the UI can separate measured data
+// from the model's interpretation of it. These describe inputs only; nothing here is
+// model-generated.
+// ---------------------------------------------------------------------------
+
+function mapSources(newsItems) {
+  return (Array.isArray(newsItems) ? newsItems : []).map((news) => ({
+    title: news.title,
+    source: news.source,
+    hoursAgo: news.hoursAgo,
+    ...(news.publishedAt ? { publishedAt: news.publishedAt } : {}),
+    ...(news.url ? { url: news.url } : {}),
+  }));
+}
+
+// Field names (never values) the browser sent that were non-null — i.e. which indicators
+// were actually available to the model. Names are whitelisted by shape so a crafted payload
+// can't smuggle arbitrary text into the response.
+function presentFieldNames(obj) {
+  if (!obj || typeof obj !== 'object') return [];
+  return Object.keys(obj)
+    .filter((k) => /^[A-Za-z0-9_]{1,40}$/.test(k) && obj[k] !== null && obj[k] !== undefined)
+    .slice(0, 40);
+}
+
+const INTERPRETATION_FIELDS = [
+  'trend',
+  'momentum',
+  'confidence',
+  'summary',
+  'outlook',
+  'reasoningSteps',
+  'keyRisk',
+  'fundingContext',
+  'newsContext',
+  'catalystWatch',
+  'positionNote',
+  'setupType',
+];
+
+export function buildProvenance({ kind, inputs, newsItems, fearGreed, passes, researchNotes, parsed, usedPaperTrades }) {
+  return {
+    kind,
+    generatedAt: new Date().toISOString(),
+    model: GROQ_MODEL,
+    ...(passes ? { passes } : {}),
+    // Names of the measured fields that were available to the model.
+    inputs: presentFieldNames(inputs),
+    headlinesProvided: Array.isArray(newsItems) ? newsItems.length : 0,
+    fearGreedProvided: Boolean(fearGreed),
+    ...(researchNotes !== undefined ? { researchNotesProvided: Boolean(researchNotes) } : {}),
+    ...(usedPaperTrades !== undefined ? { paperTradesProvided: Boolean(usedPaperTrades) } : {}),
+    // Which response fields are the model's own words/judgement rather than echoed data.
+    ...(parsed
+      ? { interpretationFields: INTERPRETATION_FIELDS.filter((f) => parsed[f] !== undefined && parsed[f] !== null) }
+      : {}),
+  };
+}
+
+// Sends a classified Groq/network failure to the browser and logs it WITHOUT any secret.
+// Only the error class/status/code are logged — never request headers, never the key.
+function sendAiFailure(res, req, err, routeLabel) {
+  const classified = classifyAiError(err, { model: GROQ_MODEL });
+
+  logError(`AI ${routeLabel} failed`, err, {
+    requestId: req.requestId,
+    code: classified.code,
+    upstreamStatus: err?.status ?? null,
+  });
+
+  return res.status(classified.status).json(aiErrorBody(classified));
 }
 
 // Validates the client-sent conversation history for /api/ai-chat. Best-effort and
@@ -362,6 +468,8 @@ router.post(
         return res.status(502).json({
           error:
             'AI model returned an empty response. Please try again.',
+          code: AI_ERROR_CODES.EMPTY_RESPONSE,
+          retryable: true,
         });
       }
 
@@ -386,66 +494,24 @@ router.post(
         actions,
 
         sources:
-          newsItems.map(
-            (news) => ({
-              title:
-                news.title,
-
-              source:
-                news.source,
-
-              hoursAgo:
-                news.hoursAgo,
-            })
-          ),
+          mapSources(newsItems),
 
         fearGreed:
           fearGreed || null,
+
+        provenance:
+          buildProvenance({
+            kind: 'chat',
+            inputs: context,
+            newsItems,
+            fearGreed,
+            usedPaperTrades: Boolean(trades),
+          }),
       });
 
     } catch (err) {
 
-      const status =
-        err?.status;
-
-      if (status === 401) {
-
-        return res.status(401).json({
-          error:
-            'Invalid API key. Check the key you entered and try again.',
-        });
-      }
-
-      if (status === 429) {
-
-        return res.status(429).json({
-          error:
-            'Rate limited by Groq. Please wait a moment and try again.',
-        });
-      }
-
-      if (
-        status === 404 ||
-        (err?.message || '')
-          .toLowerCase()
-          .includes('model')
-      ) {
-
-        return res.status(502).json({
-          error:
-            `Model "${GROQ_MODEL}" is unavailable. Update GROQ_MODEL on the server.`,
-        });
-      }
-
-      console.error(
-        '[cryptobolt-server] Groq chat error:',
-        err?.message || err
-      );
-
-      return res.status(502).json({
-        error:
-          'AI chat request failed.',
-      });
+      return sendAiFailure(res, req, err, 'chat');
     }
   }
 );
@@ -453,6 +519,20 @@ router.post(
 // =========================================================
 // ORIGINAL AI INSIGHT ENDPOINT
 // =========================================================
+
+// The minimum a synthesis response must contain to be worth showing: a plain object with a
+// non-empty summary and a trend string. Everything else on the card is optional.
+export function isUsableInsight(parsed) {
+  return (
+    Boolean(parsed) &&
+    typeof parsed === 'object' &&
+    !Array.isArray(parsed) &&
+    typeof parsed.summary === 'string' &&
+    parsed.summary.trim().length > 0 &&
+    typeof parsed.trend === 'string' &&
+    parsed.trend.trim().length > 0
+  );
+}
 
 router.post(
   '/api/ai-insight',
@@ -678,6 +758,14 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
           parsed =
             null;
         }
+
+        // Valid JSON that isn't the shape we asked for (an array, a bare string, or an object
+        // with no summary/trend) is no more usable than malformed JSON, so it gets the same
+        // retry rather than reaching the browser and rendering as an empty card.
+        if (parsed && !isUsableInsight(parsed)) {
+          parsed =
+            null;
+        }
       }
 
       if (!parsed) {
@@ -689,6 +777,8 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
         return res.status(502).json({
           error:
             'AI service returned an unexpected response format. Please try again.',
+          code: AI_ERROR_CODES.MALFORMED_RESPONSE,
+          retryable: true,
         });
       }
 
@@ -781,66 +871,26 @@ ${researchNotes || '(No research notes were returned. Reason from the supplied d
           researchNotes || null,
 
         sources:
-          newsItems.map(
-            (news) => ({
-              title:
-                news.title,
-
-              source:
-                news.source,
-
-              hoursAgo:
-                news.hoursAgo,
-            })
-          ),
+          mapSources(newsItems),
 
         fearGreed:
           fearGreed || null,
+
+        provenance:
+          buildProvenance({
+            kind: 'insight',
+            inputs: ctx,
+            newsItems,
+            fearGreed,
+            passes: 2,
+            researchNotes,
+            parsed,
+          }),
       });
 
     } catch (err) {
 
-      const status =
-        err?.status;
-
-      if (status === 401) {
-
-        return res.status(401).json({
-          error:
-            'Invalid API key. Check the key you entered and try again.',
-        });
-      }
-
-      if (status === 429) {
-
-        return res.status(429).json({
-          error:
-            'Rate limited by Groq. Please wait a moment and try again.',
-        });
-      }
-
-      if (
-        status === 404 ||
-        (err?.message || '')
-          .toLowerCase()
-          .includes('model')
-      ) {
-
-        return res.status(502).json({
-          error:
-            `Model "${GROQ_MODEL}" is unavailable. Set GROQ_MODEL in the server environment to a supported model.`,
-        });
-      }
-
-      console.error(
-        '[cryptobolt-server] Groq request error:',
-        err?.message || err
-      );
-
-      return res.status(502).json({
-        error:
-          'AI service request failed.',
-      });
+      return sendAiFailure(res, req, err, 'insight');
     }
   }
 );
@@ -915,7 +965,11 @@ router.post(
       let explanation = (completion.choices?.[0]?.message?.content || '').trim();
 
       if (!explanation) {
-        return res.status(502).json({ error: 'AI model returned an empty response.' });
+        return res.status(502).json({
+          error: 'AI model returned an empty response.',
+          code: AI_ERROR_CODES.EMPTY_RESPONSE,
+          retryable: true,
+        });
       }
 
       explanation = softenOverconfidentLanguage(explanation);
@@ -924,19 +978,7 @@ router.post(
 
     } catch (err) {
 
-      const status = err?.status;
-
-      if (status === 401) {
-        return res.status(401).json({ error: 'Invalid API key. Check the key you entered and try again.' });
-      }
-
-      if (status === 429) {
-        return res.status(429).json({ error: 'Rate limited by Groq. Please wait a moment and try again.' });
-      }
-
-      console.error('[cryptobolt-server] Groq alert-explain error:', err?.message || err);
-
-      return res.status(502).json({ error: 'AI alert explanation request failed.' });
+      return sendAiFailure(res, req, err, 'alert-explain');
     }
   }
 );

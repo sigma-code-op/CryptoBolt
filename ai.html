@@ -526,6 +526,12 @@
 
                     <div id="result-gauge"></div>
 
+                    <div id="result-transparency"></div>
+
+                    <div id="result-explainers"></div>
+
+                    <div id="result-history-note" class="rs-history-note"></div>
+
                 </div>
 
             </div>
@@ -594,6 +600,69 @@
                     AI responses are informational only. Always do your own research.
                 </div>
 
+            </div>
+
+            <!-- Saved research + comparison -->
+            <div class="rs-card" id="research-history-card">
+                <div class="rs-card-head">
+                    <div>
+                        <span class="eyebrow">RESEARCH HISTORY</span>
+                        <h2>Saved reads &amp; comparison</h2>
+                    </div>
+                    <button type="button" id="rh-clear" class="rs-btn rs-btn-danger hidden">Clear all</button>
+                </div>
+                <p class="rs-muted">Each analysis is saved with the data that existed when it was made. Stored only in this browser — never uploaded, and your API key is never saved. Keeps the latest 20.</p>
+                <div id="research-history"></div>
+                <div id="research-compare" class="rc-panel hidden"></div>
+            </div>
+
+            <!-- Education -->
+            <div class="rs-card" id="ai-glossary">
+                <div class="rs-card-head">
+                    <div>
+                        <span class="eyebrow">LEARN</span>
+                        <h2>Understand the numbers</h2>
+                    </div>
+                </div>
+                <p class="rs-muted">The AI read is built from the numbers below. Knowing what they mean lets you judge the read yourself instead of taking a conclusion on trust. General education, not advice.</p>
+
+                <details class="rs-item">
+                    <summary>RSI (Relative Strength Index)</summary>
+                    <p>RSI compares the size of recent gains to recent losses over a set number of candles (CryptoBolt uses 14) and scales it from 0 to 100. Above 70 is conventionally “overbought” (gains have run hot); below 30 is “oversold” (losses have run hot); around 50 is balanced. These labels describe what just happened, not what happens next — strong trends can stay above 70 for a long time.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>Moving averages: MA(7) and MA(25)</summary>
+                    <p>A moving average is the average closing price over the last N candles. MA(7) follows price closely; MA(25) is smoother and slower. When the fast average is above the slow one, recent prices are higher than the longer-run average (a “bullish” lean); below it is a “bearish” lean. Because averages are built from past prices they lag, and they give many false signals when price moves sideways.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>Volatility and ATR</summary>
+                    <p>Volatility is how much price swings. Average True Range (ATR) measures it as the average distance price travels in a candle, counting gaps between candles. CryptoBolt shows ATR as a percent of price so different coins are comparable: under about 1% is calm, 1–2.5% is normal, 2.5–5% is elevated, above 5% is very high for the chosen candle size. High volatility means bigger moves both ways — stops need more room, and leveraged positions are liquidated more easily.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>Volume and volume trend</summary>
+                    <p>Volume is the amount traded in a period. The “volume trend” compares the last 10 candles with the 10 before them: more than 15% higher is rising, more than 15% lower is falling, otherwise flat. A move on rising volume has more traders behind it than the same move on falling volume. Volume shows participation, not direction.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>Funding rate (perpetual futures)</summary>
+                    <p>A perpetual future has no expiry, so exchanges use periodic funding payments (typically every 8 hours) to keep its price close to the spot price. When the rate is positive, longs pay shorts — more traders are betting on a rise. When negative, shorts pay longs. Large persistent rates mean one side is crowded and paying to stay in. It measures positioning and cost, not where price will go. Spot markets have no funding rate. More in <a href="funding-rate-explained.html">funding rates explained</a>.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>Fear &amp; Greed Index</summary>
+                    <p>A once-a-day 0–100 score of overall crypto-market mood from alternative.me (0 = extreme fear, 100 = extreme greed), combining things like volatility, momentum and social activity. It describes the whole market, not one coin, and extremes can last weeks. See <a href="fear-and-greed-index.html">the Fear &amp; Greed Index explained</a>.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>Support, resistance and the recent range</summary>
+                    <p>Support is a price area where buyers have previously stepped in; resistance is where sellers have. CryptoBolt marks the lowest low and highest high of the last 60 candles as the recent range. They are historical reference points — price regularly breaks through them.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>Spot vs perpetual futures; leverage and liquidation</summary>
+                    <p>Spot means buying the coin itself. Perpetual futures are contracts that track the price and allow leverage: borrowing to control a larger position. Leverage magnifies gains and losses equally, and if the market moves against you far enough your position is liquidated (closed by the exchange). See <a href="spot-vs-futures.html">spot vs futures</a> and the <a href="liquidation-price-calculator.html">liquidation price calculator</a>.</p>
+                </details>
+                <details class="rs-item">
+                    <summary>What “confidence” and “setup shape” mean in an AI read</summary>
+                    <p>These are the AI model's own labels, not measurements. Confidence (low/medium/high) is the model's rating of how well the signals agree — it is not a probability of being right. Setup shape (breakout continuation, pullback entry, range fade, or no clean setup) is the model's description of how price is behaving. Check them against the measured numbers.</p>
+                </details>
+                <p class="rs-muted">See also: <a href="why-we-dont-predict-crypto-prices.html">why CryptoBolt doesn't predict prices</a>.</p>
             </div>
 
         </section>
@@ -678,7 +747,8 @@
 
 <script src="js/market-conditions-gauge.js?v=20260906"></script>
 <script src="js/ai-trades.js?v=20260930"></script>
-<script src="js/ai-chat.js?v=20260930"></script>
+<script src="js/ai-chat.js?v=20261003"></script>
+<script src="js/ai-research.js?v=20261003"></script>
 
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>

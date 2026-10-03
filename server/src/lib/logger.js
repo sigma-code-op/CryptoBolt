@@ -14,8 +14,12 @@
 // log pipeline without a special parser): { ts, level, msg, requestId?, ...meta }.
 // ---------------------------------------------------------------------------
 
+import { redactSecrets, redactMeta } from './ai-errors.js';
+
 function write(level, msg, meta) {
-  const line = { ts: new Date().toISOString(), level, msg, ...meta };
+  // Every line passes through redactMeta/redactSecrets: BYOK Groq keys (gsk_...) and bearer tokens
+  // must never reach a log, even by accident inside an upstream error message or a stack.
+  const line = { ts: new Date().toISOString(), level: level, msg: redactSecrets(msg), ...redactMeta(meta) };
   const out = level === 'error' ? console.error : console.log;
   out(JSON.stringify(line));
 }

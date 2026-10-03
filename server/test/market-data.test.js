@@ -215,3 +215,35 @@ test('fetchCryptoNews caches per symbol independently within the TTL window', as
     }
   );
 });
+
+test('fetchCryptoNews exposes publishedAt and only passes through https links', async () => {
+  const nowSec = Date.now() / 1000;
+  const items = [
+    { title: 'Has link', source_info: { name: 'A' }, published_on: nowSec - 3600, url: 'https://example.com/a' },
+    { title: 'Bad link', source_info: { name: 'B' }, published_on: nowSec - 7200, url: 'javascript:alert(1)' },
+    { title: 'No link', source_info: { name: 'C' }, published_on: nowSec - 10800 },
+  ];
+  await withFetch(
+    async () => jsonResponse({ Data: items }),
+    async () => {
+      const { fetchCryptoNews } = await freshModule();
+      const news = await fetchCryptoNews('ETH');
+      assert.equal(news[0].url, 'https://example.com/a');
+      assert.ok(!Number.isNaN(Date.parse(news[0].publishedAt)));
+      assert.ok(!('url' in news[1]), 'non-https link must be dropped');
+      assert.ok(!('url' in news[2]));
+    }
+  );
+});
+
+test('fetchFearGreedIndex includes the publish timestamp when the API provides one', async () => {
+  await withFetch(
+    async () => jsonResponse({ data: [{ value: '40', value_classification: 'Fear', timestamp: '1767225600' }] }),
+    async () => {
+      const { fetchFearGreedIndex } = await freshModule();
+      const fg = await fetchFearGreedIndex();
+      assert.equal(fg.value, 40);
+      assert.equal(fg.timestamp, new Date(1767225600 * 1000).toISOString());
+    }
+  );
+});

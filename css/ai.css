@@ -1187,3 +1187,450 @@ body {
     background: transparent;
     color: #69727d;
 }
+
+/* =========================================================
+   Failure handling, source transparency, research history, glossary
+   (js/ai-chat.js recovery bars · js/ai-research.js panels)
+   ========================================================= */
+
+/* ---- recovery actions shown under an AI failure ---- */
+.ai-recovery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.ai-recovery button {
+    background: rgba(255,255,255,.04);
+    color: #d5dae0;
+    border: 1px solid #2d343d;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease;
+}
+
+.ai-recovery button:first-child:not(:disabled) {
+    border-color: rgba(20,211,138,.45);
+    color: #14d38a;
+}
+
+.ai-recovery button:hover:not(:disabled) {
+    color: #fff;
+    border-color: rgba(20,211,138,.6);
+}
+
+.ai-recovery button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.ai-recovery-slot {
+    margin-top: 2px;
+}
+
+.chat-message.chat-error .message-text {
+    color: #f0b4bd;
+    border-left: 2px solid #ff4d6a;
+    padding-left: 10px;
+}
+
+/* ---- source tags ---- */
+.src-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    vertical-align: 1px;
+    white-space: nowrap;
+}
+
+.src-tag.src-inline {
+    margin-left: 6px;
+}
+
+.src-measured {
+    color: #4fd8e8;
+    background: rgba(79,216,232,.08);
+    border-color: rgba(79,216,232,.28);
+}
+
+.src-ai {
+    color: #c084fc;
+    background: rgba(192,132,252,.09);
+    border-color: rgba(192,132,252,.3);
+}
+
+.src-rule {
+    color: #e5b324;
+    background: rgba(229,179,36,.09);
+    border-color: rgba(229,179,36,.3);
+}
+
+/* ---- panels inside the analysis card ---- */
+.rs-panel {
+    margin: 0;
+    border-top: 1px solid var(--ai-border);
+}
+
+.rs-panel > summary {
+    cursor: pointer;
+    padding: 14px 19px;
+    color: #aeb6c0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    list-style: none;
+}
+
+.rs-panel > summary::-webkit-details-marker {
+    display: none;
+}
+
+.rs-panel > summary::after {
+    content: "▾";
+    float: right;
+    color: #69727d;
+}
+
+.rs-panel[open] > summary::after {
+    content: "▴";
+}
+
+.rs-body {
+    padding: 0 19px 16px;
+}
+
+.rs-body h4,
+.rc-panel h4 {
+    color: #aeb6c0;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin: 16px 0 6px;
+}
+
+.rs-body p,
+.rs-body li,
+.rs-card p,
+.rc-panel p,
+.rc-panel li {
+    color: #858e99;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.rs-body a,
+.rs-card a,
+.rc-panel a,
+.rs-chat-sources a {
+    color: #4fd8e8;
+}
+
+.rs-legend {
+    line-height: 2 !important;
+}
+
+.rs-muted {
+    color: #69727d !important;
+}
+
+.rs-meta {
+    color: #69727d;
+    font-size: 10.5px;
+}
+
+.rs-warn {
+    color: #e5b324 !important;
+    background: rgba(229,179,36,.07);
+    border: 1px solid rgba(229,179,36,.25);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin: 8px 0;
+}
+
+.rs-changed {
+    color: #e5b324;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.rs-headlines {
+    padding-left: 18px;
+    margin: 0;
+}
+
+.rs-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.rs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.rs-table th,
+.rs-table td {
+    text-align: left;
+    padding: 6px 10px 6px 0;
+    border-bottom: 1px solid var(--ai-border);
+    color: #858e99;
+    font-weight: 400;
+    vertical-align: top;
+}
+
+.rs-table th[scope="row"] {
+    color: #aeb6c0;
+    white-space: nowrap;
+}
+
+.rs-table thead th {
+    color: #69727d;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.rs-num {
+    font-variant-numeric: tabular-nums;
+    color: #d5dae0 !important;
+    white-space: nowrap;
+}
+
+/* ---- expandable explanations ---- */
+.rs-item {
+    border: 1px solid var(--ai-border);
+    border-radius: 9px;
+    margin: 8px 0;
+    background: rgba(255,255,255,.015);
+}
+
+.rs-item > summary {
+    cursor: pointer;
+    padding: 10px 12px;
+    color: #c4cad2;
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.rs-item > p,
+.rs-item > ul {
+    padding: 0 12px 12px;
+    margin: 0;
+}
+
+.rs-item[open] > summary {
+    color: #14d38a;
+}
+
+/* ---- buttons ---- */
+.rs-btn {
+    background: rgba(255,255,255,.03);
+    color: #9099a6;
+    border: 1px solid #252b33;
+    padding: 5px 11px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease;
+}
+
+.rs-btn:hover {
+    color: #fff;
+    border-color: rgba(20,211,138,.4);
+}
+
+.rs-btn-danger:hover {
+    border-color: rgba(255,77,106,.5);
+    color: #ff8da0;
+}
+
+.rs-history-note {
+    padding: 0 19px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ---- cards below the chat ---- */
+.rs-card {
+    margin-top: 16px;
+    padding: 18px 19px;
+    background: var(--ai-card);
+    border: 1px solid var(--ai-border);
+    border-radius: 14px;
+    backdrop-filter: blur(14px);
+}
+
+.rs-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.rs-card-head h2 {
+    font-size: 16px;
+    margin: 2px 0 0;
+}
+
+.rs-chat-sources {
+    margin-top: 8px;
+}
+
+.rs-chat-sources details {
+    border: 1px solid var(--ai-border);
+    border-radius: 9px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,.015);
+    text-align: left;
+}
+
+.rs-chat-sources summary {
+    cursor: pointer;
+    color: #858e99;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.rs-chat-sources p,
+.rs-chat-sources li {
+    color: #858e99;
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+/* ---- history list ---- */
+.rh-list {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+}
+
+.rh-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    border-top: 1px solid var(--ai-border);
+}
+
+.rh-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: #d5dae0;
+}
+
+.rh-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.rh-trend {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 5px;
+    background: rgba(255,255,255,.05);
+    color: #aeb6c0;
+}
+
+.rh-trend-bullish { color: #14d38a; background: rgba(20,211,138,.1); }
+.rh-trend-bearish { color: #ff4d6a; background: rgba(255,77,106,.1); }
+
+/* ---- comparison ---- */
+.rc-panel {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border: 1px solid rgba(20,211,138,.2);
+    border-radius: 12px;
+    background: rgba(20,211,138,.025);
+}
+
+.rc-panel.hidden {
+    display: none;
+}
+
+.rc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rc-head h3 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.rc-pickers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.rc-pickers label {
+    display: block;
+    font-size: 10px;
+    color: #69727d;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.rc-pickers select {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    font-size: 11.5px;
+}
+
+.rc-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.rc-col {
+    min-width: 0;
+}
+
+.rc-col h5 {
+    font-size: 11px;
+    color: #c4cad2;
+    margin: 0 0 6px;
+}
+
+.rc-facts {
+    padding-left: 16px;
+    margin: 0 0 8px;
+}
+
+@media (max-width: 720px) {
+    .rc-pickers,
+    .rc-cols {
+        grid-template-columns: 1fr;
+    }
+
+    .rh-row {
+        align-items: flex-start;
+    }
+}

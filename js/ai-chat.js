@@ -18,6 +18,154 @@
     let marketData = null;
 
     /* -----------------------------
+       AI FAILURE HANDLING
+       Every AI call goes through aiFetch(), which turns any failure — missing/invalid key,
+       rate limit, timeout, network error, a response that isn't the shape we expect — into one
+       AiRequestError { code, message, retryable, retryAfterSeconds }. The UI then shows that
+       message with the right recovery actions (retry, countdown, add/switch key) via
+       buildRecovery(). Codes mirror server/src/lib/ai-errors.js.
+
+       API keys: kept only in this tab's sessionStorage and sent in a request header. They are
+       never put in a URL, a stored report, or a log line — redactKey() scrubs anything key-shaped
+       out of messages before they are logged or shown.
+    ----------------------------- */
+    class AiRequestError extends Error {
+        constructor(message, { code = "ai_failed", retryable = true, retryAfterSeconds = null, status = 0 } = {}) {
+            super(message);
+            this.name = "AiRequestError";
+            this.code = code;
+            this.retryable = retryable;
+            this.retryAfterSeconds = retryAfterSeconds;
+            this.status = status;
+        }
+    }
+
+    const redactKey = (s) => String(s ?? "").replace(/gsk_[A-Za-z0-9_-]{6,}/g, "[redacted-key]");
+
+    function toAiError(err) {
+        if (err instanceof AiRequestError) return err;
+        if (err?.name === "AbortError") {
+            return new AiRequestError("The AI request took too long and was cancelled. Please try again.", { code: "timeout" });
+        }
+        return new AiRequestError(redactKey(err?.message) || "The AI request failed. Please try again.", { code: "ai_failed" });
+    }
+
+    async function aiFetch(url, { headers, body, timeoutMs }) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), timeoutMs);
+        let res;
+        try {
+            res = await fetch(url, { method: "POST", headers, body, signal: controller.signal });
+        } catch (err) {
+            // fetch() rejects with a TypeError when the server can't be reached at all (offline,
+            // DNS, CORS-blocked). Only treated as "network" here, where we know fetch threw it.
+            if (err instanceof TypeError) {
+                throw new AiRequestError("Couldn't reach the CryptoBolt AI server. Check your connection and try again.", { code: "network" });
+            }
+            throw toAiError(err);
+        } finally {
+            clearTimeout(timer);
+        }
+
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok) {
+            const headerRetry = Number(res.headers.get("retry-after"));
+            const bodyRetry = Number(data?.retryAfterSeconds);
+            throw new AiRequestError(
+                redactKey(data?.error) || `The AI service responded with an error (${res.status}). Please try again.`,
+                {
+                    code: typeof data?.code === "string" ? data.code : res.status === 429 ? "rate_limited" : "ai_failed",
+                    retryable: typeof data?.retryable === "boolean" ? data.retryable : res.status === 429 || res.status >= 500,
+                    retryAfterSeconds: bodyRetry > 0 ? bodyRetry : headerRetry > 0 ? headerRetry : null,
+                    status: res.status,
+                }
+            );
+        }
+
+        if (!data || typeof data !== "object") {
+            throw new AiRequestError("The AI service returned a response CryptoBolt couldn't read. Please try again.", {
+                code: "malformed_response",
+            });
+        }
+        return data;
+    }
+
+    function openKeyPanel() {
+        const panel = $("api-panel");
+        if (!panel) return;
+        panel.classList.remove("hidden");
+        if ($("groq-key")) $("groq-key").value = getKey();
+        if (getKeyMode() === "own") $("groq-key")?.focus();
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    // Recovery actions for a failure: retry (with a live countdown when the server said how long
+    // to wait) and, where relevant, jump to the key settings or switch between key modes.
+    function buildRecovery(failure, onRetry) {
+        const bar = document.createElement("div");
+        bar.className = "ai-recovery";
+
+        const add = (label, handler, { disabled = false } = {}) => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.textContent = label;
+            b.disabled = disabled;
+            b.addEventListener("click", handler);
+            bar.appendChild(b);
+            return b;
+        };
+
+        const keyProblem = failure.code === "missing_key" || failure.code === "invalid_key";
+        const houseProblem = failure.code === "house_rate_limited" || failure.code === "house_key_disabled";
+        const houseAvailable = !$("ai-mode-house")?.classList.contains("hidden");
+
+        if (failure.retryable && onRetry) {
+            const retryBtn = add("Try again", () => onRetry());
+            const wait = Number(failure.retryAfterSeconds);
+            if (wait > 0) {
+                let left = Math.min(Math.ceil(wait), 3600);
+                retryBtn.disabled = true;
+                const tick = () => {
+                    if (!retryBtn.isConnected) return;
+                    if (left <= 0) {
+                        retryBtn.disabled = false;
+                        retryBtn.textContent = "Try again";
+                        return;
+                    }
+                    retryBtn.textContent = `Try again in ${left}s`;
+                    left -= 1;
+                    setTimeout(tick, 1000);
+                };
+                // Deferred so the bar has been attached to the page by the time the first tick checks
+                // isConnected (the caller appends it right after buildRecovery returns).
+                setTimeout(tick, 0);
+            }
+        }
+
+        if (keyProblem) {
+            add("Open API key settings", openKeyPanel);
+            if (houseAvailable && getKeyMode() === "own") {
+                add("Use CryptoBolt's key", () => {
+                    setKeyMode("house");
+                    syncKeyModeUI();
+                    if (onRetry) onRetry();
+                });
+            }
+        }
+
+        if (houseProblem) {
+            add("Use my own key", () => {
+                setKeyMode("own");
+                syncKeyModeUI();
+                openKeyPanel();
+            });
+        }
+
+        return bar;
+    }
+
+    /* -----------------------------
        CHAT MEMORY
        Kept client-side (last CHAT_HISTORY_LIMIT turns) and sent with every
        question so the backend can answer follow-ups ("what about the 4h
@@ -226,7 +374,39 @@
             candles = [];
         }
 
+        // Funding rate only exists for perpetual futures. Best-effort: a failure just means the
+        // read is made without it (and says so), never that the whole analysis fails.
+        let funding = null;
+        if (isFutures()) {
+            try {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 6000);
+                try {
+                    const r = await fetch(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${sym}`, { signal: controller.signal });
+                    if (r.ok) {
+                        const d = await r.json();
+                        const rate = Number(d?.lastFundingRate);
+                        const next = Number(d?.nextFundingTime);
+                        if (Number.isFinite(rate)) {
+                            funding = {
+                                ratePct: rate * 100,
+                                nextMins: Number.isFinite(next) && next > Date.now() ? Math.round((next - Date.now()) / 60000) : null,
+                            };
+                        }
+                    }
+                } finally {
+                    clearTimeout(timer);
+                }
+            } catch {
+                funding = null;
+            }
+        }
+
         marketData = {
+            fetchedAt: new Date().toISOString(),
+            candleCount: candles.length,
+            fundingRatePct: funding ? funding.ratePct : null,
+            fundingNextMins: funding ? funding.nextMins : null,
             symbol: sym,
             asset: sym.replace(/USDT$/, ""),
             price: Number(ticker.lastPrice),
@@ -332,15 +512,26 @@
        Server contract: { message, context }
     ----------------------------- */
 
+    // Returns { answer, actions, sources, fearGreed, provenance, meta } on success, or
+    // { failure, actions: [] } on any failure (see AiRequestError above).
     async function askAI(question) {
         const useHouseKey = getKeyMode() === "house";
         const key = getKey();
         if (!useHouseKey && !key) {
-            return { answer: 'Please add your Groq API key first using the ⚙ API Key button — or switch it to "Use CryptoBolt\'s key".', actions: [] };
+            return {
+                failure: new AiRequestError(
+                    'Please add your Groq API key first using the ⚙ API Key button — or switch to "Use CryptoBolt\'s key".',
+                    { code: "missing_key", retryable: false }
+                ),
+                actions: [],
+            };
         }
 
         try {
-            if (!marketData) {
+            // Refresh the market snapshot if it's missing or older than a minute, so the answer
+            // isn't grounded in stale prices (the snapshot time is shown under every answer).
+            const age = marketData ? Date.now() - Date.parse(marketData.fetchedAt) : Infinity;
+            if (!marketData || !(age < 60000)) {
                 try {
                     await fetchMarket();
                 } catch {
@@ -384,25 +575,27 @@
                 headers["x-groq-key"] = key;
             }
 
-            const response = await fetch(AI_ENDPOINT, {
-                method: "POST",
-                headers,
-                body: JSON.stringify(payload),
-            });
+            const data = await aiFetch(AI_ENDPOINT, { headers, body: JSON.stringify(payload), timeoutMs: 45000 });
 
-            const data = await response.json().catch(() => ({}));
-
-            if (!response.ok) {
-                throw new Error(data.error || `AI request failed (${response.status}).`);
+            const answer = typeof data.answer === "string" ? data.answer.trim() : "";
+            if (!answer) {
+                throw new AiRequestError("The AI returned an empty answer. Please try again.", { code: "empty_response" });
             }
 
             return {
-                answer: data.answer || "No answer returned.",
+                answer,
                 actions: Array.isArray(data.actions) ? data.actions : [],
+                sources: Array.isArray(data.sources) ? data.sources : [],
+                fearGreed: data.fearGreed || null,
+                provenance: data.provenance && typeof data.provenance === "object" ? data.provenance : null,
+                meta: marketData
+                    ? { asset: marketData.asset, isFutures: marketData.isFutures, fetchedAt: marketData.fetchedAt }
+                    : null,
             };
         } catch (error) {
-            console.error("[CryptoBolt AI]", error);
-            return { answer: "I couldn't complete the market research right now. " + (error.message || error), actions: [] };
+            const failure = toAiError(error);
+            console.error("[CryptoBolt AI]", failure.code, redactKey(failure.message));
+            return { failure, actions: [] };
         }
     }
 
@@ -676,6 +869,43 @@
         el.innerHTML = type === "ai" ? renderMarkdownLite(text) : `<p>${escapeHtmlChat(text)}</p>`;
     }
 
+    // One chat turn. On failure the bubble shows the specific reason plus recovery buttons, and
+    // the turn is NOT added to chat memory (so an error message never becomes "context" for the
+    // next question). Retry re-runs the same question in the same bubble.
+    async function runChatTurn(question, bubble) {
+        if (!bubble) return;
+        bubble.classList.remove("chat-error");
+        bubble.querySelectorAll(".ai-recovery, .rs-chat-sources").forEach((n) => n.remove());
+        setMessageText(bubble, "ai", "Researching the current market...");
+
+        const result = await askAI(question);
+        const body = bubble.querySelector(".message-body");
+
+        if (result.failure) {
+            bubble.classList.add("chat-error");
+            setMessageText(bubble, "ai", result.failure.message);
+            body?.appendChild(buildRecovery(result.failure, () => runChatTurn(question, bubble)));
+            const box = $("chat-messages");
+            if (box) box.scrollTop = box.scrollHeight;
+            return;
+        }
+
+        setMessageText(bubble, "ai", result.answer);
+        renderActionCards(bubble, result.actions);
+        const sourcesHtml = window.cwAiResearch?.chatSourcesHtml(result, result.meta);
+        if (body && sourcesHtml) {
+            const wrap = document.createElement("div");
+            wrap.className = "rs-chat-sources";
+            wrap.innerHTML = sourcesHtml;
+            body.appendChild(wrap);
+        }
+        pushChatHistory("user", question);
+        pushChatHistory("assistant", result.answer);
+        renderFollowups(question, result.answer);
+        const box = $("chat-messages");
+        if (box) box.scrollTop = box.scrollHeight;
+    }
+
     $("chat-form")?.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -686,15 +916,8 @@
         if (input) input.value = "";
         addMessage("user", question);
 
-        const thinking = addMessage("ai", "Researching the current market...");
-        const { answer, actions } = await askAI(question);
-        if (thinking) {
-            setMessageText(thinking, "ai", answer);
-            renderActionCards(thinking, actions);
-        }
-        pushChatHistory("user", question);
-        pushChatHistory("assistant", answer);
-        renderFollowups(question, answer);
+        const bubble = addMessage("ai", "Researching the current market...");
+        await runChatTurn(question, bubble);
     });
 
     /* -----------------------------
@@ -833,13 +1056,20 @@
             recentSwingHigh: Math.max(...highs),
             recentSwingLow: Math.min(...lows),
             recentClosesTrend: tech.recentCloses,
+            // Perpetual futures only; omitted for spot or when the funding request failed.
+            ...(marketData.isFutures && Number.isFinite(marketData.fundingRatePct)
+                ? {
+                      fundingRatePct: Number(marketData.fundingRatePct.toFixed(4)),
+                      ...(Number.isFinite(marketData.fundingNextMins) ? { fundingNextMins: marketData.fundingNextMins } : {}),
+                  }
+                : {}),
         };
     }
 
     // Deterministic, non-AI fallback — same shape as the backend's parsed result so
     // renderInsight() can treat both identically. Used when no key is set/selected,
     // or when the backend request fails outright.
-    function computeLocalRead(ctx) {
+    function computeLocalRead(ctx, failure = null) {
         const trend = ctx.ma7 != null && ctx.ma25 != null
             ? (ctx.ma7 > ctx.ma25 ? "bullish" : ctx.ma7 < ctx.ma25 ? "bearish" : "neutral")
             : "neutral";
@@ -858,6 +1088,7 @@
             ],
             keyRisk: "Technical indicators can disagree and sudden news can invalidate a market read. Treat this as research, not a prediction.",
             isLocalCalculation: true,
+            failure,
         };
     }
 
@@ -867,22 +1098,22 @@
         const headers = { "Content-Type": "application/json" };
         if (useHouseKey) headers["x-use-house-key"] = "1"; else headers["x-groq-key"] = key;
 
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 20000);
-        try {
-            const res = await fetch(AI_INSIGHT_ENDPOINT, {
-                method: "POST",
-                headers,
-                body: JSON.stringify({ context: ctx }),
-                signal: controller.signal,
-            });
-            const data = await res.json().catch(() => null);
-            if (!res.ok) throw new Error(data?.error || `AI service responded with status ${res.status}`);
-            if (!data?.result) throw new Error("AI service returned an unexpected response.");
-            return { ...data.result, sources: Array.isArray(data.sources) ? data.sources : [], fearGreed: data.fearGreed || null };
-        } finally {
-            clearTimeout(timer);
+        const data = await aiFetch(AI_INSIGHT_ENDPOINT, { headers, body: JSON.stringify({ context: ctx }), timeoutMs: 30000 });
+
+        // Defensive shape check: the server already validates, but an old/cached server build or a
+        // proxy in between could hand back something else, and an empty card is worse than an error.
+        const r = data.result;
+        if (!r || typeof r !== "object" || Array.isArray(r) || typeof r.summary !== "string" || !r.summary.trim() || typeof r.trend !== "string") {
+            throw new AiRequestError("The AI returned a response CryptoBolt couldn't read. Please try again.", { code: "malformed_response" });
         }
+
+        return {
+            ...r,
+            reasoningSteps: Array.isArray(r.reasoningSteps) ? r.reasoningSteps.map(String) : [],
+            sources: Array.isArray(data.sources) ? data.sources : [],
+            fearGreed: data.fearGreed || null,
+            provenance: data.provenance && typeof data.provenance === "object" ? data.provenance : null,
+        };
     }
 
     function setSection(id, html) {
@@ -913,9 +1144,18 @@
 
         const banner = $("result-banner");
         if (banner) {
-            banner.innerHTML = parsed.isLocalCalculation
-                ? `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#e5b324;"><i data-lucide="triangle-alert" width="13" height="13" stroke-width="2.1" style="vertical-align:-2px;"></i> <strong>Not AI-generated.</strong> No API key is set, so this is a locally calculated technical read — not by an AI model, with no live news or sentiment research. Add an API key above for the full AI-generated read.</p></div>`
-                : `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#c084fc;"><i data-lucide="bot" width="13" height="13" stroke-width="2.1" style="vertical-align:-2px;"></i> AI-generated read from Llama (via Groq) — grounded in live indicators, news headlines, and market sentiment researched for this request.</p></div>`;
+            if (parsed.isLocalCalculation) {
+                const f = parsed.failure;
+                const lead = f && f.code !== "missing_key"
+                    ? `The AI request didn't complete: ${esc(f.message)} Showing a locally calculated read instead — no AI model, and no live news or sentiment research.`
+                    : "No API key is set, so this is a locally calculated technical read — not by an AI model, with no live news or sentiment research. Add an API key for the full AI-generated read.";
+                banner.innerHTML = `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#e5b324;" role="alert"><i data-lucide="triangle-alert" width="13" height="13" stroke-width="2.1" style="vertical-align:-2px;"></i> <strong>Not AI-generated.</strong> ${lead}</p><div class="ai-recovery-slot"></div></div>`;
+                if (f) {
+                    banner.querySelector(".ai-recovery-slot")?.appendChild(buildRecovery(f, () => $("analyze-button")?.click()));
+                }
+            } else {
+                banner.innerHTML = `<div class="analysis-section" style="border-top:none;padding-top:0;"><p style="color:#c084fc;"><i data-lucide="bot" width="13" height="13" stroke-width="2.1" style="vertical-align:-2px;"></i> AI-generated read from Llama (via Groq) — grounded in live indicators, news headlines, and market sentiment researched for this request. See "Where this read came from" below for exactly what went in.</p></div>`;
+            }
         }
 
         if ($("result-summary")) $("result-summary").textContent = parsed.summary || "";
@@ -927,23 +1167,31 @@
         if ($("result-risk")) $("result-risk").textContent = parsed.keyRisk || "Technical indicators can disagree and sudden news can invalidate a market read. Treat this as research, not a prediction.";
         setSection("result-news", parsed.newsContext ? esc(parsed.newsContext) : "");
         setSection("result-catalyst", parsed.catalystWatch ? esc(parsed.catalystWatch) : "");
-        setSection(
-            "result-sources",
-            Array.isArray(parsed.sources) && parsed.sources.length
-                ? parsed.sources.map((s) => `<li>${esc(s.title)} — ${esc(s.source)}, ${esc(String(s.hoursAgo))}h ago</li>`).join("")
-                : ""
-        );
+        // Headlines (with publish times and links) now live in the "Where this read came from"
+        // panel rendered by js/ai-research.js, so this older list stays hidden.
+        setSection("result-sources", "");
 
         const gaugeHost = $("result-gauge");
         if (gaugeHost) {
             gaugeHost.innerHTML = (typeof renderMarketConditionsGauge === "function")
                 ? renderMarketConditionsGauge({
                     atrPct: ctx.atrPct,
-                    fundingRatePct: null, // ai.html doesn't fetch funding rate (spot ticker only)
+                    fundingRatePct: Number.isFinite(ctx.fundingRatePct) ? ctx.fundingRatePct : null,
                     fearGreed: parsed.fearGreed,
                     market: ctx.market,
                 })
                 : "";
+        }
+
+        // Transparency panel, plain-language explainers, and saving to research history.
+        try {
+            window.cwAiResearch?.onInsight(parsed, ctx, {
+                fetchedAt: marketData?.fetchedAt,
+                candleCount: marketData?.candleCount,
+                isFutures: Boolean(marketData?.isFutures),
+            });
+        } catch (err) {
+            console.warn("[CryptoBolt AI] research panel failed:", redactKey(err?.message));
         }
     }
 
@@ -953,6 +1201,7 @@
 
     $("analyze-button")?.addEventListener("click", async () => {
         $("analysis-empty")?.classList.add("hidden");
+        $("analysis-empty")?.querySelectorAll(".ai-recovery").forEach((n) => n.remove());
         $("analysis-result")?.classList.add("hidden");
         setLoading(true);
         if ($("analysis-status")) $("analysis-status").textContent = "RESEARCHING";
@@ -967,27 +1216,35 @@
 
             let parsed;
             if (!useHouseKey && !key) {
-                parsed = computeLocalRead(ctx);
+                parsed = computeLocalRead(ctx, new AiRequestError("No API key is set.", { code: "missing_key", retryable: false }));
             } else {
                 try {
                     parsed = await requestBackendInsight(ctx);
                 } catch (err) {
-                    console.warn("[CryptoBolt AI] backend insight failed, falling back to local calc:", err);
-                    parsed = computeLocalRead(ctx);
+                    const failure = toAiError(err);
+                    console.warn("[CryptoBolt AI] backend insight failed, showing local read:", failure.code, redactKey(failure.message));
+                    parsed = computeLocalRead(ctx, failure);
                 }
             }
 
             renderInsight(parsed, ctx);
             $("analysis-result")?.classList.remove("hidden");
-            if ($("analysis-status")) $("analysis-status").textContent = "READY";
+            if ($("analysis-status")) $("analysis-status").textContent = parsed.isLocalCalculation ? "LOCAL READ" : "READY";
         } catch (error) {
             if ($("analysis-title")) $("analysis-title").textContent = "Research unavailable";
             $("analysis-empty")?.classList.remove("hidden");
             const p = $("analysis-empty")?.querySelector("p");
             if (p) {
                 p.textContent =
-                    error.message ||
+                    redactKey(error.message) ||
                     "Could not load market data. Check your connection or try another asset.";
+            }
+            const emptyBox = $("analysis-empty");
+            if (emptyBox) {
+                emptyBox.querySelectorAll(".ai-recovery").forEach((n) => n.remove());
+                emptyBox.appendChild(
+                    buildRecovery(new AiRequestError("", { code: "market_data", retryable: true }), () => $("analyze-button")?.click())
+                );
             }
             if ($("analysis-status")) $("analysis-status").textContent = "ERROR";
         } finally {
