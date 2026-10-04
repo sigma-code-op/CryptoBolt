@@ -96,9 +96,10 @@
 </head>
 
 <body class="mk">
-<div class="mk-field"></div>
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
 
-<nav class="mk-nav">
+<nav class="mk-nav" aria-label="Primary">
     <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
     <div class="mk-nav-links">
         <a href="features.html">Features</a>
@@ -126,15 +127,17 @@
         <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
     </div>
 </div>
+<main id="main" tabindex="-1">
 
 <header class="mk-fhero">
     <span class="mk-eyebrow">Changelog</span>
     <h1>Releases</h1>
-    <p>What's shipped in CryptoBolt, release by release. Small fixes and behind-the-scenes tweaks aren't listed here — this is the running log of things that actually changed what you can do.</p>
+    <p>What's shipped in CryptoBolt, release by release. Each entry is sorted into <strong>What's new</strong>, <strong>Fixes</strong> and <strong>Data sources</strong>. Behind-the-scenes tweaks aren't listed, but anything that changes what you see, how a number is calculated or where it comes from is. The current data sources are listed at the bottom of the page.</p>
 </header>
 
 <section class="mkx-rel-wrap">
     <nav class="mkx-rel-side" aria-label="Jump to release">
+            <a href="#rel-1-14-0"><span class="mkx-rel-date">Oct 4, 2026</span><span class="mkx-rel-ver">v1.14.0</span></a>
             <a href="#rel-1-13-0"><span class="mkx-rel-date">Sep 30, 2026</span><span class="mkx-rel-ver">v1.13.0</span></a>
             <a href="#rel-1-12-0"><span class="mkx-rel-date">Sep 29, 2026</span><span class="mkx-rel-ver">v1.12.0</span></a>
             <a href="#rel-1-11-0"><span class="mkx-rel-date">Sep 28, 2026</span><span class="mkx-rel-ver">v1.11.0</span></a>
@@ -149,8 +152,33 @@
             <a href="#rel-1-2-0"><span class="mkx-rel-date">Aug 25, 2026</span><span class="mkx-rel-ver">v1.2.0</span></a>
             <a href="#rel-1-1-0"><span class="mkx-rel-date">Aug 21, 2026</span><span class="mkx-rel-ver">v1.1.0</span></a>
             <a href="#rel-1-0-0"><span class="mkx-rel-date">Aug 11, 2026</span><span class="mkx-rel-ver">v1.0.0</span></a>
+            <a href="#data-sources"><span class="mkx-rel-date">Reference</span><span class="mkx-rel-ver">Data sources</span></a>
     </nav>
     <div>
+        <article class="mkx-rel-entry" id="rel-1-14-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.14.0</span><span class="mkx-rel-when">October 4, 2026</span></div>
+            <h2>A crypto glossary, richer articles, and accessibility improvements.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>New <a href="glossary.html">crypto trading glossary</a> with 63 plain-English definitions, a live filter, an A–Z index, and links to the articles that go deeper.</li>
+                <li>All nine blog articles now include worked examples, links to glossary definitions, and links to related articles. Eight have new diagrams, and two have comparison tables.</li>
+                <li>Each article now has its own social preview image, so shared links show the article's headline.</li>
+                <li>Pages now have a &ldquo;Skip to main content&rdquo; link and a main-content landmark for keyboard and screen reader users.</li>
+            </ul>
+            <p class="mkx-rel-label">Fixes</p>
+            <ul>
+                <li>Fixed invalid structured data on the &ldquo;$1000 in a day&rdquo; article, where quotation marks in the headline broke the page's JSON-LD.</li>
+                <li>Every form field on the terminal, paper trading, account, AI and invest pages now has an accessible name, and the paper-trading AI panel's close button is labelled.</li>
+                <li>The contact form now explains exactly what is missing or invalid, moves focus to the field to fix, and announces errors to screen readers right away.</li>
+                <li>Sign-in and sign-up errors are now announced by screen readers.</li>
+                <li>Shortened a few page titles and descriptions that search engines were likely to cut off, and added missing Twitter/X card descriptions to the privacy and terms pages.</li>
+                <li>Corrected the annualized figures in the funding-rate article: a 0.01% rate paid three times a day adds up to roughly 11% a year, not the 3–6% previously stated.</li>
+            </ul>
+            <p class="mkx-rel-label">Data sources</p>
+            <ul>
+                <li>No data sources changed in this release. A reference list of where each number comes from is now at the bottom of this page.</li>
+            </ul>
+        </article>
         <article class="mkx-rel-entry" id="rel-1-13-0">
             <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.13.0</span><span class="mkx-rel-when">September 30, 2026</span></div>
             <h2>The AI chat can now review and adjust your paper trades.</h2>
@@ -273,8 +301,24 @@
                 <li>First public release: live Binance spot &amp; futures data, charting, and an AI-backed market read, free with no paywall.</li>
             </ul>
         </article>
+        <article class="mkx-rel-entry" id="data-sources">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">Reference</span></div>
+            <h2>Where CryptoBolt's data comes from.</h2>
+            <p class="mkx-rel-label">Current sources</p>
+            <ul>
+                <li><strong>Binance</strong> (spot and futures): live prices, charts, order book depth, funding rates and open interest.</li>
+                <li><strong>CoinGecko</strong>: market-wide figures such as market capitalization and Bitcoin dominance.</li>
+                <li><strong>Alternative.me</strong>: the Fear &amp; Greed index.</li>
+            </ul>
+            <p class="mkx-rel-label">How changes are logged</p>
+            <ul>
+                <li>Whenever a source is added, replaced, or a calculation that uses it changes in a way you could notice, the change is listed under &ldquo;Data sources&rdquo; in that release.</li>
+            </ul>
+        </article>
     </div>
 </section>
+
+</main>
 
 <footer class="mk-footer">
     <div class="mk-footer-grid">
@@ -284,13 +328,13 @@
         <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
         <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
         <div class="mk-footer-social">
-            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
-            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
-            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
         </div>
         </div>
         <div class="mk-footer-col">
-            <h4>Product</h4>
+            <p class="mk-footer-title">Product</p>
             <a href="app.html">Terminal</a>
             <a href="features.html">Features</a>
             <a href="releases.html">Releases</a>
@@ -298,14 +342,15 @@
             <a href="ai.html">AI research</a>
         </div>
         <div class="mk-footer-col">
-            <h4>Company</h4>
+            <p class="mk-footer-title">Company</p>
             <a href="about.html">About</a>
             <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
             <a href="contact.html">Contact</a>
             <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
         <div class="mk-footer-col">
-            <h4>Legal</h4>
+            <p class="mk-footer-title">Legal</p>
             <a href="privacy.html">Privacy policy</a>
             <a href="terms.html">Terms of service</a>
         </div>

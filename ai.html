@@ -150,6 +150,7 @@
 </head>
 
 <body class="cb-has-rail bg-[#0b0e11] text-gray-200">
+<a class="mk-skip" href="#main">Skip to main content</a>
     <nav class="cb-rail" aria-label="Product navigation">
         <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home"><i data-lucide="zap" width="16" height="16" stroke-width="2.3"></i></a>
         <div class="cb-rail-nav">
@@ -215,7 +216,7 @@
 
         <div id="ai-own-key-row">
             <div class="ai-api-controls">
-                <input
+                <input aria-label="Groq API key"
                     id="groq-key"
                     type="password"
                     placeholder="gsk_..."
@@ -280,7 +281,7 @@
     </section>
 
     <!-- Main -->
-    <main class="ai-main">
+    <main class="ai-main" id="main" tabindex="-1">
 
         <!-- Left research controls -->
         <aside class="ai-sidebar">
@@ -712,7 +713,7 @@
                 </div>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Product</h4>
+                    <p class="mk-footer-title">Product</p>
                     <a href="app.html">Terminal</a>
                     <a href="trade.html">Paper trading</a>
                     <a href="invest.html">Invest (real)</a>
@@ -725,14 +726,14 @@
                     <a href="ai-crypto-research.html">AI crypto research</a><a href="liquidation-price-calculator.html">Liquidation calculator</a>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Company</h4>
+                    <p class="mk-footer-title">Company</p>
                     <a href="about.html">About</a>
                     <a href="blog.html">Blog</a>
                     <a href="contact.html">Contact</a>
                     <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Legal</h4>
+                    <p class="mk-footer-title">Legal</p>
                     <a href="privacy.html">Privacy policy</a>
                     <a href="terms.html">Terms of service</a>
                 </div>

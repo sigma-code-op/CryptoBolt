@@ -142,3 +142,42 @@ jobs:
       # and paper-trading fee/fill math that every chart panel, the AI context builder, and the
       # paper-trading feature depend on — plus test/frontend-smoke.test.js.
       - run: npm test
+
+  seo-audit:
+    name: SEO, social and accessibility audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Dependency-free static audit (scripts/check-seo.js): canonicals vs sitemap, og/twitter tags,
+      # JSON-LD validity, alt text, form labels, broken internal links. Errors fail the build.
+      - run: node scripts/check-seo.js
+
+  content-build:
+    name: Blog and glossary pages are up to date
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+      - run: npm run build:blog
+      - run: npm run build:glossary
+      # Fails if posts/*.md or glossary/terms.json were edited without re-running the builds.
+      - run: |
+          if ! git diff --quiet -- '*.html' sitemap.xml; then
+            echo "::error::Generated pages are out of date. Run 'npm run build:blog' and 'npm run build:glossary' locally and commit the result."
+            git diff --stat -- '*.html' sitemap.xml
+            exit 1
+          fi

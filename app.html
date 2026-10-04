@@ -147,6 +147,7 @@
     <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261002">
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
+<a class="mk-skip" href="#main">Skip to main content</a>
     <nav class="cb-rail" aria-label="Product navigation">
         <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home"><i data-lucide="zap" width="16" height="16" stroke-width="2.3"></i></a>
         <div class="cb-rail-nav">
@@ -168,7 +169,7 @@
     <div class="cw-ambient-orb cw-orb-2"></div>
     <div class="cw-ambient-orb cw-orb-3"></div>
 
-    <div class="container mx-auto px-4 py-6 max-w-[1600px]">
+    <div id="main" role="main" tabindex="-1" class="container mx-auto px-4 py-6 max-w-[1600px]">
         <!-- Header -->
         <header class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-800 pb-4 mb-3 gap-4">
             <div>
@@ -454,7 +455,7 @@
 
                     <div class="flex items-center gap-1.5 flex-wrap cw-tb-tools">
                         <span class="text-[10px] uppercase font-bold text-gray-500 px-2 tracking-wider">Compare:</span>
-                        <input id="compare-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="e.g. ETH" list="compare-symbol-list"
+                        <input aria-label="Compare with another asset (symbol, for example ETH)" id="compare-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="e.g. ETH" list="compare-symbol-list"
                             class="w-24 bg-gray-900 border border-gray-800/80 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#24a0e5]">
                         <datalist id="compare-symbol-list"></datalist>
                         <button id="compare-clear-btn" title="Clear comparison" aria-label="Clear comparison" class="hidden text-[11px] px-2 py-1 rounded bg-gray-900 border border-gray-800/80 text-gray-400 hover:text-white transition-all cursor-pointer"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
@@ -553,13 +554,13 @@
                             <button id="sound-toggle-btn" title="Toggle alert sound" aria-label="Toggle alert sound" class="text-gray-500 hover:text-amber-400 transition-colors cursor-pointer text-xs"><i data-lucide="volume-2" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
                         </div>
                         <div class="cw-form-grid p-3 flex gap-2 flex-wrap">
-                            <select id="alert-direction" class="flex-shrink-0 bg-gray-900 border border-gray-800 rounded text-[10px] px-1.5 py-1 text-gray-300">
+                            <select aria-label="Alert direction" id="alert-direction" class="flex-shrink-0 bg-gray-900 border border-gray-800 rounded text-[10px] px-1.5 py-1 text-gray-300">
                                 <option value="above">Above $</option>
                                 <option value="below">Below $</option>
                                 <option value="pct_up">Rises by %</option>
                                 <option value="pct_down">Falls by %</option>
                             </select>
-                            <input id="alert-price-input" inputmode="decimal" type="number" step="any" placeholder="Target price" class="flex-1 min-w-[90px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
+                            <input aria-label="Alert target price" id="alert-price-input" inputmode="decimal" type="number" step="any" placeholder="Target price" class="flex-1 min-w-[90px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                             <button id="alert-add-btn" class="flex-shrink-0 text-[11px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add</button>
                         </div>
                         <div id="alerts-list" class="px-3 pb-3 font-mono text-[10px] space-y-1.5 overflow-y-auto max-h-[160px]">
@@ -595,7 +596,7 @@
                     </div>
                 </div>
                 <div id="ai-key-own-row" class="w-full flex flex-wrap items-center gap-2">
-                    <input id="ai-key-input" type="password" placeholder="gsk_..." autocomplete="off"
+                    <input aria-label="Groq API key" id="ai-key-input" type="password" placeholder="gsk_..." autocomplete="off"
                         class="flex-1 min-w-[220px] bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#a855f7]">
                     <button id="ai-key-save-btn" class="text-[11px] px-3 py-1.5 rounded bg-[#a855f7] text-white font-bold hover:opacity-90 transition-all cursor-pointer">Save</button>
                     <button id="ai-key-clear-btn" class="text-[11px] px-3 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-all cursor-pointer">Clear</button>
@@ -702,7 +703,7 @@
                 <span id="notes-save-status" class="text-[9px] text-gray-600"></span>
             </div>
             <div class="p-4">
-                <textarea id="notes-textarea" rows="3" placeholder="Select an asset, then jot down levels to watch, why you entered a position, or anything else worth remembering..."
+                <textarea aria-label="Notes for the selected asset" id="notes-textarea" rows="3" placeholder="Select an asset, then jot down levels to watch, why you entered a position, or anything else worth remembering..."
                     class="w-full bg-gray-900 border border-gray-800 rounded text-xs px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a] resize-y"></textarea>
             </div>
         </div>
@@ -756,26 +757,26 @@
             </div>
 
             <div class="cw-form-grid p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
-                <input id="holding-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="holding-symbol-list"
+                <input aria-label="Holding asset symbol" id="holding-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="holding-symbol-list"
                     class="w-28 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 <datalist id="holding-symbol-list"></datalist>
                 <div class="flex items-center gap-1">
-                    <input id="holding-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
+                    <input aria-label="Holding amount" id="holding-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
                         class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
-                    <select id="holding-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-[#14d38a]">
+                    <select aria-label="Holding amount unit" id="holding-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-[#14d38a]">
                         <option value="coins">Coins</option>
                         <option value="usdt">USDT</option>
                     </select>
                 </div>
                 <span id="holding-qty-hint" class="text-[10px] text-gray-500 font-mono min-w-[90px]"></span>
                 <div class="flex items-center gap-1">
-                    <input id="holding-cost-input" inputmode="decimal" type="number" step="any" placeholder="Avg cost / unit (optional)"
+                    <input aria-label="Average cost per unit (optional)" id="holding-cost-input" inputmode="decimal" type="number" step="any" placeholder="Avg cost / unit (optional)"
                         class="w-36 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                     <button id="holding-uselive-btn" title="Fill with current price" class="text-[10px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] transition-all cursor-pointer">Live</button>
                 </div>
-                <input id="holding-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
+                <input aria-label="Holding stop-loss price (optional)" id="holding-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#ff4d6a]">
-                <input id="holding-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
+                <input aria-label="Holding take-profit price (optional)" id="holding-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 <button id="holding-add-btn" class="text-[11px] px-3 py-1.5 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add Holding</button>
             </div>
@@ -823,32 +824,32 @@
             </div>
 
             <div class="cw-form-grid p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
-                <input id="futures-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="futures-symbol-list"
+                <input aria-label="Futures asset symbol" id="futures-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="futures-symbol-list"
                     class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
                 <datalist id="futures-symbol-list"></datalist>
-                <select id="futures-side-input" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 focus:outline-none focus:border-amber-500">
+                <select aria-label="Position side (long or short)" id="futures-side-input" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 focus:outline-none focus:border-amber-500">
                     <option value="long">Long</option>
                     <option value="short">Short</option>
                 </select>
                 <div class="flex items-center gap-1">
-                    <input id="futures-entry-input" inputmode="decimal" type="number" step="any" placeholder="Entry price"
+                    <input aria-label="Futures entry price" id="futures-entry-input" inputmode="decimal" type="number" step="any" placeholder="Entry price"
                         class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
                     <button id="futures-uselive-btn" title="Fill with current price" class="text-[10px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 transition-all cursor-pointer">Live</button>
                 </div>
                 <div class="flex items-center gap-1">
-                    <input id="futures-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
+                    <input aria-label="Futures position amount" id="futures-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
                         class="w-20 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
-                    <select id="futures-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-amber-500">
+                    <select aria-label="Futures amount unit" id="futures-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-amber-500">
                         <option value="coins">Coins</option>
                         <option value="usdt">USDT</option>
                     </select>
                 </div>
                 <span id="futures-qty-hint" class="text-[10px] text-gray-500 font-mono min-w-[90px]"></span>
-                <input id="futures-leverage-input" inputmode="numeric" type="number" step="1" min="1" max="125" placeholder="Leverage (x)" value="10"
+                <input aria-label="Leverage multiple" id="futures-leverage-input" inputmode="numeric" type="number" step="1" min="1" max="125" placeholder="Leverage (x)" value="10"
                     class="w-20 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
-                <input id="futures-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
+                <input aria-label="Futures stop-loss price (optional)" id="futures-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#ff4d6a]">
-                <input id="futures-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
+                <input aria-label="Futures take-profit price (optional)" id="futures-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
                     class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 <button id="futures-add-btn" class="text-[11px] px-3 py-1.5 rounded bg-amber-500 text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add Position</button>
             </div>
@@ -954,7 +955,7 @@
                 </div>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Product</h4>
+                    <p class="mk-footer-title">Product</p>
                     <a href="app.html">Terminal</a>
                     <a href="trade.html">Paper trading</a>
                     <a href="invest.html">Invest (real)</a>
@@ -967,14 +968,14 @@
                     <a href="ai-crypto-research.html">AI crypto research</a><a href="liquidation-price-calculator.html">Liquidation calculator</a>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Company</h4>
+                    <p class="mk-footer-title">Company</p>
                     <a href="about.html">About</a>
                     <a href="blog.html">Blog</a>
                     <a href="contact.html">Contact</a>
                     <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Legal</h4>
+                    <p class="mk-footer-title">Legal</p>
                     <a href="privacy.html">Privacy policy</a>
                     <a href="terms.html">Terms of service</a>
                 </div>
@@ -1012,20 +1013,20 @@
                 </div>
                 <div id="auth-username-wrap" class="hidden">
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Username <span class="normal-case font-normal text-gray-600">(shown on the leaderboard)</span></label>
-                    <input id="auth-username-input" type="text" placeholder="3-20 letters, numbers, underscores" autocomplete="username" maxlength="20"
+                    <input aria-label="Username (shown on the leaderboard)" id="auth-username-input" type="text" placeholder="3-20 letters, numbers, underscores" autocomplete="username" maxlength="20"
                         class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 </div>
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
-                    <input id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
+                    <input aria-label="Email" id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
                         class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 </div>
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Password</label>
-                    <input id="auth-password-input" type="password" placeholder="At least 6 characters" autocomplete="current-password"
+                    <input aria-label="Password" id="auth-password-input" type="password" placeholder="At least 6 characters" autocomplete="current-password"
                         class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                 </div>
-                <div id="auth-error" class="hidden text-[11px] text-[#ff4d6a] bg-[#ff4d6a]/10 border border-[#ff4d6a]/20 rounded p-2"></div>
+                <div id="auth-error" role="alert" class="hidden text-[11px] text-[#ff4d6a] bg-[#ff4d6a]/10 border border-[#ff4d6a]/20 rounded p-2"></div>
                 <div id="auth-info" class="hidden text-[11px] text-[#14d38a] bg-[#14d38a]/10 border border-[#14d38a]/20 rounded p-2"></div>
                 <button id="auth-submit-btn" class="w-full text-sm font-bold uppercase py-2.5 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">Sign In</button>
                 <a href="#" id="auth-forgot-link" class="block text-center text-[11px] text-gray-500 hover:text-gray-300 cursor-pointer">Forgot password?</a>

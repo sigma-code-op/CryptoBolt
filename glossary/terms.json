@@ -1,0 +1,614 @@
+{
+  "title": "CryptoBolt glossary",
+  "terms": [
+    {
+      "slug": "hallucination",
+      "term": "AI hallucination",
+      "category": "AI",
+      "definition": "When a language model states something confidently that is false or made up, such as an invented price or a news item that never happened.",
+      "aka": [
+        "hallucinate"
+      ],
+      "read": [
+        "ai-research-grounded-data"
+      ]
+    },
+    {
+      "slug": "ai-trading-agent",
+      "term": "AI trading agent",
+      "category": "AI",
+      "definition": "Software that uses AI to analyze markets and place trades by itself. Unlike a fixed-rule bot, it can adapt, which also means you have to trust its judgment and not only its code.",
+      "aka": [
+        "trading agent"
+      ],
+      "read": [
+        "ai-meets-crypto"
+      ]
+    },
+    {
+      "slug": "atr",
+      "term": "ATR (Average True Range)",
+      "category": "Indicators & levels",
+      "definition": "A measure of how far price typically moves in a period, commonly averaged over 14 candles. It is used to set stop distances and position sizes that fit current [[volatility]]. CryptoBolt uses it for trade levels.",
+      "aka": [
+        "average true range"
+      ],
+      "read": [
+        "ai-research-grounded-data"
+      ]
+    },
+    {
+      "slug": "backtest",
+      "term": "Backtest",
+      "category": "Risk & performance",
+      "definition": "Running a trading rule over past data to see how it would have performed. It is useful for spotting a bad idea early, but a good backtest does not guarantee future results."
+    },
+    {
+      "slug": "spread",
+      "term": "Bid-ask spread",
+      "category": "Market data",
+      "definition": "The gap between the highest price a buyer will pay (best bid) and the lowest price a seller will accept (best ask). A tight spread usually signals a liquid market.",
+      "aka": [
+        "spread"
+      ]
+    },
+    {
+      "slug": "bitcoin-dominance",
+      "term": "Bitcoin dominance",
+      "category": "Market data",
+      "definition": "Bitcoin's share of the total crypto market capitalization, shown as a percentage. A rising number means Bitcoin is outweighing the rest of the market; a falling number means other coins are gaining share.",
+      "aka": [
+        "BTC dominance"
+      ]
+    },
+    {
+      "slug": "bollinger-bands",
+      "term": "Bollinger Bands",
+      "category": "Indicators & levels",
+      "definition": "A moving average with a band above and below it, set a couple of standard deviations away. The bands widen when [[volatility]] rises and narrow when it falls.",
+      "aka": [
+        "BB"
+      ]
+    },
+    {
+      "slug": "candlestick",
+      "term": "Candlestick",
+      "category": "Market data",
+      "definition": "A chart bar that summarizes one time period with four prices: open, high, low, and close. The thick body spans open to close; the thin lines above and below are the [[wick]]s.",
+      "aka": [
+        "candle",
+        "OHLC"
+      ]
+    },
+    {
+      "slug": "cross-margin",
+      "term": "Cross margin",
+      "category": "Futures & leverage",
+      "definition": "A setting where your whole futures wallet balance backs all your open positions. It makes liquidation less likely on any single position, but a bad one can drain the entire balance."
+    },
+    {
+      "slug": "deterministic-calculation",
+      "term": "Deterministic calculation",
+      "category": "AI",
+      "definition": "A calculation that returns the same output every time for the same input. CryptoBolt computes entry, stop, and target levels this way with [[atr]] math instead of asking a language model for numbers.",
+      "aka": [
+        "deterministic"
+      ],
+      "read": [
+        "ai-research-grounded-data"
+      ]
+    },
+    {
+      "slug": "drawdown",
+      "term": "Drawdown",
+      "category": "Risk & performance",
+      "definition": "The drop from an account's peak value to a later low. Max drawdown is the biggest such drop over a period, and it shows how painful the ride was, not just where it ended.",
+      "aka": [
+        "max drawdown"
+      ],
+      "read": [
+        "day-trading-crypto-realistic-returns"
+      ]
+    },
+    {
+      "slug": "fear-and-greed-index",
+      "term": "Fear & Greed index",
+      "category": "Sentiment & behavior",
+      "definition": "A 0 to 100 score that summarizes crypto market mood from inputs like volatility, momentum, social activity, and dominance. Low means fear, high means greed. It describes mood now, not what comes next.",
+      "aka": [
+        "crypto fear and greed"
+      ],
+      "read": [
+        "fear-and-greed-index"
+      ]
+    },
+    {
+      "slug": "fomo",
+      "term": "FOMO",
+      "category": "Sentiment & behavior",
+      "definition": "Fear of missing out: the urge to jump into a move because others are profiting. It tends to peak right after a big rise, which is when entries are usually worst.",
+      "aka": [
+        "fear of missing out"
+      ],
+      "read": [
+        "1000-dollar-day-trap"
+      ]
+    },
+    {
+      "slug": "funding-rate",
+      "term": "Funding rate",
+      "category": "Futures & leverage",
+      "definition": "A small periodic payment exchanged between long and short traders on a [[perpetual-futures]] contract. When it is positive, longs pay shorts; when it is negative, shorts pay longs. It nudges the contract price toward spot and hints at which side of the market is crowded.",
+      "aka": [
+        "funding",
+        "funding fee"
+      ],
+      "read": [
+        "funding-rate-explained"
+      ]
+    },
+    {
+      "slug": "grounded-ai",
+      "term": "Grounded AI",
+      "category": "AI",
+      "definition": "An AI answer built from live, checkable inputs such as current news, prices, and indicators rather than from the model's memory alone. Grounding reduces stale or invented claims.",
+      "aka": [
+        "grounding"
+      ],
+      "read": [
+        "ai-research-grounded-data"
+      ]
+    },
+    {
+      "slug": "index-price",
+      "term": "Index price",
+      "category": "Futures & leverage",
+      "definition": "A blended spot price pulled from several exchanges. Futures platforms use it as a fair-value anchor when computing the [[mark-price]]."
+    },
+    {
+      "slug": "isolated-margin",
+      "term": "Isolated margin",
+      "category": "Futures & leverage",
+      "definition": "A setting where only the margin you assign to one position is at risk. If that position is liquidated, the rest of your futures balance is untouched."
+    },
+    {
+      "slug": "leverage",
+      "term": "Leverage",
+      "category": "Futures & leverage",
+      "definition": "Borrowing power that lets you open a position bigger than the money you put up. At 10x, $100 of your own money controls $1,000 of exposure. Gains and losses are both scaled up by the same factor.",
+      "read": [
+        "spot-vs-futures"
+      ]
+    },
+    {
+      "slug": "limit-order",
+      "term": "Limit order",
+      "category": "Orders & execution",
+      "definition": "An instruction to buy or sell only at a price you choose or better. It may not fill if the market never reaches your price. Resting limit orders are what build up in the [[order-book]]."
+    },
+    {
+      "slug": "liquidation",
+      "term": "Liquidation",
+      "category": "Futures & leverage",
+      "definition": "The exchange forcibly closing your leveraged position because your [[margin]] can no longer cover the losses. You lose the margin posted for that position. See [[liquidation-price]].",
+      "aka": [
+        "liquidated",
+        "forced close"
+      ],
+      "read": [
+        "spot-vs-futures"
+      ]
+    },
+    {
+      "slug": "liquidation-cascade",
+      "term": "Liquidation cascade",
+      "category": "Futures & leverage",
+      "definition": "A chain reaction where forced closes push the price further, which triggers more forced closes. Crowded leveraged positioning, often visible in [[funding-rate]] and [[open-interest]], is what makes a cascade possible.",
+      "aka": [
+        "long squeeze"
+      ],
+      "read": [
+        "funding-rate-explained"
+      ]
+    },
+    {
+      "slug": "liquidation-price",
+      "term": "Liquidation price",
+      "category": "Futures & leverage",
+      "definition": "The price at which your leveraged position would be forcibly closed. It depends on your entry price, [[leverage]], position direction, and the exchange's [[maintenance-margin]] rules, and it can shift when [[funding-rate|funding fees]] are paid.",
+      "read": [
+        "spot-vs-futures",
+        {
+          "href": "liquidation-price-calculator.html",
+          "label": "Liquidation price calculator"
+        }
+      ]
+    },
+    {
+      "slug": "liquidity",
+      "term": "Liquidity",
+      "category": "Market data",
+      "definition": "How easily you can buy or sell without moving the price. Deep, busy markets are liquid; thin ones are not, which means wider [[spread]] and more [[slippage]]."
+    },
+    {
+      "slug": "long-and-short",
+      "term": "Long and short",
+      "category": "Basics",
+      "definition": "Going long means betting the price will rise; you profit if it does. Going short means betting it will fall; you profit if it does. Shorting is mainly done with [[perpetual-futures]] rather than [[spot-trading]].",
+      "aka": [
+        "long",
+        "short"
+      ],
+      "read": [
+        "spot-vs-futures"
+      ]
+    },
+    {
+      "slug": "macd",
+      "term": "MACD",
+      "category": "Indicators & levels",
+      "definition": "A momentum indicator built from the difference between two [[moving-average|exponential moving averages]], plotted with a smoothed signal line. Crossovers and the histogram show momentum speeding up or slowing down.",
+      "aka": [
+        "moving average convergence divergence"
+      ]
+    },
+    {
+      "slug": "maintenance-margin",
+      "term": "Maintenance margin",
+      "category": "Futures & leverage",
+      "definition": "The minimum amount of equity a leveraged position needs to stay open. When your margin falls to this level, the exchange starts the [[liquidation]] process. It is why real liquidation happens slightly before your margin hits zero.",
+      "read": [
+        "spot-vs-futures"
+      ]
+    },
+    {
+      "slug": "maker-taker",
+      "term": "Maker and taker",
+      "category": "Orders & execution",
+      "definition": "A maker adds a resting [[limit-order]] to the [[order-book]]; a taker removes liquidity by matching an existing order. Exchanges usually charge takers a higher fee than makers.",
+      "aka": [
+        "maker fee",
+        "taker fee"
+      ]
+    },
+    {
+      "slug": "margin",
+      "term": "Margin",
+      "category": "Futures & leverage",
+      "definition": "The collateral you set aside to open and keep a leveraged position. Think of it as a deposit: if losses eat through it, the exchange closes the position. See [[isolated-margin]] and [[cross-margin]].",
+      "aka": [
+        "collateral"
+      ],
+      "read": [
+        "spot-vs-futures"
+      ]
+    },
+    {
+      "slug": "mark-price",
+      "term": "Mark price",
+      "category": "Futures & leverage",
+      "definition": "The reference price an exchange uses to calculate unrealized profit and [[liquidation]] on a futures position. It is usually based on the [[index-price]] rather than the last trade, so a single odd trade cannot trigger liquidations."
+    },
+    {
+      "slug": "market-cap",
+      "term": "Market capitalization",
+      "category": "Market data",
+      "definition": "The total value of a coin: its current price multiplied by the number of coins in circulation. It is a rough size ranking, not a measure of how much money has flowed in.",
+      "aka": [
+        "market cap"
+      ]
+    },
+    {
+      "slug": "market-order",
+      "term": "Market order",
+      "category": "Orders & execution",
+      "definition": "An instruction to buy or sell right now at the best available price. It fills quickly but you do not control the exact price, so [[slippage]] can occur."
+    },
+    {
+      "slug": "moving-average",
+      "term": "Moving average (SMA and EMA)",
+      "category": "Indicators & levels",
+      "definition": "The average price over the last N periods, redrawn on every new candle to smooth out noise. A simple moving average (SMA) weights all periods equally; an exponential one (EMA) weights recent periods more.",
+      "aka": [
+        "SMA",
+        "EMA",
+        "MA"
+      ]
+    },
+    {
+      "slug": "open-interest",
+      "term": "Open interest",
+      "category": "Futures & leverage",
+      "definition": "The total size of derivative contracts that are currently open and not yet closed. Rising open interest means new positions are being added; falling means positions are being closed. It is not the same as [[volume]].",
+      "aka": [
+        "OI"
+      ],
+      "read": [
+        "funding-rate-explained"
+      ]
+    },
+    {
+      "slug": "order-book",
+      "term": "Order book",
+      "category": "Market data",
+      "definition": "A live list of resting buy orders (bids) and sell orders (asks), organized by price. It shows where traders are waiting to transact.",
+      "aka": [
+        "bids and asks"
+      ]
+    },
+    {
+      "slug": "order-book-depth",
+      "term": "Order book depth",
+      "category": "Market data",
+      "definition": "How much size is waiting at and around each price in the [[order-book]]. Large clusters, often at round numbers, can slow price down. See [[support-and-resistance]].",
+      "aka": [
+        "depth",
+        "market depth"
+      ],
+      "read": [
+        "round-number-levels"
+      ]
+    },
+    {
+      "slug": "paper-trading",
+      "term": "Paper trading",
+      "category": "Risk & performance",
+      "definition": "Practicing with virtual money on live prices so mistakes cost nothing. It is a way to test a plan before risking anything real, though it cannot reproduce the emotions of real losses.",
+      "aka": [
+        "demo trading",
+        "simulated trading"
+      ],
+      "read": [
+        "day-trading-crypto-realistic-returns"
+      ]
+    },
+    {
+      "slug": "perpetual-futures",
+      "term": "Perpetual futures",
+      "category": "Futures & leverage",
+      "definition": "A derivative contract that follows an asset's price but never expires. You hold a position, not the coin itself. A recurring [[funding-rate]] payment between traders keeps the contract price close to the [[spot-trading|spot price]].",
+      "aka": [
+        "perps",
+        "perpetual swaps",
+        "perpetual contracts"
+      ],
+      "read": [
+        "spot-vs-futures",
+        "funding-rate-explained"
+      ]
+    },
+    {
+      "slug": "position-sizing",
+      "term": "Position sizing",
+      "category": "Risk & performance",
+      "definition": "Deciding how much to put into a trade, often by risking a small fixed slice of your account on each one. In the research summarized in our day-trading post, sizing mattered more than entry timing.",
+      "aka": [
+        "risk per trade"
+      ],
+      "read": [
+        "day-trading-crypto-realistic-returns"
+      ]
+    },
+    {
+      "slug": "profit-factor",
+      "term": "Profit factor",
+      "category": "Risk & performance",
+      "definition": "Total profit from winning trades divided by total loss from losing trades. Above 1 means the strategy made money overall; below 1 means it lost."
+    },
+    {
+      "slug": "prompt-injection",
+      "term": "Prompt injection",
+      "category": "AI",
+      "definition": "An attack where text hidden in the data an AI reads tries to change its instructions. For an AI that trades or advises on markets, manipulated inputs can mean manipulated outputs.",
+      "read": [
+        "ai-meets-crypto"
+      ]
+    },
+    {
+      "slug": "pump-and-dump",
+      "term": "Pump and dump",
+      "category": "Sentiment & behavior",
+      "definition": "A scheme where organizers buy a thinly traded coin, hype it so others pile in, then sell into the demand they created. Late buyers are left holding the loss.",
+      "read": [
+        "1000-dollar-day-trap"
+      ]
+    },
+    {
+      "slug": "risk-reward",
+      "term": "Risk/reward ratio",
+      "category": "Risk & performance",
+      "definition": "The potential profit of a trade compared with the potential loss. Risking $50 to make $150 is a 1:3 ratio. A good ratio does not help if the setup rarely works, so it is read together with [[win-rate]].",
+      "aka": [
+        "R:R"
+      ]
+    },
+    {
+      "slug": "round-number-level",
+      "term": "Round-number level",
+      "category": "Indicators & levels",
+      "definition": "A clean price such as $50,000 where traders tend to cluster orders because round figures are easy to remember. The reaction comes from the orders sitting there, not from the number itself.",
+      "aka": [
+        "psychological level"
+      ],
+      "read": [
+        "round-number-levels"
+      ]
+    },
+    {
+      "slug": "rsi",
+      "term": "RSI (Relative Strength Index)",
+      "category": "Indicators & levels",
+      "definition": "A momentum gauge from 0 to 100 that compares recent gains to recent losses, commonly over 14 periods. Readings above about 70 are called overbought and below about 30 oversold, but in strong trends it can stay there for a long time.",
+      "aka": [
+        "relative strength index"
+      ]
+    },
+    {
+      "slug": "rug-pull",
+      "term": "Rug pull",
+      "category": "Sentiment & behavior",
+      "definition": "A scam where a project's creators attract money and then abandon it or drain the funds, leaving the token worthless."
+    },
+    {
+      "slug": "short-squeeze",
+      "term": "Short squeeze",
+      "category": "Futures & leverage",
+      "definition": "A sharp rise caused by short sellers being forced to buy back their positions, either by choice or by [[liquidation]]. The buying itself pushes the price up, which squeezes more shorts."
+    },
+    {
+      "slug": "slippage",
+      "term": "Slippage",
+      "category": "Orders & execution",
+      "definition": "The gap between the price you expected and the price you actually got. It grows when you trade large sizes or when the [[order-book]] is thin."
+    },
+    {
+      "slug": "spot-trading",
+      "term": "Spot trading",
+      "category": "Basics",
+      "definition": "Buying or selling the actual coin at the current price. If you buy 0.1 BTC on the spot market, you own 0.1 BTC. There is no borrowing involved, so there is no liquidation. Compare [[perpetual-futures]].",
+      "aka": [
+        "spot market"
+      ],
+      "read": [
+        "spot-vs-futures"
+      ]
+    },
+    {
+      "slug": "stablecoin",
+      "term": "Stablecoin",
+      "category": "Basics",
+      "definition": "A crypto token designed to hold a steady value, usually one US dollar. Traders use stablecoins as a parking spot between trades and as the quote currency on many pairs, such as BTC/USDT.",
+      "aka": [
+        "USDT",
+        "USDC"
+      ]
+    },
+    {
+      "slug": "stop-loss",
+      "term": "Stop-loss",
+      "category": "Orders & execution",
+      "definition": "An order that closes a position automatically if price moves against you to a set level, capping the loss. On leveraged trades, a stop should sit well before the [[liquidation-price]].",
+      "aka": [
+        "stop"
+      ]
+    },
+    {
+      "slug": "support-and-resistance",
+      "term": "Support and resistance",
+      "category": "Indicators & levels",
+      "definition": "Support is a price area where buying has tended to appear and stop a fall. Resistance is an area where selling has tended to appear and stop a rise. Neither is a guarantee; levels break.",
+      "aka": [
+        "support",
+        "resistance"
+      ],
+      "read": [
+        "round-number-levels"
+      ]
+    },
+    {
+      "slug": "survivorship-bias",
+      "term": "Survivorship bias",
+      "category": "Sentiment & behavior",
+      "definition": "Judging a group by the winners you can see while ignoring the many who dropped out unseen. A screenshot of a big trading win says nothing about the accounts that quietly lost.",
+      "read": [
+        "1000-dollar-day-trap"
+      ]
+    },
+    {
+      "slug": "take-profit",
+      "term": "Take-profit",
+      "category": "Orders & execution",
+      "definition": "An order that closes a position automatically once it reaches a profit target, locking in the gain without having to watch the screen.",
+      "aka": [
+        "TP",
+        "target"
+      ]
+    },
+    {
+      "slug": "ticker",
+      "term": "Ticker",
+      "category": "Market data",
+      "definition": "A compact summary of a market: its current price, 24-hour change, and volume. The scrolling strip of prices on many sites is called a ticker or ticker ribbon."
+    },
+    {
+      "slug": "timeframe",
+      "term": "Timeframe",
+      "category": "Market data",
+      "definition": "The time period each [[candlestick]] represents, such as 1 hour, 4 hours, or 1 day. Looking at several timeframes together shows whether short-term and long-term trends agree.",
+      "aka": [
+        "interval"
+      ],
+      "read": [
+        "why-we-dont-predict-crypto-prices"
+      ]
+    },
+    {
+      "slug": "trading-pair",
+      "term": "Trading pair",
+      "category": "Basics",
+      "definition": "Two assets quoted against each other, such as ETH/USDT. The first is what you are buying or selling; the second is what its price is measured in.",
+      "aka": [
+        "pair",
+        "symbol"
+      ]
+    },
+    {
+      "slug": "trend",
+      "term": "Trend",
+      "category": "Indicators & levels",
+      "definition": "The general direction price has been moving: higher highs and higher lows is an uptrend, lower highs and lower lows is a downtrend. A trend can be up on one [[timeframe]] and down on another."
+    },
+    {
+      "slug": "volatility",
+      "term": "Volatility",
+      "category": "Indicators & levels",
+      "definition": "How much and how fast price swings. High volatility means bigger moves in both directions, which is why it should change your [[position-sizing|position size]] and stop distance."
+    },
+    {
+      "slug": "volume",
+      "term": "Volume",
+      "category": "Market data",
+      "definition": "The amount of an asset traded during a period, such as 24 hours. Volume shows how much activity sits behind a price move; a breakout on thin volume is usually less convincing than one on heavy volume.",
+      "aka": [
+        "24h volume",
+        "trading volume"
+      ]
+    },
+    {
+      "slug": "vwap",
+      "term": "VWAP",
+      "category": "Indicators & levels",
+      "definition": "Volume-weighted average price: the average price over a period, weighted by how much traded at each price. Many traders treat it as a fair-value reference for the day.",
+      "aka": [
+        "volume weighted average price"
+      ]
+    },
+    {
+      "slug": "websocket",
+      "term": "WebSocket stream",
+      "category": "Market data",
+      "definition": "A live connection where the server pushes updates the moment they happen, instead of the page asking again and again. It is how price tickers can update in real time.",
+      "aka": [
+        "live stream"
+      ]
+    },
+    {
+      "slug": "wick",
+      "term": "Wick",
+      "category": "Market data",
+      "definition": "The thin line on a [[candlestick]] showing how far price traveled beyond the open and close. A long wick means price went there but was pushed back.",
+      "aka": [
+        "shadow"
+      ],
+      "read": [
+        "round-number-levels"
+      ]
+    },
+    {
+      "slug": "win-rate",
+      "term": "Win rate",
+      "category": "Risk & performance",
+      "definition": "The share of trades that end in profit. A high win rate alone does not mean a strategy makes money; the size of winners versus losers matters too. See [[profit-factor]]."
+    }
+  ]
+}

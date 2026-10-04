@@ -111,10 +111,11 @@
     <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261001">
 </head>
 <body class="mk">
-<div class="mk-field"></div>
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
 
 <!-- ============ Nav ============ -->
-<nav class="mk-nav">
+<nav class="mk-nav" aria-label="Primary">
     <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
     <div class="mk-nav-links">
         <a href="features.html">Features</a>
@@ -142,6 +143,7 @@
         <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
     </div>
 </div>
+<main id="main" tabindex="-1">
 
 <!-- ============ Hero ============ -->
 <header class="mk-hero">
@@ -406,19 +408,21 @@
 </div>
 
 <!-- ============ Footer ============ -->
+</main>
+
 <footer class="mk-footer">
     <div class="mk-footer-grid">
         <div class="mk-footer-brand">
             <a href="index.html" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
             <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
         <div class="mk-footer-social">
-            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
-            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
-            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="javascript:void(0)" class="mk-social-disabled" aria-disabled="true" tabindex="-1" aria-label="Facebook (coming soon)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
         </div>
         </div>
         <div class="mk-footer-col">
-            <h4>Product</h4>
+            <p class="mk-footer-title">Product</p>
             <a href="app.html">Terminal</a>
             <a href="features.html">Features</a>
             <a href="releases.html">Releases</a>
@@ -431,14 +435,15 @@
             <a href="ai-crypto-research.html">AI crypto research</a><a href="liquidation-price-calculator.html">Liquidation calculator</a>
         </div>
         <div class="mk-footer-col">
-            <h4>Company</h4>
+            <p class="mk-footer-title">Company</p>
             <a href="about.html">About</a>
             <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
             <a href="contact.html">Contact</a>
             <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
         <div class="mk-footer-col">
-            <h4>Legal</h4>
+            <p class="mk-footer-title">Legal</p>
             <a href="privacy.html">Privacy policy</a>
             <a href="terms.html">Terms of service</a>
         </div>

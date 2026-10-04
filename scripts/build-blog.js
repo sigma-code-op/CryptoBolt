@@ -43,11 +43,18 @@
 //   card_summary: Optional shorter blurb for the blog listing card. Falls
 //                 back to `summary` if omitted.
 //   keywords: comma, separated, seo, keywords   (optional)
+//   related: slug-one, slug-two       (optional — posts to show first under
+//            "Keep reading"; the newest posts fill any remaining slots)
 //   ---
 //   Article body in Markdown below the `---` line. Supported: ## / ###
-//   headings, blank-line-separated paragraphs, **bold**, and [text](url)
-//   links. Nothing fancier than that — it matches what the existing posts
-//   actually use.
+//   headings (each gets an anchor id), blank-line-separated paragraphs,
+//   **bold**, [text](url) links, "- " bullet lists, and three extras:
+//     > **Example:** ...            callout box (Example, Definition, Key idea, Note, Try it)
+//     ![alt text](assets/diagrams/x.svg "Caption")   figure with caption
+//     | Col | Col |  pipe tables (first column becomes row headers)
+//   Link a term to the glossary with [funding rate](glossary.html#funding-rate).
+//   Per-post social image: put a 1200x630 PNG at assets/og/<slug>.png
+//   (see scripts/generate-og-images.py); otherwise the shared image is used.
 //
 // The output filename is the .md filename: posts/btc-dominance.md becomes
 // btc-dominance.html at the project root, linked as /btc-dominance.html.
@@ -124,6 +131,10 @@ function parsePost(raw, slug) {
     summary: fields.summary,
     cardSummary: fields.card_summary || fields.summary,
     keywords: fields.keywords || '',
+    related: (fields.related || '')
+      .split(',')
+      .map((x) => x.trim())
+      .filter(Boolean),
     body,
   };
 }
@@ -170,8 +181,32 @@ function inlineMarkdown(text) {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 }
 
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .replace(/&amp;/g, 'and')
+    .replace(/<[^>]+>/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// Reads width/height from an SVG's viewBox so <img> tags can reserve space
+// (avoids layout shift) without hand-typing dimensions in every post.
+function svgDimensions(src) {
+  const file = path.join(ROOT, src);
+  if (!existsSync(file) || !src.endsWith('.svg')) return '';
+  const m = readFileSync(file, 'utf8').match(/viewBox="[\d.\-]+\s+[\d.\-]+\s+([\d.]+)\s+([\d.]+)"/);
+  return m ? ` width="${Math.round(m[1])}" height="${Math.round(m[2])}"` : '';
+}
+
+const CALLOUT_LABELS = ['example', 'definition', 'key idea', 'note', 'try it'];
+
 // Converts the Markdown body into the same HTML shape the hand-written posts
-// use: <p> paragraphs and <h2>/<h3> headings, plus <ul> for "- " bullet lists.
+// use: <p> paragraphs and <h2>/<h3> headings (with anchor ids), "- " bullet
+// lists, plus three small extensions used by the explainer posts:
+//   > **Example:** text      -> callout box (also Definition, Key idea, Note, Try it)
+//   ![alt](path.svg "Caption") -> <figure> with an accessible <figcaption>
+//   | a | b |  pipe tables   -> responsive <table> with scoped headers
 function markdownToHtml(markdown) {
   const escaped = escapeHtml(markdown);
 
@@ -181,14 +216,61 @@ function markdownToHtml(markdown) {
     const trimmed = block.trim();
 
     if (trimmed.startsWith('### ')) {
-      return `    <h3>${inlineMarkdown(trimmed.slice(4))}</h3>`;
+      const t = trimmed.slice(4);
+      return `    <h3 id="${slugify(t)}">${inlineMarkdown(t)}</h3>`;
     }
 
     if (trimmed.startsWith('## ')) {
-      return `    <h2>${inlineMarkdown(trimmed.slice(3))}</h2>`;
+      const t = trimmed.slice(3);
+      return `    <h2 id="${slugify(t)}">${inlineMarkdown(t)}</h2>`;
+    }
+
+    const fig = trimmed.match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$/);
+    if (fig) {
+      const [, alt, src, caption] = fig;
+      return [
+        '    <figure class="mk-figure">',
+        `        <img src="${src}" alt="${alt.replace(/"/g, '&quot;')}"${svgDimensions(src)} loading="lazy" decoding="async">`,
+        caption ? `        <figcaption>${inlineMarkdown(caption)}</figcaption>` : '',
+        '    </figure>',
+      ]
+        .filter(Boolean)
+        .join('\n');
     }
 
     const lines = trimmed.split(/\r?\n/);
+
+    if (lines.every((line) => /^&gt;\s?/.test(line.trim()))) {
+      const text = lines.map((line) => line.trim().replace(/^&gt;\s?/, '')).join(' ');
+      const label = (text.match(/^\*\*([^*:]+):\*\*/) || [])[1];
+      const kind = label && CALLOUT_LABELS.includes(label.toLowerCase())
+        ? label.toLowerCase().replace(/\s+/g, '-')
+        : 'note';
+      return `    <div class="mk-callout mk-callout-${kind}" role="note">${inlineMarkdown(text)}</div>`;
+    }
+
+    if (lines.length >= 2 && lines.every((line) => line.trim().startsWith('|'))) {
+      const rows = lines.map((line) =>
+        line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => c.trim())
+      );
+      const header = rows[0];
+      const body = rows.slice(/^[\s:|-]+$/.test(lines[1]) ? 2 : 1);
+      return [
+        '    <div class="mk-table-wrap">',
+        '        <table class="mk-table">',
+        `            <thead><tr>${header.map((c) => `<th scope="col">${inlineMarkdown(c)}</th>`).join('')}</tr></thead>`,
+        '            <tbody>',
+        ...body.map(
+          (r) =>
+            `                <tr>${r
+              .map((c, i) => (i === 0 ? `<th scope="row">${inlineMarkdown(c)}</th>` : `<td>${inlineMarkdown(c)}</td>`))
+              .join('')}</tr>`
+        ),
+        '            </tbody>',
+        '        </table>',
+        '    </div>',
+      ].join('\n');
+    }
 
     const isList = lines.every((line) =>
       line.trim().startsWith('- ')
@@ -254,7 +336,24 @@ function renderPostPage(template, post, related) {
     .map((p) => renderBlogCard(p, 'h3'))
     .join('\n');
 
+  // Values that land inside JSON-LD must be JSON-escaped, not HTML-escaped:
+  // a title containing straight quotes used to produce invalid structured data.
+  const json = (v) => JSON.stringify(v).slice(1, -1);
+  const ogImagePath = existsSync(path.join(ROOT, 'assets', 'og', `${post.slug}.png`))
+    ? `assets/og/${post.slug}.png`
+    : 'assets/og-image.png';
+
   return template
+    .split('{{JSON_OG_TITLE}}')
+    .join(json(post.ogTitle))
+    .split('{{JSON_SUMMARY}}')
+    .join(json(post.summary))
+    .split('{{JSON_TITLE}}')
+    .join(json(post.title))
+    .split('{{JSON_SECTION}}')
+    .join(json(post.section))
+    .split('{{OG_IMAGE}}')
+    .join(`https://cryptobolt.io/${ogImagePath}`)
     .split('{{META_TITLE}}')
     .join(escapeHtml(post.metaTitle))
     .split('{{SUMMARY}}')
@@ -343,6 +442,21 @@ function replaceBetweenMarkers(html, marker, replacement) {
   );
 }
 
+// Keeps <lastmod> in sitemap.xml equal to each post's `updated:` date, so a
+// content edit in posts/*.md is reflected to crawlers without a manual step.
+function syncSitemapLastmod(posts) {
+  const sitemapPath = path.join(ROOT, 'sitemap.xml');
+  if (!existsSync(sitemapPath)) return;
+  let xml = readFileSync(sitemapPath, 'utf8');
+  for (const p of posts) {
+    const re = new RegExp(
+      `(<loc>https://cryptobolt\\.io/${p.slug}\\.html</loc>\\s*<lastmod>)[^<]*(</lastmod>)`
+    );
+    xml = xml.replace(re, `$1${p.updated}$2`);
+  }
+  writeFileSync(sitemapPath, xml);
+}
+
 // ---- main -------------------------------------------------------------------
 
 function main() {
@@ -383,9 +497,15 @@ function main() {
   );
 
   for (const post of posts) {
-    const related = posts
-      .filter((p) => p.slug !== post.slug)
-      .slice(0, 2);
+    const others = posts.filter((p) => p.slug !== post.slug);
+    const explicit = post.related
+      .map((slug) => {
+        const hit = others.find((p) => p.slug === slug);
+        if (!hit) console.warn(`[build-blog] ${post.slug}.md: related slug "${slug}" has no matching post`);
+        return hit;
+      })
+      .filter(Boolean);
+    const related = [...explicit, ...others.filter((p) => !explicit.includes(p))].slice(0, 3);
 
     const html = toCrlf(
       renderPostPage(template, post, related)
@@ -424,6 +544,8 @@ function main() {
     BLOG_HTML_PATH,
     blogHtml
   );
+
+  syncSitemapLastmod(posts);
 
   console.log(
     `[build-blog] updated blog.html (${posts.length} post${

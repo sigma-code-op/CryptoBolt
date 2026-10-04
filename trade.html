@@ -83,6 +83,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
+<a class="mk-skip" href="#main">Skip to main content</a>
     <nav class="cb-rail" aria-label="Product navigation">
         <a href="index.html" class="cb-rail-logo" title="CryptoBolt Home" aria-label="CryptoBolt Home"><i data-lucide="zap" width="16" height="16" stroke-width="2.3"></i></a>
         <div class="cb-rail-nav">
@@ -103,7 +104,7 @@
     <div class="cw-ambient-orb cw-orb-2"></div>
     <div class="cw-ambient-orb cw-orb-3"></div>
 
-    <div class="container mx-auto px-4 py-6 max-w-[1600px]">
+    <div id="main" role="main" tabindex="-1" class="container mx-auto px-4 py-6 max-w-[1600px]">
 
         <!-- Header -->
         <header class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-800 pb-4 mb-6 gap-4">
@@ -281,7 +282,7 @@
                     <div>
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Asset</label>
                         <div class="flex items-center gap-2">
-                            <input id="order-symbol-input" type="text" value="BTC" placeholder="e.g. BTC" list="order-symbol-list"
+                            <input aria-label="Order asset symbol" id="order-symbol-input" type="text" value="BTC" placeholder="e.g. BTC" list="order-symbol-list"
                                 class="w-28 bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 font-mono font-bold focus:outline-none focus:border-[#4fd8e8]">
                             <datalist id="order-symbol-list"></datalist>
                             <div class="flex-1 text-right">
@@ -304,7 +305,7 @@
                             <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500">Leverage <span id="leverage-max" class="normal-case font-mono text-gray-600">Max 200x</span></label>
                             <span id="leverage-value" class="text-[11px] font-mono font-bold text-[#4fd8e8]">10x</span>
                         </div>
-                        <input id="leverage-slider" type="range" min="1" max="200" value="10" step="1" class="w-full cursor-pointer">
+                        <input aria-label="Leverage" id="leverage-slider" type="range" min="1" max="200" value="10" step="1" class="w-full cursor-pointer">
                         <div class="flex gap-1.5 mt-1.5">
                             <button class="leverage-btn coin-chip flex-1 text-center" data-lev="2">2x</button>
                             <button class="leverage-btn coin-chip flex-1 text-center" data-lev="5">5x</button>
@@ -327,7 +328,7 @@
 
                     <div id="limit-price-row" class="hidden">
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Limit price (USD)</label>
-                        <input id="order-limit-price-input" type="number" step="any" placeholder="Trigger price"
+                        <input aria-label="Limit price (USD)" id="order-limit-price-input" type="number" step="any" placeholder="Trigger price"
                             class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 font-mono focus:outline-none focus:border-[#4fd8e8]">
                         <p class="text-[10px] text-gray-600 mt-1">Sits in Pending Orders and fills automatically the moment live price reaches this level.</p>
                     </div>
@@ -339,9 +340,9 @@
                             <span id="order-available-hint" class="text-[10px] text-gray-500 font-mono">--</span>
                         </div>
                         <div class="flex items-center gap-1">
-                            <input id="order-amount-input" type="number" step="any" placeholder="0.00"
+                            <input aria-label="Order amount" id="order-amount-input" type="number" step="any" placeholder="0.00"
                                 class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 font-mono focus:outline-none focus:border-[#4fd8e8]">
-                            <select id="order-amount-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-2 text-gray-300 focus:outline-none focus:border-[#4fd8e8]">
+                            <select aria-label="Order amount unit" id="order-amount-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-2 text-gray-300 focus:outline-none focus:border-[#4fd8e8]">
                                 <option value="usd">USD</option>
                                 <option value="coins">Coins</option>
                             </select>
@@ -359,9 +360,9 @@
                     <div id="tpsl-row">
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Take Profit / Stop Loss <span class="normal-case text-gray-600">(optional)</span></label>
                         <div class="grid grid-cols-2 gap-2">
-                            <input id="order-tp-input" type="number" step="any" placeholder="TP price"
+                            <input aria-label="Take-profit price (optional)" id="order-tp-input" type="number" step="any" placeholder="TP price"
                                 class="w-full bg-gray-900 border border-gray-800 rounded text-xs px-3 py-2 text-[#14d38a] placeholder-gray-500 font-mono focus:outline-none focus:border-[#14d38a]">
-                            <input id="order-sl-input" type="number" step="any" placeholder="SL price"
+                            <input aria-label="Stop-loss price (optional)" id="order-sl-input" type="number" step="any" placeholder="SL price"
                                 class="w-full bg-gray-900 border border-gray-800 rounded text-xs px-3 py-2 text-[#ff4d6a] placeholder-gray-500 font-mono focus:outline-none focus:border-[#ff4d6a]">
                         </div>
                         <p id="tpsl-hint" class="text-[10px] text-gray-600 mt-1">Auto-closes the position at either price. Leave blank to skip.</p>
@@ -529,20 +530,20 @@
                     </div>
                     <div id="auth-username-wrap" class="hidden">
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Username <span class="normal-case font-normal text-gray-600">(shown on the leaderboard)</span></label>
-                        <input id="auth-username-input" type="text" placeholder="3-20 letters, numbers, underscores" autocomplete="username" maxlength="20"
+                        <input aria-label="Username (shown on the leaderboard)" id="auth-username-input" type="text" placeholder="3-20 letters, numbers, underscores" autocomplete="username" maxlength="20"
                             class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
-                        <input id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
+                        <input aria-label="Email" id="auth-email-input" type="email" placeholder="you@example.com" autocomplete="email"
                             class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Password</label>
-                        <input id="auth-password-input" type="password" placeholder="At least 6 characters" autocomplete="current-password"
+                        <input aria-label="Password" id="auth-password-input" type="password" placeholder="At least 6 characters" autocomplete="current-password"
                             class="w-full bg-gray-900 border border-gray-800 rounded text-sm px-3 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
                     </div>
-                    <div id="auth-error" class="hidden text-[11px] text-[#ff4d6a] bg-[#ff4d6a]/10 border border-[#ff4d6a]/20 rounded p-2"></div>
+                    <div id="auth-error" role="alert" class="hidden text-[11px] text-[#ff4d6a] bg-[#ff4d6a]/10 border border-[#ff4d6a]/20 rounded p-2"></div>
                     <div id="auth-info" class="hidden text-[11px] text-[#14d38a] bg-[#14d38a]/10 border border-[#14d38a]/20 rounded p-2"></div>
                     <button id="auth-submit-btn" class="w-full text-sm font-bold uppercase py-2.5 rounded bg-[#14d38a] text-[#0b0e11] hover:opacity-90 transition-all cursor-pointer">Sign In</button>
                     <a href="#" id="auth-forgot-link" class="block text-center text-[11px] text-gray-500 hover:text-gray-300 cursor-pointer">Forgot password?</a>
@@ -565,7 +566,7 @@
                 </div>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Product</h4>
+                    <p class="mk-footer-title">Product</p>
                     <a href="app.html">Terminal</a>
                     <a href="trade.html">Paper trading</a>
                     <a href="invest.html">Invest (real)</a>
@@ -578,14 +579,14 @@
                     <a href="ai-crypto-research.html">AI crypto research</a><a href="liquidation-price-calculator.html">Liquidation calculator</a>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Company</h4>
+                    <p class="mk-footer-title">Company</p>
                     <a href="about.html">About</a>
                     <a href="blog.html">Blog</a>
                     <a href="contact.html">Contact</a>
                     <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
                 <div class="mk-footer-col">
-                    <h4>Legal</h4>
+                    <p class="mk-footer-title">Legal</p>
                     <a href="privacy.html">Privacy policy</a>
                     <a href="terms.html">Terms of service</a>
                 </div>
@@ -619,7 +620,7 @@
         <div class="bg-[#181a20] border border-[#a855f7]/30 rounded-lg shadow-2xl w-full max-w-md">
             <div class="px-4 py-3 border-b border-gray-800 flex items-center justify-between">
                 <span id="pt-ai-panel-title" class="text-xs font-bold uppercase tracking-wider text-gray-300"><i data-lucide="bot" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> AI read</span>
-                <button id="pt-ai-panel-close" class="text-gray-500 hover:text-white cursor-pointer"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
+                <button id="pt-ai-panel-close" type="button" aria-label="Close AI panel" class="text-gray-500 hover:text-white cursor-pointer"><i data-lucide="x" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i></button>
             </div>
             <div id="pt-ai-panel-body" class="p-4"></div>
         </div>
