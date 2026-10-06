@@ -99,6 +99,9 @@ const fileForUrl = (url) => {
   return p === '/' || p === '' ? 'index.html' : p.replace(/^\//, '');
 };
 
+// ---- site-level checks ----------------------------------------------------
+if (!existsSync(path.join(ROOT, '404.html'))) add('warn', '404.html', 'no-404', 'no 404.html: hosts like GitHub Pages serve it for unknown URLs; without it, dead links show a bare host error page');
+
 // ---- per-page checks -------------------------------------------------------
 
 const titles = new Map();
@@ -111,6 +114,11 @@ for (const [file, html] of pages) {
   if (!noindex) indexable.add(file);
 
   const expectedCanonical = file === 'index.html' ? `${ORIGIN}/` : `${ORIGIN}/${file}`;
+
+  if (!noindex && file !== '404.html') {
+    if (!meta(html, 'name', 'twitter:site')) add('warn', file, 'twitter-site', 'missing twitter:site meta tag');
+    if (!/"@type"\s*:\s*"Organization"/.test(html)) add('warn', file, 'org-schema', 'no Organization JSON-LD (entity signal)');
+  }
 
   // lang / viewport
   if (!/<html[^>]*\slang="[a-z-]+"/i.test(html)) add('error', file, 'html-lang', '<html> has no lang attribute');
