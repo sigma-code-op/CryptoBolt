@@ -2175,3 +2175,29 @@ html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
 @media (pointer: coarse) {
     .cw-form-grid input, #compare-input, #search-input { min-height: 40px; }
 }
+
+/* =====================================================================================
+   Mobile design pass v2 (from the Figma "Mobile Terminal" frames) — touch targets and chart toolbar.
+   Purely additive and placed last; no markup or JS changes. Panel/tools state is still handled
+   by js/27-mobile-panels.js (cw_panel_prefs).
+   ===================================================================================== */
+@media (pointer: coarse) {
+    /* 44px minimum tap target for the panel chevron and the title row; negative margins keep headers compact. */
+    .cw-collapse-btn { width: 44px; height: 44px; min-height: 44px; margin: -8px 0 -8px -12px; }
+    .cw-panel-title { min-height: 44px; }
+}
+@media (max-width: 767px) {
+    /* Interval chips share the row equally instead of clustering at the left. */
+    .cw-tb-interval { width: 100%; }
+    .cw-tb-interval .tf-btn { flex: 1 1 0; min-width: 44px; min-height: 40px; font-size: 12px; justify-content: center; }
+    .cw-tb-type > button { min-height: 40px; }
+    /* "Indicators & tools" reads as the main chart control (cyan accent, 44px tall). */
+    .cw-tools-toggle {
+        min-height: 44px; color: #4fd8e8;
+        background: rgba(79, 216, 232, 0.08); border-color: rgba(79, 216, 232, 0.4);
+    }
+    .cw-tools-toggle .cw-count { background: rgba(79, 216, 232, 0.16); color: #4fd8e8; }
+    .cw-tools-toggle:focus-visible { outline: 2px solid #4fd8e8; outline-offset: 2px; }
+    /* Indicator / overlay chips inside the opened tools area: bigger, easier to hit. */
+    #chart-toolbar.cw-tools-open .cw-tb-tools .ind-btn { min-height: 40px; padding-left: 12px; padding-right: 12px; }
+}
