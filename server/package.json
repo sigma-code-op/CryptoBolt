@@ -15,7 +15,8 @@
     "node": ">=20"
   },
   "overrides": {
-    "qs": "^6.16.0"
+    "qs": "^6.16.0",
+    "proxy-addr": "^2.0.8"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.0.0",

@@ -2,7 +2,7 @@
   "name": "cryptobolt",
   "version": "1.0.0",
   "private": true,
-  "description": "CryptoBolt frontend build tooling \u2014 Tailwind CSS compile, JS bundling/minification, and CSP <meta> tag generation for the static site. The backend proxy lives in server/ with its own package.json.",
+  "description": "CryptoBolt frontend build tooling — Tailwind CSS compile, JS bundling/minification, and CSP <meta> tag generation for the static site. The backend proxy lives in server/ with its own package.json.",
   "type": "module",
   "scripts": {
     "build": "npm run build:css && npm run build:css-bundle && npm run build:js && npm run build:csp",
@@ -20,8 +20,11 @@
     "node": ">=20"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.3.3",
-    "tailwindcss": "^4.3.3",
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0",
     "terser": "^5.36.0"
+  },
+  "overrides": {
+    "source-map-js": "^1.2.2"
   }
 }
