@@ -8,7 +8,7 @@ in one place. If you're looking for a free crypto trading terminal, crypto dashb
 market analysis tool, this is what [cryptobolt.io](https://cryptobolt.io/) does.
 
 Follow / find CryptoBolt: [YouTube](https://youtube.com/@cryptobolt) ·
-[X (Twitter)](https://x.com/cryptobolt) · [Facebook](https://facebook.com/cryptobolt) ·
+[X (Twitter)](https://x.com/cryptobolt5fvj) · [Facebook](https://www.facebook.com/profile.php?id=61595142351905) ·
 [GitHub](https://github.com/sigma-code-op/CryptoBolt)
 
 **First time deploying a website?** Start with
