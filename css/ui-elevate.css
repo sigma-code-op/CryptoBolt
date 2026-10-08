@@ -45,7 +45,7 @@ body {
     background:
         radial-gradient(1100px 620px at 8% -8%, rgba(20, 211, 138, 0.07), transparent 60%),
         radial-gradient(900px 560px at 96% 0%, rgba(79, 216, 232, 0.06), transparent 55%),
-        radial-gradient(1200px 700px at 50% 115%, rgba(168, 85, 247, 0.05), transparent 60%),
+        radial-gradient(1200px 700px at 50% 115%, rgba(167, 139, 250, 0.05), transparent 60%),
         var(--el-bg-0) !important;
     background-attachment: fixed, fixed, fixed, fixed;
 }
@@ -158,7 +158,7 @@ a.bg-gray-900:hover {
 /* AI purple ghost pill */
 .bg-\[\#a78bfa\]\/15 {
     border-radius: 999px !important;
-    box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.12) inset;
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.12) inset;
 }
 
 button, a { border-radius: var(--el-radius-sm); }
@@ -264,7 +264,7 @@ span[class*="rounded"][class*="uppercase"][class*="px-2"] {
 
 /* ---------- Premium / accent panel edges ---------- */
 .cw-panel-premium {
-    box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(168, 85, 247, 0.14) !important;
+    box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(167, 139, 250, 0.14) !important;
 }
 .cw-panel-accent.cw-accent-cyan { box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(79, 216, 232, 0.14) !important; }
 .cw-panel-accent.cw-accent-green { box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(20, 211, 138, 0.14) !important; }

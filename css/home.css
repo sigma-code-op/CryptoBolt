@@ -816,3 +816,13 @@ main:focus { outline: none; }
 .mk-gloss-item dd a { color: var(--mk-cyan); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .mk-gloss-more { font-size: 14px !important; color: var(--mk-text-dim) !important; }
 .mk-gloss-empty { color: var(--mk-text-dim); padding: 24px 0; }
+
+/* =====================================================================================
+   Figma spec pass (CryptoBolt Redesign System): green mono trust numbers, glowing primary button,
+   icon slot on step cards. Placed last; additive only.
+   ===================================================================================== */
+.mk-trust-num { color: var(--mk-green); font-size: 20px; }
+.mk-btn-primary { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 6px 20px -6px rgba(20, 211, 138, 0.45); }
+.mk-step-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: 14px; border-radius: var(--mk-radius-sm); background: #191c27; color: var(--mk-green); }
+.mk-step-icon + .mk-step-num { margin-bottom: 8px; }
+.mk-cta-band { border-color: rgba(255, 255, 255, 0.16); }

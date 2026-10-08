@@ -391,7 +391,7 @@ body::before {
 .hover\:border-\[\#14d38a\]\/40:hover { border-color: rgba(79, 216, 232, 0.4) !important; }
 
 .bg-\[\#a78bfa\]\/15:hover {
-    box-shadow: 0 6px 20px -6px rgba(168, 85, 247, 0.45);
+    box-shadow: 0 6px 20px -6px rgba(167, 139, 250, 0.45);
 }
 
 /* Table: calmer row separators, clearer hover state with a left telemetry tick */
@@ -1420,7 +1420,7 @@ body {
     background:
         radial-gradient(900px 520px at 8% -10%, rgba(20, 211, 138, 0.09), transparent 62%),
         radial-gradient(800px 480px at 94% 4%, rgba(79, 216, 232, 0.075), transparent 60%),
-        radial-gradient(700px 520px at 50% 110%, rgba(168, 85, 247, 0.055), transparent 65%),
+        radial-gradient(700px 520px at 50% 110%, rgba(167, 139, 250, 0.055), transparent 65%),
         #07090d;
     color: var(--cw-text);
 }
@@ -2220,4 +2220,17 @@ html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
     header #auth-user-chip > a { border-radius: 10px !important; flex: 1 1 auto; min-width: 0; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     header #auth-user-chip > button { min-height: 44px !important; min-width: 44px; border-radius: 10px !important; }
     header #cloud-sync-status { min-height: 44px; border-radius: 10px !important; }
+}
+
+/* =====================================================================================
+   Figma spec pass (CryptoBolt Redesign System): 44px timeframe chips, 48px collapsible panel headers.
+   Placed last so it wins over the earlier mobile blocks without touching them.
+   ===================================================================================== */
+@media (max-width: 767px) {
+    .cw-tb-interval .tf-btn { min-height: 44px; }
+    .cw-tb-type > button, #chart-toolbar.cw-tools-open .cw-tb-tools .ind-btn { min-height: 44px; }
+}
+@media (pointer: coarse) {
+    .cw-panel-title { min-height: 48px; }
+    .cw-panel-head { min-height: 48px; }
 }
