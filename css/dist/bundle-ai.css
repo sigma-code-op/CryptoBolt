@@ -2243,7 +2243,6 @@ html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
     .cw-panel-head { min-height: 48px; }
 }
 
-
 /* ==== shadcn-ui.css ==== */
 /* ============================================================
    CryptoBolt — shadcn/ui component layer
@@ -3649,7 +3648,6 @@ main:focus { outline: none; }
 .mk-step-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: 14px; border-radius: var(--mk-radius-sm); background: #191c27; color: var(--mk-green); }
 .mk-step-icon + .mk-step-num { margin-bottom: 8px; }
 .mk-cta-band { border-color: rgba(255, 255, 255, 0.16); }
-
 
 /* ==== ai.css ==== */
 /* =========================================================
