@@ -2210,6 +2210,26 @@ html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
     #chart-toolbar.cw-tools-open .cw-tb-tools .ind-btn { min-height: 40px; padding-left: 12px; padding-right: 12px; }
 }
 
+/* ---------- Header actions on phones: tidy grid instead of ragged wrapping (app.html) ---------- */
+@media (max-width: 767px) {
+    .cw-hdr-actions { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px !important; align-items: stretch; }
+    .cw-hdr-actions > * { min-width: 0; }
+    /* the accent swatches are already hidden on phones; hide their empty wrapper too so it does not take a grid cell */
+    .cw-hdr-actions > [title="Accent color"] { display: none !important; }
+    /* status pill, search and the primary action take a full row */
+    .cw-hdr-actions > :first-child,
+    .cw-hdr-actions > :nth-child(2),
+    .cw-hdr-actions > a[href="trade.html"] { grid-column: 1 / -1; }
+    header .cw-hdr-actions > a,
+    header .cw-hdr-actions > button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px !important; border-radius: 10px !important; }
+    .cw-hdr-actions > :nth-child(2) input { min-height: 44px; }
+    /* signed-in chip: sync dot, account link (takes the space), sign-out */
+    #auth-user-chip { gap: 6px; min-width: 0; }
+    header #auth-user-chip > a { border-radius: 10px !important; flex: 1 1 auto; min-width: 0; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    header #auth-user-chip > button { min-height: 44px !important; min-width: 44px; border-radius: 10px !important; }
+    header #cloud-sync-status { min-height: 44px; border-radius: 10px !important; }
+}
+
 
 /* ==== ui-elevate.css ==== */
 /* ============================================================
