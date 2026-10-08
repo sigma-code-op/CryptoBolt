@@ -2243,6 +2243,7 @@ html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
     .cw-panel-head { min-height: 48px; }
 }
 
+
 /* ==== shadcn-ui.css ==== */
 /* ============================================================
    CryptoBolt — shadcn/ui component layer
@@ -3223,6 +3224,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
    this with a mousemove-driven 3D tilt on pointer devices — see initTilt(). */
 .mk-card:hover { border-color: var(--mk-line-hi); transform: translateY(-2px); box-shadow: var(--mk-shadow); }
 .mk-card.mk-span-2 { grid-column: span 2; }
+.mk-card.mk-span-3 { grid-column: span 3; }
 .mk-card.mk-span-4 { grid-column: span 4; }
 .mk-card-icon {
     width: 38px;
@@ -3512,7 +3514,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     .mk-burger { display: flex; }
     .mk-nav { gap: 8px; padding-left: 14px; padding-right: 14px; }
     .mk-bento { grid-template-columns: repeat(2, 1fr); }
-    .mk-card, .mk-card.mk-span-2, .mk-card.mk-span-4 { grid-column: span 2; }
+    .mk-card, .mk-card.mk-span-2, .mk-card.mk-span-3, .mk-card.mk-span-4 { grid-column: span 2; }
     .mk-blog-grid { grid-template-columns: 1fr; }
     .mk-footer-grid { grid-template-columns: 1fr 1fr; }
     .mk-feature-row { grid-template-columns: 1fr; }
@@ -3648,6 +3650,19 @@ main:focus { outline: none; }
 .mk-step-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: 14px; border-radius: var(--mk-radius-sm); background: #191c27; color: var(--mk-green); }
 .mk-step-icon + .mk-step-num { margin-bottom: 8px; }
 .mk-cta-band { border-color: rgba(255, 255, 255, 0.16); }
+
+/* =====================================================================================
+   Fixes found comparing the live-site capture with the Figma redesign:
+   - footer "Product" column had 12 links next to columns of 2-5 -> split into Product + Markets & tools
+   - Product Hunt embed rendered as a white card on the dark footer -> dark treatment (overrides its inline styles)
+   ===================================================================================== */
+.mk-footer-grid:has(.mk-footer-col:nth-child(5)) { grid-template-columns: 1.4fr repeat(4, 1fr); }
+@media (max-width: 900px) { .mk-footer-grid:has(.mk-footer-col:nth-child(5)) { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .mk-footer-grid:has(.mk-footer-col:nth-child(5)) { grid-template-columns: 1fr; } }
+.mk-footer-badges .badge-producthunt [style*="rgb(224, 224, 224)"] { background: var(--mk-surface-strong) !important; border-color: var(--mk-line) !important; }
+.mk-footer-badges .badge-producthunt [style*="rgb(26, 26, 26)"] { color: var(--mk-text) !important; }
+.mk-footer-badges .badge-producthunt [style*="rgb(102, 102, 102)"] { color: var(--mk-text-dim) !important; }
+
 
 /* ==== ai.css ==== */
 /* =========================================================
