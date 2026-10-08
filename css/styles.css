@@ -44,11 +44,11 @@
     --cw-red: #ff4d6a;      /* bear */
     --cw-amber: #ffb020;    /* caution / leverage */
     --cw-cyan: #4fd8e8;     /* live telemetry / info */
-    --cw-purple: #a855f7;   /* legacy accent, kept for compat */
+    --cw-purple: #a78bfa;   /* legacy accent, kept for compat */
 
     /* Text */
-    --cw-text: #eaf3f1;
-    --cw-text-dim: #8da1a6;
+    --cw-text: #eef1f4;
+    --cw-text-dim: #929aa8;
 
     --cw-radius: 10px;
     --cw-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -390,7 +390,7 @@ body::before {
 .hover\:text-\[\#14d38a\]:hover { color: var(--cw-cyan) !important; }
 .hover\:border-\[\#14d38a\]\/40:hover { border-color: rgba(79, 216, 232, 0.4) !important; }
 
-.bg-\[\#a855f7\]\/15:hover {
+.bg-\[\#a78bfa\]\/15:hover {
     box-shadow: 0 6px 20px -6px rgba(168, 85, 247, 0.45);
 }
 

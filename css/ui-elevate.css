@@ -134,7 +134,7 @@ header .font-mono.bg-\[\#181a20\] {
 }
 .bg-\[\#14d38a\]:hover { filter: brightness(1.06); box-shadow: 0 8px 22px -6px rgba(20, 211, 138, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
 .bg-amber-500 {
-    background: linear-gradient(180deg, #ffc44d, #f5a623) !important;
+    background: linear-gradient(180deg, #ffc44d, #ffb020) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     box-shadow: 0 6px 18px -6px rgba(255, 176, 32, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
     border-radius: var(--el-radius-sm) !important;
@@ -156,7 +156,7 @@ a.bg-gray-900:hover {
 }
 
 /* AI purple ghost pill */
-.bg-\[\#a855f7\]\/15 {
+.bg-\[\#a78bfa\]\/15 {
     border-radius: 999px !important;
     box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.12) inset;
 }
