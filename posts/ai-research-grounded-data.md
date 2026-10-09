@@ -6,7 +6,7 @@ updated: 2026-10-04
 section: Product
 readtime: 4 min read
 emoji: 🧠
-color: rgba(168,85,247,.08)
+color: rgba(167, 139, 250,.08)
 summary: Inside CryptoBolt's two-pass AI pipeline: how it grounds analysis in live news, funding rates, and Fear & Greed data — trade levels are never AI-generated.
 card_summary: Inside the two-pass research pipeline, and why entry/stop/target levels always come from deterministic ATR math, never from the model.
 keywords: AI crypto analysis, grounded AI research, crypto market analysis AI, ATR trade levels, crypto AI research pipeline, AI hallucination crypto data

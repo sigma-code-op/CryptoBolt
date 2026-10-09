@@ -74,7 +74,7 @@ const BLOG_HTML_PATH = path.join(ROOT, 'blog.html');
 const DEFAULT_COLORS = [
   'rgba(255,176,32,.08)',
   'rgba(79,216,232,.08)',
-  'rgba(168,85,247,.08)',
+  'rgba(167, 139, 250,.08)',
   'rgba(74,222,128,.08)',
   'rgba(248,113,113,.08)',
 ];
