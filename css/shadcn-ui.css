@@ -24,7 +24,6 @@
 
     --sc-card: #12141c;
     --sc-card-hi: #171a24;
-    --sc-card-foreground: var(--cw-text);
 
     --sc-popover: #14161f;
     --sc-popover-foreground: var(--cw-text);
@@ -33,21 +32,13 @@
     --sc-border-hi: rgba(255, 255, 255, 0.14);
     --sc-input: rgba(255, 255, 255, 0.1);
 
-    --sc-primary: var(--cw-green);
-    --sc-primary-foreground: #06110d;
-
     --sc-secondary: #1b1e28;
-    --sc-secondary-foreground: var(--cw-text);
 
     --sc-muted: #14161f;
     --sc-muted-2: #191c26;
     --sc-muted-foreground: var(--cw-text-dim);
 
     --sc-accent: #1c202b;
-    --sc-accent-foreground: var(--cw-text);
-
-    --sc-destructive: var(--cw-red);
-    --sc-destructive-foreground: #ffffff;
 
     --sc-ring: var(--cw-cyan);
     --sc-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);

@@ -40,11 +40,9 @@
 
     /* Signal colors */
     --cw-green: #14d38a;    /* bull / brand */
-    --cw-green-dim: #0f9c67;
     --cw-red: #ff4d6a;      /* bear */
     --cw-amber: #ffb020;    /* caution / leverage */
-    --cw-cyan: #4fd8e8;     /* live telemetry / info */
-    --cw-purple: #a78bfa;   /* legacy accent, kept for compat */
+    --cw-cyan: #4fd8e8;     /* live telemetry / info */   /* legacy accent, kept for compat */
 
     /* Text */
     --cw-text: #eef1f4;
@@ -52,7 +50,6 @@
 
     --cw-radius: 10px;
     --cw-ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --cw-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ---------- Icon system (Lucide via data-lucide -> icons-init.js), used
@@ -233,19 +230,6 @@ tr.active-row { background-color: rgba(20, 211, 138, 0.08) !important; border-le
 #chart-workspace:fullscreen, #chart-card:fullscreen { background: var(--cw-panel-alt); padding: 16px; }
 
 /* ---------- Skeleton loading shimmer ---------- */
-.cw-skeleton {
-    position: relative;
-    overflow: hidden;
-    background: #171a23;
-    border-radius: 6px;
-}
-.cw-skeleton::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(79, 216, 232, 0.08), transparent);
-    animation: shimmer 1.6s infinite;
-}
 @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
 /* ---------- Offline / degraded connection banner ---------- */
@@ -389,10 +373,6 @@ body::before {
 .focus\:border-\[\#14d38a\]:focus { border-color: var(--cw-cyan) !important; box-shadow: 0 0 0 3px rgba(79, 216, 232, 0.12); }
 .hover\:text-\[\#14d38a\]:hover { color: var(--cw-cyan) !important; }
 .hover\:border-\[\#14d38a\]\/40:hover { border-color: rgba(79, 216, 232, 0.4) !important; }
-
-.bg-\[\#a78bfa\]\/15:hover {
-    box-shadow: 0 6px 20px -6px rgba(167, 139, 250, 0.45);
-}
 
 /* Table: calmer row separators, clearer hover state with a left telemetry tick */
 table tbody tr { position: relative; }
@@ -579,7 +559,6 @@ input, select, textarea {
 
 @media (max-width: 480px) {
     #search-input { min-width: 0 !important; width: 100%; }
-    .cw-level-bar { margin-left: 4px; margin-right: 4px; }
     #cmdk-input { font-size: 14px !important; }
 }
 
@@ -1353,39 +1332,6 @@ header::after {
 /* ============================================================
    Footer
    ============================================================ */
-.cw-footer {
-    position: relative;
-    margin-top: 48px;
-    border-top: 1px solid var(--cw-border);
-    padding-top: 28px;
-}
-.cw-footer::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(79, 216, 232, 0.5), rgba(20, 211, 138, 0.3), transparent);
-}
-.cw-footer-col-title {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cw-text-dim);
-    margin-bottom: 10px;
-}
-.cw-footer a {
-    color: var(--cw-text-dim);
-    transition: color 0.15s var(--cw-ease);
-}
-.cw-footer a:hover { color: var(--cw-cyan); }
-.cw-footer-status-dot {
-    width: 6px; height: 6px; border-radius: 9999px;
-    background: var(--cw-cyan);
-    box-shadow: 0 0 6px var(--cw-cyan);
-    display: inline-block;
-}
 
 @media (prefers-reduced-motion: reduce) {
     .cw-ambient-orb, .cw-panel-premium::before, .cw-panel-premium::after, header::after, .status-live::after { animation: none !important; }
@@ -1398,15 +1344,7 @@ header::after {
    ============================================================ */
 
 :root {
-    --cbx-bg: #07090d;
-    --cbx-surface: rgba(17, 20, 28, 0.78);
-    --cbx-surface-strong: rgba(20, 24, 34, 0.94);
     --cbx-line: rgba(255, 255, 255, 0.075);
-    --cbx-line-hi: rgba(255, 255, 255, 0.13);
-    --cbx-glow: rgba(20, 211, 138, 0.20);
-    --cbx-glow-cyan: rgba(79, 216, 232, 0.16);
-    --cbx-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
-    --cbx-shadow-soft: 0 12px 35px rgba(0, 0, 0, 0.24);
 }
 
 /* ---------- Premium base ---------- */
@@ -1817,11 +1755,6 @@ tr.active-row {
 }
 
 /* ---------- Loading / skeleton ---------- */
-.cw-skeleton {
-    background: linear-gradient(100deg, rgba(255,255,255,.035) 20%, rgba(255,255,255,.075) 38%, rgba(255,255,255,.035) 56%);
-    background-size: 240% 100%;
-    animation: cbxSkeleton 1.55s ease-in-out infinite;
-}
 @keyframes cbxSkeleton {
     0% { background-position: 120% 0; }
     100% { background-position: -120% 0; }

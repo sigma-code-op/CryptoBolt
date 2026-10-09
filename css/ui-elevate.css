@@ -17,8 +17,6 @@
     --el-bg-0: #07080c;
     --el-bg-1: #0c0e14;
     --el-surface: #14161d;
-    --el-surface-2: #191c25;
-    --el-surface-hi: #20232e;
     --el-border: rgba(148, 163, 194, 0.12);
     --el-border-hi: rgba(148, 163, 194, 0.22);
     --el-glow-green: rgba(20, 211, 138, 0.16);
@@ -156,10 +154,6 @@ a.bg-gray-900:hover {
 }
 
 /* AI purple ghost pill */
-.bg-\[\#a78bfa\]\/15 {
-    border-radius: 999px !important;
-    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.12) inset;
-}
 
 button, a { border-radius: var(--el-radius-sm); }
 .rounded-full, .status-dot, .accent-swatch { border-radius: 9999px !important; }
@@ -277,12 +271,6 @@ span[class*="rounded"][class*="uppercase"][class*="px-2"] {
 .cw-ambient-orb { opacity: 0.5; filter: blur(90px); }
 
 /* ---------- Footer ---------- */
-.cw-footer a { transition: color 0.15s var(--el-ease); }
-.cw-footer-col-title {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    letter-spacing: 0.08em;
-    color: #7d859c;
-}
 
 /* ---------- Modal ---------- */
 .cw-modal-card {

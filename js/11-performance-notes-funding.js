@@ -166,11 +166,9 @@
     // ---------- 24h range position bar ----------
     function updateRangeBar(item) {
         const low = item.low || 0, high = item.high || 0, price = item.price || 0;
-        const precision = price < 1 ? 5 : 2;
         document.getElementById('range-low-label').innerText = `$${low.toLocaleString(undefined, priceFmt(low))}`;
         document.getElementById('range-high-label').innerText = `$${high.toLocaleString(undefined, priceFmt(high))}`;
         let pct = 50;
         if (high > low) pct = Math.min(100, Math.max(0, ((price - low) / (high - low)) * 100));
         document.getElementById('range-marker').style.left = `${pct}%`;
     }
-

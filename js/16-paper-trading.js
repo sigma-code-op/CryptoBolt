@@ -431,7 +431,6 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
     const tpslRow = document.getElementById('tpsl-row');
     const tpInput = document.getElementById('order-tp-input');
     const slInput = document.getElementById('order-sl-input');
-    const tpslHint = document.getElementById('tpsl-hint');
     const livePriceEl = document.getElementById('order-live-price');
     const liveChangeEl = document.getElementById('order-live-change');
 
@@ -665,7 +664,6 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
                 renderOrderSummary();
                 return;
             }
-            const price = currentType === 'limit' && parseFloat(limitPriceInput.value) > 0 ? parseFloat(limitPriceInput.value) : getPrice(symbol);
             if (currentSide === 'buy') {
                 const usdBudget = cash * pct / (1 + FEE_RATE);
                 amountUnitSelect.value = 'usd';
@@ -1291,7 +1289,6 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
 
     // ---------- Live price chart (candles for the symbol on the order ticket, plus this
     // account's own entries/exits and active TP/SL/liq levels drawn straight on top) ----------
-    const CHART_INTERVALS = ['15m', '1h', '4h', '1d'];
     let priceChart = null, priceCandleSeries = null;
     let chartInterval = '1h';
     let chartSymbol = null, chartIsFutures = false;

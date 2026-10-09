@@ -69,7 +69,6 @@
     let lastSubmittedEquity = null;
 
     function gainColumn() { return period === 'week' ? 'weekly_gain' : 'monthly_gain'; }
-    function baselineColumn() { return period === 'week' ? 'week_start_equity' : 'month_start_equity'; }
 
     function setTab(next) {
         period = next;

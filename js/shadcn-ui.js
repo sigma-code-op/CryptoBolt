@@ -69,11 +69,6 @@
         activeTarget = null;
     }
 
-    function restoreTitle(target) {
-        var text = target.getAttribute('data-sc-title');
-        if (text && !target.getAttribute('title')) target.setAttribute('title', text);
-    }
-
     function onEnter(e) {
         var target = e.target.closest('[title], [data-sc-title]');
         if (!target) return;

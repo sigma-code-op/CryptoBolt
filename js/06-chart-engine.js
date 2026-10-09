@@ -35,7 +35,6 @@
     // WebSocket paths above (harmless if both are active — poll updates are idempotent) and is
     // what actually guarantees the price keeps moving without a manual refresh.
     let chartPollTimer = null;
-    let gridPollTimer = null;
     let bookPollTimer = null;
     let tradesPollTimer = null;
 

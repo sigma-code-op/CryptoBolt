@@ -4,7 +4,6 @@
 // for futures, how much margin that position would actually require at the chosen leverage.
 // Nothing here is fetched or AI-generated; every number is traceable to the five inputs.
 (function () {
-    const els = {};
     const IDS = ['risk-account-size', 'risk-pct', 'risk-entry', 'risk-stop', 'risk-target', 'risk-leverage'];
 
     function fmtUSD(n) {

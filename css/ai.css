@@ -4,8 +4,6 @@
 
 :root {
     --ai-green: #14d38a;
-    --ai-cyan: #4fd8e8;
-    --ai-bg: #0b0e11;
     --ai-card: rgba(20, 24, 31, 0.88);
     --ai-border: rgba(255,255,255,.07);
 }
