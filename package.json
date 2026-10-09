@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run build:css && npm run build:css-bundle && npm run build:js && npm run build:csp",
     "build:css": "tailwindcss -i css/tailwind-input.css -o css/tailwind.css --minify && node scripts/normalize-tailwind-css.js",
-    "build:css-bundle": "node scripts/build-css.js",
+    "build:css-bundle": "node scripts/build-css.js && node scripts/prune-css-bundle.js",
     "build:js": "node scripts/build-js.js",
     "build:blog": "node scripts/build-blog.js",
     "build:csp": "node scripts/build-csp.js",
@@ -23,6 +23,8 @@
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.0",
     "tailwindcss": "^4.3.0",
+    "postcss": "^8.5.0",
+    "postcss-selector-parser": "^7.1.0",
     "terser": "^5.36.0"
   },
   "overrides": {

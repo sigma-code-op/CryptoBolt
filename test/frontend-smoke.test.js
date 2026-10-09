@@ -66,5 +66,5 @@ test('mobile form rows, numeric keypads and table scroll hooks are present', () 
   assert.match(html, /id="holding-qty-input" inputmode="decimal"/);
   assert.match(html, /id="futures-leverage-input" inputmode="numeric"/);
   assert.ok((html.match(/cw-table-scroll/g) || []).length >= 3);
-  assert.match(read('css/dist/bundle-home.css'), /\.cw-collapsed > :not\(\.cw-panel-head\)/);
+  assert.match(read('css/dist/bundle-home.css'), /\.cw-collapsed\s*>\s*:not\(\.cw-panel-head\)/);
 });
