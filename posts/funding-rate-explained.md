@@ -9,7 +9,7 @@ color: rgba(74,222,128,.08)
 summary: What the crypto funding rate on a perpetual contract measures, why it flips positive and negative, and how to read it alongside open interest.
 card_summary: The small percentage next to every perpetual contract quietly tells you which side of the market is crowded — here's how to actually read it.
 keywords: crypto funding rate, funding rate explained, perpetual futures funding, positive vs negative funding rate, funding rate arbitrage, crypto funding rate history
-updated: 2026-10-04
+updated: 2026-10-09
 related: spot-vs-futures, fear-and-greed-index, why-we-dont-predict-crypto-prices
 ---
 Open any [perpetual futures](glossary.html#perpetual-futures) contract and there's a small percentage sitting next to the price, updating every few hours. Most traders glance past it. It's worth slowing down on, because the [funding rate](glossary.html#funding-rate) is one of the few numbers on the screen that tells you what other traders are actually positioned for, not just where price has been.
@@ -52,6 +52,9 @@ Funding settles on a fixed schedule, every eight hours on many venues (some cont
 - [Spot vs. perpetual futures](spot-vs-futures.html): how leverage and liquidation work alongside funding.
 - [Liquidation price calculator](liquidation-price-calculator.html): see how leverage moves your liquidation price.
 - [Reading the Fear & Greed index](fear-and-greed-index.html): another crowd-positioning signal, from sentiment instead of derivatives.
+- [Bitcoin live price](bitcoin-live-price.html): live BTC/USDT with halving, ETF and funding context.
+- [Ethereum live price](ethereum-live-price.html): live ETH/USDT with staking, gas and ETH/BTC context.
+- [Why round numbers act like support and resistance](round-number-levels.html): where price tends to react.
 - [Glossary](glossary.html): plain-English definitions for every term used here.
 
 [See live funding rates next to open interest in the terminal →](app.html)

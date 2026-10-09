@@ -9,7 +9,7 @@ color: rgba(79,216,232,.08)
 summary: Spot vs perpetual futures crypto trading explained: ownership, leverage, liquidation price, and the funding rate — the mechanics that actually differ.
 card_summary: Ownership, leverage, liquidation, and funding rate — the mechanics that actually differ between holding the asset and trading a derivative on it.
 keywords: spot vs futures crypto, perpetual futures explained, crypto funding rate, liquidation price crypto, spot trading vs futures trading, crypto leverage explained
-updated: 2026-10-04
+updated: 2026-10-09
 related: funding-rate-explained, day-trading-crypto-realistic-returns, why-we-dont-predict-crypto-prices
 ---
 Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath. Here is the short version before the detail:
@@ -51,5 +51,7 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 - [Liquidation price calculator](liquidation-price-calculator.html): see how leverage moves your liquidation price.
 - [How much can you realistically make day trading crypto?](day-trading-crypto-realistic-returns.html): what the research says about leveraged short-term trading.
 - [Paper trading](crypto-paper-trading.html): practice futures with virtual money on live prices.
+- [Bitcoin live price](bitcoin-live-price.html): live BTC/USDT with halving, ETF and funding context.
+- [Why round numbers act like support and resistance](round-number-levels.html): where price tends to react.
 
 [Track spot holdings and futures positions side by side in the terminal →](app.html)

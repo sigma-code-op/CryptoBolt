@@ -1,7 +1,7 @@
 title: Why round numbers act like support and resistance
 meta_title: Round Numbers as Support & Resistance
 date: 2026-09-11
-updated: 2026-10-04
+updated: 2026-10-09
 section: Mechanics
 readtime: 4 min read
 emoji: 🎯
@@ -38,6 +38,7 @@ This isn't a standalone signal. A round number with high volume and heavy order 
 
 - [Reading the Fear & Greed index](fear-and-greed-index.html): sentiment context to stack with levels.
 - [Crypto funding rates explained](funding-rate-explained.html): whether the crowd is leaning one way as price reaches the level.
+- [Bitcoin live price](bitcoin-live-price.html): live BTC/USDT to watch these levels in real time.
 - [Glossary](glossary.html): support and resistance, order book depth, wick and more.
 
 [Check the live order book depth in the terminal →](app.html)

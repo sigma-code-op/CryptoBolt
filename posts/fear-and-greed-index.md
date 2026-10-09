@@ -2,7 +2,7 @@ title: Reading the Fear & Greed index without overreacting to it
 meta_title: Fear & Greed Index Explained: How to Read It
 og_title: Fear & Greed Index Explained: How to Read It Without Overreacting
 date: 2026-08-24
-updated: 2026-10-04
+updated: 2026-10-09
 section: Sentiment
 readtime: 4 min read
 emoji: 😨
@@ -43,6 +43,8 @@ The most reliable use case is spotting when the crowd is unusually one-sided. Th
 - [Crypto funding rates explained](funding-rate-explained.html): a positioning signal to pair with sentiment.
 - [Why round numbers act like support and resistance](round-number-levels.html): where price tends to react.
 - [Why CryptoBolt doesn't predict crypto prices](why-we-dont-predict-crypto-prices.html): how to use context instead of forecasts.
+- [Bitcoin live price](bitcoin-live-price.html): live BTC/USDT with halving, ETF and funding context.
+- [Ethereum live price](ethereum-live-price.html): live ETH/USDT with staking, gas and ETH/BTC context.
 - [Glossary](glossary.html): definitions for volatility, dominance and other terms used here.
 
 [See the live Fear & Greed reading in the terminal →](app.html)
