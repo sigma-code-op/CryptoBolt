@@ -1,5 +1,5 @@
 // Renders every <i data-lucide="..."> placeholder into an inline SVG icon.
-// Loaded after the lucide UMD bundle (see <script src="https://unpkg.com/lucide...">
+// Loaded after js/lucide-slim.js (a 15KB subset of lucide; add new icons by rebuilding it)
 // in <head>/<body>). Kept as its own file — not inlined — because the site's CSP
 // (scripts/build-csp.js) intentionally has no 'unsafe-inline' on script-src.
 //

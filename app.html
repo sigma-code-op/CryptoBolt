@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-9zxE+gA/FrRc1G928e1+iHhB8hm6NGuCXQ3+eDdTJVY=' 'sha256-lWUToxfbg+2rboRuCvrXPIf8o99/i3Wt1E/mFEVhkDU=' 'sha256-zppIHWkg97ySiPILq4TBmquxwbRvbKyj74S3oSYGXdY=' 'sha256-zm2WiS2Z9yv/9KX1Ez+XkgB5Czdmftzgs95AzuryhYA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="google-adsense-account" content="ca-pub-7149913639439821">
     <!-- Google tag (gtag.js) + Consent Mode v2 -->
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
-    <script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+    <script defer src="js/lucide-slim.js?v=20261010"></script>
     <script defer src="js/icons-init.js"></script>
 <!-- Ambient 3D backdrop for this terminal page — see js/terminal-motion.js header
      comment. Fully independent of the trading terminal's own scripts below;
@@ -17,7 +18,6 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script defer src="js/deferred-loader.js?v=20261002" data-ads></script>
 
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
 
@@ -1046,13 +1046,13 @@
     <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 items-end"></div>
 
     <!-- App modules load in order; they share the global scope (no bundler needed). -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
          files, not this bundle — it's a generated build artifact. Core modules only: prices,
          chart, portfolio, alerts, auth. bundle-home-lazy.js (AI insight, push alerts,
          referrals, screener, exchange-compare) loads separately, below, once the page is
          idle — see the comment there for why that split is safe. -->
-    <script src="js/dist/bundle-home.js?v=20261002"></script>
+    <script defer src="js/dist/bundle-home.js?v=20261010"></script>
     <script src="js/cookie-consent.js?v=20260823" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/lazy-bundle-loader.js?v=20260916" defer></script>

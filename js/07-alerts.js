@@ -26,7 +26,7 @@
         list.innerHTML = alerts.map(a => `
             <div class="flex items-center justify-between bg-gray-900/60 border border-gray-800 rounded px-2 py-1">
                 <span class="${a.direction === 'above' || a.direction === 'pct_up' ? 'text-[#14d38a]' : 'text-[#ff4d6a]'}">${describeAlert(a)}</span>
-                <button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer alert-remove" data-id="${a.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button>
+                <button aria-label="Remove alert" class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer alert-remove" data-id="${a.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button>
             </div>
         `).join('');
 

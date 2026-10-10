@@ -891,7 +891,8 @@ header a {
 }
 
 .text-gray-500 { color: #789099 !important; }
-.text-gray-600 { color: #60767e !important; }
+.text-gray-600 { color: #7d9199 !important; } /* 5.3:1 on #181a20 (was 3.6:1, failed WCAG AA) */
+.text-gray-700 { color: #7d9199 !important; }
 .text-gray-400 { color: #a0b1b5 !important; }
 
 header .text-gray-400 {
@@ -2167,3 +2168,17 @@ html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
     .cw-panel-title { min-height: 48px; }
     .cw-panel-head { min-height: 48px; }
 }
+
+/* =====================================================================================
+   Lighthouse pass (Oct 2026): layout-shift reservations + 24px minimum target size.
+   ===================================================================================== */
+/* Reserve space for content that is injected after first paint so nothing below it jumps. */
+#trending-coins-strip, #popular-coins-strip { min-height: 28px; }
+#loading { min-height: 600px; }
+#table-container { min-height: 600px; }
+#trades-list { min-height: 220px; }
+#chart-card, #chart-workspace { contain: layout; }
+#pulse-mcap, #pulse-vol, #pulse-btcdom, #pulse-fng-value, #pulse-mcap-chg { display: inline-block; min-width: 3.5ch; }
+/* WCAG 2.5.8: every button / control at least 24x24 CSS px (small 10px chips were ~20px tall). */
+button, [role="button"], summary, select { min-height: 24px; }
+button, [role="button"] { min-width: 24px; }

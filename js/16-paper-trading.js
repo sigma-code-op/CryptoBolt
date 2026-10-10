@@ -1206,7 +1206,7 @@ function estimateFillPrice(side, referencePrice, bid, ask, notionalUsd) {
                     <td class="py-2 px-3 text-right text-gray-300">${fmtQty(o.qty)}</td>
                     <td class="py-2 px-3 text-right text-gray-300">${fmtUsd(o.limitPrice, priceFmt(o.limitPrice))}</td>
                     <td class="py-2 px-3 text-right text-gray-500">${new Date(o.ts).toLocaleTimeString()}</td>
-                    <td class="py-2 px-3 text-center"><button class="cancel-order-btn text-gray-500 hover:text-[#ff4d6a] cursor-pointer" data-id="${o.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
+                    <td class="py-2 px-3 text-center"><button aria-label="Cancel order" class="cancel-order-btn text-gray-500 hover:text-[#ff4d6a] cursor-pointer" data-id="${o.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
                 </tr>`;
         }).join('');
     }

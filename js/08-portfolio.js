@@ -247,7 +247,7 @@
                     <td class="py-2 px-3 text-right text-white font-bold">$${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td>
                     <td class="py-2 px-3 text-right">${slTpHtml}</td>
                     <td class="py-2 px-3 text-right">${pnlHtml}</td>
-                    <td class="py-2 px-3 text-center"><button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer holding-remove" data-id="${h.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
+                    <td class="py-2 px-3 text-center"><button aria-label="Remove holding" class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer holding-remove" data-id="${h.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
                 </tr>
             `;
         }).join('');
@@ -414,7 +414,7 @@
                     <td class="py-2 px-3 text-right leading-tight">${tpHtml}</td>
                     <td class="py-2 px-3 text-right">${rrHtml}</td>
                     <td class="py-2 px-3 text-right">${pnlHtml}</td>
-                    <td class="py-2 px-3 text-center"><button class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer futures-remove" data-id="${p.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
+                    <td class="py-2 px-3 text-center"><button aria-label="Close futures position" class="text-gray-500 hover:text-[#ff4d6a] cursor-pointer futures-remove" data-id="${p.id}"><i data-lucide="x" width="12" height="12" stroke-width="2.4"></i></button></td>
                 </tr>
             `;
         }).join('');
