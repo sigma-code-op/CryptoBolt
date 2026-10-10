@@ -6,3 +6,6 @@
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Link "</sitemap.xml>; rel=\"sitemap\", </privacy.html>; rel=\"privacy-policy\""
 </IfModule>
+
+# Any URL that does not exist (e.g. /op.html) shows the custom 404 page
+ErrorDocument 404 /404.html
