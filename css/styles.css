@@ -64,17 +64,17 @@ svg.lucide {
 
 /* ---------- Typography ---------- */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-feature-settings: 'tnum' 1, 'cv11' 1;
     -webkit-font-smoothing: antialiased;
     color: var(--cw-text);
 }
 .font-mono, [class*="font-mono"], td, th, input[type="number"], input[type="password"] {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, SFMono-Regular, monospace;
     letter-spacing: -0.01em;
 }
 h1, h1 * {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Inter', 'Inter Fallback', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -286,7 +286,7 @@ tr.active-row { background-color: rgba(20, 211, 138, 0.08) !important; border-le
 }
 .cw-modal-backdrop.cw-visible .cw-modal-card { transform: translateY(0) scale(1); }
 .cw-kbd {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
     font-size: 10.5px;
     background: #06070a;
     border: 1px solid var(--cw-border);
@@ -2182,3 +2182,13 @@ html.cw-fs-lock, html.cw-fs-lock body { overflow: hidden; }
 /* WCAG 2.5.8: every button / control at least 24x24 CSS px (small 10px chips were ~20px tall). */
 button, [role="button"], summary, select { min-height: 24px; }
 button, [role="button"] { min-width: 24px; }
+#init-error { min-height: 600px; }
+#auth-open-btn, #auth-user-chip a, #status-spot-text, #status-futures-text { white-space: nowrap; }
+#status-spot-text, #status-futures-text { display: inline-block; min-width: 7ch; }
+/* Chart header fills in (price/high/low/volume row wraps) once data arrives: reserve its final height on desktop. */
+@media (min-width: 1024px) { #chart-header-card { min-height: 125px; } }
+/* Icons are swapped in by JS after load: give the placeholder the icon's final box so nothing below jumps. */
+:where(i[data-lucide]) { display: block; width: 24px; height: 24px; }
+/* Header: status pills change from "..." to "Reconnecting"/"Live", re-wrapping the description (+16px). Reserve the final size. */
+#status-spot-text, #status-futures-text { min-width: 13ch; }
+@media (min-width: 1024px) { #main > .flex.flex-col:first-child { min-height: 162px; } }

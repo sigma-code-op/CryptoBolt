@@ -94,7 +94,7 @@ header.flex {
 }
 
 header h1 {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Inter', 'Inter Fallback', sans-serif;
     font-size: 1.5rem !important;
 }
 
@@ -186,7 +186,7 @@ button, a { border-radius: var(--el-radius-sm); }
 /* Section title typography inside card headers */
 .cw-card-interactive .uppercase.tracking-wider,
 .cw-card-interactive .uppercase.tracking-wide {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Inter', 'Inter Fallback', sans-serif;
     letter-spacing: 0.06em !important;
     color: #b9c0d4 !important;
 }
@@ -226,7 +226,7 @@ table thead tr {
     backdrop-filter: blur(6px);
 }
 table thead th {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Inter', 'Inter Fallback', sans-serif;
     letter-spacing: 0.07em;
     color: #8891a8 !important;
 }
@@ -244,7 +244,7 @@ td, th { font-variant-numeric: tabular-nums; }
 span[class*="rounded"][class*="uppercase"][class*="px-1.5"],
 span[class*="rounded"][class*="uppercase"][class*="px-2"] {
     border-radius: 999px !important;
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Inter', 'Inter Fallback', sans-serif;
     letter-spacing: 0.05em;
 }
 
@@ -265,7 +265,7 @@ span[class*="rounded"][class*="uppercase"][class*="px-2"] {
 .cw-panel-accent.cw-accent-amber { box-shadow: var(--el-shadow-card), 0 0 0 1px rgba(255, 176, 32, 0.14) !important; }
 
 /* ---------- Marquee / movers strip ---------- */
-#mover-strip { font-family: 'JetBrains Mono', monospace; }
+#mover-strip { font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace; }
 
 /* ---------- Ambient orbs: a touch richer, still cheap ---------- */
 .cw-ambient-orb { opacity: 0.5; filter: blur(90px); }

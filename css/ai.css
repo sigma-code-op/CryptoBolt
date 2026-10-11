@@ -529,7 +529,7 @@ body {
     border-radius: 6px;
     font-size: 10px;
     font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
     cursor: pointer;
     transition: color .15s ease, border-color .15s ease, background .15s ease;
 }
@@ -819,7 +819,7 @@ body {
     border-radius: 4px;
     padding: 1px 5px;
     font-size: 11px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
 }
 
 .message-text .chat-heading {

@@ -155,7 +155,7 @@
         startFundingPolling();
         clearCompareOverlay(true);
         renderPopularCoinsStrip();
-        resetAIInsightPanel();
+        if (typeof resetAIInsightPanel === 'function') resetAIInsightPanel();
         fetchLongTermPerformance(item);
         fetchMultiTimeframeTrend(item);
         renderNotesPanel();

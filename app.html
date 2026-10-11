@@ -132,14 +132,14 @@
     <!-- >4 as wasteful — each one opens a TCP+TLS connection whether it's used or not). -->
     <!-- unpkg/jsdelivr/binance-REST get the cheaper DNS-only hint since those requests -->
     <!-- either fire later (deferred chart lib, lazy-loaded auth) or aren't render-blocking. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://stream.binance.com">
     <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://api.binance.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" data-async-css><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
-
+    
     <!-- TradingView Lightweight Charts -->
     <script defer src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
     <!-- Tailwind v4 + styles.css + shadcn-ui.css + ui-elevate.css + premium.css + home.css +
@@ -185,9 +185,9 @@
             </div>
             <div class="cw-hdr-actions flex items-center gap-4 w-full sm:w-auto flex-wrap sm:flex-nowrap">
                 <div class="flex items-center gap-3 text-[10px] font-mono font-bold bg-[#181a20] border border-gray-800 rounded px-3 py-1.5">
-                    <span class="flex items-center gap-1.5 flex-wrap"><span id="dot-spot" class="status-dot status-connecting"></span> <span class="text-gray-400 uppercase">Spot</span> <span id="status-spot-text" class="text-gray-500">...</span></span>
+                    <span class="flex items-center gap-1.5 whitespace-nowrap"><span id="dot-spot" class="status-dot status-connecting"></span> <span class="text-gray-400 uppercase">Spot</span> <span id="status-spot-text" class="text-gray-500">...</span></span>
                     <span class="w-px h-3 bg-gray-700"></span>
-                    <span class="flex items-center gap-1.5 flex-wrap"><span id="dot-futures" class="status-dot status-connecting"></span> <span class="text-gray-400 uppercase">Futures</span> <span id="status-futures-text" class="text-gray-500">...</span></span>
+                    <span class="flex items-center gap-1.5 whitespace-nowrap"><span id="dot-futures" class="status-dot status-connecting"></span> <span class="text-gray-400 uppercase">Futures</span> <span id="status-futures-text" class="text-gray-500">...</span></span>
                 </div>
                 <div class="w-full sm:w-56">
                     <input type="text" id="search-input" aria-label="Search crypto assets" placeholder="Search Assets (e.g., BTC, SOL, PEPE)..." 
@@ -351,7 +351,7 @@
             <div class="lg:col-span-7 flex flex-col gap-4">
                 
                 <!-- HUD Mini-Ticker Data Strip -->
-                <div class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg px-6 py-3 flex items-center justify-between shadow-xl flex-wrap gap-4">
+                <div id="chart-header-card" class="cw-card-interactive cw-reveal bg-[#181a20] border border-gray-800 rounded-lg px-6 py-3 flex items-center justify-between shadow-xl flex-wrap gap-4">
                     <div class="flex items-center gap-3 flex-wrap">
                         <div>
                             <div class="flex items-baseline gap-1.5 flex-wrap">
