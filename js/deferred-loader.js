@@ -21,6 +21,9 @@
     function loadAds() {
         if (adsLoaded) return;
         adsLoaded = true;
+        // Pages that already carry the AdSense <script> in their HTML (e.g. the homepage)
+        // must not load it a second time.
+        if (document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) return;
         var s = document.createElement('script');
         s.async = true;
         s.crossOrigin = 'anonymous';

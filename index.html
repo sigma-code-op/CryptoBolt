@@ -9,6 +9,9 @@
     <!-- Consent defaults to "denied" for ad/analytics cookies until the visitor accepts via
          the cookie banner (js/cookie-consent.js) or a stored choice is re-applied on load. -->
     <script src="js/consent-default.js"></script>
+    <!-- Google AdSense: standard snippet, loaded directly in <head> so site review can detect it.
+         Runs after js/consent-default.js, so Consent Mode defaults are already set. -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
     <script src="js/error-reporter.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
     <script defer src="js/deferred-loader.js?v=20261002" data-ads></script>
