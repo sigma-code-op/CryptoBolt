@@ -151,8 +151,18 @@
             const d = json.data;
             if (!d) return;
 
-            document.getElementById('pulse-mcap').innerText = `$${formatCompact(d.total_market_cap.usd)}`;
-            document.getElementById('pulse-vol').innerText = `$${formatCompact(d.total_volume.usd)}`;
+            const mcapUsd = Number(d.total_market_cap && d.total_market_cap.usd);
+            const volUsd = Number(d.total_volume && d.total_volume.usd);
+            // Guard: 24h volume can never exceed total market cap; if the API returns an
+            // impossible value, show "--" instead of a nonsense figure.
+            const pulseMoney = (n) => {
+                if (!Number.isFinite(n) || n <= 0) return '--';
+                if (n >= 1e12) return `$${(n / 1e12).toFixed(2)}T`;
+                return `$${formatCompact(n)}`;
+            };
+            document.getElementById('pulse-mcap').innerText = pulseMoney(mcapUsd);
+            document.getElementById('pulse-vol').innerText =
+                (Number.isFinite(mcapUsd) && volUsd > mcapUsd) ? '--' : pulseMoney(volUsd);
             document.getElementById('pulse-btcdom').innerText = `${d.market_cap_percentage.btc.toFixed(1)}%`;
 
             const chgEl = document.getElementById('pulse-mcap-chg');
@@ -228,4 +238,3 @@
         strip.innerHTML = htmlChunk + htmlChunk; // duplicate for seamless marquee loop
         gridCount.innerText = `${globalMarketList.length} markets tracked`;
     }
-
