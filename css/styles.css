@@ -2192,3 +2192,17 @@ button, [role="button"] { min-width: 24px; }
 /* Header: status pills change from "..." to "Reconnecting"/"Live", re-wrapping the description (+16px). Reserve the final size. */
 #status-spot-text, #status-futures-text { min-width: 13ch; }
 @media (min-width: 1024px) { #main > .flex.flex-col:first-child { min-height: 162px; } }
+
+/* ---------- Desktop header (app.html): wrap the action row instead of squeezing buttons ---------- */
+@media (min-width: 768px) {
+    .cw-app-hdr > div:first-child { flex: 0 1 26rem; min-width: 0; }
+    .cw-app-hdr .cw-hdr-actions { flex: 1 1 0; min-width: 0; flex-wrap: wrap; justify-content: flex-end; gap: 8px 12px; }
+    .cw-app-hdr .cw-hdr-actions > * { flex-shrink: 0; }
+    .cw-app-hdr .cw-hdr-actions > a,
+    .cw-app-hdr .cw-hdr-actions > button { white-space: nowrap; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cw-app-hdr { flex-direction: column; align-items: stretch; }
+    .cw-app-hdr > div:first-child { flex: 0 0 auto; }
+    .cw-app-hdr .cw-hdr-actions { justify-content: flex-start; }
+}
