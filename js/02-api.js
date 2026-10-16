@@ -161,8 +161,18 @@
                 return `$${formatCompact(n)}`;
             };
             document.getElementById('pulse-mcap').innerText = pulseMoney(mcapUsd);
-            document.getElementById('pulse-vol').innerText =
-                (Number.isFinite(mcapUsd) && volUsd > mcapUsd) ? '--' : pulseMoney(volUsd);
+            const volEl = document.getElementById('pulse-vol');
+            const volLabel = volEl.previousElementSibling;
+            if (Number.isFinite(volUsd) && volUsd > 0 && !(Number.isFinite(mcapUsd) && volUsd > mcapUsd)) {
+                volEl.innerText = pulseMoney(volUsd);
+                if (volLabel) volLabel.innerText = '24h Volume';
+            } else {
+                // CoinGecko returned an impossible volume: fall back to real Binance
+                // spot + futures USDT 24h volume (labelled as such, not as global volume).
+                const binanceVol = Object.values(marketMap).reduce((sum, a) => sum + (a.volume || 0), 0);
+                volEl.innerText = pulseMoney(binanceVol);
+                if (volLabel && binanceVol > 0) volLabel.innerText = '24h Vol (Binance)';
+            }
             document.getElementById('pulse-btcdom').innerText = `${d.market_cap_percentage.btc.toFixed(1)}%`;
 
             const chgEl = document.getElementById('pulse-mcap-chg');
