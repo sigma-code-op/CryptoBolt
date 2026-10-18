@@ -81,7 +81,9 @@
             msgEl.classList.remove('hidden');
         }
 
+        let needsUsername = false;
         async function renderInviteCard(user) {
+            needsUsername = false;
             const client = window.cwAuth.getClient();
             if (!user || !client) {
                 linkInput.value = '';
@@ -90,9 +92,16 @@
                 return;
             }
             try {
-                const { data: profile } = await client.from('profiles').select('username').eq('id', user.id).single();
+                const { data: profile } = await client.from('profiles').select('username').eq('id', user.id).maybeSingle();
                 if (profile?.username) {
                     linkInput.value = `${window.location.origin}/trade.html?ref=${encodeURIComponent(profile.username)}`;
+                    linkInput.placeholder = '';
+                    msgEl?.classList.add('hidden');
+                } else {
+                    // Signed in, but no username yet — the invite link is built from it.
+                    linkInput.value = '';
+                    linkInput.placeholder = 'Set your leaderboard username above to get your invite link';
+                    needsUsername = true;
                 }
             } catch (err) {
                 console.error('[CryptoBolt] Failed to load referral link:', err.message);
@@ -106,9 +115,14 @@
         }
 
         window.cwAuth.onChange((user) => { renderInviteCard(user); });
+        // account.js fires this after a successful username save so the link appears immediately.
+        window.addEventListener('cw-username-saved', () => { renderInviteCard(window.cwAuth.getUser ? window.cwAuth.getUser() : null); });
 
         copyBtn.addEventListener('click', async () => {
-            if (!linkInput.value) { showInviteMsg('Sign in first to get your personal invite link.', 'error'); return; }
+            if (!linkInput.value) {
+                showInviteMsg(needsUsername ? 'Save a leaderboard username above first — your invite link is built from it.' : 'Sign in first to get your personal invite link.', 'error');
+                return;
+            }
             try {
                 await navigator.clipboard.writeText(linkInput.value);
                 showInviteMsg('Link copied — share it anywhere!', 'success');

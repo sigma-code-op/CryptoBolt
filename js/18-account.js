@@ -417,6 +417,7 @@
                 return;
             }
             showUsernameMsg('Username saved.', 'success');
+            window.dispatchEvent(new CustomEvent('cw-username-saved'));
         } catch (err) {
             showUsernameMsg(err.message || 'Could not save username.', 'error');
         } finally {
