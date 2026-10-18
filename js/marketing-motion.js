@@ -22,6 +22,10 @@
     // input (finger parallax + scroll-linked rotation) instead of a mouse.
     const isTouch = noHover || window.matchMedia('(pointer: coarse)').matches;
     const conn = navigator.connection || {};
+    // Phones: skip the heavy decorative layer entirely (three.js ~0.7 MB + GSAP ~0.1 MB of
+    // JavaScript to download and run on a throttled CPU). Content is fully visible without
+    // it; tablets and desktops keep every effect exactly as before.
+    const isPhone = isTouch && window.matchMedia('(max-width: 880px)').matches;
     // Data-saver or clearly low-end hardware: draw one static frame, no animation loop.
     const lowPower = !!conn.saveData ||
         (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
@@ -283,13 +287,37 @@
         else window.addEventListener('load', sched);
     }
 
+    // GSAP + ScrollTrigger used to be static <script defer> tags on every marketing page, which
+    // forced phones to download them. They are now fetched here, only on non-phone screens, in
+    // order (async=false keeps execution order). Pages still carry a media-gated <link rel=preload>
+    // so wide screens start the fetch as early as before.
+    function loadGsap(cb) {
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') return cb();
+        var urls = [
+            'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js',
+            'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js',
+        ];
+        var pending = urls.length;
+        urls.forEach(function (src) {
+            var s = document.createElement('script');
+            s.src = src;
+            s.async = false;
+            s.onload = s.onerror = function () { if (--pending === 0) cb(); };
+            document.head.appendChild(s);
+        });
+    }
+
     function boot() {
-        initReveal();
-        initCounters();
+        if (!isPhone) {
+            loadGsap(function () {
+                initReveal();   // both no-op if GSAP failed to load
+                initCounters();
+            });
+        }
         initTilt();
         initTouchTilt();
         initMagnetic();
-        if (document.getElementById('mk-hero-canvas') && !reduceMotion && !lowPower) loadThreeThen(initHero3D);
+        if (document.getElementById('mk-hero-canvas') && !reduceMotion && !lowPower && !isPhone) loadThreeThen(initHero3D);
     }
 
     if (document.readyState === 'loading') {

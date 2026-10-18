@@ -96,10 +96,12 @@
 
     document.body.appendChild(banner);
 
-    // Force a reflow before adding the visible class so the slide-up transition runs.
-    void banner.offsetHeight;
+    // Wait two frames (instead of forcing a synchronous reflow with offsetHeight) so the
+    // off-screen start state is rendered once and the slide-up transition still runs.
     requestAnimationFrame(function () {
-      banner.classList.add('cw-cc-visible');
+      requestAnimationFrame(function () {
+        banner.classList.add('cw-cc-visible');
+      });
     });
 
     function dismiss(status) {
