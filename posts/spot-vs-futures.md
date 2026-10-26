@@ -49,6 +49,7 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 
 - [Funding rates explained](funding-rate-explained.html): the ongoing cost that only futures traders pay.
 - [Liquidation price calculator](liquidation-price-calculator.html): see how leverage moves your liquidation price.
+- [Position size calculator](position-size-calculator.html): size a leveraged trade from your risk and stop-loss.
 - [How much can you realistically make day trading crypto?](day-trading-crypto-realistic-returns.html): what the research says about leveraged short-term trading.
 - [Paper trading](crypto-paper-trading.html): practice futures with virtual money on live prices.
 - [Bitcoin live price](bitcoin-live-price.html): live BTC/USDT with halving, ETF and funding context.

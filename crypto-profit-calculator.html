@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-ERzR1Xkml3BUfkWOX6k4HCZDdypUUE9Vp5SJ25HFwpg=' 'sha256-ZPV/u7yBjCItdvkB61C1k7j/qo8IbX42RaQ4Sjs0aig=' 'sha256-UUi9YeCBf48ED69NavQv78ybTBW3cSgywbNsB+xOan8=' 'sha256-C3jZ0krd+5sPJUUhKM7ttfsYn5TKJC4sLQgDZOVzMWY='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
+    <script defer src="js/deferred-loader.js?v=20261002" data-ads></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Crypto Futures Profit Calculator (PnL & ROE) | CryptoBolt</title>
+    <meta name="description" content="Free crypto futures profit calculator. Enter entry, exit, margin, leverage and fees to see net PnL, ROE and the price move needed. Long or short, no signup.">
+    <meta name="keywords" content="crypto profit calculator, futures pnl calculator, crypto futures profit calculator, leverage profit calculator, roe calculator crypto, long short pnl calculator">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/crypto-profit-calculator.html">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/crypto-profit-calculator.html">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/crypto-profit-calculator.html">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/crypto-profit-calculator.html">
+    <meta property="og:title" content="Crypto Futures Profit Calculator (PnL & ROE) | CryptoBolt">
+    <meta property="og:description" content="See net profit or loss, ROE and fees on a leveraged long or short before you trade. Free, no signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/crypto-profit-calculator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt crypto futures profit and loss calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Crypto Futures Profit Calculator (PnL & ROE) | CryptoBolt">
+    <meta name="twitter:description" content="See net profit or loss, ROE and fees on a leveraged long or short before you trade. Free, no signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/crypto-profit-calculator.png">
+    <meta name="twitter:image:alt" content="CryptoBolt crypto futures profit and loss calculator">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Crypto futures profit calculator",
+      "url": "https://cryptobolt.io/crypto-profit-calculator.html",
+      "description": "A free calculator that estimates net profit or loss, return on equity and trading fees for a leveraged long or short crypto futures trade.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "CryptoBolt",
+        "url": "https://cryptobolt.io/"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cryptobolt.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Crypto futures profit calculator",
+            "item": "https://cryptobolt.io/crypto-profit-calculator.html"
+          }
+        ]
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate profit on a leveraged crypto trade?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply margin by leverage to get the position value, divide by the entry price to get units, then multiply units by the price difference between exit and entry (reversed for shorts). Subtract fees for net profit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is ROE in crypto futures?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Return on equity is net profit or loss divided by the margin you committed. With leverage, a small price move can produce a large ROE in either direction."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this include funding fees?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Funding is charged or paid between longs and shorts on perpetual contracts while a position is open. See the funding fee calculator for that cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What fee rate should I enter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use your exchange rate for the order type you will use. Many major venues list taker rates in the range of a few hundredths of a percent per side, but tiers, discounts and token rebates vary — check your account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a trade be liquidated before my exit price?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If price reaches your liquidation level first, the position is closed and the margin is lost, so the exit price in this calculator would never be reached."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "CryptoBolt",
+          "item": "https://cryptobolt.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Crypto futures profit calculator",
+          "item": "https://cryptobolt.io/crypto-profit-calculator.html"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://cryptobolt.io/#organization",
+      "name": "CryptoBolt",
+      "alternateName": "Crypto Bolt",
+      "url": "https://cryptobolt.io/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cryptobolt.io/assets/android-chrome-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://x.com/cryptobolt5fvj",
+        "https://github.com/sigma-code-op/CryptoBolt",
+        "https://youtube.com/@cryptobolt-1",
+        "https://www.facebook.com/profile.php?id=61595142351905"
+      ]
+    }
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app.html">Terminal</a>
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="spot-vs-futures.html">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app.html">Terminal</a>
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="spot-vs-futures.html">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool</span>
+    <h1>Crypto futures profit calculator</h1>
+    <p>Estimate the net profit or loss on a leveraged long or short trade — fees included — before you place it.</p>
+</header>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc">
+        <div class="lc-toggle" role="group" aria-label="Position side">
+            <button type="button" id="pf-side-long" class="active" aria-pressed="true">Long</button>
+            <button type="button" id="pf-side-short" aria-pressed="false">Short</button>
+        </div>
+        <div class="lc-grid">
+            <div class="lc-field">
+                <label for="pf-entry">Entry price (USD)</label>
+                <input type="number" id="pf-entry" inputmode="decimal" step="any" placeholder="e.g. 60000" value="60000">
+            </div>
+            <div class="lc-field">
+                <label for="pf-exit">Exit price (USD)</label>
+                <input type="number" id="pf-exit" inputmode="decimal" step="any" placeholder="e.g. 63000" value="63000">
+            </div>
+            <div class="lc-field">
+                <label for="pf-margin">Margin / initial investment (USD)</label>
+                <input type="number" id="pf-margin" inputmode="decimal" step="any" placeholder="e.g. 1000" value="1000">
+            </div>
+            <div class="lc-field">
+                <label for="pf-lev">Leverage</label>
+                <input type="number" id="pf-lev" inputmode="decimal" step="1" placeholder="e.g. 10" value="10" min="1" max="125">
+            </div>
+            <div class="lc-field">
+                <label for="pf-fee">Trading fee per side (%)</label>
+                <input type="number" id="pf-fee" inputmode="decimal" step="0.01" placeholder="e.g. 0.05" value="0.05">
+            </div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="pf-out-net">+$489.75</div>
+            <div class="lc-sub" id="pf-out-sub">Net profit after fees · ROE +48.98%</div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="pf-out-gross">+$500.00</b><span>Gross PnL (before fees)</span></div>
+            <div class="lc-stat"><b id="pf-out-fees">$10.25</b><span>Total fees (entry + exit)</span></div>
+            <div class="lc-stat"><b id="pf-out-roe">+48.98%</b><span>Return on equity (ROE)</span></div>
+            <div class="lc-stat"><b id="pf-out-notional">$10,000.00</b><span>Position value (notional)</span></div>
+            <div class="lc-stat"><b id="pf-out-qty">0.1667</b><span>Position size (units)</span></div>
+            <div class="lc-stat"><b id="pf-out-move">+5.00%</b><span>Price move</span></div>
+        </div>
+        <div class="lc-warning" id="pf-warning"></div>
+        <p class="lc-note">Estimate only — excludes funding payments, slippage and liquidation. A losing position can be liquidated before your exit price is reached; check the <a href="liquidation-price-calculator.html">liquidation price</a> first. Educational tool, not financial advice.</p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>How futures profit and loss is calculated</h2>
+    <p>On a leveraged futures trade, your margin controls a much larger position, so profit and loss are measured on the full position value (the notional), not on your margin. The steps:</p>
+    <ul>
+        <li><strong>Position value</strong> = margin × leverage</li>
+        <li><strong>Position size (units)</strong> = position value ÷ entry price</li>
+        <li><strong>Gross PnL (long)</strong> = units × (exit price − entry price); for a short, units × (entry price − exit price)</li>
+        <li><strong>Fees</strong> = fee % × entry value + fee % × exit value</li>
+        <li><strong>Net PnL</strong> = gross PnL − fees</li>
+        <li><strong>ROE</strong> = net PnL ÷ margin × 100</li>
+    </ul>
+    <h2>Worked example</h2>
+    <p>Long Bitcoin at $60,000, exit at $63,000, $1,000 margin, 10x leverage, 0.05% fee per side:</p>
+    <ul>
+        <li>Position value: $1,000 × 10 = $10,000, which is about 0.1667 BTC</li>
+        <li>Gross PnL: 0.1667 × $3,000 = $500 (a 5% price move × 10,000)</li>
+        <li>Fees: $10,000 × 0.05% = $5.00 on entry, plus $10,500 × 0.05% = $5.25 on exit — $10.25 total</li>
+        <li>Net PnL: $500 − $10.25 = $489.75, an ROE of about 48.98%</li>
+    </ul>
+    <p>The same 5% move at 1x leverage would return about 4.98% on the same margin. Leverage multiplies the gain — and the loss: a 5% move against the position would cost about $500 plus fees, roughly half the margin.</p>
+    <h2>Why ROE is not the same as price change</h2>
+    <p>Return on equity compares profit with the margin you put up, so it scales with leverage. A 2% price move is a 20% ROE at 10x and a 100% ROE at 50x — in either direction. The calculator shows both so the price move and the equity effect are never confused.</p>
+    <h2>Fees add up faster with leverage</h2>
+    <p>Exchanges charge fees on the position value, not on your margin. At 0.05% per side, round-trip fees are about 0.1% of the notional — which at 20x leverage is about 2% of your margin before any price movement. Frequent trading at high leverage can lose money to fees alone. Check your exchange's maker and taker rates and enter yours above.</p>
+    <h2>What this calculator leaves out</h2>
+    <p>Funding payments on perpetual contracts (use the <a href="funding-fee-calculator.html">funding fee calculator</a>), slippage, and the possibility of liquidation before the exit price. Size trades with the <a href="position-size-calculator.html">position size calculator</a> so a loss stays within your risk limit.</p>
+    <p><a href="trade.html">Try the trade with virtual funds in paper trading →</a></p>
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Crypto futures profit calculator FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>How do I calculate profit on a leveraged crypto trade?</h3>
+            <p>Multiply margin by leverage to get the position value, divide by the entry price to get units, then multiply units by the price difference between exit and entry (reversed for shorts). Subtract fees for net profit.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What is ROE in crypto futures?</h3>
+            <p>Return on equity is net profit or loss divided by the margin you committed. With leverage, a small price move can produce a large ROE in either direction.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does this include funding fees?</h3>
+            <p>No. Funding is charged or paid between longs and shorts on perpetual contracts while a position is open. See the funding fee calculator for that cost.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What fee rate should I enter?</h3>
+            <p>Use your exchange rate for the order type you will use. Many major venues list taker rates in the range of a few hundredths of a percent per side, but tiers, discounts and token rebates vary — check your account.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Can a trade be liquidated before my exit price?</h3>
+            <p>Yes. If price reaches your liquidation level first, the position is closed and the margin is lost, so the exit price in this calculator would never be reached.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">More tools</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="liquidation-price-calculator.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="triangle-alert" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Liquidation price calculator</h3>
+                <p>Where a leveraged long or short gets force-closed.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="position-size-calculator.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="ruler" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Position size calculator</h3>
+                <p>Size a trade from your risk, entry and stop-loss.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="funding-fee-calculator.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="percent" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Funding fee calculator</h3>
+                <p>What a perpetual position costs or earns in funding.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="releases.html">Releases</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+            <a href="spot-vs-futures.html">Spot vs futures</a>
+            <a href="funding-rate-explained.html">Funding rate explained</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/trading-calculators.js?v=20261026" defer></script>
+</body>
+</html>

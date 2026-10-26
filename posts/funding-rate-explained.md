@@ -51,6 +51,7 @@ Funding settles on a fixed schedule, every eight hours on many venues (some cont
 
 - [Spot vs. perpetual futures](spot-vs-futures.html): how leverage and liquidation work alongside funding.
 - [Liquidation price calculator](liquidation-price-calculator.html): see how leverage moves your liquidation price.
+- [Funding fee calculator](funding-fee-calculator.html): turn a funding rate into dollars per day, month and year.
 - [Reading the Fear & Greed index](fear-and-greed-index.html): another crowd-positioning signal, from sentiment instead of derivatives.
 - [Bitcoin live price](bitcoin-live-price.html): live BTC/USDT with halving, ETF and funding context.
 - [Ethereum live price](ethereum-live-price.html): live ETH/USDT with staking, gas and ETH/BTC context.

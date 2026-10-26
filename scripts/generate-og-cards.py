@@ -36,6 +36,23 @@ def rgb(h, a=1.0):
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), int(round(a * 255)))
 
 
+def _set_weight(f, wght):
+    """Set the wght axis on a variable font; other axes (e.g. opsz) keep a sensible value.
+    Static fonts raise on get_variation_axes(), which we ignore."""
+    try:
+        axes = f.get_variation_axes()
+    except Exception:
+        return
+    vals = []
+    for a in axes:
+        name = a["name"].decode() if isinstance(a["name"], bytes) else str(a["name"])
+        if "eight" in name:
+            vals.append(max(a["minimum"], min(a["maximum"], wght)))
+        else:
+            vals.append(max(a["minimum"], min(a["maximum"], 14)))
+    f.set_variation_by_axes(vals)
+
+
 _cache = {}
 
 
@@ -49,13 +66,14 @@ def font(kind, size, weight=None):
     try:
         if kind == "grotesk":
             f = ImageFont.truetype(os.path.join(FONT_DIR, "SpaceGrotesk[wght].ttf"), px)
-            f.set_variation_by_axes([weight or 700])
+            _set_weight(f, weight or 700)
         elif kind == "inter":
             f = ImageFont.truetype(os.path.join(FONT_DIR, "Inter[opsz,wght].ttf"), px)
-            f.set_variation_by_axes([14, weight or 400])
+            _set_weight(f, weight or 400)
         else:
             name = "JetBrainsMono-Bold.ttf" if weight == "bold" else "JetBrainsMono-Regular.ttf"
             f = ImageFont.truetype(os.path.join(FONT_DIR, name), px)
+            _set_weight(f, 700 if weight == "bold" else 400)
     except OSError:
         path = "/usr/share/fonts/truetype/dejavu/DejaVuSans%s.ttf" % ("-Bold" if (weight in ("bold",) or (isinstance(weight, int) and weight >= 600)) else "")
         try:
@@ -272,6 +290,34 @@ def v_calc(c, x, y, w):
     c.text(ix + 18, cy + 108, "4.73% below entry", font("mono", 16), rgb(DIM))
 
 
+def v_fields(title, rows, out_label, out_value, out_sub, color):
+    def draw(c, x, y, w):
+        panel(c, x, y, w, 431)
+        ix, iw, cy = x + 22, w - 44, y + 22
+        c.text(ix, cy, title, font("inter", 20, 700), rgb(TEXT))
+        cy += 24 + 14
+        for a, b in rows:
+            c.rrect(ix, cy, iw, 56, 12, fill=rgb(PANEL2), stroke=rgb(LINE, 0.18), sw=1)
+            c.text(ix + 16, cy + 17, a, font("inter", 18), rgb(DIM))
+            c.text(ix + iw - 16, cy + 15, b, font("mono", 20, "bold"), rgb(TEXT), anchor="r")
+            cy += 56 + 14
+        c.rrect(ix, cy, iw, 146, 14, fill=rgb(color, 0.1), stroke=rgb(color, 0.5), sw=1)
+        c.text(ix + 18, cy + 16, out_label, font("inter", 16), rgb(DIM))
+        c.text(ix + 18, cy + 40, out_value, font("mono", 42, "bold"), rgb(color))
+        c.text(ix + 18, cy + 108, out_sub, font("mono", 16), rgb(DIM))
+    return draw
+
+
+def v_hub(c, x, y, w):
+    panel(c, x, y, w, 431)
+    ix, iw, cy = x + 22, w - 44, y + 22
+    for name, tag in (("Liquidation price", "Risk"), ("Position size", "Sizing"), ("Futures profit & ROE", "Reward"), ("Funding fee", "Carry")):
+        c.rrect(ix, cy, iw, 80, 14, fill=rgb(PANEL2), stroke=rgb(LINE, 0.18), sw=1)
+        c.text(ix + 18, cy + 26, name, font("inter", 22, 700), rgb(TEXT))
+        c.text(ix + iw - 18, cy + 28, tag, font("mono", 18, "bold"), rgb(GREEN), anchor="r")
+        cy += 80 + 16
+
+
 def v_live(name, sym, price, chg, col, vol):
     def draw(c, x, y, w):
         panel(c, x, y, w, 411)
@@ -305,6 +351,17 @@ CARDS = [
     ("solana-live-price", "Live price", "Solana live price",
      "SOL chart and market data, updated in real time.",
      v_live("sol", "SOL/USDT", "151.92", "+3.07%", GREEN, "24h Vol 210M"), 440, 411),
+    ("position-size-calculator", "Free tool", "Position size calculator",
+     "Size a crypto trade from your risk, entry and stop-loss.",
+     v_fields("Trade", (("Balance", "5,000"), ("Risk", "1%"), ("Stop-loss", "63,700")), "Position size", "0.0385 BTC", "$50 at risk · $2,500 notional", GREEN), 440, 431),
+    ("crypto-profit-calculator", "Free tool", "Crypto futures profit calculator",
+     "Net PnL, ROE and fees for a leveraged long or short.",
+     v_fields("Trade", (("Entry", "60,000"), ("Exit", "63,000"), ("Leverage", "10x")), "Net profit", "+$489.75", "ROE +48.98% after fees", GREEN), 440, 431),
+    ("funding-fee-calculator", "Free tool", "Funding fee calculator",
+     "What a perpetual futures position pays or earns in funding.",
+     v_fields("Position", (("Value", "10,000"), ("Rate / 8h", "0.01%"), ("Days held", "7")), "Funding paid", "-$21.00", "10.95% annualised", AMBER), 440, 431),
+    ("crypto-calculators", "Free tools", "Crypto trading calculators",
+     "Liquidation, position size, profit and funding \u2014 free.", v_hub, 440, 431),
 ]
 
 

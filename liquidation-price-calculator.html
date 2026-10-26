@@ -221,6 +221,8 @@
     <p>Isolated margin caps your risk at the margin assigned to that one position — lose it all, and only that position is liquidated. Cross margin pools your entire futures wallet balance as backing for every open position, which typically pushes each individual liquidation price further away, but it also means a bad move on one position can eat into the margin backing an unrelated position. Cross margin's real liquidation price depends on your total account state at the moment of the move, so treat the cross-margin estimate above as a rough anchor, not an exact number.</p>
     <h2>Funding rate and fees aren't in this number</h2>
     <p>This calculator, like most public ones, uses the standard formula above and leaves out two things that move the real number slightly: trading fees (charged on entry and on the forced liquidation itself) and accumulated funding payments on a perpetual contract held across funding periods. Both nudge liquidation price a little closer to entry over time on a losing position. See <a href="funding-rate-explained.html">how funding rate works</a> for why that running cost matters over a multi-day hold.</p>
+    <h2>Plan the whole trade, not just the liquidation price</h2>
+    <p>Liquidation price is one input. Use the <a href="position-size-calculator.html">position size calculator</a> to size a trade from your risk and stop-loss, the <a href="crypto-profit-calculator.html">futures profit calculator</a> to check reward against fees, and the <a href="funding-fee-calculator.html">funding fee calculator</a> to price in the cost of holding a perpetual position. All four live on the <a href="crypto-calculators.html">crypto calculators</a> page.</p>
     <p><a href="app.html">See estimated liquidation price update live next to your open positions in the terminal →</a></p>
 </article>
 
@@ -300,6 +302,7 @@
             <a href="ai.html">AI research</a>
             <a href="spot-vs-futures.html">Spot vs futures</a>
             <a href="funding-rate-explained.html">Funding rate explained</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
         </div>
         <div class="mk-footer-col">
             <p class="mk-footer-title">Company</p>

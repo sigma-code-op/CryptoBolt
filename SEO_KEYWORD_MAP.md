@@ -42,3 +42,7 @@ This map assigns one primary search intent to each indexable page. Supporting te
 The current site has no dedicated search landing page for crypto trading fees, price alerts, or portfolio tracking. (Crypto funding rate is covered by `/funding-rate-explained.html`; Solana live price is covered by `/solana-live-price.html`; liquidation-price calculation is now covered by `/liquidation-price-calculator.html`.) Create those only when each page can provide genuinely distinct data and copy; otherwise keep them as sections on the existing pillar pages.
 
 | `/liquidation-price-calculator.html` | liquidation price calculator | isolated vs cross margin, leverage, maintenance margin rate | funding rate explained, spot vs futures, terminal |
+| `/crypto-calculators.html` | crypto trading calculators | liquidation, position size, PnL, funding fee | each calculator, paper trading, terminal |
+| `/position-size-calculator.html` | position size calculator crypto | risk per trade, stop-loss, R-multiples | liquidation calculator, profit calculator, paper trading |
+| `/crypto-profit-calculator.html` | crypto futures profit calculator | PnL, ROE, fees, leverage | position size, funding fee, liquidation calculator |
+| `/funding-fee-calculator.html` | funding fee calculator | perpetual funding cost, annualised funding | funding rate explained, liquidation calculator, profit calculator |
