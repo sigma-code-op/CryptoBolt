@@ -568,6 +568,10 @@
             const tradesContext = await collectTradesContext();
             if (tradesContext) payload.trades = tradesContext;
 
+            // Web research: the server lets the model search the web for this question.
+            const webSearch = webResearchOn();
+            if (webSearch) payload.webSearch = true;
+
             const headers = { "Content-Type": "application/json" };
             if (useHouseKey) {
                 headers["x-use-house-key"] = "1";
@@ -575,7 +579,7 @@
                 headers["x-groq-key"] = key;
             }
 
-            const data = await aiFetch(AI_ENDPOINT, { headers, body: JSON.stringify(payload), timeoutMs: 45000 });
+            const data = await aiFetch(AI_ENDPOINT, { headers, body: JSON.stringify(payload), timeoutMs: webSearch ? 90000 : 45000 });
 
             const answer = typeof data.answer === "string" ? data.answer.trim() : "";
             if (!answer) {
@@ -587,6 +591,7 @@
                 actions: Array.isArray(data.actions) ? data.actions : [],
                 sources: Array.isArray(data.sources) ? data.sources : [],
                 fearGreed: data.fearGreed || null,
+                webResearch: data.webResearch && typeof data.webResearch === "object" ? data.webResearch : null,
                 provenance: data.provenance && typeof data.provenance === "object" ? data.provenance : null,
                 meta: marketData
                     ? { asset: marketData.asset, isFutures: marketData.isFutures, fetchedAt: marketData.fetchedAt }
@@ -604,6 +609,9 @@
        Lets the chat see the visitor's practice account (js/ai-trades.js) and lets them
        confirm changes the AI proposes. Nothing is applied without a click on a card.
     ----------------------------- */
+
+    const WEB_RESEARCH_KEY = "cw_ai_web_research";
+    const webResearchOn = () => localStorage.getItem(WEB_RESEARCH_KEY) !== "0";
 
     const SHARE_TRADES_KEY = "cw_ai_share_trades";
     const tradesApi = () => window.cwAiTrades || null;
@@ -638,6 +646,14 @@
                 : "No practice trades yet — place some on the Trading Account page and the AI can review them.";
         }
     }
+    (() => {
+        const box = $("ai-web-toggle");
+        if (!box) return;
+        box.checked = webResearchOn();
+        box.addEventListener("change", (e) => {
+            localStorage.setItem(WEB_RESEARCH_KEY, e.target.checked ? "1" : "0");
+        });
+    })();
     $("ai-trades-toggle")?.addEventListener("change", (e) => {
         localStorage.setItem(SHARE_TRADES_KEY, e.target.checked ? "1" : "0");
     });

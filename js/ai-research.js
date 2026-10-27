@@ -721,6 +721,23 @@
         if (prov?.paperTradesProvided) {
             parts.push(`<p><span class="src-tag src-measured">Measured</span> A snapshot of your practice (paper) account was included.</p>`);
         }
+        const web = data?.webResearch;
+        if (web) {
+            if (web.fallback) {
+                parts.push(`<p class="rs-muted">Web research was on, but the search service was unavailable for this question, so the answer used only the data above.</p>`);
+            } else if (web.used) {
+                const qs = (web.queries || []).map((q) => `<li>${esc(q)}</li>`).join("");
+                const pages = (web.pages || [])
+                    .filter((p) => /^https:\/\//i.test(p?.url || ""))
+                    .map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer nofollow">${esc(p.title || p.url)}</a></li>`)
+                    .join("");
+                parts.push(
+                    `<div><span class="src-tag src-measured">Web</span> The AI searched the web for this answer.${qs ? `<ul>${qs}</ul>` : ""}${pages ? `<p class="rs-muted">Pages it found:</p><ul>${pages}</ul>` : ""}<p class="rs-muted">Web pages can be wrong, biased or out of date, so check important claims at the source.</p></div>`
+                );
+            } else {
+                parts.push(`<p class="rs-muted">Web research was on, but the AI didn't need to search for this question.</p>`);
+            }
+        }
         parts.push(
             `<p><span class="src-tag src-ai">AI</span> The wording, explanations and any opinions in the answer are the model's interpretation of the data above${prov?.model ? ` (${esc(prov.model)}, ${esc(fmtTime(prov.generatedAt))})` : ""}. It can be wrong or out of date — check the numbers.</p>`
         );

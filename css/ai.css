@@ -1102,6 +1102,10 @@ body {
     cursor: pointer;
 }
 
+.ai-web-row {
+    padding-top: 9px;
+}
+
 .ai-trades-row strong {
     color: #c3cad2;
     font-weight: 600;

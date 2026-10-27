@@ -160,7 +160,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="css/dist/bundle-ai.css?v=20261009">
+    <link rel="stylesheet" href="css/dist/bundle-ai.css?v=20261027">
 
     <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
@@ -597,6 +597,13 @@
                     <button>Review my open paper trades</button>
                 </div>
 
+                <label id="ai-web-row" class="ai-trades-row ai-web-row" for="ai-web-toggle">
+                    <input type="checkbox" id="ai-web-toggle" checked>
+                    <span>
+                        <strong>Web research</strong> — lets the AI search the web for the coin (news, announcements, updates) before it answers. Slower, but better researched.
+                    </span>
+                </label>
+
                 <label id="ai-trades-row" class="ai-trades-row" for="ai-trades-toggle">
                     <input type="checkbox" id="ai-trades-toggle" checked>
                     <span>
@@ -778,8 +785,8 @@
 
 <script src="js/market-conditions-gauge.js?v=20260906"></script>
 <script src="js/ai-trades.js?v=20260930"></script>
-<script src="js/ai-chat.js?v=20261003"></script>
-<script src="js/ai-research.js?v=20261003"></script>
+<script src="js/ai-chat.js?v=20261027"></script>
+<script src="js/ai-research.js?v=20261027"></script>
 
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/cookie-consent.js?v=20261018" defer></script>
