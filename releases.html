@@ -163,6 +163,7 @@
 
 <section class="mkx-rel-wrap">
     <nav class="mkx-rel-side" aria-label="Jump to release">
+            <a href="#rel-1-16-0"><span class="mkx-rel-date">Oct 27, 2026</span><span class="mkx-rel-ver">v1.16.0</span></a>
             <a href="#rel-1-15-0"><span class="mkx-rel-date">Oct 26, 2026</span><span class="mkx-rel-ver">v1.15.0</span></a>
             <a href="#rel-1-14-0"><span class="mkx-rel-date">Oct 4, 2026</span><span class="mkx-rel-ver">v1.14.0</span></a>
             <a href="#rel-1-13-0"><span class="mkx-rel-date">Sep 30, 2026</span><span class="mkx-rel-ver">v1.13.0</span></a>
@@ -182,6 +183,23 @@
             <a href="#data-sources"><span class="mkx-rel-date">Reference</span><span class="mkx-rel-ver">Data sources</span></a>
     </nav>
     <div>
+        <article class="mkx-rel-entry" id="rel-1-16-0">
+            <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.16.0</span><span class="mkx-rel-when">October 27, 2026</span></div>
+            <h2>The AI chat can now research coins on the web.</h2>
+            <p class="mkx-rel-label">What's new</p>
+            <ul>
+                <li>New <strong>Web research</strong> switch above the chat box on the <a href="ai.html">AI page</a>. When it is on, the AI can search the web for the coin you ask about (news, announcements, upgrades, listings) before it answers, instead of relying only on the market snapshot and the latest headlines.</li>
+                <li>The AI names the sites its claims come from, separates what it found from its own interpretation, and says so when it cannot find something or when sources disagree.</li>
+                <li>Under every answer, &ldquo;What this answer was based on&rdquo; now lists the searches the AI ran and the pages it found, with links, so you can check them yourself.</li>
+                <li>The switch is on by default and your choice is remembered in your browser. Turn it off for faster answers that use only the live market data.</li>
+                <li>If the search service is unavailable, the AI still answers from the market data and tells you that web research was skipped.</li>
+            </ul>
+            <p class="mkx-rel-label">Data sources</p>
+            <ul>
+                <li>Added: live web search for AI chat answers, only while Web research is on. Web pages can be wrong, biased or out of date, so check important claims at the source. Live prices and indicators still come from Binance, and the AI is told to prefer them over any price found on a web page.</li>
+                <li>The AI Market Insight panel on the terminal does not use web research.</li>
+            </ul>
+        </article>
         <article class="mkx-rel-entry" id="rel-1-15-0">
             <div class="mkx-rel-meta"><span class="mkx-rel-tag">v1.15.0</span><span class="mkx-rel-when">October 26, 2026</span></div>
             <h2>Three new free trading calculators and a calculators hub.</h2>
@@ -352,6 +370,7 @@
                 <li><strong>Binance</strong> (spot and futures): live prices, charts, order book depth, funding rates and open interest.</li>
                 <li><strong>CoinGecko</strong>: market-wide figures such as market capitalization and Bitcoin dominance.</li>
                 <li><strong>Alternative.me</strong>: the Fear &amp; Greed index.</li>
+                <li><strong>Live web search</strong> (AI chat only, when Web research is on): pages the AI finds and reads while researching a coin. The searches and pages are listed under each answer.</li>
             </ul>
             <p class="mkx-rel-label">How changes are logged</p>
             <ul>
