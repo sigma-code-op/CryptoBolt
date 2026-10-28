@@ -52,7 +52,7 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 - [Position size calculator](position-size-calculator.html): size a leveraged trade from your risk and stop-loss.
 - [How much can you realistically make day trading crypto?](day-trading-crypto-realistic-returns.html): what the research says about leveraged short-term trading.
 - [Paper trading](crypto-paper-trading.html): practice futures with virtual money on live prices.
-- [Bitcoin live price](bitcoin-live-price.html): live BTC/USDT with halving, ETF and funding context.
+- [Bitcoin price](bitcoin.html): live BTC/USDT with halving, ETF and funding context.
 - [Why round numbers act like support and resistance](round-number-levels.html): where price tends to react.
 
 [Track spot holdings and futures positions side by side in the terminal →](app.html)

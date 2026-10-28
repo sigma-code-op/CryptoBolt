@@ -7,9 +7,9 @@
 - [CryptoBolt Home](https://cryptobolt.io/) — Live crypto prices, charts, market data, technical indicators, portfolio tools, alerts, and market analysis.
 - [CryptoBolt Terminal](https://cryptobolt.io/app.html) — Live crypto trading terminal with charts, order book, spot and futures data, and portfolio tracking.
 - [Crypto Trading Terminal Guide](https://cryptobolt.io/crypto-trading-terminal.html) — Explanatory landing page for the CryptoBolt terminal and what it covers.
-- [Bitcoin Live Price](https://cryptobolt.io/bitcoin-live-price.html) — Real-time BTC price, chart context, and AI research.
-- [Ethereum Live Price](https://cryptobolt.io/ethereum-live-price.html) — Real-time ETH price, chart context, and AI research.
-- [Solana Live Price](https://cryptobolt.io/solana-live-price.html) — Real-time SOL price, chart context, and AI research.
+- [Bitcoin Price](https://cryptobolt.io/bitcoin.html) — Live BTC/USDT price, funding rate and open interest, with halving, ETF and macro context.
+- [Ethereum Price](https://cryptobolt.io/ethereum.html) — Live ETH/USDT price and ETH/BTC ratio, with staking, fee-burn and layer-2 context.
+- [Solana Price](https://cryptobolt.io/solana.html) — Live SOL/USDT price and SOL/BTC ratio, with on-chain activity, staking and reliability context.
 - [CryptoBolt AI Research](https://cryptobolt.io/ai.html) — Crypto AI research and conversational market analysis using current market context.
 - [Crypto AI Research Guide](https://cryptobolt.io/ai-crypto-research.html) — Explanatory landing page on how CryptoBolt's crypto AI research works.
 - [CryptoBolt Trading Practice](https://cryptobolt.io/trade.html) — Paper-trading environment for practicing buy/sell decisions with virtual funds, including a leaderboard.

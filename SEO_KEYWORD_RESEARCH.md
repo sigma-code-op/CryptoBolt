@@ -43,7 +43,7 @@ already supports them.
 | solana price live | P1 | **Content gap.** Solana search interest has repeatedly spiked past Bitcoin/Ethereum's during rallies (briefly overtook Ethereum in worldwide Google search volume in Dec 2023). You have the exact template (`bitcoin-live-price.html` / `ethereum-live-price.html`) — this is the single highest-leverage new page on the site. |
 | BTC vs ETH price comparison | P3 | Could be a short comparison section or FAQ item on either price page |
 
-**On-page audit:** `bitcoin-live-price.html` and `ethereum-live-price.html` now have FAQPage schema matching their existing on-page Q&A (fixed). Both already have solid keyword density (3–4x).
+**On-page audit:** `bitcoin.html` and `ethereum.html` (formerly `*-live-price.html`, replaced 2026-10-28) now have FAQPage schema matching their existing on-page Q&A (fixed). Both already have solid keyword density (3–4x).
 
 ## Pillar: Funding Rate / Spot vs Futures / Fear & Greed (education content)
 | Long-tail keyword | Priority | Notes |
@@ -75,7 +75,7 @@ already supports them.
 
 ## Cross-cutting recommendations
 
-1. **FAQPage schema gap (fixed for 4 pages this pass):** `bitcoin-live-price.html`, `ethereum-live-price.html`, `crypto-trading-terminal.html`, and `crypto-paper-trading.html` all had genuine on-page Q&A content (visible H3 questions + answers) with no matching `FAQPage` JSON-LD. Added schema matching the visible copy exactly (schema must match on-page content — mismatched schema is treated as spam). Note: Google restricted FAQ rich results to authoritative government/health sites in 2023, so don't expect a rich snippet boost — the real value now is machine-readability for AI answer engines (relevant since you already ship `llms.txt` for AI crawler discoverability).
+1. **FAQPage schema gap (fixed for 4 pages this pass):** `bitcoin.html`, `ethereum.html`, `crypto-trading-terminal.html`, and `crypto-paper-trading.html` all had genuine on-page Q&A content (visible H3 questions + answers) with no matching `FAQPage` JSON-LD. Added schema matching the visible copy exactly (schema must match on-page content — mismatched schema is treated as spam). Note: Google restricted FAQ rich results to authoritative government/health sites in 2023, so don't expect a rich snippet boost — the real value now is machine-readability for AI answer engines (relevant since you already ship `llms.txt` for AI crawler discoverability).
 2. **Thin competitive pages:** `crypto-trading-terminal.html`, `spot-vs-futures.html`, and `invest.html` are all under 450 words while targeting moderately competitive head terms. Not urgent, but the next time you touch any of them, add a paragraph rather than trim.
 3. **Biggest single opportunity:** a Solana live price page. Real, validated search demand; near-zero build cost since the BTC/ETH template already exists.
 4. **"Prediction" queries:** Both the AI research and BTC/ETH price pages sit near high-volume "price prediction" queries you deliberately don't serve. A one-line disclaimer ("CryptoBolt shows live data and context, not price predictions") on each, ideally in an FAQ item, can capture the click and redirect intent instead of just losing the ranking opportunity entirely.

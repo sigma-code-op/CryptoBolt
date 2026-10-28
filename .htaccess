@@ -9,3 +9,12 @@
 
 # Any URL that does not exist (e.g. /op.html) shows the custom 404 page
 ErrorDocument 404 /404.html
+
+
+# The old "live price" pages were replaced by dedicated coin pages (2026-10-28).
+# Permanent redirects so old links and any indexed copies land on the new URLs.
+<IfModule mod_alias.c>
+  Redirect 301 /bitcoin-live-price.html https://cryptobolt.io/bitcoin.html
+  Redirect 301 /ethereum-live-price.html https://cryptobolt.io/ethereum.html
+  Redirect 301 /solana-live-price.html https://cryptobolt.io/solana.html
+</IfModule>

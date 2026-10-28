@@ -7,7 +7,7 @@ Figma file "CryptoBolt - Mobile Terminal & Social Cards" (page "Social Cards").
   FONT_DIR=/path/to/fonts python3 scripts/generate-og-cards.py
 
 Writes assets/og/<slug>.png for: home, terminal, ai-research, paper-trading,
-liquidation-calculator, bitcoin-live-price, ethereum-live-price, solana-live-price.
+liquidation-calculator, bitcoin, ethereum, solana.
 (Per-article cards come from scripts/generate-og-images.py.)
 
 Fonts (all OFL, not bundled): put these in FONT_DIR, or the script falls back to DejaVu.
@@ -342,14 +342,14 @@ CARDS = [
      "Simulated funds, per-coin leverage limits and live prices.", v_paper, 440, 411),
     ("liquidation-calculator", "Free tool", "Liquidation price calculator",
      "Check how far price can move against a futures position.", v_calc, 440, 431),
-    ("bitcoin-live-price", "Live price", "Bitcoin live price",
-     "BTC chart and market data, updated in real time.",
+    ("bitcoin", "Bitcoin (BTC)", "Bitcoin price today",
+     "Live BTC/USDT, funding rate and open interest.",
      v_live("btc", "BTC/USDT", "67,412.50", "+2.31%", GREEN, "24h Vol 1.2B"), 440, 411),
-    ("ethereum-live-price", "Live price", "Ethereum live price",
-     "ETH chart and market data, updated in real time.",
+    ("ethereum", "Ethereum (ETH)", "Ethereum price today",
+     "Live ETH/USDT, funding rate and open interest.",
      v_live("eth", "ETH/USDT", "3,305.40", "+1.84%", GREEN, "24h Vol 640M"), 440, 411),
-    ("solana-live-price", "Live price", "Solana live price",
-     "SOL chart and market data, updated in real time.",
+    ("solana", "Solana (SOL)", "Solana price today",
+     "Live SOL/USDT, funding rate and open interest.",
      v_live("sol", "SOL/USDT", "151.92", "+3.07%", GREEN, "24h Vol 210M"), 440, 411),
     ("position-size-calculator", "Free tool", "Position size calculator",
      "Size a crypto trade from your risk, entry and stop-loss.",

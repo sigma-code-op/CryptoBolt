@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/error-reporter.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-GCSu/SxRIriaar0MgBUBvskreTXha/SboBj6gs9iWPA=' 'sha256-CY2yyo9I2mPXAYe24448ofbIZyc9X23AzGcaztjyTLU=' 'sha256-C3jZ0krd+5sPJUUhKM7ttfsYn5TKJC4sLQgDZOVzMWY='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="CryptoBolt">
+    <meta name="rating" content="general">
+    <title>Bitcoin (BTC) Price Today: Live Chart &amp; Market Data</title>
+    <meta name="description" content="Live Bitcoin price in USDT with 24h range, funding rate and open interest, plus the halving, ETF and macro forces behind BTC. Free, no signup.">
+    <meta name="keywords" content="Bitcoin price, BTC price today, BTC/USDT live, bitcoin funding rate, bitcoin open interest, bitcoin halving, bitcoin ETF flows">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/bitcoin.html">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/bitcoin.html">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/bitcoin.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/bitcoin.html">
+    <meta property="og:title" content="Bitcoin (BTC) Price Today: Live BTC/USDT, Funding &amp; Open Interest | CryptoBolt">
+    <meta property="og:description" content="Live BTC/USDT from Binance with 24h range, funding rate and open interest, plus the halving, ETF and macro context behind Bitcoin.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/bitcoin.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt live Bitcoin price panel with BTC/USDT, funding rate and open interest">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Bitcoin (BTC) Price Today | CryptoBolt">
+    <meta name="twitter:description" content="Live BTC/USDT, funding and open interest, plus the context behind Bitcoin’s moves.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/bitcoin.png">
+    <meta name="twitter:image:alt" content="CryptoBolt live Bitcoin price panel with BTC/USDT, funding rate and open interest">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://cryptobolt.io/bitcoin.html#webpage",
+            "url": "https://cryptobolt.io/bitcoin.html",
+            "name": "Bitcoin (BTC) Price Today: Live Chart & Market Data",
+            "description": "Live Bitcoin (BTC/USDT) price from Binance with 24-hour range, funding rate and open interest, plus reference facts and context on the halving cycle, spot ETF flows and macro liquidity.",
+            "inLanguage": "en",
+            "dateModified": "2026-10-28",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "CryptoBolt",
+                "url": "https://cryptobolt.io/"
+            },
+            "about": {
+                "@type": "Thing",
+                "name": "Bitcoin",
+                "alternateName": "BTC",
+                "sameAs": [
+                    "https://en.wikipedia.org/wiki/Bitcoin"
+                ]
+            },
+            "publisher": {
+                "@id": "https://cryptobolt.io/#organization"
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Where does the live Bitcoin price on this page come from?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It comes from Binance’s public market-data endpoints, requested directly by your browser and refreshed every ten seconds. The price shown is the BTC/USDT spot price, so it can differ slightly from other exchanges or from a US-dollar quote."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why is Bitcoin quoted in USDT instead of USD?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Most of the deepest Bitcoin liquidity on Binance is against USDT, a stablecoin designed to hold one US dollar. The BTC/USDT price is therefore a close stand-in for the dollar price, with small differences when USDT trades slightly above or below its peg."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How often does the Bitcoin halving happen, and when is the next one?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The block reward halves every 210,000 blocks, which works out to about every four years. The last one was in April 2024, cutting the reward to 3.125 BTC. The next is expected around 2028, depending on actual block times."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why does Bitcoin move on weekends when stock markets are closed?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Bitcoin trades 24 hours a day, seven days a week. Weekend liquidity is often thinner, so a single large order or a wave of liquidations can move price more than the same order would on a weekday."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What does Bitcoin dominance mean?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Bitcoin dominance is BTC’s share of the total crypto market capitalisation. Rising dominance often means money is concentrating in Bitcoin; falling dominance often accompanies altcoin rallies. It is a ratio, so it can rise while BTC itself falls if altcoins fall faster."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Does CryptoBolt predict where BTC is headed?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No. CryptoBolt shows live BTC data, trend context and AI-assisted analysis grounded in current conditions. It does not make price predictions or promise outcomes, and any AI read should be treated as research context, not a trade signal."
+                    }
+                }
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://cryptobolt.io/#organization",
+      "name": "CryptoBolt",
+      "alternateName": "Crypto Bolt",
+      "url": "https://cryptobolt.io/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cryptobolt.io/assets/android-chrome-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://x.com/cryptobolt5fvj",
+        "https://github.com/sigma-code-op/CryptoBolt",
+        "https://youtube.com/@cryptobolt-1",
+        "https://www.facebook.com/profile.php?id=61595142351905"
+      ]
+    }
+    </script>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <script defer src="js/deferred-loader.js?v=20261002"></script>
+    <script defer src="js/coin-page.js?v=20261028"></script>
+    <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261028">
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app.html">Terminal</a>
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="trade.html">Paper Trading</a>
+        <a href="invest.html">Invest</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</nav>
+<main id="main" tabindex="-1">
+
+<header class="mk-hero" style="padding-top: 72px;">
+    <span class="mk-eyebrow">Bitcoin market data</span>
+    <h1>Bitcoin (BTC) price today<br><span class="mk-accent">Live BTC/USDT, funding and open interest in one view</span></h1>
+    <p class="mk-sub">Follow the live Bitcoin price from Binance, then read what usually sits behind a move: the halving cycle, spot ETF flows, futures positioning and macro liquidity.</p>
+    <div class="mk-hero-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary mk-btn-lg">Open live BTC terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+        <a href="ai.html" class="mk-btn mk-btn-ghost mk-btn-lg">AI research on BTC</a>
+    </div>
+
+    <div class="mk-coin-live" id="coin-live" data-symbol="BTCUSDT" data-base="BTC">
+        <div class="mk-panel">
+            <div class="mk-panel-head">
+                <span class="mk-live-dot"><span class="dot"></span> Live from Binance</span>
+                <span id="live-updated">Connecting…</span>
+            </div>
+            <div class="mk-coin-main">
+                <div class="mk-coin-price-block">
+                    <div class="mk-coin-pair">BTC / USDT · Binance spot</div>
+                    <div class="mk-coin-price" id="live-price">—</div>
+                    <div class="mk-coin-change" id="live-change">—</div>
+                </div>
+                <div class="mk-coin-spark-block">
+                    <svg id="live-spark" class="mk-coin-spark" viewBox="0 0 300 80" preserveAspectRatio="none" role="img" aria-label="24 hour BTC price chart">
+                        <polygon id="live-spark-area" class="mk-spark-area" points=""></polygon>
+                        <polyline id="live-spark-line" class="mk-spark-line" points=""></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="mk-coin-stats">
+            <div class="mk-coin-stat"><div class="mk-coin-stat-label">24h high</div><div class="mk-coin-stat-val" id="live-high">—</div></div>
+            <div class="mk-coin-stat"><div class="mk-coin-stat-label">24h low</div><div class="mk-coin-stat-val" id="live-low">—</div></div>
+            <div class="mk-coin-stat"><div class="mk-coin-stat-label">24h volume</div><div class="mk-coin-stat-val" id="live-volume">—</div><div class="mk-coin-stat-sub">USDT, spot</div></div>
+            <div class="mk-coin-stat"><div class="mk-coin-stat-label">Funding rate</div><div class="mk-coin-stat-val" id="live-funding">—</div><div class="mk-coin-stat-sub" id="live-funding-next">—</div></div>
+            <div class="mk-coin-stat"><div class="mk-coin-stat-label">Open interest</div><div class="mk-coin-stat-val" id="live-oi">—</div><div class="mk-coin-stat-sub" id="live-oi-coins">—</div></div>
+            </div>
+            <p class="mk-coin-note">Prices are requested from Binance’s public market-data API by your browser and refresh about every 10 seconds. Bitcoin trades around the clock, so the 24-hour window is a rolling one, not a trading day that opens and closes. Educational information only, not financial advice.<noscript> Turn on JavaScript to see live numbers, or open the terminal.</noscript></p>
+        </div>
+    </div>
+</header>
+
+<section class="mk-section" id="read-the-panel">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">How to read it</span>
+        <h2>What each Bitcoin number tells you</h2>
+        <p>Each number in the panel answers a different question. Here is what to take from them when you are looking at Bitcoin specifically.</p>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2"><h3>Price and 24h change</h3><p>The last traded BTC/USDT price on Binance spot and the move over the last rolling 24 hours. A large 24h change on its own says little; compare it with the 24h range and volume before reading anything into it.</p></div>
+        <div class="mk-card mk-span-2"><h3>24h high and low</h3><p>The extremes of the rolling day. When price sits near the high with falling volume, the move is running on less participation; near the low with rising volume, sellers are still active. Neither is a signal on its own, it is context for where the market has already been.</p></div>
+        <div class="mk-card mk-span-2"><h3>24h volume</h3><p>Quote volume in dollars traded on the BTC/USDT spot pair. Bitcoin’s volume is far deeper than any altcoin’s, which is why <a href="glossary.html#slippage" class="text-[#4fd8e8] hover:underline">slippage</a> on market orders is usually small compared with smaller coins.</p></div>
+        <div class="mk-card mk-span-2"><h3>Funding rate</h3><p>The payment between longs and shorts on the BTCUSDT <a href="glossary.html#perpetual-futures" class="text-[#4fd8e8] hover:underline">perpetual future</a>, shown per funding interval (typically every eight hours on Binance). Positive means longs pay shorts, which tends to happen when the market leans long. Read the <a href="funding-rate-explained.html" class="text-[#4fd8e8] hover:underline">funding rate guide</a> for how to use it.</p></div>
+        <div class="mk-card mk-span-2"><h3>Open interest</h3><p>The total value of open BTC perpetual contracts. Rising <a href="glossary.html#open-interest" class="text-[#4fd8e8] hover:underline">open interest</a> alongside a price move means new positions are being opened; falling open interest during a move usually means positions are being closed instead.</p></div>
+    </div>
+</section>
+
+<section class="mk-section" id="bitcoin-at-a-glance">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Reference</span>
+        <h2>Bitcoin at a glance</h2>
+        <p>Fixed protocol and market-structure facts, not live data. Reviewed October 2026.</p>
+    </div>
+    <div class="mk-table-wrap">
+        <table class="mk-table">
+            <thead><tr><th scope="col">Item</th><th scope="col">Detail</th></tr></thead>
+            <tbody>
+                <tr><th scope="row">Binance pair</th><td>BTC / USDT (perpetual contract: BTCUSDT)</td></tr>
+                <tr><th scope="row">Launched</th><td>January 2009 (genesis block)</td></tr>
+                <tr><th scope="row">Maximum supply</th><td>21 million BTC, enforced by the protocol</td></tr>
+                <tr><th scope="row">Block time</th><td>About 10 minutes per block; mining difficulty adjusts every 2,016 blocks (roughly two weeks)</td></tr>
+                <tr><th scope="row">Miner reward</th><td>3.125 BTC per block since the April 2024 halving; halves again roughly every four years (next expected around 2028)</td></tr>
+                <tr><th scope="row">Consensus</th><td>Proof of work (SHA-256 mining)</td></tr>
+                <tr><th scope="row">Smallest unit</th><td>1 satoshi = 0.00000001 BTC</td></tr>
+                <tr><th scope="row">Second layer</th><td>The Lightning Network handles small, fast payments on top of the base chain</td></tr>
+                <tr><th scope="row">US spot ETFs</th><td>Began trading in January 2024</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="mk-section" id="what-moves-btc">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Context</span>
+        <h2>What actually moves the Bitcoin price</h2>
+        <p>BTC trades around the clock across global spot and futures venues, so a move rarely has a single cause. These are the four drivers traders weigh most often.</p>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-3">
+            <h3>The halving cycle</h3>
+            <p>Roughly every 210,000 blocks (about four years) the reward paid to miners is cut in half. The April 2024 halving reduced it from 6.25 to 3.125 BTC per block. Many traders track the cycle because new supply slows while demand does not, but there have only been four halvings, and the event is widely anticipated, so treat it as background rather than a timer.</p>
+        </div>
+        <div class="mk-card mk-span-3">
+            <h3>Spot ETF flows</h3>
+            <p>US-listed spot Bitcoin ETFs began trading in January 2024. Their daily creations and redemptions show whether fund buyers are adding or removing BTC. Sustained net inflows can absorb supply and heavy outflows can add selling pressure, but issuers publish the figures after the fact, so flows describe what already happened.</p>
+        </div>
+        <div class="mk-card mk-span-3">
+            <h3>Futures positioning</h3>
+            <p>Most Bitcoin volume is in derivatives. When the <a href="glossary.html#funding-rate" class="text-[#4fd8e8] hover:underline">funding rate</a> is strongly positive, longs are paying shorts and the market is crowded one way. A modest dip can then trigger a <a href="glossary.html#liquidation-cascade" class="text-[#4fd8e8] hover:underline">liquidation cascade</a> that pushes price much further than the news justifies.</p>
+        </div>
+        <div class="mk-card mk-span-3">
+            <h3>Macro and liquidity</h3>
+            <p>Bitcoin often trades as a liquidity-sensitive asset, reacting to interest-rate expectations, the US dollar and appetite for risk in equities. That link changes over time and can break during crypto-specific events, so use it as one input among several.</p>
+        </div>
+    </div>
+    <div class="mk-callout mk-callout-key-idea" role="note"><strong>Key idea:</strong> Before blaming news for a sudden BTC move, check the funding rate and <a href="glossary.html#open-interest" class="text-[#4fd8e8] hover:underline">open interest</a>. A fast move with no headline is often leveraged positions being closed, not new information.</div>
+</section>
+
+<section class="mk-section" id="bitcoin-history">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">History</span>
+        <h2>Key moments in Bitcoin’s history</h2>
+        <p>A short reference timeline of protocol and market milestones. These are fixed historical events, not predictions.</p>
+    </div>
+    <ol class="mk-timeline">
+        <li><strong>January 2009</strong>The genesis block is mined and the Bitcoin network starts.</li>
+        <li><strong>May 2010</strong>The first widely cited real-world purchase: 10,000 BTC for two pizzas.</li>
+        <li><strong>November 2012, July 2016, May 2020</strong>The first three halvings cut the block reward to 25, 12.5 and 6.25 BTC.</li>
+        <li><strong>November 2021</strong>The Taproot upgrade activates, improving privacy and flexibility of transactions.</li>
+        <li><strong>January 2024</strong>US spot Bitcoin ETFs begin trading.</li>
+        <li><strong>April 2024</strong>The fourth halving reduces the block reward to 3.125 BTC.</li>
+    </ol>
+</section>
+
+<article class="mk-article" id="trade-btc">
+    <h2>Trading Bitcoin without guessing the risk</h2>
+    <p>Bitcoin is the least volatile of the major coins, but leverage changes that quickly. As an illustration only: a long opened at $60,000 with 10x isolated leverage is liquidated roughly 9.6% lower, near $54,200, once a small maintenance margin is included. At 25x the same trade is liquidated after a drop of only about 3.6%, near $57,800. Those are worked examples, not forecasts or current prices, and the exact figure depends on the exchange’s maintenance-margin tier.</p>
+    <p>Before sizing a BTC trade, run the numbers: the <a href="position-size-calculator.html" class="text-[#4fd8e8] hover:underline">position size calculator</a> turns your risk and stop-loss into a size, and the <a href="liquidation-price-calculator.html" class="text-[#4fd8e8] hover:underline">liquidation price calculator</a> shows where an exchange would close you out. If you want to rehearse a plan first, <a href="crypto-paper-trading.html" class="text-[#4fd8e8] hover:underline">paper trading</a> uses the same live BTC prices with simulated money.</p>
+    <p>CryptoBolt is built for learning and research: the <a href="app.html" class="text-[#4fd8e8] hover:underline">terminal</a> shows live charts and the order book, <a href="ai.html" class="text-[#4fd8e8] hover:underline">AI research</a> explains its sources, and nothing here is a prediction or a trade signal. See <a href="spot-vs-futures.html" class="text-[#4fd8e8] hover:underline">spot vs perpetual futures</a> for how the two ways of holding Bitcoin differ.</p>
+</article>
+
+<section class="mk-section" id="bitcoin-faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Bitcoin questions traders ask</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>Where does the live Bitcoin price on this page come from?</h3>
+            <p>It comes from Binance’s public market-data endpoints, requested directly by your browser and refreshed every ten seconds. The price shown is the BTC/USDT spot price, so it can differ slightly from other exchanges or from a US-dollar quote.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Why is Bitcoin quoted in USDT instead of USD?</h3>
+            <p>Most of the deepest Bitcoin liquidity on Binance is against USDT, a <a href="glossary.html#stablecoin" class="text-[#4fd8e8] hover:underline">stablecoin</a> designed to hold one US dollar. The BTC/USDT price is therefore a close stand-in for the dollar price, with small differences when USDT trades slightly above or below its peg.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How often does the Bitcoin halving happen, and when is the next one?</h3>
+            <p>The block reward halves every 210,000 blocks, which works out to about every four years. The last one was in April 2024, cutting the reward to 3.125 BTC. The next is expected around 2028, depending on actual block times.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Why does Bitcoin move on weekends when stock markets are closed?</h3>
+            <p>Bitcoin trades 24 hours a day, seven days a week. Weekend liquidity is often thinner, so a single large order or a wave of liquidations can move price more than the same order would on a weekday.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What does Bitcoin dominance mean?</h3>
+            <p><a href="glossary.html#bitcoin-dominance" class="text-[#4fd8e8] hover:underline">Bitcoin dominance</a> is BTC’s share of the total crypto market capitalisation. Rising dominance often means money is concentrating in Bitcoin; falling dominance often accompanies altcoin rallies. It is a ratio, so it can rise while BTC itself falls if altcoins fall faster.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does CryptoBolt predict where BTC is headed?</h3>
+            <p>No. CryptoBolt shows live BTC data, trend context and AI-assisted analysis grounded in current conditions. It does not make price predictions or promise outcomes, and any AI read should be treated as research context, not a trade signal.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" id="related-markets">
+    <div class="mk-section-head"><span class="mk-eyebrow">Related pages</span><h2>Follow BTC through the rest of your workflow.</h2></div>
+    <div class="mk-bento">
+        <a href="ethereum.html" class="mk-card mk-span-2"><h3>Ethereum price</h3><p>ETH against BTC, with staking, fee burn and layer-2 context.</p></a>
+        <a href="solana.html" class="mk-card mk-span-2"><h3>Solana price</h3><p>SOL price with network activity and DEX context.</p></a>
+        <a href="round-number-levels.html" class="mk-card mk-span-2"><h3>Round-number price levels</h3><p>Why BTC often stalls or reverses near whole-number prices.</p></a>
+        <a href="funding-rate-explained.html" class="mk-card mk-span-2"><h3>Funding rates explained</h3><p>Read perpetual futures positioning before you trade BTC.</p></a>
+        <a href="fear-and-greed-index.html" class="mk-card mk-span-2"><h3>Crypto Fear &amp; Greed index</h3><p>Use sentiment as context alongside BTC price action.</p></a>
+        <a href="spot-vs-futures.html" class="mk-card mk-span-2"><h3>Spot vs perpetual futures</h3><p>Understand the mechanics behind different BTC trade setups.</p></a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+            <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+            <div class="mk-footer-social">
+                <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+                <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+                <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+            </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="releases.html">Releases</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Markets &amp; tools</p>
+            <a href="bitcoin.html">Bitcoin price</a>
+            <a href="ethereum.html">Ethereum price</a>
+            <a href="solana.html">Solana price</a>
+            <a href="crypto-trading-terminal.html">Crypto trading terminal</a>
+            <a href="crypto-paper-trading.html">Crypto paper trading</a>
+            <a href="ai-crypto-research.html">AI crypto research</a>
+            <a href="liquidation-price-calculator.html">Liquidation calculator</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
+            <a href="round-number-levels.html">Round-number levels</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+</body>
+</html>

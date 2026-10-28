@@ -11,9 +11,9 @@ This map assigns one primary search intent to each indexable page. Supporting te
 | `/ai.html` | AI crypto research | market analysis, sentiment, funding rates, volatility | AI guide, methodology article, BTC, ETH |
 | `/ai-crypto-research.html` | AI crypto research guide | Bitcoin analysis, altcoin research, AI market analysis | AI app, methodology article, BTC, ETH |
 | `/ai-research-grounded-data.html` | grounded AI crypto research | live news, Fear & Greed, funding, ATR | AI app, terminal, blog |
-| `/bitcoin-live-price.html` | Bitcoin live price | BTC price today, BTC chart, market data | terminal, ETH, Fear & Greed, spot vs futures |
-| `/ethereum-live-price.html` | Ethereum live price | ETH price today, ETH chart, market data | terminal, BTC, AI research |
-| `/solana-live-price.html` | Solana live price | SOL price today, SOL chart, market data | terminal, BTC, ETH, AI research |
+| `/bitcoin.html` | Bitcoin price today | BTC price today, BTC price, BTC/USDT live, bitcoin funding rate | terminal, ETH, Fear & Greed, spot vs futures |
+| `/ethereum.html` | Ethereum price today | ETH price today, ETH price, ETH/BTC ratio, ethereum staking | terminal, BTC, AI research |
+| `/solana.html` | Solana price today | SOL price today, SOL price, SOL/BTC, solana staking | terminal, BTC, ETH, AI research |
 | `/blog.html` | crypto trading blog | market sentiment, funding, spot vs futures, AI research | all three articles, terminal, AI research |
 | `/fear-and-greed-index.html` | crypto Fear and Greed index | sentiment indicator, market context, trading psychology | terminal, BTC, blog, AI research |
 | `/spot-vs-futures.html` | spot vs futures crypto | perpetual futures, leverage, liquidation, funding rate | terminal, paper trading, features, blog |
@@ -39,7 +39,7 @@ This map assigns one primary search intent to each indexable page. Supporting te
 
 ## Content gaps for future pages
 
-The current site has no dedicated search landing page for crypto trading fees, price alerts, or portfolio tracking. (Crypto funding rate is covered by `/funding-rate-explained.html`; Solana live price is covered by `/solana-live-price.html`; liquidation-price calculation is now covered by `/liquidation-price-calculator.html`.) Create those only when each page can provide genuinely distinct data and copy; otherwise keep them as sections on the existing pillar pages.
+The current site has no dedicated search landing page for crypto trading fees, price alerts, or portfolio tracking. (Crypto funding rate is covered by `/funding-rate-explained.html`; Solana price is covered by `/solana.html`; liquidation-price calculation is now covered by `/liquidation-price-calculator.html`.) Create those only when each page can provide genuinely distinct data and copy; otherwise keep them as sections on the existing pillar pages.
 
 | `/liquidation-price-calculator.html` | liquidation price calculator | isolated vs cross margin, leverage, maintenance margin rate | funding rate explained, spot vs futures, terminal |
 | `/crypto-calculators.html` | crypto trading calculators | liquidation, position size, PnL, funding fee | each calculator, paper trading, terminal |

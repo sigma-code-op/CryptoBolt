@@ -866,3 +866,37 @@ main:focus { outline: none; }
     #home-faq .mk-card.mk-span-2:nth-child(n+4) { grid-column: span 2; }
 }
 .mk-hero h1, .mk-section-head h2 { text-wrap: balance; }
+
+/* ---- Dedicated coin pages (bitcoin.html / ethereum.html / solana.html) ---- */
+.mk-coin-live { max-width: 980px; margin: 36px auto 0; text-align: left; }
+.mk-coin-live .mk-panel { margin: 0; }
+.mk-coin-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; border-bottom: 1px solid var(--mk-line); }
+.mk-coin-price-block { padding: 22px 22px 18px; }
+.mk-coin-pair { font-size: 12px; color: var(--mk-text-dim); font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace; margin-bottom: 6px; }
+.mk-coin-price { font-size: clamp(32px, 5vw, 46px); font-weight: 700; line-height: 1.05; font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace; letter-spacing: -0.02em; }
+.mk-coin-change { font-size: 15px; font-weight: 600; margin-top: 8px; font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace; }
+.mk-coin-spark-block { padding: 14px 22px 14px 8px; display: flex; align-items: center; }
+.mk-coin-spark { width: 100%; height: 86px; display: block; }
+.mk-spark-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.mk-spark-area { stroke: none; opacity: .12; }
+.mk-spark-line.mk-spark-up { stroke: var(--mk-green); }
+.mk-spark-line.mk-spark-down { stroke: var(--mk-red); }
+.mk-spark-area.mk-spark-up { fill: var(--mk-green); }
+.mk-spark-area.mk-spark-down { fill: var(--mk-red); }
+.mk-coin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.mk-coin-stat { padding: 16px 20px; border-right: 1px solid var(--mk-line); border-bottom: 1px solid var(--mk-line); }
+.mk-coin-stat:last-child { border-right: none; }
+.mk-coin-stat-label { font-size: 12px; color: var(--mk-text-dim); margin-bottom: 4px; }
+.mk-coin-stat-val { font-size: 16px; font-weight: 700; font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace; }
+.mk-coin-stat-sub { font-size: 11.5px; color: var(--mk-text-dim); margin-top: 3px; }
+.mk-coin-live.is-error #live-updated { color: var(--mk-amber); }
+.mk-coin-note { font-size: 12.5px; color: var(--mk-text-dim); padding: 12px 20px; line-height: 1.55; }
+.mk-timeline { list-style: none; margin: 0 0 18px; padding: 0; border-left: 2px solid var(--mk-line-hi); }
+.mk-timeline li { position: relative; padding: 0 0 18px 22px; margin: 0; }
+.mk-timeline li::before { content: ""; position: absolute; left: -6px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--mk-green); box-shadow: 0 0 0 3px rgba(20, 211, 138, 0.18); }
+.mk-timeline strong { color: var(--mk-text); display: block; font-size: 14px; letter-spacing: .02em; }
+@media (max-width: 700px) {
+    .mk-coin-main { grid-template-columns: 1fr; }
+    .mk-coin-spark-block { padding: 0 18px 16px; }
+    .mk-coin-stat:nth-child(2n) { border-right: none; }
+}

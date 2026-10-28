@@ -14,7 +14,7 @@ related: ai-research-grounded-data, fear-and-greed-index, funding-rate-explained
 ---
 Search for "bitcoin price prediction" and you'll find a wall of confident targets: a number, a date, and a chart with a line pointing somewhere dramatic. CryptoBolt doesn't publish any of them. That's deliberate, and the reasoning is worth spelling out, because it also tells you how to use the tools that do live here, including the AI research panel.
 
-If you landed here looking for a forecast, the honest short answer is that nobody can give you a reliable one. What we can show you is what's happening right now: the live [Bitcoin](bitcoin-live-price.html), [Ethereum](ethereum-live-price.html), and [Solana](solana-live-price.html) pages carry current data and context, not predictions.
+If you landed here looking for a forecast, the honest short answer is that nobody can give you a reliable one. What we can show you is what's happening right now: the live [Bitcoin](bitcoin.html), [Ethereum](ethereum.html), and [Solana](solana.html) pages carry current data and context, not predictions.
 
 ## Why price is so hard to forecast
 
