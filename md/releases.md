@@ -1,0 +1,255 @@
+# Releases | CryptoBolt Changelog
+
+> What's new in CryptoBolt — a running log of shipped features across the terminal, paper trading, AI research, and the market pages.
+
+Source: https://cryptobolt.io/releases.html
+
+v1.17.0
+
+October 28, 2026
+
+## Dedicated Bitcoin, Ethereum and Solana pages with live data.
+
+What's new
+
+- New [Bitcoin](https://cryptobolt.io/bitcoin.html), [Ethereum](https://cryptobolt.io/ethereum.html) and [Solana](https://cryptobolt.io/solana.html) pages. Each shows the live price, 24-hour change, high, low and volume, a 24-hour chart, the perpetual funding rate and open interest, and (for ETH and SOL) the cross rate against BTC.
+- Each page explains what moves that coin, with a reference table, a short history timeline and an FAQ.
+
+Fixes
+
+- The old “live price” pages for these three coins were removed and replaced by the pages above, so each coin now has one page at one address.
+
+Data sources
+
+- Added: Binance public market-data endpoints (spot 24-hour ticker, hourly candles, futures funding rate and open interest) read directly by your browser. Nothing is stored.
+
+v1.16.0
+
+October 27, 2026
+
+## The AI chat can now research coins on the web.
+
+What's new
+
+- New **Web research** switch above the chat box on the [AI page](https://cryptobolt.io/ai.html). When it is on, the AI can search the web for the coin you ask about (news, announcements, upgrades, listings) before it answers, instead of relying only on the market snapshot and the latest headlines.
+- The AI names the sites its claims come from, separates what it found from its own interpretation, and says so when it cannot find something or when sources disagree.
+- Under every answer, “What this answer was based on” now lists the searches the AI ran and the pages it found, with links, so you can check them yourself.
+- The switch is on by default and your choice is remembered in your browser. Turn it off for faster answers that use only the live market data.
+- If the search service is unavailable, the AI still answers from the market data and tells you that web research was skipped.
+
+Data sources
+
+- Added: live web search for AI chat answers, only while Web research is on. Web pages can be wrong, biased or out of date, so check important claims at the source. Live prices and indicators still come from Binance, and the AI is told to prefer them over any price found on a web page.
+- The AI Market Insight panel on the terminal does not use web research.
+
+v1.15.0
+
+October 26, 2026
+
+## Three new free trading calculators and a calculators hub.
+
+What's new
+
+- New [position size calculator](https://cryptobolt.io/position-size-calculator.html): enter your balance, risk percentage, entry and stop-loss to get the position size, margin needed and 1R/2R/3R target prices. It warns when your stop sits beyond the rough liquidation distance at your chosen leverage.
+- New [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator.html): net profit or loss, return on equity and round-trip fees for a leveraged long or short.
+- New [funding fee calculator](https://cryptobolt.io/funding-fee-calculator.html): what a perpetual futures position pays or earns in funding per payment, per day, per 30 days and annualised.
+- New [crypto calculators](https://cryptobolt.io/crypto-calculators.html) page that gathers these tools and the liquidation price calculator in one place, linked from the footer on every page.
+- The liquidation calculator page and the spot-vs-futures and funding-rate articles now link to the matching calculators.
+
+Data sources
+
+- No data sources changed in this release. The new calculators run in your browser on the numbers you type and do not fetch market data.
+
+v1.14.0
+
+October 4, 2026
+
+## A crypto glossary, richer articles, and accessibility improvements.
+
+What's new
+
+- New [crypto trading glossary](https://cryptobolt.io/glossary.html) with 63 plain-English definitions, a live filter, an A–Z index, and links to the articles that go deeper.
+- All nine blog articles now include worked examples, links to glossary definitions, and links to related articles. Eight have new diagrams, and two have comparison tables.
+- Each article now has its own social preview image, so shared links show the article's headline.
+- Pages now have a “Skip to main content” link and a main-content landmark for keyboard and screen reader users.
+
+Fixes
+
+- Fixed invalid structured data on the “$1000 in a day” article, where quotation marks in the headline broke the page's JSON-LD.
+- Every form field on the terminal, paper trading, account, AI and invest pages now has an accessible name, and the paper-trading AI panel's close button is labelled.
+- The contact form now explains exactly what is missing or invalid, moves focus to the field to fix, and announces errors to screen readers right away.
+- Sign-in and sign-up errors are now announced by screen readers.
+- Shortened a few page titles and descriptions that search engines were likely to cut off, and added missing Twitter/X card descriptions to the privacy and terms pages.
+- Corrected the annualized figures in the funding-rate article: a 0.01% rate paid three times a day adds up to roughly 11% a year, not the 3–6% previously stated.
+
+Data sources
+
+- No data sources changed in this release. A reference list of where each number comes from is now at the bottom of this page.
+
+v1.13.0
+
+September 30, 2026
+
+## The AI chat can now review and adjust your paper trades.
+
+What's new
+
+- Ask the AI on the AI page to review your practice account. It sees your open futures positions, spot holdings, pending orders and recent results, with live prices, and can flag risks such as high leverage, a close liquidation price or a missing stop-loss.
+- The AI can propose changes: set or clear take-profit and stop-loss, cancel a pending order, or close a futures position. Each proposal appears as a card, and nothing changes until you press Confirm.
+- A “Let AI see my paper trades” toggle above the chat box controls whether your practice account is shared. Changes you confirm also appear on an open Trading Account tab.
+- The AI cannot open trades, deposit funds or reset the account. This applies to the practice account only, with virtual money.
+
+v1.12.0
+
+September 29, 2026
+
+## Paper trading futures now use per-coin leverage limits.
+
+What's new
+
+- Maximum leverage on the paper trading futures ticket now depends on the coin, like on real exchanges: up to 200x on BTC, 100x on ETH, lower on other majors and mid-caps, and 10x on smaller coins.
+- The leverage slider and preset buttons adjust to the selected coin, with a “Max” label beside them. Switching to a coin with a lower limit lowers your leverage automatically.
+- Added 100x and 200x leverage presets. Limits are a practice-account approximation and may differ from live exchange limits.
+
+v1.11.0
+
+September 28, 2026
+
+## Paper trading tracks profit factor and max drawdown.
+
+What's new
+
+- Funding fees are now factored into paper trading's P&L and effective liquidation price for futures positions.
+- Added profit factor and max drawdown to the trading performance stats on the paper trading page.
+
+v1.10.0
+
+September 26, 2026
+
+## Liquidation price calculator.
+
+What's new
+
+- New calculator page for estimating liquidation prices on leveraged crypto futures positions.
+- Added liquidation-price and margin-type FAQs to the AI research, trading terminal, and invest pages.
+
+v1.9.0
+
+September 19, 2026
+
+## Solana joins the live price pages.
+
+What's new
+
+- Added a dedicated Solana (SOL) live price page with real-time market data and AI research.
+- Linked the new page from navigation across the Bitcoin and Ethereum live price pages.
+
+v1.8.0
+
+September 15, 2026
+
+## Price alerts can explain themselves.
+
+What's new
+
+- When a price alert triggers, CryptoBolt can now generate a one-sentence AI explanation of why it fired, grounded in the live market data at that moment.
+
+v1.7.0
+
+September 11, 2026
+
+## The CryptoBolt blog launches.
+
+What's new
+
+- Added a blog section with the first posts: how the AI research stays grounded in real data, reading the Fear & Greed index without overreacting, and what actually changes between spot and perpetual futures.
+
+v1.6.0
+
+September 10, 2026
+
+## A visual refresh across the site.
+
+What's new
+
+- Restyled the marketing and app pages with a cleaner, more consistent look and feel.
+
+v1.5.0
+
+September 8, 2026
+
+## Referrals, shareable AI reads, and new market pages.
+
+What's new
+
+- Added a referral program — invite links with bonus tracking on signup.
+- The AI research page got quick chips for popular assets and a way to share a generated analysis.
+- New dedicated pages for Bitcoin live price, Ethereum live price, the crypto trading terminal, paper trading, and AI crypto research.
+
+v1.4.0
+
+August 29, 2026
+
+## AI insight and chat panels overhauled.
+
+What's new
+
+- Reworked how the AI insight and chat panels are generated, with deeper backend support for grounding responses in live market data.
+
+v1.3.0
+
+August 27, 2026
+
+## Paper trading adds futures.
+
+What's new
+
+- The paper trading simulator now supports leveraged futures positions alongside spot, with updated P&L and position tracking on the trade page.
+
+v1.2.0
+
+August 25, 2026
+
+## Invest page separated from paper trading.
+
+What's new
+
+- Added a dedicated Invest page for real-money purchases, kept intentionally separate from the risk-free paper trading account so the two are never mixed up.
+
+v1.1.0
+
+August 21, 2026
+
+## Switched fiat on-ramp provider.
+
+What's new
+
+- Real-money crypto purchases now route through AlchemyPay instead of the previous provider.
+
+v1.0.0
+
+August 11, 2026
+
+## CryptoBolt launches.
+
+What's new
+
+- First public release: live Binance spot & futures data, charting, and an AI-backed market read, free with no paywall.
+
+Reference
+
+## Where CryptoBolt's data comes from.
+
+Current sources
+
+- **Binance** (spot and futures): live prices, charts, order book depth, funding rates and open interest.
+- **CoinGecko**: market-wide figures such as market capitalization and Bitcoin dominance.
+- **Alternative.me**: the Fear & Greed index.
+- **Live web search** (AI chat only, when Web research is on): pages the AI finds and reads while researching a coin. The searches and pages are listed under each answer.
+
+How changes are logged
+
+- Whenever a source is added, replaced, or a calculation that uses it changes in a way you could notice, the change is listed under “Data sources” in that release.
+
+---
+CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

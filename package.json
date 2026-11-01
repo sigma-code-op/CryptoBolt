@@ -15,6 +15,7 @@
     "build:glossary": "node scripts/build-glossary.js",
     "build:og": "python3 scripts/generate-og-images.py",
     "build:og-cards": "python3 scripts/generate-og-cards.py",
+    "build:markdown": "python3 scripts/build-markdown.py",
     "check:seo": "node scripts/check-seo.js"
   },
   "engines": {

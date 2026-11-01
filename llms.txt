@@ -125,3 +125,9 @@ CryptoBolt should not be represented as a broker, exchange, custodian, investmen
 ## Canonical Domain
 
 https://cryptobolt.io/
+
+## For AI Agents
+
+- [MCP Server Card](https://cryptobolt.io/.well-known/mcp/server-card.json) — Read-only MCP server (liquidation price, position size, profit and loss, funding fee calculators).
+- [Markdown version of any page](https://cryptobolt.io/md/index.md) — Request any page with the header "Accept: text/markdown", or fetch /md/<page>.md directly.
+- [Contact](mailto:info@cryptobolt.io) — info@cryptobolt.io

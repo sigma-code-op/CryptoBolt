@@ -1,0 +1,199 @@
+{
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "cryptobolt-calculators",
+    "title": "CryptoBolt Trading Calculators",
+    "version": "1.0.0"
+  },
+  "description": "Read-only crypto futures calculators from CryptoBolt: liquidation price, position size, profit and loss, and funding fees. Estimates only, not financial advice.",
+  "iconUrl": "https://cryptobolt.io/assets/android-chrome-512.png",
+  "documentationUrl": "https://cryptobolt.io/crypto-calculators.html",
+  "websiteUrl": "https://cryptobolt.io/",
+  "provider": {
+    "name": "CryptoBolt",
+    "url": "https://cryptobolt.io/",
+    "contact": "info@cryptobolt.io"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://api.cryptobolt.io/mcp"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.cryptobolt.io/mcp"
+    }
+  ],
+  "authentication": {
+    "required": false,
+    "schemes": []
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "calculate_liquidation_price",
+      "title": "Liquidation price",
+      "description": "Estimate the liquidation price of an isolated-margin leveraged futures position (simplified model).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "side": {
+            "type": "string",
+            "enum": [
+              "long",
+              "short"
+            ],
+            "description": "Position direction."
+          },
+          "entry_price": {
+            "type": "number",
+            "description": "Entry price in USD."
+          },
+          "leverage": {
+            "type": "number",
+            "description": "Leverage multiple, 1 or higher."
+          },
+          "maintenance_margin_pct": {
+            "type": "number",
+            "description": "Maintenance margin rate in percent. Default 0.5."
+          }
+        },
+        "required": [
+          "side",
+          "entry_price",
+          "leverage"
+        ]
+      }
+    },
+    {
+      "name": "calculate_position_size",
+      "title": "Position size",
+      "description": "Position size, notional, margin and 1R/2R/3R targets from balance, risk %, entry and stop-loss.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "side": {
+            "type": "string",
+            "enum": [
+              "long",
+              "short"
+            ],
+            "description": "Position direction."
+          },
+          "balance": {
+            "type": "number",
+            "description": "Account balance in USD."
+          },
+          "risk_pct": {
+            "type": "number",
+            "description": "Percent of balance to risk, e.g. 1."
+          },
+          "entry_price": {
+            "type": "number"
+          },
+          "stop_price": {
+            "type": "number"
+          },
+          "leverage": {
+            "type": "number",
+            "description": "Default 1."
+          }
+        },
+        "required": [
+          "side",
+          "balance",
+          "risk_pct",
+          "entry_price",
+          "stop_price"
+        ]
+      }
+    },
+    {
+      "name": "calculate_futures_pnl",
+      "title": "Futures profit and loss",
+      "description": "Net profit/loss, ROE and fees for a leveraged futures trade.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "side": {
+            "type": "string",
+            "enum": [
+              "long",
+              "short"
+            ],
+            "description": "Position direction."
+          },
+          "entry_price": {
+            "type": "number"
+          },
+          "exit_price": {
+            "type": "number"
+          },
+          "margin": {
+            "type": "number",
+            "description": "Margin in USD."
+          },
+          "leverage": {
+            "type": "number"
+          },
+          "fee_pct": {
+            "type": "number",
+            "description": "Taker fee per side in percent. Default 0.05."
+          }
+        },
+        "required": [
+          "side",
+          "entry_price",
+          "exit_price",
+          "margin",
+          "leverage"
+        ]
+      }
+    },
+    {
+      "name": "estimate_funding_fee",
+      "title": "Funding fee",
+      "description": "What a perpetual futures position pays or receives in funding over a holding period.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "side": {
+            "type": "string",
+            "enum": [
+              "long",
+              "short"
+            ],
+            "description": "Position direction."
+          },
+          "notional": {
+            "type": "number",
+            "description": "Position value in USD."
+          },
+          "funding_rate_pct": {
+            "type": "number",
+            "description": "Funding rate per interval in percent, e.g. 0.01."
+          },
+          "interval_hours": {
+            "type": "number",
+            "description": "Hours between funding payments. Default 8."
+          },
+          "days": {
+            "type": "number",
+            "description": "Holding period in days."
+          }
+        },
+        "required": [
+          "side",
+          "notional",
+          "funding_rate_pct",
+          "days"
+        ]
+      }
+    }
+  ]
+}

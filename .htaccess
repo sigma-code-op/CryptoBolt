@@ -18,3 +18,28 @@ ErrorDocument 404 /404.html
   Redirect 301 /ethereum-live-price.html https://cryptobolt.io/ethereum.html
   Redirect 301 /solana-live-price.html https://cryptobolt.io/solana.html
 </IfModule>
+
+
+# ---------------------------------------------------------------------------
+# Markdown for AI agents. A request for a page with "Accept: text/markdown"
+# gets the pre-built Markdown twin from /md/ (scripts/build-markdown.py);
+# everyone else still gets HTML. Vary tells caches the response depends on Accept.
+# ---------------------------------------------------------------------------
+AddType text/markdown .md
+AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteRule ^$ /md/index.md [L]
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteCond %{DOCUMENT_ROOT}/md/$1.md -f
+  RewriteRule ^([A-Za-z0-9-]+)\.html$ /md/$1.md [L]
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|md)$">
+    Header merge Vary Accept
+  </FilesMatch>
+  <FilesMatch "^$">
+    Header merge Vary Accept
+  </FilesMatch>
+</IfModule>

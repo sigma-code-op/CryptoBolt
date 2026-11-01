@@ -12,6 +12,7 @@ import aiRouter from './routes/ai.js';
 import pushRouter from './routes/push.js';
 import telegramRouter from './routes/telegram.js';
 import clientErrorRouter from './routes/client-error.js';
+import mcpRouter from './routes/mcp.js';
 
 // =========================================================
 // APP
@@ -98,6 +99,7 @@ app.use(aiRouter);
 app.use(pushRouter);
 app.use(telegramRouter);
 app.use(clientErrorRouter);
+app.use(mcpRouter);
 
 // =========================================================
 // ERROR HANDLER
