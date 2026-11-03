@@ -37,6 +37,26 @@
         window.addEventListener(ev, loadAds, { once: true, passive: true });
     });
     function afterLoad() { if (!idleOnly) setTimeout(loadAds, 3500); }
+
+    // Terminal pages also load gtag.js late (first interaction, or 6s after load). consent-default.js
+    // already queued the consent + config calls on dataLayer, so nothing is lost; the ~150KB tag just
+    // no longer competes with the terminal's own scripts during startup.
+    var gtagLoaded = false;
+    function loadGtag() {
+        if (gtagLoaded || !idleOnly) return;
+        gtagLoaded = true;
+        if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
+        var g = document.createElement('script');
+        g.async = true;
+        g.src = 'https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV';
+        document.head.appendChild(g);
+    }
+    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
+        window.addEventListener(ev, loadGtag, { once: true, passive: true });
+    });
+    function gtagAfterLoad() { setTimeout(loadGtag, 6000); }
+    if (document.readyState === 'complete') gtagAfterLoad();
+    else window.addEventListener('load', gtagAfterLoad);
     if (document.readyState === 'complete') afterLoad();
     else window.addEventListener('load', afterLoad);
 })();

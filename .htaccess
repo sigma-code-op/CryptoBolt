@@ -43,3 +43,20 @@ AddDefaultCharset UTF-8
     Header merge Vary Accept
   </FilesMatch>
 </IfModule>
+
+# ---------------------------------------------------------------------------
+# Speed (Apache hosts only; GitHub Pages ignores this file and already gzips):
+# compress text assets and let browsers cache static files.
+# ---------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/markdown application/javascript text/javascript application/json application/manifest+json image/svg+xml
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
