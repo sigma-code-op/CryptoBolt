@@ -16,7 +16,7 @@
     var me = document.currentScript;
     var lazyGtag = !!(me && (me.hasAttribute('data-gtag-lazy') || me.hasAttribute('data-ads-idle')));
 
-    // Google Analytics (gtag.js, ~150KB) loads on the first interaction or 6s after load. consent-default.js
+    // Google Analytics (gtag.js, ~150KB) loads on the first interaction or 6s after load (10s on terminal pages). consent-default.js
     // has already queued the consent + config calls on dataLayer, so no event is lost; the tag just no
     // longer competes with the page's own scripts during startup.
     var gtagLoaded = false;
@@ -33,7 +33,7 @@
         ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
             window.addEventListener(ev, loadGtag, { once: true, passive: true });
         });
-        var gtagAfterLoad = function () { setTimeout(loadGtag, 6000); };
+        var gtagAfterLoad = function () { setTimeout(loadGtag, me.hasAttribute('data-ads-idle') ? 10000 : 6000); };
         if (document.readyState === 'complete') gtagAfterLoad();
         else window.addEventListener('load', gtagAfterLoad);
     }
