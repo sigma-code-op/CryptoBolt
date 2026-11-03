@@ -98,10 +98,25 @@
                 selectAsset(defaultAsset);
             }
 
-            // Whole-market WebSocket feeds push ~1MB/s of JSON; open them once the page has
-            // settled so parsing never lands inside the load / interactivity window.
-            const startFeeds = () => setTimeout(connectGlobalPriceTickerStreams, 1500);
-            if (document.readyState === 'complete') startFeeds(); else window.addEventListener('load', startFeeds, { once: true });
+            // Whole-market WebSocket feeds push ~1MB/s of JSON (a long task every second on a phone).
+            // The table is already filled from the REST snapshot above, so the live feeds open on the
+            // visitor's first interaction, or 8s after load if they only watch. Starting them at a
+            // fixed point right after load made page-speed scores swing wildly between runs.
+            let feedsStarted = false;
+            const feedEvents = ['pointerdown', 'pointermove', 'keydown', 'touchstart', 'scroll', 'wheel'];
+            const startFeeds = () => {
+                if (feedsStarted) return;
+                feedsStarted = true;
+                feedEvents.forEach(e => window.removeEventListener(e, onFeedIntent));
+                connectGlobalPriceTickerStreams();
+            };
+            const onFeedIntent = () => {
+                if ('requestIdleCallback' in window) requestIdleCallback(startFeeds, { timeout: 1500 });
+                else setTimeout(startFeeds, 300);
+            };
+            feedEvents.forEach(e => window.addEventListener(e, onFeedIntent, { passive: true }));
+            const feedFallback = () => setTimeout(startFeeds, 8000);
+            if (document.readyState === 'complete') feedFallback(); else window.addEventListener('load', feedFallback, { once: true });
 
         } catch (error) {
             console.error("Initialization pipeline failed, retrying in 5s...", error);
