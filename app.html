@@ -132,8 +132,6 @@
     <link rel="preconnect" href="https://stream.binance.com">
     <link rel="preconnect" href="https://api.binance.com" crossorigin>
     <link rel="preconnect" href="https://fapi.binance.com" crossorigin>
-    <link rel="preload" as="fetch" href="https://api.binance.com/api/v3/ticker/24hr" crossorigin="anonymous">
-    <link rel="preload" as="fetch" href="https://fapi.binance.com/fapi/v1/ticker/24hr" crossorigin="anonymous">
     
     <!-- TradingView Lightweight Charts -->
     <script defer src="js/vendor/lightweight-charts-4.2.1.min.js"></script>
@@ -141,7 +139,7 @@
          redesign.css, concatenated in the same cascade order by scripts/build-css.js — was
          7 render-blocking requests, now 1. Edit the source files in css/*.css, not this file;
          regenerate with `npm run build:css-bundle`. -->
-    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261016">
+    <link rel="stylesheet" href="css/dist/bundle-home.css?v=20261103">
 </head>
 <body class="cb-has-rail bg-[var(--cw-bg)] text-[var(--cw-text)] min-h-screen font-sans antialiased">
 <a class="mk-skip" href="#main">Skip to main content</a>
@@ -1049,7 +1047,7 @@
          chart, portfolio, alerts, auth. bundle-home-lazy.js (AI insight, push alerts,
          referrals, screener, exchange-compare) loads separately, below, once the page is
          idle — see the comment there for why that split is safe. -->
-    <script defer src="js/dist/bundle-home.js?v=20261103"></script>
+    <script defer src="js/dist/bundle-home.js?v=20261103b"></script>
     <script src="js/cookie-consent.js?v=20261018" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/lazy-bundle-loader.js?v=20260916" defer></script>

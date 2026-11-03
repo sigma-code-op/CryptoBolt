@@ -725,7 +725,7 @@ tr.active-row {
 
 .cw-panel-accent::after { opacity: 0.5; }
 
-.cw-reveal {
+.cw-reveal.cw-pending {
     transform: translateY(10px);
     transition-duration: 0.45s !important;
 }
@@ -1117,7 +1117,10 @@ footer {
 .cw-card-interactive:hover::before, .cw-card-interactive:hover::after { opacity: 0.55; }
 
 /* ---------- Scroll-reveal (JS toggles .cw-in-view via IntersectionObserver) ---------- */
-.cw-reveal {
+/* Hidden ONLY once js/20-scroll-reveal.js has marked a below-the-fold card .cw-pending, so
+   above-the-fold content is visible on first paint instead of waiting for the JS bundle
+   (that wait was the main FCP/LCP cost on the terminal pages). */
+.cw-reveal.cw-pending {
     opacity: 0;
     transform: translateY(18px) scale(0.97);
     transition: opacity 0.6s var(--cw-ease), transform 0.6s var(--cw-ease), box-shadow 0.6s var(--cw-ease);

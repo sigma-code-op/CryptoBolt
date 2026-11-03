@@ -26,6 +26,7 @@
         if (el.getBoundingClientRect().top < vh) {
             el.classList.add('cw-reveal-instant', 'cw-in-view');
         } else {
+            el.classList.add('cw-pending');
             toObserve.push(el);
         }
     });
@@ -34,6 +35,7 @@
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                entry.target.classList.remove('cw-pending');
                 entry.target.classList.add('cw-in-view');
                 observer.unobserve(entry.target);
             }
