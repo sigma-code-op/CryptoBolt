@@ -12,11 +12,11 @@
 <!-- Ambient 3D backdrop for this terminal page — see js/terminal-motion.js header
      comment. Fully independent of the trading terminal's own scripts below;
      no-ops silently if the CDN is blocked or WebGL is unavailable. -->
-<script defer src="js/terminal-motion.js?v=20261002"></script>
+<script defer src="js/terminal-motion.js?v=20261103"></script>
     <script src="js/consent-default.js"></script>
     <script src="js/error-reporter.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEK3KJ2TEV"></script>
-    <script defer src="js/deferred-loader.js?v=20261002" data-ads></script>
+    <script defer src="js/deferred-loader.js?v=20261103" data-ads data-ads-idle></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
@@ -130,12 +130,13 @@
     <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://stream.binance.com">
-    <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://api.binance.com">
+    <link rel="preconnect" href="https://api.binance.com" crossorigin>
+    <link rel="preconnect" href="https://fapi.binance.com" crossorigin>
+    <link rel="preload" as="fetch" href="https://api.binance.com/api/v3/ticker/24hr" crossorigin="anonymous">
+    <link rel="preload" as="fetch" href="https://fapi.binance.com/fapi/v1/ticker/24hr" crossorigin="anonymous">
     
     <!-- TradingView Lightweight Charts -->
-    <script defer src="https://unpkg.com/lightweight-charts@4.2.1/dist/lightweight-charts.standalone.production.js"></script>
+    <script defer src="js/vendor/lightweight-charts-4.2.1.min.js"></script>
     <!-- Tailwind v4 + styles.css + shadcn-ui.css + ui-elevate.css + premium.css + home.css +
          redesign.css, concatenated in the same cascade order by scripts/build-css.js — was
          7 render-blocking requests, now 1. Edit the source files in css/*.css, not this file;
@@ -1042,13 +1043,13 @@
     <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 items-end"></div>
 
     <!-- App modules load in order; they share the global scope (no bundler needed). -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="js/vendor/supabase-2.118.0.min.js"></script>
     <!-- Bundled from js/*.js by `npm run build:js` (see scripts/build-js.js). Edit the source
          files, not this bundle — it's a generated build artifact. Core modules only: prices,
          chart, portfolio, alerts, auth. bundle-home-lazy.js (AI insight, push alerts,
          referrals, screener, exchange-compare) loads separately, below, once the page is
          idle — see the comment there for why that split is safe. -->
-    <script defer src="js/dist/bundle-home.js?v=20261010"></script>
+    <script defer src="js/dist/bundle-home.js?v=20261103"></script>
     <script src="js/cookie-consent.js?v=20261018" defer></script>
     <script src="js/shadcn-ui.js?v=20260823" defer></script>
     <script src="js/lazy-bundle-loader.js?v=20260916" defer></script>

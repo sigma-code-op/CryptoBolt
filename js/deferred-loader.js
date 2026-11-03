@@ -17,6 +17,8 @@
     var wantsAds = !!(document.currentScript && document.currentScript.hasAttribute('data-ads'));
     if (!wantsAds) return;
 
+    // Terminal pages (data-ads-idle) wait for a real interaction so ads never compete with the live feed.
+    var idleOnly = !!document.currentScript.hasAttribute('data-ads-idle');
     var adsLoaded = false;
     function loadAds() {
         if (adsLoaded) return;
@@ -34,7 +36,7 @@
     ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
         window.addEventListener(ev, loadAds, { once: true, passive: true });
     });
-    function afterLoad() { setTimeout(loadAds, 3500); }
+    function afterLoad() { if (!idleOnly) setTimeout(loadAds, 3500); }
     if (document.readyState === 'complete') afterLoad();
     else window.addEventListener('load', afterLoad);
 })();

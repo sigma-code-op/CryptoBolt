@@ -154,9 +154,19 @@
         s.onload = run;
         document.head.appendChild(s);
     }
+    // The backdrop is ~600KB of decorative script: wait for the first real interaction
+    // (or 20s) so it never lands inside the page's load/interactivity window.
     function sched() {
-        if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 3000 });
-        else setTimeout(load, 1500);
+        var done = false;
+        var evs = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+        function go() {
+            if (done) return; done = true;
+            evs.forEach(function (e) { window.removeEventListener(e, go); });
+            if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 2000 });
+            else setTimeout(load, 500);
+        }
+        evs.forEach(function (e) { window.addEventListener(e, go, { passive: true }); });
+        setTimeout(go, 20000);
     }
     if (document.readyState === 'complete') sched();
     else window.addEventListener('load', sched);

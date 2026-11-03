@@ -25,7 +25,7 @@ test('AI page controls have accessible names', () => {
 });
 
 test('terminal chart dependency does not block parsing', () => {
-  assert.match(read('app.html'), /<script defer src="https:\/\/unpkg\.com\/lightweight-charts@4\.2\.1/);
+  assert.match(read('app.html'), /<script defer src="js\/vendor\/lightweight-charts-4\.2\.1\.min\.js"/);
 });
 
 test('account copy does not promise automatic exchange order imports', () => {

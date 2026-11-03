@@ -98,7 +98,10 @@
                 selectAsset(defaultAsset);
             }
 
-            connectGlobalPriceTickerStreams();
+            // Whole-market WebSocket feeds push ~1MB/s of JSON; open them once the page has
+            // settled so parsing never lands inside the load / interactivity window.
+            const startFeeds = () => setTimeout(connectGlobalPriceTickerStreams, 1500);
+            if (document.readyState === 'complete') startFeeds(); else window.addEventListener('load', startFeeds, { once: true });
 
         } catch (error) {
             console.error("Initialization pipeline failed, retrying in 5s...", error);
