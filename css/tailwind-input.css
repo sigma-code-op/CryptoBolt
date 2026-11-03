@@ -1,3 +1,5 @@
 /* Compiled by `npm run build:css` into css/tailwind.css — see DEPLOYMENT GUIDE, section
    "Tailwind CSS build" for the full workflow. Do not link this file directly in HTML. */
 @import "tailwindcss";
+/* Third-party libraries in js/vendor/ are not scanned for utility classes. */
+@source not "../js/vendor";
