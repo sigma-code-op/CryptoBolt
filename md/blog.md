@@ -4,6 +4,56 @@
 
 Source: https://cryptobolt.io/blog.html
 
+Fundamentals · 6 min read
+
+## The Bitcoin halving explained: what changes, what doesn't, and the dates
+
+Block rewards, the 21 million cap and the full list of halvings so far, without the price-prediction folklore.
+
+Read the post
+
+Link: https://cryptobolt.io/bitcoin-halving-explained.html
+
+Mechanics · 6 min read
+
+## How to read a crypto order book (and what it can't tell you)
+
+Bids, asks, the spread and depth: what the live order book shows, and why a snapshot of resting orders is not a forecast.
+
+Read the post
+
+Link: https://cryptobolt.io/how-to-read-an-order-book.html
+
+Mechanics · 6 min read
+
+## Open interest in crypto futures: what it measures and what it doesn't
+
+Open interest counts the futures contracts still open. Here's how it differs from volume and how to read it with price and funding.
+
+Read the post
+
+Link: https://cryptobolt.io/open-interest-explained.html
+
+Risk · 6 min read
+
+## Position sizing and the 1% rule: how big should a crypto trade be?
+
+Decide how much you can lose first, then let the stop distance set the size. A worked example of the 1% rule and where leverage fits.
+
+Read the post
+
+Link: https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html
+
+Mechanics · 6 min read
+
+## Stop-loss orders explained: stop-market, stop-limit and why they slip
+
+Stop-market versus stop-limit, trigger prices, slippage and wicks: what a stop-loss really guarantees, and what it doesn't.
+
+Read the post
+
+Link: https://cryptobolt.io/stop-loss-orders-explained.html
+
 Reality Check · 5 min read
 
 ## Why CryptoBolt doesn't predict crypto prices (and what to look at instead)

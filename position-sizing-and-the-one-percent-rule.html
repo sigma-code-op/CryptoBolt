@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-5ORVOo6l9xo1hAFJ/KkN0vH0I1ITQwr0qBIcBRWdQvk=' 'sha256-5gqP+gux77oQ7ZqHLDU094q0O7tkJLglzYXhxA/LiTo='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-gtag-lazy></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Crypto Position Sizing and the 1% Rule | CryptoBolt</title>
+    <meta name="description" content="Position sizing explained: work out trade size from your stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.">
+    <meta name="keywords" content="position sizing crypto, 1% rule trading, how much to risk per trade, position size formula, risk per trade crypto, position size calculator">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html">
+    <link rel="alternate" type="text/markdown" href="https://cryptobolt.io/md/position-sizing-and-the-one-percent-rule.md">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html">
+    <meta property="og:title" content="Position Sizing and the 1% Rule: How Big Should a Crypto Trade Be?">
+    <meta property="og:description" content="Position sizing explained: work out trade size from your stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/position-sizing-and-the-one-percent-rule.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt — Position sizing and the 1% rule: how big should a crypto trade be?">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:section" content="Risk">
+    <meta property="article:published_time" content="2026-11-05">
+    <meta property="article:modified_time" content="2026-11-05">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Position Sizing and the 1% Rule: How Big Should a Crypto Trade Be?">
+    <meta name="twitter:description" content="Position sizing explained: work out trade size from your stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/position-sizing-and-the-one-percent-rule.png">
+    <meta name="twitter:image:alt" content="CryptoBolt — Position sizing and the 1% rule: how big should a crypto trade be?">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Position Sizing and the 1% Rule: How Big Should a Crypto Trade Be?",
+      "description": "Position sizing explained: work out trade size from your stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.",
+      "url": "https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html" },
+      "image": "https://cryptobolt.io/assets/og/position-sizing-and-the-one-percent-rule.png",
+      "datePublished": "2026-11-05",
+      "dateModified": "2026-11-05",
+      "articleSection": "Risk",
+      "wordCount": 824,
+      "author": { "@type": "Organization", "name": "CryptoBolt", "url": "https://cryptobolt.io/" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CryptoBolt",
+        "logo": { "@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png" }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CryptoBolt", "item": "https://cryptobolt.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cryptobolt.io/blog.html" },
+        { "@type": "ListItem", "position": 3, "name": "Position sizing and the 1% rule: how big should a crypto trade be?", "item": "https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html" }
+      ]
+    }
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="blog.html" style="color:#eef1f4;" aria-current="page">Blog</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="blog.html" style="color:#eef1f4;" aria-current="page">Blog</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+
+<main id="main" tabindex="-1">
+<header class="mk-fhero">
+    <span class="mk-eyebrow"><a href="blog.html" style="color:inherit;">From the desk</a></span>
+    <h1>Position sizing and the 1% rule: how big should a crypto trade be?</h1>
+    <p>RISK · 6 MIN READ</p>
+</header>
+
+<article class="mk-article" id="position-sizing-and-the-one-percent-rule">
+    <p>Most beginners decide how big a trade should be by asking how much they want to make. Experienced traders ask the opposite question: how much am I prepared to lose if this is wrong? That one change of question is the core of <a href="glossary.html#position-sizing">position sizing</a>, and it matters more to long-term survival than almost any entry technique.</p>
+    <h2 id="size-comes-from-risk-not-from-conviction">Size comes from risk, not from conviction</h2>
+    <p>Your position size is not a measure of how sure you are. It is the answer to a small piece of arithmetic that starts from three numbers you choose before entering:</p>
+    <ul>
+        <li><strong>Account size.</strong> The money you are trading with.</li>
+        <li><strong>Risk per trade.</strong> The share of the account you accept losing if the stop is hit.</li>
+        <li><strong>Stop distance.</strong> The gap between your entry and your <a href="glossary.html#stop-loss">stop-loss</a>.</li>
+    </ul>
+    <p>The formula follows directly:</p>
+    <p><strong>Position size = (account size × risk per trade) ÷ stop distance per unit</strong></p>
+    <div class="mk-callout mk-callout-example" role="note"><strong>Example:</strong> Your account is $5,000 and you risk 1% per trade, which is $50. You want to buy a coin at $100 with a stop at $95. The stop distance is $5 per coin. Position size = $50 ÷ $5 = 10 coins, a position worth $1,000. If the stop is hit, you lose about $50, which is 1% of the account. If you had wanted a stop at $90 instead, the distance would be $10 and the size would drop to 5 coins. Same risk, smaller position.</div>
+    <p>Notice what is missing: leverage never appeared. Risk is set by the size of the loss if you are wrong, and that is determined by the position and the stop, not by how you fund it.</p>
+    <h2 id="why-1-is-a-common-starting-point">Why 1% is a common starting point</h2>
+    <p>There is nothing magical about 1%, but the logic behind small percentages is solid. Consider how many consecutive losses would hurt you at different risk levels.</p>
+    <div class="mk-table-wrap">
+        <table class="mk-table">
+            <thead><tr><th scope="col">Risk per trade</th><th scope="col">Account after 10 losses in a row</th><th scope="col">Gain needed to get back</th></tr></thead>
+            <tbody>
+                <tr><th scope="row">1%</th><td>about 90.4% of the start</td><td>about 10.6%</td></tr>
+                <tr><th scope="row">2%</th><td>about 81.7% of the start</td><td>about 22.4%</td></tr>
+                <tr><th scope="row">5%</th><td>about 59.9% of the start</td><td>about 67%</td></tr>
+                <tr><th scope="row">10%</th><td>about 34.9% of the start</td><td>about 187%</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p>Losses compound against you, and recovering is harder than it looks: a 50% drawdown requires a 100% gain just to break even. A small fixed percentage keeps a bad run survivable. Even strategies that win most of the time experience losing streaks, which is why <a href="glossary.html#win-rate">win rate</a> alone says little about safety. Our article on <a href="day-trading-crypto-realistic-returns.html">realistic day-trading returns</a> covers what research found about how rarely short-term traders stay ahead.</p>
+    <h2 id="where-leverage-fits">Where leverage fits</h2>
+    <p><a href="glossary.html#leverage">Leverage</a> does not change how much you risk if your sizing is right. It changes how much <a href="glossary.html#margin">margin</a> you have to post to hold the position, and it moves your <a href="glossary.html#liquidation-price">liquidation price</a> closer or further away.</p>
+    <p>In the example above, the $1,000 position could be held with $1,000 of margin (1x) or $100 (10x). The loss at the stop is the same $50 either way. What differs is the cushion: at 10x the liquidation price is much closer to entry, and if it sits before your stop, the exchange will close you out first and the loss will be your full margin instead of $50. So the rule is simple: size by stop distance, and then verify that the liquidation price lies safely beyond the stop. The <a href="position-size-calculator.html">position size calculator</a> and the <a href="liquidation-price-calculator.html">liquidation price calculator</a> work through both steps.</p>
+    <h2 id="common-mistakes">Common mistakes</h2>
+    <ul>
+        <li><strong>Moving the stop to fit a bigger position.</strong> The stop should come from the trade's logic. If you widen it to keep your size, you have raised your real risk.</li>
+        <li><strong>Sizing to a round dollar amount.</strong> "I always buy $1,000" means your risk changes with every stop distance. Risk, not notional, is the thing to keep constant.</li>
+        <li><strong>Ignoring costs.</strong> Fees and <a href="glossary.html#slippage">slippage</a> mean the real loss at a stop is a little more than the plan. Leave some margin of safety.</li>
+        <li><strong>Treating several trades as independent.</strong> Three long positions in highly correlated coins behave like one larger position when the market falls together.</li>
+    </ul>
+    <h2 id="using-risk-reward">Using risk-reward</h2>
+    <p>Once size is set by risk, you can evaluate whether a trade is worth taking by its <a href="glossary.html#risk-reward">risk-reward</a> ratio: how far to your target compared to how far to your stop. A trade risking $50 to make $150 needs to win far less often to be worthwhile than one risking $50 to make $50. Sizing and risk-reward are two halves of the same decision.</p>
+    <h2 id="practising-it">Practising it</h2>
+    <p>Position sizing is a habit more than a calculation. Doing it every time, on every trade, even in simulation, is how it becomes automatic. CryptoBolt's <a href="crypto-paper-trading.html">paper trading</a> account lets you practise sizing on live prices with virtual funds, and the numbers you build there are the same numbers you would use with real money.</p>
+</article>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep reading</span>
+        <h2 id="related-heading">More from the blog</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="stop-loss-orders-explained.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(255,107,107,.08);"><i data-lucide="file-text" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 6 min read</span>
+                <h3>Stop-loss orders explained: stop-market, stop-limit and why they slip</h3>
+                <p>Stop-market versus stop-limit, trigger prices, slippage and wicks: what a stop-loss really guarantees, and what it doesn't.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="spot-vs-futures.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(79,216,232,.08);"><i data-lucide="scale" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 5 min read</span>
+                <h3>Spot vs. perpetual futures: what actually changes</h3>
+                <p>Ownership, leverage, liquidation, and funding rate — the mechanics that actually differ between holding the asset and trading a derivative on it.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="day-trading-crypto-realistic-returns.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(248,113,113,.08);"><i data-lucide="dice-5" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Reality Check · 6 min read</span>
+                <h3>How much can you realistically make day trading crypto?</h3>
+                <p>"Make $1000 a day" is everywhere. Here's what peer-reviewed research on day traders actually found — and a more honest way to test a strategy first.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
+            <a href="contact.html">Contact</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script src="/js/lucide-slim.js?v=20261010"></script>
+<script src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+</body>
+</html>

@@ -10,10 +10,10 @@ Source: https://cryptobolt.io/contact.html
 
 [Source & documentation](https://github.com/sigma-code-op/CRYPTOBOLT)
 
-The form above sends to your mailbox via the backend in `/server` — set `SMTP_*` and `CONTACT_TO_EMAIL` in its `.env` (see `.env.example`). Until then it falls back to opening an email app.
+Messages sent through the form go straight to the CryptoBolt inbox. If the form can't send, it opens your email app instead, or you can write to the address above.
 
 - Market data issues are usually Binance/CoinGecko-side — check [Binance's status page](https://www.binance.com/en/support/announcement) first.
-- AI panel not working? Confirm a Groq key is saved and the backend in `/server` is running and reachable.
+- AI panel not working? Confirm a Groq API key is saved in your account settings, then reload the page and try again.
 - This app doesn't place real trades or hold funds — nothing here can affect an actual exchange account.
 - This is a small, independently-run project — expect a personal reply, not an auto-response.
 

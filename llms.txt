@@ -24,6 +24,11 @@
   - [Can AI predict crypto prices? What to use instead](https://cryptobolt.io/why-we-dont-predict-crypto-prices.html)
   - [When AI meets crypto: the new frontier of autonomous finance](https://cryptobolt.io/ai-meets-crypto.html)
   - [Crypto funding rates: what the number on your futures screen means](https://cryptobolt.io/funding-rate-explained.html)
+  - [How to read a crypto order book (and what it can't tell you)](https://cryptobolt.io/how-to-read-an-order-book.html)
+  - [Open interest in crypto futures: what it measures and what it doesn't](https://cryptobolt.io/open-interest-explained.html)
+  - [Stop-loss orders explained: stop-market, stop-limit and why they slip](https://cryptobolt.io/stop-loss-orders-explained.html)
+  - [Position sizing and the 1% rule: how big should a crypto trade be?](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html)
+  - [The Bitcoin halving explained: what changes, what doesn't, and the dates](https://cryptobolt.io/bitcoin-halving-explained.html)
   - [Liquidation Price Calculator](https://cryptobolt.io/liquidation-price-calculator.html) — Free calculator estimating liquidation price for leveraged crypto futures positions, long or short, isolated or cross margin.
   - [Position Size Calculator](https://cryptobolt.io/position-size-calculator.html) — Free calculator turning account balance, risk percentage, entry and stop-loss into position size, margin and R-multiple targets.
   - [Crypto Futures Profit Calculator](https://cryptobolt.io/crypto-profit-calculator.html) — Free calculator for net profit or loss, ROE and fees on a leveraged long or short trade.

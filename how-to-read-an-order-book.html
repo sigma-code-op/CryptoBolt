@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-9TPFzclCWoIAWZF+wpv5UhkTtc0+H5FS8x/kNvjGTEo=' 'sha256-vr6dUSAgj1r6Mwf0A0l+eBA7IxyGkcdaRmzEgX2/cmg='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-gtag-lazy></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>How to Read a Crypto Order Book | CryptoBolt</title>
+    <meta name="description" content="How to read a crypto order book: bids, asks, the spread, market depth and slippage, plus the limits of what a snapshot of resting orders can tell you.">
+    <meta name="keywords" content="how to read order book crypto, crypto order book explained, bid ask spread crypto, market depth crypto, order book depth, slippage crypto">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/how-to-read-an-order-book.html">
+    <link rel="alternate" type="text/markdown" href="https://cryptobolt.io/md/how-to-read-an-order-book.md">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/how-to-read-an-order-book.html">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/how-to-read-an-order-book.html">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/how-to-read-an-order-book.html">
+    <meta property="og:title" content="How to Read a Crypto Order Book (and What It Can't Tell You)">
+    <meta property="og:description" content="How to read a crypto order book: bids, asks, the spread, market depth and slippage, plus the limits of what a snapshot of resting orders can tell you.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/how-to-read-an-order-book.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt — How to read a crypto order book (and what it can't tell you)">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:section" content="Mechanics">
+    <meta property="article:published_time" content="2026-11-05">
+    <meta property="article:modified_time" content="2026-11-05">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="How to Read a Crypto Order Book (and What It Can't Tell You)">
+    <meta name="twitter:description" content="How to read a crypto order book: bids, asks, the spread, market depth and slippage, plus the limits of what a snapshot of resting orders can tell you.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/how-to-read-an-order-book.png">
+    <meta name="twitter:image:alt" content="CryptoBolt — How to read a crypto order book (and what it can't tell you)">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How to Read a Crypto Order Book (and What It Can't Tell You)",
+      "description": "How to read a crypto order book: bids, asks, the spread, market depth and slippage, plus the limits of what a snapshot of resting orders can tell you.",
+      "url": "https://cryptobolt.io/how-to-read-an-order-book.html",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cryptobolt.io/how-to-read-an-order-book.html" },
+      "image": "https://cryptobolt.io/assets/og/how-to-read-an-order-book.png",
+      "datePublished": "2026-11-05",
+      "dateModified": "2026-11-05",
+      "articleSection": "Mechanics",
+      "wordCount": 903,
+      "author": { "@type": "Organization", "name": "CryptoBolt", "url": "https://cryptobolt.io/" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CryptoBolt",
+        "logo": { "@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png" }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CryptoBolt", "item": "https://cryptobolt.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cryptobolt.io/blog.html" },
+        { "@type": "ListItem", "position": 3, "name": "How to read a crypto order book (and what it can't tell you)", "item": "https://cryptobolt.io/how-to-read-an-order-book.html" }
+      ]
+    }
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="blog.html" style="color:#eef1f4;" aria-current="page">Blog</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="blog.html" style="color:#eef1f4;" aria-current="page">Blog</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+
+<main id="main" tabindex="-1">
+<header class="mk-fhero">
+    <span class="mk-eyebrow"><a href="blog.html" style="color:inherit;">From the desk</a></span>
+    <h1>How to read a crypto order book (and what it can't tell you)</h1>
+    <p>MECHANICS · 6 MIN READ</p>
+</header>
+
+<article class="mk-article" id="how-to-read-an-order-book">
+    <p>Every price you see on a crypto chart is the result of a queue of orders waiting to be filled. That queue is the <a href="glossary.html#order-book">order book</a>, and learning to read it explains a lot of things that otherwise look random: why a market order sometimes fills at a worse price than the one on screen, why thin altcoins jump around, and why the same trade size can be trivial on one pair and expensive on another.</p>
+    <h2 id="the-two-sides-of-the-book">The two sides of the book</h2>
+    <p>The book has two columns. The <strong>bids</strong> are buy orders: each one says "I will buy this much at this price or lower." The <strong>asks</strong> (also called offers) are sell orders: "I will sell this much at this price or higher." Bids are listed from the highest price down, asks from the lowest price up, so the two best prices sit next to each other in the middle.</p>
+    <p>The highest bid is the best price you can sell at right now. The lowest ask is the best price you can buy at right now. The gap between them is the <a href="glossary.html#spread">spread</a>.</p>
+    <div class="mk-table-wrap">
+        <table class="mk-table">
+            <thead><tr><th scope="col">Term</th><th scope="col">What it means</th><th scope="col">Who it serves</th></tr></thead>
+            <tbody>
+                <tr><th scope="row">Best bid</th><td>Highest price a buyer is currently willing to pay</td><td>Someone selling immediately</td></tr>
+                <tr><th scope="row">Best ask</th><td>Lowest price a seller is currently willing to accept</td><td>Someone buying immediately</td></tr>
+                <tr><th scope="row">Spread</th><td>Best ask minus best bid</td><td>The cost of trading instantly</td></tr>
+                <tr><th scope="row">Depth</th><td>How much size is resting at each price level</td><td>Anyone placing a large order</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <h2 id="what-happens-when-you-place-an-order">What happens when you place an order</h2>
+    <p>A <a href="glossary.html#limit-order">limit order</a> joins the book at the price you choose and waits. If nobody trades with it, it just sits there. This is why limit orders are called "making" liquidity, and why exchanges usually charge a lower fee for them; the difference is explained in the glossary entry on <a href="glossary.html#maker-taker">maker and taker</a> fees.</p>
+    <p>A <a href="glossary.html#market-order">market order</a> does the opposite. It does not wait. It takes whatever is already resting on the other side, starting with the best price and working outward until your size is filled.</p>
+    <div class="mk-callout mk-callout-example" role="note"><strong>Example:</strong> Suppose the asks for a coin look like this: 2 coins at $100.00, 3 coins at $100.10, and 5 coins at $100.30. You send a market order to buy 4 coins. The first 2 fill at $100.00. The next 2 fill at $100.10. Your average price is $100.05, not the $100.00 you saw on screen. That difference is <a href="glossary.html#slippage">slippage</a>.</div>
+    <p>Slippage is not a malfunction. It is the direct, mechanical result of your order being larger than the size available at the best price.</p>
+    <h2 id="depth-how-much-size-sits-where">Depth: how much size sits where</h2>
+    <p>The number next to each price is the quantity resting there. Adding those quantities up as you move away from the middle price gives the <a href="glossary.html#order-book-depth">order book depth</a>. A deep book has a lot of size close to the current price, so a big order moves the price only slightly. A shallow book has gaps, so the same order walks through several price levels.</p>
+    <p>This is the main reason large-cap pairs such as BTC/USDT behave differently from small altcoins. With the same $50,000 market order, one book barely notices and the other can move by several percent. If you trade smaller coins, check the depth before you check the chart. The terminal's depth view is built for exactly that.</p>
+    <h2 id="reading-imbalance-carefully">Reading imbalance, carefully</h2>
+    <p>It is tempting to look at the book and see a forecast: far more bids than asks must mean price is going up. In practice that conclusion is unreliable, for three reasons.</p>
+    <ul>
+        <li><strong>Orders can be cancelled.</strong> Resting orders cost nothing to remove. A large bid can vanish the moment price approaches it, which is sometimes called spoofing when it is done deliberately to create a false impression.</li>
+        <li><strong>Hidden size exists.</strong> Some orders are split into small pieces or placed only as price approaches, so the visible book understates real interest.</li>
+        <li><strong>Both sides get hit.</strong> A big wall of bids can be filled by sellers just as easily as it can hold price. Resting size tells you where orders are, not what the next trade will be.</li>
+    </ul>
+    <p>So treat the book as a description of the present, not a prediction. It is excellent for judging the cost of getting in or out, and for seeing where size is concentrated, such as around a <a href="glossary.html#round-number-level">round number level</a>. It is a weak tool for guessing direction. That is the same reason CryptoBolt does not publish price forecasts, which we explain in <a href="why-we-dont-predict-crypto-prices.html">why we don't predict crypto prices</a>.</p>
+    <h2 id="a-short-checklist-before-a-larger-order">A short checklist before a larger order</h2>
+    <ul>
+        <li>Check the spread. A wide spread on a quiet pair means instant execution is expensive.</li>
+        <li>Check the depth within 1% of the price. Compare it to your order size.</li>
+        <li>Consider a limit order if you are not in a hurry, so you are not paying the spread.</li>
+        <li>On futures, remember that your size also affects where a stop or a liquidation would actually fill. The <a href="liquidation-price-calculator.html">liquidation price calculator</a> shows the theoretical level; the book decides how close to it you really get out.</li>
+    </ul>
+    <p>The order book will not tell you where price is going. It will tell you, precisely, what it costs to trade at this moment, and that is information you can use on every single trade.</p>
+</article>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep reading</span>
+        <h2 id="related-heading">More from the blog</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="spot-vs-futures.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(79,216,232,.08);"><i data-lucide="scale" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 5 min read</span>
+                <h3>Spot vs. perpetual futures: what actually changes</h3>
+                <p>Ownership, leverage, liquidation, and funding rate — the mechanics that actually differ between holding the asset and trading a derivative on it.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="round-number-levels.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(167, 139, 250,.08);"><i data-lucide="target" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 4 min read</span>
+                <h3>Why round numbers act like support and resistance</h3>
+                <p>Price stalls at $30,000 and $50,000 more often than chance would suggest. Here's why round numbers actually matter.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="why-we-dont-predict-crypto-prices.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(248,113,113,.08);"><i data-lucide="dice-5" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Reality Check · 5 min read</span>
+                <h3>Why CryptoBolt doesn't predict crypto prices (and what to look at instead)</h3>
+                <p>"Bitcoin price prediction today" is one of the most-searched phrases in crypto. Here's why we don't answer it, and what's more useful to look at instead.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
+            <a href="contact.html">Contact</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script src="/js/lucide-slim.js?v=20261010"></script>
+<script src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+</body>
+</html>
