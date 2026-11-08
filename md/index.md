@@ -4,6 +4,25 @@
 
 Source: https://cryptobolt.io/
 
+NEW EBOOK
+
+## Learn crypto the safe way.
+Crypto Clarity.
+
+A plain-English 160-page guide: from "what is a blockchain?" to risk management, leverage, scams and a 90-day plan. No hype, no price predictions.
+
+- 160 pages
+- 17 chapters
+- 31 diagrams
+- PDF
+- Free sample
+
+$13one-time · PDF
+
+Get the ebook
+
+Link: https://cryptobolt.io/ebook.html
+
 Getting started
 
 ## From open tab to live chart in under a minute.

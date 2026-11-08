@@ -127,6 +127,25 @@
 
     <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" media="(min-width: 881px)"><link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" media="(min-width: 881px)">
     <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+    <style>
+        .eb-poster { position: relative; overflow: hidden; max-width: 1040px; margin: 0 auto; border: 1px solid rgba(79,216,232,.28); border-radius: 20px; background: radial-gradient(120% 140% at 0% 0%, #0f3a44 0%, #0b1a22 45%, #0a0b0f 100%); padding: 38px 40px; display: grid; grid-template-columns: 230px 1fr; gap: 40px; align-items: center; box-shadow: 0 30px 70px -30px rgba(79,216,232,.25); }
+        .eb-poster::after { content: ""; position: absolute; right: -90px; top: -90px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(79,216,232,.22), rgba(79,216,232,0) 70%); pointer-events: none; }
+        .eb-poster-cover { position: relative; z-index: 1; transform: rotate(-4deg); transition: transform .25s ease; }
+        .eb-poster:hover .eb-poster-cover { transform: rotate(-1deg) scale(1.02); }
+        .eb-poster-cover img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 26px 46px -14px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.08); }
+        .eb-poster-body { position: relative; z-index: 1; }
+        .eb-poster-tag { display: inline-block; background: #ffb020; color: #0b0e11; font-size: 11px; font-weight: 800; letter-spacing: .1em; padding: 4px 10px; border-radius: 99px; margin-bottom: 14px; }
+        .eb-poster h2 { font-size: clamp(26px, 4vw, 40px); line-height: 1.08; margin: 0 0 12px; letter-spacing: -.02em; }
+        .eb-poster h2 span { color: var(--mk-cyan, #4fd8e8); }
+        .eb-poster p.eb-poster-sub { color: var(--mk-text-dim, #9aa6b2); font-size: 15px; line-height: 1.6; max-width: 520px; margin: 0 0 18px; }
+        .eb-poster-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none; }
+        .eb-poster-chips li { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 99px; border: 1px solid rgba(79,216,232,.35); color: #cfe9ee; background: rgba(79,216,232,.08); }
+        .eb-poster-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+        .eb-poster-price { font-size: 30px; font-weight: 800; margin-right: 6px; }
+        .eb-poster-price small { font-size: 12px; font-weight: 500; color: var(--mk-text-dim, #9aa6b2); display: block; letter-spacing: .02em; }
+        @media (max-width: 760px) { .eb-poster { grid-template-columns: 1fr; padding: 28px 22px; gap: 26px; text-align: left; } .eb-poster-cover { max-width: 190px; margin: 0 auto; } }
+        @media (prefers-reduced-motion: reduce) { .eb-poster-cover, .eb-poster:hover .eb-poster-cover { transform: none; transition: none; } }
+    </style>
 </head>
 <body class="mk">
 <a class="mk-skip" href="#main">Skip to main content</a>
@@ -139,6 +158,7 @@
         <a href="features.html">Features</a>
         <a href="ai.html">AI Research</a>
         <a href="blog.html">Blog</a>
+        <a href="ebook.html">Ebook</a>
         <a href="about.html">About</a>
         <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
@@ -154,6 +174,7 @@
     <a href="features.html">Features</a>
     <a href="ai.html">AI Research</a>
     <a href="blog.html">Blog</a>
+    <a href="ebook.html">Ebook</a>
     <a href="about.html">About</a>
     <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
     <div class="mk-mobile-panel-cta">
@@ -213,6 +234,23 @@
 </header>
 
 <!-- ============ How it works ============ -->
+<!-- ============ Ebook poster ============ -->
+<section class="mk-section" id="ebook-poster" style="padding-top:0;">
+    <a href="ebook.html" class="eb-poster" style="text-decoration:none;color:inherit;" aria-label="Crypto Clarity ebook, $13. View details">
+        <div class="eb-poster-cover"><img src="assets/ebook/crypto-clarity-cover-400.png" width="400" height="600" loading="lazy" alt="Crypto Clarity ebook cover"></div>
+        <div class="eb-poster-body">
+            <span class="eb-poster-tag">NEW EBOOK</span>
+            <h2>Learn crypto the safe way.<br><span>Crypto Clarity.</span></h2>
+            <p class="eb-poster-sub">A plain-English 160-page guide: from "what is a blockchain?" to risk management, leverage, scams and a 90-day plan. No hype, no price predictions.</p>
+            <ul class="eb-poster-chips"><li>160 pages</li><li>17 chapters</li><li>31 diagrams</li><li>PDF</li><li>Free sample</li></ul>
+            <div class="eb-poster-cta">
+                <span class="eb-poster-price">$13<small>one-time &middot; PDF</small></span>
+                <span class="mk-btn mk-btn-primary mk-btn-lg">Get the ebook <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></span>
+            </div>
+        </div>
+    </a>
+</section>
+
 <section class="mk-section" id="how-it-works">
     <div class="mk-section-head">
         <span class="mk-eyebrow">Getting started</span>

@@ -25,13 +25,15 @@ phone-friendly
 - Risk management, leverage and liquidation maths, scam patterns and a security checklist.
 - Key takeaways, "Try it" exercises and self-test questions in every chapter, plus a glossary of 100+ terms and a 90-day plan.
 
+$13 one-time · PDF
+
 [Order via contact form](https://cryptobolt.io/contact.html?topic=ebook)
 
 [Email info@cryptobolt.io](mailto:info@cryptobolt.io?subject=Ebook%20order%3A%20Crypto%20Clarity&body=Hello%20CryptoBolt%2C%0A%0AI%20would%20like%20to%20order%20the%20Crypto%20Clarity%20ebook%20(PDF).%0A%0AName%3A%20%0ACountry%3A%20%0APreferred%20payment%20method%3A%20%0A%0AThank%20you.)
 
 [Free sample (PDF)](https://cryptobolt.io/assets/ebook/Crypto-Clarity-Sample.pdf)
 
-Orders are handled personally: you will get a reply with price and payment details, and the PDF is sent once payment is confirmed. Education only, not financial advice.
+Orders are handled personally: you will get a reply with payment details, and the PDF is sent once payment is confirmed. Education only, not financial advice.
 
 What's inside
 
@@ -84,9 +86,9 @@ How to order
 
 Use the [contact form](https://cryptobolt.io/contact.html?topic=ebook) (choose "Ebook order") or email [info@cryptobolt.io](mailto:info@cryptobolt.io).
 
-### Get price and payment details
+### Get payment details
 
-We reply personally with the current price and the payment options available for your country.
+We reply personally with the payment options available for your country.
 
 ### Receive your PDF
 
@@ -114,7 +116,7 @@ A single PDF, designed at a book-like page size that reads well on phones and ta
 
 How do I pay?
 
-Send an order request and we will reply with the payment methods available for your country. Please never send payment to anyone who contacts you first; only use details sent in reply to your own request to info@cryptobolt.io.
+The ebook costs $13. Send an order request and we will reply with the payment methods available for your country. Please never send payment to anyone who contacts you first; only use details sent in reply to your own request to info@cryptobolt.io.
 
 Crypto Clarity is for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our [terms](https://cryptobolt.io/terms.html) and [privacy policy](https://cryptobolt.io/privacy.html).
 
