@@ -120,5 +120,9 @@ The ebook costs $13. Send an order request and we will reply with the payment me
 
 Crypto Clarity is for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our [terms](https://cryptobolt.io/terms.html) and [privacy policy](https://cryptobolt.io/privacy.html).
 
+Crypto Clarity · PDF
+
+[Order now](https://cryptobolt.io/contact.html?topic=ebook)
+
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

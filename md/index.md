@@ -4,24 +4,39 @@
 
 Source: https://cryptobolt.io/
 
-NEW EBOOK
+NEW EBOOK · 160 PAGES
 
-## Learn crypto the safe way.
-Crypto Clarity.
+## Don’t learn crypto
+from your losses.
 
-A plain-English 160-page guide: from "what is a blockchain?" to risk management, leverage, scams and a 90-day plan. No hype, no price predictions.
-
-- 160 pages
-- 17 chapters
-- 31 diagrams
-- PDF
-- Free sample
+Crypto has no refund button. Most beginners lose money to the same few mistakes: **no risk plan, too much leverage, and scams they could have spotted.** Crypto Clarity teaches you all three in plain English, before they cost you real money.
 
 $13one-time · PDF
 
-Get the ebook
+[Get Crypto Clarity](https://cryptobolt.io/ebook.html)
 
-Link: https://cryptobolt.io/ebook.html
+[Read a free sample](https://cryptobolt.io/assets/ebook/Crypto-Clarity-Sample.pdf)
+
+**A quick test:** a 10× leveraged long is liquidated by a drop of only about **9.5%**. At 50× it is about **1.5%**. If you did not know that number before trading, this book is for you.
+
+### Stay safe
+
+Wallets, seed phrases, exchange risk and the scam patterns that cost people the most, with a security checklist.
+
+### Size every trade
+
+Position sizing, stop-losses, expectancy and liquidation maths, with worked examples you can copy.
+
+### Follow a plan
+
+A written plan template, a trade journal and a 90-day roadmap so you act on rules, not emotions.
+
+- 17 chapters
+- 100+ glossary terms
+- Exercises in every chapter
+- No price predictions
+
+Education only. Not financial advice.
 
 Getting started
 

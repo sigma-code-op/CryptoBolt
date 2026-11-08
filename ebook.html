@@ -120,6 +120,8 @@
         .eb-faq summary { cursor: pointer; font-weight: 600; font-size: 14.5px; }
         .eb-faq p { margin-top: 10px; font-size: 13.5px; color: var(--mk-text-dim); line-height: 1.65; }
         .eb-disc { max-width: 760px; margin: 0 auto; font-size: 12px; color: #5b6472; line-height: 1.65; text-align: center; }
+        .eb-sticky { display: none; }
+        @media (max-width: 860px) { .eb-sticky { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(10,11,15,.96); border-top: 1px solid rgba(79,216,232,.3); } .eb-sticky b { font-size: 20px; } .eb-sticky small { display: block; font-size: 11px; color: var(--mk-text-dim); } body { padding-bottom: 70px; } }
         @media (max-width: 860px) { .eb-hero-grid { grid-template-columns: 1fr; } .eb-cover { max-width: 300px; margin: 0 auto; } .eb-parts, .eb-steps { grid-template-columns: 1fr; } }
         @media (max-width: 480px) { .eb-stats { grid-template-columns: repeat(2, 1fr); } }
     </style>
@@ -162,7 +164,7 @@
 
 <header class="mk-fhero">
     <span class="mk-eyebrow">Ebook</span>
-    <h1>Learn crypto the safe way.</h1>
+    <h1>Don&rsquo;t learn crypto from your losses.</h1>
     <p>A plain-English, 160-page guide that takes you from "what is a blockchain?" to position sizing, security and a written plan. Education first, hype never.</p>
 </header>
 
@@ -232,6 +234,8 @@
 <section class="mk-section" style="padding-top:0;">
     <p class="eb-disc">Crypto Clarity is for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our <a href="terms.html" style="color:var(--mk-cyan)">terms</a> and <a href="privacy.html" style="color:var(--mk-cyan)">privacy policy</a>.</p>
 </section>
+
+<div class="eb-sticky"><div><b>$13</b><small>Crypto Clarity &middot; PDF</small></div><a href="contact.html?topic=ebook" class="mk-btn mk-btn-primary">Order now</a></div>
 
 </main>
 
