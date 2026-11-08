@@ -64,6 +64,10 @@ contactForm.addEventListener('submit', async (e) => {
     const name = document.getElementById('contact-name').value.trim();
     const email = document.getElementById('contact-email').value.trim();
     const topic = document.getElementById('contact-topic').value;
+    // The contact API only accepts its fixed topic list, so ebook orders are sent as "Something else"
+    // with a clear prefix; the mailto fallback keeps the real topic.
+    const isEbook = topic === 'Ebook order';
+    const apiTopic = isEbook ? 'Something else' : topic;
     const message = document.getElementById('contact-message').value.trim();
     const company = document.getElementById('contact-company').value; // honeypot
     if (!name || !email || !message) return;
@@ -77,7 +81,7 @@ contactForm.addEventListener('submit', async (e) => {
         const res = await fetch(`${apiBase}/api/contact`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, topic, message, company }),
+            body: JSON.stringify({ name, email, topic: apiTopic, message: isEbook ? `[EBOOK ORDER] ${message}` : message, company }),
         });
 
         if (res.ok) {
@@ -101,3 +105,15 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.textContent = '✉ Send message';
     }
 });
+
+// Deep link from ebook.html: contact.html?topic=ebook preselects the topic and pre-fills a message.
+(function prefillEbookOrder() {
+    try {
+        const wanted = new URLSearchParams(window.location.search).get('topic');
+        if (wanted !== 'ebook') return;
+        const sel = document.getElementById('contact-topic');
+        const msg = document.getElementById('contact-message');
+        if (sel) sel.value = 'Ebook order';
+        if (msg && !msg.value) msg.value = 'I would like to order the Crypto Clarity ebook (PDF). Please send the price and payment details for my country.';
+    } catch { /* ignore malformed query strings */ }
+})();

@@ -39,6 +39,7 @@
 - [Crypto Trading Glossary](https://cryptobolt.io/glossary.html) — Plain-English definitions of crypto trading and market-data terms such as funding rate, open interest, liquidation price and ATR.
 - [Releases and Changelog](https://cryptobolt.io/releases.html) — Dated log of new features, fixes and data-source changes.
 - [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.
+- [Crypto Clarity ebook](https://cryptobolt.io/ebook.html) — 160-page PDF beginner-to-confident crypto guide (17 chapters, 31 diagrams); order by email or the contact form.
 - [Contact CryptoBolt](https://cryptobolt.io/contact.html) — Contact and partnership inquiries.
 - [Privacy Policy](https://cryptobolt.io/privacy.html) — Privacy and data-handling information.
 - [Terms of Service](https://cryptobolt.io/terms.html) — Terms governing use of CryptoBolt.
