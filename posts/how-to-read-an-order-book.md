@@ -60,3 +60,5 @@ So treat the book as a description of the present, not a prediction. It is excel
 - On futures, remember that your size also affects where a stop or a liquidation would actually fill. The [liquidation price calculator](liquidation-price-calculator.html) shows the theoretical level; the book decides how close to it you really get out.
 
 The order book will not tell you where price is going. It will tell you, precisely, what it costs to trade at this moment, and that is information you can use on every single trade.
+
+**Go deeper.** Chapter 7 of our 160-page ebook [Crypto Clarity](ebook.html) covers how exchanges and order books work, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).

@@ -59,3 +59,5 @@ Funding settles on a fixed schedule, every eight hours on many venues (some cont
 - [Glossary](glossary.html): plain-English definitions for every term used here.
 
 [See live funding rates next to open interest in the terminal →](app.html)
+
+**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](ebook.html) covers futures, leverage and liquidation, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).

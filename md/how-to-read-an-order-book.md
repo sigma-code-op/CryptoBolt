@@ -54,6 +54,8 @@ So treat the book as a description of the present, not a prediction. It is excel
 
 The order book will not tell you where price is going. It will tell you, precisely, what it costs to trade at this moment, and that is information you can use on every single trade.
 
+**Go deeper.** Chapter 7 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook.html) covers how exchanges and order books work, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook.html).
+
 Keep reading
 
 ## More from the blog

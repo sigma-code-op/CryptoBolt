@@ -56,3 +56,5 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 - [Why round numbers act like support and resistance](round-number-levels.html): where price tends to react.
 
 [Track spot holdings and futures positions side by side in the terminal →](app.html)
+
+**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](ebook.html) covers spot, margin and futures trading, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).

@@ -78,6 +78,72 @@ Part IV
 4. Taxes, Regulation and Staying Legal
 5. Building Your Own Plan
 
+Chapter by chapter
+
+## What each chapter covers
+
+Every chapter ends with key takeaways and three questions to check yourself. Where we have a free article or calculator on the same topic, it is linked so you can try the idea before you buy.
+
+### Part I · Foundations
+
+**1. What Is Crypto, Really?.** Starts from the idea that money is a record, not an object, then explains the double-spending problem that kept digital cash unsolved for decades and what changes when software and a network of computers keep the ledger instead of one institution.
+
+**2. How Blockchains Work.** How independent computers agree on a single shared ledger without a central operator, and why a record built this way is hard to rewrite after the fact.
+
+**3. Bitcoin: The Original.** Where Bitcoin came from, what it was designed to do and where its limits are. Free companion reading: [Bitcoin live data and history](https://cryptobolt.io/bitcoin.html) and [the halving explained](https://cryptobolt.io/bitcoin-halving-explained.html).
+
+**4. Ethereum, Smart Contracts and the Wider Landscape.** What smart contracts are, how Ethereum differs from Bitcoin, and how other networks fit into the picture. Free companion reading: [Ethereum](https://cryptobolt.io/ethereum.html) and [Solana](https://cryptobolt.io/solana.html) pages.
+
+### Part II · The Ecosystem
+
+**5. Coins, Tokens and Categories.** How to tell a coin from a token, how projects are grouped into categories, and why a category label alone tells you little about quality.
+
+**6. Wallets, Keys and Self-Custody.** What a private key really is, the difference between leaving crypto on an exchange and holding it yourself, and the trade-offs of each.
+
+**7. Exchanges and How Markets Work.** How exchanges match buyers and sellers, what fees and spreads cost you, and how order types behave. Free companion reading: [how to read an order book](https://cryptobolt.io/how-to-read-an-order-book.html) and [stop-loss orders explained](https://cryptobolt.io/stop-loss-orders-explained.html).
+
+**8. DeFi Explained.** Lending, decentralised exchanges and liquidity pools in plain language, with the risks that come with each. Free companion reading: [impermanent loss explained](https://cryptobolt.io/impermanent-loss-explained.html) and [staking APR vs APY](https://cryptobolt.io/staking-apr-vs-apy.html).
+
+### Part III · Markets and Analysis
+
+**9. Reading Charts.** How to read price charts and timeframes, and what support, resistance and trends can and cannot tell you. Free companion reading: [round-number levels](https://cryptobolt.io/round-number-levels.html).
+
+**10. Indicators and Their Limits.** What popular indicators actually calculate, and why no indicator predicts price. Free tool: the [Fibonacci retracement calculator](https://cryptobolt.io/fibonacci-retracement-calculator.html).
+
+**11. Fundamental and On-Chain Research.** The questions worth asking about a project, and what public blockchain data can and cannot tell you.
+
+**12. Market Cycles, Sentiment and Psychology.** How markets move in cycles of fear and greed and how your own emotions work against you. Free companion reading: the [Fear & Greed Index](https://cryptobolt.io/fear-and-greed-index.html) explained.
+
+### Part IV · Risk, Safety and Your Plan
+
+**13. Risk Management.** Sizing positions, limiting the loss on any one trade and thinking in worst cases before they happen. Free tools: [position size](https://cryptobolt.io/position-size-calculator.html) and [risk-reward](https://cryptobolt.io/risk-reward-calculator.html) calculators, plus [the 1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html).
+
+**14. Spot, Margin and Futures.** How spot, margin and futures trading differ, and the arithmetic of leverage and liquidation. Free tools: the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) and [spot vs futures](https://cryptobolt.io/spot-vs-futures.html).
+
+**15. Scams, Hacks and Security.** Common scam patterns, how hacks happen and a security checklist you can apply today.
+
+**16. Taxes, Regulation and Staying Legal.** Why the rules differ from country to country, which records to keep and when to ask a professional. Free tool: the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator.html) for tracking cost.
+
+**17. Building Your Own Plan.** Turning everything into a written plan you can follow when emotions run hot, with a 90-day schedule. Practise first in the free [paper trading simulator](https://cryptobolt.io/crypto-paper-trading.html).
+
+### Appendices
+
+A glossary of 100+ terms, printable checklists, answers to every “Check yourself” question, a one-page formula cheat sheet and a trade journal template.
+
+Free excerpt
+
+## Read how the book begins
+
+This is the opening of “Before You Begin”. The free sample PDF contains the full preface, the contents and all of Chapter 1.
+
+Most people meet crypto the wrong way round. They see a price chart, a headline about someone who got rich, or a friend’s screenshot, and they feel they must act before the moment passes. Understanding comes later, usually after the first expensive lesson.
+
+This book reverses that order. It starts from first principles (what money is, what a blockchain actually does, why anyone would trust a network of strangers) and builds up to the practical skills that matter once real money is involved: reading a market, sizing a position, spotting a scam, keeping your keys safe and writing a plan you can follow when emotions run hot.
+
+**What this book is not.** It is not a list of coins to buy, a trading signal service or a promise of profit. Nobody can reliably predict crypto prices, and anyone who says otherwise is selling something. The goal here is different: to make you hard to fool and hard to wipe out, and to leave you able to form your own opinions.
+
+Want to keep reading? [Download the free 16-page sample (PDF)](https://cryptobolt.io/assets/ebook/Crypto-Clarity-Sample.pdf).
+
 How to order
 
 ## Three simple steps

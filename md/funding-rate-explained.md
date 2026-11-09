@@ -48,6 +48,8 @@ Funding settles on a fixed schedule, every eight hours on many venues (some cont
 
 [See live funding rates next to open interest in the terminal →](https://cryptobolt.io/app.html)
 
+**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook.html) covers futures, leverage and liquidation, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook.html).
+
 Keep reading
 
 ## More from the blog

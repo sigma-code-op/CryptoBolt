@@ -53,6 +53,8 @@ The most common mistake is choosing a stop by feel or by a percentage that sound
 
 How a stop behaves in a fast market is hard to appreciate from a description. Using [paper trading](https://cryptobolt.io/glossary.html#paper-trading) on live prices lets you see slippage and stop-outs happen with virtual funds, which is far cheaper than learning it with real ones.
 
+**Go deeper.** Chapter 13 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook.html) covers stop-losses and risk management, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook.html).
+
 Keep reading
 
 ## More from the blog

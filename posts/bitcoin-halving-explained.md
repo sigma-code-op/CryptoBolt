@@ -58,3 +58,5 @@ Anyone telling you with confidence what a halving will do to price is guessing. 
 ## How to use this knowledge sensibly
 
 The halving is a useful fact for understanding Bitcoin's monetary design and miner economics. It is not a trading signal. If you follow the market around such events, the more practical tools are the ones that measure what is happening now: [volatility](glossary.html#volatility), the [funding rate](funding-rate-explained.html), and sentiment gauges like the [Fear & Greed index](fear-and-greed-index.html). Periods around big narratives tend to bring larger swings, so it is worth knowing your [liquidation price](glossary.html#liquidation-price) before you use leverage, not after. And if you want to test how you would behave in that kind of market, [paper trading](crypto-paper-trading.html) on live prices costs nothing. For live Bitcoin data, see the [Bitcoin page](bitcoin.html).
+
+**Go deeper.** Chapter 3 of our 160-page ebook [Crypto Clarity](ebook.html) covers how Bitcoin works and where it came from, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).

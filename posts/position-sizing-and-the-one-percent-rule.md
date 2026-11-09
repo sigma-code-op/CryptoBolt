@@ -62,3 +62,5 @@ Once size is set by risk, you can evaluate whether a trade is worth taking by it
 ## Practising it
 
 Position sizing is a habit more than a calculation. Doing it every time, on every trade, even in simulation, is how it becomes automatic. CryptoBolt's [paper trading](crypto-paper-trading.html) account lets you practise sizing on live prices with virtual funds, and the numbers you build there are the same numbers you would use with real money.
+
+**Go deeper.** Chapter 13 of our 160-page ebook [Crypto Clarity](ebook.html) covers position sizing and risk management, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).
