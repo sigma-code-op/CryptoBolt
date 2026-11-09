@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-6l6D6nSXzvL8a2nVO1ya/aaiKulMTfyKjOTsxuZJwUc=' 'sha256-uSDWh4FaPYzj/5vJvyjHwlFHdLmO+oqcwd4npdYqzNs='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-gtag-lazy></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149913639439821" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Impermanent Loss Explained, With an Example | CryptoBolt</title>
+    <meta name="description" content="How impermanent loss works in a crypto liquidity pool: a step-by-step ETH example, a loss table by price move, and what fees and pair choice change.">
+    <meta name="keywords" content="impermanent loss, impermanent loss explained, liquidity pool risk, uniswap impermanent loss, amm explained, providing liquidity crypto, impermanent loss formula">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/impermanent-loss-explained.html">
+    <link rel="alternate" type="text/markdown" href="https://cryptobolt.io/md/impermanent-loss-explained.md">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/impermanent-loss-explained.html">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/impermanent-loss-explained.html">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/impermanent-loss-explained.html">
+    <meta property="og:title" content="Impermanent Loss Explained: Why Liquidity Pool Tokens Can Lag Holding">
+    <meta property="og:description" content="How impermanent loss works in a crypto liquidity pool: a step-by-step ETH example, a loss table by price move, and what fees and pair choice change.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/impermanent-loss-explained.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt — Impermanent loss explained: why pool tokens can lag simply holding">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:section" content="Mechanics">
+    <meta property="article:published_time" content="2026-11-08">
+    <meta property="article:modified_time" content="2026-11-08">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Impermanent Loss Explained: Why Liquidity Pool Tokens Can Lag Holding">
+    <meta name="twitter:description" content="How impermanent loss works in a crypto liquidity pool: a step-by-step ETH example, a loss table by price move, and what fees and pair choice change.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/impermanent-loss-explained.png">
+    <meta name="twitter:image:alt" content="CryptoBolt — Impermanent loss explained: why pool tokens can lag simply holding">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Impermanent Loss Explained: Why Liquidity Pool Tokens Can Lag Holding",
+      "description": "How impermanent loss works in a crypto liquidity pool: a step-by-step ETH example, a loss table by price move, and what fees and pair choice change.",
+      "url": "https://cryptobolt.io/impermanent-loss-explained.html",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cryptobolt.io/impermanent-loss-explained.html" },
+      "image": "https://cryptobolt.io/assets/og/impermanent-loss-explained.png",
+      "datePublished": "2026-11-08",
+      "dateModified": "2026-11-08",
+      "articleSection": "Mechanics",
+      "wordCount": 1019,
+      "author": { "@type": "Organization", "name": "CryptoBolt", "url": "https://cryptobolt.io/" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CryptoBolt",
+        "logo": { "@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png" }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CryptoBolt", "item": "https://cryptobolt.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cryptobolt.io/blog.html" },
+        { "@type": "ListItem", "position": 3, "name": "Impermanent loss explained: why pool tokens can lag simply holding", "item": "https://cryptobolt.io/impermanent-loss-explained.html" }
+      ]
+    }
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="blog.html" style="color:#eef1f4;" aria-current="page">Blog</a>
+        <a href="ebook.html">Ebook</a>
+        <a href="editorial-policy.html">Editorial policy</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="blog.html" style="color:#eef1f4;" aria-current="page">Blog</a>
+    <a href="ebook.html">Ebook</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-ghost">Sign in</a>
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+
+<main id="main" tabindex="-1">
+<header class="mk-fhero">
+    <span class="mk-eyebrow"><a href="blog.html" style="color:inherit;">From the desk</a></span>
+    <h1>Impermanent loss explained: why pool tokens can lag simply holding</h1>
+    <p>MECHANICS · 8 MIN READ</p>
+</header>
+
+<article class="mk-article" id="impermanent-loss-explained">
+    <p>Providing liquidity to a decentralised exchange sounds like a free lunch: deposit two tokens, earn a share of the trading fees. Then you withdraw and discover that you would have had more money by doing nothing. The gap has a name, impermanent loss, and it is the main reason liquidity provision is not passive income. This article walks through where it comes from with numbers you can check by hand.</p>
+    <h2 id="how-a-liquidity-pool-prices-things">How a liquidity pool prices things</h2>
+    <p>Most decentralised exchanges use an <a href="glossary.html#automated-market-maker">automated market maker</a> (AMM) instead of an <a href="glossary.html#order-book">order book</a>. In the classic design, a <a href="glossary.html#liquidity-pool">liquidity pool</a> holds two tokens, say ETH and a dollar stablecoin, and keeps the product of the two quantities constant. If someone buys ETH from the pool, the ETH balance falls, the stablecoin balance rises, and the price of ETH moves up automatically so the product is unchanged.</p>
+    <p>Because the pool is always willing to trade, any gap between its price and the wider market is quickly closed by arbitrage traders. They buy the token that is cheap in the pool and sell the one that is expensive, which keeps the pool price in line with the market, but at the cost of changing what the pool holds.</p>
+    <h2 id="a-worked-example">A worked example</h2>
+    <p>You deposit 1 ETH and 2,000 USDC when ETH is $2,000. Your deposit is worth $4,000. The pool's constant is 1 × 2,000 = 2,000 (ignoring your share of the whole pool, which scales everything equally).</p>
+    <p>Now ETH rises to $4,000 on the wider market. Arbitrage trades push the pool until its price is $4,000, which means the quantities satisfy two conditions: USDC ÷ ETH = 4,000 and ETH × USDC = 2,000. That gives about 0.7071 ETH and 2,828.43 USDC.</p>
+    <ul>
+        <li><strong>Value in the pool:</strong> 0.7071 × $4,000 + $2,828.43 = about <strong>$5,656.85</strong>.</li>
+        <li><strong>Value if you had just held:</strong> 1 × $4,000 + $2,000 = <strong>$6,000</strong>.</li>
+    </ul>
+    <p>The pool left you about $343 behind, or 5.72%. That gap is impermanent loss. The arbitrage traders effectively sold you out of ETH as it rose, so you ended up with less of the winner than if you had kept your tokens.</p>
+    <h2 id="the-formula-and-how-big-the-loss-gets">The formula and how big the loss gets</h2>
+    <p>For a 50/50 constant-product pool, if one token's price changes by a factor r against the other:</p>
+    <p><strong>Impermanent loss = 2 × √r ÷ (1 + r) − 1</strong></p>
+    <p>The loss depends only on how far the price ratio has moved, not on the direction, and it grows more slowly than the price move at first and faster later:</p>
+    <div class="mk-table-wrap">
+        <table class="mk-table">
+            <thead><tr><th scope="col">Price change vs the other token</th><th scope="col">Impermanent loss</th></tr></thead>
+            <tbody>
+                <tr><th scope="row">−50%</th><td>−5.72%</td></tr>
+                <tr><th scope="row">+25%</th><td>−0.62%</td></tr>
+                <tr><th scope="row">+50%</th><td>−2.02%</td></tr>
+                <tr><th scope="row">+100% (2x)</th><td>−5.72%</td></tr>
+                <tr><th scope="row">+200% (3x)</th><td>−13.40%</td></tr>
+                <tr><th scope="row">+300% (4x)</th><td>−20.00%</td></tr>
+                <tr><th scope="row">+900% (10x)</th><td>−42.50%</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p>Use the <a href="impermanent-loss-calculator.html">impermanent loss calculator</a> to see the number for your own deposit and price move.</p>
+    <h2 id="why-it-is-called-impermanent">Why it is called impermanent</h2>
+    <p>If the price goes back to where it was when you deposited, the loss disappears completely, because the pool returns to its original composition. It becomes permanent when you withdraw while the price is away from your entry. The word can give a false sense of comfort: there is no guarantee the price returns, and for a token that drifts in one direction for months, the loss is simply a loss.</p>
+    <h2 id="fees-the-other-half-of-the-picture">Fees: the other half of the picture</h2>
+    <p>Liquidity providers earn a share of every trade's fee, and those fees are the compensation for taking the divergence risk. Whether you come out ahead depends on three things: how much volume the pool sees relative to its size, the fee tier, and how far prices move. In the example above, ETH doubling creates a loss of about 8.58% of your original deposit measured against holding, so you would need to have earned roughly that much in fees to break even. A busy pool might do that over a few months; a quiet one might never.</p>
+    <div class="mk-callout mk-callout-note" role="note"><strong>Note:</strong> Always compare against holding, not against zero. Earning 4% in fees while the divergence costs you 6% is a net loss relative to doing nothing, even though your account balance shows fees coming in.</div>
+    <h2 id="how-people-reduce-impermanent-loss">How people reduce impermanent loss</h2>
+    <ul>
+        <li><strong>Choose correlated pairs.</strong> Two stablecoins, or a token and its liquid-staked version, move together, so the ratio barely changes and the loss is tiny.</li>
+        <li><strong>Prefer volume over hype.</strong> A pool that trades a lot relative to its size generates more fees per dollar of liquidity.</li>
+        <li><strong>Keep the horizon realistic.</strong> The longer you stay while prices trend away, the more likely the loss grows.</li>
+        <li><strong>Understand concentrated liquidity.</strong> On platforms where you choose a price range, you earn much more fees per dollar while the price is inside the range, but if it leaves the range you hold only the losing token and the loss is larger than the simple formula suggests. The calculator on this site models the classic 50/50 pool only.</li>
+    </ul>
+    <h2 id="risks-that-are-not-impermanent-loss">Risks that are not impermanent loss</h2>
+    <p>Impermanent loss is only the arithmetic of balancing a pool. Liquidity providers also face smart-contract bugs and exploits, tokens that are scams or lose their peg, rug pulls on the pool's creator side, and the usual price risk of the tokens themselves. None of that is captured in a formula. A new, unaudited pool offering a very high yield is not a better deal than a boring one; it is usually a riskier one.</p>
+    <h2 id="a-short-checklist-before-you-provide-liquidity">A short checklist before you provide liquidity</h2>
+    <p>1. Work out the break-even fees for a few price moves (use the <a href="impermanent-loss-calculator.html">calculator</a>). 2. Estimate realistic fees from the pool's recent volume, not from the headline yield. 3. Ask what happens if either token falls 50% or rises 3x. 4. Check that the contracts are audited and the tokens are legitimate. 5. Decide in advance when you will withdraw.</p>
+    <p>Related reading: if you would rather earn a rate than provide liquidity, see <a href="staking-apr-vs-apy.html">staking: APR vs APY</a> and the <a href="crypto-staking-calculator.html">staking calculator</a>. This article is educational and not financial advice.</p>
+</article>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep reading</span>
+        <h2 id="related-heading">More from the blog</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="spot-vs-futures.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(79,216,232,.08);"><i data-lucide="scale" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 5 min read</span>
+                <h3>Spot vs. perpetual futures: what actually changes</h3>
+                <p>Ownership, leverage, liquidation, and funding rate — the mechanics that actually differ between holding the asset and trading a derivative on it.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="how-to-read-an-order-book.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(79,216,232,.08);"><i data-lucide="file-text" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 6 min read</span>
+                <h3>How to read a crypto order book (and what it can't tell you)</h3>
+                <p>Bids, asks, the spread and depth: what the live order book shows, and why a snapshot of resting orders is not a forecast.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="funding-rate-explained.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(74,222,128,.08);"><i data-lucide="banknote" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Mechanics · 5 min read</span>
+                <h3>Crypto funding rates: what the number on your futures screen means</h3>
+                <p>The small percentage next to every perpetual contract quietly tells you which side of the market is crowded — here's how to actually read it.</p>
+                <span class="mk-blog-read">Read the post <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
+            <a href="contact.html">Contact</a>
+            <a href="ebook.html">Ebook</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script src="/js/lucide-slim.js?v=20261010"></script>
+<script src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20260823" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+</body>
+</html>

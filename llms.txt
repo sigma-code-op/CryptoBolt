@@ -29,14 +29,27 @@
   - [Stop-loss orders explained: stop-market, stop-limit and why they slip](https://cryptobolt.io/stop-loss-orders-explained.html)
   - [Position sizing and the 1% rule: how big should a crypto trade be?](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html)
   - [The Bitcoin halving explained: what changes, what doesn't, and the dates](https://cryptobolt.io/bitcoin-halving-explained.html)
+  - [Dollar-cost averaging in crypto: when it helps, when it does not](https://cryptobolt.io/dollar-cost-averaging-crypto.html)
+  - [Impermanent loss explained: why pool tokens can lag simply holding](https://cryptobolt.io/impermanent-loss-explained.html)
+  - [Crypto staking: APR vs APY, where rewards come from and what can go wrong](https://cryptobolt.io/staking-apr-vs-apy.html)
+  - [How to calculate crypto profit and loss: spot, futures, fees and break-even](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html)
+  - [Risk-reward ratio and win rate: why a 40% win rate can still work](https://cryptobolt.io/risk-reward-ratio-and-win-rate.html)
   - [Liquidation Price Calculator](https://cryptobolt.io/liquidation-price-calculator.html) — Free calculator estimating liquidation price for leveraged crypto futures positions, long or short, isolated or cross margin.
   - [Position Size Calculator](https://cryptobolt.io/position-size-calculator.html) — Free calculator turning account balance, risk percentage, entry and stop-loss into position size, margin and R-multiple targets.
   - [Crypto Futures Profit Calculator](https://cryptobolt.io/crypto-profit-calculator.html) — Free calculator for net profit or loss, ROE and fees on a leveraged long or short trade.
   - [Funding Fee Calculator](https://cryptobolt.io/funding-fee-calculator.html) — Free calculator for what a perpetual futures position pays or earns in funding per day, month and year.
-  - [Crypto Trading Calculators](https://cryptobolt.io/crypto-calculators.html) — Hub for the free liquidation price, position size, profit and funding fee calculators.
+  - [Risk-Reward Ratio Calculator](https://cryptobolt.io/risk-reward-calculator.html) — Free calculator for the risk-reward ratio, break-even win rate and expectancy of a long or short trade.
+  - [Crypto DCA Calculator](https://cryptobolt.io/dca-calculator.html) — Free dollar-cost averaging calculator: average cost, coins bought and return versus a lump sum.
+  - [Crypto Average Price Calculator](https://cryptobolt.io/crypto-average-price-calculator.html) — Free calculator combining several buys into a weighted average entry price and break-even.
+  - [Crypto ROI Calculator](https://cryptobolt.io/crypto-roi-calculator.html) — Free spot-trade calculator for net profit, ROI, fees and break-even sell price.
+  - [Crypto Staking Rewards Calculator](https://cryptobolt.io/crypto-staking-calculator.html) — Free calculator projecting staking rewards with compounding and converting APR to APY.
+  - [Impermanent Loss Calculator](https://cryptobolt.io/impermanent-loss-calculator.html) — Free calculator for impermanent loss in a 50/50 liquidity pool versus holding.
+  - [Fibonacci Retracement Calculator](https://cryptobolt.io/fibonacci-retracement-calculator.html) — Free calculator for Fibonacci retracement and extension levels from a swing high and low.
+  - [Crypto Trading Calculators](https://cryptobolt.io/crypto-calculators.html) — Hub for eleven free calculators: liquidation price, position size, risk-reward, profit, funding fee, Fibonacci, DCA, average price, ROI, staking and impermanent loss.
   - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns.html)
   - ["$1000 in a day": why that headline is a trap, and why you clicked it](https://cryptobolt.io/1000-dollar-day-trap.html)
 - [Crypto Trading Glossary](https://cryptobolt.io/glossary.html) — Plain-English definitions of crypto trading and market-data terms such as funding rate, open interest, liquidation price and ATR.
+- [Editorial Policy](https://cryptobolt.io/editorial-policy.html) — How CryptoBolt writes guides, builds and tests calculators, uses data, takes advertising and corrects errors.
 - [Releases and Changelog](https://cryptobolt.io/releases.html) — Dated log of new features, fixes and data-source changes.
 - [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.
 - [Crypto Clarity ebook](https://cryptobolt.io/ebook.html) — 160-page PDF beginner-to-confident crypto guide (17 chapters, 31 diagrams); order by email or the contact form.

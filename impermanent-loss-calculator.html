@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-qIqsKMUFFsO7bJicOSXCefsx4OKFsl0rciME6Y7/VMQ=' 'sha256-zLZkYVq8LiNjx41rwjnPjdbvYZakTnFtpJGXCKY81Jk=' 'sha256-ZjKCMd8dLO3MPJDqPtqo9dSysIQZ86+28q9m1T6LctE=' 'sha256-y29/7neuJLw24tJkhIAsXXe5Vewr45QgU8m9gbwTFxI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-ads data-gtag-lazy></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Impermanent Loss Calculator for Liquidity Pools | CryptoBolt</title>
+    <meta name="description" content="Free impermanent loss calculator. Enter the price change and your deposit to see the loss versus holding, value in the pool and the fees needed to break even.">
+    <meta name="keywords" content="impermanent loss calculator, il calculator, liquidity pool calculator, uniswap impermanent loss, amm calculator, impermanent loss formula, lp calculator">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/impermanent-loss-calculator.html">
+    <link rel="alternate" type="text/markdown" href="https://cryptobolt.io/md/impermanent-loss-calculator.md">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/impermanent-loss-calculator.html">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/impermanent-loss-calculator.html">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/impermanent-loss-calculator.html">
+    <meta property="og:title" content="Impermanent Loss Calculator for Liquidity Pools | CryptoBolt">
+    <meta property="og:description" content="See impermanent loss versus holding for a 50/50 liquidity pool, and the fees needed to break even.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/impermanent-loss-calculator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Impermanent loss calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Impermanent Loss Calculator for Liquidity Pools | CryptoBolt">
+    <meta name="twitter:description" content="See impermanent loss versus holding for a 50/50 liquidity pool, and the fees needed to break even.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/impermanent-loss-calculator.png">
+    <meta name="twitter:image:alt" content="Impermanent loss calculator">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Impermanent loss calculator",
+      "url": "https://cryptobolt.io/impermanent-loss-calculator.html",
+      "description": "A free calculator for impermanent loss in a 50/50 constant-product liquidity pool.",
+      "dateModified": "2026-11-08",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "CryptoBolt",
+        "url": "https://cryptobolt.io/"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cryptobolt.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Crypto calculators",
+            "item": "https://cryptobolt.io/crypto-calculators.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Impermanent loss calculator",
+            "item": "https://cryptobolt.io/impermanent-loss-calculator.html"
+          }
+        ]
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is impermanent loss in simple terms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the gap between what your tokens are worth inside a liquidity pool and what they would be worth if you had just held them. It appears when the prices of the two tokens move apart and shrinks if they move back."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you calculate impermanent loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a 50/50 pool, impermanent loss = 2 × √r ÷ (1 + r) − 1, where r is the price ratio change. A token that doubles (r = 2) gives about −5.72%; one that quadruples (r = 4) gives exactly −20%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is impermanent loss real?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, it is a real opportunity cost compared with holding, and it becomes a realised loss if you withdraw while prices are away from your entry. It is \"impermanent\" only in the sense that it can reverse if prices return."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can trading fees cover impermanent loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sometimes. Fees go to liquidity providers, and in busy pools they can exceed the loss. The \"fees needed to break even\" figure shows how much you would have to earn for a given price move."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which pools have the least impermanent loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pools of assets that move together, such as two stablecoins or a token paired with its staked version, have the smallest divergence. Pairs of unrelated volatile tokens have the most."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this calculator work for Uniswap v3 or concentrated liquidity?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It models the classic 50/50 constant-product pool. Concentrated positions have a different payoff and can lose much more when the price leaves the chosen range."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Impermanent loss calculator",
+      "url": "https://cryptobolt.io/impermanent-loss-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://cryptobolt.io/#organization"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Organization", "@id": "https://cryptobolt.io/#organization", "name": "CryptoBolt", "alternateName": "Crypto Bolt", "url": "https://cryptobolt.io/", "logo": {"@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png", "width": 512, "height": 512}, "image": "https://cryptobolt.io/assets/og-image.png", "description": "CryptoBolt is a free crypto market research and analysis platform with live Binance spot and futures data, charts, paper trading, calculators and AI-assisted research. It is an education and analysis tool, not an exchange and not financial advice.", "email": "info@cryptobolt.io", "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": "info@cryptobolt.io", "url": "https://cryptobolt.io/contact.html", "availableLanguage": ["English"]}], "knowsAbout": ["Cryptocurrency market data", "Technical analysis", "Crypto paper trading", "Perpetual futures"], "sameAs": ["https://x.com/cryptobolt5fvj", "https://github.com/sigma-code-op/CryptoBolt", "https://youtube.com/@cryptobolt-1", "https://www.facebook.com/profile.php?id=61595142351905"]}
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+
+        .lc-tbl-wrap{overflow-x:auto;margin-top:14px;}
+        .lc-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:6px;}
+        .lc-rows .lc-field label{font-size:11px;}
+        .lc-fib{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+        .lc-fib th,.lc-fib td{padding:9px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;}
+        .lc-fib td:last-child{font-family:'JetBrains Mono',monospace;text-align:right;}
+        .lc-meta{max-width:820px;margin:0 auto 18px;font-size:12px;color:var(--mk-text-dim,#8B93A3);text-align:center;}
+        .lc-meta a{color:var(--mk-green,#22C58C);}
+        .lc-sel{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        @media(max-width:640px){.lc-rows{grid-template-columns:1fr;}}
+    </style>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app.html">Terminal</a>
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="spot-vs-futures.html">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app.html">Terminal</a>
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="spot-vs-futures.html">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool</span>
+    <h1>Impermanent loss calculator</h1>
+    <p>See how much a 50/50 liquidity pool position lags simply holding the two tokens after a price move, and how much in fees you would need to make it up.</p>
+</header>
+
+<p class="lc-meta">Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · <a href="editorial-policy.html">How we build and check our tools</a></p>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc">
+        <div class="lc-grid">
+            <div class="lc-field">
+                <label for="il-change">Price change of one token vs the other (%)</label>
+                <input type="number" id="il-change" inputmode="decimal" step="any" placeholder="e.g. 100" value="100">
+            </div>
+            <div class="lc-field">
+                <label for="il-deposit">Deposit value at entry (USD)</label>
+                <input type="number" id="il-deposit" inputmode="decimal" step="any" placeholder="e.g. 10000" value="10000">
+            </div>
+            <div class="lc-field">
+                <label for="il-fees">Fees earned (% of deposit, optional)</label>
+                <input type="number" id="il-fees" inputmode="decimal" step="0.1" placeholder="e.g. 3" value="3">
+            </div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="il-out-pct">-5.72%</div>
+            <div class="lc-sub" id="il-out-sub">Pool is worth 5.72% less than simply holding the same two tokens</div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="il-out-hold">$15,000.00</b><span>Value if you had just held</span></div>
+            <div class="lc-stat"><b id="il-out-pool">$14,142.14</b><span>Value inside the pool</span></div>
+            <div class="lc-stat"><b id="il-out-loss">-$857.86</b><span>Gap vs holding</span></div>
+            <div class="lc-stat"><b id="il-out-fees">$300.00</b><span>Fees earned</span></div>
+            <div class="lc-stat"><b id="il-out-net">-$557.86</b><span>Pool + fees vs holding</span></div>
+            <div class="lc-stat"><b id="il-out-be">8.58%</b><span>Fees needed to break even (% of deposit)</span></div>
+        </div>
+        <div class="lc-warning" id="il-warning"></div>
+        <p class="lc-note">Assumes a 50/50 constant-product pool (the Uniswap v2 design) and that the second token does not move. Concentrated-liquidity and weighted pools behave differently. Educational tool, not financial advice.</p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>What impermanent loss is</h2>
+    <p>When you deposit two tokens into an automated market maker (AMM) liquidity pool, the pool keeps the two sides balanced by value. If the price of one token rises, arbitrage traders buy it from the pool until the pool price matches the market, and in doing so they leave the pool with <em>less</em> of the token that went up and <em>more</em> of the one that went down. When you withdraw, your share is worth less than if you had simply kept both tokens in your wallet. That shortfall is <strong>impermanent loss</strong>. It is called impermanent because it shrinks or disappears if the price returns to where it was when you deposited; it becomes permanent only when you withdraw while the price is away from your entry.</p>
+    <h2>The formula</h2>
+    <p>For a standard 50/50 constant-product pool, where one token's price changes by a factor r relative to the other:</p>
+    <ul>
+        <li><strong>Impermanent loss</strong> = 2 × &radic;r ÷ (1 + r) &minus; 1 (a negative number or zero)</li>
+        <li><strong>Value if held</strong> = deposit × (1 + r) ÷ 2</li>
+        <li><strong>Value in the pool</strong> = deposit × &radic;r</li>
+    </ul>
+    <p>Notice that the result depends only on how far the <em>ratio</em> of the two prices has moved, not on which direction. A token that doubles and a token that halves against its partner produce the same loss percentage.</p>
+    <h2>Loss by price change</h2>
+    <div class="lc-tbl-wrap"><table>
+        <thead><tr><th>Price change vs the other token</th><th>Impermanent loss vs holding</th><th>Fees needed to break even (% of deposit)</th></tr></thead>
+        <tbody><tr><td>-75%</td><td>-20.00%</td><td>12.50%</td></tr><tr><td>-50%</td><td>-5.72%</td><td>4.29%</td></tr><tr><td>-25%</td><td>-1.03%</td><td>0.90%</td></tr><tr><td>+25%</td><td>-0.62%</td><td>0.70%</td></tr><tr><td>+50%</td><td>-2.02%</td><td>2.53%</td></tr><tr><td>+100%</td><td>-5.72%</td><td>8.58%</td></tr><tr><td>+200%</td><td>-13.40%</td><td>26.79%</td></tr><tr><td>+300%</td><td>-20.00%</td><td>50.00%</td></tr><tr><td>+400%</td><td>-25.46%</td><td>76.39%</td></tr><tr><td>+900%</td><td>-42.50%</td><td>233.77%</td></tr></tbody>
+    </table></div>
+    <h2>Worked example</h2>
+    <p>Deposit $10,000 into a 50/50 pool ($5,000 of each token). One token then doubles against the other. Holding the two tokens would have been worth $15,000. Inside the pool your share is worth about $14,142, a gap of about $858 or 5.72%. If the pool paid you 3% of your deposit in trading fees ($300) over the period, you would still be about $558 behind simply holding. To come out even you would need fees of about 8.58% of your deposit. This is the core trade-off: pools pay you fees for taking on the divergence, and whether that is enough depends on trading volume, the pool's fee tier and how far the prices move.</p>
+    <h2>When impermanent loss matters most</h2>
+    <ul>
+        <li><strong>Volatile pairs</strong> (two uncorrelated tokens) suffer the most. A pair that moves together, such as two similar stablecoins or a token and its liquid-staked version, suffers very little.</li>
+        <li><strong>Large one-way moves</strong> hurt more than small oscillations; the loss grows faster than the price move.</li>
+        <li><strong>Concentrated liquidity</strong> (ranges chosen by the provider) earns more fees per dollar while the price stays in range but amplifies the loss when it moves out. This calculator does not model it.</li>
+        <li><strong>Token-specific risk</strong> is separate from impermanent loss: a pool token can go to zero or be exploited, and no formula captures that.</li>
+    </ul>
+    <h2>How to use the calculator</h2>
+    <p>Enter how much one token has moved relative to the other (use a negative number for a fall), your deposit and, optionally, the fees you expect to earn as a percentage of the deposit. If the other token is a stablecoin, the price change is simply the volatile token's change in dollars. For a full walk-through of how pools work and how liquidity providers think about the trade-off, read <a href="impermanent-loss-explained.html">impermanent loss explained</a>.</p>
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Impermanent loss calculator FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>What is impermanent loss in simple terms?</h3>
+            <p>It is the gap between what your tokens are worth inside a liquidity pool and what they would be worth if you had just held them. It appears when the prices of the two tokens move apart and shrinks if they move back.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How do you calculate impermanent loss?</h3>
+            <p>For a 50/50 pool, impermanent loss = 2 × √r ÷ (1 + r) − 1, where r is the price ratio change. A token that doubles (r = 2) gives about −5.72%; one that quadruples (r = 4) gives exactly −20%.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Is impermanent loss real?</h3>
+            <p>Yes, it is a real opportunity cost compared with holding, and it becomes a realised loss if you withdraw while prices are away from your entry. It is "impermanent" only in the sense that it can reverse if prices return.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Can trading fees cover impermanent loss?</h3>
+            <p>Sometimes. Fees go to liquidity providers, and in busy pools they can exceed the loss. The "fees needed to break even" figure shows how much you would have to earn for a given price move.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Which pools have the least impermanent loss?</h3>
+            <p>Pools of assets that move together, such as two stablecoins or a token paired with its staked version, have the smallest divergence. Pairs of unrelated volatile tokens have the most.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does this calculator work for Uniswap v3 or concentrated liquidity?</h3>
+            <p>No. It models the classic 50/50 constant-product pool. Concentrated positions have a different payoff and can lose much more when the price leaves the chosen range.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep going</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="crypto-staking-calculator.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="banknote" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Staking rewards calculator</h3>
+                <p>Compound rewards and convert APR to APY.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="crypto-roi-calculator.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="calculator" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Crypto ROI calculator</h3>
+                <p>Profit, ROI and break-even price on a spot trade.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="impermanent-loss-explained.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="graduation-cap" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Guide</span>
+                <h3>Impermanent loss explained</h3>
+                <p>Why pool tokens can lag simply holding.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="releases.html">Releases</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+            <a href="spot-vs-futures.html">Spot vs futures</a>
+            <a href="funding-rate-explained.html">Funding rate explained</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
+            <a href="contact.html">Contact</a>
+            <a href="ebook.html">Ebook</a>
+            <a href="editorial-policy.html">Editorial policy</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/more-calculators.js?v=20261108" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+</body>
+</html>

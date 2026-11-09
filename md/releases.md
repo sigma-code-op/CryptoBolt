@@ -4,6 +4,24 @@
 
 Source: https://cryptobolt.io/releases.html
 
+v1.18.0
+
+November 8, 2026
+
+## Seven new calculators, five new guides and an editorial policy.
+
+What's new
+
+- New calculators: [DCA](https://cryptobolt.io/dca-calculator.html), [average price](https://cryptobolt.io/crypto-average-price-calculator.html), [risk-reward](https://cryptobolt.io/risk-reward-calculator.html), [staking rewards (APR to APY)](https://cryptobolt.io/crypto-staking-calculator.html), [impermanent loss](https://cryptobolt.io/impermanent-loss-calculator.html), [spot ROI and break-even](https://cryptobolt.io/crypto-roi-calculator.html) and [Fibonacci retracement](https://cryptobolt.io/fibonacci-retracement-calculator.html). Each shows its formula, worked examples and a FAQ, and runs entirely in your browser.
+- New guides: [dollar-cost averaging](https://cryptobolt.io/dollar-cost-averaging-crypto.html), [impermanent loss](https://cryptobolt.io/impermanent-loss-explained.html), [staking APR vs APY](https://cryptobolt.io/staking-apr-vs-apy.html), [calculating crypto profit and loss](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html) and [risk-reward ratio and win rate](https://cryptobolt.io/risk-reward-ratio-and-win-rate.html).
+- The [calculators hub](https://cryptobolt.io/crypto-calculators.html) now lists all eleven tools, grouped for trading and for buying, holding and earning.
+- New [editorial policy](https://cryptobolt.io/editorial-policy.html) explaining how guides are written, how calculators are tested, how data is sourced and how corrections are handled. It is linked from the footer.
+- The [glossary](https://cryptobolt.io/glossary.html) gained 15 terms, including DCA, impermanent loss, APR, APY, staking, slashing, R-multiple and expectancy.
+
+Data sources
+
+- No change. The new calculators do arithmetic locally and use no external data.
+
 v1.17.0
 
 October 28, 2026

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google 'sha256-S0ey58pzY8uO4G+0yJpj0YHOFrEE1/vYmswrQ6TDL6k=' 'sha256-Pw9c3PL2AZ6974iz4TwLdx5xuSQfoNztIn96Fn9+45U=' 'sha256-Hp6Re57n7ZRJWZ7C+C8uDYmel4R6uWDftIdVoikfoe8=' 'sha256-y29/7neuJLw24tJkhIAsXXe5Vewr45QgU8m9gbwTFxI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-ads data-gtag-lazy></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Crypto DCA Calculator: Dollar-Cost Averaging | CryptoBolt</title>
+    <meta name="description" content="Free crypto DCA calculator. Enter a buy amount, number of buys and start and end price to see average cost, coins bought and return versus a lump sum.">
+    <meta name="keywords" content="dca calculator, crypto dca calculator, dollar cost averaging calculator, bitcoin dca calculator, dca vs lump sum, crypto average cost calculator">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/dca-calculator.html">
+    <link rel="alternate" type="text/markdown" href="https://cryptobolt.io/md/dca-calculator.md">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/dca-calculator.html">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/dca-calculator.html">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/dca-calculator.html">
+    <meta property="og:title" content="Crypto DCA Calculator: Dollar-Cost Averaging | CryptoBolt">
+    <meta property="og:description" content="See your average cost and return from regular buys, compared with a lump sum. Free, no signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/dca-calculator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Crypto DCA calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Crypto DCA Calculator: Dollar-Cost Averaging | CryptoBolt">
+    <meta name="twitter:description" content="See your average cost and return from regular buys, compared with a lump sum. Free, no signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/dca-calculator.png">
+    <meta name="twitter:image:alt" content="Crypto DCA calculator">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Crypto DCA calculator",
+      "url": "https://cryptobolt.io/dca-calculator.html",
+      "description": "A free calculator that models dollar-cost averaging into crypto and compares it with a lump-sum purchase.",
+      "dateModified": "2026-11-08",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "CryptoBolt",
+        "url": "https://cryptobolt.io/"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cryptobolt.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Crypto calculators",
+            "item": "https://cryptobolt.io/crypto-calculators.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Crypto DCA calculator",
+            "item": "https://cryptobolt.io/dca-calculator.html"
+          }
+        ]
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a DCA calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A DCA calculator shows what regular, fixed-size purchases would have cost on average and what they would be worth at a later price. This one also compares the result with investing the same total money in one go on the first day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is dollar-cost averaging better than a lump sum?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Neither wins every time. In a falling or choppy market DCA usually loses less; in a steadily rising market a lump sum usually earns more because the money is invested for longer. DCA is mostly a way to manage the risk of buying at a bad moment and to build a habit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does DCA guarantee a profit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. If the price ends below your average cost you have a loss, as the falling-market example shows. DCA lowers timing risk; it does not remove market risk."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should I buy when dollar-cost averaging?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pick an interval you can keep: weekly, fortnightly or monthly are the usual choices. Over long periods the interval changes the average cost less than consistency does, but very frequent buys can add up in fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my real average price differ from this result?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This calculator uses a straight-line price path. Real prices rise and fall in between, so your actual average cost depends on the exact prices you paid. Enter them in the average price calculator for the precise figure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are fees and taxes included?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Add your exchange fees with the crypto ROI calculator, and check the tax rules where you live, because they vary and can change the real result."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Crypto DCA calculator",
+      "url": "https://cryptobolt.io/dca-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://cryptobolt.io/#organization"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Organization", "@id": "https://cryptobolt.io/#organization", "name": "CryptoBolt", "alternateName": "Crypto Bolt", "url": "https://cryptobolt.io/", "logo": {"@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png", "width": 512, "height": 512}, "image": "https://cryptobolt.io/assets/og-image.png", "description": "CryptoBolt is a free crypto market research and analysis platform with live Binance spot and futures data, charts, paper trading, calculators and AI-assisted research. It is an education and analysis tool, not an exchange and not financial advice.", "email": "info@cryptobolt.io", "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": "info@cryptobolt.io", "url": "https://cryptobolt.io/contact.html", "availableLanguage": ["English"]}], "knowsAbout": ["Cryptocurrency market data", "Technical analysis", "Crypto paper trading", "Perpetual futures"], "sameAs": ["https://x.com/cryptobolt5fvj", "https://github.com/sigma-code-op/CryptoBolt", "https://youtube.com/@cryptobolt-1", "https://www.facebook.com/profile.php?id=61595142351905"]}
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+
+        .lc-tbl-wrap{overflow-x:auto;margin-top:14px;}
+        .lc-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:6px;}
+        .lc-rows .lc-field label{font-size:11px;}
+        .lc-fib{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+        .lc-fib th,.lc-fib td{padding:9px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;}
+        .lc-fib td:last-child{font-family:'JetBrains Mono',monospace;text-align:right;}
+        .lc-meta{max-width:820px;margin:0 auto 18px;font-size:12px;color:var(--mk-text-dim,#8B93A3);text-align:center;}
+        .lc-meta a{color:var(--mk-green,#22C58C);}
+        .lc-sel{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        @media(max-width:640px){.lc-rows{grid-template-columns:1fr;}}
+    </style>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app.html">Terminal</a>
+        <a href="features.html">Features</a>
+        <a href="ai.html">AI Research</a>
+        <a href="spot-vs-futures.html">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app.html">Terminal</a>
+    <a href="features.html">Features</a>
+    <a href="ai.html">AI Research</a>
+    <a href="spot-vs-futures.html">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app.html" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool</span>
+    <h1>Crypto DCA calculator</h1>
+    <p>Model regular, fixed-size crypto purchases and compare the result with investing the same money in one go.</p>
+</header>
+
+<p class="lc-meta">Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · <a href="editorial-policy.html">How we build and check our tools</a></p>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc">
+        <div class="lc-grid">
+            <div class="lc-field">
+                <label for="dc-amount">Amount per buy (USD)</label>
+                <input type="number" id="dc-amount" inputmode="decimal" step="any" placeholder="e.g. 200" value="200">
+            </div>
+            <div class="lc-field">
+                <label for="dc-count">Number of buys</label>
+                <input type="number" id="dc-count" inputmode="decimal" step="1" placeholder="e.g. 10" value="10" min="1">
+            </div>
+            <div class="lc-field">
+                <label for="dc-start">Price at the first buy (USD)</label>
+                <input type="number" id="dc-start" inputmode="decimal" step="any" placeholder="e.g. 50000" value="50000">
+            </div>
+            <div class="lc-field">
+                <label for="dc-end">Price at the last buy (USD)</label>
+                <input type="number" id="dc-end" inputmode="decimal" step="any" placeholder="e.g. 40000" value="40000">
+            </div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="dc-out-main">$1,786.80</div>
+            <div class="lc-sub" id="dc-out-sub">Value at the end price · -10.66% on $2,000.00 invested</div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="dc-out-invested">$2,000.00</b><span>Total invested</span></div>
+            <div class="lc-stat"><b id="dc-out-avg">$44,772.77</b><span>Average cost per coin</span></div>
+            <div class="lc-stat"><b id="dc-out-units">0.0447</b><span>Coins accumulated</span></div>
+            <div class="lc-stat"><b id="dc-out-roi">-10.66%</b><span>DCA return</span></div>
+            <div class="lc-stat"><b id="dc-out-lump">$1,600.00</b><span>Lump-sum value (same money, day one)</span></div>
+            <div class="lc-stat"><b id="dc-out-lumproi">-20.00%</b><span>Lump-sum return</span></div>
+        </div>
+        <div class="lc-warning" id="dc-warning"></div>
+        <p class="lc-note">A model, not a forecast: the price is assumed to move in a straight line between the first and last buy, buys are evenly spaced, and fees and taxes are ignored. Real prices zig-zag. Educational tool, not financial advice.</p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>What dollar-cost averaging means</h2>
+    <p>Dollar-cost averaging (DCA) is the habit of investing the same amount of money at regular intervals, whatever the price happens to be. Instead of deciding when to buy, you decide how much and how often: $200 every two weeks, $50 every Friday, 100 USDT on the first of the month. When the price is low, the fixed amount buys more coins; when it is high, it buys fewer. Over time your <strong>average cost per coin</strong> lands somewhere between the highs and the lows you paid.</p>
+    <h2>How this calculator works</h2>
+    <p>You enter the amount per buy, how many buys you will make, and the price at the first and last buy. The calculator spreads the buys evenly and moves the price in a straight line between those two points. It then adds up the coins each buy would have purchased:</p>
+    <ul>
+        <li><strong>Coins bought at each step</strong> = amount per buy ÷ price at that step</li>
+        <li><strong>Total invested</strong> = amount per buy × number of buys</li>
+        <li><strong>Average cost</strong> = total invested ÷ total coins (this is a harmonic average, which is why it sits below the simple average of the prices when prices vary)</li>
+        <li><strong>Final value</strong> = total coins × the last price</li>
+        <li><strong>Lump-sum comparison</strong> = the same total invested at the first price on day one, valued at the last price</li>
+    </ul>
+    <h2>Worked example: a falling market</h2>
+    <p>Buy $200 of Bitcoin ten times while the price slides from $50,000 to $40,000. You invest $2,000 in total and end up with about 0.0447 BTC at an average cost of about $44,773 &mdash; lower than the $50,000 starting price. At the final price of $40,000 the holding is worth about $1,786.80, a loss of roughly 10.7%. Someone who put all $2,000 in at $50,000 on day one would hold $1,600, a loss of 20%. DCA lost money here too, but about half as much, because most of the money was invested after the price had already fallen.</p>
+    <h2>Worked example: a rising market</h2>
+    <p>Now buy $100 of Bitcoin twelve times while the price climbs from $40,000 to $60,000. You invest $1,200 and finish with roughly 0.0244 BTC at an average cost near $49,202, worth about $1,463 at the end &mdash; a gain of about 21.9%. The lump sum bought at $40,000 on day one would be worth $1,800, a gain of 50%. DCA <em>lagged</em> because part of your money bought after the price had already risen.</p>
+    <h2>What the two examples teach</h2>
+    <ul>
+        <li>In a steadily falling market, DCA loses less than a lump sum; in a steadily rising market it earns less. Nobody knows in advance which one is coming.</li>
+        <li>DCA does not remove risk. It spreads the <em>timing</em> risk of a single entry across many entries, so no single bad day decides your result.</li>
+        <li>The main benefit is behavioural: a fixed schedule removes the urge to wait for the perfect entry or to buy in a panic after a spike.</li>
+        <li>Over long periods, a lump sum has historically beaten DCA more often than not in assets that trend up, simply because money is invested for longer. If you already hold the cash, that trade-off is real.</li>
+    </ul>
+    <h2>Choosing an interval and an amount</h2>
+    <p>The interval matters less than consistency. Weekly, fortnightly and monthly schedules tend to give similar average costs over a long period; what changes is the number of transactions and therefore the fees. If each purchase costs a fixed fee, many small buys can cost more than they are worth, so check your exchange's fees before choosing a very small amount. Only commit money you will not need soon: a plan you abandon in a downturn forfeits the benefit.</p>
+    <h2>What this model leaves out</h2>
+    <p>Real prices do not move in straight lines, so your true average cost will differ. Trading fees, spreads, taxes and any rewards earned while holding are not included. Use the <a href="crypto-average-price-calculator.html">average price calculator</a> to enter your actual buys, and the <a href="crypto-roi-calculator.html">crypto ROI calculator</a> to include fees. For a fuller discussion read <a href="dollar-cost-averaging-crypto.html">dollar-cost averaging in crypto</a>.</p>
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Crypto DCA calculator FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>What is a DCA calculator?</h3>
+            <p>A DCA calculator shows what regular, fixed-size purchases would have cost on average and what they would be worth at a later price. This one also compares the result with investing the same total money in one go on the first day.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Is dollar-cost averaging better than a lump sum?</h3>
+            <p>Neither wins every time. In a falling or choppy market DCA usually loses less; in a steadily rising market a lump sum usually earns more because the money is invested for longer. DCA is mostly a way to manage the risk of buying at a bad moment and to build a habit.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does DCA guarantee a profit?</h3>
+            <p>No. If the price ends below your average cost you have a loss, as the falling-market example shows. DCA lowers timing risk; it does not remove market risk.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How often should I buy when dollar-cost averaging?</h3>
+            <p>Pick an interval you can keep: weekly, fortnightly or monthly are the usual choices. Over long periods the interval changes the average cost less than consistency does, but very frequent buys can add up in fees.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Why does my real average price differ from this result?</h3>
+            <p>This calculator uses a straight-line price path. Real prices rise and fall in between, so your actual average cost depends on the exact prices you paid. Enter them in the average price calculator for the precise figure.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Are fees and taxes included?</h3>
+            <p>No. Add your exchange fees with the crypto ROI calculator, and check the tax rules where you live, because they vary and can change the real result.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep going</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="crypto-average-price-calculator.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="scale" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Average price calculator</h3>
+                <p>Combine several buys into one cost basis.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="crypto-roi-calculator.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="calculator" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Crypto ROI calculator</h3>
+                <p>Profit, ROI and break-even price on a spot trade.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="dollar-cost-averaging-crypto.html" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="graduation-cap" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Guide</span>
+                <h3>Dollar-cost averaging in crypto</h3>
+                <p>When DCA helps, when it does not, and why.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <a href="https://launchzone.co/p/cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://launchzone.co/badge.svg" alt="Featured on LaunchZone" width="154" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app.html">Terminal</a>
+            <a href="features.html">Features</a>
+            <a href="releases.html">Releases</a>
+            <a href="trade.html">Paper trading</a>
+            <a href="ai.html">AI research</a>
+            <a href="spot-vs-futures.html">Spot vs futures</a>
+            <a href="funding-rate-explained.html">Funding rate explained</a>
+            <a href="crypto-calculators.html">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="glossary.html">Glossary</a>
+            <a href="contact.html">Contact</a>
+            <a href="ebook.html">Ebook</a>
+            <a href="editorial-policy.html">Editorial policy</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/more-calculators.js?v=20261108" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+</body>
+</html>

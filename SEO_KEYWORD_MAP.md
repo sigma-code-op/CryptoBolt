@@ -46,3 +46,16 @@ The current site has no dedicated search landing page for crypto trading fees, p
 | `/position-size-calculator.html` | position size calculator crypto | risk per trade, stop-loss, R-multiples | liquidation calculator, profit calculator, paper trading |
 | `/crypto-profit-calculator.html` | crypto futures profit calculator | PnL, ROE, fees, leverage | position size, funding fee, liquidation calculator |
 | `/funding-fee-calculator.html` | funding fee calculator | perpetual funding cost, annualised funding | funding rate explained, liquidation calculator, profit calculator |
+| `/dca-calculator.html` | dca calculator crypto | dollar-cost averaging, average cost, dca vs lump sum | average price calculator, ROI calculator, DCA guide |
+| `/crypto-average-price-calculator.html` | crypto average price calculator | weighted average, cost basis, averaging down, break-even | DCA calculator, ROI calculator, profit-and-loss guide |
+| `/risk-reward-calculator.html` | risk reward ratio calculator | break-even win rate, expectancy, R-multiple | position size calculator, liquidation calculator, risk-reward guide |
+| `/crypto-staking-calculator.html` | crypto staking calculator | APR to APY, compounding, monthly deposits | impermanent loss calculator, ROI calculator, staking guide |
+| `/impermanent-loss-calculator.html` | impermanent loss calculator | 50/50 pool, fees to break even, IL formula | staking calculator, ROI calculator, impermanent loss guide |
+| `/crypto-roi-calculator.html` | crypto roi calculator | spot profit, fees, break-even sell price, recovery gain | average price calculator, futures profit calculator, profit-and-loss guide |
+| `/fibonacci-retracement-calculator.html` | fibonacci retracement calculator | 0.618, 0.382, extensions 1.272 / 1.618 | risk-reward calculator, position size calculator, round-number levels |
+| `/dollar-cost-averaging-crypto.html` | dollar cost averaging crypto | does DCA work, DCA vs lump sum | DCA calculator, average price calculator |
+| `/impermanent-loss-explained.html` | impermanent loss explained | AMM, liquidity pool risk, IL table | impermanent loss calculator, staking guide |
+| `/staking-apr-vs-apy.html` | staking apr vs apy | staking rewards, risks, lock-ups, slashing | staking calculator, impermanent loss guide |
+| `/how-to-calculate-crypto-profit-and-loss.html` | how to calculate crypto profit | fees, break-even, ROE, funding | ROI, profit, average price and funding calculators |
+| `/risk-reward-ratio-and-win-rate.html` | risk reward ratio and win rate | expectancy, losing streaks | risk-reward calculator, position sizing guide |
+| `/editorial-policy.html` | cryptobolt editorial policy | trust, sources, corrections (E-E-A-T page, not a keyword target) | about, contact, terms |

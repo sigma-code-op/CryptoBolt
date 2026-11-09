@@ -16,9 +16,21 @@ AI trading agent AI Also: trading agent
 
 Software that uses AI to analyze markets and place trades by itself. Unlike a fixed-rule bot, it can adapt, which also means you have to trust its judgment and not only its code. Read more: [When AI Meets Crypto: The New Frontier of Autonomous Finance](https://cryptobolt.io/ai-meets-crypto.html)
 
+APR (annual percentage rate) Basics Also: annual percentage rate
+
+The yearly rate of return with no compounding. 5% APR on 100 tokens is 5 tokens after a year. Compare it with APY (annual percentage yield), which includes reinvested rewards. Read more: [Crypto staking: APR vs APY, where rewards come from and what can go wrong](https://cryptobolt.io/staking-apr-vs-apy.html) · [Staking rewards calculator](https://cryptobolt.io/crypto-staking-calculator.html)
+
+APY (annual percentage yield) Basics Also: annual percentage yield
+
+The yearly rate of return including compounding, so rewards earn rewards. It is equal to or higher than APR (annual percentage rate); the more often rewards compound the larger the gap, though at normal rates the gap is small. Read more: [Crypto staking: APR vs APY, where rewards come from and what can go wrong](https://cryptobolt.io/staking-apr-vs-apy.html) · [Staking rewards calculator](https://cryptobolt.io/crypto-staking-calculator.html)
+
 ATR (Average True Range) Indicators & levels Also: average true range
 
 A measure of how far price typically moves in a period, commonly averaged over 14 candles. It is used to set stop distances and position sizes that fit current Volatility. CryptoBolt uses it for trade levels. Read more: [How CryptoBolt's AI research stays grounded in real data](https://cryptobolt.io/ai-research-grounded-data.html)
+
+Automated market maker (AMM) Basics Also: AMM
+
+A decentralised exchange design where a formula, rather than buyers and sellers placing orders, sets the price. In the classic version the pool keeps the product of its two token balances constant, so each trade moves the price automatically. Read more: [Impermanent loss explained: why pool tokens can lag simply holding](https://cryptobolt.io/impermanent-loss-explained.html)
 
 ## B
 
@@ -38,11 +50,23 @@ Bollinger Bands Indicators & levels Also: BB
 
 A moving average with a band above and below it, set a couple of standard deviations away. The bands widen when Volatility rises and narrow when it falls.
 
+Break-even price Risk & performance Also: breakeven
+
+The price at which a trade makes neither profit nor loss once fees are counted. With the same percentage fee on the buy and the sell, it is the buy price divided by (1 minus the fee) squared. Read more: [Crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator.html)
+
 ## C
 
 Candlestick Market data Also: candle, OHLC
 
 A chart bar that summarizes one time period with four prices: open, high, low, and close. The thick body spans open to close; the thin lines above and below are the Wicks.
+
+Compounding Basics Also: compound interest
+
+Earning returns on earlier returns by reinvesting them. Compounding frequency matters less than the rate itself: at 10% APR the yearly APY is 10.00% while daily compounding gives about 10.52%. Read more: [Staking rewards calculator](https://cryptobolt.io/crypto-staking-calculator.html)
+
+Cost basis / average buy price Basics Also: average entry price, average buy price
+
+What you paid for a position, usually shown per coin as a weighted average of every purchase. It is the price at which the position breaks even before fees. Tax rules may require a specific lot-matching method instead of an average. Read more: [Average price calculator](https://cryptobolt.io/crypto-average-price-calculator.html)
 
 Cross margin Futures & leverage
 
@@ -54,15 +78,29 @@ Deterministic calculation AI Also: deterministic
 
 A calculation that returns the same output every time for the same input. CryptoBolt computes entry, stop, and target levels this way with ATR (Average True Range) math instead of asking a language model for numbers. Read more: [How CryptoBolt's AI research stays grounded in real data](https://cryptobolt.io/ai-research-grounded-data.html)
 
+Dollar-cost averaging (DCA) Basics Also: DCA, cost averaging
+
+Investing a fixed amount of money at regular intervals, whatever the price. More coins are bought when the price is low and fewer when it is high, so the average cost lands between the highs and lows. It manages timing risk; it does not remove market risk. Read more: [Dollar-cost averaging in crypto: when it helps, when it does not](https://cryptobolt.io/dollar-cost-averaging-crypto.html) · [DCA calculator](https://cryptobolt.io/dca-calculator.html)
+
 Drawdown Risk & performance Also: max drawdown
 
 The drop from an account's peak value to a later low. Max drawdown is the biggest such drop over a period, and it shows how painful the ride was, not just where it ended. Read more: [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns.html)
+
+## E
+
+Expectancy Risk & performance Also: trading expectancy
+
+The average result of a trade over many trades, usually in R-multiple. It equals win rate times average win minus loss rate times average loss. A positive value means the plan makes money on average; a short sample says little. Read more: [Risk-reward ratio and win rate: why a 40% win rate can still work](https://cryptobolt.io/risk-reward-ratio-and-win-rate.html)
 
 ## F
 
 Fear & Greed index Sentiment & behavior Also: crypto fear and greed
 
 A 0 to 100 score that summarizes crypto market mood from inputs like volatility, momentum, social activity, and dominance. Low means fear, high means greed. It describes mood now, not what comes next. Read more: [Reading the Fear & Greed index without overreacting to it](https://cryptobolt.io/fear-and-greed-index.html)
+
+Fibonacci retracement Indicators & levels Also: fib levels, fib retracement
+
+Horizontal reference levels at 23.6%, 38.2%, 50%, 61.8% and 78.6% of a prior price swing, used to guess where a pullback might pause. They are shared reference points rather than predictions, and work best when they line up with other levels. Read more: [Fibonacci retracement calculator](https://cryptobolt.io/fibonacci-retracement-calculator.html)
 
 FOMO Sentiment & behavior Also: fear of missing out
 
@@ -79,6 +117,10 @@ Grounded AI AI Also: grounding
 An AI answer built from live, checkable inputs such as current news, prices, and indicators rather than from the model's memory alone. Grounding reduces stale or invented claims. Read more: [How CryptoBolt's AI research stays grounded in real data](https://cryptobolt.io/ai-research-grounded-data.html)
 
 ## I
+
+Impermanent loss Risk & performance Also: IL, divergence loss
+
+The gap between what tokens are worth inside a Liquidity pool and what they would be worth if simply held, caused by the two prices moving apart. It shrinks if prices return and becomes permanent when you withdraw away from your entry price. Fees can offset it. Read more: [Impermanent loss explained: why pool tokens can lag simply holding](https://cryptobolt.io/impermanent-loss-explained.html) · [Impermanent loss calculator](https://cryptobolt.io/impermanent-loss-calculator.html)
 
 Index price Futures & leverage
 
@@ -113,6 +155,10 @@ The price at which your leveraged position would be forcibly closed. It depends 
 Liquidity Market data
 
 How easily you can buy or sell without moving the price. Deep, busy markets are liquid; thin ones are not, which means wider Bid-ask spread and more Slippage.
+
+Liquidity pool Basics Also: LP, pool
+
+A smart contract holding two or more tokens that traders swap against, used by decentralised exchanges instead of an order book. Providers who deposit tokens earn a share of the trading fees and take on Impermanent loss. Read more: [Impermanent loss explained: why pool tokens can lag simply holding](https://cryptobolt.io/impermanent-loss-explained.html)
 
 Long and short Basics Also: long, short
 
@@ -188,11 +234,19 @@ Prompt injection AI
 
 An attack where text hidden in the data an AI reads tries to change its instructions. For an AI that trades or advises on markets, manipulated inputs can mean manipulated outputs. Read more: [When AI Meets Crypto: The New Frontier of Autonomous Finance](https://cryptobolt.io/ai-meets-crypto.html)
 
+Proof of stake Basics Also: PoS
+
+A way for a blockchain to agree on new blocks in which validators lock up the network token as collateral instead of spending energy on mining. Honest validators earn rewards and misbehaving ones can lose part of their stake. Read more: [Crypto staking: APR vs APY, where rewards come from and what can go wrong](https://cryptobolt.io/staking-apr-vs-apy.html)
+
 Pump and dump Sentiment & behavior
 
 A scheme where organizers buy a thinly traded coin, hype it so others pile in, then sell into the demand they created. Late buyers are left holding the loss. Read more: [$1000 in a day": why that headline is a trap, and why you clicked it](https://cryptobolt.io/1000-dollar-day-trap.html)
 
 ## R
+
+R-multiple Risk & performance Also: R, 1R
+
+A trade result measured in units of the amount risked. If you risk $50 and make $150 the trade is +3R; if the stop is hit it is -1R. Measuring in R makes trades of different sizes comparable and feeds Risk/reward ratio and Expectancy. Read more: [Risk-reward ratio and win rate: why a 40% win rate can still work](https://cryptobolt.io/risk-reward-ratio-and-win-rate.html) · [Risk-reward calculator](https://cryptobolt.io/risk-reward-calculator.html)
 
 Risk/reward ratio Risk & performance Also: R:R
 
@@ -216,6 +270,10 @@ Short squeeze Futures & leverage
 
 A sharp rise caused by short sellers being forced to buy back their positions, either by choice or by Liquidation. The buying itself pushes the price up, which squeezes more shorts.
 
+Slashing Risk & performance Also: slashed
+
+A penalty on proof-of-stake networks in which a validator loses part of its stake for serious faults such as signing two conflicting blocks. People who delegate tokens to that validator can share the loss. Read more: [Crypto staking: APR vs APY, where rewards come from and what can go wrong](https://cryptobolt.io/staking-apr-vs-apy.html)
+
 Slippage Orders & execution
 
 The gap between the price you expected and the price you actually got. It grows when you trade large sizes or when the Order book is thin.
@@ -227,6 +285,10 @@ Buying or selling the actual coin at the current price. If you buy 0.1 BTC on th
 Stablecoin Basics Also: USDT, USDC
 
 A crypto token designed to hold a steady value, usually one US dollar. Traders use stablecoins as a parking spot between trades and as the quote currency on many pairs, such as BTC/USDT.
+
+Staking Basics Also: stake
+
+Locking a proof-of-stake network token to help secure the network in return for rewards, usually paid in the same token. The dollar result depends on the token price, the reward rate, fees, lock-up periods and the risk of Slashing. Read more: [Crypto staking: APR vs APY, where rewards come from and what can go wrong](https://cryptobolt.io/staking-apr-vs-apy.html) · [Staking rewards calculator](https://cryptobolt.io/crypto-staking-calculator.html)
 
 Stop-loss Orders & execution Also: stop
 

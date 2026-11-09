@@ -1,6 +1,6 @@
 {
   "title": "CryptoBolt glossary",
-  "updated": "2026-10-07",
+  "updated": "2026-11-08",
   "terms": [
     {
       "slug": "hallucination",
@@ -610,6 +610,228 @@
       "term": "Win rate",
       "category": "Risk & performance",
       "definition": "The share of trades that end in profit. A high win rate alone does not mean a strategy makes money; the size of winners versus losers matters too. See [[profit-factor]]."
+    },
+    {
+      "slug": "dollar-cost-averaging",
+      "term": "Dollar-cost averaging (DCA)",
+      "category": "Basics",
+      "definition": "Investing a fixed amount of money at regular intervals, whatever the price. More coins are bought when the price is low and fewer when it is high, so the average cost lands between the highs and lows. It manages timing risk; it does not remove market risk.",
+      "aka": [
+        "DCA",
+        "cost averaging"
+      ],
+      "read": [
+        "dollar-cost-averaging-crypto",
+        {
+          "href": "dca-calculator.html",
+          "label": "DCA calculator"
+        }
+      ]
+    },
+    {
+      "slug": "cost-basis",
+      "term": "Cost basis / average buy price",
+      "category": "Basics",
+      "definition": "What you paid for a position, usually shown per coin as a weighted average of every purchase. It is the price at which the position breaks even before fees. Tax rules may require a specific lot-matching method instead of an average.",
+      "aka": [
+        "average entry price",
+        "average buy price"
+      ],
+      "read": [
+        {
+          "href": "crypto-average-price-calculator.html",
+          "label": "Average price calculator"
+        }
+      ]
+    },
+    {
+      "slug": "break-even-price",
+      "term": "Break-even price",
+      "category": "Risk & performance",
+      "definition": "The price at which a trade makes neither profit nor loss once fees are counted. With the same percentage fee on the buy and the sell, it is the buy price divided by (1 minus the fee) squared.",
+      "aka": [
+        "breakeven"
+      ],
+      "read": [
+        {
+          "href": "crypto-roi-calculator.html",
+          "label": "Crypto ROI calculator"
+        }
+      ]
+    },
+    {
+      "slug": "r-multiple",
+      "term": "R-multiple",
+      "category": "Risk & performance",
+      "definition": "A trade result measured in units of the amount risked. If you risk $50 and make $150 the trade is +3R; if the stop is hit it is -1R. Measuring in R makes trades of different sizes comparable and feeds [[risk-reward]] and [[expectancy]].",
+      "aka": [
+        "R",
+        "1R"
+      ],
+      "read": [
+        "risk-reward-ratio-and-win-rate",
+        {
+          "href": "risk-reward-calculator.html",
+          "label": "Risk-reward calculator"
+        }
+      ]
+    },
+    {
+      "slug": "expectancy",
+      "term": "Expectancy",
+      "category": "Risk & performance",
+      "definition": "The average result of a trade over many trades, usually in [[r-multiple]]. It equals win rate times average win minus loss rate times average loss. A positive value means the plan makes money on average; a short sample says little.",
+      "aka": [
+        "trading expectancy"
+      ],
+      "read": [
+        "risk-reward-ratio-and-win-rate"
+      ]
+    },
+    {
+      "slug": "fibonacci-retracement",
+      "term": "Fibonacci retracement",
+      "category": "Indicators & levels",
+      "definition": "Horizontal reference levels at 23.6%, 38.2%, 50%, 61.8% and 78.6% of a prior price swing, used to guess where a pullback might pause. They are shared reference points rather than predictions, and work best when they line up with other levels.",
+      "aka": [
+        "fib levels",
+        "fib retracement"
+      ],
+      "read": [
+        {
+          "href": "fibonacci-retracement-calculator.html",
+          "label": "Fibonacci retracement calculator"
+        }
+      ]
+    },
+    {
+      "slug": "liquidity-pool",
+      "term": "Liquidity pool",
+      "category": "Basics",
+      "definition": "A smart contract holding two or more tokens that traders swap against, used by decentralised exchanges instead of an order book. Providers who deposit tokens earn a share of the trading fees and take on [[impermanent-loss]].",
+      "aka": [
+        "LP",
+        "pool"
+      ],
+      "read": [
+        "impermanent-loss-explained"
+      ]
+    },
+    {
+      "slug": "automated-market-maker",
+      "term": "Automated market maker (AMM)",
+      "category": "Basics",
+      "definition": "A decentralised exchange design where a formula, rather than buyers and sellers placing orders, sets the price. In the classic version the pool keeps the product of its two token balances constant, so each trade moves the price automatically.",
+      "aka": [
+        "AMM"
+      ],
+      "read": [
+        "impermanent-loss-explained"
+      ]
+    },
+    {
+      "slug": "impermanent-loss",
+      "term": "Impermanent loss",
+      "category": "Risk & performance",
+      "definition": "The gap between what tokens are worth inside a [[liquidity-pool]] and what they would be worth if simply held, caused by the two prices moving apart. It shrinks if prices return and becomes permanent when you withdraw away from your entry price. Fees can offset it.",
+      "aka": [
+        "IL",
+        "divergence loss"
+      ],
+      "read": [
+        "impermanent-loss-explained",
+        {
+          "href": "impermanent-loss-calculator.html",
+          "label": "Impermanent loss calculator"
+        }
+      ]
+    },
+    {
+      "slug": "staking",
+      "term": "Staking",
+      "category": "Basics",
+      "definition": "Locking a proof-of-stake network token to help secure the network in return for rewards, usually paid in the same token. The dollar result depends on the token price, the reward rate, fees, lock-up periods and the risk of [[slashing]].",
+      "aka": [
+        "stake"
+      ],
+      "read": [
+        "staking-apr-vs-apy",
+        {
+          "href": "crypto-staking-calculator.html",
+          "label": "Staking rewards calculator"
+        }
+      ]
+    },
+    {
+      "slug": "proof-of-stake",
+      "term": "Proof of stake",
+      "category": "Basics",
+      "definition": "A way for a blockchain to agree on new blocks in which validators lock up the network token as collateral instead of spending energy on mining. Honest validators earn rewards and misbehaving ones can lose part of their stake.",
+      "aka": [
+        "PoS"
+      ],
+      "read": [
+        "staking-apr-vs-apy"
+      ]
+    },
+    {
+      "slug": "slashing",
+      "term": "Slashing",
+      "category": "Risk & performance",
+      "definition": "A penalty on proof-of-stake networks in which a validator loses part of its stake for serious faults such as signing two conflicting blocks. People who delegate tokens to that validator can share the loss.",
+      "aka": [
+        "slashed"
+      ],
+      "read": [
+        "staking-apr-vs-apy"
+      ]
+    },
+    {
+      "slug": "apr",
+      "term": "APR (annual percentage rate)",
+      "category": "Basics",
+      "definition": "The yearly rate of return with no compounding. 5% APR on 100 tokens is 5 tokens after a year. Compare it with [[apy]], which includes reinvested rewards.",
+      "aka": [
+        "annual percentage rate"
+      ],
+      "read": [
+        "staking-apr-vs-apy",
+        {
+          "href": "crypto-staking-calculator.html",
+          "label": "Staking rewards calculator"
+        }
+      ]
+    },
+    {
+      "slug": "apy",
+      "term": "APY (annual percentage yield)",
+      "category": "Basics",
+      "definition": "The yearly rate of return including compounding, so rewards earn rewards. It is equal to or higher than [[apr]]; the more often rewards compound the larger the gap, though at normal rates the gap is small.",
+      "aka": [
+        "annual percentage yield"
+      ],
+      "read": [
+        "staking-apr-vs-apy",
+        {
+          "href": "crypto-staking-calculator.html",
+          "label": "Staking rewards calculator"
+        }
+      ]
+    },
+    {
+      "slug": "compounding",
+      "term": "Compounding",
+      "category": "Basics",
+      "definition": "Earning returns on earlier returns by reinvesting them. Compounding frequency matters less than the rate itself: at 10% APR the yearly APY is 10.00% while daily compounding gives about 10.52%.",
+      "aka": [
+        "compound interest"
+      ],
+      "read": [
+        {
+          "href": "crypto-staking-calculator.html",
+          "label": "Staking rewards calculator"
+        }
+      ]
     }
   ]
 }

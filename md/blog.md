@@ -4,6 +4,56 @@
 
 Source: https://cryptobolt.io/blog.html
 
+Strategy · 7 min read
+
+## Dollar-cost averaging in crypto: when it helps, when it does not
+
+Fixed-size buys on a schedule: what DCA really does to your average cost, how it compares with a lump sum, and where it falls short.
+
+Read the post
+
+Link: https://cryptobolt.io/dollar-cost-averaging-crypto.html
+
+Mechanics · 8 min read
+
+## How to calculate crypto profit and loss: spot, futures, fees and break-even
+
+The same price move can mean very different profit once fees, leverage and average cost are counted. Here is the maths, step by step.
+
+Read the post
+
+Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html
+
+Mechanics · 8 min read
+
+## Impermanent loss explained: why pool tokens can lag simply holding
+
+Liquidity pools pay fees but can leave you behind simply holding. Here is the arithmetic, a worked example, and what to check first.
+
+Read the post
+
+Link: https://cryptobolt.io/impermanent-loss-explained.html
+
+Risk · 7 min read
+
+## Risk-reward ratio and win rate: why a 40% win rate can still work
+
+A trader who wins 40% can beat one who wins 60%. The ratio, the win rate and the losing streaks, explained with arithmetic.
+
+Read the post
+
+Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate.html
+
+Fundamentals · 8 min read
+
+## Crypto staking: APR vs APY, where rewards come from and what can go wrong
+
+Staking pays a rate in tokens, but the dollar result depends on price, lock-ups and fees. Here is how to read the numbers.
+
+Read the post
+
+Link: https://cryptobolt.io/staking-apr-vs-apy.html
+
 Fundamentals · 6 min read
 
 ## The Bitcoin halving explained: what changes, what doesn't, and the dates
