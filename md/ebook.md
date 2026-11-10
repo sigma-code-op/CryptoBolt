@@ -25,7 +25,7 @@ phone-friendly
 - Risk management, leverage and liquidation maths, scam patterns and a security checklist.
 - Key takeaways, "Try it" exercises and self-test questions in every chapter, plus a glossary of 100+ terms and a 90-day plan.
 
-$13 one-time · PDF
+$9 one-time · PDF
 
 [Order via contact form](https://cryptobolt.io/contact.html?topic=ebook)
 
@@ -182,7 +182,7 @@ A single PDF, designed at a book-like page size that reads well on phones and ta
 
 How do I pay?
 
-The ebook costs $13. Send an order request and we will reply with the payment methods available for your country. Please never send payment to anyone who contacts you first; only use details sent in reply to your own request to info@cryptobolt.io.
+The ebook costs $9. Send an order request and we will reply with the payment methods available for your country. Please never send payment to anyone who contacts you first; only use details sent in reply to your own request to info@cryptobolt.io.
 
 Crypto Clarity is for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our [terms](https://cryptobolt.io/terms.html) and [privacy policy](https://cryptobolt.io/privacy.html).
 
