@@ -618,9 +618,7 @@ a.mk-trust-item-cta .mk-trust-num { color: var(--mk-green); }
     box-shadow: 0 0 0 1px rgba(255, 255, 255, .12);
 }
 .mk-footer-badges .badge-launchigniter span:last-child { display: inline-block; color: var(--mk-text); opacity: .9; }
-.mk-footer-badges .badge-launchzone img { height: 30px; }
 .mk-footer-badges .badge-dmca img { height: 15px; }
-.mk-footer-badges .badge-nxgn img { height: 32px; }
 
 /* ---------- Feature page ---------- */
 .mk-fhero { text-align: left; max-width: 780px; margin: 0 auto; padding-top: clamp(48px, 7vw, 84px); }

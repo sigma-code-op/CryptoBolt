@@ -29,6 +29,10 @@ AddType text/markdown .md
 AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # Send www.cryptobolt.io to the bare domain (fixes Ahrefs "no self-referencing hreflang" and duplicate-host crawling)
+  RewriteCond %{HTTP_HOST} ^www\.cryptobolt\.io$ [NC]
+  RewriteRule ^(.*)$ https://cryptobolt.io/$1 [R=301,L]
+
   RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
   RewriteRule ^$ /md/index.md [L]
   RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
