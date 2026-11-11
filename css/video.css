@@ -1,0 +1,19 @@
+/* Video guides: used by videos.html and pages that embed a guide. */
+.cb-vwrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.cb-video{margin:48px auto;padding:0}
+.cb-video h2,.cb-video h3{margin:0 0 10px}
+.cb-video-frame{margin:0;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;background:#07090d}
+.cb-video-frame video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#07090d}
+.cb-video-frame figcaption{padding:12px 16px;font-size:.9rem;opacity:.75}
+.cb-video-meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 0;font-size:.85rem;opacity:.7}
+.cb-video ul{margin:12px 0 0;padding-left:1.2em}
+.cb-video li{margin:4px 0}
+.cb-video details{margin-top:14px;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 16px}
+.cb-video summary{cursor:pointer;font-weight:600}
+.cb-video details p{margin:10px 0 0;line-height:1.65}
+.cb-video-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.cb-video-links a{display:inline-block;padding:8px 14px;border:1px solid rgba(79,216,232,.4);border-radius:999px;text-decoration:none;font-size:.9rem}
+.cb-video-links a:hover{background:rgba(79,216,232,.1)}
+.cb-video-note{font-size:.85rem;opacity:.65;margin-top:12px}
+.cb-video-inline{margin:24px 0}
+.cb-video-inline figcaption a{text-decoration:underline}

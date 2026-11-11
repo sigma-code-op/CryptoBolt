@@ -14,6 +14,8 @@ related: funding-rate-explained, day-trading-crypto-realistic-returns, why-we-do
 ---
 Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath. Here is the short version before the detail:
 
+{{video:leverage-liquidation-explained}}
+
 | Feature | Spot | Perpetual futures |
 |---|---|---|
 | What you hold | The coin itself | A contract that tracks the price |

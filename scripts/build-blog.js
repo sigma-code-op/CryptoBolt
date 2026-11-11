@@ -207,6 +207,33 @@ const CALLOUT_LABELS = ['example', 'definition', 'key idea', 'note', 'try it'];
 //   > **Example:** text      -> callout box (also Definition, Key idea, Note, Try it)
 //   ![alt](path.svg "Caption") -> <figure> with an accessible <figcaption>
 //   | a | b |  pipe tables   -> responsive <table> with scoped headers
+// Inline explainer videos: a paragraph that is only {{video:slug}} becomes a player.
+const POST_VIDEOS = {
+  'leverage-liquidation-explained': { title: 'Leverage and liquidation explained', secs: 50, desc: 'Animated guide to leverage, liquidation distance and why the same dip can liquidate a 10x position but not a 2x one.' },
+  'order-book-explained': { title: 'How to read an order book', secs: 48, desc: 'Animated guide to bids, asks, the spread and slippage.' },
+  'position-sizing-1-percent-rule': { title: 'Position sizing and the 1% rule', secs: 46, desc: 'Animated guide to sizing a trade from a fixed percentage risk and the stop distance.' },
+};
+function renderVideo(slug) {
+  const v = POST_VIDEOS[slug];
+  if (!v) throw new Error('Unknown video: ' + slug);
+  const ld = {
+    '@context': 'https://schema.org', '@type': 'VideoObject', name: v.title, description: v.desc,
+    thumbnailUrl: [`https://cryptobolt.io/assets/video/${slug}.jpg`], uploadDate: '2026-11-11',
+    duration: `PT${v.secs}S`, contentUrl: `https://cryptobolt.io/assets/video/${slug}.mp4`, inLanguage: 'en',
+    publisher: { '@type': 'Organization', name: 'CryptoBolt', url: 'https://cryptobolt.io/' },
+  };
+  return [
+    '    <figure class="cb-video-frame cb-video-inline">',
+    `        <video controls preload="none" playsinline width="1280" height="720" poster="/assets/video/${slug}.jpg" aria-label="${escapeAttr(v.title)}, ${v.secs} second animated guide">`,
+    `            <source src="/assets/video/${slug}.mp4" type="video/mp4">`,
+    `            Your browser does not support HTML video. <a href="/assets/video/${slug}.mp4">Download the video</a>.`,
+    '        </video>',
+    `        <figcaption>Watch: ${escapeHtml(v.title)} (${v.secs} seconds, no sound needed). <a href="videos.html#v-${slug}">Transcript and more guides</a></figcaption>`,
+    '    </figure>',
+    `    <script type="application/ld+json">${JSON.stringify(ld)}</script>`,
+  ].join('\n');
+}
+
 function markdownToHtml(markdown) {
   const escaped = escapeHtml(markdown);
 
@@ -224,6 +251,9 @@ function markdownToHtml(markdown) {
       const t = trimmed.slice(3);
       return `    <h2 id="${slugify(t)}">${inlineMarkdown(t)}</h2>`;
     }
+
+    const vid = trimmed.match(/^\{\{video:([a-z0-9-]+)\}\}$/);
+    if (vid) return renderVideo(vid[1]);
 
     const fig = trimmed.match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$/);
     if (fig) {

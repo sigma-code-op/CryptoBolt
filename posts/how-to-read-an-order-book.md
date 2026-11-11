@@ -13,6 +13,8 @@ related: spot-vs-futures, round-number-levels, why-we-dont-predict-crypto-prices
 ---
 Every price you see on a crypto chart is the result of a queue of orders waiting to be filled. That queue is the [order book](glossary.html#order-book), and learning to read it explains a lot of things that otherwise look random: why a market order sometimes fills at a worse price than the one on screen, why thin altcoins jump around, and why the same trade size can be trivial on one pair and expensive on another.
 
+{{video:order-book-explained}}
+
 ## The two sides of the book
 
 The book has two columns. The **bids** are buy orders: each one says "I will buy this much at this price or lower." The **asks** (also called offers) are sell orders: "I will sell this much at this price or higher." Bids are listed from the highest price down, asks from the lowest price up, so the two best prices sit next to each other in the middle.

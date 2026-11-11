@@ -52,6 +52,7 @@
 - [Editorial Policy](https://cryptobolt.io/editorial-policy.html) — How CryptoBolt writes guides, builds and tests calculators, uses data, takes advertising and corrects errors.
 - [Releases and Changelog](https://cryptobolt.io/releases.html) — Dated log of new features, fixes and data-source changes.
 - [About CryptoBolt](https://cryptobolt.io/about.html) — Information about CryptoBolt and its purpose.
+- [Video guides](https://cryptobolt.io/videos.html) — Four short animated explainers: leverage and liquidation, reading the order book, the 1% position-sizing rule, and how paper trading works (transcripts included).
 - [Crypto Clarity ebook](https://cryptobolt.io/ebook.html) — 160-page PDF beginner-to-confident crypto guide (17 chapters, 31 diagrams); order by email or the contact form.
 - [Contact CryptoBolt](https://cryptobolt.io/contact.html) — Contact and partnership inquiries.
 - [Privacy Policy](https://cryptobolt.io/privacy.html) — Privacy and data-handling information.

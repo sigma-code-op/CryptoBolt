@@ -13,6 +13,8 @@ related: stop-loss-orders-explained, spot-vs-futures, day-trading-crypto-realist
 ---
 Most beginners decide how big a trade should be by asking how much they want to make. Experienced traders ask the opposite question: how much am I prepared to lose if this is wrong? That one change of question is the core of [position sizing](glossary.html#position-sizing), and it matters more to long-term survival than almost any entry technique.
 
+{{video:position-sizing-1-percent-rule}}
+
 ## Size comes from risk, not from conviction
 
 Your position size is not a measure of how sure you are. It is the answer to a small piece of arithmetic that starts from three numbers you choose before entering:
