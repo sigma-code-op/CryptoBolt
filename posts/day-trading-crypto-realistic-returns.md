@@ -6,7 +6,7 @@ section: Reality Check
 readtime: 6 min read
 emoji: 🎲
 color: rgba(248,113,113,.08)
-summary: What research on day traders shows about win rates and returns, why "$1000 in a day" is the wrong framing, and what the profitable minority do differently.
+summary: What research on day traders shows about win rates and returns, why a "$1000 in a day" goal is the wrong frame, and what the profitable minority do.
 card_summary: "Make $1000 a day" is everywhere. Here's what peer-reviewed research on day traders actually found — and a more honest way to test a strategy first.
 keywords: how much can you realistically make day trading crypto, is day trading crypto profitable, day trading crypto income, realistic day trading returns, can you make 1000 a day trading crypto, day trading crypto success rate
 updated: 2026-10-04

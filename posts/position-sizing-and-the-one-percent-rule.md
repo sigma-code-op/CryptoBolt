@@ -6,7 +6,7 @@ section: Risk
 readtime: 6 min read
 emoji: ⚖️
 color: rgba(255,176,32,.08)
-summary: Position sizing explained: work out trade size from your stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.
+summary: Position sizing explained: work out trade size from stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.
 card_summary: Decide how much you can lose first, then let the stop distance set the size. A worked example of the 1% rule and where leverage fits.
 keywords: position sizing crypto, 1% rule trading, how much to risk per trade, position size formula, risk per trade crypto, position size calculator
 related: stop-loss-orders-explained, spot-vs-futures, day-trading-crypto-realistic-returns

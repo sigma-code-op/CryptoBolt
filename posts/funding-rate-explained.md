@@ -37,7 +37,7 @@ The part beginners miss is that funding is charged on the full position size, no
 
 ## Why it matters more paired with open interest
 
-Funding rate alone tells you the direction of the crowd. [Open interest](glossary.html#open-interest) tells you the size of it. A high funding rate with flat or falling open interest often just means a small, stubborn group of traders is paying up to stay positioned — not much fuel for a violent move either way. The same funding rate with open interest climbing fast is a more crowded, more fragile setup: more leveraged positions sitting on one side, more that would need to unwind if price turns against them. CryptoBolt's terminal surfaces both side by side for exactly this reason — funding rate by itself is a data point, funding rate next to open interest starts to look like a read on positioning risk.
+Funding rate alone tells you the direction of the crowd. [Open interest](glossary.html#open-interest) ([full guide](open-interest-explained.html)) tells you the size of it. A high funding rate with flat or falling open interest often just means a small, stubborn group of traders is paying up to stay positioned — not much fuel for a violent move either way. The same funding rate with open interest climbing fast is a more crowded, more fragile setup: more leveraged positions sitting on one side, more that would need to unwind if price turns against them. CryptoBolt's terminal surfaces both side by side for exactly this reason — funding rate by itself is a data point, funding rate next to open interest starts to look like a read on positioning risk.
 
 ## What counts as a "good" or normal funding rate?
 

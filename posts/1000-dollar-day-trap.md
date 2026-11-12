@@ -6,7 +6,7 @@ section: Reality Check
 readtime: 6 min read
 emoji: 🪝
 color: rgba(255,176,32,.08)
-summary: A round number, one day and a screenshot of gains: the "$1000 in a day" headline uses specific psychological hooks. Here is how it works and who profits.
+summary: The "$1000 in a day" crypto headline uses specific psychological hooks: a round number, one day, a screenshot. See how it works and who profits.
 card_summary: Round number, single day, screenshot of gains — the "$1000 in a day" headline is engineered, not accidental. Here's exactly how it pulls you in.
 keywords: 1000 dollar a day trading trap, why do people click get rich quick headlines, crypto get rich quick scam, day trading clickbait psychology, is make 1000 a day trading real, crypto pump and dump signals
 updated: 2026-10-04

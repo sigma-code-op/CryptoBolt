@@ -1,5 +1,5 @@
 title: The Bitcoin halving explained: what changes, what doesn't, and the dates
-meta_title: Bitcoin Halving Explained: Dates, Supply and What It Changes
+meta_title: Bitcoin Halving Explained: Dates and Supply
 og_title: The Bitcoin Halving Explained: What Changes, What Doesn't, and the Dates
 date: 2026-11-05
 section: Fundamentals
