@@ -126,5 +126,21 @@ Open
 
 Link: https://cryptobolt.io/crypto-paper-trading.html
 
+## Watch: Position sizing and the 1% rule
+
+How to size a trade so one loss cannot do much damage.
+
+- How to turn a 1% risk limit into a position size
+- The formula: position size = risk amount divided by stop distance
+- Why compounded losses at 10% risk hurt far more than at 1%
+
+Read the transcript
+
+Start from what you are willing to lose. With a $1,000 account and a 1% risk limit, you risk $10 per trade. With an entry at $100 and a stop at $98, the stop distance is 2%, so the position size is $10 divided by 2%, which is $500. If the stop is hit you lose $10, which is 1% of the account. Why small risk matters: after ten losses in a row, risking 1% per trade leaves about $904 of the $1,000, while risking 10% per trade leaves about $349. Remember: decide the risk in dollars first, position size equals risk divided by stop distance, and smaller losses keep you in the game. The numbers are illustrative and this is educational content, not financial advice.
+
+[The 1% rule (guide)](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html)
+
+[Risk-reward calculator](https://cryptobolt.io/risk-reward-calculator.html)
+
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

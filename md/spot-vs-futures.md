@@ -36,6 +36,7 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 ## Where to go next
 
 - [Funding rates explained](https://cryptobolt.io/funding-rate-explained.html): the ongoing cost that only futures traders pay.
+- [Open interest explained](https://cryptobolt.io/open-interest-explained.html): how much leveraged exposure is open in a futures market.
 - [Liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html): see how leverage moves your liquidation price.
 - [Position size calculator](https://cryptobolt.io/position-size-calculator.html): size a leveraged trade from your risk and stop-loss.
 - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns.html): what the research says about leveraged short-term trading.

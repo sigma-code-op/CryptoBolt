@@ -85,5 +85,21 @@ Read the post
 
 Link: https://cryptobolt.io/funding-rate-explained.html
 
+## Watch: Leverage and liquidation explained
+
+What actually happens when a leveraged futures position is liquidated.
+
+- How margin multiplied by leverage sets your position size
+- Roughly how far price must fall to liquidate a long at 2x, 5x, 10x, 20x and 50x
+- Why a stop-loss belongs well inside the liquidation price
+
+Read the transcript
+
+Leverage lets you control a bigger position with less money. With $100 of margin at 10x, you control a $1,000 position, so a 10% move against you moves your margin by 100%. Approximate drop to liquidation for a long position, before fees and maintenance margin: about 50% at 2x, 20% at 5x, 10% at 10x, 5% at 20x and 2% at 50x. In the example, price from $100 dips to about $88 and then recovers. The 10x position, with liquidation near $90, is closed out during the dip, while the 2x position is still open. Remember: more leverage means less room before liquidation, place a stop-loss well inside the liquidation price, and fees and funding move the real liquidation price. The numbers are illustrative and this is educational content, not financial advice.
+
+[Stop-loss orders explained](https://cryptobolt.io/stop-loss-orders-explained.html)
+
+[Spot vs futures](https://cryptobolt.io/spot-vs-futures.html)
+
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

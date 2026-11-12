@@ -11,7 +11,7 @@ from your losses.
 
 Crypto has no refund button. Most beginners lose money to the same few mistakes: **no risk plan, too much leverage, and scams they could have spotted.** Crypto Clarity teaches you all three in plain English, before they cost you real money.
 
-$13one-time · PDF
+$9one-time · PDF
 
 [Get Crypto Clarity](https://cryptobolt.io/ebook.html)
 

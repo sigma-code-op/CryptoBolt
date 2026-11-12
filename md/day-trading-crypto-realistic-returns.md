@@ -1,6 +1,6 @@
 # Realistic Day Trading Crypto Returns | CryptoBolt
 
-> What research on day traders shows about win rates and returns, why "$1000 in a day" is the wrong framing, and what the profitable minority do differently.
+> What research on day traders shows about win rates and returns, why a "$1000 in a day" goal is the wrong frame, and what the profitable minority do.
 
 Source: https://cryptobolt.io/day-trading-crypto-realistic-returns.html
 

@@ -1,6 +1,6 @@
 # Why "$1000 a Day" Crypto Headlines Are a Trap | CryptoBolt
 
-> A round number, one day and a screenshot of gains: the "$1000 in a day" headline uses specific psychological hooks. Here is how it works and who profits.
+> The "$1000 in a day" crypto headline uses specific psychological hooks: a round number, one day, a screenshot. See how it works and who profits.
 
 Source: https://cryptobolt.io/1000-dollar-day-trap.html
 

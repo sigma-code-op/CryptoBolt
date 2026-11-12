@@ -1,6 +1,6 @@
 # Crypto Position Sizing and the 1% Rule | CryptoBolt
 
-> Position sizing explained: work out trade size from your stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.
+> Position sizing explained: work out trade size from stop distance and risk per trade, with a worked 1% rule example and what leverage does and doesn't change.
 
 Source: https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html
 

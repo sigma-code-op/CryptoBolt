@@ -1,4 +1,4 @@
-# Fear & Greed Index Explained: How to Read It | CryptoBolt
+# Fear & Greed Index Explained | CryptoBolt
 
 > What the crypto Fear & Greed index measures, why it isn't a trade signal on its own, and how to use it alongside trend, volume, and funding.
 

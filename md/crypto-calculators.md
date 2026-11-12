@@ -1,6 +1,6 @@
-# Free Crypto Calculators: Trading, DCA, Staking & More | CryptoBolt
+# Free Crypto Calculators: Trading, DCA, Staking | CryptoBolt
 
-> Eleven free crypto calculators: liquidation price, position size, risk-reward, futures profit, ROI, DCA, average price, staking, impermanent loss, funding and Fibonacci.
+> Eleven free crypto calculators: liquidation price, position size, risk-reward, futures profit, ROI, DCA, average price, staking, impermanent loss and more.
 
 Source: https://cryptobolt.io/crypto-calculators.html
 

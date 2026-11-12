@@ -1,4 +1,4 @@
-# Bitcoin Halving Explained: Dates, Supply and What It Changes | CryptoBolt
+# Bitcoin Halving Explained: Dates and Supply | CryptoBolt
 
 > What the Bitcoin halving is, how block rewards and the 21 million supply cap work, the dates of every halving so far, and why the event is not a price forecast.
 

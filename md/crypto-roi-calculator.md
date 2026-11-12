@@ -1,4 +1,4 @@
-# Crypto ROI Calculator: Profit, Fees & Break-Even | CryptoBolt
+# Crypto ROI Calculator: Profit, Fees, Break-Even | CryptoBolt
 
 > Free crypto ROI calculator for spot trades. Enter buy price, sell price, amount and fee to see net profit, ROI, total fees and the break-even sell price.
 
