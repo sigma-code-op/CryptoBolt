@@ -2,9 +2,9 @@
 
 > Free crypto staking calculator. Project rewards with daily, weekly, monthly or yearly compounding and optional monthly deposits, and convert APR to APY.
 
-Source: https://cryptobolt.io/crypto-staking-calculator.html
+Source: https://cryptobolt.io/crypto-staking-calculator
 
-Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy.html)
+Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Starting amount (USD or coin value)
 
@@ -62,7 +62,7 @@ Stake $10,000 at 5% APR, compounded daily, for three years. The balance grows to
 - **Fees and commissions.** Validators and platforms take a cut, so the net rate is lower than the gross one.
 - **Unusually high rates.** Double-digit yields are usually paid from new token issuance or temporary incentives, which can dilute holders. Higher yield generally means higher risk.
 
-For a longer explanation of how staking rewards are produced and where the risks sit, read [staking: APR vs APY](https://cryptobolt.io/staking-apr-vs-apy.html). To compare earning a yield with trading for a gain, the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator.html) shows the net result of a trade after fees.
+For a longer explanation of how staking rewards are produced and where the risks sit, read [staking: APR vs APY](https://cryptobolt.io/staking-apr-vs-apy). To compare earning a yield with trading for a gain, the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator) shows the net result of a trade after fees.
 
 FAQ
 
@@ -104,7 +104,7 @@ Profit, ROI and break-even price on a spot trade.
 
 Open
 
-Link: https://cryptobolt.io/crypto-roi-calculator.html
+Link: https://cryptobolt.io/crypto-roi-calculator
 
 Calculator
 
@@ -114,7 +114,7 @@ What a liquidity pool costs versus holding.
 
 Open
 
-Link: https://cryptobolt.io/impermanent-loss-calculator.html
+Link: https://cryptobolt.io/impermanent-loss-calculator
 
 Guide
 
@@ -124,7 +124,7 @@ How rewards compound, and what can go wrong.
 
 Open
 
-Link: https://cryptobolt.io/staking-apr-vs-apy.html
+Link: https://cryptobolt.io/staking-apr-vs-apy
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

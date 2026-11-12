@@ -2,7 +2,7 @@
 
 > Track live Bitcoin, Ethereum, Solana & altcoin prices with spot & futures charts, order book depth, portfolio tracking, and AI research.
 
-Source: https://cryptobolt.io/crypto-trading-terminal.html
+Source: https://cryptobolt.io/crypto-trading-terminal
 
 What it includes
 

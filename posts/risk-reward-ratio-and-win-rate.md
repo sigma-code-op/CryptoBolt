@@ -11,15 +11,15 @@ card_summary: A trader who wins 40% can beat one who wins 60%. The ratio, the wi
 keywords: risk reward ratio, risk reward ratio crypto, win rate trading, trading expectancy, r multiple, break even win rate, losing streak probability
 related: position-sizing-and-the-one-percent-rule, stop-loss-orders-explained, day-trading-crypto-realistic-returns
 ---
-Ask a beginner what makes a good trader and the answer is usually "being right a lot". The people who last in markets tend to answer differently: they talk about how much they make when they are right compared with how much they lose when they are wrong. These two numbers, the win rate and the [risk-reward](glossary.html#risk-reward) ratio, only mean something together. This article shows how they combine, why losing streaks are normal, and how to avoid fooling yourself with either number.
+Ask a beginner what makes a good trader and the answer is usually "being right a lot". The people who last in markets tend to answer differently: they talk about how much they make when they are right compared with how much they lose when they are wrong. These two numbers, the win rate and the [risk-reward](glossary#risk-reward) ratio, only mean something together. This article shows how they combine, why losing streaks are normal, and how to avoid fooling yourself with either number.
 
 ## Measuring in R
 
-To compare trades of different sizes, measure results in R, where 1R is the amount you risk on a trade (the distance from entry to stop times your size). A trade stopped out at the stop is −1R. A trade that reaches a target twice as far as the stop is +2R. The [risk-reward ratio](glossary.html#r-multiple) is the planned reward divided by the planned risk: with an entry at $65,000, a stop at $63,700 and a target at $69,000, the risk is $1,300, the reward is $4,000 and the ratio is about 1:3.08.
+To compare trades of different sizes, measure results in R, where 1R is the amount you risk on a trade (the distance from entry to stop times your size). A trade stopped out at the stop is −1R. A trade that reaches a target twice as far as the stop is +2R. The [risk-reward ratio](glossary#r-multiple) is the planned reward divided by the planned risk: with an entry at $65,000, a stop at $63,700 and a target at $69,000, the risk is $1,300, the reward is $4,000 and the ratio is about 1:3.08.
 
 ## Expectancy: the average result per trade
 
-[Expectancy](glossary.html#expectancy) combines the two numbers into the average result of a trade, in R:
+[Expectancy](glossary#expectancy) combines the two numbers into the average result of a trade, in R:
 
 **Expectancy = win rate × average win − loss rate × average loss**
 
@@ -46,22 +46,22 @@ For any ratio there is a win rate below which the plan loses money (before fees)
 | 1 : 3 | 25.0% |
 | 1 : 5 | 16.7% |
 
-Fees and slippage push the real break-even higher, so leave a margin. The [risk-reward calculator](risk-reward-calculator.html) computes the break-even win rate and expectancy for your own levels.
+Fees and slippage push the real break-even higher, so leave a margin. The [risk-reward calculator](risk-reward-calculator) computes the break-even win rate and expectancy for your own levels.
 
 ## Losing streaks are normal
 
-A common mistake is to abandon a sound plan after a few losses in a row. Even good plans produce streaks. If your win rate is 35%, each trade loses with probability 65%, so any particular run of five trades has about an 11.6% chance of being all losses (0.65 to the power of five). Over a hundred trades, runs like that are expected to appear. With 1% risk per trade, five losses in a row cost about 4.9% of the account: uncomfortable, survivable. With 10% risk per trade the same streak costs about 41% and ends the plan. Streaks are why [position sizing](position-sizing-and-the-one-percent-rule.html) matters as much as the ratio.
+A common mistake is to abandon a sound plan after a few losses in a row. Even good plans produce streaks. If your win rate is 35%, each trade loses with probability 65%, so any particular run of five trades has about an 11.6% chance of being all losses (0.65 to the power of five). Over a hundred trades, runs like that are expected to appear. With 1% risk per trade, five losses in a row cost about 4.9% of the account: uncomfortable, survivable. With 10% risk per trade the same streak costs about 41% and ends the plan. Streaks are why [position sizing](position-sizing-and-the-one-percent-rule) matters as much as the ratio.
 
 ## Setting stops and targets honestly
 
-- **Stop where the idea is wrong.** A stop placed only to make the ratio look better will be hit by ordinary movement. See [stop-loss orders explained](stop-loss-orders-explained.html) for how stops fill and slip.
-- **Target where the market has a reason to go.** Previous highs and lows, round numbers and retracement levels are more credible than an arbitrary multiple. The [Fibonacci calculator](fibonacci-retracement-calculator.html) lists common levels.
-- **Account for costs.** Fees and funding reduce the reward and increase the loss. The [futures profit calculator](crypto-profit-calculator.html) shows the net figure.
+- **Stop where the idea is wrong.** A stop placed only to make the ratio look better will be hit by ordinary movement. See [stop-loss orders explained](stop-loss-orders-explained) for how stops fill and slip.
+- **Target where the market has a reason to go.** Previous highs and lows, round numbers and retracement levels are more credible than an arbitrary multiple. The [Fibonacci calculator](fibonacci-retracement-calculator) lists common levels.
+- **Account for costs.** Fees and funding reduce the reward and increase the loss. The [futures profit calculator](crypto-profit-calculator) shows the net figure.
 - **Do not widen a stop to avoid a loss.** That changes the ratio after the fact and is the usual way small losses become large ones.
 
 ## Do not trust a short sample
 
-A win rate measured over twenty trades is nearly meaningless: luck dominates. Record every trade, including the ones you skipped for rule violations, and look at expectancy over at least a few dozen trades before changing anything. If you are new, test the plan with virtual funds in [paper trading](crypto-paper-trading.html) first. Beware also of survivorship bias: the traders who post screenshots of 10R wins rarely show the dozens of −1R trades around them.
+A win rate measured over twenty trades is nearly meaningless: luck dominates. Record every trade, including the ones you skipped for rule violations, and look at expectancy over at least a few dozen trades before changing anything. If you are new, test the plan with virtual funds in [paper trading](crypto-paper-trading) first. Beware also of survivorship bias: the traders who post screenshots of 10R wins rarely show the dozens of −1R trades around them.
 
 ## A short checklist
 

@@ -2,7 +2,7 @@
 
 > CryptoBolt's crypto trading blog: practical notes on the Fear & Greed index, spot vs futures mechanics, funding rates, and grounded AI research.
 
-Source: https://cryptobolt.io/blog.html
+Source: https://cryptobolt.io/blog
 
 Strategy · 7 min read
 
@@ -12,7 +12,7 @@ Fixed-size buys on a schedule: what DCA really does to your average cost, how it
 
 Read the post
 
-Link: https://cryptobolt.io/dollar-cost-averaging-crypto.html
+Link: https://cryptobolt.io/dollar-cost-averaging-crypto
 
 Mechanics · 8 min read
 
@@ -22,7 +22,7 @@ The same price move can mean very different profit once fees, leverage and avera
 
 Read the post
 
-Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html
+Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss
 
 Mechanics · 8 min read
 
@@ -32,7 +32,7 @@ Liquidity pools pay fees but can leave you behind simply holding. Here is the ar
 
 Read the post
 
-Link: https://cryptobolt.io/impermanent-loss-explained.html
+Link: https://cryptobolt.io/impermanent-loss-explained
 
 Risk · 7 min read
 
@@ -42,7 +42,7 @@ A trader who wins 40% can beat one who wins 60%. The ratio, the win rate and the
 
 Read the post
 
-Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate.html
+Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate
 
 Fundamentals · 8 min read
 
@@ -52,7 +52,7 @@ Staking pays a rate in tokens, but the dollar result depends on price, lock-ups 
 
 Read the post
 
-Link: https://cryptobolt.io/staking-apr-vs-apy.html
+Link: https://cryptobolt.io/staking-apr-vs-apy
 
 Fundamentals · 6 min read
 
@@ -62,7 +62,7 @@ Block rewards, the 21 million cap and the full list of halvings so far, without 
 
 Read the post
 
-Link: https://cryptobolt.io/bitcoin-halving-explained.html
+Link: https://cryptobolt.io/bitcoin-halving-explained
 
 Mechanics · 6 min read
 
@@ -72,7 +72,7 @@ Bids, asks, the spread and depth: what the live order book shows, and why a snap
 
 Read the post
 
-Link: https://cryptobolt.io/how-to-read-an-order-book.html
+Link: https://cryptobolt.io/how-to-read-an-order-book
 
 Mechanics · 6 min read
 
@@ -82,7 +82,7 @@ Open interest counts the futures contracts still open. Here's how it differs fro
 
 Read the post
 
-Link: https://cryptobolt.io/open-interest-explained.html
+Link: https://cryptobolt.io/open-interest-explained
 
 Risk · 6 min read
 
@@ -92,7 +92,7 @@ Decide how much you can lose first, then let the stop distance set the size. A w
 
 Read the post
 
-Link: https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html
+Link: https://cryptobolt.io/position-sizing-and-the-one-percent-rule
 
 Mechanics · 6 min read
 
@@ -102,7 +102,7 @@ Stop-market versus stop-limit, trigger prices, slippage and wicks: what a stop-l
 
 Read the post
 
-Link: https://cryptobolt.io/stop-loss-orders-explained.html
+Link: https://cryptobolt.io/stop-loss-orders-explained
 
 Reality Check · 5 min read
 
@@ -112,7 +112,7 @@ Reality Check · 5 min read
 
 Read the post
 
-Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices.html
+Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
 Reality Check · 6 min read
 
@@ -122,7 +122,7 @@ Round number, single day, screenshot of gains — the "$1000 in a day" headline 
 
 Read the post
 
-Link: https://cryptobolt.io/1000-dollar-day-trap.html
+Link: https://cryptobolt.io/1000-dollar-day-trap
 
 Reality Check · 6 min read
 
@@ -132,7 +132,7 @@ Reality Check · 6 min read
 
 Read the post
 
-Link: https://cryptobolt.io/day-trading-crypto-realistic-returns.html
+Link: https://cryptobolt.io/day-trading-crypto-realistic-returns
 
 Mechanics · 5 min read
 
@@ -142,7 +142,7 @@ The small percentage next to every perpetual contract quietly tells you which si
 
 Read the post
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 Analysis · 6 min read
 
@@ -152,7 +152,7 @@ Two technologies built for opposite reasons — centralized intelligence and dec
 
 Read the post
 
-Link: https://cryptobolt.io/ai-meets-crypto.html
+Link: https://cryptobolt.io/ai-meets-crypto
 
 Mechanics · 4 min read
 
@@ -162,7 +162,7 @@ Price stalls at $30,000 and $50,000 more often than chance would suggest. Here's
 
 Read the post
 
-Link: https://cryptobolt.io/round-number-levels.html
+Link: https://cryptobolt.io/round-number-levels
 
 Product · 4 min read
 
@@ -172,7 +172,7 @@ Inside the two-pass research pipeline, and why entry/stop/target levels always c
 
 Read the post
 
-Link: https://cryptobolt.io/ai-research-grounded-data.html
+Link: https://cryptobolt.io/ai-research-grounded-data
 
 Sentiment · 4 min read
 
@@ -182,7 +182,7 @@ The Fear & Greed index compresses volatility, momentum, and sentiment into one 0
 
 Read the post
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 Mechanics · 5 min read
 
@@ -192,7 +192,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

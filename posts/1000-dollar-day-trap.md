@@ -14,7 +14,7 @@ related: day-trading-crypto-realistic-returns, why-we-dont-predict-crypto-prices
 ---
 "$1000 in one day." It's not a coincidence that this exact phrasing shows up everywhere — YouTube thumbnails, X threads, "signal group" ads, screenshotted trading apps. It's a specific, tested formula, and it works on smart, careful people, not just beginners. Understanding why it works is more useful than being told not to fall for it.
 
-> **Definition:** [Survivorship bias](glossary.html#survivorship-bias) is judging a group by the winners you can see while ignoring the many who dropped out unseen. A screenshot of a big win is a survivor.
+> **Definition:** [Survivorship bias](glossary#survivorship-bias) is judging a group by the winners you can see while ignoring the many who dropped out unseen. A screenshot of a big win is a survivor.
 
 ## What's actually in that headline
 
@@ -31,7 +31,7 @@ Three things are doing the work, and none of them are accidental:
 - **FOMO plus social proof.** Seeing someone else's win triggers a fear of being the one who didn't act — and a screenshot from a stranger functions the same way a crowded restaurant does: if others are doing it, it must be safe and smart.
 - **Anchoring on the upside, not the downside.** The headline shows the $1000 win. It doesn't show the leverage or position size required to make that plausible on a small account — or the equally-sized loss that's sitting on the other side of the same trade.
 
-> **Example:** A post shows a $1,000 win on a $400 account. That is a 250% return in one day, which on futures usually means very high [leverage](glossary.html#leverage). At 50x, a move of about 2% against the position ends it at the [liquidation price](glossary.html#liquidation-price). The screenshot shows the win, not how close the account came to zero or how many earlier attempts did not make it to a screenshot.
+> **Example:** A post shows a $1,000 win on a $400 account. That is a 250% return in one day, which on futures usually means very high [leverage](glossary#leverage). At 50x, a move of about 2% against the position ends it at the [liquidation price](glossary#liquidation-price). The screenshot shows the win, not how close the account came to zero or how many earlier attempts did not make it to a screenshot.
 
 ![Bar chart showing the daily return needed to make 1,000 dollars by account size: 200 percent on 500 dollars, 50 percent on 2,000 dollars, 10 percent on 10,000 dollars and 2 percent on 50,000 dollars.](assets/diagrams/account-size-vs-daily-target.svg "A fixed dollar target ignores account size. On a small account it is a lottery ticket.")
 
@@ -56,10 +56,10 @@ None of this requires malice from every single poster — some genuinely had a l
 
 ## What to do with that instead
 
-The useful question was never "how do I get the $1000." It's "what would it actually take, and is that a real, repeatable plan or a single lucky outcome being presented as one." We wrote up what the actual [long-run research on day trading returns](day-trading-crypto-realistic-returns.html) shows — it's a very different picture than any single screenshot.
+The useful question was never "how do I get the $1000." It's "what would it actually take, and is that a real, repeatable plan or a single lucky outcome being presented as one." We wrote up what the actual [long-run research on day trading returns](day-trading-crypto-realistic-returns) shows — it's a very different picture than any single screenshot.
 
-If you want to test a strategy against real conditions without the affiliate link, the subscription fee, or the actual risk, CryptoBolt's [paper trading simulator](trade.html) runs on live market data with no signup funnel attached to the result either way.
+If you want to test a strategy against real conditions without the affiliate link, the subscription fee, or the actual risk, CryptoBolt's [paper trading simulator](trade) runs on live market data with no signup funnel attached to the result either way.
 
-Related reading: [why CryptoBolt doesn't predict crypto prices](why-we-dont-predict-crypto-prices.html) covers the same trap from the forecasting side, and [spot vs. perpetual futures](spot-vs-futures.html) explains the leverage mechanics behind many of these screenshots. Unfamiliar term? Check the [glossary](glossary.html).
+Related reading: [why CryptoBolt doesn't predict crypto prices](why-we-dont-predict-crypto-prices) covers the same trap from the forecasting side, and [spot vs. perpetual futures](spot-vs-futures) explains the leverage mechanics behind many of these screenshots. Unfamiliar term? Check the [glossary](glossary).
 
-[Test a strategy with zero real risk →](trade.html)
+[Test a strategy with zero real risk →](trade)

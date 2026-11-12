@@ -2,7 +2,7 @@
 
 > Live Solana price in USDT with 24h range, funding, open interest and SOL/BTC, plus staking, DEX activity and network reliability context. Free, no signup.
 
-Source: https://cryptobolt.io/solana.html
+Source: https://cryptobolt.io/solana
 
 How to read it
 
@@ -24,11 +24,11 @@ The rolling-day extremes and the dollar volume on the SOL/USDT spot pair. Volume
 
 ### Funding rate
 
-The payment between longs and shorts on the SOLUSDT [perpetual future](https://cryptobolt.io/glossary.html#perpetual-futures). Because SOL attracts leveraged momentum traders, funding can run hot in strong rallies. See the [funding rate guide](https://cryptobolt.io/funding-rate-explained.html) for how to read it.
+The payment between longs and shorts on the SOLUSDT [perpetual future](https://cryptobolt.io/glossary#perpetual-futures). Because SOL attracts leveraged momentum traders, funding can run hot in strong rallies. See the [funding rate guide](https://cryptobolt.io/funding-rate-explained) for how to read it.
 
 ### Open interest
 
-The total value of open SOL perpetual contracts. Sharp rises in [open interest](https://cryptobolt.io/glossary.html#open-interest) during a rally show leverage building; a drop during a fall often marks forced closing.
+The total value of open SOL perpetual contracts. Sharp rises in [open interest](https://cryptobolt.io/glossary#open-interest) during a rally show leverage building; a drop during a fall often marks forced closing.
 
 Reference
 
@@ -70,7 +70,7 @@ Solana suffered several outages between 2021 and 2024, and each hurt sentiment w
 
 SOL is a higher-beta asset: in strong markets it often rises by more than Bitcoin, and in weak ones it often falls by more. That cuts both ways for leveraged traders, which is why position size matters more here than on BTC.
 
-[liquidation price](https://cryptobolt.io/glossary.html#liquidation-price)
+[liquidation price](https://cryptobolt.io/glossary#liquidation-price)
 
 History
 
@@ -88,9 +88,9 @@ A short reference timeline of network milestones. These are fixed historical eve
 
 Because SOL moves further than Bitcoin, leverage has less room. As an illustration only: a long opened at $150 with 20x isolated leverage is liquidated after a drop of roughly 4.5%, near $143, once a small maintenance margin is included, a move SOL can make in a single hour of volatile trading. Those are worked examples, not forecasts or current prices, and the exact figure depends on the exchange’s maintenance-margin tier.
 
-The [position size calculator](https://cryptobolt.io/position-size-calculator.html) sizes a trade from your stop-loss, the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) shows the real exit point, and [paper trading](https://cryptobolt.io/crypto-paper-trading.html) lets you rehearse SOL setups against live prices with simulated money.
+The [position size calculator](https://cryptobolt.io/position-size-calculator) sizes a trade from your stop-loss, the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) shows the real exit point, and [paper trading](https://cryptobolt.io/crypto-paper-trading) lets you rehearse SOL setups against live prices with simulated money.
 
-CryptoBolt is built for learning and research: the [terminal](https://cryptobolt.io/app.html) shows live charts and the order book, [AI research](https://cryptobolt.io/ai.html) explains its sources, and nothing here is a prediction or a trade signal. See [spot vs perpetual futures](https://cryptobolt.io/spot-vs-futures.html) for how the two ways of holding Solana differ.
+CryptoBolt is built for learning and research: the [terminal](https://cryptobolt.io/app) shows live charts and the order book, [AI research](https://cryptobolt.io/ai) explains its sources, and nothing here is a prediction or a trade signal. See [spot vs perpetual futures](https://cryptobolt.io/spot-vs-futures) for how the two ways of holding Solana differ.
 
 FAQ
 
@@ -128,37 +128,37 @@ Related pages
 
 BTC with halving, ETF and futures context, the benchmark SOL moves against.
 
-Link: https://cryptobolt.io/bitcoin.html
+Link: https://cryptobolt.io/bitcoin
 
 ### Ethereum price
 
 Compare SOL with the largest smart-contract network.
 
-Link: https://cryptobolt.io/ethereum.html
+Link: https://cryptobolt.io/ethereum
 
 ### Funding rates explained
 
 Read perpetual futures positioning on SOL.
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 ### Crypto Fear & Greed index
 
 Use sentiment as context alongside SOL price action.
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 ### Liquidation price calculator
 
 Check where a leveraged SOL position would be closed.
 
-Link: https://cryptobolt.io/liquidation-price-calculator.html
+Link: https://cryptobolt.io/liquidation-price-calculator
 
 ### Spot vs perpetual futures
 
 Understand the mechanics behind different SOL trade setups.
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

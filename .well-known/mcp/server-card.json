@@ -8,7 +8,7 @@
   },
   "description": "Read-only crypto futures calculators from CryptoBolt: liquidation price, position size, profit and loss, and funding fees. Estimates only, not financial advice.",
   "iconUrl": "https://cryptobolt.io/assets/android-chrome-512.png",
-  "documentationUrl": "https://cryptobolt.io/crypto-calculators.html",
+  "documentationUrl": "https://cryptobolt.io/crypto-calculators",
   "websiteUrl": "https://cryptobolt.io/",
   "provider": {
     "name": "CryptoBolt",

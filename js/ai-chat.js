@@ -202,7 +202,7 @@
 
     /* -----------------------------
        API KEY
-       Two modes, same idea as the app.html AI panel: 'own' (classic BYOK, key stays in
+       Two modes, same idea as the app AI panel: 'own' (classic BYOK, key stays in
     this browser's sessionStorage) or 'house' (no key needed — the request is flagged
        with x-use-house-key and the backend's own shared Groq key is used instead, if the
        deployment has one configured).
@@ -1008,7 +1008,7 @@
 
     /* -----------------------------
        ANALYZE BUTTON — now backed by the real /api/ai-insight endpoint (the
-       same Groq-backed, news+sentiment-grounded analysis app.html's Terminal
+       same Groq-backed, news+sentiment-grounded analysis app's Terminal
        uses), instead of a page-local MA(7)/MA(25) crossover. Falls back to
        that local calculation — clearly labeled as such — only when no key is
        available or the backend can't be reached.
@@ -1046,7 +1046,7 @@
 
     // Builds the exact context shape the backend's validateContext() expects
     // (see server/src/validators.js) from this page's own fetched ticker+klines —
-    // no chart-engine dependency needed, unlike app.html's richer version.
+    // no chart-engine dependency needed, unlike app's richer version.
     function buildInsightContext() {
         if (!marketData || !Array.isArray(marketData.candles) || marketData.candles.length < 20) return null;
         const tech = technicalContext();
@@ -1337,7 +1337,7 @@
         const lines = [
             `${ctx.asset}/USDT — ${trend} (via CryptoBolt AI Research)`,
             parsed.summary ? String(parsed.summary).slice(0, 220) : "",
-            "https://cryptobolt.io/ai.html",
+            "https://cryptobolt.io/ai",
         ].filter(Boolean);
         return lines.join("\n");
     }

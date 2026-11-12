@@ -26,7 +26,7 @@ What to check in Google Search Console (GSC) and how often. GSC data cannot be r
 
 ## After publishing or changing a page
 
-1. Run `npm run build` (and `npm run build:blog` / `npm run build:glossary` if you edited `posts/` or `glossary/terms.json`), then `npm run check:seo`.
+1. Run `npm run build` (and `npm run build:blog` / `npm run build:glossary` if you edited `posts/` or `data/glossary-terms.json`), then `npm run check:seo`.
 2. Deploy.
 3. In GSC, paste the URL into **URL Inspection**, confirm "URL is available to Google", and click **Request indexing**. Do this for new pages and for pages with significant changes; there is a daily quota, so do not do it for every page.
 4. Make sure the page's `<lastmod>` in `sitemap.xml` changed. `build-blog.js` keeps article dates in sync with the `updated:` front-matter field; update it whenever you materially edit an article.

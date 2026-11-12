@@ -229,7 +229,7 @@ function renderVideo(slug) {
     `            <source src="/assets/video/${slug}.mp4" type="video/mp4">`,
     `            Your browser does not support HTML video. <a href="/assets/video/${slug}.mp4">Download the video</a>.`,
     '        </video>',
-    `        <figcaption>Watch: ${escapeHtml(v.title)} (${v.secs} seconds, no sound needed). <a href="videos.html#v-${slug}">Transcript and more guides</a></figcaption>`,
+    `        <figcaption>Watch: ${escapeHtml(v.title)} (${v.secs} seconds, no sound needed). <a href="videos#v-${slug}">Transcript and more guides</a></figcaption>`,
     '    </figure>',
     `    <script type="application/ld+json">${JSON.stringify(ld)}</script>`,
   ].join('\n');
@@ -346,7 +346,7 @@ function wordCount(markdown) {
 
 function renderBlogCard(post, headingTag) {
   return [
-    `        <a href="${post.slug}.html" class="mk-blog-card">`,
+    `        <a href="${post.slug}" class="mk-blog-card">`,
     `            <div class="mk-blog-cover" style="background:${post.color};"><i data-lucide="${post.icon}" width="26" height="26" stroke-width="1.8"></i></div>`,
     `            <div class="mk-blog-body">`,
     `                <span class="mk-blog-meta">${escapeHtml(
@@ -431,7 +431,7 @@ function renderBlogSchema(posts) {
         '          "@type": "BlogPosting",',
         `          "headline": ${JSON.stringify(p.ogTitle)},`,
         `          "url": ${JSON.stringify(
-          `https://cryptobolt.io/${p.slug}.html`
+          `https://cryptobolt.io/${p.slug}`
         )},`,
         `          "datePublished": ${JSON.stringify(p.date)},`,
         '          "author": { "@type": "Organization", "name": "CryptoBolt" }',
@@ -481,7 +481,7 @@ function syncSitemapLastmod(posts) {
   let xml = readFileSync(sitemapPath, 'utf8');
   for (const p of posts) {
     const re = new RegExp(
-      `(<loc>https://cryptobolt\\.io/${p.slug}\\.html</loc>\\s*<lastmod>)[^<]*(</lastmod>)`
+      `(<loc>https://cryptobolt\\.io/${p.slug}</loc>\\s*<lastmod>)[^<]*(</lastmod>)`
     );
     xml = xml.replace(re, `$1${p.updated}$2`);
   }

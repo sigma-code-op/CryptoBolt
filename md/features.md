@@ -2,7 +2,7 @@
 
 > Explore CryptoBolt features: live crypto charts, spot & futures data, AI research, order book depth, portfolio tracking, and alerts.
 
-Source: https://cryptobolt.io/features.html
+Source: https://cryptobolt.io/features
 
 Charting
 
@@ -138,11 +138,11 @@ Total market cap, 24h volume, BTC dominance, and the Fear & Greed index at a gla
 
 ### Position size & risk calculator
 
-Work out position size, risk-per-trade, and reward ratios before you place an order — deterministic math, not an AI guess. Pair it with the standalone [position size calculator](https://cryptobolt.io/position-size-calculator.html) and [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) to check where a leveraged position would actually get closed out.
+Work out position size, risk-per-trade, and reward ratios before you place an order — deterministic math, not an AI guess. Pair it with the standalone [position size calculator](https://cryptobolt.io/position-size-calculator) and [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) to check where a leveraged position would actually get closed out.
 
 ### Free trading calculators
 
-Four browser-based tools that need no signup: [liquidation price](https://cryptobolt.io/liquidation-price-calculator.html), [position size](https://cryptobolt.io/position-size-calculator.html), [futures profit & ROE](https://cryptobolt.io/crypto-profit-calculator.html) and [funding fees](https://cryptobolt.io/funding-fee-calculator.html). Plan a leveraged trade before you risk real money, or browse them all on the [calculators page](https://cryptobolt.io/crypto-calculators.html).
+Four browser-based tools that need no signup: [liquidation price](https://cryptobolt.io/liquidation-price-calculator), [position size](https://cryptobolt.io/position-size-calculator), [futures profit & ROE](https://cryptobolt.io/crypto-profit-calculator) and [funding fees](https://cryptobolt.io/funding-fee-calculator). Plan a leveraged trade before you risk real money, or browse them all on the [calculators page](https://cryptobolt.io/crypto-calculators).
 
 ### Top movers & trending
 
@@ -152,7 +152,7 @@ A live scrolling strip of the day's biggest movers and trending coins, so you ca
 
 Every feature above is in the terminal right now — free, no signup required to browse.
 
-[Launch Terminal](https://cryptobolt.io/app.html)
+[Launch Terminal](https://cryptobolt.io/app)
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

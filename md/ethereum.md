@@ -2,7 +2,7 @@
 
 > Live Ethereum price in USDT with 24h range, funding, open interest and the ETH/BTC ratio, plus staking, fee burn and layer-2 context. Free, no signup.
 
-Source: https://cryptobolt.io/ethereum.html
+Source: https://cryptobolt.io/ethereum
 
 How to read it
 
@@ -24,11 +24,11 @@ The rolling-day extremes and the dollar volume on the ETH/USDT spot pair. ETH ha
 
 ### Funding rate
 
-The payment between longs and shorts on the ETHUSDT [perpetual future](https://cryptobolt.io/glossary.html#perpetual-futures). Persistently positive funding means the market leans long and longs are paying for it. Read the [funding rate guide](https://cryptobolt.io/funding-rate-explained.html) before treating it as a signal.
+The payment between longs and shorts on the ETHUSDT [perpetual future](https://cryptobolt.io/glossary#perpetual-futures). Persistently positive funding means the market leans long and longs are paying for it. Read the [funding rate guide](https://cryptobolt.io/funding-rate-explained) before treating it as a signal.
 
 ### Open interest
 
-The total value of open ETH perpetual contracts. Because ETH is a leveraged favourite, [open interest](https://cryptobolt.io/glossary.html#open-interest) can build quickly, and a sharp drop in it during a fall often marks forced closing rather than fresh selling.
+The total value of open ETH perpetual contracts. Because ETH is a leveraged favourite, [open interest](https://cryptobolt.io/glossary#open-interest) can build quickly, and a sharp drop in it during a fall often marks forced closing rather than fresh selling.
 
 Reference
 
@@ -89,9 +89,9 @@ A short reference timeline of protocol milestones. These are fixed historical ev
 
 Ethereum moves more than Bitcoin, so the same leverage is riskier. As an illustration only: a long opened at $3,000 with 20x isolated leverage is liquidated after a drop of roughly 4.6%, near $2,860, once a small maintenance margin is included. Those are worked examples, not forecasts or current prices, and the exact figure depends on the exchange’s maintenance-margin tier.
 
-Use the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) to see the real number for your entry and leverage, and the [position size calculator](https://cryptobolt.io/position-size-calculator.html) to size from your stop-loss rather than from conviction. To practise first, [paper trade ETH](https://cryptobolt.io/crypto-paper-trading.html) against live prices with simulated money.
+Use the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) to see the real number for your entry and leverage, and the [position size calculator](https://cryptobolt.io/position-size-calculator) to size from your stop-loss rather than from conviction. To practise first, [paper trade ETH](https://cryptobolt.io/crypto-paper-trading) against live prices with simulated money.
 
-CryptoBolt is built for learning and research: the [terminal](https://cryptobolt.io/app.html) shows live charts and the order book, [AI research](https://cryptobolt.io/ai.html) explains its sources, and nothing here is a prediction or a trade signal. See [spot vs perpetual futures](https://cryptobolt.io/spot-vs-futures.html) for how the two ways of holding Ethereum differ.
+CryptoBolt is built for learning and research: the [terminal](https://cryptobolt.io/app) shows live charts and the order book, [AI research](https://cryptobolt.io/ai) explains its sources, and nothing here is a prediction or a trade signal. See [spot vs perpetual futures](https://cryptobolt.io/spot-vs-futures) for how the two ways of holding Ethereum differ.
 
 FAQ
 
@@ -129,37 +129,37 @@ Related pages
 
 BTC with halving, ETF and futures context, the benchmark ETH is measured against.
 
-Link: https://cryptobolt.io/bitcoin.html
+Link: https://cryptobolt.io/bitcoin
 
 ### Solana price
 
 Compare ETH with the main high-throughput alternative.
 
-Link: https://cryptobolt.io/solana.html
+Link: https://cryptobolt.io/solana
 
 ### Funding rates explained
 
 Read perpetual futures positioning on ETH.
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 ### Crypto Fear & Greed index
 
 Use sentiment as context alongside ETH price action.
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 ### Liquidation price calculator
 
 Check where a leveraged ETH position would be closed.
 
-Link: https://cryptobolt.io/liquidation-price-calculator.html
+Link: https://cryptobolt.io/liquidation-price-calculator
 
 ### Spot vs perpetual futures
 
 Understand the mechanics behind different ETH trade setups.
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

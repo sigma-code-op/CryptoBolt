@@ -2,7 +2,7 @@
 
 > Free crypto paper trading app: practice buying and selling Bitcoin, spot and futures with virtual funds at live prices. Track P&L, no real money.
 
-Source: https://cryptobolt.io/crypto-paper-trading.html
+Source: https://cryptobolt.io/crypto-paper-trading
 
 Why it matters
 
@@ -60,19 +60,19 @@ Build your workflow
 
 Start a virtual portfolio with live prices and simulated orders.
 
-Link: https://cryptobolt.io/trade.html
+Link: https://cryptobolt.io/trade
 
 ### Review portfolio features
 
 See how holdings, P&L, and risk tools fit into the terminal.
 
-Link: https://cryptobolt.io/features.html#portfolio
+Link: https://cryptobolt.io/features#portfolio
 
 ### Learn spot vs futures
 
 Understand the mechanics before practicing different trade types.
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ## Watch: How paper trading works
 
@@ -86,9 +86,9 @@ Read the transcript
 
 Step one: every account starts with $10,000 in virtual funds. Step two: pick a market and trade at live prices. Step three: set your size, stop-loss and take-profit, so the exit is planned before the entry. Step four: review your results and learn from each trade. In the example, a closed trade shows a gain of $21.25 and the balance updates. You can reset the balance any time to test a new idea from a clean slate. Remember: paper results are practice, not a promise, test your plan, stops and sizing first, and real markets add emotion, fees and slippage. The numbers are illustrative and this is educational content, not financial advice.
 
-[Open paper trading](https://cryptobolt.io/trade.html)
+[Open paper trading](https://cryptobolt.io/trade)
 
-[Position size calculator](https://cryptobolt.io/position-size-calculator.html)
+[Position size calculator](https://cryptobolt.io/position-size-calculator)
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

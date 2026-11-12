@@ -15,7 +15,7 @@ A stop-loss is the most common risk tool in trading, and one of the most misunde
 
 ## What a stop-loss is
 
-A [stop-loss](glossary.html#stop-loss) is an instruction that stays dormant until price reaches a level you set, called the trigger or stop price. At that moment it turns into a real order and tries to close your position. Until the trigger is reached, it is not in the [order book](glossary.html#order-book) at all, which means nobody can see it.
+A [stop-loss](glossary#stop-loss) is an instruction that stays dormant until price reaches a level you set, called the trigger or stop price. At that moment it turns into a real order and tries to close your position. Until the trigger is reached, it is not in the [order book](glossary#order-book) at all, which means nobody can see it.
 
 The key question is what kind of order it becomes when triggered.
 
@@ -23,10 +23,10 @@ The key question is what kind of order it becomes when triggered.
 
 | | Stop-market | Stop-limit |
 |---|---|---|
-| Becomes | A [market order](glossary.html#market-order) | A [limit order](glossary.html#limit-order) |
+| Becomes | A [market order](glossary#market-order) | A [limit order](glossary#limit-order) |
 | Guarantees | That you get out, if there is anyone to trade with | The worst price you will accept |
 | Does not guarantee | The exit price | That you get out at all |
-| Main risk | [Slippage](glossary.html#slippage) in fast or thin markets | Price jumps past your limit and the order never fills |
+| Main risk | [Slippage](glossary#slippage) in fast or thin markets | Price jumps past your limit and the order never fills |
 | Fees | Taker | Often maker if it rests, taker if it fills immediately |
 
 A stop-market prioritises certainty of exit over price. A stop-limit prioritises price over certainty. Neither is better in general. Which one fits depends on what you are protecting against.
@@ -35,31 +35,31 @@ A stop-market prioritises certainty of exit over price. A stop-limit prioritises
 
 ## Why stops slip
 
-Slippage on a stop is the same mechanical effect described in our piece on [reading the order book](how-to-read-an-order-book.html): a market order fills against whatever is resting, and if size runs out at the best price it moves to the next one. A stop is more likely to suffer for two reasons.
+Slippage on a stop is the same mechanical effect described in our piece on [reading the order book](how-to-read-an-order-book): a market order fills against whatever is resting, and if size runs out at the best price it moves to the next one. A stop is more likely to suffer for two reasons.
 
-- Stops cluster. Many traders place them at obvious levels, often just beyond a [round number](glossary.html#round-number-level) or a recent low. When price reaches that zone, many stop-market orders fire together and all demand liquidity at the same moment.
-- The moment a stop triggers is usually the moment markets are moving fastest, which is when [liquidity](glossary.html#liquidity) is thinnest.
+- Stops cluster. Many traders place them at obvious levels, often just beyond a [round number](glossary#round-number-level) or a recent low. When price reaches that zone, many stop-market orders fire together and all demand liquidity at the same moment.
+- The moment a stop triggers is usually the moment markets are moving fastest, which is when [liquidity](glossary#liquidity) is thinnest.
 
 None of this is a reason to avoid stops. It is a reason to expect that your real exit may be worse than the number you typed in, and to size your position with that in mind.
 
 ## Wicks and the trigger price
 
-Many exchanges let you choose what triggers the stop: the last traded price or the [mark price](glossary.html#mark-price). A brief spike on a single venue, a [wick](glossary.html#wick), can touch a last-price trigger and stop you out even though the market closes the candle back above your level. A mark-price trigger, which is derived from an index across venues, is less sensitive to that kind of single-exchange spike. Check which option your platform uses, because the default is not always the one you would choose.
+Many exchanges let you choose what triggers the stop: the last traded price or the [mark price](glossary#mark-price). A brief spike on a single venue, a [wick](glossary#wick), can touch a last-price trigger and stop you out even though the market closes the candle back above your level. A mark-price trigger, which is derived from an index across venues, is less sensitive to that kind of single-exchange spike. Check which option your platform uses, because the default is not always the one you would choose.
 
 ## On futures: stops and liquidation
 
-If you trade with [leverage](glossary.html#leverage), the stop and the [liquidation price](glossary.html#liquidation-price) interact. A stop that sits beyond your liquidation price is useless, because the exchange will close the position first. Work out your liquidation level before you pick a stop, and keep the stop comfortably inside it. The [liquidation price calculator](liquidation-price-calculator.html) can do that arithmetic for you.
+If you trade with [leverage](glossary#leverage), the stop and the [liquidation price](glossary#liquidation-price) interact. A stop that sits beyond your liquidation price is useless, because the exchange will close the position first. Work out your liquidation level before you pick a stop, and keep the stop comfortably inside it. The [liquidation price calculator](liquidation-price-calculator) can do that arithmetic for you.
 
 ## Placing a stop with a reason
 
 The most common mistake is choosing a stop by feel or by a percentage that sounds comfortable. A stop works better when it is tied to something about the trade:
 
 - **Invalidation.** Place it at the level where your reason for entering is clearly wrong, not at a random distance.
-- **Volatility.** A stop tighter than the asset's normal movement will be hit by noise. Measures such as [ATR](glossary.html#atr) express typical movement in price terms and are one way to set a distance that fits the coin you are trading.
-- **Size.** Once you know the stop distance, work backwards to the position size that makes the loss acceptable. That calculation is covered in our guide to [position sizing](position-sizing-and-the-one-percent-rule.html).
+- **Volatility.** A stop tighter than the asset's normal movement will be hit by noise. Measures such as [ATR](glossary#atr) express typical movement in price terms and are one way to set a distance that fits the coin you are trading.
+- **Size.** Once you know the stop distance, work backwards to the position size that makes the loss acceptable. That calculation is covered in our guide to [position sizing](position-sizing-and-the-one-percent-rule).
 
 ## Practice before it costs money
 
-How a stop behaves in a fast market is hard to appreciate from a description. Using [paper trading](glossary.html#paper-trading) on live prices lets you see slippage and stop-outs happen with virtual funds, which is far cheaper than learning it with real ones.
+How a stop behaves in a fast market is hard to appreciate from a description. Using [paper trading](glossary#paper-trading) on live prices lets you see slippage and stop-outs happen with virtual funds, which is far cheaper than learning it with real ones.
 
-**Go deeper.** Chapter 13 of our 160-page ebook [Crypto Clarity](ebook.html) covers stop-losses and risk management, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).
+**Go deeper.** Chapter 13 of our 160-page ebook [Crypto Clarity](ebook) covers stop-losses and risk management, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook).

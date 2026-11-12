@@ -13,15 +13,15 @@
     if (!mc) return;
 
     var PAGES = {
-        home: '/', terminal: '/app.html', features: '/features.html', ai_research: '/ai.html',
-        paper_trading: '/trade.html', bitcoin: '/bitcoin.html', ethereum: '/ethereum.html',
-        solana: '/solana.html', calculators: '/crypto-calculators.html',
-        liquidation_calculator: '/liquidation-price-calculator.html',
-        position_size_calculator: '/position-size-calculator.html',
-        profit_calculator: '/crypto-profit-calculator.html',
-        funding_fee_calculator: '/funding-fee-calculator.html',
-        glossary: '/glossary.html', blog: '/blog.html', releases: '/releases.html',
-        about: '/about.html', contact: '/contact.html'
+        home: '/', terminal: '/app', features: '/features', ai_research: '/ai',
+        paper_trading: '/trade', bitcoin: '/bitcoin', ethereum: '/ethereum',
+        solana: '/solana', calculators: '/crypto-calculators',
+        liquidation_calculator: '/liquidation-price-calculator',
+        position_size_calculator: '/position-size-calculator',
+        profit_calculator: '/crypto-profit-calculator',
+        funding_fee_calculator: '/funding-fee-calculator',
+        glossary: '/glossary', blog: '/blog', releases: '/releases',
+        about: '/about', contact: '/contact'
     };
 
     function ok(obj) { return { content: [{ type: 'text', text: JSON.stringify(obj) }] }; }

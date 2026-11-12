@@ -2,7 +2,7 @@
 
 > CryptoBolt's privacy policy — what data is stored locally in your browser, what's sent to third-party APIs, and how your Groq API key is handled.
 
-Source: https://cryptobolt.io/privacy.html
+Source: https://cryptobolt.io/privacy
 
 CryptoBolt is a client-side market terminal. There's no user account, no server-side database, and no server-side tracking of individual visitors. Almost everything the app remembers — your watchlist, alerts, portfolio entries, notes, and settings — is written directly to your browser's own storage and never leaves your device. The one exception is optional analytics/ad cookies, covered in "Cookies & analytics" below.
 
@@ -50,7 +50,7 @@ This app is a financial-market data tool intended for adults and is not directed
 
 If this policy changes, the "last updated" date at the top of this page will change with it. Since this is a static page shipped with the app itself, checking back here after an update is the way to see the current version.
 
-Questions about this policy or how the app handles your data? [Get in touch](https://cryptobolt.io/contact.html).
+Questions about this policy or how the app handles your data? [Get in touch](https://cryptobolt.io/contact).
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

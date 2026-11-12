@@ -2,7 +2,7 @@
 
 > Free crypto position size calculator. Enter account balance, risk % and stop-loss to get position size, margin needed and 1R/2R/3R targets. No signup.
 
-Source: https://cryptobolt.io/position-size-calculator.html
+Source: https://cryptobolt.io/position-size-calculator
 
 Account balance (USD)
 
@@ -26,7 +26,7 @@ Margin at chosen leverage
 
 3R target (risk ×3)
 
-Estimate only — ignores trading fees and slippage, which make a real stop-out slightly larger than planned. Educational tool, not financial advice. [Practice the sizing with virtual funds →](https://cryptobolt.io/crypto-paper-trading.html)
+Estimate only — ignores trading fees and slippage, which make a real stop-out slightly larger than planned. Educational tool, not financial advice. [Practice the sizing with virtual funds →](https://cryptobolt.io/crypto-paper-trading)
 
 ## What position size means
 
@@ -56,17 +56,17 @@ If the stop fills, you lose about $50 whether you used 5x or 10x. The 10x trade 
 
 ## Check your stop against your liquidation price
 
-A stop-loss only protects you if it triggers *before* the exchange liquidates the position. As a rough guide, a position at leverage L is liquidated after a move of about 1/L minus the maintenance margin rate. At 20x that is roughly 4.5%; at 50x, about 1.5%. If your stop sits further away than that, liquidation arrives first. Use the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) to compare the two numbers for your exact setup.
+A stop-loss only protects you if it triggers *before* the exchange liquidates the position. As a rough guide, a position at leverage L is liquidated after a move of about 1/L minus the maintenance margin rate. At 20x that is roughly 4.5%; at 50x, about 1.5%. If your stop sits further away than that, liquidation arrives first. Use the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) to compare the two numbers for your exact setup.
 
 ## How much should you risk per trade?
 
-There is no universally correct number. Many traders who write about risk management use somewhere around 0.5%–2% of the account per trade, because even a long losing streak then leaves most of the balance intact. At 1% risk, ten straight losses cost roughly 10% of the account; at 10% risk, the same streak would cost about 65%. Smaller risk per trade buys survival time, which is what a new strategy needs most. A good way to test a risk level without real money is a [paper trading account](https://cryptobolt.io/crypto-paper-trading.html).
+There is no universally correct number. Many traders who write about risk management use somewhere around 0.5%–2% of the account per trade, because even a long losing streak then leaves most of the balance intact. At 1% risk, ten straight losses cost roughly 10% of the account; at 10% risk, the same streak would cost about 65%. Smaller risk per trade buys survival time, which is what a new strategy needs most. A good way to test a risk level without real money is a [paper trading account](https://cryptobolt.io/crypto-paper-trading).
 
 ## R-multiples: reading the targets
 
 "R" is the amount you risk on the trade. A 2R target is a profit twice the size of the loss you accepted. The calculator shows the price for 1R, 2R and 3R in the direction of your trade so you can check whether a take-profit level is realistic against nearby support, resistance or round-number levels.
 
-[See live prices and charts to pick your entry and stop in the terminal →](https://cryptobolt.io/app.html)
+[See live prices and charts to pick your entry and stop in the terminal →](https://cryptobolt.io/app)
 
 FAQ
 
@@ -104,7 +104,7 @@ Where a leveraged long or short gets force-closed.
 
 Open
 
-Link: https://cryptobolt.io/liquidation-price-calculator.html
+Link: https://cryptobolt.io/liquidation-price-calculator
 
 Calculator
 
@@ -114,7 +114,7 @@ Net PnL, ROE and fees for a leveraged trade.
 
 Open
 
-Link: https://cryptobolt.io/crypto-profit-calculator.html
+Link: https://cryptobolt.io/crypto-profit-calculator
 
 Practice
 
@@ -124,7 +124,7 @@ Test a plan with virtual funds before risking real money.
 
 Open
 
-Link: https://cryptobolt.io/crypto-paper-trading.html
+Link: https://cryptobolt.io/crypto-paper-trading
 
 ## Watch: Position sizing and the 1% rule
 
@@ -138,9 +138,9 @@ Read the transcript
 
 Start from what you are willing to lose. With a $1,000 account and a 1% risk limit, you risk $10 per trade. With an entry at $100 and a stop at $98, the stop distance is 2%, so the position size is $10 divided by 2%, which is $500. If the stop is hit you lose $10, which is 1% of the account. Why small risk matters: after ten losses in a row, risking 1% per trade leaves about $904 of the $1,000, while risking 10% per trade leaves about $349. Remember: decide the risk in dollars first, position size equals risk divided by stop distance, and smaller losses keep you in the game. The numbers are illustrative and this is educational content, not financial advice.
 
-[The 1% rule (guide)](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html)
+[The 1% rule (guide)](https://cryptobolt.io/position-sizing-and-the-one-percent-rule)
 
-[Risk-reward calculator](https://cryptobolt.io/risk-reward-calculator.html)
+[Risk-reward calculator](https://cryptobolt.io/risk-reward-calculator)
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

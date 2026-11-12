@@ -93,10 +93,15 @@ if (existsSync(path.join(ROOT, 'sitemap.xml'))) {
   add('error', 'sitemap.xml', 'sitemap-missing', 'sitemap.xml not found');
 }
 
+// Clean URLs: /ebook instead of /ebook.html (account.html and 404.html keep their extension).
+const pageUrl = (file) => file === 'index.html' ? `${ORIGIN}/` : (file === 'account.html' || file === '404.html') ? `${ORIGIN}/${file}` : `${ORIGIN}/${file.replace(/\.html$/, '')}`;
+
 const fileForUrl = (url) => {
   if (!url.startsWith(ORIGIN)) return null;
   const p = url.slice(ORIGIN.length).split('#')[0].split('?')[0];
-  return p === '/' || p === '' ? 'index.html' : p.replace(/^\//, '');
+  if (p === '/' || p === '') return 'index.html';
+  const q = p.replace(/^\//, '');
+  return path.extname(q) ? q : `${q}.html`;
 };
 
 // ---- site-level checks ----------------------------------------------------
@@ -113,7 +118,7 @@ for (const [file, html] of pages) {
   const noindex = /noindex/i.test(robots);
   if (!noindex) indexable.add(file);
 
-  const expectedCanonical = file === 'index.html' ? `${ORIGIN}/` : `${ORIGIN}/${file}`;
+  const expectedCanonical = pageUrl(file);
 
   if (!noindex && file !== '404.html') {
     if (!meta(html, 'name', 'twitter:site')) add('warn', file, 'twitter-site', 'missing twitter:site meta tag');
@@ -193,7 +198,7 @@ for (const [file, html] of pages) {
   }
 
   // sitemap consistency
-  const url = file === 'index.html' ? `${ORIGIN}/` : `${ORIGIN}/${file}`;
+  const url = pageUrl(file);
   const inSitemap = sitemapLocs.includes(url);
   if (noindex && inSitemap) add('error', file, 'sitemap-noindex', 'page is noindex but listed in sitemap.xml');
   if (!noindex && !inSitemap) add('warn', file, 'sitemap-missing-page', 'indexable page is not listed in sitemap.xml');
@@ -252,7 +257,9 @@ for (const [file, html] of pages) {
     const href = m[1];
     if (/^(https?:|mailto:|tel:|javascript:|data:|\/\/)/i.test(href)) continue;
     const [p, hash] = href.split('#');
-    const target = p === '' ? file : p.replace(/^\//, '').split('?')[0];
+    let target = p === '' ? file : p.replace(/^\//, '').split('?')[0];
+    if (p === '/') target = 'index.html';
+    else if (target && !path.extname(target)) target += '.html';
     if (target && !existsSync(path.join(ROOT, target))) {
       add('error', file, 'broken-link', `link to missing file: ${href}`);
       continue;

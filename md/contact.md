@@ -2,7 +2,7 @@
 
 > Get in touch with the CryptoBolt team — questions, feedback, or partnership inquiries about the live crypto spot & futures terminal.
 
-Source: https://cryptobolt.io/contact.html
+Source: https://cryptobolt.io/contact
 
 [info@cryptobolt.io](mailto:info@cryptobolt.io)
 

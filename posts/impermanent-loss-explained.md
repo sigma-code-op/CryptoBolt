@@ -15,7 +15,7 @@ Providing liquidity to a decentralised exchange sounds like a free lunch: deposi
 
 ## How a liquidity pool prices things
 
-Most decentralised exchanges use an [automated market maker](glossary.html#automated-market-maker) (AMM) instead of an [order book](glossary.html#order-book). In the classic design, a [liquidity pool](glossary.html#liquidity-pool) holds two tokens, say ETH and a dollar stablecoin, and keeps the product of the two quantities constant. If someone buys ETH from the pool, the ETH balance falls, the stablecoin balance rises, and the price of ETH moves up automatically so the product is unchanged.
+Most decentralised exchanges use an [automated market maker](glossary#automated-market-maker) (AMM) instead of an [order book](glossary#order-book). In the classic design, a [liquidity pool](glossary#liquidity-pool) holds two tokens, say ETH and a dollar stablecoin, and keeps the product of the two quantities constant. If someone buys ETH from the pool, the ETH balance falls, the stablecoin balance rises, and the price of ETH moves up automatically so the product is unchanged.
 
 Because the pool is always willing to trade, any gap between its price and the wider market is quickly closed by arbitrage traders. They buy the token that is cheap in the pool and sell the one that is expensive, which keeps the pool price in line with the market, but at the cost of changing what the pool holds.
 
@@ -48,7 +48,7 @@ The loss depends only on how far the price ratio has moved, not on the direction
 | +300% (4x) | −20.00% |
 | +900% (10x) | −42.50% |
 
-Use the [impermanent loss calculator](impermanent-loss-calculator.html) to see the number for your own deposit and price move.
+Use the [impermanent loss calculator](impermanent-loss-calculator) to see the number for your own deposit and price move.
 
 ## Why it is called impermanent
 
@@ -73,10 +73,10 @@ Impermanent loss is only the arithmetic of balancing a pool. Liquidity providers
 
 ## A short checklist before you provide liquidity
 
-1. Work out the break-even fees for a few price moves (use the [calculator](impermanent-loss-calculator.html)).
+1. Work out the break-even fees for a few price moves (use the [calculator](impermanent-loss-calculator)).
 2. Estimate realistic fees from the pool's recent volume, not from the headline yield.
 3. Ask what happens if either token falls 50% or rises 3x.
 4. Check that the contracts are audited and the tokens are legitimate.
 5. Decide in advance when you will withdraw.
 
-Related reading: if you would rather earn a rate than provide liquidity, see [staking: APR vs APY](staking-apr-vs-apy.html) and the [staking calculator](crypto-staking-calculator.html). This article is educational and not financial advice.
+Related reading: if you would rather earn a rate than provide liquidity, see [staking: APR vs APY](staking-apr-vs-apy) and the [staking calculator](crypto-staking-calculator). This article is educational and not financial advice.

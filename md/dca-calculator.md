@@ -2,9 +2,9 @@
 
 > Free crypto DCA calculator. Enter a buy amount, number of buys and start and end price to see average cost, coins bought and return versus a lump sum.
 
-Source: https://cryptobolt.io/dca-calculator.html
+Source: https://cryptobolt.io/dca-calculator
 
-Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy.html)
+Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Amount per buy (USD)
 
@@ -63,7 +63,7 @@ The interval matters less than consistency. Weekly, fortnightly and monthly sche
 
 ## What this model leaves out
 
-Real prices do not move in straight lines, so your true average cost will differ. Trading fees, spreads, taxes and any rewards earned while holding are not included. Use the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator.html) to enter your actual buys, and the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator.html) to include fees. For a fuller discussion read [dollar-cost averaging in crypto](https://cryptobolt.io/dollar-cost-averaging-crypto.html).
+Real prices do not move in straight lines, so your true average cost will differ. Trading fees, spreads, taxes and any rewards earned while holding are not included. Use the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) to enter your actual buys, and the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator) to include fees. For a fuller discussion read [dollar-cost averaging in crypto](https://cryptobolt.io/dollar-cost-averaging-crypto).
 
 FAQ
 
@@ -105,7 +105,7 @@ Combine several buys into one cost basis.
 
 Open
 
-Link: https://cryptobolt.io/crypto-average-price-calculator.html
+Link: https://cryptobolt.io/crypto-average-price-calculator
 
 Calculator
 
@@ -115,7 +115,7 @@ Profit, ROI and break-even price on a spot trade.
 
 Open
 
-Link: https://cryptobolt.io/crypto-roi-calculator.html
+Link: https://cryptobolt.io/crypto-roi-calculator
 
 Guide
 
@@ -125,7 +125,7 @@ When DCA helps, when it does not, and why.
 
 Open
 
-Link: https://cryptobolt.io/dollar-cost-averaging-crypto.html
+Link: https://cryptobolt.io/dollar-cost-averaging-crypto
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

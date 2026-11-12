@@ -2,7 +2,7 @@
 
 > What the Bitcoin halving is, how block rewards and the 21 million supply cap work, the dates of every halving so far, and why the event is not a price forecast.
 
-Source: https://cryptobolt.io/bitcoin-halving-explained.html
+Source: https://cryptobolt.io/bitcoin-halving-explained
 
 Every few years the Bitcoin halving becomes a headline, usually paired with a confident claim about what price will do next. The event itself is simple, scheduled and entirely predictable. The price claims are neither. Here is the mechanism, the full history, and an honest account of what it does and does not tell you.
 
@@ -46,13 +46,13 @@ The popular story is that fewer new coins mean a higher price, because supply gr
 - **It is widely known.** A scheduled, public event is something markets can anticipate long before it happens, so any effect may already be reflected in price well before the date.
 - **Four events is a tiny sample.** Price did rise over the periods after past halvings, but those periods also contained other things: changes in interest rates, regulation, new products, and broader risk appetite. With so few observations, it is impossible to separate the halving from everything else that happened.
 
-Anyone telling you with confidence what a halving will do to price is guessing. We explain why we refuse to make those guesses in [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices.html).
+Anyone telling you with confidence what a halving will do to price is guessing. We explain why we refuse to make those guesses in [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices).
 
 ## How to use this knowledge sensibly
 
-The halving is a useful fact for understanding Bitcoin's monetary design and miner economics. It is not a trading signal. If you follow the market around such events, the more practical tools are the ones that measure what is happening now: [volatility](https://cryptobolt.io/glossary.html#volatility), the [funding rate](https://cryptobolt.io/funding-rate-explained.html), and sentiment gauges like the [Fear & Greed index](https://cryptobolt.io/fear-and-greed-index.html). Periods around big narratives tend to bring larger swings, so it is worth knowing your [liquidation price](https://cryptobolt.io/glossary.html#liquidation-price) before you use leverage, not after. And if you want to test how you would behave in that kind of market, [paper trading](https://cryptobolt.io/crypto-paper-trading.html) on live prices costs nothing. For live Bitcoin data, see the [Bitcoin page](https://cryptobolt.io/bitcoin.html).
+The halving is a useful fact for understanding Bitcoin's monetary design and miner economics. It is not a trading signal. If you follow the market around such events, the more practical tools are the ones that measure what is happening now: [volatility](https://cryptobolt.io/glossary#volatility), the [funding rate](https://cryptobolt.io/funding-rate-explained), and sentiment gauges like the [Fear & Greed index](https://cryptobolt.io/fear-and-greed-index). Periods around big narratives tend to bring larger swings, so it is worth knowing your [liquidation price](https://cryptobolt.io/glossary#liquidation-price) before you use leverage, not after. And if you want to test how you would behave in that kind of market, [paper trading](https://cryptobolt.io/crypto-paper-trading) on live prices costs nothing. For live Bitcoin data, see the [Bitcoin page](https://cryptobolt.io/bitcoin).
 
-**Go deeper.** Chapter 3 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook.html) covers how Bitcoin works and where it came from, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook.html).
+**Go deeper.** Chapter 3 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers how Bitcoin works and where it came from, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
 
 Keep reading
 
@@ -66,7 +66,7 @@ Reality Check · 5 min read
 
 Read the post
 
-Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices.html
+Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
 Mechanics · 5 min read
 
@@ -76,7 +76,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 Sentiment · 4 min read
 
@@ -86,7 +86,7 @@ The Fear & Greed index compresses volatility, momentum, and sentiment into one 0
 
 Read the post
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

@@ -2,7 +2,7 @@
 
 > Step by step: crypto profit and loss on spot and futures trades, including fees, average cost, break-even, ROE, funding and why losses are hard to recover.
 
-Source: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html
+Source: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss
 
 It sounds trivial: you bought low and sold high, so you made money. In practice the number on your exchange screen and the number in your bank often disagree. The difference is almost always fees, several purchases at different prices, leverage or time. This guide builds the calculation up from a single spot trade to a leveraged position, so you can check any result by hand.
 
@@ -16,7 +16,7 @@ Buy 0.5 coins at $2,000 and sell at $2,600: 0.5 × $600 = $300, which is a 30% g
 
 ## Step 2: add fees on both sides
 
-Exchanges charge a fee on the buy and another on the sell, usually a percentage of the trade value. With a 0.1% fee each way, $1,000 buys about 0.4995 coins after the buy fee, and selling them at $2,600 returns about $1,297.40 after the sell fee. Net profit is about $297.40, or 29.74%. Fees look small on a big move, but they matter on small ones and for frequent traders. Run your own numbers in the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator.html).
+Exchanges charge a fee on the buy and another on the sell, usually a percentage of the trade value. With a 0.1% fee each way, $1,000 buys about 0.4995 coins after the buy fee, and selling them at $2,600 returns about $1,297.40 after the sell fee. Net profit is about $297.40, or 29.74%. Fees look small on a big move, but they matter on small ones and for frequent traders. Run your own numbers in the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator).
 
 ## Step 3: several purchases mean an average cost
 
@@ -24,7 +24,7 @@ If you bought in several steps, your break-even is the weighted average price, n
 
 **Average price = total cost ÷ total coins**
 
-Buy 0.1 coin at $60,000, 0.2 at $50,000 and 0.3 at $40,000: total cost $28,000 for 0.6 coin, an average of about $46,667, not $50,000. The [average price calculator](https://cryptobolt.io/crypto-average-price-calculator.html) does this for up to five buys. Remember that tax authorities may require a specific lot-matching method rather than an average.
+Buy 0.1 coin at $60,000, 0.2 at $50,000 and 0.3 at $40,000: total cost $28,000 for 0.6 coin, an average of about $46,667, not $50,000. The [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) does this for up to five buys. Remember that tax authorities may require a specific lot-matching method rather than an average.
 
 ## Step 4: realised versus unrealised
 
@@ -41,11 +41,11 @@ On a futures position, your margin controls a larger position, and profit and lo
 - **Net PnL** = gross PnL − fees
 - **ROE** (return on equity) = net PnL ÷ margin
 
-A long at $60,000 closed at $63,000, with $1,000 margin, 10x leverage and a 0.05% fee per side, has a position of $10,000, a gross profit of $500, fees of about $10.25, net profit of $489.75 and an ROE of about 48.98%. The price moved 5%; the equity moved about 49%. Leverage multiplies both directions, so a 5% fall would have cost about half the margin plus fees. Use the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator.html) for your own trade and the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) to check the position would survive until your exit.
+A long at $60,000 closed at $63,000, with $1,000 margin, 10x leverage and a 0.05% fee per side, has a position of $10,000, a gross profit of $500, fees of about $10.25, net profit of $489.75 and an ROE of about 48.98%. The price moved 5%; the equity moved about 49%. Leverage multiplies both directions, so a 5% fall would have cost about half the margin plus fees. Use the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator) for your own trade and the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) to check the position would survive until your exit.
 
 ## Step 6: funding on perpetual contracts
 
-Perpetual futures have no expiry, so exchanges use a [funding rate](https://cryptobolt.io/glossary.html#funding-rate) to keep the contract near the spot price. While you hold a position, you pay or receive funding at regular intervals. At 0.01% every eight hours on a $10,000 position, that is $1 per payment, $3 a day, about $90 a month: small for a day, meaningful for a month. The [funding fee calculator](https://cryptobolt.io/funding-fee-calculator.html) handles it, and [funding rates explained](https://cryptobolt.io/funding-rate-explained.html) shows why the sign changes.
+Perpetual futures have no expiry, so exchanges use a [funding rate](https://cryptobolt.io/glossary#funding-rate) to keep the contract near the spot price. While you hold a position, you pay or receive funding at regular intervals. At 0.01% every eight hours on a $10,000 position, that is $1 per payment, $3 a day, about $90 a month: small for a day, meaningful for a month. The [funding fee calculator](https://cryptobolt.io/funding-fee-calculator) handles it, and [funding rates explained](https://cryptobolt.io/funding-rate-explained) shows why the sign changes.
 
 ## Step 7: the asymmetry of losses
 
@@ -59,7 +59,7 @@ A loss needs a larger gain to recover, because the base is smaller after the los
 | −75% | +300.0% |
 | −90% | +900.0% |
 
-This is the strongest argument for limiting risk per trade, which is covered in [position sizing and the 1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html).
+This is the strongest argument for limiting risk per trade, which is covered in [position sizing and the 1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule).
 
 ## Common mistakes
 
@@ -88,7 +88,7 @@ Decide how much you can lose first, then let the stop distance set the size. A w
 
 Read the post
 
-Link: https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html
+Link: https://cryptobolt.io/position-sizing-and-the-one-percent-rule
 
 Mechanics · 5 min read
 
@@ -98,7 +98,7 @@ The small percentage next to every perpetual contract quietly tells you which si
 
 Read the post
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 Mechanics · 5 min read
 
@@ -108,7 +108,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

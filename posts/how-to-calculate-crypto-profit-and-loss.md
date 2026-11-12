@@ -23,7 +23,7 @@ Buy 0.5 coins at $2,000 and sell at $2,600: 0.5 × $600 = $300, which is a 30% g
 
 ## Step 2: add fees on both sides
 
-Exchanges charge a fee on the buy and another on the sell, usually a percentage of the trade value. With a 0.1% fee each way, $1,000 buys about 0.4995 coins after the buy fee, and selling them at $2,600 returns about $1,297.40 after the sell fee. Net profit is about $297.40, or 29.74%. Fees look small on a big move, but they matter on small ones and for frequent traders. Run your own numbers in the [crypto ROI calculator](crypto-roi-calculator.html).
+Exchanges charge a fee on the buy and another on the sell, usually a percentage of the trade value. With a 0.1% fee each way, $1,000 buys about 0.4995 coins after the buy fee, and selling them at $2,600 returns about $1,297.40 after the sell fee. Net profit is about $297.40, or 29.74%. Fees look small on a big move, but they matter on small ones and for frequent traders. Run your own numbers in the [crypto ROI calculator](crypto-roi-calculator).
 
 > **Example:** At 0.1% per side, you need about a 0.2% price rise just to break even. At 0.5% per side, which some buy-and-sell apps charge when they build a spread into the price, you need a rise of about 1%.
 
@@ -33,7 +33,7 @@ If you bought in several steps, your break-even is the weighted average price, n
 
 **Average price = total cost ÷ total coins**
 
-Buy 0.1 coin at $60,000, 0.2 at $50,000 and 0.3 at $40,000: total cost $28,000 for 0.6 coin, an average of about $46,667, not $50,000. The [average price calculator](crypto-average-price-calculator.html) does this for up to five buys. Remember that tax authorities may require a specific lot-matching method rather than an average.
+Buy 0.1 coin at $60,000, 0.2 at $50,000 and 0.3 at $40,000: total cost $28,000 for 0.6 coin, an average of about $46,667, not $50,000. The [average price calculator](crypto-average-price-calculator) does this for up to five buys. Remember that tax authorities may require a specific lot-matching method rather than an average.
 
 ## Step 4: realised versus unrealised
 
@@ -50,11 +50,11 @@ On a futures position, your margin controls a larger position, and profit and lo
 - **Net PnL** = gross PnL − fees
 - **ROE** (return on equity) = net PnL ÷ margin
 
-A long at $60,000 closed at $63,000, with $1,000 margin, 10x leverage and a 0.05% fee per side, has a position of $10,000, a gross profit of $500, fees of about $10.25, net profit of $489.75 and an ROE of about 48.98%. The price moved 5%; the equity moved about 49%. Leverage multiplies both directions, so a 5% fall would have cost about half the margin plus fees. Use the [futures profit calculator](crypto-profit-calculator.html) for your own trade and the [liquidation price calculator](liquidation-price-calculator.html) to check the position would survive until your exit.
+A long at $60,000 closed at $63,000, with $1,000 margin, 10x leverage and a 0.05% fee per side, has a position of $10,000, a gross profit of $500, fees of about $10.25, net profit of $489.75 and an ROE of about 48.98%. The price moved 5%; the equity moved about 49%. Leverage multiplies both directions, so a 5% fall would have cost about half the margin plus fees. Use the [futures profit calculator](crypto-profit-calculator) for your own trade and the [liquidation price calculator](liquidation-price-calculator) to check the position would survive until your exit.
 
 ## Step 6: funding on perpetual contracts
 
-Perpetual futures have no expiry, so exchanges use a [funding rate](glossary.html#funding-rate) to keep the contract near the spot price. While you hold a position, you pay or receive funding at regular intervals. At 0.01% every eight hours on a $10,000 position, that is $1 per payment, $3 a day, about $90 a month: small for a day, meaningful for a month. The [funding fee calculator](funding-fee-calculator.html) handles it, and [funding rates explained](funding-rate-explained.html) shows why the sign changes.
+Perpetual futures have no expiry, so exchanges use a [funding rate](glossary#funding-rate) to keep the contract near the spot price. While you hold a position, you pay or receive funding at regular intervals. At 0.01% every eight hours on a $10,000 position, that is $1 per payment, $3 a day, about $90 a month: small for a day, meaningful for a month. The [funding fee calculator](funding-fee-calculator) handles it, and [funding rates explained](funding-rate-explained) shows why the sign changes.
 
 ## Step 7: the asymmetry of losses
 
@@ -68,7 +68,7 @@ A loss needs a larger gain to recover, because the base is smaller after the los
 | −75% | +300.0% |
 | −90% | +900.0% |
 
-This is the strongest argument for limiting risk per trade, which is covered in [position sizing and the 1% rule](position-sizing-and-the-one-percent-rule.html).
+This is the strongest argument for limiting risk per trade, which is covered in [position sizing and the 1% rule](position-sizing-and-the-one-percent-rule).
 
 ## Common mistakes
 

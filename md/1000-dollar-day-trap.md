@@ -2,11 +2,11 @@
 
 > The "$1000 in a day" crypto headline uses specific psychological hooks: a round number, one day, a screenshot. See how it works and who profits.
 
-Source: https://cryptobolt.io/1000-dollar-day-trap.html
+Source: https://cryptobolt.io/1000-dollar-day-trap
 
 "$1000 in one day." It's not a coincidence that this exact phrasing shows up everywhere — YouTube thumbnails, X threads, "signal group" ads, screenshotted trading apps. It's a specific, tested formula, and it works on smart, careful people, not just beginners. Understanding why it works is more useful than being told not to fall for it.
 
-[Survivorship bias](https://cryptobolt.io/glossary.html#survivorship-bias)
+[Survivorship bias](https://cryptobolt.io/glossary#survivorship-bias)
 
 ## What's actually in that headline
 
@@ -23,9 +23,9 @@ Three things are doing the work, and none of them are accidental:
 - **FOMO plus social proof.** Seeing someone else's win triggers a fear of being the one who didn't act — and a screenshot from a stranger functions the same way a crowded restaurant does: if others are doing it, it must be safe and smart.
 - **Anchoring on the upside, not the downside.** The headline shows the $1000 win. It doesn't show the leverage or position size required to make that plausible on a small account — or the equally-sized loss that's sitting on the other side of the same trade.
 
-[leverage](https://cryptobolt.io/glossary.html#leverage)
+[leverage](https://cryptobolt.io/glossary#leverage)
 
-[liquidation price](https://cryptobolt.io/glossary.html#liquidation-price)
+[liquidation price](https://cryptobolt.io/glossary#liquidation-price)
 
 ## Who's actually profiting from the headline
 
@@ -48,13 +48,13 @@ None of this requires malice from every single poster — some genuinely had a l
 
 ## What to do with that instead
 
-The useful question was never "how do I get the $1000." It's "what would it actually take, and is that a real, repeatable plan or a single lucky outcome being presented as one." We wrote up what the actual [long-run research on day trading returns](https://cryptobolt.io/day-trading-crypto-realistic-returns.html) shows — it's a very different picture than any single screenshot.
+The useful question was never "how do I get the $1000." It's "what would it actually take, and is that a real, repeatable plan or a single lucky outcome being presented as one." We wrote up what the actual [long-run research on day trading returns](https://cryptobolt.io/day-trading-crypto-realistic-returns) shows — it's a very different picture than any single screenshot.
 
-If you want to test a strategy against real conditions without the affiliate link, the subscription fee, or the actual risk, CryptoBolt's [paper trading simulator](https://cryptobolt.io/trade.html) runs on live market data with no signup funnel attached to the result either way.
+If you want to test a strategy against real conditions without the affiliate link, the subscription fee, or the actual risk, CryptoBolt's [paper trading simulator](https://cryptobolt.io/trade) runs on live market data with no signup funnel attached to the result either way.
 
-Related reading: [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices.html) covers the same trap from the forecasting side, and [spot vs. perpetual futures](https://cryptobolt.io/spot-vs-futures.html) explains the leverage mechanics behind many of these screenshots. Unfamiliar term? Check the [glossary](https://cryptobolt.io/glossary.html).
+Related reading: [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices) covers the same trap from the forecasting side, and [spot vs. perpetual futures](https://cryptobolt.io/spot-vs-futures) explains the leverage mechanics behind many of these screenshots. Unfamiliar term? Check the [glossary](https://cryptobolt.io/glossary).
 
-[Test a strategy with zero real risk →](https://cryptobolt.io/trade.html)
+[Test a strategy with zero real risk →](https://cryptobolt.io/trade)
 
 Keep reading
 
@@ -68,7 +68,7 @@ Reality Check · 6 min read
 
 Read the post
 
-Link: https://cryptobolt.io/day-trading-crypto-realistic-returns.html
+Link: https://cryptobolt.io/day-trading-crypto-realistic-returns
 
 Reality Check · 5 min read
 
@@ -78,7 +78,7 @@ Reality Check · 5 min read
 
 Read the post
 
-Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices.html
+Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
 Mechanics · 5 min read
 
@@ -88,7 +88,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

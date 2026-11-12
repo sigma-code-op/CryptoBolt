@@ -27,19 +27,19 @@ Both show up as a price on a chart, which makes it easy to gloss over how differ
 
 ## Ownership
 
-A [spot](glossary.html#spot-trading) trade means you hold the asset itself — buy 0.1 BTC and you own 0.1 BTC, full stop. A [perpetual futures](glossary.html#perpetual-futures) contract is a derivative: you're holding a position that tracks BTC's price without ever owning the coin. That distinction is why spot has no liquidation risk and futures does.
+A [spot](glossary#spot-trading) trade means you hold the asset itself — buy 0.1 BTC and you own 0.1 BTC, full stop. A [perpetual futures](glossary#perpetual-futures) contract is a derivative: you're holding a position that tracks BTC's price without ever owning the coin. That distinction is why spot has no liquidation risk and futures does.
 
 ## Leverage and liquidation
 
-Futures let you open a position larger than your posted [margin](glossary.html#margin) — 5x, 10x, sometimes more. That multiple is called [leverage](glossary.html#leverage). That amplifies gains and losses equally, and if the market moves far enough against you, the exchange closes the position automatically at the [liquidation price](glossary.html#liquidation-price) to prevent your balance from going negative. CryptoBolt's portfolio view estimates that price for every open futures position so it's never a surprise mid-move.
+Futures let you open a position larger than your posted [margin](glossary#margin) — 5x, 10x, sometimes more. That multiple is called [leverage](glossary#leverage). That amplifies gains and losses equally, and if the market moves far enough against you, the exchange closes the position automatically at the [liquidation price](glossary#liquidation-price) to prevent your balance from going negative. CryptoBolt's portfolio view estimates that price for every open futures position so it's never a surprise mid-move.
 
 > **Example:** You open a $1,000 long with $100 of margin, which is 10x leverage. A price drop of roughly 10% costs the position about $100, which is all of your margin, so the exchange closes it first (a little before 10%, because exchanges also require a maintenance margin). The same 10% drop on $1,000 of spot leaves you holding about $900 of coin, and you still own it.
 
-![Bar chart of how far price can move against a long position before its margin is used up: about 100% at 1x, 50% at 2x, 20% at 5x, 10% at 10x, 5% at 20x, 2% at 50x and 1% at 100x.](assets/diagrams/leverage-liquidation-distance.svg "The higher the leverage, the smaller the move that wipes out your margin. Try your own numbers in the [liquidation price calculator](liquidation-price-calculator.html).")
+![Bar chart of how far price can move against a long position before its margin is used up: about 100% at 1x, 50% at 2x, 20% at 5x, 10% at 10x, 5% at 20x, 2% at 50x and 1% at 100x.](assets/diagrams/leverage-liquidation-distance.svg "The higher the leverage, the smaller the move that wipes out your margin. Try your own numbers in the [liquidation price calculator](liquidation-price-calculator).")
 
 ## Funding rate
 
-Perpetuals never expire, so exchanges use a periodic [funding payment](glossary.html#funding-rate) between longs and shorts to keep the contract price anchored near spot. When funding is positive, longs pay shorts, which usually means positioning is leaning long — one more piece of context the AI research pass folds in. The full explanation, with a worked example of what funding costs, is in [crypto funding rates explained](funding-rate-explained.html).
+Perpetuals never expire, so exchanges use a periodic [funding payment](glossary#funding-rate) between longs and shorts to keep the contract price anchored near spot. When funding is positive, longs pay shorts, which usually means positioning is leaning long — one more piece of context the AI research pass folds in. The full explanation, with a worked example of what funding costs, is in [crypto funding rates explained](funding-rate-explained).
 
 ## Spot vs futures trading for beginners
 
@@ -49,15 +49,15 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 
 ## Where to go next
 
-- [Funding rates explained](funding-rate-explained.html): the ongoing cost that only futures traders pay.
-- [Open interest explained](open-interest-explained.html): how much leveraged exposure is open in a futures market.
-- [Liquidation price calculator](liquidation-price-calculator.html): see how leverage moves your liquidation price.
-- [Position size calculator](position-size-calculator.html): size a leveraged trade from your risk and stop-loss.
-- [How much can you realistically make day trading crypto?](day-trading-crypto-realistic-returns.html): what the research says about leveraged short-term trading.
-- [Paper trading](crypto-paper-trading.html): practice futures with virtual money on live prices.
-- [Bitcoin price](bitcoin.html): live BTC/USDT with halving, ETF and funding context.
-- [Why round numbers act like support and resistance](round-number-levels.html): where price tends to react.
+- [Funding rates explained](funding-rate-explained): the ongoing cost that only futures traders pay.
+- [Open interest explained](open-interest-explained): how much leveraged exposure is open in a futures market.
+- [Liquidation price calculator](liquidation-price-calculator): see how leverage moves your liquidation price.
+- [Position size calculator](position-size-calculator): size a leveraged trade from your risk and stop-loss.
+- [How much can you realistically make day trading crypto?](day-trading-crypto-realistic-returns): what the research says about leveraged short-term trading.
+- [Paper trading](crypto-paper-trading): practice futures with virtual money on live prices.
+- [Bitcoin price](bitcoin): live BTC/USDT with halving, ETF and funding context.
+- [Why round numbers act like support and resistance](round-number-levels): where price tends to react.
 
-[Track spot holdings and futures positions side by side in the terminal →](app.html)
+[Track spot holdings and futures positions side by side in the terminal →](app)
 
-**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](ebook.html) covers spot, margin and futures trading, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).
+**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](ebook) covers spot, margin and futures trading, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook).

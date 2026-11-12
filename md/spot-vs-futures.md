@@ -2,7 +2,7 @@
 
 > Spot vs perpetual futures crypto trading explained: ownership, leverage, liquidation price, and the funding rate — the mechanics that actually differ.
 
-Source: https://cryptobolt.io/spot-vs-futures.html
+Source: https://cryptobolt.io/spot-vs-futures
 
 Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath. Here is the short version before the detail:
 
@@ -17,15 +17,15 @@ Both show up as a price on a chart, which makes it easy to gloss over how differ
 
 ## Ownership
 
-A [spot](https://cryptobolt.io/glossary.html#spot-trading) trade means you hold the asset itself — buy 0.1 BTC and you own 0.1 BTC, full stop. A [perpetual futures](https://cryptobolt.io/glossary.html#perpetual-futures) contract is a derivative: you're holding a position that tracks BTC's price without ever owning the coin. That distinction is why spot has no liquidation risk and futures does.
+A [spot](https://cryptobolt.io/glossary#spot-trading) trade means you hold the asset itself — buy 0.1 BTC and you own 0.1 BTC, full stop. A [perpetual futures](https://cryptobolt.io/glossary#perpetual-futures) contract is a derivative: you're holding a position that tracks BTC's price without ever owning the coin. That distinction is why spot has no liquidation risk and futures does.
 
 ## Leverage and liquidation
 
-Futures let you open a position larger than your posted [margin](https://cryptobolt.io/glossary.html#margin) — 5x, 10x, sometimes more. That multiple is called [leverage](https://cryptobolt.io/glossary.html#leverage). That amplifies gains and losses equally, and if the market moves far enough against you, the exchange closes the position automatically at the [liquidation price](https://cryptobolt.io/glossary.html#liquidation-price) to prevent your balance from going negative. CryptoBolt's portfolio view estimates that price for every open futures position so it's never a surprise mid-move.
+Futures let you open a position larger than your posted [margin](https://cryptobolt.io/glossary#margin) — 5x, 10x, sometimes more. That multiple is called [leverage](https://cryptobolt.io/glossary#leverage). That amplifies gains and losses equally, and if the market moves far enough against you, the exchange closes the position automatically at the [liquidation price](https://cryptobolt.io/glossary#liquidation-price) to prevent your balance from going negative. CryptoBolt's portfolio view estimates that price for every open futures position so it's never a surprise mid-move.
 
 ## Funding rate
 
-Perpetuals never expire, so exchanges use a periodic [funding payment](https://cryptobolt.io/glossary.html#funding-rate) between longs and shorts to keep the contract price anchored near spot. When funding is positive, longs pay shorts, which usually means positioning is leaning long — one more piece of context the AI research pass folds in. The full explanation, with a worked example of what funding costs, is in [crypto funding rates explained](https://cryptobolt.io/funding-rate-explained.html).
+Perpetuals never expire, so exchanges use a periodic [funding payment](https://cryptobolt.io/glossary#funding-rate) between longs and shorts to keep the contract price anchored near spot. When funding is positive, longs pay shorts, which usually means positioning is leaning long — one more piece of context the AI research pass folds in. The full explanation, with a worked example of what funding costs, is in [crypto funding rates explained](https://cryptobolt.io/funding-rate-explained).
 
 ## Spot vs futures trading for beginners
 
@@ -35,18 +35,18 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 
 ## Where to go next
 
-- [Funding rates explained](https://cryptobolt.io/funding-rate-explained.html): the ongoing cost that only futures traders pay.
-- [Open interest explained](https://cryptobolt.io/open-interest-explained.html): how much leveraged exposure is open in a futures market.
-- [Liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html): see how leverage moves your liquidation price.
-- [Position size calculator](https://cryptobolt.io/position-size-calculator.html): size a leveraged trade from your risk and stop-loss.
-- [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns.html): what the research says about leveraged short-term trading.
-- [Paper trading](https://cryptobolt.io/crypto-paper-trading.html): practice futures with virtual money on live prices.
-- [Bitcoin price](https://cryptobolt.io/bitcoin.html): live BTC/USDT with halving, ETF and funding context.
-- [Why round numbers act like support and resistance](https://cryptobolt.io/round-number-levels.html): where price tends to react.
+- [Funding rates explained](https://cryptobolt.io/funding-rate-explained): the ongoing cost that only futures traders pay.
+- [Open interest explained](https://cryptobolt.io/open-interest-explained): how much leveraged exposure is open in a futures market.
+- [Liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator): see how leverage moves your liquidation price.
+- [Position size calculator](https://cryptobolt.io/position-size-calculator): size a leveraged trade from your risk and stop-loss.
+- [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns): what the research says about leveraged short-term trading.
+- [Paper trading](https://cryptobolt.io/crypto-paper-trading): practice futures with virtual money on live prices.
+- [Bitcoin price](https://cryptobolt.io/bitcoin): live BTC/USDT with halving, ETF and funding context.
+- [Why round numbers act like support and resistance](https://cryptobolt.io/round-number-levels): where price tends to react.
 
-[Track spot holdings and futures positions side by side in the terminal →](https://cryptobolt.io/app.html)
+[Track spot holdings and futures positions side by side in the terminal →](https://cryptobolt.io/app)
 
-**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook.html) covers spot, margin and futures trading, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook.html).
+**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers spot, margin and futures trading, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
 
 Keep reading
 
@@ -60,7 +60,7 @@ The small percentage next to every perpetual contract quietly tells you which si
 
 Read the post
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 Reality Check · 6 min read
 
@@ -70,7 +70,7 @@ Reality Check · 6 min read
 
 Read the post
 
-Link: https://cryptobolt.io/day-trading-crypto-realistic-returns.html
+Link: https://cryptobolt.io/day-trading-crypto-realistic-returns
 
 Reality Check · 5 min read
 
@@ -80,7 +80,7 @@ Reality Check · 5 min read
 
 Read the post
 
-Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices.html
+Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

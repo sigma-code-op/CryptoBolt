@@ -2,9 +2,9 @@
 
 > Free Fibonacci retracement calculator. Enter a swing high and low for the 23.6% to 78.6% levels plus 127.2%, 161.8% and 261.8% extension targets.
 
-Source: https://cryptobolt.io/fibonacci-retracement-calculator.html
+Source: https://cryptobolt.io/fibonacci-retracement-calculator
 
-Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy.html)
+Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Swing high (USD)
 
@@ -50,9 +50,9 @@ Bitcoin rises from $50,000 to $70,000, a range of $20,000. The 38.2% retracement
 
 ## Using retracements without over-trusting them
 
-There is no proof that price respects Fibonacci levels more than chance would predict. What they do offer is a consistent, shared set of reference points, which is useful for planning a stop and target. The more evidence that lines up at one price, the more it deserves attention: a retracement level that coincides with a prior high or low, a round number such as [$60,000](https://cryptobolt.io/round-number-levels.html), a moving average or a high-volume area is a stronger area than a level standing alone. Treat levels as zones, not exact prices, and decide in advance where you would be wrong.
+There is no proof that price respects Fibonacci levels more than chance would predict. What they do offer is a consistent, shared set of reference points, which is useful for planning a stop and target. The more evidence that lines up at one price, the more it deserves attention: a retracement level that coincides with a prior high or low, a round number such as [$60,000](https://cryptobolt.io/round-number-levels), a moving average or a high-volume area is a stronger area than a level standing alone. Treat levels as zones, not exact prices, and decide in advance where you would be wrong.
 
-Once you have a level you care about, check the trade: the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator.html) shows whether the stop-to-target distance is worth taking, and the [position size calculator](https://cryptobolt.io/position-size-calculator.html) turns the stop into a size. You can watch these levels against live data in the [CryptoBolt terminal](https://cryptobolt.io/app.html).
+Once you have a level you care about, check the trade: the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator) shows whether the stop-to-target distance is worth taking, and the [position size calculator](https://cryptobolt.io/position-size-calculator) turns the stop into a size. You can watch these levels against live data in the [CryptoBolt terminal](https://cryptobolt.io/app).
 
 ## Limitations
 
@@ -98,7 +98,7 @@ The reward-to-risk ratio and the win rate it needs.
 
 Open
 
-Link: https://cryptobolt.io/risk-reward-calculator.html
+Link: https://cryptobolt.io/risk-reward-calculator
 
 Calculator
 
@@ -108,7 +108,7 @@ Size a trade from your risk, entry and stop-loss.
 
 Open
 
-Link: https://cryptobolt.io/position-size-calculator.html
+Link: https://cryptobolt.io/position-size-calculator
 
 Guide
 
@@ -118,7 +118,7 @@ Why a 40% win rate can still work.
 
 Open
 
-Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate.html
+Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

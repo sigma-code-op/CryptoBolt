@@ -2,7 +2,7 @@
 
 > CryptoBolt's terms of service — usage rules, disclaimers, and liability limits for the free crypto market terminal, AI insights, and paper trading tool.
 
-Source: https://cryptobolt.io/terms.html
+Source: https://cryptobolt.io/terms
 
 CryptoBolt (operated by NandLal, Pakistan, "we", "us") is a free market-data and research terminal available at cryptobolt.io. By using this site, you agree to the terms below.
 
@@ -40,7 +40,7 @@ We may update these terms as the product evolves. Continued use after changes me
 
 ## 9. Contact
 
-Questions about these terms: [info@cryptobolt.io](mailto:info@cryptobolt.io) or the [contact form](https://cryptobolt.io/contact.html).
+Questions about these terms: [info@cryptobolt.io](mailto:info@cryptobolt.io) or the [contact form](https://cryptobolt.io/contact).
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

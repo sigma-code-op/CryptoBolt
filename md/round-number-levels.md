@@ -2,17 +2,17 @@
 
 > Price often stalls at $30,000 or $50,000 for reasons that have nothing to do with charts — the psychology and order-flow behind round-number levels.
 
-Source: https://cryptobolt.io/round-number-levels.html
+Source: https://cryptobolt.io/round-number-levels
 
 Look back at any BTC chart and you'll notice something odd: price seems to hesitate at $30,000, $50,000, $100,000 — clean, round numbers — far more often than it stalls at $47,312 or $89,650. That's not a coincidence, and it's not magic either.
 
 ## It starts with where people actually place orders
 
-Most traders set limit orders, stop-losses, and take-profits at round numbers because they're easy to remember and easy to type. Nobody sets a buy order at $42,187.43. They set it at $42,000 or $42,500. When thousands of independent traders round their orders the same way, those levels accumulate real, visible liquidity in the [order book](https://cryptobolt.io/glossary.html#order-book) — which is exactly what CryptoBolt's order book [depth](https://cryptobolt.io/glossary.html#order-book-depth) view is showing you.
+Most traders set limit orders, stop-losses, and take-profits at round numbers because they're easy to remember and easy to type. Nobody sets a buy order at $42,187.43. They set it at $42,000 or $42,500. When thousands of independent traders round their orders the same way, those levels accumulate real, visible liquidity in the [order book](https://cryptobolt.io/glossary#order-book) — which is exactly what CryptoBolt's order book [depth](https://cryptobolt.io/glossary#order-book-depth) view is showing you.
 
 ## Why that turns into an actual price reaction
 
-A cluster of resting orders at a round number acts like a wall: buy orders pile up as [support](https://cryptobolt.io/glossary.html#support-and-resistance), sell orders pile up as resistance. Price arriving at that level has to absorb all of that liquidity before it can keep moving, which is what produces the pause, the [wick](https://cryptobolt.io/glossary.html#wick), or the rejection candle you see on the chart. It's a self-fulfilling pattern — round numbers matter *because* enough people believe round numbers matter and trade accordingly.
+A cluster of resting orders at a round number acts like a wall: buy orders pile up as [support](https://cryptobolt.io/glossary#support-and-resistance), sell orders pile up as resistance. Price arriving at that level has to absorb all of that liquidity before it can keep moving, which is what produces the pause, the [wick](https://cryptobolt.io/glossary#wick), or the rejection candle you see on the chart. It's a self-fulfilling pattern — round numbers matter *because* enough people believe round numbers matter and trade accordingly.
 
 ## The catch
 
@@ -26,12 +26,12 @@ This isn't a standalone signal. A round number with high volume and heavy order 
 
 ## Where to go next
 
-- [Reading the Fear & Greed index](https://cryptobolt.io/fear-and-greed-index.html): sentiment context to stack with levels.
-- [Crypto funding rates explained](https://cryptobolt.io/funding-rate-explained.html): whether the crowd is leaning one way as price reaches the level.
-- [Bitcoin price](https://cryptobolt.io/bitcoin.html): live BTC/USDT to watch these levels in real time.
-- [Glossary](https://cryptobolt.io/glossary.html): support and resistance, order book depth, wick and more.
+- [Reading the Fear & Greed index](https://cryptobolt.io/fear-and-greed-index): sentiment context to stack with levels.
+- [Crypto funding rates explained](https://cryptobolt.io/funding-rate-explained): whether the crowd is leaning one way as price reaches the level.
+- [Bitcoin price](https://cryptobolt.io/bitcoin): live BTC/USDT to watch these levels in real time.
+- [Glossary](https://cryptobolt.io/glossary): support and resistance, order book depth, wick and more.
 
-[Check the live order book depth in the terminal →](https://cryptobolt.io/app.html)
+[Check the live order book depth in the terminal →](https://cryptobolt.io/app)
 
 Keep reading
 
@@ -45,7 +45,7 @@ The Fear & Greed index compresses volatility, momentum, and sentiment into one 0
 
 Read the post
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 Mechanics · 5 min read
 
@@ -55,7 +55,7 @@ The small percentage next to every perpetual contract quietly tells you which si
 
 Read the post
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 Mechanics · 5 min read
 
@@ -65,7 +65,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

@@ -2,7 +2,7 @@
 
 > Use crypto AI research to analyze Bitcoin, Ethereum, Solana, and altcoin trends with sentiment, volatility, and decision support.
 
-Source: https://cryptobolt.io/ai-crypto-research.html
+Source: https://cryptobolt.io/ai-crypto-research
 
 Why it matters
 
@@ -52,19 +52,19 @@ Keep researching
 
 Read the methodology behind live news, sentiment, and market-data context.
 
-Link: https://cryptobolt.io/ai-research-grounded-data.html
+Link: https://cryptobolt.io/ai-research-grounded-data
 
 ### Bitcoin price
 
 Open real-time BTC data and chart context before asking the next research question.
 
-Link: https://cryptobolt.io/bitcoin.html
+Link: https://cryptobolt.io/bitcoin
 
 ### Ethereum price
 
 Track ETH market movement and connect price action with AI analysis.
 
-Link: https://cryptobolt.io/ethereum.html
+Link: https://cryptobolt.io/ethereum
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

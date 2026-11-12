@@ -2,9 +2,9 @@
 
 > Free risk reward ratio calculator. Enter entry, stop-loss and take-profit to get the ratio, the break-even win rate and expectancy in R. Long or short.
 
-Source: https://cryptobolt.io/risk-reward-calculator.html
+Source: https://cryptobolt.io/risk-reward-calculator
 
-Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy.html)
+Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Entry price (USD)
 
@@ -26,7 +26,7 @@ Reward as % of entry
 
 Expectancy per trade (R)
 
-Expectancy assumes every win earns the full target and every loss costs the full stop. Real trades hit stops with slippage and exits are often partial. Size the trade with the [position size calculator](https://cryptobolt.io/position-size-calculator.html). Educational tool, not financial advice.
+Expectancy assumes every win earns the full target and every loss costs the full stop. Real trades hit stops with slippage and exits are often partial. Size the trade with the [position size calculator](https://cryptobolt.io/position-size-calculator). Educational tool, not financial advice.
 
 ## What the risk-reward ratio is
 
@@ -60,11 +60,11 @@ At 1:1 you must win half your trades. At 1:3 you need only 25%, which is why a t
 
 - **Put the stop where the idea is wrong,** not where the maths looks best. A stop dragged tight to improve the ratio gets hit by ordinary noise.
 - **Put the target at a level the market has reason to reach,** such as a previous high or a round number, not at an arbitrary multiple. Stretching the target to show 1:5 on paper lowers the real win rate.
-- **Include fees and slippage.** On a small move, trading costs reduce the real reward and increase the real risk; the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator.html) shows the net figure.
+- **Include fees and slippage.** On a small move, trading costs reduce the real reward and increase the real risk; the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator) shows the net figure.
 
 ## Risk-reward is not position size
 
-The ratio tells you about the shape of a trade, not how much money to put in it. The amount at risk comes from a separate decision, usually a small percentage of your account. The [1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html) and the [position size calculator](https://cryptobolt.io/position-size-calculator.html) turn the stop distance into a size, and the [liquidation calculator](https://cryptobolt.io/liquidation-price-calculator.html) checks that a leveraged position would not be closed before the stop is reached. A deeper walk-through is in [risk-reward ratio and win rate](https://cryptobolt.io/risk-reward-ratio-and-win-rate.html).
+The ratio tells you about the shape of a trade, not how much money to put in it. The amount at risk comes from a separate decision, usually a small percentage of your account. The [1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule) and the [position size calculator](https://cryptobolt.io/position-size-calculator) turn the stop distance into a size, and the [liquidation calculator](https://cryptobolt.io/liquidation-price-calculator) checks that a leveraged position would not be closed before the stop is reached. A deeper walk-through is in [risk-reward ratio and win rate](https://cryptobolt.io/risk-reward-ratio-and-win-rate).
 
 FAQ
 
@@ -106,7 +106,7 @@ Size a trade from your risk, entry and stop-loss.
 
 Open
 
-Link: https://cryptobolt.io/position-size-calculator.html
+Link: https://cryptobolt.io/position-size-calculator
 
 Calculator
 
@@ -116,7 +116,7 @@ Where a leveraged long or short gets force-closed.
 
 Open
 
-Link: https://cryptobolt.io/liquidation-price-calculator.html
+Link: https://cryptobolt.io/liquidation-price-calculator
 
 Guide
 
@@ -126,7 +126,7 @@ Why a 40% win rate can still work.
 
 Open
 
-Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate.html
+Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

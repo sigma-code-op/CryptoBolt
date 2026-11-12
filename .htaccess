@@ -14,9 +14,9 @@ ErrorDocument 404 /404.html
 # The old "live price" pages were replaced by dedicated coin pages (2026-10-28).
 # Permanent redirects so old links and any indexed copies land on the new URLs.
 <IfModule mod_alias.c>
-  Redirect 301 /bitcoin-live-price.html https://cryptobolt.io/bitcoin.html
-  Redirect 301 /ethereum-live-price.html https://cryptobolt.io/ethereum.html
-  Redirect 301 /solana-live-price.html https://cryptobolt.io/solana.html
+  Redirect 301 /bitcoin-live-price.html https://cryptobolt.io/bitcoin
+  Redirect 301 /ethereum-live-price.html https://cryptobolt.io/ethereum
+  Redirect 301 /solana-live-price.html https://cryptobolt.io/solana
 </IfModule>
 
 
@@ -37,7 +37,19 @@ AddDefaultCharset UTF-8
   RewriteRule ^$ /md/index.md [L]
   RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
   RewriteCond %{DOCUMENT_ROOT}/md/$1.md -f
-  RewriteRule ^([A-Za-z0-9-]+)\.html$ /md/$1.md [L]
+  RewriteRule ^([A-Za-z0-9-]+)(?:\.html)?$ /md/$1.md [L]
+
+  # ---- Clean URLs: /ebook serves ebook.html, and /ebook.html redirects (301) to /ebook ----
+  # account.html keeps its extension (login redirects point at it). 404.html is served internally.
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+  RewriteRule ^index\.html$ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+[^\s?]+\.html[\s?]
+  RewriteCond %{REQUEST_URI} !^/(account|404)\.html$
+  RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 <IfModule mod_headers.c>
   <FilesMatch "\.(html|md)$">

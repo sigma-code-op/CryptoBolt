@@ -2,9 +2,9 @@
 
 > Free crypto ROI calculator for spot trades. Enter buy price, sell price, amount and fee to see net profit, ROI, total fees and the break-even sell price.
 
-Source: https://cryptobolt.io/crypto-roi-calculator.html
+Source: https://cryptobolt.io/crypto-roi-calculator
 
-Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy.html)
+Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Buy price (USD)
 
@@ -28,7 +28,7 @@ Price move
 
 Rise needed to recover a loss
 
-For spot trades. Leveraged futures positions use margin and funding; use the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator.html) for those. Taxes and spreads are not included. Educational tool, not financial advice.
+For spot trades. Leveraged futures positions use margin and funding; use the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator) for those. Taxes and spreads are not included. Educational tool, not financial advice.
 
 ## What ROI means
 
@@ -66,7 +66,7 @@ Losses and gains are not symmetrical. A fall of 50% needs a rise of 100% to get 
 | −75% | +300.0% |
 | −90% | +900.0% |
 
-This is why limiting the size of a loss matters more than the size of a win. When the calculator shows a loss, the last figure tells you how far the price must rise from your exit to recover it. Pair this with the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator.html) before you enter, and the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator.html) if you bought in several steps. The full method is laid out in [how to calculate crypto profit and loss](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html).
+This is why limiting the size of a loss matters more than the size of a win. When the calculator shows a loss, the last figure tells you how far the price must rise from your exit to recover it. Pair this with the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator) before you enter, and the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) if you bought in several steps. The full method is laid out in [how to calculate crypto profit and loss](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss).
 
 FAQ
 
@@ -108,7 +108,7 @@ Combine several buys into one cost basis.
 
 Open
 
-Link: https://cryptobolt.io/crypto-average-price-calculator.html
+Link: https://cryptobolt.io/crypto-average-price-calculator
 
 Calculator
 
@@ -118,7 +118,7 @@ Net PnL, ROE and fees on a leveraged trade.
 
 Open
 
-Link: https://cryptobolt.io/crypto-profit-calculator.html
+Link: https://cryptobolt.io/crypto-profit-calculator
 
 Guide
 
@@ -128,7 +128,7 @@ Fees, average cost and break-even, step by step.
 
 Open
 
-Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html
+Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

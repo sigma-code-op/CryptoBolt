@@ -2,7 +2,7 @@
 
 > Free crypto liquidation price calculator for long and short futures. Enter entry price, leverage and margin mode to estimate where a position is liquidated.
 
-Source: https://cryptobolt.io/liquidation-price-calculator.html
+Source: https://cryptobolt.io/liquidation-price-calculator
 
 Entry price (USD)
 
@@ -12,7 +12,7 @@ Maintenance margin rate (%)
 
 Margin mode
 
-Estimate only — ignores trading fees and funding payments, and cross-margin liquidation depends on your whole wallet balance, not just this position. [Track real positions and estimated liquidation prices live in the terminal →](https://cryptobolt.io/app.html)
+Estimate only — ignores trading fees and funding payments, and cross-margin liquidation depends on your whole wallet balance, not just this position. [Track real positions and estimated liquidation prices live in the terminal →](https://cryptobolt.io/app)
 
 ## What "liquidation price" means
 
@@ -33,13 +33,13 @@ Isolated margin caps your risk at the margin assigned to that one position — l
 
 ## Funding rate and fees aren't in this number
 
-This calculator, like most public ones, uses the standard formula above and leaves out two things that move the real number slightly: trading fees (charged on entry and on the forced liquidation itself) and accumulated funding payments on a perpetual contract held across funding periods. Both nudge liquidation price a little closer to entry over time on a losing position. See [how funding rate works](https://cryptobolt.io/funding-rate-explained.html) for why that running cost matters over a multi-day hold.
+This calculator, like most public ones, uses the standard formula above and leaves out two things that move the real number slightly: trading fees (charged on entry and on the forced liquidation itself) and accumulated funding payments on a perpetual contract held across funding periods. Both nudge liquidation price a little closer to entry over time on a losing position. See [how funding rate works](https://cryptobolt.io/funding-rate-explained) for why that running cost matters over a multi-day hold.
 
 ## Plan the whole trade, not just the liquidation price
 
-Liquidation price is one input. Use the [position size calculator](https://cryptobolt.io/position-size-calculator.html) to size a trade from your risk and stop-loss, the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator.html) to check reward against fees, and the [funding fee calculator](https://cryptobolt.io/funding-fee-calculator.html) to price in the cost of holding a perpetual position. All four live on the [crypto calculators](https://cryptobolt.io/crypto-calculators.html) page.
+Liquidation price is one input. Use the [position size calculator](https://cryptobolt.io/position-size-calculator) to size a trade from your risk and stop-loss, the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator) to check reward against fees, and the [funding fee calculator](https://cryptobolt.io/funding-fee-calculator) to price in the cost of holding a perpetual position. All four live on the [crypto calculators](https://cryptobolt.io/crypto-calculators) page.
 
-[See estimated liquidation price update live next to your open positions in the terminal →](https://cryptobolt.io/app.html)
+[See estimated liquidation price update live next to your open positions in the terminal →](https://cryptobolt.io/app)
 
 FAQ
 
@@ -73,7 +73,7 @@ Ownership, leverage, funding, and why one has liquidation risk and the other doe
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 Mechanics · 5 min read
 
@@ -83,7 +83,7 @@ What positive and negative funding actually tell you, and why it matters more pa
 
 Read the post
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 ## Watch: Leverage and liquidation explained
 
@@ -97,9 +97,9 @@ Read the transcript
 
 Leverage lets you control a bigger position with less money. With $100 of margin at 10x, you control a $1,000 position, so a 10% move against you moves your margin by 100%. Approximate drop to liquidation for a long position, before fees and maintenance margin: about 50% at 2x, 20% at 5x, 10% at 10x, 5% at 20x and 2% at 50x. In the example, price from $100 dips to about $88 and then recovers. The 10x position, with liquidation near $90, is closed out during the dip, while the 2x position is still open. Remember: more leverage means less room before liquidation, place a stop-loss well inside the liquidation price, and fees and funding move the real liquidation price. The numbers are illustrative and this is educational content, not financial advice.
 
-[Stop-loss orders explained](https://cryptobolt.io/stop-loss-orders-explained.html)
+[Stop-loss orders explained](https://cryptobolt.io/stop-loss-orders-explained)
 
-[Spot vs futures](https://cryptobolt.io/spot-vs-futures.html)
+[Spot vs futures](https://cryptobolt.io/spot-vs-futures)
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

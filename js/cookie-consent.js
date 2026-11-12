@@ -86,7 +86,7 @@
         '<p class="cw-cc-text">' +
           'CryptoBolt uses Google Analytics and Google AdSense, which set cookies to measure ' +
           'traffic and show ads. You can accept or reject these — the site itself works the ' +
-          'same either way. See the <a href="privacy.html">Privacy Policy</a> for details.' +
+          'same either way. See the <a href="privacy">Privacy Policy</a> for details.' +
         '</p>' +
         '<div class="cw-cc-actions">' +
           '<button type="button" class="cw-cc-btn cw-cc-btn-reject">Reject</button>' +

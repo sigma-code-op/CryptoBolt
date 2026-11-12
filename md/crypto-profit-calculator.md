@@ -2,7 +2,7 @@
 
 > Free crypto futures profit calculator. Enter entry, exit, margin, leverage and fees to see net PnL, ROE and the price move needed. Long or short, no signup.
 
-Source: https://cryptobolt.io/crypto-profit-calculator.html
+Source: https://cryptobolt.io/crypto-profit-calculator
 
 Entry price (USD)
 
@@ -26,7 +26,7 @@ Position size (units)
 
 Price move
 
-Estimate only — excludes funding payments, slippage and liquidation. A losing position can be liquidated before your exit price is reached; check the [liquidation price](https://cryptobolt.io/liquidation-price-calculator.html) first. Educational tool, not financial advice.
+Estimate only — excludes funding payments, slippage and liquidation. A losing position can be liquidated before your exit price is reached; check the [liquidation price](https://cryptobolt.io/liquidation-price-calculator) first. Educational tool, not financial advice.
 
 ## How futures profit and loss is calculated
 
@@ -60,9 +60,9 @@ Exchanges charge fees on the position value, not on your margin. At 0.05% per si
 
 ## What this calculator leaves out
 
-Funding payments on perpetual contracts (use the [funding fee calculator](https://cryptobolt.io/funding-fee-calculator.html)), slippage, and the possibility of liquidation before the exit price. Size trades with the [position size calculator](https://cryptobolt.io/position-size-calculator.html) so a loss stays within your risk limit.
+Funding payments on perpetual contracts (use the [funding fee calculator](https://cryptobolt.io/funding-fee-calculator)), slippage, and the possibility of liquidation before the exit price. Size trades with the [position size calculator](https://cryptobolt.io/position-size-calculator) so a loss stays within your risk limit.
 
-[Try the trade with virtual funds in paper trading →](https://cryptobolt.io/trade.html)
+[Try the trade with virtual funds in paper trading →](https://cryptobolt.io/trade)
 
 FAQ
 
@@ -100,7 +100,7 @@ Where a leveraged long or short gets force-closed.
 
 Open
 
-Link: https://cryptobolt.io/liquidation-price-calculator.html
+Link: https://cryptobolt.io/liquidation-price-calculator
 
 Calculator
 
@@ -110,7 +110,7 @@ Size a trade from your risk, entry and stop-loss.
 
 Open
 
-Link: https://cryptobolt.io/position-size-calculator.html
+Link: https://cryptobolt.io/position-size-calculator
 
 Calculator
 
@@ -120,7 +120,7 @@ What a perpetual position costs or earns in funding.
 
 Open
 
-Link: https://cryptobolt.io/funding-fee-calculator.html
+Link: https://cryptobolt.io/funding-fee-calculator
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

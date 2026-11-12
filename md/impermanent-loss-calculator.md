@@ -2,9 +2,9 @@
 
 > Free impermanent loss calculator. Enter the price change and your deposit to see the loss versus holding, value in the pool and the fees needed to break even.
 
-Source: https://cryptobolt.io/impermanent-loss-calculator.html
+Source: https://cryptobolt.io/impermanent-loss-calculator
 
-Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy.html)
+Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Price change of one token vs the other (%)
 
@@ -68,7 +68,7 @@ Deposit $10,000 into a 50/50 pool ($5,000 of each token). One token then doubles
 
 ## How to use the calculator
 
-Enter how much one token has moved relative to the other (use a negative number for a fall), your deposit and, optionally, the fees you expect to earn as a percentage of the deposit. If the other token is a stablecoin, the price change is simply the volatile token's change in dollars. For a full walk-through of how pools work and how liquidity providers think about the trade-off, read [impermanent loss explained](https://cryptobolt.io/impermanent-loss-explained.html).
+Enter how much one token has moved relative to the other (use a negative number for a fall), your deposit and, optionally, the fees you expect to earn as a percentage of the deposit. If the other token is a stablecoin, the price change is simply the volatile token's change in dollars. For a full walk-through of how pools work and how liquidity providers think about the trade-off, read [impermanent loss explained](https://cryptobolt.io/impermanent-loss-explained).
 
 FAQ
 
@@ -110,7 +110,7 @@ Compound rewards and convert APR to APY.
 
 Open
 
-Link: https://cryptobolt.io/crypto-staking-calculator.html
+Link: https://cryptobolt.io/crypto-staking-calculator
 
 Calculator
 
@@ -120,7 +120,7 @@ Profit, ROI and break-even price on a spot trade.
 
 Open
 
-Link: https://cryptobolt.io/crypto-roi-calculator.html
+Link: https://cryptobolt.io/crypto-roi-calculator
 
 Guide
 
@@ -130,7 +130,7 @@ Why pool tokens can lag simply holding.
 
 Open
 
-Link: https://cryptobolt.io/impermanent-loss-explained.html
+Link: https://cryptobolt.io/impermanent-loss-explained
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

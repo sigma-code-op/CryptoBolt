@@ -12,13 +12,13 @@ keywords: crypto funding rate, funding rate explained, perpetual futures funding
 updated: 2026-10-09
 related: spot-vs-futures, fear-and-greed-index, why-we-dont-predict-crypto-prices
 ---
-Open any [perpetual futures](glossary.html#perpetual-futures) contract and there's a small percentage sitting next to the price, updating every few hours. Most traders glance past it. It's worth slowing down on, because the [funding rate](glossary.html#funding-rate) is one of the few numbers on the screen that tells you what other traders are actually positioned for, not just where price has been.
+Open any [perpetual futures](glossary#perpetual-futures) contract and there's a small percentage sitting next to the price, updating every few hours. Most traders glance past it. It's worth slowing down on, because the [funding rate](glossary#funding-rate) is one of the few numbers on the screen that tells you what other traders are actually positioned for, not just where price has been.
 
 ## What it's actually for
 
 Perpetual futures never expire, which is what makes them convenient — and also what creates a problem: with no expiry date to force the contract price back to the real spot price, the two can drift apart indefinitely. The funding rate is the fix. It's a periodic payment exchanged directly between long and short traders, sized so that staying on the more crowded side of the trade becomes slightly costly. That constant pressure is what keeps the perpetual's price anchored near spot without anyone needing to settle the contract.
 
-> **Definition:** The **funding rate** is a small recurring payment between traders on a perpetual contract. When it is positive, longs pay shorts. When it is negative, shorts pay longs. It is not an exchange fee. [Glossary entry](glossary.html#funding-rate)
+> **Definition:** The **funding rate** is a small recurring payment between traders on a perpetual contract. When it is positive, longs pay shorts. When it is negative, shorts pay longs. It is not an exchange fee. [Glossary entry](glossary#funding-rate)
 
 ![Diagram: with positive funding, long traders pay short traders; with negative funding, short traders pay long traders. The payment moves between traders, not to the exchange.](assets/diagrams/funding-rate-flow.svg "Funding moves between traders in the direction of the crowd's lean. The perpetual price is pulled back toward spot as a result.")
 
@@ -37,11 +37,11 @@ The part beginners miss is that funding is charged on the full position size, no
 
 ## Why it matters more paired with open interest
 
-Funding rate alone tells you the direction of the crowd. [Open interest](glossary.html#open-interest) ([full guide](open-interest-explained.html)) tells you the size of it. A high funding rate with flat or falling open interest often just means a small, stubborn group of traders is paying up to stay positioned — not much fuel for a violent move either way. The same funding rate with open interest climbing fast is a more crowded, more fragile setup: more leveraged positions sitting on one side, more that would need to unwind if price turns against them. CryptoBolt's terminal surfaces both side by side for exactly this reason — funding rate by itself is a data point, funding rate next to open interest starts to look like a read on positioning risk.
+Funding rate alone tells you the direction of the crowd. [Open interest](glossary#open-interest) ([full guide](open-interest-explained)) tells you the size of it. A high funding rate with flat or falling open interest often just means a small, stubborn group of traders is paying up to stay positioned — not much fuel for a violent move either way. The same funding rate with open interest climbing fast is a more crowded, more fragile setup: more leveraged positions sitting on one side, more that would need to unwind if price turns against them. CryptoBolt's terminal surfaces both side by side for exactly this reason — funding rate by itself is a data point, funding rate next to open interest starts to look like a read on positioning risk.
 
 ## What counts as a "good" or normal funding rate?
 
-There's no fixed threshold, but as a rough anchor: funding in the roughly 0.01%–0.02% range per 8-hour period (roughly 11–22% annualized if it never changed) is typical, unremarkable positioning on most major pairs. Rates that push toward 0.05%–0.1% per period (well over 50% annualized), especially while climbing, mean the crowd is leaning hard on one side and paying a real premium to stay there — that's the range where leveraged positioning starts getting fragile. If you're holding a leveraged position while funding runs against you, remember that funding is a running cost that eats into your margin over time, on top of — not instead of — your [liquidation price](glossary.html#liquidation-price), which is set mainly by leverage and entry price, not by funding. (You can test this with the [liquidation price calculator](liquidation-price-calculator.html).) CryptoBolt's terminal shows estimated liquidation price alongside live funding for exactly this reason: they're two separate risks that both need watching.
+There's no fixed threshold, but as a rough anchor: funding in the roughly 0.01%–0.02% range per 8-hour period (roughly 11–22% annualized if it never changed) is typical, unremarkable positioning on most major pairs. Rates that push toward 0.05%–0.1% per period (well over 50% annualized), especially while climbing, mean the crowd is leaning hard on one side and paying a real premium to stay there — that's the range where leveraged positioning starts getting fragile. If you're holding a leveraged position while funding runs against you, remember that funding is a running cost that eats into your margin over time, on top of — not instead of — your [liquidation price](glossary#liquidation-price), which is set mainly by leverage and entry price, not by funding. (You can test this with the [liquidation price calculator](liquidation-price-calculator).) CryptoBolt's terminal shows estimated liquidation price alongside live funding for exactly this reason: they're two separate risks that both need watching.
 
 ## The catch
 
@@ -49,15 +49,15 @@ Funding settles on a fixed schedule, every eight hours on many venues (some cont
 
 ## Where to go next
 
-- [Spot vs. perpetual futures](spot-vs-futures.html): how leverage and liquidation work alongside funding.
-- [Liquidation price calculator](liquidation-price-calculator.html): see how leverage moves your liquidation price.
-- [Funding fee calculator](funding-fee-calculator.html): turn a funding rate into dollars per day, month and year.
-- [Reading the Fear & Greed index](fear-and-greed-index.html): another crowd-positioning signal, from sentiment instead of derivatives.
-- [Bitcoin price](bitcoin.html): live BTC/USDT with halving, ETF and funding context.
-- [Ethereum price](ethereum.html): live ETH/USDT with staking, gas and ETH/BTC context.
-- [Why round numbers act like support and resistance](round-number-levels.html): where price tends to react.
-- [Glossary](glossary.html): plain-English definitions for every term used here.
+- [Spot vs. perpetual futures](spot-vs-futures): how leverage and liquidation work alongside funding.
+- [Liquidation price calculator](liquidation-price-calculator): see how leverage moves your liquidation price.
+- [Funding fee calculator](funding-fee-calculator): turn a funding rate into dollars per day, month and year.
+- [Reading the Fear & Greed index](fear-and-greed-index): another crowd-positioning signal, from sentiment instead of derivatives.
+- [Bitcoin price](bitcoin): live BTC/USDT with halving, ETF and funding context.
+- [Ethereum price](ethereum): live ETH/USDT with staking, gas and ETH/BTC context.
+- [Why round numbers act like support and resistance](round-number-levels): where price tends to react.
+- [Glossary](glossary): plain-English definitions for every term used here.
 
-[See live funding rates next to open interest in the terminal →](app.html)
+[See live funding rates next to open interest in the terminal →](app)
 
-**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](ebook.html) covers futures, leverage and liquidation, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook.html).
+**Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](ebook) covers futures, leverage and liquidation, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](ebook).

@@ -2,13 +2,13 @@
 
 > Buy and sell real crypto with fiat through Binance using CryptoBolt's research-ready workflow. Card and bank transfer support included.
 
-Source: https://cryptobolt.io/invest.html
+Source: https://cryptobolt.io/invest
 
 Skip to main content
 
 ## This page moves real money.
 
-Everything here goes through Binance, a leading crypto exchange — buying sends real crypto to your own wallet, selling sends real fiat back to your card or bank. It's kept on its own page and its own URL, completely apart from the [free paper trading account](https://cryptobolt.io/trade.html), so the two can never be mixed up. New to trading? Practice there first with $10,000 in virtual funds before risking anything real.
+Everything here goes through Binance, a leading crypto exchange — buying sends real crypto to your own wallet, selling sends real fiat back to your card or bank. It's kept on its own page and its own URL, completely apart from the [free paper trading account](https://cryptobolt.io/trade), so the two can never be mixed up. New to trading? Practice there first with $10,000 in virtual funds before risking anything real.
 
 Choose an asset
 
@@ -33,7 +33,7 @@ Opens Binance in a new tab for card/bank transfer. Binance can't open leveraged 
 
 Practice the exact same buy/sell flow with $10,000 in virtual cash — live prices, zero risk.
 
-[Open Paper Trading](https://cryptobolt.io/trade.html)
+[Open Paper Trading](https://cryptobolt.io/trade)
 
 FAQ
 
@@ -55,7 +55,7 @@ CryptoBolt adds no markup. Any fees — network, card processing, spread — com
 
 ### Can I practice first?
 
-Yes. [Paper trading](https://cryptobolt.io/trade.html) runs the same buy/sell flow with $10,000 in virtual funds and live prices, zero risk.
+Yes. [Paper trading](https://cryptobolt.io/trade) runs the same buy/sell flow with $10,000 in virtual funds and live prices, zero risk.
 
 ### Which coins can I buy with fiat here?
 

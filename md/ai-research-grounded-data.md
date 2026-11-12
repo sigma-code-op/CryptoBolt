@@ -2,11 +2,11 @@
 
 > Inside CryptoBolt's two-pass AI pipeline: how it grounds analysis in live news, funding rates, and Fear & Greed data — trade levels are never AI-generated.
 
-Source: https://cryptobolt.io/ai-research-grounded-data.html
+Source: https://cryptobolt.io/ai-research-grounded-data
 
 Ask an AI model to "analyze the market" with nothing but its training data and you'll get something that sounds confident and is frequently stale or invented. CryptoBolt's AI research desk is built to avoid that in two ways: a two-pass pipeline, and a hard rule that trade levels are never AI-generated.
 
-[hallucination](https://cryptobolt.io/glossary.html#hallucination)
+[hallucination](https://cryptobolt.io/glossary#hallucination)
 
 ## Pass one: research
 
@@ -18,17 +18,17 @@ The second pass takes that research and structures it into the read you actually
 
 ## Why trade levels aren't AI output
 
-Entry, stop, and target levels in CryptoBolt come from deterministic [ATR](https://cryptobolt.io/glossary.html#atr)-based volatility math, not from the model. Language models are good at reasoning through context and bad at reliably generating precise numbers — so the numbers you'd actually place an order against are computed the same way every time, and the AI's job stays limited to the read, not the price levels.
+Entry, stop, and target levels in CryptoBolt come from deterministic [ATR](https://cryptobolt.io/glossary#atr)-based volatility math, not from the model. Language models are good at reasoning through context and bad at reliably generating precise numbers — so the numbers you'd actually place an order against are computed the same way every time, and the AI's job stays limited to the read, not the price levels.
 
 ## What you can check yourself
 
-- **Same inputs, same levels.** Because the price levels come from ordinary math, they are [deterministic](https://cryptobolt.io/glossary.html#deterministic-calculation): there is nothing for the model to invent.
+- **Same inputs, same levels.** Because the price levels come from ordinary math, they are [deterministic](https://cryptobolt.io/glossary#deterministic-calculation): there is nothing for the model to invent.
 - **Inputs you can see.** News, sentiment, funding, and trend are the same kinds of data shown elsewhere in the terminal, so you can compare the read against them.
 - **"No clean setup" is allowed.** A read that says nothing is worth trading is a legitimate result, which a price forecast would never give you.
 
-For the reasoning behind this design, see [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices.html). For the wider picture of where AI fits into crypto, see [when AI meets crypto](https://cryptobolt.io/ai-meets-crypto.html).
+For the reasoning behind this design, see [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices). For the wider picture of where AI fits into crypto, see [when AI meets crypto](https://cryptobolt.io/ai-meets-crypto).
 
-[Try CryptoBolt AI Research →](https://cryptobolt.io/ai.html)
+[Try CryptoBolt AI Research →](https://cryptobolt.io/ai)
 
 Keep reading
 
@@ -42,7 +42,7 @@ Reality Check · 5 min read
 
 Read the post
 
-Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices.html
+Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
 Analysis · 6 min read
 
@@ -52,7 +52,7 @@ Two technologies built for opposite reasons — centralized intelligence and dec
 
 Read the post
 
-Link: https://cryptobolt.io/ai-meets-crypto.html
+Link: https://cryptobolt.io/ai-meets-crypto
 
 Sentiment · 4 min read
 
@@ -62,7 +62,7 @@ The Fear & Greed index compresses volatility, momentum, and sentiment into one 0
 
 Read the post
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

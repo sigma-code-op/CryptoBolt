@@ -2,7 +2,7 @@
 
 > Crypto AI research for Bitcoin, Ethereum, Solana, and altcoins — trend analysis, funding-rate context, volatility, and sentiment in one free tool.
 
-Source: https://cryptobolt.io/ai.html
+Source: https://cryptobolt.io/ai
 
 ### Turn market noise into action.
 
@@ -110,11 +110,11 @@ Volume is the amount traded in a period. The “volume trend” compares the las
 
 Funding rate (perpetual futures)
 
-A perpetual future has no expiry, so exchanges use periodic funding payments (typically every 8 hours) to keep its price close to the spot price. When the rate is positive, longs pay shorts — more traders are betting on a rise. When negative, shorts pay longs. Large persistent rates mean one side is crowded and paying to stay in. It measures positioning and cost, not where price will go. Spot markets have no funding rate. More in [funding rates explained](https://cryptobolt.io/funding-rate-explained.html).
+A perpetual future has no expiry, so exchanges use periodic funding payments (typically every 8 hours) to keep its price close to the spot price. When the rate is positive, longs pay shorts — more traders are betting on a rise. When negative, shorts pay longs. Large persistent rates mean one side is crowded and paying to stay in. It measures positioning and cost, not where price will go. Spot markets have no funding rate. More in [funding rates explained](https://cryptobolt.io/funding-rate-explained).
 
 Fear & Greed Index
 
-A once-a-day 0–100 score of overall crypto-market mood from alternative.me (0 = extreme fear, 100 = extreme greed), combining things like volatility, momentum and social activity. It describes the whole market, not one coin, and extremes can last weeks. See [the Fear & Greed Index explained](https://cryptobolt.io/fear-and-greed-index.html).
+A once-a-day 0–100 score of overall crypto-market mood from alternative.me (0 = extreme fear, 100 = extreme greed), combining things like volatility, momentum and social activity. It describes the whole market, not one coin, and extremes can last weeks. See [the Fear & Greed Index explained](https://cryptobolt.io/fear-and-greed-index).
 
 Support, resistance and the recent range
 
@@ -122,13 +122,13 @@ Support is a price area where buyers have previously stepped in; resistance is w
 
 Spot vs perpetual futures; leverage and liquidation
 
-Spot means buying the coin itself. Perpetual futures are contracts that track the price and allow leverage: borrowing to control a larger position. Leverage magnifies gains and losses equally, and if the market moves against you far enough your position is liquidated (closed by the exchange). See [spot vs futures](https://cryptobolt.io/spot-vs-futures.html) and the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html).
+Spot means buying the coin itself. Perpetual futures are contracts that track the price and allow leverage: borrowing to control a larger position. Leverage magnifies gains and losses equally, and if the market moves against you far enough your position is liquidated (closed by the exchange). See [spot vs futures](https://cryptobolt.io/spot-vs-futures) and the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator).
 
 What “confidence” and “setup shape” mean in an AI read
 
 These are the AI model's own labels, not measurements. Confidence (low/medium/high) is the model's rating of how well the signals agree — it is not a probability of being right. Setup shape (breakout continuation, pullback entry, range fade, or no clean setup) is the model's description of how price is behaving. Check them against the measured numbers.
 
-See also: [why CryptoBolt doesn't predict prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices.html).
+See also: [why CryptoBolt doesn't predict prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices).
 
 ## Crypto AI research FAQ
 

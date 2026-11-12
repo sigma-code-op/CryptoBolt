@@ -2,7 +2,7 @@
 
 > What's new in CryptoBolt — a running log of shipped features across the terminal, paper trading, AI research, and the market pages.
 
-Source: https://cryptobolt.io/releases.html
+Source: https://cryptobolt.io/releases
 
 v1.18.0
 
@@ -12,11 +12,11 @@ November 8, 2026
 
 What's new
 
-- New calculators: [DCA](https://cryptobolt.io/dca-calculator.html), [average price](https://cryptobolt.io/crypto-average-price-calculator.html), [risk-reward](https://cryptobolt.io/risk-reward-calculator.html), [staking rewards (APR to APY)](https://cryptobolt.io/crypto-staking-calculator.html), [impermanent loss](https://cryptobolt.io/impermanent-loss-calculator.html), [spot ROI and break-even](https://cryptobolt.io/crypto-roi-calculator.html) and [Fibonacci retracement](https://cryptobolt.io/fibonacci-retracement-calculator.html). Each shows its formula, worked examples and a FAQ, and runs entirely in your browser.
-- New guides: [dollar-cost averaging](https://cryptobolt.io/dollar-cost-averaging-crypto.html), [impermanent loss](https://cryptobolt.io/impermanent-loss-explained.html), [staking APR vs APY](https://cryptobolt.io/staking-apr-vs-apy.html), [calculating crypto profit and loss](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html) and [risk-reward ratio and win rate](https://cryptobolt.io/risk-reward-ratio-and-win-rate.html).
-- The [calculators hub](https://cryptobolt.io/crypto-calculators.html) now lists all eleven tools, grouped for trading and for buying, holding and earning.
-- New [editorial policy](https://cryptobolt.io/editorial-policy.html) explaining how guides are written, how calculators are tested, how data is sourced and how corrections are handled. It is linked from the footer.
-- The [glossary](https://cryptobolt.io/glossary.html) gained 15 terms, including DCA, impermanent loss, APR, APY, staking, slashing, R-multiple and expectancy.
+- New calculators: [DCA](https://cryptobolt.io/dca-calculator), [average price](https://cryptobolt.io/crypto-average-price-calculator), [risk-reward](https://cryptobolt.io/risk-reward-calculator), [staking rewards (APR to APY)](https://cryptobolt.io/crypto-staking-calculator), [impermanent loss](https://cryptobolt.io/impermanent-loss-calculator), [spot ROI and break-even](https://cryptobolt.io/crypto-roi-calculator) and [Fibonacci retracement](https://cryptobolt.io/fibonacci-retracement-calculator). Each shows its formula, worked examples and a FAQ, and runs entirely in your browser.
+- New guides: [dollar-cost averaging](https://cryptobolt.io/dollar-cost-averaging-crypto), [impermanent loss](https://cryptobolt.io/impermanent-loss-explained), [staking APR vs APY](https://cryptobolt.io/staking-apr-vs-apy), [calculating crypto profit and loss](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss) and [risk-reward ratio and win rate](https://cryptobolt.io/risk-reward-ratio-and-win-rate).
+- The [calculators hub](https://cryptobolt.io/crypto-calculators) now lists all eleven tools, grouped for trading and for buying, holding and earning.
+- New [editorial policy](https://cryptobolt.io/editorial-policy) explaining how guides are written, how calculators are tested, how data is sourced and how corrections are handled. It is linked from the footer.
+- The [glossary](https://cryptobolt.io/glossary) gained 15 terms, including DCA, impermanent loss, APR, APY, staking, slashing, R-multiple and expectancy.
 
 Data sources
 
@@ -30,7 +30,7 @@ October 28, 2026
 
 What's new
 
-- New [Bitcoin](https://cryptobolt.io/bitcoin.html), [Ethereum](https://cryptobolt.io/ethereum.html) and [Solana](https://cryptobolt.io/solana.html) pages. Each shows the live price, 24-hour change, high, low and volume, a 24-hour chart, the perpetual funding rate and open interest, and (for ETH and SOL) the cross rate against BTC.
+- New [Bitcoin](https://cryptobolt.io/bitcoin), [Ethereum](https://cryptobolt.io/ethereum) and [Solana](https://cryptobolt.io/solana) pages. Each shows the live price, 24-hour change, high, low and volume, a 24-hour chart, the perpetual funding rate and open interest, and (for ETH and SOL) the cross rate against BTC.
 - Each page explains what moves that coin, with a reference table, a short history timeline and an FAQ.
 
 Fixes
@@ -49,7 +49,7 @@ October 27, 2026
 
 What's new
 
-- New **Web research** switch above the chat box on the [AI page](https://cryptobolt.io/ai.html). When it is on, the AI can search the web for the coin you ask about (news, announcements, upgrades, listings) before it answers, instead of relying only on the market snapshot and the latest headlines.
+- New **Web research** switch above the chat box on the [AI page](https://cryptobolt.io/ai). When it is on, the AI can search the web for the coin you ask about (news, announcements, upgrades, listings) before it answers, instead of relying only on the market snapshot and the latest headlines.
 - The AI names the sites its claims come from, separates what it found from its own interpretation, and says so when it cannot find something or when sources disagree.
 - Under every answer, “What this answer was based on” now lists the searches the AI ran and the pages it found, with links, so you can check them yourself.
 - The switch is on by default and your choice is remembered in your browser. Turn it off for faster answers that use only the live market data.
@@ -68,10 +68,10 @@ October 26, 2026
 
 What's new
 
-- New [position size calculator](https://cryptobolt.io/position-size-calculator.html): enter your balance, risk percentage, entry and stop-loss to get the position size, margin needed and 1R/2R/3R target prices. It warns when your stop sits beyond the rough liquidation distance at your chosen leverage.
-- New [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator.html): net profit or loss, return on equity and round-trip fees for a leveraged long or short.
-- New [funding fee calculator](https://cryptobolt.io/funding-fee-calculator.html): what a perpetual futures position pays or earns in funding per payment, per day, per 30 days and annualised.
-- New [crypto calculators](https://cryptobolt.io/crypto-calculators.html) page that gathers these tools and the liquidation price calculator in one place, linked from the footer on every page.
+- New [position size calculator](https://cryptobolt.io/position-size-calculator): enter your balance, risk percentage, entry and stop-loss to get the position size, margin needed and 1R/2R/3R target prices. It warns when your stop sits beyond the rough liquidation distance at your chosen leverage.
+- New [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator): net profit or loss, return on equity and round-trip fees for a leveraged long or short.
+- New [funding fee calculator](https://cryptobolt.io/funding-fee-calculator): what a perpetual futures position pays or earns in funding per payment, per day, per 30 days and annualised.
+- New [crypto calculators](https://cryptobolt.io/crypto-calculators) page that gathers these tools and the liquidation price calculator in one place, linked from the footer on every page.
 - The liquidation calculator page and the spot-vs-futures and funding-rate articles now link to the matching calculators.
 
 Data sources
@@ -86,7 +86,7 @@ October 4, 2026
 
 What's new
 
-- New [crypto trading glossary](https://cryptobolt.io/glossary.html) with 63 plain-English definitions, a live filter, an A–Z index, and links to the articles that go deeper.
+- New [crypto trading glossary](https://cryptobolt.io/glossary) with 63 plain-English definitions, a live filter, an A–Z index, and links to the articles that go deeper.
 - All nine blog articles now include worked examples, links to glossary definitions, and links to related articles. Eight have new diagrams, and two have comparison tables.
 - Each article now has its own social preview image, so shared links show the article's headline.
 - Pages now have a “Skip to main content” link and a main-content landmark for keyboard and screen reader users.

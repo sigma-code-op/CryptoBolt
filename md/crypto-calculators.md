@@ -2,7 +2,7 @@
 
 > Eleven free crypto calculators: liquidation price, position size, risk-reward, futures profit, ROI, DCA, average price, staking, impermanent loss and more.
 
-Source: https://cryptobolt.io/crypto-calculators.html
+Source: https://cryptobolt.io/crypto-calculators
 
 Trading
 
@@ -16,7 +16,7 @@ Where a leveraged long or short gets force-closed.
 
 Open calculator
 
-Link: https://cryptobolt.io/liquidation-price-calculator.html
+Link: https://cryptobolt.io/liquidation-price-calculator
 
 Free tool · no signup
 
@@ -26,7 +26,7 @@ Size a trade from your risk, entry and stop-loss.
 
 Open calculator
 
-Link: https://cryptobolt.io/position-size-calculator.html
+Link: https://cryptobolt.io/position-size-calculator
 
 Free tool · no signup
 
@@ -36,7 +36,7 @@ The reward-to-risk ratio and the win rate it needs.
 
 Open calculator
 
-Link: https://cryptobolt.io/risk-reward-calculator.html
+Link: https://cryptobolt.io/risk-reward-calculator
 
 Free tool · no signup
 
@@ -46,7 +46,7 @@ Net PnL, ROE and fees on a leveraged trade.
 
 Open calculator
 
-Link: https://cryptobolt.io/crypto-profit-calculator.html
+Link: https://cryptobolt.io/crypto-profit-calculator
 
 Free tool · no signup
 
@@ -56,7 +56,7 @@ What a perpetual position pays or earns in funding.
 
 Open calculator
 
-Link: https://cryptobolt.io/funding-fee-calculator.html
+Link: https://cryptobolt.io/funding-fee-calculator
 
 Free tool · no signup
 
@@ -66,7 +66,7 @@ Retracement and extension levels from a swing.
 
 Open calculator
 
-Link: https://cryptobolt.io/fibonacci-retracement-calculator.html
+Link: https://cryptobolt.io/fibonacci-retracement-calculator
 
 Investing
 
@@ -80,7 +80,7 @@ Dollar-cost averaging versus a lump sum.
 
 Open calculator
 
-Link: https://cryptobolt.io/dca-calculator.html
+Link: https://cryptobolt.io/dca-calculator
 
 Free tool · no signup
 
@@ -90,7 +90,7 @@ Combine several buys into one cost basis.
 
 Open calculator
 
-Link: https://cryptobolt.io/crypto-average-price-calculator.html
+Link: https://cryptobolt.io/crypto-average-price-calculator
 
 Free tool · no signup
 
@@ -100,7 +100,7 @@ Profit, ROI and break-even price on a spot trade.
 
 Open calculator
 
-Link: https://cryptobolt.io/crypto-roi-calculator.html
+Link: https://cryptobolt.io/crypto-roi-calculator
 
 Free tool · no signup
 
@@ -110,7 +110,7 @@ Compound rewards and convert APR to APY.
 
 Open calculator
 
-Link: https://cryptobolt.io/crypto-staking-calculator.html
+Link: https://cryptobolt.io/crypto-staking-calculator
 
 Free tool · no signup
 
@@ -120,7 +120,7 @@ What a liquidity pool costs versus holding.
 
 Open calculator
 
-Link: https://cryptobolt.io/impermanent-loss-calculator.html
+Link: https://cryptobolt.io/impermanent-loss-calculator
 
 ## A sensible order for a leveraged trade
 
@@ -140,7 +140,7 @@ Link: https://cryptobolt.io/impermanent-loss-calculator.html
 
 ## Why these calculators are built the way they are
 
-Each tool shows its formula, a worked example you can reproduce by hand, and what it deliberately leaves out. They run in your browser, so what you type is not sent anywhere, and they are tested against hand-computed values. Read how we check them in the [editorial policy](https://cryptobolt.io/editorial-policy.html). Every calculator is an estimate for planning, not a prediction or advice. To test a plan with no real money at stake, run it in the free [crypto paper trading simulator](https://cryptobolt.io/crypto-paper-trading.html) or watch live prices and funding in the [terminal](https://cryptobolt.io/app.html).
+Each tool shows its formula, a worked example you can reproduce by hand, and what it deliberately leaves out. They run in your browser, so what you type is not sent anywhere, and they are tested against hand-computed values. Read how we check them in the [editorial policy](https://cryptobolt.io/editorial-policy). Every calculator is an estimate for planning, not a prediction or advice. To test a plan with no real money at stake, run it in the free [crypto paper trading simulator](https://cryptobolt.io/crypto-paper-trading) or watch live prices and funding in the [terminal](https://cryptobolt.io/app).
 
 FAQ
 
@@ -182,7 +182,7 @@ Try a plan with virtual funds first.
 
 Open
 
-Link: https://cryptobolt.io/crypto-paper-trading.html
+Link: https://cryptobolt.io/crypto-paper-trading
 
 Guide
 
@@ -192,7 +192,7 @@ Fees, average cost and break-even, step by step.
 
 Open
 
-Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html
+Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss
 
 Guide
 
@@ -202,7 +202,7 @@ Why a 40% win rate can still work.
 
 Open
 
-Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate.html
+Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate
 
 Guide
 
@@ -212,7 +212,7 @@ When DCA helps, when it does not, and why.
 
 Open
 
-Link: https://cryptobolt.io/dollar-cost-averaging-crypto.html
+Link: https://cryptobolt.io/dollar-cost-averaging-crypto
 
 Guide
 
@@ -222,7 +222,7 @@ Why pool tokens can lag simply holding.
 
 Open
 
-Link: https://cryptobolt.io/impermanent-loss-explained.html
+Link: https://cryptobolt.io/impermanent-loss-explained
 
 Guide
 
@@ -232,7 +232,7 @@ How rewards compound, and what can go wrong.
 
 Open
 
-Link: https://cryptobolt.io/staking-apr-vs-apy.html
+Link: https://cryptobolt.io/staking-apr-vs-apy
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

@@ -2,7 +2,7 @@
 
 > AI and blockchain are converging into financial systems that can think, verify, and transact without a human in the loop — and it's not without real risk.
 
-Source: https://cryptobolt.io/ai-meets-crypto.html
+Source: https://cryptobolt.io/ai-meets-crypto
 
 For years, artificial intelligence and blockchain technology evolved in separate lanes — one focused on prediction and pattern recognition, the other on trust and decentralization. That's changing fast. As both fields mature, they're increasingly converging into something genuinely new: financial systems that can think, verify, and transact without a human in the loop.
 
@@ -14,7 +14,7 @@ Blockchains offer something AI systems have always lacked: a tamper-proof, trans
 
 ## Where the overlap is happening
 
-**AI trading agents.** An [AI trading agent](https://cryptobolt.io/glossary.html#ai-trading-agent) is software that analyzes markets and places trades by itself. Autonomous agents now analyze on-chain data, social sentiment, and market signals to execute trades in real time. Unlike traditional bots that follow rigid rules, these agents can adapt strategies as market conditions shift — though this also means users need to trust the model's judgment, not just its code.
+**AI trading agents.** An [AI trading agent](https://cryptobolt.io/glossary#ai-trading-agent) is software that analyzes markets and places trades by itself. Autonomous agents now analyze on-chain data, social sentiment, and market signals to execute trades in real time. Unlike traditional bots that follow rigid rules, these agents can adapt strategies as market conditions shift — though this also means users need to trust the model's judgment, not just its code.
 
 **On-chain security and fraud detection.** Smart contract exploits cost the industry billions. AI-driven auditing tools now scan contract code for vulnerabilities before deployment, and machine learning models monitor transaction patterns to flag wallet drains, rug pulls, and wash trading as they happen — often faster than human analysts could react.
 
@@ -30,12 +30,12 @@ This convergence isn't all upside.
 
 - **Opacity stacking on opacity.** Crypto already struggles with transparency for average users; adding AI decision-making on top can make systems even harder to audit or explain.
 - **Speed of failure.** Autonomous agents making financial decisions can also amplify losses at machine speed if a model misreads a signal or gets manipulated.
-- **New attack surfaces.** [Prompt injection](https://cryptobolt.io/glossary.html#prompt-injection) and data poisoning are now financial security risks, not just chatbot quirks — an attacker who can manipulate an AI trading agent's inputs may be able to manipulate its outputs.
+- **New attack surfaces.** [Prompt injection](https://cryptobolt.io/glossary#prompt-injection) and data poisoning are now financial security risks, not just chatbot quirks — an attacker who can manipulate an AI trading agent's inputs may be able to manipulate its outputs.
 - **Regulatory uncertainty.** Neither AI nor crypto has settled regulatory frameworks individually; combining them creates compliance questions regulators are still catching up to.
 
 ## Guardrails that help
 
-Three habits reduce these risks: keep a human confirmation step for anything that moves money, enforce position limits in code instead of in the prompt, and compute numbers with ordinary code instead of asking a model for them. CryptoBolt follows the same thinking. Its AI chat can propose changes to a paper-trading account, but nothing changes until you press Confirm, and price levels come from [deterministic math rather than the model](https://cryptobolt.io/ai-research-grounded-data.html).
+Three habits reduce these risks: keep a human confirmation step for anything that moves money, enforce position limits in code instead of in the prompt, and compute numbers with ordinary code instead of asking a model for them. CryptoBolt follows the same thinking. Its AI chat can propose changes to a paper-trading account, but nothing changes until you press Confirm, and price levels come from [deterministic math rather than the model](https://cryptobolt.io/ai-research-grounded-data).
 
 ## What's next
 
@@ -45,11 +45,11 @@ The convergence of AI and crypto isn't a gimmick or a buzzword mashup — it's a
 
 ## Where to go next
 
-- [How CryptoBolt's AI research stays grounded in real data](https://cryptobolt.io/ai-research-grounded-data.html): a concrete example of constraining a model.
-- [Why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices.html): what AI can and cannot tell you about markets.
-- [Glossary](https://cryptobolt.io/glossary.html): AI trading agent, prompt injection, hallucination and other terms.
+- [How CryptoBolt's AI research stays grounded in real data](https://cryptobolt.io/ai-research-grounded-data): a concrete example of constraining a model.
+- [Why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices): what AI can and cannot tell you about markets.
+- [Glossary](https://cryptobolt.io/glossary): AI trading agent, prompt injection, hallucination and other terms.
 
-[See how CryptoBolt keeps AI research grounded in real data →](https://cryptobolt.io/ai-research-grounded-data.html)
+[See how CryptoBolt keeps AI research grounded in real data →](https://cryptobolt.io/ai-research-grounded-data)
 
 Keep reading
 
@@ -63,7 +63,7 @@ Inside the two-pass research pipeline, and why entry/stop/target levels always c
 
 Read the post
 
-Link: https://cryptobolt.io/ai-research-grounded-data.html
+Link: https://cryptobolt.io/ai-research-grounded-data
 
 Reality Check · 5 min read
 
@@ -73,7 +73,7 @@ Reality Check · 5 min read
 
 Read the post
 
-Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices.html
+Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
 Sentiment · 4 min read
 
@@ -83,7 +83,7 @@ The Fear & Greed index compresses volatility, momentum, and sentiment into one 0
 
 Read the post
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

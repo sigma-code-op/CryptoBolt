@@ -2,13 +2,13 @@
 
 > What dollar-cost averaging in crypto is, a worked example, how it compares with a lump sum, where it falls short, and how to build a plan you can keep.
 
-Source: https://cryptobolt.io/dollar-cost-averaging-crypto.html
+Source: https://cryptobolt.io/dollar-cost-averaging-crypto
 
 Almost every crypto buyer asks the same question: is now a good time to buy? Dollar-cost averaging (DCA) is a way of not having to answer it. You pick an amount and a schedule, and you buy on that schedule whatever the price is. It is simple, it is popular, and it is often described as if it were a trick that beats the market. It is not. It is a method for managing one specific risk, and understanding which one tells you when to use it.
 
 ## What dollar-cost averaging actually is
 
-[Dollar-cost averaging](https://cryptobolt.io/glossary.html#dollar-cost-averaging) means investing a fixed amount of money at regular intervals. Because the amount is fixed, the number of coins you receive changes with the price: more coins when the price is low, fewer when it is high. Your [average cost](https://cryptobolt.io/glossary.html#cost-basis) per coin is the total you invested divided by the total coins you hold, which is always below the simple average of the prices when prices vary.
+[Dollar-cost averaging](https://cryptobolt.io/glossary#dollar-cost-averaging) means investing a fixed amount of money at regular intervals. Because the amount is fixed, the number of coins you receive changes with the price: more coins when the price is low, fewer when it is high. Your [average cost](https://cryptobolt.io/glossary#cost-basis) per coin is the total you invested divided by the total coins you hold, which is always below the simple average of the prices when prices vary.
 
 ## A worked example
 
@@ -23,7 +23,7 @@ Suppose you invest $100 a month for four months in a coin whose price on those f
 
 You invested $400 and hold 10.5 coins, so your average cost is about $38.10. The price at the end ($50) is exactly where it started, yet your holding is worth $525, a gain of 31.25%. Someone who put the whole $400 in at $50 in month one holds 8 coins worth $400: no gain at all.
 
-That is the case where DCA shines: a price that dips and recovers. The dip bought you extra coins cheaply. You can test your own numbers in the [DCA calculator](https://cryptobolt.io/dca-calculator.html).
+That is the case where DCA shines: a price that dips and recovers. The dip bought you extra coins cheaply. You can test your own numbers in the [DCA calculator](https://cryptobolt.io/dca-calculator).
 
 ## The case where DCA does worse
 
@@ -39,21 +39,21 @@ Neither is always better. The honest comparison is:
 
 ## Why people stick with it
 
-The practical value of DCA is behavioural. A fixed schedule removes decisions, and decisions are where most investors go wrong: waiting for a dip that never comes, buying after a spike because of [FOMO](https://cryptobolt.io/glossary.html#fomo), selling in a panic. An automated plan makes buying boring, and boring is good. The risk it does not address is the one inside the asset itself: a coin that falls and never recovers will lose you money no matter how evenly you bought it.
+The practical value of DCA is behavioural. A fixed schedule removes decisions, and decisions are where most investors go wrong: waiting for a dip that never comes, buying after a spike because of [FOMO](https://cryptobolt.io/glossary#fomo), selling in a panic. An automated plan makes buying boring, and boring is good. The risk it does not address is the one inside the asset itself: a coin that falls and never recovers will lose you money no matter how evenly you bought it.
 
 ## What can go wrong
 
 - **Fees.** If each purchase carries a fixed or minimum fee, many small buys can eat a noticeable share of your money. Check the fee before choosing a tiny amount.
 - **Averaging into a bad asset.** A lower average cost is not a reason to keep buying something whose reasons for holding it have changed.
 - **Quitting mid-plan.** A plan only works if you keep to it through a downturn, which is exactly when stopping feels most natural.
-- **Leverage.** DCA is a spot-buying idea. Repeatedly adding to a leveraged futures position as it falls is not DCA; it is increasing your exposure toward a [liquidation price](https://cryptobolt.io/glossary.html#liquidation-price). Check it with the [liquidation calculator](https://cryptobolt.io/liquidation-price-calculator.html) before adding.
+- **Leverage.** DCA is a spot-buying idea. Repeatedly adding to a leveraged futures position as it falls is not DCA; it is increasing your exposure toward a [liquidation price](https://cryptobolt.io/glossary#liquidation-price). Check it with the [liquidation calculator](https://cryptobolt.io/liquidation-price-calculator) before adding.
 - **Taxes.** Many small purchases create many lots, which can complicate tax reporting. Rules differ by country, so check yours.
 
 ## Setting up a plan you can keep
 
-1. Decide the total you are comfortable committing and the length of the plan before you start. 2. Choose an amount per buy that you could keep paying even in a bad month. 3. Pick an interval (weekly, fortnightly or monthly) and, if your exchange allows it, automate the purchase. 4. Keep an emergency fund outside the plan, so you are never forced to sell at a low. 5. Review once or twice a year, not daily. Use the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator.html) to see where you stand against your actual buys.
+1. Decide the total you are comfortable committing and the length of the plan before you start. 2. Choose an amount per buy that you could keep paying even in a bad month. 3. Pick an interval (weekly, fortnightly or monthly) and, if your exchange allows it, automate the purchase. 4. Keep an emergency fund outside the plan, so you are never forced to sell at a low. 5. Review once or twice a year, not daily. Use the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) to see where you stand against your actual buys.
 
-To model a plan before you start, use the [DCA calculator](https://cryptobolt.io/dca-calculator.html). To rehearse the discipline without real money, try [paper trading](https://cryptobolt.io/crypto-paper-trading.html). CryptoBolt is an education and analysis tool; nothing here is financial advice.
+To model a plan before you start, use the [DCA calculator](https://cryptobolt.io/dca-calculator). To rehearse the discipline without real money, try [paper trading](https://cryptobolt.io/crypto-paper-trading). CryptoBolt is an education and analysis tool; nothing here is financial advice.
 
 Keep reading
 
@@ -67,7 +67,7 @@ Decide how much you can lose first, then let the stop distance set the size. A w
 
 Read the post
 
-Link: https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html
+Link: https://cryptobolt.io/position-sizing-and-the-one-percent-rule
 
 Reality Check · 5 min read
 
@@ -77,7 +77,7 @@ Reality Check · 5 min read
 
 Read the post
 
-Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices.html
+Link: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
 Mechanics · 5 min read
 
@@ -87,7 +87,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

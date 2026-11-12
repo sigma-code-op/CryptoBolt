@@ -2,7 +2,7 @@
 
 > What research on day traders shows about win rates and returns, why a "$1000 in a day" goal is the wrong frame, and what the profitable minority do.
 
-Source: https://cryptobolt.io/day-trading-crypto-realistic-returns.html
+Source: https://cryptobolt.io/day-trading-crypto-realistic-returns
 
 Search "day trading crypto" and you'll find no shortage of people implying you can turn a small account into $1000 a day if you just learn the right setup. It's worth pausing on that claim before acting on it, because it isn't a matter of opinion — it's been studied directly, repeatedly, across different markets, and the results are consistent.
 
@@ -16,9 +16,9 @@ Day trading isn't crypto-specific, and most of the rigorous data comes from stoc
 
 None of this is a crypto-specific curse. Crypto arguably stacks the odds worse in some respects — wider spreads on smaller pairs, 24/7 markets that erode discipline and sleep, and funding costs on leveraged futures positions that traditional day traders studied above didn't have to pay. There's no strong reason to expect crypto day trading beats these numbers, and some reasons to expect it doesn't.
 
-[slippage](https://cryptobolt.io/glossary.html#slippage)
+[slippage](https://cryptobolt.io/glossary#slippage)
 
-[funding](https://cryptobolt.io/funding-rate-explained.html)
+[funding](https://cryptobolt.io/funding-rate-explained)
 
 ## Why "$1000 in a day" is the wrong question
 
@@ -41,24 +41,24 @@ The honest way to frame it isn't "how do I hit a dollar number," it's "what's a 
 Across the studies, a few patterns show up in the traders who did better than the crowd:
 
 - **They traded less often, not more.** The most active traders in the Taiwan and Brazil data lost the most, once fees and slippage were counted — trading frequency was one of the strongest predictors of losing, not winning.
-- **[Position sizing](https://cryptobolt.io/glossary.html#position-sizing) did more work than entry timing.** Traders who survived tended to risk a small, fixed slice of their account per trade rather than sizing up to chase a daily target.
+- **[Position sizing](https://cryptobolt.io/glossary#position-sizing) did more work than entry timing.** Traders who survived tended to risk a small, fixed slice of their account per trade rather than sizing up to chase a daily target.
 - **They treated it like a business with real costs**, not a series of independent bets — fees, funding rates on leveraged positions, and slippage compound quickly against high-frequency trading.
 
-[risk/reward](https://cryptobolt.io/glossary.html#risk-reward)
+[risk/reward](https://cryptobolt.io/glossary#risk-reward)
 
-[win rate](https://cryptobolt.io/glossary.html#win-rate)
+[win rate](https://cryptobolt.io/glossary#win-rate)
 
 ## A more honest way to explore this
 
 If the goal is figuring out whether a strategy could actually work, the useful move isn't picking a dollar target — it's testing the strategy against real, live price data without risking anything while you find out.
 
-CryptoBolt's [paper trading simulator](https://cryptobolt.io/trade.html) runs on live market data with real leaderboard tracking, so you can see how a strategy actually performs — win rate, drawdowns, how funding costs eat into a leveraged position over time — before any of it involves real money. Judge the result by [profit factor and max drawdown](https://cryptobolt.io/glossary.html#drawdown) as well as win rate. Pair that with the terminal's live [funding rate and open interest](https://cryptobolt.io/app.html) data and the [Fear & Greed index](https://cryptobolt.io/fear-and-greed-index.html) for context, not as signals to chase.
+CryptoBolt's [paper trading simulator](https://cryptobolt.io/trade) runs on live market data with real leaderboard tracking, so you can see how a strategy actually performs — win rate, drawdowns, how funding costs eat into a leveraged position over time — before any of it involves real money. Judge the result by [profit factor and max drawdown](https://cryptobolt.io/glossary#drawdown) as well as win rate. Pair that with the terminal's live [funding rate and open interest](https://cryptobolt.io/app) data and the [Fear & Greed index](https://cryptobolt.io/fear-and-greed-index) for context, not as signals to chase.
 
-For a look at why the headline numbers hook people in the first place, read [why "$1000 in a day" is a trap](https://cryptobolt.io/1000-dollar-day-trap.html). To understand what leverage adds on top, see [spot vs. perpetual futures](https://cryptobolt.io/spot-vs-futures.html).
+For a look at why the headline numbers hook people in the first place, read [why "$1000 in a day" is a trap](https://cryptobolt.io/1000-dollar-day-trap). To understand what leverage adds on top, see [spot vs. perpetual futures](https://cryptobolt.io/spot-vs-futures).
 
 This isn't financial advice, and nothing here predicts what any specific trade will do — it's a summary of what the published research on day traders has found, and a more realistic starting point than a dollar figure pulled from a headline.
 
-[Practice with real market data, zero real risk →](https://cryptobolt.io/trade.html)
+[Practice with real market data, zero real risk →](https://cryptobolt.io/trade)
 
 Keep reading
 
@@ -72,7 +72,7 @@ Round number, single day, screenshot of gains — the "$1000 in a day" headline 
 
 Read the post
 
-Link: https://cryptobolt.io/1000-dollar-day-trap.html
+Link: https://cryptobolt.io/1000-dollar-day-trap
 
 Mechanics · 5 min read
 
@@ -82,7 +82,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 Mechanics · 5 min read
 
@@ -92,7 +92,7 @@ The small percentage next to every perpetual contract quietly tells you which si
 
 Read the post
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

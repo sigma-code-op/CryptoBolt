@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------------
 // CryptoBolt: glossary build step.
 //
-// glossary/terms.json is the single source of truth for glossary.html. Edit
+// data/glossary-terms.json is the single source of truth for glossary.html. Edit
 // definitions there, then run:
 //
 //   node scripts/build-glossary.js        (or: npm run build:glossary)
@@ -39,7 +39,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://cryptobolt.io';
 
-const data = JSON.parse(readFileSync(path.join(ROOT, 'glossary', 'terms.json'), 'utf8'));
+const data = JSON.parse(readFileSync(path.join(ROOT, 'data', 'glossary-terms.json'), 'utf8'));
 const terms = [...data.terms].sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
 const bySlug = new Map();
 
@@ -74,9 +74,9 @@ function renderReadMore(term) {
     if (typeof r === 'string') {
       const title = postTitle(r);
       if (!title) throw new Error(`"${term.slug}" reads more at unknown post "${r}"`);
-      return `<a href="${r}.html">${escapeHtml(title)}</a>`;
+      return `<a href="${r}">${escapeHtml(title)}</a>`;
     }
-    if (!existsSync(path.join(ROOT, r.href))) throw new Error(`"${term.slug}" links to missing file ${r.href}`);
+    if (!existsSync(path.join(ROOT, r.href.split('#')[0].split('?')[0].replace(/(\.html)?$/, '.html')))) throw new Error(`"${term.slug}" links to missing file ${r.href}`);
     return `<a href="${r.href}">${escapeHtml(r.label)}</a>`;
   });
   return links.length ? `\n                <p class="mk-gloss-more">Read more: ${links.join(' · ')}</p>` : '';
@@ -120,16 +120,16 @@ const jsonLd = JSON.stringify(
     '@context': 'https://schema.org',
     '@type': 'DefinedTermSet',
     name: 'CryptoBolt Crypto Trading Glossary',
-    url: `${ORIGIN}/glossary.html`,
+    url: `${ORIGIN}/glossary`,
     description: 'Plain-English definitions of crypto trading and market-data terms.',
     inLanguage: 'en',
     hasDefinedTerm: terms.map((t) => ({
       '@type': 'DefinedTerm',
       name: t.term,
       description: renderDefinition(t, { html: false }),
-      url: `${ORIGIN}/glossary.html#${t.slug}`,
+      url: `${ORIGIN}/glossary#${t.slug}`,
       ...(t.aka && t.aka.length ? { alternateName: t.aka } : {}),
-      inDefinedTermSet: `${ORIGIN}/glossary.html`,
+      inDefinedTermSet: `${ORIGIN}/glossary`,
     })),
   },
   null,
@@ -161,14 +161,14 @@ const sitemapPath = path.join(ROOT, 'sitemap.xml');
 if (existsSync(sitemapPath)) {
   let xml = readFileSync(sitemapPath, 'utf8');
   const lastmod = data.updated || new Date().toISOString().slice(0, 10);
-  const re = /(<loc>https:\/\/cryptobolt\.io\/glossary\.html<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/;
+  const re = /(<loc>https:\/\/cryptobolt\.io\/glossary<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/;
   if (re.test(xml)) {
     xml = xml.replace(re, `$1${lastmod}$2`);
   } else {
     const nl = xml.includes('\r\n') ? '\r\n' : '\n';
     const entry = [
       '  <url>',
-      `    <loc>${ORIGIN}/glossary.html</loc>`,
+      `    <loc>${ORIGIN}/glossary</loc>`,
       `    <lastmod>${lastmod}</lastmod>`,
       '    <changefreq>monthly</changefreq>',
       '    <priority>0.7</priority>',

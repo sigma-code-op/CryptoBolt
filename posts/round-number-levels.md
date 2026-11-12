@@ -16,11 +16,11 @@ Look back at any BTC chart and you'll notice something odd: price seems to hesit
 
 ## It starts with where people actually place orders
 
-Most traders set limit orders, stop-losses, and take-profits at round numbers because they're easy to remember and easy to type. Nobody sets a buy order at $42,187.43. They set it at $42,000 or $42,500. When thousands of independent traders round their orders the same way, those levels accumulate real, visible liquidity in the [order book](glossary.html#order-book) — which is exactly what CryptoBolt's order book [depth](glossary.html#order-book-depth) view is showing you.
+Most traders set limit orders, stop-losses, and take-profits at round numbers because they're easy to remember and easy to type. Nobody sets a buy order at $42,187.43. They set it at $42,000 or $42,500. When thousands of independent traders round their orders the same way, those levels accumulate real, visible liquidity in the [order book](glossary#order-book) — which is exactly what CryptoBolt's order book [depth](glossary#order-book-depth) view is showing you.
 
 ## Why that turns into an actual price reaction
 
-A cluster of resting orders at a round number acts like a wall: buy orders pile up as [support](glossary.html#support-and-resistance), sell orders pile up as resistance. Price arriving at that level has to absorb all of that liquidity before it can keep moving, which is what produces the pause, the [wick](glossary.html#wick), or the rejection candle you see on the chart. It's a self-fulfilling pattern — round numbers matter *because* enough people believe round numbers matter and trade accordingly.
+A cluster of resting orders at a round number acts like a wall: buy orders pile up as [support](glossary#support-and-resistance), sell orders pile up as resistance. Price arriving at that level has to absorb all of that liquidity before it can keep moving, which is what produces the pause, the [wick](glossary#wick), or the rejection candle you see on the chart. It's a self-fulfilling pattern — round numbers matter *because* enough people believe round numbers matter and trade accordingly.
 
 > **Example:** BTC rallies toward $50,000. Plenty of traders hold longs with take-profit orders at that price, and others have placed sell limits there to short the level. As price arrives, that cluster of sell orders meets the incoming buyers. If the buyers run out before the cluster is absorbed, price stalls or wicks back down. If they absorb it, those sell orders are gone and price can move quickly past the level, which is why a clean break of a round number often comes with a burst of volume.
 
@@ -36,9 +36,9 @@ This isn't a standalone signal. A round number with high volume and heavy order 
 
 ## Where to go next
 
-- [Reading the Fear & Greed index](fear-and-greed-index.html): sentiment context to stack with levels.
-- [Crypto funding rates explained](funding-rate-explained.html): whether the crowd is leaning one way as price reaches the level.
-- [Bitcoin price](bitcoin.html): live BTC/USDT to watch these levels in real time.
-- [Glossary](glossary.html): support and resistance, order book depth, wick and more.
+- [Reading the Fear & Greed index](fear-and-greed-index): sentiment context to stack with levels.
+- [Crypto funding rates explained](funding-rate-explained): whether the crowd is leaning one way as price reaches the level.
+- [Bitcoin price](bitcoin): live BTC/USDT to watch these levels in real time.
+- [Glossary](glossary): support and resistance, order book depth, wick and more.
 
-[Check the live order book depth in the terminal →](app.html)
+[Check the live order book depth in the terminal →](app)

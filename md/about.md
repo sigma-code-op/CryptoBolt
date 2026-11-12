@@ -2,7 +2,7 @@
 
 > Learn about CryptoBolt, an independent crypto trading terminal and AI research platform for tracking markets, charts, alerts, and paper trading.
 
-Source: https://cryptobolt.io/about.html
+Source: https://cryptobolt.io/about
 
 [info@cryptobolt.io](mailto:info@cryptobolt.io)
 
@@ -32,7 +32,7 @@ Most free crypto terminals are cluttered or paywalled. CryptoBolt started as a p
 
 ## How the AI research works
 
-The AI market read isn't a black box guessing at numbers. It's grounded in live inputs — current price action, funding rates, and the Fear & Greed Index — and run through your own Groq API key rather than a shared, rate-limited backend. That means the commentary reflects what the market is actually doing right now, not a stale training snapshot. See [how the pipeline stays grounded](https://cryptobolt.io/ai-research-grounded-data.html) for the technical breakdown.
+The AI market read isn't a black box guessing at numbers. It's grounded in live inputs — current price action, funding rates, and the Fear & Greed Index — and run through your own Groq API key rather than a shared, rate-limited backend. That means the commentary reflects what the market is actually doing right now, not a stale training snapshot. See [how the pipeline stays grounded](https://cryptobolt.io/ai-research-grounded-data) for the technical breakdown.
 
 ## Where the data comes from
 
@@ -40,9 +40,9 @@ Prices and order flow are pulled from Binance's public market-data API; suppleme
 
 ## Roadmap
 
-Development is ongoing and mostly driven by user feedback submitted through the [contact form](https://cryptobolt.io/contact.html). Recent additions include a paper trading leaderboard, portfolio tracking, and price alerts — see the [features page](https://cryptobolt.io/features.html) for the current list.
+Development is ongoing and mostly driven by user feedback submitted through the [contact form](https://cryptobolt.io/contact). Recent additions include a paper trading leaderboard, portfolio tracking, and price alerts — see the [features page](https://cryptobolt.io/features) for the current list.
 
-Questions? [Get in touch](https://cryptobolt.io/contact.html).
+Questions? [Get in touch](https://cryptobolt.io/contact).
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

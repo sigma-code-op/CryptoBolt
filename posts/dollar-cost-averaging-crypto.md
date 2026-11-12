@@ -15,7 +15,7 @@ Almost every crypto buyer asks the same question: is now a good time to buy? Dol
 
 ## What dollar-cost averaging actually is
 
-[Dollar-cost averaging](glossary.html#dollar-cost-averaging) means investing a fixed amount of money at regular intervals. Because the amount is fixed, the number of coins you receive changes with the price: more coins when the price is low, fewer when it is high. Your [average cost](glossary.html#cost-basis) per coin is the total you invested divided by the total coins you hold, which is always below the simple average of the prices when prices vary.
+[Dollar-cost averaging](glossary#dollar-cost-averaging) means investing a fixed amount of money at regular intervals. Because the amount is fixed, the number of coins you receive changes with the price: more coins when the price is low, fewer when it is high. Your [average cost](glossary#cost-basis) per coin is the total you invested divided by the total coins you hold, which is always below the simple average of the prices when prices vary.
 
 > **Definition:** DCA is a rule about timing, not about picking assets. It says nothing about whether the coin you are buying is a good one.
 
@@ -32,7 +32,7 @@ Suppose you invest $100 a month for four months in a coin whose price on those f
 
 You invested $400 and hold 10.5 coins, so your average cost is about $38.10. The price at the end ($50) is exactly where it started, yet your holding is worth $525, a gain of 31.25%. Someone who put the whole $400 in at $50 in month one holds 8 coins worth $400: no gain at all.
 
-That is the case where DCA shines: a price that dips and recovers. The dip bought you extra coins cheaply. You can test your own numbers in the [DCA calculator](dca-calculator.html).
+That is the case where DCA shines: a price that dips and recovers. The dip bought you extra coins cheaply. You can test your own numbers in the [DCA calculator](dca-calculator).
 
 ## The case where DCA does worse
 
@@ -50,14 +50,14 @@ Neither is always better. The honest comparison is:
 
 ## Why people stick with it
 
-The practical value of DCA is behavioural. A fixed schedule removes decisions, and decisions are where most investors go wrong: waiting for a dip that never comes, buying after a spike because of [FOMO](glossary.html#fomo), selling in a panic. An automated plan makes buying boring, and boring is good. The risk it does not address is the one inside the asset itself: a coin that falls and never recovers will lose you money no matter how evenly you bought it.
+The practical value of DCA is behavioural. A fixed schedule removes decisions, and decisions are where most investors go wrong: waiting for a dip that never comes, buying after a spike because of [FOMO](glossary#fomo), selling in a panic. An automated plan makes buying boring, and boring is good. The risk it does not address is the one inside the asset itself: a coin that falls and never recovers will lose you money no matter how evenly you bought it.
 
 ## What can go wrong
 
 - **Fees.** If each purchase carries a fixed or minimum fee, many small buys can eat a noticeable share of your money. Check the fee before choosing a tiny amount.
 - **Averaging into a bad asset.** A lower average cost is not a reason to keep buying something whose reasons for holding it have changed.
 - **Quitting mid-plan.** A plan only works if you keep to it through a downturn, which is exactly when stopping feels most natural.
-- **Leverage.** DCA is a spot-buying idea. Repeatedly adding to a leveraged futures position as it falls is not DCA; it is increasing your exposure toward a [liquidation price](glossary.html#liquidation-price). Check it with the [liquidation calculator](liquidation-price-calculator.html) before adding.
+- **Leverage.** DCA is a spot-buying idea. Repeatedly adding to a leveraged futures position as it falls is not DCA; it is increasing your exposure toward a [liquidation price](glossary#liquidation-price). Check it with the [liquidation calculator](liquidation-price-calculator) before adding.
 - **Taxes.** Many small purchases create many lots, which can complicate tax reporting. Rules differ by country, so check yours.
 
 ## Setting up a plan you can keep
@@ -66,6 +66,6 @@ The practical value of DCA is behavioural. A fixed schedule removes decisions, a
 2. Choose an amount per buy that you could keep paying even in a bad month.
 3. Pick an interval (weekly, fortnightly or monthly) and, if your exchange allows it, automate the purchase.
 4. Keep an emergency fund outside the plan, so you are never forced to sell at a low.
-5. Review once or twice a year, not daily. Use the [average price calculator](crypto-average-price-calculator.html) to see where you stand against your actual buys.
+5. Review once or twice a year, not daily. Use the [average price calculator](crypto-average-price-calculator) to see where you stand against your actual buys.
 
-To model a plan before you start, use the [DCA calculator](dca-calculator.html). To rehearse the discipline without real money, try [paper trading](crypto-paper-trading.html). CryptoBolt is an education and analysis tool; nothing here is financial advice.
+To model a plan before you start, use the [DCA calculator](dca-calculator). To rehearse the discipline without real money, try [paper trading](crypto-paper-trading). CryptoBolt is an education and analysis tool; nothing here is financial advice.

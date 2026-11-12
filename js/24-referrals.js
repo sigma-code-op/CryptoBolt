@@ -1,5 +1,5 @@
 // ---------- Referrals: "Invite friends, both of you get $500 virtual cash" ----------
-// Runs on every page that includes it (index.html, trade.html, account.html). Three jobs,
+// Runs on every page that includes it (index.html, trade, account.html). Three jobs,
 // each independent of the others so this works no matter which subset of markup a page has:
 //
 //   1. On ANY page: if the URL has ?ref=USERNAME, remember it in localStorage so it survives
@@ -8,7 +8,7 @@
 //      trigger (handle_new_user(), see supabase/schema.sql) does the actual bookkeeping.
 //   2. On account.html (if #referral-link-input is present): shows the signed-in visitor their
 //      own shareable link and how many friends have signed up through it.
-//   3. On trade.html (if window.cwPaperTrading is present): once signed in, claims any
+//   3. On trade (if window.cwPaperTrading is present): once signed in, claims any
 //      outstanding referral bonus (server-side, via claim_referral_bonus() — safe to call
 //      repeatedly, it only ever pays out once per referral) and deposits it as virtual cash.
 //
@@ -24,7 +24,7 @@
         const params = new URLSearchParams(window.location.search);
         const ref = (params.get('ref') || '').trim();
         // Never overwrite an already-stored code — first link a visitor clicked wins, so
-        // clicking their own trade.html link later (e.g. after signing in) can't stomp it.
+        // clicking their own trade link later (e.g. after signing in) can't stomp it.
         if (ref && USERNAME_RE.test(ref) && !localStorage.getItem(REF_STORAGE_KEY)) {
             localStorage.setItem(REF_STORAGE_KEY, ref);
         }
@@ -94,7 +94,7 @@
             try {
                 const { data: profile } = await client.from('profiles').select('username').eq('id', user.id).maybeSingle();
                 if (profile?.username) {
-                    linkInput.value = `${window.location.origin}/trade.html?ref=${encodeURIComponent(profile.username)}`;
+                    linkInput.value = `${window.location.origin}/trade?ref=${encodeURIComponent(profile.username)}`;
                     linkInput.placeholder = '';
                     msgEl?.classList.add('hidden');
                 } else {
@@ -136,7 +136,7 @@
         });
     }
 
-    // ---------- Job 3: trade.html — claim any outstanding bonus ----------
+    // ---------- Job 3: trade — claim any outstanding bonus ----------
     if (window.cwPaperTrading && typeof window.cwPaperTrading.addBonusCash === 'function') {
         let claimed = false; // guards against onChange firing more than once per page load
         window.cwAuth.onChange(async (user, configured) => {

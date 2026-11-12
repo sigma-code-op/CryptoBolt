@@ -13,7 +13,7 @@ Crypto has no refund button. Most beginners lose money to the same few mistakes:
 
 $9one-time · PDF
 
-[Get Crypto Clarity](https://cryptobolt.io/ebook.html)
+[Get Crypto Clarity](https://cryptobolt.io/ebook)
 
 [Read a free sample](https://cryptobolt.io/assets/ebook/Crypto-Clarity-Sample.pdf)
 
@@ -68,7 +68,7 @@ Charting
 
 Candlesticks streamed straight from Binance with RSI, MACD, Bollinger Bands, EMA/MA and VWAP layered on — no plugin, no paywall.
 
-Link: https://cryptobolt.io/features.html#charting
+Link: https://cryptobolt.io/features#charting
 
 AI
 
@@ -76,7 +76,7 @@ AI
 
 Grounded in live news, funding rates, and Fear & Greed sentiment — not a single indicator guessing in the dark.
 
-Link: https://cryptobolt.io/features.html#ai-research
+Link: https://cryptobolt.io/features#ai-research
 
 Order flow
 
@@ -84,7 +84,7 @@ Order flow
 
 Live depth and prints so you can see where size is actually sitting, not just where price last was.
 
-Link: https://cryptobolt.io/features.html#orderbook
+Link: https://cryptobolt.io/features#orderbook
 
 Portfolio
 
@@ -92,7 +92,7 @@ Portfolio
 
 Holdings, leveraged positions, liquidation estimates, and unrealized P&L in one place.
 
-Link: https://cryptobolt.io/features.html#portfolio
+Link: https://cryptobolt.io/features#portfolio
 
 Alerts
 
@@ -100,7 +100,7 @@ Alerts
 
 Set a level, keep browsing. CryptoBolt watches the tape and pings you when it's crossed.
 
-Link: https://cryptobolt.io/features.html#alerts
+Link: https://cryptobolt.io/features#alerts
 
 Practice
 
@@ -108,9 +108,9 @@ Practice
 
 Trade live prices with virtual funds first. See your equity curve before risking real money.
 
-Link: https://cryptobolt.io/trade.html
+Link: https://cryptobolt.io/trade
 
-[See every feature](https://cryptobolt.io/features.html)
+[See every feature](https://cryptobolt.io/features)
 
 Crypto AI Research Desk
 
@@ -122,7 +122,7 @@ Ask about any pair and get a structured read — grounded in live news, multi-ti
 - Volatility-aware, ATR-based trade plan structure
 - Free — bring your own Groq API key to enable it
 
-[Open AI Research](https://cryptobolt.io/ai.html)
+[Open AI Research](https://cryptobolt.io/ai)
 
 No signup required to try it
 
@@ -166,7 +166,7 @@ What the index actually measures, and why it's a context clue, not a signal.
 
 Read the post →
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 Mechanics · 5 min read
 
@@ -176,7 +176,7 @@ Ownership, leverage, funding, and liquidation — the differences that matter be
 
 Read the post →
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 Product · 4 min read
 
@@ -186,7 +186,7 @@ Inside the two-pass pipeline that separates research from the final read.
 
 Read the post →
 
-Link: https://cryptobolt.io/ai-research-grounded-data.html
+Link: https://cryptobolt.io/ai-research-grounded-data
 
 FAQ
 
@@ -216,7 +216,7 @@ Yes. CryptoBolt tracks spot portfolio holdings alongside leveraged futures posit
 
 Free to use, nothing to install, no signup required to browse.
 
-[Launch Terminal](https://cryptobolt.io/app.html)
+[Launch Terminal](https://cryptobolt.io/app)
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

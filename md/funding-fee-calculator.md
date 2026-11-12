@@ -2,7 +2,7 @@
 
 > Free funding fee calculator for crypto perpetual futures. Enter position size, funding rate and hold time to see what you pay or earn per day, month and year.
 
-Source: https://cryptobolt.io/funding-fee-calculator.html
+Source: https://cryptobolt.io/funding-fee-calculator
 
 Position value / notional (USD)
 
@@ -28,7 +28,7 @@ Estimate only — funding rates change every interval, so a fixed rate is an ass
 
 ## What a funding fee is
 
-Perpetual futures have no expiry date, so exchanges use a funding payment to keep the contract price close to the spot price. Every funding interval, one side pays the other. When the funding rate is positive, longs pay shorts; when it is negative, shorts pay longs. The exchange does not keep this money — it moves between traders. Our guide to [funding rates](https://cryptobolt.io/funding-rate-explained.html) covers what the number says about market positioning.
+Perpetual futures have no expiry date, so exchanges use a funding payment to keep the contract price close to the spot price. Every funding interval, one side pays the other. When the funding rate is positive, longs pay shorts; when it is negative, shorts pay longs. The exchange does not keep this money — it moves between traders. Our guide to [funding rates](https://cryptobolt.io/funding-rate-explained) covers what the number says about market positioning.
 
 ## The funding fee formula
 
@@ -56,9 +56,9 @@ If you are on the receiving side, funding is income. When the rate is positive a
 
 ## Funding and liquidation
 
-Funding payments are taken from your margin balance. On a long held through many positive intervals, the payments slowly reduce your margin and nudge your [liquidation price](https://cryptobolt.io/liquidation-price-calculator.html) closer to entry. Compare this with the profit you expect using the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator.html).
+Funding payments are taken from your margin balance. On a long held through many positive intervals, the payments slowly reduce your margin and nudge your [liquidation price](https://cryptobolt.io/liquidation-price-calculator) closer to entry. Compare this with the profit you expect using the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator).
 
-[See live funding rates alongside charts in the terminal →](https://cryptobolt.io/app.html)
+[See live funding rates alongside charts in the terminal →](https://cryptobolt.io/app)
 
 FAQ
 
@@ -96,7 +96,7 @@ What the funding number on your futures screen means.
 
 Open
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 Calculator
 
@@ -106,7 +106,7 @@ Where a leveraged long or short gets force-closed.
 
 Open
 
-Link: https://cryptobolt.io/liquidation-price-calculator.html
+Link: https://cryptobolt.io/liquidation-price-calculator
 
 Guide
 
@@ -116,7 +116,7 @@ What actually changes when you add leverage.
 
 Open
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

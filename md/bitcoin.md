@@ -2,7 +2,7 @@
 
 > Live Bitcoin price in USDT with 24h range, funding rate and open interest, plus the halving, ETF and macro forces behind BTC. Free, no signup.
 
-Source: https://cryptobolt.io/bitcoin.html
+Source: https://cryptobolt.io/bitcoin
 
 How to read it
 
@@ -20,15 +20,15 @@ The extremes of the rolling day. When price sits near the high with falling volu
 
 ### 24h volume
 
-Quote volume in dollars traded on the BTC/USDT spot pair. Bitcoin’s volume is far deeper than any altcoin’s, which is why [slippage](https://cryptobolt.io/glossary.html#slippage) on market orders is usually small compared with smaller coins.
+Quote volume in dollars traded on the BTC/USDT spot pair. Bitcoin’s volume is far deeper than any altcoin’s, which is why [slippage](https://cryptobolt.io/glossary#slippage) on market orders is usually small compared with smaller coins.
 
 ### Funding rate
 
-The payment between longs and shorts on the BTCUSDT [perpetual future](https://cryptobolt.io/glossary.html#perpetual-futures), shown per funding interval (typically every eight hours on Binance). Positive means longs pay shorts, which tends to happen when the market leans long. Read the [funding rate guide](https://cryptobolt.io/funding-rate-explained.html) for how to use it.
+The payment between longs and shorts on the BTCUSDT [perpetual future](https://cryptobolt.io/glossary#perpetual-futures), shown per funding interval (typically every eight hours on Binance). Positive means longs pay shorts, which tends to happen when the market leans long. Read the [funding rate guide](https://cryptobolt.io/funding-rate-explained) for how to use it.
 
 ### Open interest
 
-The total value of open BTC perpetual contracts. Rising [open interest](https://cryptobolt.io/glossary.html#open-interest) alongside a price move means new positions are being opened; falling open interest during a move usually means positions are being closed instead.
+The total value of open BTC perpetual contracts. Rising [open interest](https://cryptobolt.io/glossary#open-interest) alongside a price move means new positions are being opened; falling open interest during a move usually means positions are being closed instead.
 
 Reference
 
@@ -64,13 +64,13 @@ US-listed spot Bitcoin ETFs began trading in January 2024. Their daily creations
 
 ### Futures positioning
 
-Most Bitcoin volume is in derivatives. When the [funding rate](https://cryptobolt.io/glossary.html#funding-rate) is strongly positive, longs are paying shorts and the market is crowded one way. A modest dip can then trigger a [liquidation cascade](https://cryptobolt.io/glossary.html#liquidation-cascade) that pushes price much further than the news justifies.
+Most Bitcoin volume is in derivatives. When the [funding rate](https://cryptobolt.io/glossary#funding-rate) is strongly positive, longs are paying shorts and the market is crowded one way. A modest dip can then trigger a [liquidation cascade](https://cryptobolt.io/glossary#liquidation-cascade) that pushes price much further than the news justifies.
 
 ### Macro and liquidity
 
 Bitcoin often trades as a liquidity-sensitive asset, reacting to interest-rate expectations, the US dollar and appetite for risk in equities. That link changes over time and can break during crypto-specific events, so use it as one input among several.
 
-[open interest](https://cryptobolt.io/glossary.html#open-interest)
+[open interest](https://cryptobolt.io/glossary#open-interest)
 
 History
 
@@ -89,9 +89,9 @@ A short reference timeline of protocol and market milestones. These are fixed hi
 
 Bitcoin is the least volatile of the major coins, but leverage changes that quickly. As an illustration only: a long opened at $60,000 with 10x isolated leverage is liquidated roughly 9.6% lower, near $54,200, once a small maintenance margin is included. At 25x the same trade is liquidated after a drop of only about 3.6%, near $57,800. Those are worked examples, not forecasts or current prices, and the exact figure depends on the exchange’s maintenance-margin tier.
 
-Before sizing a BTC trade, run the numbers: the [position size calculator](https://cryptobolt.io/position-size-calculator.html) turns your risk and stop-loss into a size, and the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) shows where an exchange would close you out. If you want to rehearse a plan first, [paper trading](https://cryptobolt.io/crypto-paper-trading.html) uses the same live BTC prices with simulated money.
+Before sizing a BTC trade, run the numbers: the [position size calculator](https://cryptobolt.io/position-size-calculator) turns your risk and stop-loss into a size, and the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) shows where an exchange would close you out. If you want to rehearse a plan first, [paper trading](https://cryptobolt.io/crypto-paper-trading) uses the same live BTC prices with simulated money.
 
-CryptoBolt is built for learning and research: the [terminal](https://cryptobolt.io/app.html) shows live charts and the order book, [AI research](https://cryptobolt.io/ai.html) explains its sources, and nothing here is a prediction or a trade signal. See [spot vs perpetual futures](https://cryptobolt.io/spot-vs-futures.html) for how the two ways of holding Bitcoin differ.
+CryptoBolt is built for learning and research: the [terminal](https://cryptobolt.io/app) shows live charts and the order book, [AI research](https://cryptobolt.io/ai) explains its sources, and nothing here is a prediction or a trade signal. See [spot vs perpetual futures](https://cryptobolt.io/spot-vs-futures) for how the two ways of holding Bitcoin differ.
 
 FAQ
 
@@ -103,7 +103,7 @@ It comes from Binance’s public market-data endpoints, requested directly by yo
 
 ### Why is Bitcoin quoted in USDT instead of USD?
 
-Most of the deepest Bitcoin liquidity on Binance is against USDT, a [stablecoin](https://cryptobolt.io/glossary.html#stablecoin) designed to hold one US dollar. The BTC/USDT price is therefore a close stand-in for the dollar price, with small differences when USDT trades slightly above or below its peg.
+Most of the deepest Bitcoin liquidity on Binance is against USDT, a [stablecoin](https://cryptobolt.io/glossary#stablecoin) designed to hold one US dollar. The BTC/USDT price is therefore a close stand-in for the dollar price, with small differences when USDT trades slightly above or below its peg.
 
 ### How often does the Bitcoin halving happen, and when is the next one?
 
@@ -115,7 +115,7 @@ Bitcoin trades 24 hours a day, seven days a week. Weekend liquidity is often thi
 
 ### What does Bitcoin dominance mean?
 
-[Bitcoin dominance](https://cryptobolt.io/glossary.html#bitcoin-dominance) is BTC’s share of the total crypto market capitalisation. Rising dominance often means money is concentrating in Bitcoin; falling dominance often accompanies altcoin rallies. It is a ratio, so it can rise while BTC itself falls if altcoins fall faster.
+[Bitcoin dominance](https://cryptobolt.io/glossary#bitcoin-dominance) is BTC’s share of the total crypto market capitalisation. Rising dominance often means money is concentrating in Bitcoin; falling dominance often accompanies altcoin rallies. It is a ratio, so it can rise while BTC itself falls if altcoins fall faster.
 
 ### Does CryptoBolt predict where BTC is headed?
 
@@ -129,37 +129,37 @@ Related pages
 
 ETH against BTC, with staking, fee burn and layer-2 context.
 
-Link: https://cryptobolt.io/ethereum.html
+Link: https://cryptobolt.io/ethereum
 
 ### Solana price
 
 SOL price with network activity and DEX context.
 
-Link: https://cryptobolt.io/solana.html
+Link: https://cryptobolt.io/solana
 
 ### Round-number price levels
 
 Why BTC often stalls or reverses near whole-number prices.
 
-Link: https://cryptobolt.io/round-number-levels.html
+Link: https://cryptobolt.io/round-number-levels
 
 ### Funding rates explained
 
 Read perpetual futures positioning before you trade BTC.
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 ### Crypto Fear & Greed index
 
 Use sentiment as context alongside BTC price action.
 
-Link: https://cryptobolt.io/fear-and-greed-index.html
+Link: https://cryptobolt.io/fear-and-greed-index
 
 ### Spot vs perpetual futures
 
 Understand the mechanics behind different BTC trade setups.
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

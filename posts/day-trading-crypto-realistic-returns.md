@@ -24,7 +24,7 @@ Day trading isn't crypto-specific, and most of the rigorous data comes from stoc
 
 None of this is a crypto-specific curse. Crypto arguably stacks the odds worse in some respects — wider spreads on smaller pairs, 24/7 markets that erode discipline and sleep, and funding costs on leveraged futures positions that traditional day traders studied above didn't have to pay. There's no strong reason to expect crypto day trading beats these numbers, and some reasons to expect it doesn't.
 
-> **Key idea:** Active trading has real costs: fees, [slippage](glossary.html#slippage), and on leveraged futures, [funding](funding-rate-explained.html). A strategy has to beat all of them before it earns anything, and the studies above suggest very few do.
+> **Key idea:** Active trading has real costs: fees, [slippage](glossary#slippage), and on leveraged futures, [funding](funding-rate-explained). A strategy has to beat all of them before it earns anything, and the studies above suggest very few do.
 
 ## Why "$1000 in a day" is the wrong question
 
@@ -47,19 +47,19 @@ The honest way to frame it isn't "how do I hit a dollar number," it's "what's a 
 Across the studies, a few patterns show up in the traders who did better than the crowd:
 
 - **They traded less often, not more.** The most active traders in the Taiwan and Brazil data lost the most, once fees and slippage were counted — trading frequency was one of the strongest predictors of losing, not winning.
-- **[Position sizing](glossary.html#position-sizing) did more work than entry timing.** Traders who survived tended to risk a small, fixed slice of their account per trade rather than sizing up to chase a daily target.
+- **[Position sizing](glossary#position-sizing) did more work than entry timing.** Traders who survived tended to risk a small, fixed slice of their account per trade rather than sizing up to chase a daily target.
 - **They treated it like a business with real costs**, not a series of independent bets — fees, funding rates on leveraged positions, and slippage compound quickly against high-frequency trading.
 
-> **Example:** Two traders each risk 1% of a $10,000 account ($100) per trade with a 1:2 [risk/reward](glossary.html#risk-reward). Trader A wins 40% of trades: over 10 trades that is 4 wins of $200 and 6 losses of $100, a net of +$200. Trader B wins 30%: 3 wins and 7 losses, a net of -$100. Same sizing and same ratio, and a ten-point gap in [win rate](glossary.html#win-rate) flips the result. Nobody can predict their own win rate in advance, which is why testing before risking money matters.
+> **Example:** Two traders each risk 1% of a $10,000 account ($100) per trade with a 1:2 [risk/reward](glossary#risk-reward). Trader A wins 40% of trades: over 10 trades that is 4 wins of $200 and 6 losses of $100, a net of +$200. Trader B wins 30%: 3 wins and 7 losses, a net of -$100. Same sizing and same ratio, and a ten-point gap in [win rate](glossary#win-rate) flips the result. Nobody can predict their own win rate in advance, which is why testing before risking money matters.
 
 ## A more honest way to explore this
 
 If the goal is figuring out whether a strategy could actually work, the useful move isn't picking a dollar target — it's testing the strategy against real, live price data without risking anything while you find out.
 
-CryptoBolt's [paper trading simulator](trade.html) runs on live market data with real leaderboard tracking, so you can see how a strategy actually performs — win rate, drawdowns, how funding costs eat into a leveraged position over time — before any of it involves real money. Judge the result by [profit factor and max drawdown](glossary.html#drawdown) as well as win rate. Pair that with the terminal's live [funding rate and open interest](app.html) data and the [Fear & Greed index](fear-and-greed-index.html) for context, not as signals to chase.
+CryptoBolt's [paper trading simulator](trade) runs on live market data with real leaderboard tracking, so you can see how a strategy actually performs — win rate, drawdowns, how funding costs eat into a leveraged position over time — before any of it involves real money. Judge the result by [profit factor and max drawdown](glossary#drawdown) as well as win rate. Pair that with the terminal's live [funding rate and open interest](app) data and the [Fear & Greed index](fear-and-greed-index) for context, not as signals to chase.
 
-For a look at why the headline numbers hook people in the first place, read [why "$1000 in a day" is a trap](1000-dollar-day-trap.html). To understand what leverage adds on top, see [spot vs. perpetual futures](spot-vs-futures.html).
+For a look at why the headline numbers hook people in the first place, read [why "$1000 in a day" is a trap](1000-dollar-day-trap). To understand what leverage adds on top, see [spot vs. perpetual futures](spot-vs-futures).
 
 This isn't financial advice, and nothing here predicts what any specific trade will do — it's a summary of what the published research on day traders has found, and a more realistic starting point than a dollar figure pulled from a headline.
 
-[Practice with real market data, zero real risk →](trade.html)
+[Practice with real market data, zero real risk →](trade)

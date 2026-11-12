@@ -174,7 +174,7 @@ jobs:
       - run: npm ci
       - run: npm run build:blog
       - run: npm run build:glossary
-      # Fails if posts/*.md or glossary/terms.json were edited without re-running the builds.
+      # Fails if posts/*.md or data/glossary-terms.json were edited without re-running the builds.
       - run: |
           if ! git diff --quiet -- '*.html' sitemap.xml; then
             echo "::error::Generated pages are out of date. Run 'npm run build:blog' and 'npm run build:glossary' locally and commit the result."

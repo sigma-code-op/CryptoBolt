@@ -2,9 +2,9 @@
 
 > Free crypto average price calculator. Enter up to five buys to get your weighted average entry price, total cost, break-even and profit at the current price.
 
-Source: https://cryptobolt.io/crypto-average-price-calculator.html
+Source: https://cryptobolt.io/crypto-average-price-calculator
 
-Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy.html)
+Written and checked by the CryptoBolt founder · Reviewed November 8, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Buy 1 price (USD)
 
@@ -38,7 +38,7 @@ Profit or loss
 
 Return on cost
 
-Leave unused rows empty. Fees are not included: add them to each price, or use the [ROI calculator](https://cryptobolt.io/crypto-roi-calculator.html). Educational tool, not financial advice.
+Leave unused rows empty. Fees are not included: add them to each price, or use the [ROI calculator](https://cryptobolt.io/crypto-roi-calculator). Educational tool, not financial advice.
 
 ## What the average buy price tells you
 
@@ -58,11 +58,11 @@ You buy 0.1 BTC at $60,000, then 0.2 BTC at $50,000, then 0.3 BTC at $40,000. Th
 
 ## Averaging down: what it does and does not do
 
-Buying more after a price drop pulls your average down, which lowers the price you need to get back to break even. That is the logic behind "averaging down". It is also how a small loss becomes a large one: each extra buy increases the money exposed to the same idea. Before adding to a losing position, ask whether you would open the position today at this price with no history. If the answer is no, a lower average cost is not a reason to buy. Set the maximum you are willing to hold in advance with the [position size calculator](https://cryptobolt.io/position-size-calculator.html).
+Buying more after a price drop pulls your average down, which lowers the price you need to get back to break even. That is the logic behind "averaging down". It is also how a small loss becomes a large one: each extra buy increases the money exposed to the same idea. Before adding to a losing position, ask whether you would open the position today at this price with no history. If the answer is no, a lower average cost is not a reason to buy. Set the maximum you are willing to hold in advance with the [position size calculator](https://cryptobolt.io/position-size-calculator).
 
 ## Fees and the real break-even price
 
-Every buy and sell has a fee, so the true break-even price is a little above the average buy price. A 0.1% fee on each side raises break-even by roughly 0.2%. If you want an exact figure for a single trade, use the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator.html), which includes fees on both sides and shows the break-even sell price.
+Every buy and sell has a fee, so the true break-even price is a little above the average buy price. A 0.1% fee on each side raises break-even by roughly 0.2%. If you want an exact figure for a single trade, use the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator), which includes fees on both sides and shows the break-even sell price.
 
 ## Average price versus tax cost basis
 
@@ -108,7 +108,7 @@ Profit, ROI and break-even price on a spot trade.
 
 Open
 
-Link: https://cryptobolt.io/crypto-roi-calculator.html
+Link: https://cryptobolt.io/crypto-roi-calculator
 
 Calculator
 
@@ -118,7 +118,7 @@ Dollar-cost averaging versus a lump sum.
 
 Open
 
-Link: https://cryptobolt.io/dca-calculator.html
+Link: https://cryptobolt.io/dca-calculator
 
 Guide
 
@@ -128,7 +128,7 @@ Fees, average cost and break-even, step by step.
 
 Open
 
-Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss.html
+Link: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

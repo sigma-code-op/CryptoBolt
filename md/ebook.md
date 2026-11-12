@@ -2,7 +2,7 @@
 
 > A 160-page PDF crypto guide: 17 chapters, 31 diagrams, from blockchain basics to risk management and scams. Education only. Order by email.
 
-Source: https://cryptobolt.io/ebook.html
+Source: https://cryptobolt.io/ebook
 
 PDF EBOOK
 
@@ -27,7 +27,7 @@ phone-friendly
 
 $9 one-time · PDF
 
-[Order via contact form](https://cryptobolt.io/contact.html?topic=ebook)
+[Order via contact form](https://cryptobolt.io/contact?topic=ebook)
 
 [Email info@cryptobolt.io](mailto:info@cryptobolt.io?subject=Ebook%20order%3A%20Crypto%20Clarity&body=Hello%20CryptoBolt%2C%0A%0AI%20would%20like%20to%20order%20the%20Crypto%20Clarity%20ebook%20(PDF).%0A%0AName%3A%20%0ACountry%3A%20%0APreferred%20payment%20method%3A%20%0A%0AThank%20you.)
 
@@ -90,9 +90,9 @@ Every chapter ends with key takeaways and three questions to check yourself. Whe
 
 **2. How Blockchains Work.** How independent computers agree on a single shared ledger without a central operator, and why a record built this way is hard to rewrite after the fact.
 
-**3. Bitcoin: The Original.** Where Bitcoin came from, what it was designed to do and where its limits are. Free companion reading: [Bitcoin live data and history](https://cryptobolt.io/bitcoin.html) and [the halving explained](https://cryptobolt.io/bitcoin-halving-explained.html).
+**3. Bitcoin: The Original.** Where Bitcoin came from, what it was designed to do and where its limits are. Free companion reading: [Bitcoin live data and history](https://cryptobolt.io/bitcoin) and [the halving explained](https://cryptobolt.io/bitcoin-halving-explained).
 
-**4. Ethereum, Smart Contracts and the Wider Landscape.** What smart contracts are, how Ethereum differs from Bitcoin, and how other networks fit into the picture. Free companion reading: [Ethereum](https://cryptobolt.io/ethereum.html) and [Solana](https://cryptobolt.io/solana.html) pages.
+**4. Ethereum, Smart Contracts and the Wider Landscape.** What smart contracts are, how Ethereum differs from Bitcoin, and how other networks fit into the picture. Free companion reading: [Ethereum](https://cryptobolt.io/ethereum) and [Solana](https://cryptobolt.io/solana) pages.
 
 ### Part II · The Ecosystem
 
@@ -100,31 +100,31 @@ Every chapter ends with key takeaways and three questions to check yourself. Whe
 
 **6. Wallets, Keys and Self-Custody.** What a private key really is, the difference between leaving crypto on an exchange and holding it yourself, and the trade-offs of each.
 
-**7. Exchanges and How Markets Work.** How exchanges match buyers and sellers, what fees and spreads cost you, and how order types behave. Free companion reading: [how to read an order book](https://cryptobolt.io/how-to-read-an-order-book.html) and [stop-loss orders explained](https://cryptobolt.io/stop-loss-orders-explained.html).
+**7. Exchanges and How Markets Work.** How exchanges match buyers and sellers, what fees and spreads cost you, and how order types behave. Free companion reading: [how to read an order book](https://cryptobolt.io/how-to-read-an-order-book) and [stop-loss orders explained](https://cryptobolt.io/stop-loss-orders-explained).
 
-**8. DeFi Explained.** Lending, decentralised exchanges and liquidity pools in plain language, with the risks that come with each. Free companion reading: [impermanent loss explained](https://cryptobolt.io/impermanent-loss-explained.html) and [staking APR vs APY](https://cryptobolt.io/staking-apr-vs-apy.html).
+**8. DeFi Explained.** Lending, decentralised exchanges and liquidity pools in plain language, with the risks that come with each. Free companion reading: [impermanent loss explained](https://cryptobolt.io/impermanent-loss-explained) and [staking APR vs APY](https://cryptobolt.io/staking-apr-vs-apy).
 
 ### Part III · Markets and Analysis
 
-**9. Reading Charts.** How to read price charts and timeframes, and what support, resistance and trends can and cannot tell you. Free companion reading: [round-number levels](https://cryptobolt.io/round-number-levels.html).
+**9. Reading Charts.** How to read price charts and timeframes, and what support, resistance and trends can and cannot tell you. Free companion reading: [round-number levels](https://cryptobolt.io/round-number-levels).
 
-**10. Indicators and Their Limits.** What popular indicators actually calculate, and why no indicator predicts price. Free tool: the [Fibonacci retracement calculator](https://cryptobolt.io/fibonacci-retracement-calculator.html).
+**10. Indicators and Their Limits.** What popular indicators actually calculate, and why no indicator predicts price. Free tool: the [Fibonacci retracement calculator](https://cryptobolt.io/fibonacci-retracement-calculator).
 
 **11. Fundamental and On-Chain Research.** The questions worth asking about a project, and what public blockchain data can and cannot tell you.
 
-**12. Market Cycles, Sentiment and Psychology.** How markets move in cycles of fear and greed and how your own emotions work against you. Free companion reading: the [Fear & Greed Index](https://cryptobolt.io/fear-and-greed-index.html) explained.
+**12. Market Cycles, Sentiment and Psychology.** How markets move in cycles of fear and greed and how your own emotions work against you. Free companion reading: the [Fear & Greed Index](https://cryptobolt.io/fear-and-greed-index) explained.
 
 ### Part IV · Risk, Safety and Your Plan
 
-**13. Risk Management.** Sizing positions, limiting the loss on any one trade and thinking in worst cases before they happen. Free tools: [position size](https://cryptobolt.io/position-size-calculator.html) and [risk-reward](https://cryptobolt.io/risk-reward-calculator.html) calculators, plus [the 1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule.html).
+**13. Risk Management.** Sizing positions, limiting the loss on any one trade and thinking in worst cases before they happen. Free tools: [position size](https://cryptobolt.io/position-size-calculator) and [risk-reward](https://cryptobolt.io/risk-reward-calculator) calculators, plus [the 1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule).
 
-**14. Spot, Margin and Futures.** How spot, margin and futures trading differ, and the arithmetic of leverage and liquidation. Free tools: the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator.html) and [spot vs futures](https://cryptobolt.io/spot-vs-futures.html).
+**14. Spot, Margin and Futures.** How spot, margin and futures trading differ, and the arithmetic of leverage and liquidation. Free tools: the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) and [spot vs futures](https://cryptobolt.io/spot-vs-futures).
 
 **15. Scams, Hacks and Security.** Common scam patterns, how hacks happen and a security checklist you can apply today.
 
-**16. Taxes, Regulation and Staying Legal.** Why the rules differ from country to country, which records to keep and when to ask a professional. Free tool: the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator.html) for tracking cost.
+**16. Taxes, Regulation and Staying Legal.** Why the rules differ from country to country, which records to keep and when to ask a professional. Free tool: the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) for tracking cost.
 
-**17. Building Your Own Plan.** Turning everything into a written plan you can follow when emotions run hot, with a 90-day schedule. Practise first in the free [paper trading simulator](https://cryptobolt.io/crypto-paper-trading.html).
+**17. Building Your Own Plan.** Turning everything into a written plan you can follow when emotions run hot, with a 90-day schedule. Practise first in the free [paper trading simulator](https://cryptobolt.io/crypto-paper-trading).
 
 ### Appendices
 
@@ -150,7 +150,7 @@ How to order
 
 ### Send your request
 
-Use the [contact form](https://cryptobolt.io/contact.html?topic=ebook) (choose "Ebook order") or email [info@cryptobolt.io](mailto:info@cryptobolt.io).
+Use the [contact form](https://cryptobolt.io/contact?topic=ebook) (choose "Ebook order") or email [info@cryptobolt.io](mailto:info@cryptobolt.io).
 
 ### Get payment details
 
@@ -184,11 +184,11 @@ How do I pay?
 
 The ebook costs $9. Send an order request and we will reply with the payment methods available for your country. Please never send payment to anyone who contacts you first; only use details sent in reply to your own request to info@cryptobolt.io.
 
-Crypto Clarity is for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our [terms](https://cryptobolt.io/terms.html) and [privacy policy](https://cryptobolt.io/privacy.html).
+Crypto Clarity is for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our [terms](https://cryptobolt.io/terms) and [privacy policy](https://cryptobolt.io/privacy).
 
 Crypto Clarity · PDF
 
-[Order now](https://cryptobolt.io/contact.html?topic=ebook)
+[Order now](https://cryptobolt.io/contact?topic=ebook)
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

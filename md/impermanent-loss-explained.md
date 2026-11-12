@@ -2,13 +2,13 @@
 
 > How impermanent loss works in a crypto liquidity pool: a step-by-step ETH example, a loss table by price move, and what fees and pair choice change.
 
-Source: https://cryptobolt.io/impermanent-loss-explained.html
+Source: https://cryptobolt.io/impermanent-loss-explained
 
 Providing liquidity to a decentralised exchange sounds like a free lunch: deposit two tokens, earn a share of the trading fees. Then you withdraw and discover that you would have had more money by doing nothing. The gap has a name, impermanent loss, and it is the main reason liquidity provision is not passive income. This article walks through where it comes from with numbers you can check by hand.
 
 ## How a liquidity pool prices things
 
-Most decentralised exchanges use an [automated market maker](https://cryptobolt.io/glossary.html#automated-market-maker) (AMM) instead of an [order book](https://cryptobolt.io/glossary.html#order-book). In the classic design, a [liquidity pool](https://cryptobolt.io/glossary.html#liquidity-pool) holds two tokens, say ETH and a dollar stablecoin, and keeps the product of the two quantities constant. If someone buys ETH from the pool, the ETH balance falls, the stablecoin balance rises, and the price of ETH moves up automatically so the product is unchanged.
+Most decentralised exchanges use an [automated market maker](https://cryptobolt.io/glossary#automated-market-maker) (AMM) instead of an [order book](https://cryptobolt.io/glossary#order-book). In the classic design, a [liquidity pool](https://cryptobolt.io/glossary#liquidity-pool) holds two tokens, say ETH and a dollar stablecoin, and keeps the product of the two quantities constant. If someone buys ETH from the pool, the ETH balance falls, the stablecoin balance rises, and the price of ETH moves up automatically so the product is unchanged.
 
 Because the pool is always willing to trade, any gap between its price and the wider market is quickly closed by arbitrage traders. They buy the token that is cheap in the pool and sell the one that is expensive, which keeps the pool price in line with the market, but at the cost of changing what the pool holds.
 
@@ -41,7 +41,7 @@ The loss depends only on how far the price ratio has moved, not on the direction
 | +300% (4x) | −20.00% |
 | +900% (10x) | −42.50% |
 
-Use the [impermanent loss calculator](https://cryptobolt.io/impermanent-loss-calculator.html) to see the number for your own deposit and price move.
+Use the [impermanent loss calculator](https://cryptobolt.io/impermanent-loss-calculator) to see the number for your own deposit and price move.
 
 ## Why it is called impermanent
 
@@ -64,9 +64,9 @@ Impermanent loss is only the arithmetic of balancing a pool. Liquidity providers
 
 ## A short checklist before you provide liquidity
 
-1. Work out the break-even fees for a few price moves (use the [calculator](https://cryptobolt.io/impermanent-loss-calculator.html)). 2. Estimate realistic fees from the pool's recent volume, not from the headline yield. 3. Ask what happens if either token falls 50% or rises 3x. 4. Check that the contracts are audited and the tokens are legitimate. 5. Decide in advance when you will withdraw.
+1. Work out the break-even fees for a few price moves (use the [calculator](https://cryptobolt.io/impermanent-loss-calculator)). 2. Estimate realistic fees from the pool's recent volume, not from the headline yield. 3. Ask what happens if either token falls 50% or rises 3x. 4. Check that the contracts are audited and the tokens are legitimate. 5. Decide in advance when you will withdraw.
 
-Related reading: if you would rather earn a rate than provide liquidity, see [staking: APR vs APY](https://cryptobolt.io/staking-apr-vs-apy.html) and the [staking calculator](https://cryptobolt.io/crypto-staking-calculator.html). This article is educational and not financial advice.
+Related reading: if you would rather earn a rate than provide liquidity, see [staking: APR vs APY](https://cryptobolt.io/staking-apr-vs-apy) and the [staking calculator](https://cryptobolt.io/crypto-staking-calculator). This article is educational and not financial advice.
 
 Keep reading
 
@@ -80,7 +80,7 @@ Ownership, leverage, liquidation, and funding rate — the mechanics that actual
 
 Read the post
 
-Link: https://cryptobolt.io/spot-vs-futures.html
+Link: https://cryptobolt.io/spot-vs-futures
 
 Mechanics · 6 min read
 
@@ -90,7 +90,7 @@ Bids, asks, the spread and depth: what the live order book shows, and why a snap
 
 Read the post
 
-Link: https://cryptobolt.io/how-to-read-an-order-book.html
+Link: https://cryptobolt.io/how-to-read-an-order-book
 
 Mechanics · 5 min read
 
@@ -100,7 +100,7 @@ The small percentage next to every perpetual contract quietly tells you which si
 
 Read the post
 
-Link: https://cryptobolt.io/funding-rate-explained.html
+Link: https://cryptobolt.io/funding-rate-explained
 
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io
