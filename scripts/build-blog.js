@@ -223,6 +223,7 @@ function renderVideo(slug) {
     publisher: { '@type': 'Organization', name: 'CryptoBolt', url: 'https://cryptobolt.io/' },
   };
   return [
+    '    <link rel="stylesheet" href="css/video.css?v=20261111">',
     '    <figure class="cb-video-frame cb-video-inline">',
     `        <video controls preload="none" playsinline width="1280" height="720" poster="/assets/video/${slug}.jpg" aria-label="${escapeAttr(v.title)}, ${v.secs} second animated guide">`,
     `            <source src="/assets/video/${slug}.mp4" type="video/mp4">`,
