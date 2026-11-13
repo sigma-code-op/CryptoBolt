@@ -20,6 +20,24 @@
   var SKIP = /^\/(app|trade|ai|account|invest)(\.html)?\/?$/;
   var root = document.documentElement;
 
+  /* Diagnostics: open any page with ?cbdebug=1 to see what the translator is doing. */
+  var DEBUG = /[?&]cbdebug=1/.test(location.search), dbgBox = null, dbgLines = [];
+  function log(m) {
+    if (!DEBUG) return;
+    dbgLines.push(((performance.now() / 1000) | 0) + 's ' + m);
+    if (!dbgBox) {
+      dbgBox = document.createElement('pre');
+      dbgBox.className = 'notranslate'; dbgBox.setAttribute('translate', 'no');
+      dbgBox.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:99999;max-width:min(560px,calc(100vw - 16px));max-height:45vh;overflow:auto;margin:0;padding:10px;background:#000;color:#7CFC9A;font:11px/1.4 monospace;white-space:pre-wrap;border:1px solid #7CFC9A;border-radius:8px';
+      document.body.appendChild(dbgBox);
+    }
+    dbgBox.textContent = dbgLines.join('\n');
+  }
+  document.addEventListener('securitypolicyviolation', function (e) {
+    log('CSP BLOCKED ' + e.violatedDirective + ' -> ' + (e.blockedURI || 'inline') + (e.sample ? ' [' + e.sample.slice(0, 60) + ']' : ''));
+  });
+  window.addEventListener('error', function (e) { log('JS error: ' + e.message + ' @ ' + (e.filename || '').split('/').pop()); });
+
   function getCookie() {
     var m = document.cookie.match(/(?:^|;\s*)googtrans=([^;]*)/);
     if (!m) return 'en';
@@ -66,12 +84,15 @@
     holder.setAttribute('aria-hidden', 'true');
     document.body.appendChild(holder);
     window.cbTranslateInit = function () {
+      log('widget init called');
       new google.translate.TranslateElement({
         pageLanguage: 'en',
         autoDisplay: false,
         includedLanguages: LANGS.map(function (l) { return l[0]; }).join(',')
       }, 'google_translate_element');
       // Fallback: if the cookie alone did not trigger a translation, drive the widget directly.
+      setTimeout(function () { log('after 4s: html class="' + root.className + '" combo=' + !!document.querySelector('select.goog-te-combo') + ' translated=' + /translated-/.test(root.className)); }, 4000);
+      setTimeout(function () { log('after 9s: html class="' + root.className + '" translated=' + /translated-/.test(root.className)); }, 9000);
       var tries = 0, t = setInterval(function () {
         var sel = document.querySelector('select.goog-te-combo');
         if (++tries > 40) { clearInterval(t); if (!sel && window.console) console.warn('CryptoBolt: translator widget did not start'); return; }
@@ -80,9 +101,11 @@
         if (sel.value !== code) { sel.value = code; sel.dispatchEvent(new Event('change')); }
       }, 250);
     };
+    log('cookie googtrans=' + code + ' host=' + location.hostname + ' cookiesEnabled=' + navigator.cookieEnabled);
     var s = document.createElement('script');
     s.src = 'https://translate.google.com/translate_a/element.js?cb=cbTranslateInit';
     s.async = true;
+    s.onload = function () { log('element.js loaded'); };
     s.onerror = function () { if (window.console) console.warn('CryptoBolt: translator script blocked or offline'); };
     document.body.appendChild(s);
     root.setAttribute('dir', RTL[code] ? 'rtl' : 'ltr');
