@@ -31,7 +31,7 @@
     var exp = code === 'en' ? 'Thu, 01 Jan 1970 00:00:00 GMT' : new Date(Date.now() + 365 * 864e5).toUTCString();
     var base = 'googtrans=' + val + '; expires=' + exp + '; path=/; SameSite=Lax';
     document.cookie = base;
-    if (parts.length > 1) document.cookie = base + '; domain=.' + parts.slice(-2).join('.');
+    if (parts.length > 1 && !/^\d+(\.\d+){3}$/.test(host) && host !== 'localhost') document.cookie = base + '; domain=.' + parts.slice(-2).join('.');
     try { localStorage.setItem('cb_lang', code); } catch (e) {}
   }
 
@@ -71,10 +71,19 @@
         autoDisplay: false,
         includedLanguages: LANGS.map(function (l) { return l[0]; }).join(',')
       }, 'google_translate_element');
+      // Fallback: if the cookie alone did not trigger a translation, drive the widget directly.
+      var tries = 0, t = setInterval(function () {
+        var sel = document.querySelector('select.goog-te-combo');
+        if (++tries > 40) { clearInterval(t); if (!sel && window.console) console.warn('CryptoBolt: translator widget did not start'); return; }
+        if (!sel) return;
+        clearInterval(t);
+        if (sel.value !== code) { sel.value = code; sel.dispatchEvent(new Event('change')); }
+      }, 250);
     };
     var s = document.createElement('script');
     s.src = 'https://translate.google.com/translate_a/element.js?cb=cbTranslateInit';
     s.async = true;
+    s.onerror = function () { if (window.console) console.warn('CryptoBolt: translator script blocked or offline'); };
     document.body.appendChild(s);
     root.setAttribute('dir', RTL[code] ? 'rtl' : 'ltr');
   }

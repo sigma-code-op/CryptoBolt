@@ -62,6 +62,7 @@ const SCRIPT_SRC = [
   'https://unpkg.com', // lightweight-charts
   'https://translate.google.com', // language switcher (js/lang-switcher.js)
   'https://translate.googleapis.com',
+  'https://translate-pa.googleapis.com', // supported-languages call
   'https://www.gstatic.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
@@ -120,6 +121,7 @@ const CONNECT_SRC = [
   'https://pagead2.googlesyndication.com',
   'https://www.googletagmanager.com',
   'https://translate.googleapis.com', // Google Website Translator
+  'https://translate-pa.googleapis.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
