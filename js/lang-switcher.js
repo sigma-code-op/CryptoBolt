@@ -36,6 +36,37 @@
   document.addEventListener('securitypolicyviolation', function (e) {
     log('CSP BLOCKED ' + e.violatedDirective + ' -> ' + (e.blockedURI || 'inline') + (e.sample ? ' [' + e.sample.slice(0, 60) + ']' : ''));
   });
+  if (DEBUG) {
+    try {
+      var xo = XMLHttpRequest.prototype.open, xs = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.open = function (m, u) { this.__cb = String(u); return xo.apply(this, arguments); };
+      XMLHttpRequest.prototype.send = function () {
+        var x = this, u = x.__cb || '';
+        if (/translate/.test(u)) {
+          x.addEventListener('loadend', function () { log('XHR ' + x.status + ' ' + u.replace(/\?.*/, '').slice(-45) + ' (' + (x.responseText || '').length + ' bytes)'); });
+        }
+        return xs.apply(this, arguments);
+      };
+      new PerformanceObserver(function (l) {
+        l.getEntries().forEach(function (en) {
+          if (/translate|gstatic/.test(en.name)) log('RES ' + (en.responseStatus || '?') + ' ' + en.initiatorType + ' ' + en.name.replace(/\?.*/, '').slice(-55));
+        });
+      }).observe({ type: 'resource', buffered: true });
+    } catch (e) { log('debug hooks failed: ' + e.message); }
+  }
+  window.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t !== window && (t.src || t.href)) log('LOAD FAILED <' + t.tagName.toLowerCase() + '> ' + (t.src || t.href).replace(/\?.*/, '').slice(-70));
+  }, true);
+  if (DEBUG && window.fetch) {
+    var of = window.fetch;
+    window.fetch = function (u) {
+      var url = String((u && u.url) || u);
+      var p = of.apply(this, arguments);
+      if (/translate/.test(url)) p.then(function (r) { log('FETCH ' + r.status + ' ' + url.replace(/\?.*/, '').slice(-60)); }, function (err) { log('FETCH FAILED ' + url.replace(/\?.*/, '').slice(-60) + ' ' + err); });
+      return p;
+    };
+  }
   window.addEventListener('error', function (e) { log('JS error: ' + e.message + ' @ ' + (e.filename || '').split('/').pop()); });
 
   function getCookie() {
@@ -95,11 +126,17 @@
       setTimeout(function () { log('after 9s: html class="' + root.className + '" translated=' + /translated-/.test(root.className)); }, 9000);
       var tries = 0, t = setInterval(function () {
         var sel = document.querySelector('select.goog-te-combo');
-        if (++tries > 40) { clearInterval(t); if (!sel && window.console) console.warn('CryptoBolt: translator widget did not start'); return; }
-        if (!sel) return;
+        if (++tries > 60) { clearInterval(t); log('gave up: combo=' + !!sel + ' options=' + (sel ? sel.options.length : 0)); return; }
+        if (!sel || sel.options.length < 2) return;
         clearInterval(t);
-        if (sel.value !== code) { sel.value = code; sel.dispatchEvent(new Event('change')); }
+        log('combo ready, options=' + sel.options.length + ' -> setting ' + code);
+        if (sel.value !== code) { sel.value = code; sel.dispatchEvent(new Event('change', { bubbles: true })); log('change dispatched, value now "' + sel.value + '"'); }
       }, 250);
+      setTimeout(function () {
+        if (!DEBUG) return;
+        var names = performance.getEntriesByType('resource').filter(function (r) { return /translate/.test(r.name); }).map(function (r) { return r.name.replace(/^https:\/\//, '').replace(/\?.*/, '').slice(0, 60); });
+        log('translate resources (' + names.length + '): ' + names.join(' | '));
+      }, 10000);
     };
     log('cookie googtrans=' + code + ' host=' + location.hostname + ' cookiesEnabled=' + navigator.cookieEnabled);
     var s = document.createElement('script');
