@@ -54,6 +54,18 @@ const ROOT = path.resolve(__dirname, '..');
 // js/*.js and the <script src>/<link href> tags in the HTML — see the
 // comment above each group). Keep this in sync if a new integration is
 // added; nothing here is guessed.
+// The language button (js/lang-switcher.js) opens pages through Google Translate's website
+// translation (https://cryptobolt-io.translate.goog/...). On that address "'self'" is Google's
+// proxy origin, and the page's own CSS/JS/images may be requested from cryptobolt.io, so the
+// real site origin has to be allowed explicitly, along with the hosts Google's translated-page
+// toolbar and translator script load from.
+const SITE = ['https://cryptobolt.io', 'https://www.cryptobolt.io'];
+const GT_SCRIPT = ['https://translate.google.com', 'https://translate.googleapis.com', 'https://translate-pa.googleapis.com', 'https://www.gstatic.com'];
+const GT_STYLE = ['https://www.gstatic.com', 'https://translate.googleapis.com'];
+const GT_IMG = ['https://www.gstatic.com', 'https://fonts.gstatic.com', 'https://translate.google.com', 'https://translate.googleapis.com'];
+const GT_CONNECT = ['https://translate.googleapis.com', 'https://translate-pa.googleapis.com', 'https://translate.google.com'];
+const GT_FRAME = ['https://translate.google.com'];
+
 const SCRIPT_SRC = [
   "'self'",
   'https://www.googletagmanager.com', // gtag.js
@@ -61,15 +73,17 @@ const SCRIPT_SRC = [
   'https://cdn.jsdelivr.net', // @supabase/supabase-js
   'https://unpkg.com', // lightweight-charts
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
+  ...SITE, ...GT_SCRIPT,
 ];
 
 const STYLE_SRC = [
   "'self'",
   "'unsafe-inline'", // inline style="" attributes + js/cookie-consent.js's injected <style> — see file header
   'https://fonts.googleapis.com',
+  ...SITE, ...GT_STYLE,
 ];
 
-const FONT_SRC = ["'self'", 'https://fonts.gstatic.com', 'data:'];
+const FONT_SRC = ["'self'", ...SITE, 'https://fonts.gstatic.com', 'data:'];
 
 const IMG_SRC = [
   "'self'",
@@ -84,6 +98,7 @@ const IMG_SRC = [
   'https://images.dmca.com', // DMCA Protection Status badge image
   'https://www.nxgntools.com', // "Featured on NxGn Tools" badge image
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
+  ...SITE, ...GT_IMG,
 ];
 
 // Live price/chart data (Binance REST + WS, CoinGecko, alternative.me Fear &
@@ -112,6 +127,7 @@ const CONNECT_SRC = [
   'https://pagead2.googlesyndication.com',
   'https://www.googletagmanager.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
+  ...SITE, ...GT_CONNECT,
 ];
 
 // AdSense creatives render inside iframes from these origins.
@@ -120,6 +136,7 @@ const FRAME_SRC = [
   'https://tpc.googlesyndication.com',
   'https://www.google.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
+  ...GT_FRAME,
 ];
 
 function sha256Base64(text) {
