@@ -1,52 +1,34 @@
 /* CryptoBolt language switcher.
- * Picking a language opens the same page through Google Translate's website translation
- * (https://cryptobolt-io.translate.goog/...), exactly like Google Translate's own "translate this page":
- * every page, in any language Google supports, with no translator script embedded in our pages.
- * Links to the trading terminal always go back to the real site (it must not be translated).
- * "English" returns to cryptobolt.io. Our own pages never load or send anything to Google until a
- * visitor actually picks a language. */
+ * Translates the page you are on, in place, with Google's website translator (no redirect, no proxy).
+ * Nothing from Google is loaded until a visitor picks a language; the choice is remembered in the
+ * "googtrans" cookie, so the next page opens already translated. English clears it.
+ * The trading terminal pages are never translated (live numbers, buttons and the AI must stay exact). */
 (function () {
   'use strict';
-  var CANON = 'https://cryptobolt.io';
-  var SUFFIX = '.translate.goog';
-  // [our code, label, Google code]
+  // [code, label] - the 10 languages most likely to be used by CryptoBolt visitors
   var LANGS = [
-    ['en', 'English', 'en'], ['zh-CN', '简体中文', 'zh-CN'], ['zh-TW', '繁體中文', 'zh-TW'], ['es', 'Español', 'es'],
-    ['hi', 'हिन्दी', 'hi'], ['ar', 'العربية', 'ar'], ['pt', 'Português', 'pt'], ['bn', 'বাংলা', 'bn'],
-    ['ru', 'Русский', 'ru'], ['ja', '日本語', 'ja'], ['de', 'Deutsch', 'de'], ['fr', 'Français', 'fr'],
-    ['ur', 'اردو', 'ur'], ['id', 'Bahasa Indonesia', 'id'], ['tr', 'Türkçe', 'tr'], ['ko', '한국어', 'ko'],
-    ['it', 'Italiano', 'it'], ['vi', 'Tiếng Việt', 'vi'], ['pl', 'Polski', 'pl'], ['nl', 'Nederlands', 'nl'],
-    ['fa', 'فارسی', 'fa'], ['th', 'ไทย', 'th'], ['uk', 'Українська', 'uk'], ['sv', 'Svenska', 'sv'],
-    ['el', 'Ελληνικά', 'el'], ['ro', 'Română', 'ro'], ['cs', 'Čeština', 'cs'], ['hu', 'Magyar', 'hu'],
-    ['da', 'Dansk', 'da'], ['fi', 'Suomi', 'fi'], ['no', 'Norsk', 'no'], ['he', 'עברית', 'iw'],
-    ['ms', 'Bahasa Melayu', 'ms'], ['ta', 'தமிழ்', 'ta'], ['sw', 'Kiswahili', 'sw'], ['tl', 'Filipino', 'tl'],
-    ['bg', 'Български', 'bg'], ['sr', 'Српски', 'sr'], ['hr', 'Hrvatski', 'hr'], ['sk', 'Slovenčina', 'sk']
+    ['en', 'English'], ['es', 'Español'], ['hi', 'हिन्दी'], ['ur', 'اردو'], ['ar', 'العربية'],
+    ['fr', 'Français'], ['pt', 'Português'], ['ru', 'Русский'], ['zh-CN', '简体中文'], ['tr', 'Türkçe']
   ];
   var TERMINAL = /^\/(app|trade|ai|account|invest)(\.html)?\/?$/;
-  var ON_PROXY = location.hostname.slice(-SUFFIX.length) === SUFFIX;
 
-  function proxyHost() {
-    return new URL(CANON).hostname.replace(/-/g, '--').replace(/\./g, '-') + SUFFIX;
-  }
-  function stripTr(search) {
-    var kept = search.replace(/^\?/, '').split('&').filter(function (p) { return p && !/^_x_tr_/.test(p); });
-    return kept.length ? '?' + kept.join('&') : '';
-  }
-  function currentLang() {
-    if (!ON_PROXY) return 'en';
-    var m = location.search.match(/[?&]_x_tr_tl=([^&]+)/);
-    var g = m ? decodeURIComponent(m[1]) : 'en';
-    for (var i = 0; i < LANGS.length; i++) if (LANGS[i][2] === g || LANGS[i][0] === g) return LANGS[i][0];
+  function readLang() {
+    var m = document.cookie.match(/(?:^|;\s*)googtrans=\/[^/]*\/([^;]+)/);
+    var c = m ? decodeURIComponent(m[1]) : 'en';
+    for (var i = 0; i < LANGS.length; i++) if (LANGS[i][0] === c) return c;
     return 'en';
   }
-  function urlFor(entry) {
-    var rest = location.pathname + stripTr(location.search) + location.hash;
-    if (entry[0] === 'en') return CANON + rest;
-    var q = '_x_tr_sl=en&_x_tr_tl=' + encodeURIComponent(entry[2]) + '&_x_tr_hl=en&_x_tr_pto=wapp';
-    var sep = stripTr(location.search) ? '&' : '?';
-    var hashAt = rest.indexOf('#');
-    var main = hashAt < 0 ? rest : rest.slice(0, hashAt), hash = hashAt < 0 ? '' : rest.slice(hashAt);
-    return 'https://' + proxyHost() + main + sep + q + hash;
+  function expire(domain) {
+    document.cookie = 'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/' + (domain ? ';domain=' + domain : '');
+  }
+  function writeLang(code) {
+    var host = location.hostname, parts = host.split('.');
+    var root = parts.length > 1 ? '.' + parts.slice(-2).join('.') : '';
+    expire(); expire(host); if (root) expire(root);
+    if (code === 'en') return;
+    var v = 'googtrans=/en/' + code + ';path=/';
+    document.cookie = v;
+    if (root) document.cookie = v + ';domain=' + root;
   }
 
   function injectCss() {
@@ -63,29 +45,41 @@
       '.mk-lang-menu li:hover,.mk-lang-menu li:focus{background:rgba(79,216,232,.14);color:#fff}' +
       '.mk-lang-menu li[aria-selected="true"]{color:#4fd8e8;font-weight:700}' +
       '.mk-nav:has(.mk-lang-btn[aria-expanded="true"]){z-index:1000}' +
+      /* hide Google's own banner/tooltips; keep our button as the only control */
+      'body{top:0!important}.goog-te-banner-frame,iframe.skiptranslate,#goog-gt-tt,.goog-tooltip,.goog-te-balloon-frame{display:none!important}' +
+      '.goog-text-highlight{background:none!important;box-shadow:none!important}' +
+      '#cb-gt{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}' +
       '@media (max-width:880px){.mk-lang-btn{height:34px;padding:0 9px}.mk-lang-menu{position:fixed;top:64px;inset-inline-end:12px;inset-inline-start:auto}}' +
       '@media (max-width:420px){.mk-lang-code{display:none}.mk-lang-btn{padding:0 8px}}';
     document.head.appendChild(s);
   }
 
+  function loadTranslator(onFail) {
+    var holder = document.createElement('div');
+    holder.id = 'cb-gt';
+    holder.className = 'notranslate';
+    document.body.appendChild(holder);
+    window.googleTranslateElementInit = function () {
+      new window.google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: LANGS.slice(1).map(function (l) { return l[0]; }).join(','),
+        autoDisplay: false
+      }, 'cb-gt');
+    };
+    var s = document.createElement('script');
+    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    s.onerror = onFail;
+    document.head.appendChild(s);
+  }
+
   function init() {
-    injectCss();
-    var code = currentLang();
-    if (ON_PROXY) {
-      // Inside Google's translated copy: the terminal must open on the real site, untranslated.
-      document.addEventListener('click', function (e) {
-        var a = e.target.closest && e.target.closest('a[href]');
-        if (!a || e.defaultPrevented || e.button) return;
-        if (TERMINAL.test(a.pathname)) {
-          e.preventDefault();
-          location.href = CANON + a.pathname + stripTr(a.search) + a.hash;
-        }
-      }, true);
-    }
     var box = document.querySelector('.mk-lang');
     if (!box) return;
+    if (TERMINAL.test(location.pathname)) { writeLangKeep(); return; } // terminal stays untranslated, button hidden
+    injectCss();
+    var code = readLang(), current = LANGS[0];
     var btn = box.querySelector('.mk-lang-btn'), menu = box.querySelector('.mk-lang-menu');
-    var current = LANGS[0];
     menu.innerHTML = '';
     LANGS.forEach(function (l) {
       var li = document.createElement('li');
@@ -104,10 +98,15 @@
     box.className += ' notranslate';
     box.setAttribute('translate', 'no');
     box.hidden = false;
+
+    if (code !== 'en') {
+      loadTranslator(function () { writeLang('en'); }); // translator blocked/offline: fall back to English
+    }
+
     function open(v) {
       btn.setAttribute('aria-expanded', v ? 'true' : 'false');
       menu.hidden = !v;
-      if (v) { (menu.querySelector('[aria-selected="true"]') || menu.firstChild).focus(); }
+      if (v) (menu.querySelector('[aria-selected="true"]') || menu.firstChild).focus();
     }
     btn.addEventListener('click', function () { open(menu.hidden); });
     menu.addEventListener('click', function (e) {
@@ -115,7 +114,8 @@
       if (!li) return;
       var next = li.getAttribute('data-lang');
       if (next === code) { open(false); return; }
-      for (var i = 0; i < LANGS.length; i++) if (LANGS[i][0] === next) location.href = urlFor(LANGS[i]);
+      writeLang(next);
+      location.reload();
     });
     menu.addEventListener('keydown', function (e) {
       var li = document.activeElement;
@@ -126,5 +126,6 @@
     });
     document.addEventListener('click', function (e) { if (!box.contains(e.target)) open(false); });
   }
+  function writeLangKeep() { /* terminal pages: never load the translator, leave the button hidden */ }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
