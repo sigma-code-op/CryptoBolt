@@ -1,39 +1,86 @@
-/* CryptoBolt language switcher.
- * Translates the page you are on, in place, with Google's website translator (no redirect, no proxy).
- * Nothing from Google is loaded until a visitor picks a language; the choice is remembered in the
- * "googtrans" cookie, so the next page opens already translated. English clears it.
- * The trading terminal pages are never translated (live numbers, buttons and the AI must stay exact). */
+/* CryptoBolt language switcher - self-contained, no third-party translator.
+ * Swaps known English phrases for translations stored in this file, instantly, with no reload.
+ * Text that has no translation here stays in English. The choice is kept in localStorage.
+ * Terminal pages are never translated (live numbers, buttons and the AI must stay exact).
+ * To add a phrase: append a row below, in the order of LANGS: [English, es, hi, ur, ar, fr]. */
 (function () {
   'use strict';
-  // [code, label] - the 10 languages most likely to be used by CryptoBolt visitors
-  var LANGS = [
-    ['en', 'English'], ['es', 'Español'], ['hi', 'हिन्दी'], ['ur', 'اردو'], ['ar', 'العربية'],
-    ['fr', 'Français'], ['pt', 'Português'], ['ru', 'Русский'], ['zh-CN', '简体中文'], ['tr', 'Türkçe']
-  ];
+  var LANGS = [['en', 'English'], ['es', 'Español'], ['hi', 'हिन्दी'], ['ur', 'اردو'], ['ar', 'العربية'], ['fr', 'Français']];
+  var RTL = { ur: 1, ar: 1 };
   var TERMINAL = /^\/(app|trade|ai|account|invest)(\.html)?\/?$/;
+  var ROWS = [
+    ['Features', 'Funciones', 'सुविधाएँ', 'خصوصیات', 'الميزات', 'Fonctionnalités'],
+    ['AI Research', 'Investigación con IA', 'AI रिसर्च', 'AI ریسرچ', 'أبحاث الذكاء الاصطناعي', 'Recherche IA'],
+    ['Blog', 'Blog', 'ब्लॉग', 'بلاگ', 'المدونة', 'Blog'],
+    ['Ebook', 'Ebook', 'ई-बुक', 'ای بک', 'الكتاب الإلكتروني', 'Ebook'],
+    ['Editorial policy', 'Política editorial', 'संपादकीय नीति', 'ادارتی پالیسی', 'السياسة التحريرية', 'Politique éditoriale'],
+    ['About', 'Acerca de', 'हमारे बारे में', 'ہمارے بارے میں', 'حول', 'À propos'],
+    ['Sign in', 'Iniciar sesión', 'साइन इन', 'سائن ان', 'تسجيل الدخول', 'Connexion'],
+    ['Launch Terminal', 'Abrir terminal', 'टर्मिनल खोलें', 'ٹرمینل کھولیں', 'افتح المنصة', 'Ouvrir le terminal'],
+    ['Explore features', 'Ver funciones', 'सुविधाएँ देखें', 'خصوصیات دیکھیں', 'استكشف الميزات', 'Voir les fonctionnalités'],
+    ['Live · Spot & Futures · No signup to browse', 'En vivo · Spot y Futuros · Sin registro para explorar', 'लाइव · स्पॉट और फ्यूचर्स · देखने के लिए साइनअप नहीं', 'لائیو · اسپاٹ اور فیوچرز · دیکھنے کے لیے سائن اپ نہیں', 'مباشر · فوري وعقود آجلة · دون تسجيل للتصفح', 'En direct · Spot et Futures · Sans inscription pour explorer'],
+    ['Live Bitcoin, Ethereum & altcoin prices', 'Precios en vivo de Bitcoin, Ethereum y altcoins', 'बिटकॉइन, एथेरियम और altcoin की लाइव कीमतें', 'بٹ کوائن، ایتھریم اور آلٹ کوائنز کی لائیو قیمتیں', 'أسعار بيتكوين وإيثريوم والعملات البديلة مباشرة', 'Prix en direct du Bitcoin, de l’Ethereum et des altcoins'],
+    ['with a free crypto trading terminal', 'con un terminal de trading cripto gratis', 'एक मुफ़्त क्रिप्टो ट्रेडिंग टर्मिनल के साथ', 'مفت کرپٹو ٹریڈنگ ٹرمینل کے ساتھ', 'مع منصة تداول عملات رقمية مجانية', 'avec un terminal de trading crypto gratuit'],
+    ['and AI market research.', 'e investigación de mercado con IA.', 'और AI मार्केट रिसर्च।', 'اور AI مارکیٹ ریسرچ۔', 'وأبحاث سوق بالذكاء الاصطناعي.', 'et une recherche de marché par IA.'],
+    ['Free to use · No account required to browse live data', 'Gratis · No necesitas cuenta para ver datos en vivo', 'मुफ़्त · लाइव डेटा देखने के लिए अकाउंट की ज़रूरत नहीं', 'مفت · لائیو ڈیٹا دیکھنے کے لیے اکاؤنٹ کی ضرورت نہیں', 'مجاني · لا حاجة لحساب لعرض البيانات المباشرة', 'Gratuit · Aucun compte requis pour voir les données en direct'],
+    ['Getting started', 'Primeros pasos', 'शुरू करें', 'شروع کریں', 'البدء', 'Pour commencer'],
+    ['See every feature', 'Ver todas las funciones', 'सभी सुविधाएँ देखें', 'تمام خصوصیات دیکھیں', 'شاهد كل الميزات', 'Voir toutes les fonctionnalités'],
+    ['Open AI Research', 'Abrir investigación IA', 'AI रिसर्च खोलें', 'AI ریسرچ کھولیں', 'افتح أبحاث الذكاء الاصطناعي', 'Ouvrir la recherche IA'],
+    ['Why CryptoBolt', 'Por qué CryptoBolt', 'CryptoBolt क्यों', 'CryptoBolt کیوں', 'لماذا CryptoBolt', 'Pourquoi CryptoBolt'],
+    ['FAQ', 'Preguntas frecuentes', 'अक्सर पूछे जाने वाले प्रश्न', 'اکثر پوچھے گئے سوالات', 'الأسئلة الشائعة', 'FAQ'],
+    ['Common questions about CryptoBolt', 'Preguntas comunes sobre CryptoBolt', 'CryptoBolt के बारे में आम सवाल', 'CryptoBolt کے بارے میں عام سوالات', 'أسئلة شائعة حول CryptoBolt', 'Questions fréquentes sur CryptoBolt'],
+    ['Pull up the terminal. Watch the market live.', 'Abre el terminal. Mira el mercado en vivo.', 'टर्मिनल खोलें। बाज़ार को लाइव देखें।', 'ٹرمینل کھولیں۔ مارکیٹ کو لائیو دیکھیں۔', 'افتح المنصة وشاهد السوق مباشرة.', 'Ouvrez le terminal. Suivez le marché en direct.'],
+    ['Free to use, nothing to install, no signup required to browse.', 'Gratis, sin instalar nada y sin registro para explorar.', 'मुफ़्त, कुछ इंस्टॉल नहीं करना, देखने के लिए साइनअप नहीं।', 'مفت، کچھ انسٹال نہیں کرنا، دیکھنے کے لیے سائن اپ نہیں۔', 'مجاني، دون تثبيت، ودون تسجيل للتصفح.', 'Gratuit, rien à installer, sans inscription pour explorer.'],
+    ['Product', 'Producto', 'उत्पाद', 'پروڈکٹ', 'المنتج', 'Produit'],
+    ['Terminal', 'Terminal', 'टर्मिनल', 'ٹرمینل', 'المنصة', 'Terminal'],
+    ['Releases', 'Versiones', 'रिलीज़', 'ریلیزز', 'الإصدارات', 'Versions'],
+    ['Paper trading', 'Trading simulado', 'पेपर ट्रेडिंग', 'پیپر ٹریڈنگ', 'التداول التجريبي', 'Paper trading'],
+    ['Markets & tools', 'Mercados y herramientas', 'बाज़ार और टूल', 'مارکیٹس اور ٹولز', 'الأسواق والأدوات', 'Marchés et outils'],
+    ['Bitcoin price', 'Precio de Bitcoin', 'बिटकॉइन की कीमत', 'بٹ کوائن کی قیمت', 'سعر بيتكوين', 'Prix du Bitcoin'],
+    ['Ethereum price', 'Precio de Ethereum', 'एथेरियम की कीमत', 'ایتھریم کی قیمت', 'سعر إيثريوم', 'Prix de l’Ethereum'],
+    ['Solana price', 'Precio de Solana', 'सोलाना की कीमत', 'سولانا کی قیمت', 'سعر سولانا', 'Prix du Solana'],
+    ['Company', 'Empresa', 'कंपनी', 'کمپنی', 'الشركة', 'Entreprise'],
+    ['Glossary', 'Glosario', 'शब्दावली', 'لغت', 'المسرد', 'Glossaire'],
+    ['Contact', 'Contacto', 'संपर्क', 'رابطہ', 'اتصل بنا', 'Contact'],
+    ['Legal', 'Legal', 'कानूनी', 'قانونی', 'قانوني', 'Mentions légales'],
+    ['Privacy policy', 'Política de privacidad', 'गोपनीयता नीति', 'پرائیویسی پالیسی', 'سياسة الخصوصية', 'Politique de confidentialité'],
+    ['Terms of service', 'Términos del servicio', 'सेवा की शर्तें', 'سروس کی شرائط', 'شروط الخدمة', 'Conditions d’utilisation'],
+    ['Educational content only, not financial advice.', 'Solo contenido educativo, no es asesoramiento financiero.', 'केवल शैक्षिक सामग्री, वित्तीय सलाह नहीं।', 'صرف تعلیمی مواد، مالی مشورہ نہیں۔', 'محتوى تعليمي فقط وليس نصيحة مالية.', 'Contenu éducatif uniquement, pas un conseil financier.']
+  ];
+  var DICT = {};
+  ROWS.forEach(function (r) { DICT[r[0].toLowerCase()] = r; });
 
-  function readLang() {
-    var m = document.cookie.match(/(?:^|;\s*)googtrans=\/[^/]*\/([^;]+)/);
-    var c = m ? decodeURIComponent(m[1]) : 'en';
-    for (var i = 0; i < LANGS.length; i++) if (LANGS[i][0] === c) return c;
-    return 'en';
-  }
-  function expire(domain) {
-    document.cookie = 'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/' + (domain ? ';domain=' + domain : '');
-  }
-  function writeLang(code) {
-    var host = location.hostname, parts = host.split('.');
-    var root = parts.length > 1 ? '.' + parts.slice(-2).join('.') : '';
-    expire(); expire(host); if (root) expire(root);
-    if (code === 'en') return;
-    var v = 'googtrans=/en/' + code + ';path=/';
-    document.cookie = v;
-    if (root) document.cookie = v + ';domain=' + root;
+  var originals = new WeakMap();
+  function store(get) { try { return get(); } catch (e) { return null; } }
+  function saved() { var c = store(function () { return localStorage.getItem('cb-lang'); }); return LANGS.some(function (l) { return l[0] === c; }) ? c : 'en'; }
+
+  function apply(code) {
+    var idx = LANGS.map(function (l) { return l[0]; }).indexOf(code);
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/.test(p.nodeName) || p.closest('.mk-lang,[translate="no"]')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var n;
+    while ((n = walker.nextNode())) {
+      var orig = originals.has(n) ? originals.get(n) : n.nodeValue;
+      var core = orig.trim();
+      if (!core) continue;
+      var row = DICT[core.replace(/\s+/g, ' ').toLowerCase()];
+      if (!row) continue;
+      if (!originals.has(n)) originals.set(n, orig);
+      var lead = orig.match(/^\s*/)[0], tail = orig.match(/\s*$/)[0];
+      n.nodeValue = idx > 0 ? lead + row[idx] + tail : orig;
+    }
+    var h = document.documentElement;
+    h.setAttribute('lang', code);
+    if (RTL[code]) h.setAttribute('dir', 'rtl'); else h.removeAttribute('dir');
   }
 
-  function injectCss() {
+  function css() {
     var s = document.createElement('style');
-    s.id = 'cb-lang-css';
     s.textContent =
       '.mk-lang{position:relative;flex-shrink:0}' +
       '.mk-lang-btn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:inherit;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s}' +
@@ -45,41 +92,19 @@
       '.mk-lang-menu li:hover,.mk-lang-menu li:focus{background:rgba(79,216,232,.14);color:#fff}' +
       '.mk-lang-menu li[aria-selected="true"]{color:#4fd8e8;font-weight:700}' +
       '.mk-nav:has(.mk-lang-btn[aria-expanded="true"]){z-index:1000}' +
-      /* hide Google's own banner/tooltips; keep our button as the only control */
-      'body{top:0!important}.goog-te-banner-frame,iframe.skiptranslate,#goog-gt-tt,.goog-tooltip,.goog-te-balloon-frame{display:none!important}' +
-      '.goog-text-highlight{background:none!important;box-shadow:none!important}' +
-      '#cb-gt{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}' +
       '@media (max-width:880px){.mk-lang-btn{height:34px;padding:0 9px}.mk-lang-menu{position:fixed;top:64px;inset-inline-end:12px;inset-inline-start:auto}}' +
       '@media (max-width:420px){.mk-lang-code{display:none}.mk-lang-btn{padding:0 8px}}';
     document.head.appendChild(s);
   }
 
-  function loadTranslator(onFail) {
-    var holder = document.createElement('div');
-    holder.id = 'cb-gt';
-    holder.className = 'notranslate';
-    document.body.appendChild(holder);
-    window.googleTranslateElementInit = function () {
-      new window.google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: LANGS.slice(1).map(function (l) { return l[0]; }).join(','),
-        autoDisplay: false
-      }, 'cb-gt');
-    };
-    var s = document.createElement('script');
-    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    s.async = true;
-    s.onerror = onFail;
-    document.head.appendChild(s);
-  }
-
   function init() {
     var box = document.querySelector('.mk-lang');
-    if (!box) return;
-    if (TERMINAL.test(location.pathname)) { writeLangKeep(); return; } // terminal stays untranslated, button hidden
-    injectCss();
-    var code = readLang(), current = LANGS[0];
+    if (!box || TERMINAL.test(location.pathname)) return;
+    css();
+    var code = saved();
     var btn = box.querySelector('.mk-lang-btn'), menu = box.querySelector('.mk-lang-menu');
+    box.setAttribute('translate', 'no');
+    box.hidden = false;
     menu.innerHTML = '';
     LANGS.forEach(function (l) {
       var li = document.createElement('li');
@@ -87,35 +112,31 @@
       li.setAttribute('tabindex', '-1');
       li.setAttribute('data-lang', l[0]);
       li.setAttribute('lang', l[0]);
-      li.setAttribute('translate', 'no');
-      li.className = 'notranslate';
-      li.setAttribute('aria-selected', l[0] === code ? 'true' : 'false');
       li.textContent = l[1];
-      if (l[0] === code) current = l;
       menu.appendChild(li);
     });
-    box.querySelector('.mk-lang-code').textContent = current[0].split('-')[0].toUpperCase();
-    box.className += ' notranslate';
-    box.setAttribute('translate', 'no');
-    box.hidden = false;
-
-    if (code !== 'en') {
-      loadTranslator(function () { writeLang('en'); }); // translator blocked/offline: fall back to English
+    function mark() {
+      Array.prototype.forEach.call(menu.children, function (li) { li.setAttribute('aria-selected', li.getAttribute('data-lang') === code ? 'true' : 'false'); });
+      box.querySelector('.mk-lang-code').textContent = code.toUpperCase();
     }
-
     function open(v) {
       btn.setAttribute('aria-expanded', v ? 'true' : 'false');
       menu.hidden = !v;
       if (v) (menu.querySelector('[aria-selected="true"]') || menu.firstChild).focus();
     }
+    mark();
+    if (code !== 'en') {
+      apply(code);
+      var t, mo = new MutationObserver(function () { clearTimeout(t); t = setTimeout(function () { if (code !== 'en') apply(code); }, 200); });
+      mo.observe(document.body, { childList: true, subtree: true });
+    }
     btn.addEventListener('click', function () { open(menu.hidden); });
     menu.addEventListener('click', function (e) {
       var li = e.target.closest('[data-lang]');
       if (!li) return;
-      var next = li.getAttribute('data-lang');
-      if (next === code) { open(false); return; }
-      writeLang(next);
-      location.reload();
+      code = li.getAttribute('data-lang');
+      store(function () { localStorage.setItem('cb-lang', code); });
+      apply(code); mark(); open(false);
     });
     menu.addEventListener('keydown', function (e) {
       var li = document.activeElement;
@@ -126,6 +147,5 @@
     });
     document.addEventListener('click', function (e) { if (!box.contains(e.target)) open(false); });
   }
-  function writeLangKeep() { /* terminal pages: never load the translator, leave the button hidden */ }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

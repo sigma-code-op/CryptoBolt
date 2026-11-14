@@ -40,7 +40,7 @@ CryptoBolt uses [Google Analytics](https://policies.google.com/privacy) (GA4) to
 
 A banner asks for your choice the first time you visit. If you accept, analytics and ad-personalization cookies are enabled; if you reject, they stay off and ads are shown without personalization instead. You can change your mind anytime: .
 
-**Language selection.** The language button on our public pages translates the page you are viewing with [Google Translate](https://policies.google.com/privacy)'s website translator. Nothing is sent to Google until you pick a language other than English; after that, Google translates the page text and handles that request under its own privacy policy. Your choice is remembered in a small first-party cookie (googtrans) so the next page opens in the same language; choosing English removes it. Terminal screens are never translated.
+**Language selection.** The language button on our public pages swaps the page text for translations stored in the site itself. No third party is contacted. Your choice is saved in your browser's local storage (cb-lang) so the next page opens in the same language; choosing English resets it. Text without a stored translation stays in English. Terminal screens are never translated.
 
 This is separate from the `localStorage` data described above, which is not a cookie, is never sent to Google or any analytics provider, and has no consent toggle because it never leaves your device.
 
