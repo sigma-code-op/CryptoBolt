@@ -60,13 +60,6 @@ const SCRIPT_SRC = [
   'https://pagead2.googlesyndication.com', // adsbygoogle.js
   'https://cdn.jsdelivr.net', // @supabase/supabase-js
   'https://unpkg.com', // lightweight-charts
-  'https://translate.google.com', // language switcher (js/lang-switcher.js)
-  'https://translate.googleapis.com',
-  'https://translate-pa.googleapis.com', // supported-languages call
-  // Google Website Translator builds a hidden srcdoc iframe that runs one fixed inline script
-  // (inherits this policy). Allow exactly that script by hash instead of 'unsafe-inline'.
-  "'sha256-6Rkjt5FwTd5vAw94Q08NLDZsSaGTzg4NsdIfKtECSp0='",
-  'https://www.gstatic.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
@@ -74,8 +67,6 @@ const STYLE_SRC = [
   "'self'",
   "'unsafe-inline'", // inline style="" attributes + js/cookie-consent.js's injected <style> — see file header
   'https://fonts.googleapis.com',
-  'https://www.gstatic.com', // Google Website Translator stylesheet
-  'https://translate.googleapis.com',
 ];
 
 const FONT_SRC = ["'self'", 'https://fonts.gstatic.com', 'data:'];
@@ -92,10 +83,6 @@ const IMG_SRC = [
   'https://sellwithboost.com', // "Listed on Sell With Boost" badge image
   'https://images.dmca.com', // DMCA Protection Status badge image
   'https://www.nxgntools.com', // "Featured on NxGn Tools" badge image
-  'https://www.gstatic.com', // Google Website Translator images
-  'https://fonts.gstatic.com', // Translator's own icon (productlogos/translate)
-  'https://translate.google.com',
-  'https://translate.googleapis.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
@@ -124,8 +111,6 @@ const CONNECT_SRC = [
   'https://analytics.google.com',
   'https://pagead2.googlesyndication.com',
   'https://www.googletagmanager.com',
-  'https://translate.googleapis.com', // Google Website Translator
-  'https://translate-pa.googleapis.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
@@ -134,7 +119,6 @@ const FRAME_SRC = [
   'https://googleads.g.doubleclick.net',
   'https://tpc.googlesyndication.com',
   'https://www.google.com',
-  'https://translate.google.com',
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
 ];
 
