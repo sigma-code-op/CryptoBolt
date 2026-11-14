@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://www.gstatic.com 'sha256-V01l/R2OiqfzjYLvNDEsC1yb6jhEpxNyKJfHsfAc7Us=' 'sha256-gpQeSjItk1jmyglHUOWBPdrLe6xxvvDPynrovoJXwXs=' 'sha256-kFCydTOhJgeYh9oVnrK236QoUq6p7HNqPb0sYxiJOAY=' 'sha256-1t7L51jZxDm2xwyaIRU6gP8ZoDK36n4ek7WJqKakpE8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://translate.googleapis.com; font-src 'self' https://cryptobolt.io https://www.cryptobolt.io https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://fonts.gstatic.com https://translate.google.com https://translate.googleapis.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-ads data-gtag-lazy></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Liquidation Probability Calculator for Crypto | CryptoBolt</title>
+    <meta name="description" content="Free liquidation probability calculator: the odds a leveraged crypto position is liquidated, how long it takes, and the highest leverage for a risk you accept.">
+    <meta name="keywords" content="liquidation probability calculator, probability of liquidation, chance of getting liquidated, safe leverage crypto, liquidation risk calculator, max leverage calculator">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/liquidation-probability-calculator">
+    <link rel="alternate" type="text/markdown" href="https://cryptobolt.io/md/liquidation-probability-calculator.md">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/liquidation-probability-calculator">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/liquidation-probability-calculator">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/liquidation-probability-calculator">
+    <meta property="og:title" content="Liquidation Probability Calculator for Crypto | CryptoBolt">
+    <meta property="og:description" content="The chance a leveraged crypto position is liquidated, the time it takes, and the leverage that fits your risk. Free, no signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/liquidation-probability-calculator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Liquidation probability calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Liquidation Probability Calculator for Crypto | CryptoBolt">
+    <meta name="twitter:description" content="The chance a leveraged crypto position is liquidated, the time it takes, and the leverage that fits your risk. Free, no signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/liquidation-probability-calculator.png">
+    <meta name="twitter:image:alt" content="Liquidation probability calculator">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Liquidation probability calculator",
+  "url": "https://cryptobolt.io/liquidation-probability-calculator",
+  "description": "A free calculator for the probability that a leveraged crypto futures position is liquidated within a chosen holding period, with tables of odds by leverage and volatility.",
+  "dateModified": "2026-11-14",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CryptoBolt",
+    "url": "https://cryptobolt.io/"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://cryptobolt.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Crypto calculators",
+        "item": "https://cryptobolt.io/crypto-calculators"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Liquidation probability calculator",
+        "item": "https://cryptobolt.io/liquidation-probability-calculator"
+      }
+    ]
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the probability of getting liquidated at 10x leverage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on how volatile the coin is and how long you hold. With a Bitcoin-like 45% annualised volatility, a 10x long has roughly an 11% chance of being liquidated within a week and about a 44% chance within a month in this model. The calculator above gives the figure for your own inputs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate the chance my position gets liquidated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Work out the distance to liquidation (about 1 divided by leverage, minus the maintenance margin rate), convert it to a log distance, scale your annual volatility to your holding period, and apply the barrier-hitting formula 2 × &Phi;(−a / (&sigma;&radic;T)). The calculator does all four steps and shows the result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What leverage is safe for crypto futures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No leverage is safe in an absolute sense, but you can choose a level for a risk you accept. In this model a Bitcoin-like asset held for a week stays under a 5% liquidation chance at about 8x, and a more volatile coin needs less. Using a stop-loss placed well inside the liquidation price lowers the real risk further."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the chance higher than the chance of ending below the liquidation price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because liquidation happens the moment price touches the level, even if it recovers later. For a driftless random walk the chance of touching a level is twice the chance of finishing beyond it, which is why the numbers here are larger than a quick estimate from a normal curve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this account for my stop-loss?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The output is the chance of reaching the liquidation price, which is the worst case if you have no stop. With a stop-loss between your entry and the liquidation price, you would normally exit earlier, so the chance of losing the full margin is lower, though a stop can still slip in a fast market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I trust the volatility presets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Treat them as round illustrative figures, not live measurements. Volatility changes constantly. For a real decision, compute your own from recent daily closes (standard deviation of daily log returns times the square root of 365) and type it into the volatility box."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work for shorts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Switch the toggle to Short and the model uses the barrier above your entry price. A short also faces the asymmetry that prices can rise without limit, so the practical risk of a short squeeze is not fully captured by a normal-distribution model."
+      }
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Liquidation probability calculator",
+  "url": "https://cryptobolt.io/liquidation-probability-calculator",
+  "isPartOf": {
+    "@id": "https://cryptobolt.io/#website"
+  },
+  "publisher": {
+    "@id": "https://cryptobolt.io/#organization"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Organization", "@id": "https://cryptobolt.io/#organization", "name": "CryptoBolt", "alternateName": "Crypto Bolt", "url": "https://cryptobolt.io/", "logo": {"@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png", "width": 512, "height": 512}, "image": "https://cryptobolt.io/assets/og-image.png", "description": "CryptoBolt is a free crypto market research and analysis platform with live Binance spot and futures data, charts, paper trading, calculators and AI-assisted research. It is an education and analysis tool, not an exchange and not financial advice.", "email": "info@cryptobolt.io", "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": "info@cryptobolt.io", "url": "https://cryptobolt.io/contact", "availableLanguage": ["English"]}], "knowsAbout": ["Cryptocurrency market data", "Technical analysis", "Crypto paper trading", "Perpetual futures"], "sameAs": ["https://x.com/cryptobolt5fvj", "https://github.com/sigma-code-op/CryptoBolt", "https://youtube.com/@cryptobolt-1", "https://www.facebook.com/profile.php?id=61595142351905"]}
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+
+        .lc-tbl-wrap{overflow-x:auto;margin-top:14px;}
+        .lc-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:6px;}
+        .lc-rows .lc-field label{font-size:11px;}
+        .lc-fib{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+        .lc-fib th,.lc-fib td{padding:9px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;}
+        .lc-fib td:last-child{font-family:'JetBrains Mono',monospace;text-align:right;}
+        .lc-meta{max-width:820px;margin:0 auto 18px;font-size:12px;color:var(--mk-text-dim,#8B93A3);text-align:center;}
+        .lc-meta a{color:var(--mk-green,#22C58C);}
+        .lc-sel{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        @media(max-width:640px){.lc-rows{grid-template-columns:1fr;}}
+        .lc-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:6px;}
+        @media(max-width:640px){.lc-grid3{grid-template-columns:1fr;}}
+        .lc-hint{font-size:11px;color:var(--mk-text-dim,#8B93A3);font-weight:400;}
+        .lc-callout{margin:18px 0;padding:14px 16px;border-radius:10px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);font-size:14px;}
+        .mk-article caption{caption-side:bottom;text-align:left;font-size:12px;color:var(--mk-text-dim,#8B93A3);padding-top:8px;white-space:normal;}
+    </style>
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app">Terminal</a>
+        <a href="features">Features</a>
+        <a href="ai">AI Research</a>
+        <a href="spot-vs-futures">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <div class="mk-lang" hidden>
+            <button type="button" class="mk-lang-btn" aria-label="Change language" aria-haspopup="listbox" aria-expanded="false">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="mk-lang-code">EN</span>
+            </button>
+            <ul class="mk-lang-menu" role="listbox" aria-label="Language" hidden></ul>
+        </div>
+        <a href="app" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app">Terminal</a>
+    <a href="features">Features</a>
+    <a href="ai">AI Research</a>
+    <a href="spot-vs-futures">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool · original analysis</span>
+    <h1>Liquidation probability calculator</h1>
+    <p>Most tools tell you where you get liquidated. This one tells you how likely it is: the odds of touching your liquidation price, how long you survive, and the most leverage that fits the risk you accept.</p>
+</header>
+
+<p class="lc-meta">Written and checked by the CryptoBolt founder · Reviewed November 14, 2026 · <a href="editorial-policy">How we build and check our tools</a></p>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc">
+        <div class="lc-toggle" role="group" aria-label="Position side">
+            <button type="button" id="lp-side-long" class="active" aria-pressed="true">Long</button>
+            <button type="button" id="lp-side-short" aria-pressed="false">Short</button>
+        </div>
+        <div class="lc-grid">
+            <div class="lc-field">
+                <label for="lp-entry">Entry price (USD)</label>
+                <input type="number" id="lp-entry" inputmode="decimal" step="any" value="65000">
+            </div>
+            <div class="lc-field">
+                <label for="lp-leverage">Leverage (x)</label>
+                <input type="number" id="lp-leverage" inputmode="decimal" step="any" min="1" value="10">
+            </div>
+            <div class="lc-field">
+                <label for="lp-preset">Volatility preset <span class="lc-hint">(illustrative, not live)</span></label>
+                <select id="lp-preset">
+                    <option value="btc">Bitcoin-like · 45%</option>
+                    <option value="eth">Ethereum-like · 65%</option>
+                    <option value="sol">Solana-like · 85%</option>
+                    <option value="alt">Large-cap altcoin · 110%</option>
+                    <option value="meme">Small-cap / meme coin · 160%</option>
+                </select>
+            </div>
+            <div class="lc-field">
+                <label for="lp-vol">Annualised volatility (%)</label>
+                <input type="number" id="lp-vol" inputmode="decimal" step="any" min="1" value="45">
+            </div>
+            <div class="lc-field">
+                <label for="lp-days">Time horizon (days)</label>
+                <input type="number" id="lp-days" inputmode="decimal" step="any" min="0.01" value="7">
+            </div>
+            <div class="lc-field">
+                <label for="lp-mmr">Maintenance margin rate (%)</label>
+                <input type="number" id="lp-mmr" inputmode="decimal" step="any" min="0" value="0.5">
+            </div>
+            <div class="lc-field">
+                <label for="lp-drift">Yearly drift of price (%) <span class="lc-hint">(optional, 0 = none)</span></label>
+                <input type="number" id="lp-drift" inputmode="decimal" step="any" value="0">
+            </div>
+            <div class="lc-field">
+                <label for="lp-target">Risk you will accept (%) <span class="lc-hint">(for max leverage)</span></label>
+                <input type="number" id="lp-target" inputmode="decimal" step="any" min="0.1" max="99" value="5">
+            </div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="lp-out-prob">10.9%</div>
+            <div class="lc-sub" id="lp-out-sub">chance the price touches your liquidation price at least once in 7.0 days</div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="lp-out-price">$58,825.00</b><span>Liquidation price</span></div>
+            <div class="lc-stat"><b id="lp-out-dist">9.50%</b><span>Move needed to be liquidated</span></div>
+            <div class="lc-stat"><b id="lp-out-sigmas">4.2</b><span>Size of that move in daily standard deviations</span></div>
+            <div class="lc-stat"><b id="lp-out-t5">4.7 days</b><span>Time until a 5% chance of liquidation</span></div>
+            <div class="lc-stat"><b id="lp-out-t50">39 days</b><span>Time until a 50% chance of liquidation</span></div>
+            <div class="lc-stat"><b id="lp-out-maxlev">8.3x</b><span>Highest leverage within your accepted risk</span></div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="lp-p1">&lt;0.05%</b><span>Within 1 day</span></div>
+            <div class="lc-stat"><b id="lp-p7">10.9%</b><span>Within 7 days</span></div>
+            <div class="lc-stat"><b id="lp-p30">43.9%</b><span>Within 30 days</span></div>
+            <div class="lc-stat"><b id="lp-p90">65.5%</b><span>Within 90 days</span></div>
+        </div>
+        <div class="lc-warning" id="lp-warning"></div>
+        <p class="lc-note">A model, not a forecast: it assumes price moves continuously with the volatility you enter, so it understates wicks, gaps and crashes. Treat the result as a minimum. Get the exact liquidation price for your exchange with the <a href="liquidation-price-calculator">liquidation price calculator</a>. Educational tool, not financial advice.</p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>Why a liquidation price on its own is not enough</h2>
+    <p>Every leverage guide tells you where your position gets liquidated. Almost none tell you <em>how likely</em> that is. Yet two positions with the same liquidation distance can carry completely different risk: a 9.5% cushion on a slow-moving large coin is a very different bet from the same cushion on a coin that routinely moves 10% in a day. The distance only becomes a risk once you compare it with how far price tends to travel in the time you plan to hold.</p>
+    <p>This calculator does that comparison. You give it leverage, a volatility figure and a holding period, and it returns the probability that price touches your liquidation level at least once, how long you can expect to survive, and the highest leverage that keeps the odds within a limit you choose. The default example &mdash; a 10x long with 45% annualised volatility held for a week &mdash; comes out at roughly 11%, which most people find higher than their gut feeling suggests.</p>
+
+    <h2>How the odds are calculated</h2>
+    <ol>
+        <li><strong>Distance to liquidation.</strong> For an isolated position the cushion is roughly <code>1 &divide; leverage &minus; maintenance margin rate</code>. At 10x with a 0.5% maintenance rate that is 10% &minus; 0.5% = 9.5%, so a long is liquidated near 9.5% below entry. This is the same simplification used by our <a href="liquidation-price-calculator">liquidation price calculator</a>.</li>
+        <li><strong>Convert it to a log distance.</strong> Price moves multiply, so the model works in log terms: <code>a = &minus;ln(1 &minus; distance)</code> for a long and <code>a = ln(1 + distance)</code> for a short.</li>
+        <li><strong>Scale volatility to your horizon.</strong> Annual volatility <code>&sigma;</code> becomes <code>&sigma; &times; &radic;(days &divide; 365)</code> over the holding period.</li>
+        <li><strong>Apply the barrier-hitting formula.</strong> With no drift, the chance that a random walk touches a level at least once is <code>2 &times; &Phi;(&minus;a &divide; (&sigma;&radic;T))</code>, where &Phi; is the standard normal curve. This is twice the chance of <em>ending</em> beyond the level, because every path that finishes past it must have touched it, and half of the paths that touch it come back. With a drift the formula gains one extra term, which the calculator includes.</li>
+    </ol>
+    <p>Two results fall out of the same maths. The time until the chance reaches 5% or 50% comes from solving the formula for time, and the maximum leverage for your accepted risk comes from solving it for distance. Both are shown above, so you can see not just how risky a setup is, but what would make it acceptable.</p>
+
+    <h2>Liquidation odds by leverage and holding period</h2>
+    <p>The tables below were produced by the same functions that power the calculator. They show the chance that a <strong>long</strong> position is liquidated at least once, with a 0.5% maintenance margin rate and no drift. The three volatility levels are round illustrative assumptions, not measurements of any coin on any date; replace them with your own figure in the calculator.</p>
+    <div class="lc-tbl-wrap"><table>
+        <caption>Bitcoin-like asset, 45% annualised volatility</caption>
+        <thead><tr><th>Leverage</th><th>Liquidation distance</th><th>1 day</th><th>7 days</th><th>30 days</th><th>90 days</th></tr></thead>
+        <tbody><tr><td>2x</td><td>49.50%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>0.22%</td></tr><tr><td>3x</td><td>32.83%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>0.20%</td><td>7.49%</td></tr><tr><td>5x</td><td>19.50%</td><td>&lt;0.05%</td><td>0.05%</td><td>9.27%</td><td>33.2%</td></tr><tr><td>10x</td><td>9.50%</td><td>&lt;0.05%</td><td>10.9%</td><td>43.9%</td><td>65.5%</td></tr><tr><td>20x</td><td>4.50%</td><td>5.06%</td><td>46.0%</td><td>72.1%</td><td>83.7%</td></tr><tr><td>25x</td><td>3.50%</td><td>13.0%</td><td>56.8%</td><td>78.2%</td><td>87.3%</td></tr><tr><td>50x</td><td>1.50%</td><td>52.1%</td><td>80.8%</td><td>90.7%</td><td>94.6%</td></tr><tr><td>100x</td><td>0.50%</td><td>83.1%</td><td>93.6%</td><td>96.9%</td><td>98.2%</td></tr></tbody>
+    </table></div>
+    <div class="lc-tbl-wrap"><table>
+        <caption>Ethereum-like asset, 65% annualised volatility</caption>
+        <thead><tr><th>Leverage</th><th>Liquidation distance</th><th>1 day</th><th>7 days</th><th>30 days</th><th>90 days</th></tr></thead>
+        <tbody><tr><td>2x</td><td>49.50%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>3.43%</td></tr><tr><td>3x</td><td>32.83%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>3.27%</td><td>21.8%</td></tr><tr><td>5x</td><td>19.50%</td><td>&lt;0.05%</td><td>1.60%</td><td>24.4%</td><td>50.2%</td></tr><tr><td>10x</td><td>9.50%</td><td>0.33%</td><td>26.7%</td><td>59.2%</td><td>75.7%</td></tr><tr><td>20x</td><td>4.50%</td><td>17.6%</td><td>60.9%</td><td>80.5%</td><td>88.7%</td></tr><tr><td>25x</td><td>3.50%</td><td>29.5%</td><td>69.2%</td><td>84.8%</td><td>91.2%</td></tr><tr><td>50x</td><td>1.50%</td><td>65.7%</td><td>86.7%</td><td>93.5%</td><td>96.3%</td></tr><tr><td>100x</td><td>0.50%</td><td>88.3%</td><td>95.6%</td><td>97.9%</td><td>98.8%</td></tr></tbody>
+    </table></div>
+    <div class="lc-tbl-wrap"><table>
+        <caption>Solana-like asset, 85% annualised volatility</caption>
+        <thead><tr><th>Leverage</th><th>Liquidation distance</th><th>1 day</th><th>7 days</th><th>30 days</th><th>90 days</th></tr></thead>
+        <tbody><tr><td>2x</td><td>49.50%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>0.51%</td><td>10.6%</td></tr><tr><td>3x</td><td>32.83%</td><td>&lt;0.05%</td><td>0.07%</td><td>10.2%</td><td>34.6%</td></tr><tr><td>5x</td><td>19.50%</td><td>&lt;0.05%</td><td>6.54%</td><td>37.3%</td><td>60.7%</td></tr><tr><td>10x</td><td>9.50%</td><td>2.49%</td><td>39.6%</td><td>68.2%</td><td>81.3%</td></tr><tr><td>20x</td><td>4.50%</td><td>30.1%</td><td>69.6%</td><td>85.0%</td><td>91.3%</td></tr><tr><td>25x</td><td>3.50%</td><td>42.3%</td><td>76.2%</td><td>88.4%</td><td>93.3%</td></tr><tr><td>50x</td><td>1.50%</td><td>73.4%</td><td>89.8%</td><td>95.1%</td><td>97.1%</td></tr><tr><td>100x</td><td>0.50%</td><td>91.0%</td><td>96.6%</td><td>98.4%</td><td>99.1%</td></tr></tbody>
+    </table></div>
+    <p>Three patterns stand out. First, the odds rise with leverage far faster than most people expect: on the Bitcoin-like table, going from 10x to 20x lifts the 30-day chance from about 44% to about 72%. Second, time is not on your side: even a 5x position that is almost safe over a week has roughly a one-in-three chance of being liquidated within three months if it is simply left open. Third, a high-leverage position is not &ldquo;risky for a day&rdquo; but &ldquo;almost certain to be closed by the market if held&rdquo;; 100x only survives because traders exit within minutes.</p>
+
+    <h2>The highest leverage for a 5% chance of liquidation</h2>
+    <p>If you would accept a one-in-twenty chance of being liquidated over your holding period, this is the most leverage the model allows (long, 0.5% maintenance margin, no drift):</p>
+    <div class="lc-tbl-wrap"><table>
+        <thead><tr><th>Asset (assumed volatility)</th><th>Held 1 day</th><th>Held 7 days</th><th>Held 30 days</th></tr></thead>
+        <tbody><tr><td>BTC (45% vol)</td><td>20x</td><td>8.3x</td><td>4.4x</td></tr><tr><td>ETH (65% vol)</td><td>14x</td><td>6.0x</td><td>3.2x</td></tr><tr><td>SOL (85% vol)</td><td>11x</td><td>4.7x</td><td>2.6x</td></tr><tr><td>Large-cap altcoin (110% vol)</td><td>9.0x</td><td>3.8x</td><td>2.1x</td></tr><tr><td>Small-cap / meme coin (160% vol)</td><td>6.4x</td><td>2.8x</td><td>1.7x</td></tr></tbody>
+    </table></div>
+    <p>These numbers are well below the maximum leverage exchanges offer, and that gap is the point. Exchange limits describe what the matching engine will allow; they say nothing about what is sensible for a position you intend to hold. If your plan is to hold for a month, the table suggests staying in the low single digits on a Bitcoin-like asset and lower on anything more volatile.</p>
+
+    <h2>How long until a 5% and a 50% chance of liquidation</h2>
+    <div class="lc-tbl-wrap"><table>
+        <thead><tr><th>Leverage (long)</th><th>BTC-like: 5% chance by</th><th>BTC-like: 50% chance by</th><th>SOL-like: 5% chance by</th><th>SOL-like: 50% chance by</th></tr></thead>
+        <tbody><tr><td>3x</td><td>74 days</td><td>1.7 years</td><td>21 days</td><td>176 days</td></tr><tr><td>5x</td><td>22 days</td><td>186 days</td><td>6.2 days</td><td>52 days</td></tr><tr><td>10x</td><td>4.7 days</td><td>39 days</td><td>1.3 days</td><td>11 days</td></tr><tr><td>20x</td><td>24 hours</td><td>8.4 days</td><td>6.7 hours</td><td>2.4 days</td></tr><tr><td>50x</td><td>2.6 hours</td><td>22 hours</td><td>0.7 hours</td><td>6.1 hours</td></tr></tbody>
+    </table></div>
+    <p>This view turns the odds into a clock. At 20x on a Bitcoin-like asset, there is already a 5% chance of liquidation within about a day, and an even chance within about eight days. On a more volatile coin the clock runs much faster at the same leverage. A useful rule of thumb follows: <strong>double the volatility and you must halve the leverage to keep the same odds.</strong></p>
+
+    <h2>What this model gets wrong, and which way</h2>
+    <p>Every model simplifies. The ones below all push real-world risk <em>up</em>, which is why we call the output a minimum rather than an estimate.</p>
+    <ul>
+        <li><strong>Fat tails.</strong> Crypto returns have more extreme days than a normal curve allows. Large moves that the model treats as one-in-a-thousand happen noticeably more often.</li>
+        <li><strong>Wicks and gaps.</strong> Liquidation engines work on the mark price, and thin-book spikes can push it through your level for a moment. The formula watches price continuously, which captures some of this, but real order books add more.</li>
+        <li><strong>Volatility is not constant.</strong> It clusters: calm periods are followed by violent ones. A volatility figure taken from a quiet month will understate a stormy one.</li>
+        <li><strong>Funding and fees.</strong> Perpetual futures charge <a href="funding-rate-explained">funding</a>, and a position held for weeks slowly loses margin, moving liquidation closer. The <a href="funding-fee-calculator">funding fee calculator</a> shows the size of that drag.</li>
+        <li><strong>Tiered margin and cross margin.</strong> Larger positions often face higher maintenance rates, and cross margin shares your whole balance across positions. Both change the real liquidation point.</li>
+    </ul>
+    <p>One effect pushes the other way: if you use a stop-loss, you will normally exit long before liquidation, so the real chance of losing your whole margin is lower than the figure shown. That is exactly why a stop-loss and a sensible size matter more than the leverage setting. See <a href="stop-loss-orders-explained">stop-loss orders explained</a> for how stops can slip in fast markets.</p>
+
+    <h2>Finding a volatility figure you can trust</h2>
+    <p>The most useful input is your own. A simple recipe: take the last 30 to 90 daily closing prices, compute each day&rsquo;s log return <code>ln(close &divide; previous close)</code>, take the standard deviation of those returns and multiply by <code>&radic;365</code>. Crypto trades every day, so 365 is the right number. Because volatility changes, it is worth running the calculator twice, once with a calm figure and once with a stormy one, and sizing for the stormy case.</p>
+
+    <h2>Putting it into practice</h2>
+    <ol>
+        <li>Decide your holding period first. A trade you will close within hours faces very different odds from one you will hold for weeks.</li>
+        <li>Enter the volatility of the coin you actually trade, not a typical one.</li>
+        <li>Check the maximum leverage for your accepted risk. If your planned leverage is above it, cut the leverage or shorten the hold.</li>
+        <li>Place a stop-loss well inside the liquidation price and size the position from the stop distance with the <a href="position-size-calculator">position size calculator</a>, not from the leverage setting.</li>
+        <li>Check that the planned reward justifies the risk with the <a href="risk-reward-calculator">risk-reward calculator</a>, and test the whole plan with no real money in <a href="crypto-paper-trading">crypto paper trading</a>.</li>
+    </ol>
+
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Liquidation probability calculator FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>What is the probability of getting liquidated at 10x leverage?</h3>
+            <p>It depends on how volatile the coin is and how long you hold. With a Bitcoin-like 45% annualised volatility, a 10x long has roughly an 11% chance of being liquidated within a week and about a 44% chance within a month in this model. The calculator above gives the figure for your own inputs.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How do I calculate the chance my position gets liquidated?</h3>
+            <p>Work out the distance to liquidation (about 1 divided by leverage, minus the maintenance margin rate), convert it to a log distance, scale your annual volatility to your holding period, and apply the barrier-hitting formula 2 &times; &Phi;(&minus;a / (&sigma;&radic;T)). The calculator does all four steps and shows the result.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What leverage is safe for crypto futures?</h3>
+            <p>No leverage is safe in an absolute sense, but you can choose a level for a risk you accept. In this model a Bitcoin-like asset held for a week stays under a 5% liquidation chance at about 8x, and a more volatile coin needs less. Using a stop-loss placed well inside the liquidation price lowers the real risk further.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Why is the chance higher than the chance of ending below the liquidation price?</h3>
+            <p>Because liquidation happens the moment price touches the level, even if it recovers later. For a driftless random walk the chance of touching a level is twice the chance of finishing beyond it, which is why the numbers here are larger than a quick estimate from a normal curve.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does this account for my stop-loss?</h3>
+            <p>No. The output is the chance of reaching the liquidation price, which is the worst case if you have no stop. With a stop-loss between your entry and the liquidation price, you would normally exit earlier, so the chance of losing the full margin is lower, though a stop can still slip in a fast market.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Can I trust the volatility presets?</h3>
+            <p>Treat them as round illustrative figures, not live measurements. Volatility changes constantly. For a real decision, compute your own from recent daily closes (standard deviation of daily log returns times the square root of 365) and type it into the volatility box.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does it work for shorts?</h3>
+            <p>Yes. Switch the toggle to Short and the model uses the barrier above your entry price. A short also faces the asymmetry that prices can rise without limit, so the practical risk of a short squeeze is not fully captured by a normal-distribution model.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep going</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="liquidation-price-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="triangle-alert" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Liquidation price calculator</h3>
+                <p>The exact price a leveraged long or short is force-closed.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="risk-of-ruin-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="shield-check" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Risk of ruin calculator</h3>
+                <p>How likely a trading plan is to hit a deep drawdown.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="position-size-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="ruler" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Position size calculator</h3>
+                <p>Size a trade from risk, entry and stop.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app">Terminal</a>
+            <a href="features">Features</a>
+            <a href="releases">Releases</a>
+            <a href="trade">Paper trading</a>
+            <a href="ai">AI research</a>
+            <a href="spot-vs-futures">Spot vs futures</a>
+            <a href="funding-rate-explained">Funding rate explained</a>
+            <a href="crypto-calculators">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about">About</a>
+            <a href="blog">Blog</a>
+            <a href="glossary">Glossary</a>
+            <a href="contact">Contact</a>
+            <a href="ebook">Ebook</a>
+            <a href="editorial-policy">Editorial policy</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy">Privacy policy</a>
+            <a href="terms">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/risk-models.js?v=20261114" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+<script src="js/lang-switcher.js?v=20261114b" defer></script>
+</body>
+</html>

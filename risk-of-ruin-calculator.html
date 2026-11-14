@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://www.gstatic.com 'sha256-bIw44qbLcXi0pFxyrlupXhkjDhxxcQ7CK7ZnFUUPlAQ=' 'sha256-ZDb4S1yV9bBfFiVqjeGu5C9MIzKtf1nqUPpywxGQt0Y=' 'sha256-LR8c6/h2q2bYy+1SNfbnorqVD/K69pm+5m2qEtOXsnc=' 'sha256-1t7L51jZxDm2xwyaIRU6gP8ZoDK36n4ek7WJqKakpE8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://translate.googleapis.com; font-src 'self' https://cryptobolt.io https://www.cryptobolt.io https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://fonts.gstatic.com https://translate.google.com https://translate.googleapis.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-ads data-gtag-lazy></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Risk of Ruin Calculator for Crypto Traders | CryptoBolt</title>
+    <meta name="description" content="Free risk of ruin calculator: simulate win rate, reward-to-risk and risk per trade to see the odds of a deep drawdown and how your size compares with Kelly.">
+    <meta name="keywords" content="risk of ruin calculator, trading risk of ruin, drawdown probability calculator, kelly criterion calculator trading, how much to risk per trade, trading account drawdown simulator">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/risk-of-ruin-calculator">
+    <link rel="alternate" type="text/markdown" href="https://cryptobolt.io/md/risk-of-ruin-calculator.md">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/risk-of-ruin-calculator">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/risk-of-ruin-calculator">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/risk-of-ruin-calculator">
+    <meta property="og:title" content="Risk of Ruin Calculator for Crypto Traders | CryptoBolt">
+    <meta property="og:description" content="Simulate the odds of a deep drawdown from your win rate, reward-to-risk and risk per trade. Free, no signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/risk-of-ruin-calculator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Risk of ruin calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Risk of Ruin Calculator for Crypto Traders | CryptoBolt">
+    <meta name="twitter:description" content="Simulate the odds of a deep drawdown from your win rate, reward-to-risk and risk per trade. Free, no signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/risk-of-ruin-calculator.png">
+    <meta name="twitter:image:alt" content="Risk of ruin calculator">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Risk of ruin calculator",
+  "url": "https://cryptobolt.io/risk-of-ruin-calculator",
+  "description": "A free trading simulator that estimates the probability of a chosen drawdown from win rate, reward-to-risk ratio and risk per trade, with tables of outcomes by risk level.",
+  "dateModified": "2026-11-14",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CryptoBolt",
+    "url": "https://cryptobolt.io/"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://cryptobolt.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Crypto calculators",
+        "item": "https://cryptobolt.io/crypto-calculators"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Risk of ruin calculator",
+        "item": "https://cryptobolt.io/risk-of-ruin-calculator"
+      }
+    ]
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is risk of ruin in trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the probability that a trading account suffers a loss large enough to end the strategy. Here we define ruin as a drawdown of a size you choose, measured from the account&rsquo;s highest balance, and estimate its probability over a set number of trades with a simulation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What risk per trade is safe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no universally safe number, but the tables show that risk per trade has an outsized effect on drawdown odds. A plan with a healthy edge had about a 0.24% chance of a 30% drawdown at 1% risk per trade and about 62% at 3% over 200 trades. Many traders keep risk at 1% or below for that reason."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from the Kelly criterion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kelly gives the bet size that maximises long-run growth if your edge is known exactly. Risk of ruin shows how rough the ride is at a given size. The calculator shows both, including what share of full Kelly your chosen risk represents, because betting full Kelly on an overestimated edge is dangerous."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my chance of ruin high even though my expectancy is positive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Positive expectancy describes the average over many trades. Variance still produces losing streaks and drawdowns on the way, and with a thin edge or a large bet size those can be deep. Lowering risk per trade is the most effective way to cut the odds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What win rate and ratio should I enter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use your own results from a trade log or paper trading record, and then test a lower win rate, because past results overstate the future more often than they understate it. Reward per 1 risked is the average win divided by the average loss, in R."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this include fees and slippage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Optionally. The cost field subtracts a fixed amount of R from each win and adds it to each loss. Leave it at zero for a pure strategy view, or try 0.03 to 0.1 to see how trading costs eat into a thin edge."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the result exact?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It is a simulation based on stated assumptions: independent trades, a constant win rate and a constant risk fraction. It uses a fixed seed, so it is repeatable, but it is an estimate of a model, not a prediction of your results."
+      }
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Risk of ruin calculator",
+  "url": "https://cryptobolt.io/risk-of-ruin-calculator",
+  "isPartOf": {
+    "@id": "https://cryptobolt.io/#website"
+  },
+  "publisher": {
+    "@id": "https://cryptobolt.io/#organization"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Organization", "@id": "https://cryptobolt.io/#organization", "name": "CryptoBolt", "alternateName": "Crypto Bolt", "url": "https://cryptobolt.io/", "logo": {"@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png", "width": 512, "height": 512}, "image": "https://cryptobolt.io/assets/og-image.png", "description": "CryptoBolt is a free crypto market research and analysis platform with live Binance spot and futures data, charts, paper trading, calculators and AI-assisted research. It is an education and analysis tool, not an exchange and not financial advice.", "email": "info@cryptobolt.io", "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": "info@cryptobolt.io", "url": "https://cryptobolt.io/contact", "availableLanguage": ["English"]}], "knowsAbout": ["Cryptocurrency market data", "Technical analysis", "Crypto paper trading", "Perpetual futures"], "sameAs": ["https://x.com/cryptobolt5fvj", "https://github.com/sigma-code-op/CryptoBolt", "https://youtube.com/@cryptobolt-1", "https://www.facebook.com/profile.php?id=61595142351905"]}
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261009">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+
+        .lc-tbl-wrap{overflow-x:auto;margin-top:14px;}
+        .lc-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:6px;}
+        .lc-rows .lc-field label{font-size:11px;}
+        .lc-fib{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+        .lc-fib th,.lc-fib td{padding:9px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;}
+        .lc-fib td:last-child{font-family:'JetBrains Mono',monospace;text-align:right;}
+        .lc-meta{max-width:820px;margin:0 auto 18px;font-size:12px;color:var(--mk-text-dim,#8B93A3);text-align:center;}
+        .lc-meta a{color:var(--mk-green,#22C58C);}
+        .lc-sel{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        @media(max-width:640px){.lc-rows{grid-template-columns:1fr;}}
+        .lc-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:6px;}
+        @media(max-width:640px){.lc-grid3{grid-template-columns:1fr;}}
+        .lc-hint{font-size:11px;color:var(--mk-text-dim,#8B93A3);font-weight:400;}
+        .lc-callout{margin:18px 0;padding:14px 16px;border-radius:10px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);font-size:14px;}
+        .mk-article caption{caption-side:bottom;text-align:left;font-size:12px;color:var(--mk-text-dim,#8B93A3);padding-top:8px;white-space:normal;}
+    </style>
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app">Terminal</a>
+        <a href="features">Features</a>
+        <a href="ai">AI Research</a>
+        <a href="spot-vs-futures">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <div class="mk-lang" hidden>
+            <button type="button" class="mk-lang-btn" aria-label="Change language" aria-haspopup="listbox" aria-expanded="false">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="mk-lang-code">EN</span>
+            </button>
+            <ul class="mk-lang-menu" role="listbox" aria-label="Language" hidden></ul>
+        </div>
+        <a href="app" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app">Terminal</a>
+    <a href="features">Features</a>
+    <a href="ai">AI Research</a>
+    <a href="spot-vs-futures">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool · original analysis</span>
+    <h1>Risk of ruin calculator</h1>
+    <p>Find the chance your trading plan suffers a deep drawdown. Enter your win rate, reward-to-risk and risk per trade, and a simulation shows the odds, the bad-luck case and how your size compares with Kelly.</p>
+</header>
+
+<p class="lc-meta">Written and checked by the CryptoBolt founder · Reviewed November 14, 2026 · <a href="editorial-policy">How we build and check our tools</a></p>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc">
+        <div class="lc-grid">
+            <div class="lc-field">
+                <label for="rr-win">Win rate (%)</label>
+                <input type="number" id="rr-win" inputmode="decimal" step="any" min="1" max="99" value="40">
+            </div>
+            <div class="lc-field">
+                <label for="rr-ratio">Reward per 1 risked (R)</label>
+                <input type="number" id="rr-ratio" inputmode="decimal" step="any" min="0.1" value="2">
+            </div>
+            <div class="lc-field">
+                <label for="rr-risk">Risk per trade (% of account)</label>
+                <input type="number" id="rr-risk" inputmode="decimal" step="any" min="0.01" max="99" value="1">
+            </div>
+            <div class="lc-field">
+                <label for="rr-trades">Number of trades</label>
+                <input type="number" id="rr-trades" inputmode="numeric" step="1" min="1" max="5000" value="200">
+            </div>
+            <div class="lc-field">
+                <label for="rr-dd">Drawdown you call ruin (%)</label>
+                <input type="number" id="rr-dd" inputmode="decimal" step="any" min="1" max="99" value="30">
+            </div>
+            <div class="lc-field">
+                <label for="rr-cost">Fees + slippage per trade (R) <span class="lc-hint">(optional)</span></label>
+                <input type="number" id="rr-cost" inputmode="decimal" step="any" min="0" value="0">
+            </div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="rr-out-ruin">0.18%</div>
+            <div class="lc-sub" id="rr-out-sub">chance of a 30% drawdown at some point in 200 trades (5,000 simulated accounts)</div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="rr-out-med">1.46x</b><span>Median account after the trades</span></div>
+            <div class="lc-stat"><b id="rr-out-p5">1.05x</b><span>Bad luck case (5th percentile)</span></div>
+            <div class="lc-stat"><b id="rr-out-p95">2.09x</b><span>Good luck case (95th percentile)</span></div>
+            <div class="lc-stat"><b id="rr-out-dd">11.8%</b><span>Typical worst drawdown (median)</span></div>
+            <div class="lc-stat"><b id="rr-out-dd95">21.0%</b><span>Bad-case worst drawdown (95th percentile)</span></div>
+            <div class="lc-stat"><b id="rr-out-loss">3.72%</b><span>Chance of finishing below the start</span></div>
+            <div class="lc-stat"><b id="rr-out-ev">+0.20R</b><span>Expectancy per trade</span></div>
+            <div class="lc-stat"><b id="rr-out-kelly">10% of full Kelly</b><span>Your risk versus the Kelly fraction</span></div>
+        </div>
+        <div class="lc-warning" id="rr-warning"></div>
+        <p class="lc-note">Simulated with a fixed random seed, so the same inputs always give the same answer. Trades are assumed independent, with the same win rate and risk each time, and risk is a percentage of the current balance. Real results will differ. Educational tool, not financial advice.</p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>What &ldquo;risk of ruin&rdquo; means here</h2>
+    <p>Classic risk-of-ruin formulas ask for the chance of losing everything, which is not how real traders get hurt. Long before an account reaches zero, a deep drawdown ends the strategy: confidence goes, rules get broken, or a prop firm or exchange closes the account. So this calculator asks a more useful question: <strong>what is the chance that your account falls by a damaging amount from its own peak at some point during a run of trades?</strong> You choose the number. Thirty percent is the default; try 20 if you cannot stomach more, or 50 if you can.</p>
+    <p>The default example &mdash; a 40% win rate, a 1:2 reward-to-risk ratio and 1% risked per trade &mdash; is a plan with a healthy positive expectancy of +0.20R per trade. Even so, the simulation shows a typical worst drawdown of about 12% across 200 trades, and a bad-luck drawdown of about 21%. A plan that wins on average still has to survive its own variance.</p>
+
+    <h2>How the simulation works</h2>
+    <ol>
+        <li>Start an account at 1.00 and set the running peak to 1.00.</li>
+        <li>For each trade, draw a random number. If it is below your win rate the account grows by <code>risk &times; (ratio &minus; cost)</code>; otherwise it shrinks by <code>risk &times; (1 + cost)</code>. Risk is applied to the current balance, so wins and losses compound.</li>
+        <li>After every trade, compare the balance with the highest balance so far. The largest fall from a peak is that run&rsquo;s maximum drawdown.</li>
+        <li>Repeat for thousands of independent accounts. The share of runs whose maximum drawdown reached your ruin level is the answer; the sorted results give the median and the good and bad luck cases.</li>
+    </ol>
+    <p>A fixed random seed makes the output repeatable, so nothing changes when you reload the page. The calculator uses up to 5,000 accounts for speed, while the tables below use 20,000, so a figure for the same plan can differ by a fraction of a percentage point between them.</p>
+
+    <h2>How often a plan hits a 30% drawdown, by risk per trade</h2>
+    <p>Each cell is the chance that an account suffers a drawdown of at least 30% from a peak at some point within 200 trades, before fees. The columns are five different plans; the rows are how much of the account is risked on each trade.</p>
+    <div class="lc-tbl-wrap"><table>
+        <thead><tr><th>Risk per trade</th><th>35% wins at 1:2</th><th>40% wins at 1:2</th><th>50% wins at 1:1.5</th><th>50% wins at 1:1</th><th>30% wins at 1:3</th></tr></thead>
+        <tbody><tr><td>0.5%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>&lt;0.05%</td><td>&lt;0.05%</td></tr><tr><td>1%</td><td>6.54%</td><td>0.24%</td><td>&lt;0.05%</td><td>2.38%</td><td>3.01%</td></tr><tr><td>2%</td><td>58.1%</td><td>19.4%</td><td>3.48%</td><td>41.7%</td><td>48.0%</td></tr><tr><td>3%</td><td>90.1%</td><td>61.6%</td><td>24.7%</td><td>76.6%</td><td>88.1%</td></tr><tr><td>5%</td><td>99.9%</td><td>98.7%</td><td>84.6%</td><td>98.6%</td><td>&gt;99.9%</td></tr><tr><td>10%</td><td>&gt;99.9%</td><td>&gt;99.9%</td><td>&gt;99.9%</td><td>&gt;99.9%</td><td>&gt;99.9%</td></tr></tbody>
+    </table></div>
+    <p>Read down any column and the lesson is blunt: <strong>risk per trade matters more than almost anything else you choose.</strong> The 40%-at-1:2 plan has a 0.24% chance of a 30% drawdown at 1% risk, 19% at 2%, 62% at 3%, and is almost guaranteed to suffer one at 5%. Same win rate, same ratio, same edge; only the bet size changed. At 10% per trade, every plan in the table hits the drawdown.</p>
+    <p>Read across a row and you see the cost of a thin edge. The 35%-at-1:2 plan has an expectancy of only +0.05R per trade, and at 2% risk it has a 58% chance of a 30% drawdown, three times the rate of the 40% plan at the same size. The 50%-at-1:1 column has no edge at all (before fees), yet at 1% risk it still has a few percent chance of a 30% drawdown: drawdowns are a property of variance, not only of losing strategies.</p>
+
+    <h2>What a run of 200 trades can look like</h2>
+    <p>Here is the same 40% win rate at 1:2 followed through to the end of 200 trades, for different risk levels. The account is shown as a multiple of its starting value.</p>
+    <div class="lc-tbl-wrap"><table>
+        <thead><tr><th>Risk per trade</th><th>Median account</th><th>Bad luck (5th pct)</th><th>Good luck (95th pct)</th><th>Typical worst drawdown</th><th>Bad-case worst drawdown</th></tr></thead>
+        <tbody><tr><td>0.5%</td><td>1.21x</td><td>1.03x</td><td>1.43x</td><td>6.0%</td><td>11.0%</td></tr><tr><td>1%</td><td>1.46x</td><td>1.05x</td><td>2.03x</td><td>11.8%</td><td>20.9%</td></tr><tr><td>2%</td><td>2.04x</td><td>1.06x</td><td>3.92x</td><td>23.1%</td><td>38.3%</td></tr><tr><td>3%</td><td>2.74x</td><td>1.03x</td><td>7.26x</td><td>32.9%</td><td>52.5%</td></tr><tr><td>5%</td><td>4.35x</td><td>0.87x</td><td>21.81x</td><td>49.8%</td><td>73.0%</td></tr><tr><td>10%</td><td>6.98x</td><td>0.29x</td><td>165.17x</td><td>78.9%</td><td>95.2%</td></tr></tbody>
+    </table></div>
+    <p>Higher risk raises the median outcome, which is why aggressive sizing is tempting. But look at the bad-luck column: at 5% risk the bad case is already a loss (0.87x), and at 10% it is a 71% loss (0.29x) while the good case is absurdly large. Those huge numbers are the survivors of a very uneven game, and the drawdown columns show the price: at 10% risk a typical account falls about 79% from a peak at some point. Sizing is a trade-off between growth and the chance you are still trading to enjoy it.</p>
+
+    <h2>Kelly: the ceiling, not the target</h2>
+    <p>The Kelly fraction is the bet size that maximises long-run growth for a given edge: <code>win rate &minus; (loss rate &divide; ratio)</code>. For 40% at 1:2 it is 0.40 &minus; 0.60 &divide; 2 = 10% of the account per trade. The calculator shows what fraction of Kelly your chosen risk represents. Betting full Kelly is mathematically optimal only if your win rate and ratio are known exactly, and they are not: they are estimates from a limited number of past trades. If your true edge is smaller than you think, full Kelly is a ruinous over-bet. That is why many traders risk a small fraction of Kelly, often a quarter or less. In the table above, 10% risk equals full Kelly for the 40%-at-1:2 plan, and it produces a typical drawdown near 79%.</p>
+
+    <h2>What the simulation leaves out</h2>
+    <ul>
+        <li><strong>Your win rate is an estimate.</strong> If you measured 40% over 50 trades, the true figure could easily be 30% or 50%. Run the calculator at a lower win rate than you measured to see how fragile the plan is.</li>
+        <li><strong>Trades are not independent.</strong> Losing streaks tend to bunch in some market regimes. The <a href="losing-streak-calculator">losing streak calculator</a> shows how long runs of losses naturally occur even when trades are independent.</li>
+        <li><strong>Constant risk and constant ratio.</strong> Real traders vary both. Taking bigger risks after a win, or after a loss to &ldquo;make it back&rdquo;, makes outcomes worse than shown.</li>
+        <li><strong>Leverage and liquidation.</strong> This models percentage risk per trade, not margin. A leveraged position can be liquidated before your stop, which breaks the assumption that a loss is limited to your planned risk. Check that with the <a href="liquidation-probability-calculator">liquidation probability calculator</a>.</li>
+        <li><strong>Fees and slippage.</strong> Use the cost field to include them. A cost of 0.05R per trade sounds small and quietly erodes a thin edge.</li>
+    </ul>
+
+    <h2>How to use it</h2>
+    <ol>
+        <li>Enter the win rate and ratio from your own trade log, or from a <a href="crypto-paper-trading">paper trading</a> record if you are still testing a plan. Use a deliberately lower win rate for a stress test.</li>
+        <li>Choose a ruin level you would genuinely treat as a signal to stop and review, not a number you hope to avoid.</li>
+        <li>Lower the risk per trade until the chance of that drawdown is one you can accept, then set the size of every trade with the <a href="position-size-calculator">position size calculator</a>.</li>
+        <li>Pair the result with the <a href="risk-reward-calculator">risk-reward calculator</a> to check that the ratio and break-even win rate you assumed are realistic for your levels.</li>
+    </ol>
+
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Risk of ruin calculator FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>What is risk of ruin in trading?</h3>
+            <p>It is the probability that a trading account suffers a loss large enough to end the strategy. Here we define ruin as a drawdown of a size you choose, measured from the account&rsquo;s highest balance, and estimate its probability over a set number of trades with a simulation.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What risk per trade is safe?</h3>
+            <p>There is no universally safe number, but the tables show that risk per trade has an outsized effect on drawdown odds. A plan with a healthy edge had about a 0.24% chance of a 30% drawdown at 1% risk per trade and about 62% at 3% over 200 trades. Many traders keep risk at 1% or below for that reason.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How is this different from the Kelly criterion?</h3>
+            <p>Kelly gives the bet size that maximises long-run growth if your edge is known exactly. Risk of ruin shows how rough the ride is at a given size. The calculator shows both, including what share of full Kelly your chosen risk represents, because betting full Kelly on an overestimated edge is dangerous.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Why is my chance of ruin high even though my expectancy is positive?</h3>
+            <p>Positive expectancy describes the average over many trades. Variance still produces losing streaks and drawdowns on the way, and with a thin edge or a large bet size those can be deep. Lowering risk per trade is the most effective way to cut the odds.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What win rate and ratio should I enter?</h3>
+            <p>Use your own results from a trade log or paper trading record, and then test a lower win rate, because past results overstate the future more often than they understate it. Reward per 1 risked is the average win divided by the average loss, in R.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does this include fees and slippage?</h3>
+            <p>Optionally. The cost field subtracts a fixed amount of R from each win and adds it to each loss. Leave it at zero for a pure strategy view, or try 0.03 to 0.1 to see how trading costs eat into a thin edge.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Is the result exact?</h3>
+            <p>No. It is a simulation based on stated assumptions: independent trades, a constant win rate and a constant risk fraction. It uses a fixed seed, so it is repeatable, but it is an estimate of a model, not a prediction of your results.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep going</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="losing-streak-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="dice-5" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Losing streak calculator</h3>
+                <p>How many losses in a row are normal for your win rate.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="position-size-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="ruler" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Position size calculator</h3>
+                <p>Size a trade from risk, entry and stop.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="position-sizing-and-the-one-percent-rule" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="graduation-cap" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Guide</span>
+                <h3>Position sizing and the 1% rule</h3>
+                <p>Why small risk per trade keeps you in the game.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app">Terminal</a>
+            <a href="features">Features</a>
+            <a href="releases">Releases</a>
+            <a href="trade">Paper trading</a>
+            <a href="ai">AI research</a>
+            <a href="spot-vs-futures">Spot vs futures</a>
+            <a href="funding-rate-explained">Funding rate explained</a>
+            <a href="crypto-calculators">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about">About</a>
+            <a href="blog">Blog</a>
+            <a href="glossary">Glossary</a>
+            <a href="contact">Contact</a>
+            <a href="ebook">Ebook</a>
+            <a href="editorial-policy">Editorial policy</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy">Privacy policy</a>
+            <a href="terms">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/risk-models.js?v=20261114" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+<script src="js/lang-switcher.js?v=20261114b" defer></script>
+</body>
+</html>

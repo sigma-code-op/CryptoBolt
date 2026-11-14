@@ -45,7 +45,10 @@
   - [Crypto Staking Rewards Calculator](https://cryptobolt.io/crypto-staking-calculator) — Free calculator projecting staking rewards with compounding and converting APR to APY.
   - [Impermanent Loss Calculator](https://cryptobolt.io/impermanent-loss-calculator) — Free calculator for impermanent loss in a 50/50 liquidity pool versus holding.
   - [Fibonacci Retracement Calculator](https://cryptobolt.io/fibonacci-retracement-calculator) — Free calculator for Fibonacci retracement and extension levels from a swing high and low.
-  - [Crypto Trading Calculators](https://cryptobolt.io/crypto-calculators) — Hub for eleven free calculators: liquidation price, position size, risk-reward, profit, funding fee, Fibonacci, DCA, average price, ROI, staking and impermanent loss.
+  - [Liquidation Probability Calculator](https://cryptobolt.io/liquidation-probability-calculator) — Free calculator for the chance a leveraged crypto position is liquidated within a holding period, the time to liquidation and the highest leverage for a chosen risk, with odds tables by leverage and volatility.
+  - [Risk of Ruin Calculator](https://cryptobolt.io/risk-of-ruin-calculator) — Free simulator for the chance a trading plan suffers a deep drawdown from win rate, reward-to-risk and risk per trade, with Kelly comparison.
+  - [Losing Streak Calculator](https://cryptobolt.io/losing-streak-calculator) — Free calculator for the exact odds of consecutive losing trades given a win rate and trade count, and the drawdown each streak causes.
+  - [Crypto Trading Calculators](https://cryptobolt.io/crypto-calculators) — Hub for fourteen free calculators: liquidation price and probability, position size, risk-reward, risk of ruin, losing streaks, profit, funding fee, Fibonacci, DCA, average price, ROI, staking and impermanent loss.
   - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns)
   - ["$1000 in a day": why that headline is a trap, and why you clicked it](https://cryptobolt.io/1000-dollar-day-trap)
 - [Crypto Trading Glossary](https://cryptobolt.io/glossary) — Plain-English definitions of crypto trading and market-data terms such as funding rate, open interest, liquidation price and ATR.

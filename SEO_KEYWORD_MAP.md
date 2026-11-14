@@ -49,6 +49,9 @@ The current site has no dedicated search landing page for crypto trading fees, p
 | `/dca-calculator.html` | dca calculator crypto | dollar-cost averaging, average cost, dca vs lump sum | average price calculator, ROI calculator, DCA guide |
 | `/crypto-average-price-calculator.html` | crypto average price calculator | weighted average, cost basis, averaging down, break-even | DCA calculator, ROI calculator, profit-and-loss guide |
 | `/risk-reward-calculator.html` | risk reward ratio calculator | break-even win rate, expectancy, R-multiple | position size calculator, liquidation calculator, risk-reward guide |
+| `/liquidation-probability-calculator.html` | liquidation probability calculator | probability of liquidation, safe leverage crypto, max leverage calculator | liquidation price calculator, position size calculator, funding fee calculator |
+| `/risk-of-ruin-calculator.html` | risk of ruin calculator | drawdown probability calculator, kelly criterion trading, how much to risk per trade | position size calculator, losing streak calculator, position sizing guide |
+| `/losing-streak-calculator.html` | losing streak calculator | how many losing trades in a row is normal, consecutive losses probability | risk of ruin calculator, risk-reward calculator, risk-reward guide |
 | `/crypto-staking-calculator.html` | crypto staking calculator | APR to APY, compounding, monthly deposits | impermanent loss calculator, ROI calculator, staking guide |
 | `/impermanent-loss-calculator.html` | impermanent loss calculator | 50/50 pool, fees to break even, IL formula | staking calculator, ROI calculator, impermanent loss guide |
 | `/crypto-roi-calculator.html` | crypto roi calculator | spot profit, fees, break-even sell price, recovery gain | average price calculator, futures profit calculator, profit-and-loss guide |

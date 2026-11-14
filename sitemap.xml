@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://cryptobolt.io/liquidation-price-calculator</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -188,13 +188,13 @@
   </url>
   <url>
     <loc>https://cryptobolt.io/crypto-calculators</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cryptobolt.io/position-size-calculator</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -254,7 +254,7 @@
   </url>
   <url>
     <loc>https://cryptobolt.io/risk-reward-calculator</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -317,5 +317,23 @@
     <lastmod>2026-11-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://cryptobolt.io/liquidation-probability-calculator</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cryptobolt.io/risk-of-ruin-calculator</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cryptobolt.io/losing-streak-calculator</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
