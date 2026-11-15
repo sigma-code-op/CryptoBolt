@@ -22,3 +22,15 @@
 .cb-video-thumb{display:block;margin:12px 0}.cb-video-thumb img{width:100%;height:auto;display:block;border-radius:12px}
 .cb-crumbs{font-size:.85rem;margin:0 0 14px;opacity:.75}.cb-crumbs a{color:inherit}
 .cb-more{margin-top:32px}.cb-more h2{font-size:1.25rem;margin-bottom:10px}
+/* Extra sections on video pages: worked example, tables, FAQ */
+.cb-vextra{margin-top:8px}
+.cb-vextra p{line-height:1.65;margin:10px 0}
+.cb-vextra ul{margin:10px 0 0;padding-left:1.2em}
+.cb-vextra li{margin:6px 0;line-height:1.6}
+.cb-vtable{overflow-x:auto;margin:14px 0}
+.cb-vtable table{width:100%;border-collapse:collapse;font-size:.92rem}
+.cb-vtable th,.cb-vtable td{padding:9px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
+.cb-vtable thead th{font-weight:600;opacity:.8;white-space:nowrap}
+.cb-vtable tbody th{font-weight:600}
+.cb-vnote{font-size:.85rem;opacity:.7}
+.cb-vnote a{color:inherit;text-decoration:underline}
