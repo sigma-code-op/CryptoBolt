@@ -56,6 +56,10 @@
 - [Releases and Changelog](https://cryptobolt.io/releases) — Dated log of new features, fixes and data-source changes.
 - [About CryptoBolt](https://cryptobolt.io/about) — Information about CryptoBolt and its purpose.
 - [Video guides](https://cryptobolt.io/videos) — Four short animated explainers: leverage and liquidation, reading the order book, the 1% position-sizing rule, and how paper trading works (transcripts included).
+  - [Leverage and liquidation explained (video)](https://cryptobolt.io/leverage-liquidation-explained-video) — What actually happens when a leveraged futures position is liquidated.
+  - [How to read an order book (video)](https://cryptobolt.io/order-book-explained-video) — Bids, asks, the spread and slippage, animated.
+  - [Position sizing and the 1% rule (video)](https://cryptobolt.io/position-sizing-1-percent-rule-video) — How to size a trade so one loss cannot do much damage.
+  - [How paper trading works (video)](https://cryptobolt.io/paper-trading-how-it-works-video) — Practice with $10,000 of virtual money before risking real money.
 - [Crypto Clarity ebook](https://cryptobolt.io/ebook) — 160-page PDF beginner-to-confident crypto guide (17 chapters, 31 diagrams); order by email or the contact form.
 - [Contact CryptoBolt](https://cryptobolt.io/contact) — Contact and partnership inquiries.
 - [Privacy Policy](https://cryptobolt.io/privacy) — Privacy and data-handling information.
