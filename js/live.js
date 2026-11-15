@@ -22,6 +22,7 @@
         if (!reduce && !saver) aurora();
         spotlight();
         ripple();
+        if (!reduce && finePointer) { magnetic(); tilt(); }
         reveal();
         backToTop();
     }
@@ -74,6 +75,11 @@
             a.setAttribute('aria-hidden', 'true');
             a.innerHTML = '<b></b><b></b><b></b>';
             hero.insertBefore(a, hero.firstChild);
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (en) {
+                    a.classList.toggle('lv-paused', !en[0].isIntersecting);
+                }).observe(hero);
+            }
         });
         if (!finePointer) return;
         var raf = 0, px = 0, py = 0;
@@ -133,6 +139,44 @@
             b.appendChild(s);
             setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 650);
         }, { passive: true });
+    }
+
+
+    /* ---------- magnetic primary buttons ---------- */
+    function magnetic() {
+        document.querySelectorAll('.mk-btn-lg, .mk-hero .mk-btn-primary').forEach(function (b) {
+            b.classList.add('lv-mag');
+            b.addEventListener('pointermove', function (e) {
+                var r = b.getBoundingClientRect();
+                var x = (e.clientX - r.left - r.width / 2) * 0.18;
+                var y = (e.clientY - r.top - r.height / 2) * 0.28 - 2;
+                b.style.translate = x.toFixed(1) + 'px ' + y.toFixed(1) + 'px';
+            });
+            b.addEventListener('pointerleave', function () { b.style.translate = ''; });
+        });
+    }
+
+    /* ---------- gentle 3D tilt on mockups and figures ---------- */
+    function tilt() {
+        document.querySelectorAll('.mk-mockup, .mk-figure, .mk-ai-poster').forEach(function (el) {
+            el.classList.add('lv-tilt');
+            var raf = 0;
+            el.addEventListener('pointermove', function (e) {
+                var r = el.getBoundingClientRect();
+                var px = (e.clientX - r.left) / r.width - 0.5;
+                var py = (e.clientY - r.top) / r.height - 0.5;
+                if (raf) return;
+                raf = requestAnimationFrame(function () {
+                    raf = 0;
+                    el.classList.add('lv-tilting');
+                    el.style.transform = 'perspective(900px) rotateY(' + (px * 6).toFixed(2) + 'deg) rotateX(' + (-py * 5).toFixed(2) + 'deg) scale(1.01)';
+                });
+            });
+            el.addEventListener('pointerleave', function () {
+                el.classList.remove('lv-tilting');
+                el.style.transform = '';
+            });
+        });
     }
 
     /* ---------- reveal on scroll ---------- */
