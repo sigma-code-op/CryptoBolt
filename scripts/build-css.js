@@ -51,6 +51,7 @@ const BUNDLES = {
     'styles.css',
     'ui-elevate.css',
     'home.css',
+    'live.css',
   ],
   // ai.html
   'bundle-ai.css': [

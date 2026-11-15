@@ -1,0 +1,98 @@
+/* ==========================================================================
+   CryptoBolt "living" layer: motion + interaction polish for public pages.
+   Everything is scoped under html.lv-on, which js/live.js adds. If the script
+   does not run, none of this applies and pages look exactly as before.
+   All motion is disabled for prefers-reduced-motion.
+   ========================================================================== */
+
+/* ---- scroll progress bar ------------------------------------------------ */
+.lv-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;background:transparent}
+.lv-progress i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--mk-cyan,#4fd8e8),var(--mk-green,#14d38a),var(--mk-purple,#a78bfa));
+  box-shadow:0 0 12px rgba(79,216,232,.6)}
+
+/* ---- aurora behind heroes ------------------------------------------------ */
+.lv-on .mk-hero,.lv-on .mk-fhero{position:relative;isolation:isolate;overflow:visible}
+.lv-aurora{position:absolute;z-index:-1;pointer-events:none;overflow:hidden;
+  left:50%;width:100vw;margin-left:-50vw;top:-70px;height:calc(100% + 110px);
+  -webkit-mask-image:radial-gradient(ellipse 70% 75% at 50% 40%,#000 25%,transparent 75%);
+  mask-image:radial-gradient(ellipse 70% 75% at 50% 40%,#000 25%,transparent 75%)}
+html.lv-on body{overflow-x:clip}
+.lv-aurora b{position:absolute;border-radius:50%;filter:blur(70px);opacity:.3;will-change:transform;
+  translate:calc(var(--lv-px,0) * var(--d,20px)) calc(var(--lv-py,0) * var(--d,20px))}
+.lv-aurora b:nth-child(1){width:46vmax;height:46vmax;left:-10%;top:-30%;background:#4fd8e8;--d:26px;animation:lv-drift-a 22s ease-in-out infinite alternate}
+.lv-aurora b:nth-child(2){width:38vmax;height:38vmax;right:-8%;top:-18%;background:#a78bfa;--d:-34px;animation:lv-drift-b 26s ease-in-out infinite alternate}
+.lv-aurora b:nth-child(3){width:30vmax;height:30vmax;left:34%;top:20%;background:#14d38a;opacity:.2;--d:18px;animation:lv-drift-c 30s ease-in-out infinite alternate}
+@keyframes lv-drift-a{to{transform:translate(8vmax,6vmax) scale(1.12)}}
+@keyframes lv-drift-b{to{transform:translate(-9vmax,7vmax) scale(.92)}}
+@keyframes lv-drift-c{to{transform:translate(-6vmax,-5vmax) scale(1.2)}}
+
+/* ---- gradient accent text keeps slowly moving ---------------------------- */
+.lv-on .mk-accent{background-size:220% auto;animation:lv-shift 9s linear infinite}
+@keyframes lv-shift{to{background-position:220% center}}
+
+/* ---- eyebrow dot pulse ---------------------------------------------------- */
+.lv-on .mk-eyebrow::before{animation:lv-ping 2.4s ease-out infinite}
+@keyframes lv-ping{0%{box-shadow:0 0 0 0 rgba(20,211,138,.55)}70%,100%{box-shadow:0 0 0 8px rgba(20,211,138,0)}}
+
+/* ---- scroll reveal (uses `translate`, so it never fights GSAP transforms) - */
+.lv-on .lv-r{opacity:0;translate:0 22px;transition:opacity .7s var(--mk-ease,cubic-bezier(.16,1,.3,1)),translate .7s var(--mk-ease,cubic-bezier(.16,1,.3,1));transition-delay:var(--lv-delay,0s)}
+.lv-on .lv-r.lv-in{opacity:1;translate:0 0}
+
+/* ---- cards: lift + cursor spotlight --------------------------------------- */
+.lv-on .lv-card{transition:translate .35s var(--mk-ease,cubic-bezier(.16,1,.3,1)),border-color .3s,box-shadow .35s}
+.lv-on .lv-card>.lv-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(420px circle at var(--lx,50%) var(--ly,50%),rgba(79,216,232,.14),transparent 55%)}
+@media (hover:hover){
+  .lv-on .lv-card:hover{translate:0 -4px;border-color:rgba(79,216,232,.38);box-shadow:0 22px 48px -26px rgba(0,0,0,.7),0 0 0 1px rgba(79,216,232,.12)}
+  .lv-on .lv-card:hover>.lv-glow{opacity:1}
+}
+
+/* ---- buttons --------------------------------------------------------------- */
+.lv-on .mk-btn{position:relative;overflow:hidden;transition:translate .25s var(--mk-ease,cubic-bezier(.16,1,.3,1)),box-shadow .3s,background-color .25s,border-color .25s}
+@media (hover:hover){
+  .lv-on .mk-btn:hover{translate:0 -2px}
+  .lv-on .mk-btn-primary:hover{box-shadow:0 12px 30px -10px rgba(20,211,138,.55)}
+}
+.lv-on .mk-btn:active{translate:0 0;scale:.98}
+.lv-rip{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.35);transform:scale(0);animation:lv-rip .6s ease-out forwards}
+@keyframes lv-rip{to{transform:scale(1);opacity:0}}
+
+/* ---- nav gets depth once you scroll ---------------------------------------- */
+.lv-on .mk-nav{transition:box-shadow .3s,background-color .3s}
+.lv-on .mk-nav.lv-scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.8)}
+
+/* ---- article polish ---------------------------------------------------------- */
+.lv-on .mk-article a:not(.mk-btn){background-image:linear-gradient(currentColor,currentColor);background-size:0 1px;background-position:0 100%;background-repeat:no-repeat;transition:background-size .3s var(--mk-ease,cubic-bezier(.16,1,.3,1))}
+.lv-on .mk-article a:not(.mk-btn):hover{background-size:100% 1px}
+.lv-on .mk-article h2{scroll-margin-top:90px}
+.lv-on .cb-vtable tbody tr{transition:background-color .2s}
+.lv-on .cb-vtable tbody tr:hover{background:rgba(79,216,232,.06)}
+.lv-on details{transition:border-color .25s,background-color .25s}
+.lv-on details:hover{border-color:rgba(79,216,232,.35)}
+.lv-on details[open]>summary~*{animation:lv-open .35s var(--mk-ease,cubic-bezier(.16,1,.3,1))}
+@keyframes lv-open{from{opacity:0;translate:0 -6px}to{opacity:1;translate:0 0}}
+.lv-on .cb-video-frame{transition:box-shadow .4s,border-color .3s}
+.lv-on .cb-video-frame:hover{border-color:rgba(79,216,232,.4);box-shadow:0 30px 70px -30px rgba(79,216,232,.35)}
+
+/* ---- back to top -------------------------------------------------------------- */
+.lv-top{position:fixed;left:18px;bottom:18px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.16);cursor:pointer;
+  background:rgba(20,22,29,.85);color:#eef1f4;display:grid;place-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  opacity:0;translate:0 14px;pointer-events:none;transition:opacity .3s,translate .3s,border-color .2s,box-shadow .3s}
+.lv-top.lv-show{opacity:1;translate:0 0;pointer-events:auto}
+.lv-top:hover{border-color:rgba(79,216,232,.6);box-shadow:0 0 0 4px rgba(79,216,232,.12)}
+.lv-top svg{width:18px;height:18px}
+.lv-top .lv-ring{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);transform:rotate(-90deg);pointer-events:none}
+.lv-top .lv-ring circle{fill:none;stroke:var(--mk-cyan,#4fd8e8);stroke-width:2;stroke-linecap:round}
+
+/* ---- smooth anchors ------------------------------------------------------------ */
+html.lv-on{scroll-behavior:smooth}
+
+@media (prefers-reduced-motion:reduce){
+  html.lv-on{scroll-behavior:auto}
+  .lv-aurora b,.lv-on .mk-accent,.lv-on .mk-eyebrow::before{animation:none}
+  .lv-on .lv-r{opacity:1;translate:0 0;transition:none}
+  .lv-on .lv-card,.lv-on .mk-btn{transition:none}
+  .lv-on .lv-card:hover,.lv-on .mk-btn:hover{translate:0 0}
+  .lv-rip{display:none}
+}
