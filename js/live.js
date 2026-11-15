@@ -70,6 +70,7 @@
         var heroes = document.querySelectorAll('.mk-hero, .mk-fhero');
         if (!heroes.length) return;
         heroes.forEach(function (hero) {
+            if (hero.querySelector('canvas')) return; // already has its own animated background
             var a = document.createElement('div');
             a.className = 'lv-aurora';
             a.setAttribute('aria-hidden', 'true');

@@ -176,6 +176,10 @@ a.mk-trust-item-cta svg.lucide.mk-trust-icon { opacity: 1; color: var(--mk-green
 .mk-nav-cta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 /* Nav stays on one line at every desktop/tablet width: tighter gaps as space shrinks,
    then the least important links drop out (they remain in the footer and mobile menu). */
+/* A global `header { z-index: 50 }` rule also matched the page-hero <header>s, so they tied with
+   the sticky nav and painted over it while scrolling. Heroes sit below; the nav always wins. */
+.mk-hero, .mk-fhero { z-index: 0; }
+.mk-nav { z-index: 100; }
 .mk-logo { white-space: nowrap; flex-shrink: 0; }
 .mk-nav-links { min-width: 0; gap: clamp(14px, 1.9vw, 28px); }
 @media (min-width: 881px) and (max-width: 1240px) {
