@@ -24,6 +24,30 @@ Use the output as a faster research layer before you enter, reduce, or exit a po
 
 CryptoBolt's crypto AI works as a crypto sentiment analysis tool as much as a technical one — it reads live news flow and the Fear & Greed index alongside price action, so a "risk-off" move and a routine pullback don't look the same in the summary. It's worth being direct about what this crypto AI doesn't do: it won't predict tomorrow's price. Instead of a forecast, you get the trend, momentum, funding-rate positioning, and sentiment context behind the current move, so you can form your own view rather than outsourcing the decision to a black box.
 
+See it in practice
+
+## What a grounded read looks like, and how to check it yourself
+
+A useful research read is a short list of conditions you can verify, not a prediction. Here is an illustrative example of how the pieces fit together. The values are made up to show the structure.
+
+| Part of the read | Illustrative content | Where you can check it |
+| --- | --- | --- |
+| Trend | Daily trend up, 4-hour trend stalling | Chart in the terminal, daily and 4-hour candles |
+| Positioning | Funding elevated, open interest rising | Funding and open interest panels |
+| Sentiment | Fear & Greed in the greed zone | Global Market Pulse strip |
+| News | Two recent headlines, one about an ETF flow | Sources listed under the answer |
+| Trade levels | Entry, stop and target from ATR code | Same inputs always give the same numbers |
+
+### Five-step check for any AI answer
+
+1. Look at which inputs the answer lists. 2. Compare the trend claim with the chart. 3. Compare the funding and sentiment claims with the panels. 4. Open the news items it cites. 5. Decide if the conclusion follows from those facts, or if it is just confident language.
+
+### What it will not do
+
+It will not predict price, guarantee a level will hold, or tell you what to buy. It can say there is no clean setup, which is a legitimate result. Read [why CryptoBolt does not predict prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices) and [how the research stays grounded](https://cryptobolt.io/ai-research-grounded-data) for the full reasoning.
+
+Educational content, not financial advice. Verify important information yourself and only risk money you can afford to lose.
+
 FAQ
 
 ## What AI crypto research helps with

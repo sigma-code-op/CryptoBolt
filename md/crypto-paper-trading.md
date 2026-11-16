@@ -28,6 +28,34 @@ Who it's for
 
 New traders use paper trading to learn order types and chart reading without a real balance on the line. More experienced traders use it to backtest an idea — a breakout setup, a funding-rate play, a new risk model — against live conditions before sizing it with real capital. It's also useful if you're moving from spot to futures for the first time: leverage and liquidation behave very differently, and a $10,000 virtual account is a safer place to feel that out than a live exchange.
 
+A practice plan
+
+## How to get real value from paper trading
+
+Paper trading only teaches you something if you treat it like the real thing. A simple plan helps.
+
+### 1. Write the rules first
+
+Decide your market, your risk per trade (for example 1% of the account), and when you will exit before you open a trade.
+
+### 2. Keep a short journal
+
+Note the reason for each trade, the stop, the target and the result. Patterns show up in the notes, not in memory.
+
+### 3. Use a real sample
+
+Three or four trades prove very little. Aim for a few dozen before drawing conclusions about a strategy.
+
+### 4. Review the numbers
+
+Look at win rate, average win against average loss, and the worst losing streak. The [risk-reward and win rate guide](https://cryptobolt.io/risk-reward-ratio-and-win-rate) explains how they fit together.
+
+### 5. Remember what paper cannot show
+
+Real money brings emotion, fees and slippage. Start small if you move on, and read [realistic day trading returns](https://cryptobolt.io/day-trading-crypto-realistic-returns) first.
+
+Educational content, not financial advice. Paper results do not guarantee real results.
+
 FAQ
 
 ## Crypto paper trading basics

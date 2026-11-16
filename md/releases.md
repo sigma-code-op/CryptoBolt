@@ -4,6 +4,23 @@
 
 Source: https://cryptobolt.io/releases
 
+v1.19.0
+
+November 14, 2026
+
+## Three risk tools that answer questions other calculators don't.
+
+What's new
+
+- New [liquidation probability calculator](https://cryptobolt.io/liquidation-probability-calculator): the chance a leveraged position is liquidated within a holding period, the time until a 5% and 50% chance, and the highest leverage for a risk you accept, with odds tables by leverage and volatility.
+- New [risk of ruin calculator](https://cryptobolt.io/risk-of-ruin-calculator): a repeatable simulation of the odds of a deep drawdown from win rate, reward-to-risk and risk per trade, with a Kelly comparison.
+- New [losing streak calculator](https://cryptobolt.io/losing-streak-calculator): exact odds of consecutive losses for your win rate and trade count, and what each streak costs your account.
+- The [calculators hub](https://cryptobolt.io/crypto-calculators) now lists fourteen tools. Each new page states its assumptions and the ways the model understates real risk.
+
+Data sources
+
+- No change. The new tools do arithmetic locally in your browser; volatility presets are illustrative assumptions, not live data.
+
 v1.18.0
 
 November 8, 2026

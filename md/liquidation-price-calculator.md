@@ -35,6 +35,10 @@ Isolated margin caps your risk at the margin assigned to that one position — l
 
 This calculator, like most public ones, uses the standard formula above and leaves out two things that move the real number slightly: trading fees (charged on entry and on the forced liquidation itself) and accumulated funding payments on a perpetual contract held across funding periods. Both nudge liquidation price a little closer to entry over time on a losing position. See [how funding rate works](https://cryptobolt.io/funding-rate-explained) for why that running cost matters over a multi-day hold.
 
+## How likely is it that you reach the liquidation price?
+
+The liquidation price tells you where the position ends; it does not tell you how likely that is. A 9.5% cushion is very different on a slow coin than on a volatile one, and very different over a day than over a month. The [liquidation probability calculator](https://cryptobolt.io/liquidation-probability-calculator) turns the distance into odds, the time it takes, and the highest leverage that fits a risk you accept.
+
 ## Plan the whole trade, not just the liquidation price
 
 Liquidation price is one input. Use the [position size calculator](https://cryptobolt.io/position-size-calculator) to size a trade from your risk and stop-loss, the [futures profit calculator](https://cryptobolt.io/crypto-profit-calculator) to check reward against fees, and the [funding fee calculator](https://cryptobolt.io/funding-fee-calculator) to price in the cost of holding a perpetual position. All four live on the [crypto calculators](https://cryptobolt.io/crypto-calculators) page.

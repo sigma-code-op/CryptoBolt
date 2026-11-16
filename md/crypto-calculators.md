@@ -1,6 +1,6 @@
 # Free Crypto Calculators: Trading, DCA, Staking | CryptoBolt
 
-> Eleven free crypto calculators: liquidation price, position size, risk-reward, futures profit, ROI, DCA, average price, staking, impermanent loss and more.
+> Fourteen free crypto calculators: liquidation price and odds, position size, risk-reward, risk of ruin, losing streaks, futures profit, ROI, DCA and more.
 
 Source: https://cryptobolt.io/crypto-calculators
 
@@ -37,6 +37,36 @@ The reward-to-risk ratio and the win rate it needs.
 Open calculator
 
 Link: https://cryptobolt.io/risk-reward-calculator
+
+Free tool · original analysis
+
+### Liquidation probability calculator
+
+The odds a leveraged position is liquidated, and the leverage that fits your risk.
+
+Open calculator
+
+Link: https://cryptobolt.io/liquidation-probability-calculator
+
+Free tool · original analysis
+
+### Risk of ruin calculator
+
+Simulate the odds of a deep drawdown from win rate, ratio and risk per trade.
+
+Open calculator
+
+Link: https://cryptobolt.io/risk-of-ruin-calculator
+
+Free tool · original analysis
+
+### Losing streak calculator
+
+How many losses in a row are normal for your win rate.
+
+Open calculator
+
+Link: https://cryptobolt.io/losing-streak-calculator
 
 Free tool · no signup
 

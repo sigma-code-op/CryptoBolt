@@ -36,6 +36,43 @@ The live order book shows resting bids and asks at each price level, so you can 
 
 Most free charting tools are excellent for charting alone but don't connect that chart to portfolio tracking, alerts, or AI research in the same view. CryptoBolt trades a little chart-tool depth for having live price, order flow, portfolio, and AI research together, so you're not switching between four browser tabs to answer one question about a position.
 
+Quick walkthrough
+
+## A five-minute first session in the terminal
+
+If you have never used a crypto terminal, this order gets you from a blank screen to a useful read without needing an account.
+
+### Pick a market
+
+Choose BTC, ETH, SOL or another pair, and switch between spot and futures data to compare.
+
+### Read the chart
+
+Start with the daily timeframe for the bigger picture, then drop to 4-hour or 1-hour for detail.
+
+### Check depth and sentiment
+
+Look at the order book and the Fear & Greed reading to see how crowded or thin the market is.
+
+### Ask for a research read
+
+Open the AI desk for a grounded summary, then compare it with what you saw on the chart.
+
+### Practice before real money
+
+Try an idea in paper trading, with a stop-loss and a position size you worked out in advance.
+
+## Watch: how to read the order book
+
+### What the terminal is, and what it is not
+
+| Question | Answer |
+| --- | --- |
+| Does it place real trades? | No. It shows market data and offers paper trading with virtual funds. |
+| Where does the data come from? | Public Binance and CoinGecko data, plus the Fear & Greed index from Alternative.me. |
+| Do I need an account to look around? | No. Signing in is only needed to save paper trading and settings to the cloud. |
+| Is it financial advice? | No. It is a research and practice tool, and every decision stays with you. |
+
 FAQ
 
 ## Common terminal questions

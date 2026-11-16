@@ -26,6 +26,41 @@ Entry, stop, and target levels in CryptoBolt come from deterministic [ATR](https
 - **Inputs you can see.** News, sentiment, funding, and trend are the same kinds of data shown elsewhere in the terminal, so you can compare the read against them.
 - **"No clean setup" is allowed.** A read that says nothing is worth trading is a legitimate result, which a price forecast would never give you.
 
+## What the AI does and what code does
+
+| Task | Done by | Why |
+| --- | --- | --- |
+| Reading news, sentiment and funding context | AI model | Good at reasoning through mixed information in plain language |
+| Describing trend and volatility | AI model, from live data | Turns multi-timeframe data into a readable summary |
+| Calculating entry, stop and target | Plain code using ATR | Numbers must be exact and repeatable |
+| Position size and risk figures | Plain code | Simple arithmetic, so there is nothing to guess |
+| Deciding whether to trade | You | The read is research, not an instruction |
+
+## What it cannot do
+
+- **It cannot predict price.** The read describes conditions now. It does not claim to know where price goes next.
+- **It cannot see everything.** It works from the inputs it is given. A sudden event that is not yet in the news feed will not be in the read.
+- **It can be wrong.** Even with live data, interpretation can be off. That is why the inputs are shown, so you can compare them with what you see yourself.
+- **It is not a replacement for a plan.** Position size, stop placement and risk limits are still your decisions.
+
+## Frequently asked questions
+
+### Does CryptoBolt AI make up price levels?
+
+No. Entry, stop and target levels come from ATR-based code, not from the language model, so the same inputs always give the same numbers.
+
+### What data does the AI research use?
+
+Recent news, the Fear & Greed reading, funding-rate positioning and multi-timeframe technicals, plus optional web research when that toggle is on. The research panel lists what an answer was based on.
+
+### What happens if the AI service is unavailable?
+
+The terminal's market data, charts and calculators keep working because they do not depend on the AI. The AI desk shows a clear message and lets you retry.
+
+### Is the AI output financial advice?
+
+No. It is educational research support. Always do your own checking and only risk money you can afford to lose.
+
 For the reasoning behind this design, see [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices). For the wider picture of where AI fits into crypto, see [when AI meets crypto](https://cryptobolt.io/ai-meets-crypto).
 
 [Try CryptoBolt AI Research →](https://cryptobolt.io/ai)

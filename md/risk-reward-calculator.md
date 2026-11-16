@@ -128,5 +128,15 @@ Open
 
 Link: https://cryptobolt.io/risk-reward-ratio-and-win-rate
 
+Calculator
+
+### Losing streak calculator
+
+How many losses in a row are normal for your win rate.
+
+Open
+
+Link: https://cryptobolt.io/losing-streak-calculator
+
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

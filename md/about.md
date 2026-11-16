@@ -44,5 +44,29 @@ Development is ongoing and mostly driven by user feedback submitted through the 
 
 Questions? [Get in touch](https://cryptobolt.io/contact).
 
+Trust and independence
+
+## How the site is run and how it is funded
+
+### Free to use
+
+The terminal, calculators, guides and paper trading are free. The site shows ads on some article and calculator pages, and sells one paid product, the [Crypto Clarity ebook](https://cryptobolt.io/ebook).
+
+### Written with care
+
+Articles explain how things work and avoid price predictions and profit claims. The [editorial policy](https://cryptobolt.io/editorial-policy) describes how content is written, reviewed and corrected.
+
+### Open about changes
+
+New features, fixes and data-source changes are listed on the [release notes](https://cryptobolt.io/releases) page, so you can see what changed and when.
+
+### Where to start
+
+New to crypto? Try the [glossary](https://cryptobolt.io/glossary) and the [video guides](https://cryptobolt.io/videos). Want to practice? Open [paper trading](https://cryptobolt.io/trade). Want numbers? Use the [crypto calculators](https://cryptobolt.io/crypto-calculators).
+
+### Get in touch
+
+Questions, corrections or feedback are welcome through the [contact page](https://cryptobolt.io/contact) or at info@cryptobolt.io.
+
 ---
 CryptoBolt is a market-data and education tool, not an exchange and not financial advice. Contact: info@cryptobolt.io

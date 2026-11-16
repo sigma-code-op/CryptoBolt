@@ -51,6 +51,19 @@
   - [Crypto Trading Calculators](https://cryptobolt.io/crypto-calculators) — Hub for fourteen free calculators: liquidation price and probability, position size, risk-reward, risk of ruin, losing streaks, profit, funding fee, Fibonacci, DCA, average price, ROI, staking and impermanent loss.
   - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns)
   - ["$1000 in a day": why that headline is a trap, and why you clicked it](https://cryptobolt.io/1000-dollar-day-trap)
+- [Free Trading Course for Beginners](https://cryptobolt.io/trading-course) — Twelve free lessons for absolute beginners: charts, order types, costs, leverage, position sizing, risk-reward, psychology, a trading plan and a 30-day paper trading routine.
+  - [What trading is (and what it is not)](https://cryptobolt.io/course-what-is-trading)
+  - [How a market works: buyers, sellers and price](https://cryptobolt.io/course-how-markets-work)
+  - [Reading a price chart: candles and timeframes](https://cryptobolt.io/course-how-to-read-candlestick-charts)
+  - [Order types: market, limit and stop](https://cryptobolt.io/course-order-types)
+  - [The real cost of a trade: fees, spread and slippage](https://cryptobolt.io/course-trading-costs)
+  - [Leverage and liquidation, explained simply](https://cryptobolt.io/course-leverage-for-beginners)
+  - [How much to risk: position sizing](https://cryptobolt.io/course-position-sizing)
+  - [Stops and risk-reward: plan the exit before the entry](https://cryptobolt.io/course-stop-loss-and-risk-reward)
+  - [Your biggest opponent: emotions and common mistakes](https://cryptobolt.io/course-trading-psychology)
+  - [Simple analysis: trend, support and resistance](https://cryptobolt.io/course-trend-support-resistance)
+  - [Your trading plan and journal](https://cryptobolt.io/course-trading-plan-and-journal)
+  - [Your first 30 days: a safe practice plan](https://cryptobolt.io/course-first-30-days)
 - [Crypto Trading Glossary](https://cryptobolt.io/glossary) — Plain-English definitions of crypto trading and market-data terms such as funding rate, open interest, liquidation price and ATR.
 - [Editorial Policy](https://cryptobolt.io/editorial-policy) — How CryptoBolt writes guides, builds and tests calculators, uses data, takes advertising and corrects errors.
 - [Releases and Changelog](https://cryptobolt.io/releases) — Dated log of new features, fixes and data-source changes.

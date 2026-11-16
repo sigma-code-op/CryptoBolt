@@ -126,6 +126,16 @@ Open
 
 Link: https://cryptobolt.io/crypto-paper-trading
 
+Calculator
+
+### Risk of ruin calculator
+
+How likely your risk per trade is to cause a deep drawdown.
+
+Open
+
+Link: https://cryptobolt.io/risk-of-ruin-calculator
+
 ## Watch: Position sizing and the 1% rule
 
 How to size a trade so one loss cannot do much damage.
