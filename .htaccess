@@ -60,6 +60,14 @@ AddDefaultCharset UTF-8
   </FilesMatch>
 </IfModule>
 
+# Markdown twins are for AI agents, not for Google's index: keep them out of search
+# so they never compete with the HTML page as the "canonical" version.
+<IfModule mod_headers.c>
+  <FilesMatch "\.md$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
+</IfModule>
+
 # ---------------------------------------------------------------------------
 # Speed (Apache hosts only; GitHub Pages ignores this file and already gzips):
 # compress text assets and let browsers cache static files.
