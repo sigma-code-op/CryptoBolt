@@ -4,6 +4,22 @@
 
 Source: https://cryptobolt.io/releases
 
+v1.20.0
+
+November 15, 2026
+
+## A free trading course for absolute beginners.
+
+What's new
+
+- New [free trading course](https://cryptobolt.io/trading-course): twelve short lessons from reading a candle to a written trading plan and a 30-day paper trading routine.
+- Each lesson has a four-question quiz with explanations, and several include tools: a candle builder, trading cost, leverage, position size and risk-reward calculators.
+- Progress, checklist ticks and your plan draft are saved only in your own browser.
+
+Data sources
+
+- No change. The course tools do arithmetic locally and use made-up example numbers, not live data.
+
 v1.19.0
 
 November 14, 2026

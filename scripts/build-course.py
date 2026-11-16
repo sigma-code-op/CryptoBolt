@@ -42,9 +42,9 @@ HEAD_TAIL = tpl[tpl.index('    <link rel="preload" href="/assets/fonts/inter'): 
 HEAD_TAIL = HEAD_TAIL.rstrip() + '\n    <link rel="stylesheet" href="css/course.css?v=20261115">\n'
 NAV = tpl[tpl.index('<body class="mk">'): tpl.index('<main id="main"')]
 NAV = NAV.replace('<a href="blog" style="color:#eef1f4;" aria-current="page">Blog</a>', '<a href="blog">Blog</a>')
-NAV = NAV.replace('<a href="blog">Blog</a>', '<a href="trading-course" style="color:#eef1f4;" aria-current="page">Course</a>\n        <a href="blog">Blog</a>', 2)
+NAV = NAV.replace('<a href="trading-course">Course</a>', '').replace('<a href="blog">Blog</a>', '<a href="trading-course" style="color:#eef1f4;" aria-current="page">Course</a>\n        <a href="blog">Blog</a>', 2)
 FOOT = tpl[tpl.index("</main>") + len("</main>"):]
-FOOT = FOOT.replace('<a href="glossary">Glossary</a>', '<a href="trading-course">Free course</a>\n            <a href="glossary">Glossary</a>', 1)
+FOOT = FOOT.replace('<a href="trading-course">Free course</a>', '').replace('<a href="glossary">Glossary</a>', '<a href="trading-course">Free course</a>\n            <a href="glossary">Glossary</a>', 1)
 FOOT = FOOT.replace('<script src="js/lang-switcher.js', '<script src="js/course.js?v=20261115" defer></script>\n<script src="js/lang-switcher.js', 1)
 
 GLOSSARY_IDS = set(re.findall(r'id="([a-z0-9-]+)"', read("glossary.html")))
