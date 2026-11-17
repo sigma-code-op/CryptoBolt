@@ -175,6 +175,7 @@ LESSONS_A = [
 
 <h2 id="volume">Volume: how many people took part</h2>
 <p>Under the candles you will usually see bars showing <a href="glossary#volume">volume</a>, the amount traded in that period. A big move on high volume means many participants agreed. A big move on thin volume is easier to reverse. Volume is context, not a signal on its own.</p>
+<p><strong>Go deeper:</strong> every major pattern, with trade rules, risk notes and crypto-specific guidance, is covered in the ebook <a href="ebook#candlestick-patterns">The Complete Book of Candlestick Patterns</a> (a free sample is on the ebook page).</p>
 """,
 "takeaways": [
  "A candle records open, high, low and close for one time period; the body spans open to close and the wicks show the extremes.",

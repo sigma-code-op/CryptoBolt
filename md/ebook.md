@@ -1,6 +1,6 @@
-# Crypto Clarity: 160-Page Crypto Ebook | CryptoBolt
+# Crypto Ebooks: Two 160-Page PDF Guides | CryptoBolt
 
-> A 160-page PDF crypto guide: 17 chapters, 31 diagrams, from blockchain basics to risk management and scams. Education only. Order by email.
+> Two 160-page PDF ebooks, $9 each: Crypto Clarity (crypto basics to risk management) and Candlestick Patterns (77 patterns). Free samples. Education only.
 
 Source: https://cryptobolt.io/ebook
 
@@ -27,7 +27,7 @@ phone-friendly
 
 $9 one-time · PDF
 
-[Order via contact form](https://cryptobolt.io/contact?topic=ebook)
+[Order via contact form](https://cryptobolt.io/contact?topic=ebook&book=clarity)
 
 [Email info@cryptobolt.io](mailto:info@cryptobolt.io?subject=Ebook%20order%3A%20Crypto%20Clarity&body=Hello%20CryptoBolt%2C%0A%0AI%20would%20like%20to%20order%20the%20Crypto%20Clarity%20ebook%20(PDF).%0A%0AName%3A%20%0ACountry%3A%20%0APreferred%20payment%20method%3A%20%0A%0AThank%20you.)
 
@@ -35,7 +35,39 @@ $9 one-time · PDF
 
 Orders are handled personally: you will get a reply with payment details, and the PDF is sent once payment is confirmed. Education only, not financial advice.
 
-What's inside
+NEW · PDF EBOOK
+
+CryptoBolt · Edition 1
+
+## The Complete Book of Candlestick Patterns
+
+Every major candle formation on its own page: what it looks like, the psychology behind it, how to trade it, where it fails and how it behaves on 24/7 crypto charts.
+
+pages
+
+patterns
+
+playbooks
+
+phone-friendly
+
+- 77 patterns, one page each, with a diagram, exact formation rules, trade idea, stop placement, a crypto note and the most common mistake.
+- Research notes that compare textbook labels with tested results. For example, in Thomas Bulkowski's stock-market tests the bearish three line strike acted as a bullish reversal about 84% of the time, the opposite of its name.
+- Context before shape: trend, support and resistance, volume, timeframes and a five-step method for reading any pattern.
+- Six rule-based playbooks, position-sizing examples, backtesting pitfalls and trader-psychology habits.
+- A visual index of all 77 patterns, look-alike comparisons, a 20-question quiz, glossary, trade journal and pre-trade checklist.
+
+$9 one-time · PDF
+
+[Order via contact form](https://cryptobolt.io/contact?topic=ebook&book=candlestick)
+
+[Email info@cryptobolt.io](mailto:info@cryptobolt.io?subject=Ebook%20order%3A%20Candlestick%20Patterns&body=Hello%20CryptoBolt%2C%0A%0AI%20would%20like%20to%20order%20The%20Complete%20Book%20of%20Candlestick%20Patterns%20(PDF).%0A%0AName%3A%20%0ACountry%3A%20%0APreferred%20payment%20method%3A%20%0A%0AThank%20you.)
+
+[Free sample (PDF)](https://cryptobolt.io/assets/ebook/Candlestick-Patterns-Sample.pdf)
+
+Orders are handled personally: you will get a reply with payment details, and the PDF is sent once payment is confirmed. Education only, not financial advice, and no pattern predicts the future.
+
+Crypto Clarity · What's inside
 
 ## Four parts, seventeen chapters
 
@@ -78,7 +110,7 @@ Part IV
 4. Taxes, Regulation and Staying Legal
 5. Building Your Own Plan
 
-Chapter by chapter
+Crypto Clarity · Chapter by chapter
 
 ## What each chapter covers
 
@@ -130,7 +162,7 @@ Every chapter ends with key takeaways and three questions to check yourself. Whe
 
 A glossary of 100+ terms, printable checklists, answers to every “Check yourself” question, a one-page formula cheat sheet and a trade journal template.
 
-Free excerpt
+Crypto Clarity · Free excerpt
 
 ## Read how the book begins
 
@@ -144,13 +176,78 @@ This book reverses that order. It starts from first principles (what money is, w
 
 Want to keep reading? [Download the free 16-page sample (PDF)](https://cryptobolt.io/assets/ebook/Crypto-Clarity-Sample.pdf).
 
+Candlestick Patterns · What's inside
+
+## Three parts and a workbook
+
+Learn the candle, look up any pattern in seconds, then turn patterns into rule-based trades.
+
+Part I
+
+### Foundations
+
+1. The Story of the Candle
+2. Anatomy of a Candle
+3. Body, Wick and Size
+4. Context Is Everything
+5. The Psychology Behind the Shapes
+6. Timeframes and Crypto Market Structure
+7. A Five-Step Method for Reading Any Pattern
+8. Reversal, Continuation and Indecision
+
+Part II
+
+### The encyclopedia: 77 patterns
+
+1. Single-candle patterns (16): marubozu, doji family, hammer, hanging man, shooting star and more
+2. Two-candle patterns (24): engulfing, harami, piercing line, dark cloud, tweezers, kicking and more
+3. Three-candle patterns (26): morning and evening stars, soldiers and crows, tasuki, three line strikes and more
+4. Multi-candle and gap patterns (11): rising and falling three methods, breakaways, windows, island reversal, Hikkake
+
+Part III
+
+### Turning patterns into trades
+
+1. Confluence: Stacking the Odds
+2. Volume and Candles
+3. Candles Plus Indicators
+4. Entries, Stops and Targets
+5. Risk and Position Sizing
+6. Crypto-Specific Considerations
+7. Six Trading Playbooks
+8. Backtesting and What the Research Says
+9. Look-Alike Patterns
+10. The Trader's Mind
+
+Appendices
+
+### Reference and workbook
+
+1. Signal finder
+2. Visual index of all 77 patterns
+3. 20-question self-test with answers
+4. Glossary
+5. Trade journal pages
+6. Pre-trade checklist and size worksheet
+7. Pattern mastery tracker
+
+Candlestick Patterns · Why it is different
+
+## Honest about what patterns can and cannot do
+
+Most candlestick material hands you a shape and a promise. This book tells you what each shape says about buyers and sellers, then shows where it tends to fail. Several pages carry a research note comparing the textbook claim with measured results from Thomas Bulkowski's large tests of 103 patterns on stock data, and the book explains why those results may differ on crypto.
+
+You also get a crypto-specific note on every pattern: 24/7 trading means true price gaps are rare, liquidation wicks can fake a hammer, and the same candle means different things on a thin weekend than on a busy Tuesday. The goal is to make you hard to fool, not to promise profit.
+
+Want to see the style first? [Download the free 18-page sample (PDF)](https://cryptobolt.io/assets/ebook/Candlestick-Patterns-Sample.pdf): the contents, Chapters 1 and 2 and five complete pattern pages (hammer, bullish engulfing, morning star, evening star and three black crows). Prefer to practise first? Try the free [lesson on reading candlestick charts](https://cryptobolt.io/course-how-to-read-candlestick-charts) and the [paper trading simulator](https://cryptobolt.io/crypto-paper-trading).
+
 How to order
 
 ## Three simple steps
 
 ### Send your request
 
-Use the [contact form](https://cryptobolt.io/contact?topic=ebook) (choose "Ebook order") or email [info@cryptobolt.io](mailto:info@cryptobolt.io).
+Use the [contact form](https://cryptobolt.io/contact?topic=ebook) (choose "Ebook order") or email [info@cryptobolt.io](mailto:info@cryptobolt.io). Tell us which book you want, or both.
 
 ### Get payment details
 
@@ -174,7 +271,19 @@ No. It does not recommend assets, give signals or predict prices. It teaches you
 
 Can I read a sample first?
 
-Yes. The free sample contains the preface, contents and all of Chapter 1 (16 pages).
+Yes, for both books. The Crypto Clarity sample has the preface, contents and all of Chapter 1 (16 pages). The Candlestick Patterns sample has the contents, two chapters and five full pattern pages (18 pages).
+
+Which ebook should I start with?
+
+If you are new to crypto, start with Crypto Clarity: it explains how blockchains, wallets, exchanges and risk work. If you already trade or follow charts and want to read candles properly, start with Candlestick Patterns. Many readers take both.
+
+Does the candlestick book promise profits or predict prices?
+
+No. Patterns describe what buyers and sellers just did; they do not predict the future. The book shows where each pattern fails, includes research notes where results are available (mostly from stock data, not crypto) and teaches position sizing so that one wrong call does not wipe you out.
+
+Can I buy both?
+
+Yes. Send one request naming both books. Each costs $9.
 
 What format is it?
 
@@ -182,11 +291,11 @@ A single PDF, designed at a book-like page size that reads well on phones and ta
 
 How do I pay?
 
-The ebook costs $9. Send an order request and we will reply with the payment methods available for your country. Please never send payment to anyone who contacts you first; only use details sent in reply to your own request to info@cryptobolt.io.
+Each ebook costs $9. Send an order request and we will reply with the payment methods available for your country. Please never send payment to anyone who contacts you first; only use details sent in reply to your own request to info@cryptobolt.io.
 
-Crypto Clarity is for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our [terms](https://cryptobolt.io/terms) and [privacy policy](https://cryptobolt.io/privacy).
+Crypto Clarity and Candlestick Patterns are for education only. It is not financial, investment, legal or tax advice, and crypto assets can lose all of their value. See our [terms](https://cryptobolt.io/terms) and [privacy policy](https://cryptobolt.io/privacy).
 
-Crypto Clarity · PDF
+2 ebooks · PDF
 
 [Order now](https://cryptobolt.io/contact?topic=ebook)
 

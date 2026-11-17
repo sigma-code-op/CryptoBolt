@@ -109,11 +109,19 @@ contactForm.addEventListener('submit', async (e) => {
 // Deep link from ebook.html: contact.html?topic=ebook preselects the topic and pre-fills a message.
 (function prefillEbookOrder() {
     try {
-        const wanted = new URLSearchParams(window.location.search).get('topic');
+        const params = new URLSearchParams(window.location.search);
+        const wanted = params.get('topic');
         if (wanted !== 'ebook') return;
+        // ?book=clarity | candlestick | both (defaults to Crypto Clarity for old links)
+        const titles = {
+            clarity: 'the Crypto Clarity ebook (PDF)',
+            candlestick: 'The Complete Book of Candlestick Patterns ebook (PDF)',
+            both: 'both ebooks (PDF): Crypto Clarity and The Complete Book of Candlestick Patterns',
+        };
+        const which = titles[params.get('book')] || titles.clarity;
         const sel = document.getElementById('contact-topic');
         const msg = document.getElementById('contact-message');
         if (sel) sel.value = 'Ebook order';
-        if (msg && !msg.value) msg.value = 'I would like to order the Crypto Clarity ebook (PDF). Please send the price and payment details for my country.';
+        if (msg && !msg.value) msg.value = 'I would like to order ' + which + '. Please send the payment details for my country.';
     } catch { /* ignore malformed query strings */ }
 })();

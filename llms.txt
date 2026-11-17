@@ -73,7 +73,7 @@
   - [How to read an order book (video)](https://cryptobolt.io/order-book-explained-video) — Bids, asks, the spread and slippage, animated.
   - [Position sizing and the 1% rule (video)](https://cryptobolt.io/position-sizing-1-percent-rule-video) — How to size a trade so one loss cannot do much damage.
   - [How paper trading works (video)](https://cryptobolt.io/paper-trading-how-it-works-video) — Practice with $10,000 of virtual money before risking real money.
-- [Crypto Clarity ebook](https://cryptobolt.io/ebook) — 160-page PDF beginner-to-confident crypto guide (17 chapters, 31 diagrams); order by email or the contact form.
+- [Ebooks](https://cryptobolt.io/ebook) — Two 160-page PDF guides, $9 each: Crypto Clarity (beginner-to-confident crypto guide, 17 chapters, 31 diagrams) and The Complete Book of Candlestick Patterns (77 patterns, six playbooks, crypto notes); free samples; order by email or the contact form.
 - [Contact CryptoBolt](https://cryptobolt.io/contact) — Contact and partnership inquiries.
 - [Privacy Policy](https://cryptobolt.io/privacy) — Privacy and data-handling information.
 - [Terms of Service](https://cryptobolt.io/terms) — Terms governing use of CryptoBolt.
