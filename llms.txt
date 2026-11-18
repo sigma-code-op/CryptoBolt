@@ -37,6 +37,7 @@
   - [Liquidation Price Calculator](https://cryptobolt.io/liquidation-price-calculator) — Free calculator estimating liquidation price for leveraged crypto futures positions, long or short, isolated or cross margin.
   - [Position Size Calculator](https://cryptobolt.io/position-size-calculator) — Free calculator turning account balance, risk percentage, entry and stop-loss into position size, margin and R-multiple targets.
   - [Crypto Futures Profit Calculator](https://cryptobolt.io/crypto-profit-calculator) — Free calculator for net profit or loss, ROE and fees on a leveraged long or short trade.
+  - [Crypto Profit Calculator by Coin](https://cryptobolt.io/altcoin-profit-calculator) — Free spot profit, ROI and break-even calculator for FET, NEAR, ANKR, SOL and any other coin, fees included.
   - [Funding Fee Calculator](https://cryptobolt.io/funding-fee-calculator) — Free calculator for what a perpetual futures position pays or earns in funding per day, month and year.
   - [Risk-Reward Ratio Calculator](https://cryptobolt.io/risk-reward-calculator) — Free calculator for the risk-reward ratio, break-even win rate and expectancy of a long or short trade.
   - [Crypto DCA Calculator](https://cryptobolt.io/dca-calculator) — Free dollar-cost averaging calculator: average cost, coins bought and return versus a lump sum.

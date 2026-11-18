@@ -45,6 +45,7 @@ The current site has no dedicated search landing page for crypto trading fees, p
 | `/crypto-calculators.html` | crypto trading calculators | liquidation, position size, PnL, funding fee | each calculator, paper trading, terminal |
 | `/position-size-calculator.html` | position size calculator crypto | risk per trade, stop-loss, R-multiples | liquidation calculator, profit calculator, paper trading |
 | `/crypto-profit-calculator.html` | crypto futures profit calculator | PnL, ROE, fees, leverage | position size, funding fee, liquidation calculator |
+| `/altcoin-profit-calculator.html` | crypto profit calculator | fet / near / ankr / celr profit calculator, coin roi calculator | futures profit calculator, dca calculator, roi calculator |
 | `/funding-fee-calculator.html` | funding fee calculator | perpetual funding cost, annualised funding | funding rate explained, liquidation calculator, profit calculator |
 | `/dca-calculator.html` | dca calculator crypto | dollar-cost averaging, average cost, dca vs lump sum | average price calculator, ROI calculator, DCA guide |
 | `/crypto-average-price-calculator.html` | crypto average price calculator | weighted average, cost basis, averaging down, break-even | DCA calculator, ROI calculator, profit-and-loss guide |

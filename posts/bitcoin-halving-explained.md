@@ -1,5 +1,5 @@
 title: The Bitcoin halving explained: what changes, what doesn't, and the dates
-meta_title: Bitcoin Halving Explained: Dates and Supply
+meta_title: Next Bitcoin Halving: Date, History & Supply
 og_title: The Bitcoin Halving Explained: What Changes, What Doesn't, and the Dates
 date: 2026-11-05
 section: Fundamentals
@@ -30,7 +30,9 @@ The protocol cuts the subsidy in half after every **210,000 blocks**. At about t
 | Third | May 2020 | 6.25 BTC |
 | Fourth | April 2024 | 3.125 BTC |
 
-The next halving is expected around 2028, which would reduce the subsidy to 1.5625 BTC. You can confirm the current block height and expected timing on any public block explorer.
+## When is the next Bitcoin halving?
+
+The next halving happens at **block 1,050,000**, which is 210,000 blocks after the April 2024 halving at block 840,000. At about ten minutes per block that points to roughly **April 2028**, but the exact date moves with how fast blocks are actually found, so treat any specific day as an estimate. The subsidy will fall from 3.125 BTC to 1.5625 BTC. You can confirm the current block height and expected timing on any public block explorer.
 
 ## The 21 million cap
 

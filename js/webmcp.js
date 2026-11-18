@@ -19,6 +19,7 @@
         liquidation_calculator: '/liquidation-price-calculator',
         position_size_calculator: '/position-size-calculator',
         profit_calculator: '/crypto-profit-calculator',
+        coin_profit_calculator: '/altcoin-profit-calculator',
         funding_fee_calculator: '/funding-fee-calculator',
         glossary: '/glossary', blog: '/blog', releases: '/releases',
         about: '/about', contact: '/contact'

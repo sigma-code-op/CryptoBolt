@@ -1,5 +1,5 @@
 title: Reading the Fear & Greed index without overreacting to it
-meta_title: Fear & Greed Index Explained
+meta_title: Crypto Fear & Greed Index: How to Read It
 og_title: Fear & Greed Index Explained: How to Read It Without Overreacting
 date: 2026-08-24
 updated: 2026-11-15
