@@ -44,6 +44,7 @@ const BUNDLES = {
     'shadcn-ui.css',
     'ui-elevate.css',
     'home.css',
+    'pro-desk.css',
   ],
   // index.html, features.html (no shadcn-ui.css)
   'bundle-marketing.css': [

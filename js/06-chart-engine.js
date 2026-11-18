@@ -148,7 +148,7 @@
         if (compareClearBtn) compareClearBtn.classList.add('hidden');
 
         document.getElementById('chart-title').innerText = `${selectedAsset.baseAsset}/USDT`;
-        document.getElementById('chart-ticker-sym').innerText = `Matrix engine tracking: ${selectedAsset.symbol} (${currentInterval})`;
+        document.getElementById('chart-ticker-sym').innerText = `${selectedAsset.symbol} · ${currentInterval}`;
         document.getElementById('legend-sym').innerText = selectedAsset.symbol;
 
         const restEndpoint = selectedAsset.isFutures

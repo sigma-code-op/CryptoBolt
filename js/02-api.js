@@ -78,9 +78,7 @@
             setInterval(updateMoverStrip, 15000);
 
             fetchGlobalMarketPulse();
-            fetchTrendingCoins();
             setInterval(fetchGlobalMarketPulse, 60000);
-            setInterval(fetchTrendingCoins, 120000);
 
             loading.classList.add('hidden');
             initError.classList.add('hidden');
@@ -220,35 +218,6 @@
         }
     }
 
-    async function fetchTrendingCoins() {
-        const strip = document.getElementById('trending-coins-strip');
-        try {
-            const res = await fetchWithTimeout('https://api.coingecko.com/api/v3/search/trending', 10000);
-            if (!res.ok) throw new Error(`Trending API responded ${res.status}`);
-            const json = await res.json();
-            const coins = (json.coins || []).slice(0, 7).map(c => c.item);
-            if (coins.length === 0) { strip.innerHTML = '<span class="text-gray-600 text-[10px]">No trending data.</span>'; return; }
-
-            strip.innerHTML = coins.map(c => {
-                const sym = (c.symbol || '').toUpperCase();
-                const tracked = !!(marketMap[`${sym}USDT_S`] || marketMap[`${sym}USDT_F`]);
-                return `<button class="trending-chip text-[10px] px-2 py-1 rounded-full border transition-all cursor-pointer flex items-center gap-1 ${tracked ? 'bg-gray-900 border-gray-800/80 text-gray-300 hover:border-[#14d38a]/50' : 'bg-gray-900/50 border-gray-800/40 text-gray-600 cursor-default'}" data-sym="${sym}" ${tracked ? '' : 'disabled'}>
-                    #${c.market_cap_rank || '?'} <span class="font-bold">${sym}</span>
-                </button>`;
-            }).join('');
-
-            strip.querySelectorAll('.trending-chip:not([disabled])').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    const sym = chip.getAttribute('data-sym');
-                    const asset = marketMap[`${sym}USDT_S`] || marketMap[`${sym}USDT_F`];
-                    if (asset) { selectAsset(asset); searchInput.value = ''; renderTableHTMLStructure(); }
-                });
-            });
-        } catch (e) {
-            console.warn('Trending coins unavailable:', e.message);
-            strip.innerHTML = '<span class="text-gray-600 text-[10px]">Unavailable right now.</span>';
-        }
-    }
 
     function updateMoverStrip() {
         if (globalMarketList.length === 0) return;

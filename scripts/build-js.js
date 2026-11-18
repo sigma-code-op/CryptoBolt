@@ -63,6 +63,7 @@ const BUNDLES = {
     '15-risk-triggers.js',
     '20-scroll-reveal.js',
     '27-mobile-panels.js',
+    '28-pro-desk.js',
   ],
   // index.html — everything below is NOT needed for first paint or first interaction:
   // the AI insight panel, closed-tab push alerts, the referral panel, the screener modal,
