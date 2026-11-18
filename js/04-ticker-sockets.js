@@ -133,8 +133,6 @@
             }
         }
 
-        if (!asset.isFutures && holdings.some(h => h.symbol === asset.baseAsset)) renderPortfolio();
-        if (asset.isFutures && futuresPositions.some(p => p.symbol === asset.baseAsset)) renderFuturesPositions();
     }
 
     // ---------- Asset selection ----------

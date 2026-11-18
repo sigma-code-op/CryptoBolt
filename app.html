@@ -193,10 +193,6 @@
 
         <!-- Global Market Pulse -->
         <div class="mb-6 cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
-            <div class="px-4 py-2.5 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400"><i data-lucide="globe" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Global Market Pulse</span>
-                <span class="text-[9px] text-gray-600">via CoinGecko &amp; Alternative.me</span>
-            </div>
             <div class="px-6 py-3 flex items-center flex-wrap gap-6">
                 <div>
                     <span class="text-[10px] text-gray-500 block uppercase font-bold">Total Market Cap</span>
@@ -210,6 +206,11 @@
                 <div>
                     <span class="text-[10px] text-gray-500 block uppercase font-bold">BTC Dominance</span>
                     <span id="pulse-btcdom" class="text-sm font-mono font-bold text-amber-400">--</span>
+                </div>
+                <div id="pd-breadth-cell" title="Share of Binance USDT spot markets that are up over 24h">
+                    <span class="text-[10px] text-gray-500 block uppercase font-bold">Breadth (24h)</span>
+                    <span id="pd-breadth" class="text-sm font-mono font-bold text-gray-300">--</span>
+                    <span class="pd-breadth-bar"><i id="pd-breadth-fill"></i></span>
                 </div>
                 <div class="flex items-center gap-2 flex-wrap">
                     <div>
@@ -337,22 +338,16 @@
                             <span id="hud-exchange-compare" class="text-sm font-mono font-bold text-gray-300">--</span>
                         </div>
                     </div>
-                </div>
-
-                <!-- 24h Range Position Bar -->
-                <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg px-6 py-2.5 shadow-xl flex items-center gap-3">
-                    <span class="text-[9px] uppercase font-bold text-gray-500 tracking-wider w-20 shrink-0">24h Range</span>
+                    <div class="pd-hud-row">
+                        <div class="pd-hud-range"><span class="pd-hud-lbl">24h range</span>
                     <span id="range-low-label" class="text-[10px] font-mono text-gray-500 w-16 shrink-0">--</span>
                     <div class="relative flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden">
                         <div id="range-fill" class="absolute inset-y-0 left-0 bg-gradient-to-r from-[#ff4d6a] via-gray-600 to-[#14d38a] opacity-40 w-full"></div>
                         <div id="range-marker" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-white border-2 border-[#0b0e11] shadow" style="left:50%;"></div>
                     </div>
                     <span id="range-high-label" class="text-[10px] font-mono text-gray-500 w-16 shrink-0 text-right">--</span>
-                </div>
-
-                <!-- Long-Term Performance -->
-                <div class="cw-card-interactive bg-[#181a20] border border-gray-800 rounded-lg px-6 py-2.5 shadow-xl flex items-center gap-6">
-                    <span class="text-[9px] uppercase font-bold text-gray-500 tracking-wider">Performance:</span>
+                        </div>
+                        <div class="pd-hud-perf"><span class="pd-hud-lbl">Performance</span>
                     <div class="flex items-center gap-1.5 flex-wrap">
                         <span class="text-[10px] text-gray-500 font-bold uppercase">7D</span>
                         <span id="perf-7d" class="text-xs font-mono font-bold text-gray-400">--</span>
@@ -360,6 +355,8 @@
                     <div class="flex items-center gap-1.5 flex-wrap">
                         <span class="text-[10px] text-gray-500 font-bold uppercase">30D</span>
                         <span id="perf-30d" class="text-xs font-mono font-bold text-gray-400">--</span>
+                    </div>
+                        </div>
                     </div>
                 </div>
 
@@ -525,10 +522,12 @@
                 <span class="pd-title">Pro Desk <em id="pd-sym"></em></span>
                 <div class="pd-tabs" role="tablist" aria-label="Pro desk tools">
                     <button type="button" role="tab" data-pd-tab="deriv" aria-selected="true">Futures intel</button>
+                    <button type="button" role="tab" data-pd-tab="depth" aria-selected="false">Liquidity</button>
+                    <button type="button" role="tab" data-pd-tab="flow" aria-selected="false">Order flow</button>
                     <button type="button" role="tab" data-pd-tab="liq" aria-selected="false">Liquidations <span class="pd-badge"></span></button>
                     <button type="button" role="tab" data-pd-tab="radar" aria-selected="false">Funding radar</button>
-                    <button type="button" role="tab" data-pd-tab="flow" aria-selected="false">Order flow</button>
                     <button type="button" role="tab" data-pd-tab="corr" aria-selected="false">Correlation</button>
+                    <button type="button" role="tab" data-pd-tab="mine" aria-selected="false">My positions</button>
                 </div>
             </div>
             <div class="pd-body">
@@ -537,6 +536,8 @@
                 <div class="pd-pane" data-pd-pane="radar" role="tabpanel" hidden></div>
                 <div class="pd-pane" data-pd-pane="flow" role="tabpanel" hidden></div>
                 <div class="pd-pane" data-pd-pane="corr" role="tabpanel" hidden></div>
+                <div class="pd-pane" data-pd-pane="depth" role="tabpanel" hidden></div>
+                <div class="pd-pane" data-pd-pane="mine" role="tabpanel" hidden></div>
             </div>
         </section>
 
@@ -672,182 +673,6 @@
             </div>
         </div>
 
-        <!-- Combined Account Summary -->
-        <div class="mt-6 cw-card-interactive cw-panel-accent cw-accent-cyan bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
-            <div class="px-4 py-2.5 border-b border-gray-800 bg-[#1e222b] flex items-center justify-between gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400"><i data-lucide="wallet" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Account Summary</span>
-                <span id="summary-risk-score" title="Add holdings or open a position to see a risk read here." class="text-[10px] font-bold uppercase px-2 py-1 rounded border text-gray-500 bg-gray-800 border-gray-700">—</span>
-            </div>
-            <div class="px-6 py-3 flex items-center flex-wrap gap-8">
-                <div>
-                    <span class="text-[10px] text-gray-500 block uppercase font-bold">Spot Value</span>
-                    <span id="summary-spot-value" class="text-sm font-mono font-bold text-gray-300">$0.00</span>
-                </div>
-                <div>
-                    <span class="text-[10px] text-gray-500 block uppercase font-bold">Futures Margin</span>
-                    <span id="summary-futures-margin" class="text-sm font-mono font-bold text-gray-300">$0.00</span>
-                </div>
-                <div>
-                    <span class="text-[10px] text-gray-500 block uppercase font-bold">Futures P&amp;L</span>
-                    <span id="summary-futures-pnl" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
-                </div>
-                <div class="ml-auto text-right">
-                    <span class="text-[10px] text-gray-500 block uppercase font-bold">Net Account Value</span>
-                    <span id="summary-net-value" class="text-lg font-mono font-bold text-white">$0.00</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Portfolio Tracker -->
-        <div data-cw-panel="portfolio" class="mt-6 cw-card-interactive cw-panel-accent cw-accent-green bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
-            <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="briefcase" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Portfolio Tracker</span>
-                <div class="flex items-center gap-4 flex-wrap">
-                    <div class="text-right">
-                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Total Value</span>
-                        <span id="portfolio-total-value" class="text-sm font-mono font-bold text-white">$0.00</span>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Unrealized P&amp;L</span>
-                        <span id="portfolio-total-pnl" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
-                    </div>
-                    <a href="trade" title="Open the full practice trading account — market/limit orders, live account P&L, trade history" class="text-[10px] px-2.5 py-1 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer"><i data-lucide="target" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Practice Trading <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></a>
-                    <div class="flex items-center gap-1.5">
-                        <button id="portfolio-buy-btn" title="Buy real crypto on Binance" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Buy (real)</button>
-                        <button id="portfolio-sell-btn" title="Sell real crypto on Binance" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Sell (real)</button>
-                    </div>
-                    <button id="portfolio-csv-btn" title="Export holdings to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] hover:border-[#14d38a]/40 transition-all cursor-pointer"><i data-lucide="download" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> CSV</button>
-                </div>
-            </div>
-
-            <div class="cw-form-grid p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
-                <input aria-label="Holding asset symbol" id="holding-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="holding-symbol-list"
-                    class="w-28 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
-                <datalist id="holding-symbol-list"></datalist>
-                <div class="flex items-center gap-1">
-                    <input aria-label="Holding amount" id="holding-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
-                        class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
-                    <select aria-label="Holding amount unit" id="holding-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-[#14d38a]">
-                        <option value="coins">Coins</option>
-                        <option value="usdt">USDT</option>
-                    </select>
-                </div>
-                <span id="holding-qty-hint" class="text-[10px] text-gray-500 font-mono min-w-[90px]"></span>
-                <div class="flex items-center gap-1">
-                    <input aria-label="Average cost per unit (optional)" id="holding-cost-input" inputmode="decimal" type="number" step="any" placeholder="Avg cost / unit (optional)"
-                        class="w-36 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
-                    <button id="holding-uselive-btn" title="Fill with current price" class="text-[10px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-[#14d38a] transition-all cursor-pointer">Live</button>
-                </div>
-                <input aria-label="Holding stop-loss price (optional)" id="holding-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
-                    class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#ff4d6a]">
-                <input aria-label="Holding take-profit price (optional)" id="holding-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
-                    class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
-                <button id="holding-add-btn" class="text-[11px] px-3 py-1.5 rounded bg-[#14d38a] text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add Holding</button>
-            </div>
-
-            <div class="cw-table-scroll overflow-x-auto max-h-[280px]">
-                <table class="cw-sticky-first w-full text-left border-collapse whitespace-nowrap">
-                    <thead>
-                        <tr class="text-[10px] font-bold uppercase text-gray-500 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0">
-                            <th class="py-2 px-3">Asset</th>
-                            <th class="py-2 px-3 text-right">Qty</th>
-                            <th class="py-2 px-3 text-right">Avg Cost</th>
-                            <th class="py-2 px-3 text-right">Price</th>
-                            <th class="py-2 px-3 text-right">Value</th>
-                            <th class="py-2 px-3 text-right">SL / TP</th>
-                            <th class="py-2 px-3 text-right">P&amp;L</th>
-                            <th class="py-2 px-3 w-8"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="portfolio-rows" class="divide-y divide-gray-800/40 text-xs font-mono">
-                        <tr><td colspan="8" class="py-8 text-center text-gray-600 text-[11px]">No holdings added yet — track quantities to see live portfolio value.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Futures Positions (Leverage) Tracker -->
-        <div data-cw-panel="futures" class="mt-6 cw-card-interactive cw-panel-accent cw-accent-amber bg-[#181a20] border border-gray-800 rounded-lg shadow-2xl overflow-hidden">
-            <div class="px-4 py-3 border-b border-gray-800 bg-[#1e222b] flex justify-between items-center flex-wrap gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i data-lucide="zap" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Futures Positions <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 normal-case">Leverage</span></span>
-                <div class="flex items-center gap-4 flex-wrap">
-                    <div class="text-right">
-                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Margin Used</span>
-                        <span id="futures-total-margin" class="text-sm font-mono font-bold text-white">$0.00</span>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-[9px] text-gray-500 block uppercase font-bold">Unrealized P&amp;L</span>
-                        <span id="futures-total-pnl" class="text-sm font-mono font-bold text-gray-400">$0.00</span>
-                    </div>
-                    <div class="flex items-center gap-1.5" title="Binance buys/sells the real underlying coin with fiat — it can't open leveraged positions directly. Use it to fund or cash out the wallet you trade futures from.">
-                        <button id="futures-buy-btn" class="text-[10px] px-2.5 py-1 rounded bg-amber-500 text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Fund ⓘ</button>
-                        <button id="futures-sell-btn" class="text-[10px] px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 transition-all cursor-pointer">Cash Out</button>
-                    </div>
-                    <button id="futures-csv-btn" title="Export positions to CSV" class="text-[10px] px-2 py-1 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 hover:border-amber-500/40 transition-all cursor-pointer"><i data-lucide="download" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> CSV</button>
-                </div>
-            </div>
-
-            <div class="cw-form-grid p-3 flex flex-wrap items-center gap-2 border-b border-gray-800 bg-[#14161c]">
-                <input aria-label="Futures asset symbol" id="futures-symbol-input" type="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Asset e.g. BTC" list="futures-symbol-list"
-                    class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
-                <datalist id="futures-symbol-list"></datalist>
-                <select aria-label="Position side (long or short)" id="futures-side-input" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 focus:outline-none focus:border-amber-500">
-                    <option value="long">Long</option>
-                    <option value="short">Short</option>
-                </select>
-                <div class="flex items-center gap-1">
-                    <input aria-label="Futures entry price" id="futures-entry-input" inputmode="decimal" type="number" step="any" placeholder="Entry price"
-                        class="w-24 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
-                    <button id="futures-uselive-btn" title="Fill with current price" class="text-[10px] px-2 py-1.5 rounded bg-gray-900 border border-gray-800 text-gray-400 hover:text-amber-400 transition-all cursor-pointer">Live</button>
-                </div>
-                <div class="flex items-center gap-1">
-                    <input aria-label="Futures position amount" id="futures-qty-input" inputmode="decimal" type="number" step="any" placeholder="Amount"
-                        class="w-20 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
-                    <select aria-label="Futures amount unit" id="futures-qty-unit" class="bg-gray-900 border border-gray-800 rounded text-[11px] px-1.5 py-1.5 text-gray-300 focus:outline-none focus:border-amber-500">
-                        <option value="coins">Coins</option>
-                        <option value="usdt">USDT</option>
-                    </select>
-                </div>
-                <span id="futures-qty-hint" class="text-[10px] text-gray-500 font-mono min-w-[90px]"></span>
-                <input aria-label="Leverage multiple" id="futures-leverage-input" inputmode="numeric" type="number" step="1" min="1" max="125" placeholder="Leverage (x)" value="10"
-                    class="w-20 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500">
-                <input aria-label="Futures stop-loss price (optional)" id="futures-sl-input" inputmode="decimal" type="number" step="any" placeholder="Stop-loss (optional)"
-                    class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#ff4d6a]">
-                <input aria-label="Futures take-profit price (optional)" id="futures-tp-input" inputmode="decimal" type="number" step="any" placeholder="Take-profit (optional)"
-                    class="w-32 bg-gray-900 border border-gray-800 rounded text-[11px] px-2 py-1.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#14d38a]">
-                <button id="futures-add-btn" class="text-[11px] px-3 py-1.5 rounded bg-amber-500 text-[#0b0e11] font-bold hover:opacity-90 transition-all cursor-pointer">Add Position</button>
-            </div>
-
-            <div class="cw-table-scroll overflow-x-auto max-h-[300px]">
-                <table class="cw-sticky-first w-full text-left border-collapse whitespace-nowrap">
-                    <thead>
-                        <tr class="text-[10px] font-bold uppercase text-gray-500 border-b border-gray-800 bg-[#1e222b]/50 sticky top-0">
-                            <th class="py-2 px-3">Asset</th>
-                            <th class="py-2 px-3">Side</th>
-                            <th class="py-2 px-3 text-right">Entry</th>
-                            <th class="py-2 px-3 text-right">Qty</th>
-                            <th class="py-2 px-3 text-right">Lev.</th>
-                            <th class="py-2 px-3 text-right">Margin</th>
-                            <th class="py-2 px-3 text-right">Mark</th>
-                            <th class="py-2 px-3 text-right">Liq. Est.</th>
-                            <th class="py-2 px-3 text-right">SL / Risk</th>
-                            <th class="py-2 px-3 text-right">TP / Reward</th>
-                            <th class="py-2 px-3 text-right">R:R</th>
-                            <th class="py-2 px-3 text-right">P&amp;L</th>
-                            <th class="py-2 px-3 w-8"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="futures-rows" class="divide-y divide-gray-800/40 text-xs font-mono">
-                        <tr><td colspan="13" class="py-8 text-center text-gray-600 text-[11px]">No leveraged positions tracked yet.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="px-4 py-2.5 border-t border-gray-800/60 text-[9px] text-gray-600 leading-relaxed">
-                <i data-lucide="triangle-alert" width="14" height="14" stroke-width="2.1" style="vertical-align:-2px;"></i> Liquidation price is a simplified isolated-margin estimate (entry × (1 ∓ 1/leverage)) that ignores maintenance margin rate, fees, and funding — the real liquidation price on any exchange will differ. This tracker doesn't place real orders; it's for tracking positions you already hold elsewhere.
-            </div>
-        </div>
-
-        <!-- ============ SEO content: About + FAQ (also crawlable text for search engines) ============ -->
         <details id="about-cryptobolt" class="pd-about">
             <summary>About this terminal</summary>
             <div class="pd-about-body"><p>

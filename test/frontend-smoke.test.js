@@ -46,7 +46,7 @@ test('deployment documentation links resolve to repository files', () => {
 
 test('terminal panels are collapsible and the module ships in the home bundle', () => {
   const html = read('app.html');
-  for (const id of ['chart', 'orderbook', 'trades', 'alerts', 'portfolio', 'futures']) {
+  for (const id of ['chart', 'orderbook', 'trades', 'alerts', 'prodesk']) {
     assert.match(html, new RegExp('data-cw-panel="' + id + '"'));
   }
   assert.match(read('scripts/build-js.js'), /'27-mobile-panels\.js'/);
@@ -62,9 +62,17 @@ test('chart follows its container height instead of a hard-coded 400px', () => {
 
 test('mobile form rows, numeric keypads and table scroll hooks are present', () => {
   const html = read('app.html');
-  assert.equal((html.match(/class="cw-form-grid /g) || []).length, 3);
-  assert.match(html, /id="holding-qty-input" inputmode="decimal"/);
-  assert.match(html, /id="futures-leverage-input" inputmode="numeric"/);
-  assert.ok((html.match(/cw-table-scroll/g) || []).length >= 3);
+  assert.ok((html.match(/class="cw-form-grid /g) || []).length >= 1);
+  assert.ok((html.match(/cw-table-scroll/g) || []).length >= 1);
   assert.match(read('css/dist/bundle-home.css'), /\.cw-collapsed\s*>\s*:not\(\.cw-panel-head\)/);
+});
+test('terminal Pro Desk ships in the home bundle and the old tracker panels are gone', () => {
+  const html = read('app.html');
+  for (const tab of ['deriv', 'depth', 'flow', 'liq', 'radar', 'corr', 'mine']) {
+    assert.match(html, new RegExp('data-pd-tab="' + tab + '"'));
+    assert.match(html, new RegExp('data-pd-pane="' + tab + '"'));
+  }
+  assert.match(read('scripts/build-js.js'), /'28-pro-desk\.js'/);
+  assert.match(read('js/dist/bundle-home.js'), /cw_pd_tab/);
+  assert.doesNotMatch(html, /id="holding-qty-input"|id="futures-leverage-input"|cw-terminal-canvas|accent-swatch/);
 });

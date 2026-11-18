@@ -73,8 +73,6 @@
             updateMoverStrip();
             populateSymbolDatalists();
             renderPopularCoinsStrip();
-            renderPortfolio();
-            renderFuturesPositions();
             setInterval(updateMoverStrip, 15000);
 
             fetchGlobalMarketPulse();

@@ -9,6 +9,8 @@
 //        Funding radar  - most crowded longs / shorts across every USDT perpetual
 //        Order flow     - cumulative volume delta + large-trade tape for the selected symbol
 //        Correlation    - correlation matrix, beta to BTC and relative strength for the top coins
+//        Liquidity      - spread, depth imbalance, walls and market-order slippage from the live book
+//        My positions   - live read-only view of the Trade page paper account (replaces the old tracker panels)
 // Nothing here changes how the existing modules work: it reads the shared globals (selectedAsset,
 // marketMap, selectAsset, watchlist) and only fetches for the tab that is open and visible.
 (function proDesk() {
@@ -149,8 +151,8 @@
             { t: 'Go to chart', k: 'chart', run: () => goPanel('chart') },
             { t: 'Go to order book', k: 'orderbook depth', run: () => goPanel('orderbook') },
             { t: 'Go to price alerts', k: 'alerts', hint: 'A', run: () => { goPanel('alerts'); setTimeout(() => { const i = $('#alert-price-input'); if (i) i.focus(); }, 250); } },
-            { t: 'Go to portfolio', k: 'portfolio holdings', run: () => goPanel('portfolio') },
-            { t: 'Go to futures positions', k: 'futures positions leverage', run: () => goPanel('futures') },
+            { t: 'Pro Desk: Liquidity & slippage', k: 'liquidity depth slippage walls spread order book imbalance', run: () => openDesk('depth') },
+            { t: 'Pro Desk: My positions (Trade account)', k: 'positions portfolio holdings futures paper pnl equity', run: () => openDesk('mine') },
             { t: 'Open Trade (paper trading)', k: 'trade paper trading account', run: () => { location.href = 'trade'; } },
             { t: 'Open AI Research', k: 'ai research chat', run: () => { location.href = 'ai'; } },
             { t: 'Open Account', k: 'account profile settings', run: () => { location.href = 'account.html'; } },
@@ -786,6 +788,136 @@
         }
         tabs.corr = { start() { load(); }, stop() { }, onAsset() { } };
     })();
+
+
+    // =====================================================================
+    // TAB: LIQUIDITY (order book depth, spread, walls, slippage)
+    // =====================================================================
+    (function depthTab() {
+        const pane = panes.depth;
+        let timer = null, token = 0;
+
+        function walk(levels, notional) {
+            let rem = notional, qty = 0;
+            for (let i = 0; i < levels.length && rem > 0; i++) {
+                const take = Math.min(rem, levels[i][0] * levels[i][1]);
+                qty += take / levels[i][0]; rem -= take;
+            }
+            return rem > 0 ? null : notional / qty;
+        }
+        function curve(bids, asks, mid) {
+            const W = 600, H = 120, span = 0.02;
+            const cum = (lv, dir) => { let c = 0; const out = []; lv.forEach(l => { const d = Math.abs(l[0] / mid - 1); if (d <= span) { c += l[0] * l[1]; out.push([d * dir, c]); } }); return out; };
+            const b = cum(bids, -1), a = cum(asks, 1);
+            const max = Math.max(b.length ? b[b.length - 1][1] : 0, a.length ? a[a.length - 1][1] : 0) || 1;
+            const x = (d) => (W / 2 + d / span * (W / 2)).toFixed(1), y = (v) => (H - 2 - v / max * (H - 8)).toFixed(1);
+            const path = (arr, col) => arr.length < 2 ? '' : '<polyline fill="none" stroke="' + col + '" stroke-width="1.8" points="' + arr.map(p => x(p[0]) + ',' + y(p[1])).join(' ') + '"/>';
+            return '<svg class="pd-depthsvg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Cumulative depth within 2% of the mid price"><line x1="' + W / 2 + '" y1="0" x2="' + W / 2 + '" y2="' + H + '" stroke="#2a3040" stroke-dasharray="3 3"/>' + path(b, '#14d38a') + path(a, '#ff4d6a') + '</svg>';
+        }
+        async function load() {
+            const a = currentAsset(); const my = ++token;
+            if (!a) { pane.innerHTML = skeleton('Select a coin to analyse its order book.'); return; }
+            let d;
+            try { d = await jget((a.isFutures ? FAPI + '/fapi/v1/depth' : SAPI + '/api/v3/depth') + '?symbol=' + a.symbol + '&limit=1000', 10000); }
+            catch (e) { if (my === token) errBox(pane, 'Could not load the order book for ' + a.symbol + ' (' + e.message + ').', load); return; }
+            if (my !== token) return;
+            const bids = (d.bids || []).map(x => [parseFloat(x[0]), parseFloat(x[1])]).filter(x => x[0] > 0);
+            const asks = (d.asks || []).map(x => [parseFloat(x[0]), parseFloat(x[1])]).filter(x => x[0] > 0);
+            if (!bids.length || !asks.length) { pane.innerHTML = skeleton('The order book came back empty.'); return; }
+            const bb = bids[0][0], ba = asks[0][0], mid = (bb + ba) / 2;
+            const spreadBps = (ba - bb) / mid * 1e4;
+            const band = (lv, p, dir) => lv.reduce((s, l) => s + (dir * (l[0] / mid - 1) <= p ? l[0] * l[1] : 0), 0);
+            const bandRows = [0.001, 0.005, 0.01, 0.02].map(p => {
+                const bv = band(bids, p, -1), av = band(asks, p, 1), im = (bv - av) / ((bv + av) || 1) * 100;
+                return '<tr><td>&plusmn;' + (p * 100).toFixed(1) + '%</td><td class="pd-r pd-up">' + usd(bv) + '</td><td class="pd-r pd-dn">' + usd(av) + '</td><td class="pd-r ' + cls(im) + '">' + pct(im, 0) + '</td></tr>';
+            }).join('');
+            const slipRows = [10000, 100000, 1000000].map(n => {
+                const buy = walk(asks, n), sell = walk(bids, n);
+                const f = (v, ref, dir) => v === null ? '<td class="pd-r pd-fine">not enough depth</td>' : '<td class="pd-r ' + (dir * (v / ref - 1) > 0.002 ? 'pd-dn' : '') + '">' + pct(dir * (v / ref - 1) * 100, 3) + '</td>';
+                return '<tr><td>' + usd(n, 0) + '</td>' + f(buy, ba, 1) + f(sell, bb, -1) + '</tr>';
+            }).join('');
+            const walls = (lv, side) => lv.filter(l => Math.abs(l[0] / mid - 1) <= 0.03).sort((x, y) => y[0] * y[1] - x[0] * x[1]).slice(0, 3)
+                .map(l => '<tr><td class="' + side + '">$' + priceStr(l[0]) + '</td><td class="pd-r">' + pct((l[0] / mid - 1) * 100, 2) + '</td><td class="pd-r pd-strong">' + usd(l[0] * l[1]) + '</td></tr>').join('') || '<tr><td colspan="3" class="pd-empty">none within 3%</td></tr>';
+            const b1 = band(bids, 0.01, -1), a1 = band(asks, 0.01, 1), im1 = (b1 - a1) / ((b1 + a1) || 1) * 100;
+            pane.innerHTML =
+                '<div class="pd-grid pd-grid-3"><div class="pd-tile"><div class="pd-k">Spread</div><div class="pd-v">' + spreadBps.toFixed(2) + ' bps</div><div class="pd-sub"><span>bid $' + priceStr(bb) + '</span><span>ask $' + priceStr(ba) + '</span></div></div>' +
+                '<div class="pd-tile" title="Bid depth minus ask depth within 1% of the mid price, as a share of both."><div class="pd-k">Depth imbalance (&plusmn;1%)</div><div class="pd-v ' + cls(im1) + '">' + pct(im1, 0) + '</div><div class="pd-sub"><span class="pd-up">bids ' + usd(b1) + '</span><span class="pd-dn">asks ' + usd(a1) + '</span></div></div>' +
+                '<div class="pd-tile"><div class="pd-k">Book</div><div class="pd-v">' + a.baseAsset + ' ' + (a.isFutures ? 'perp' : 'spot') + '</div><div class="pd-sub"><span>top ' + bids.length + ' bid / ' + asks.length + ' ask levels</span></div></div></div>' +
+                curve(bids, asks, mid) +
+                '<div class="pd-two"><div><div class="pd-k">Resting liquidity within the band</div><div class="pd-tablewrap"><table class="pd-table"><thead><tr><th>Band</th><th class="pd-r">Bids</th><th class="pd-r">Asks</th><th class="pd-r">Imbalance</th></tr></thead><tbody>' + bandRows + '</tbody></table></div></div>' +
+                '<div><div class="pd-k">Market-order slippage vs best price</div><div class="pd-tablewrap"><table class="pd-table"><thead><tr><th>Order size</th><th class="pd-r">Buy</th><th class="pd-r">Sell</th></tr></thead><tbody>' + slipRows + '</tbody></table></div></div>' +
+                '<div><div class="pd-k pd-up">Largest bid walls (within 3%)</div><div class="pd-tablewrap"><table class="pd-table"><tbody>' + walls(bids, 'pd-up') + '</tbody></table></div></div>' +
+                '<div><div class="pd-k pd-dn">Largest ask walls (within 3%)</div><div class="pd-tablewrap"><table class="pd-table"><tbody>' + walls(asks, 'pd-dn') + '</tbody></table></div></div></div>' +
+                '<p class="pd-fine">Snapshot of the top 1,000 levels, refreshed every 10 seconds. Walls can be pulled at any moment, so treat them as context, not support or resistance.</p>';
+        }
+        tabs.depth = {
+            start() { pane.innerHTML = skeleton('Loading order book...'); load(); clearInterval(timer); timer = setInterval(() => { if (visible()) load(); }, 10000); },
+            stop() { clearInterval(timer); timer = null; },
+            onAsset() { this.start(); }
+        };
+    })();
+
+    // =====================================================================
+    // TAB: MY POSITIONS (read-only view of the Trade page paper account)
+    // =====================================================================
+    (function mineTab() {
+        const pane = panes.mine;
+        let timer = null;
+        const read = (k, d) => store.get(k, d);
+        const px = (sym) => { const m = typeof marketMap !== 'undefined' ? (marketMap[sym + 'USDT_S'] || marketMap[sym + 'USDT_F']) : null; return m ? m.price : null; };
+        const fpx = (sym) => { const m = typeof marketMap !== 'undefined' ? (marketMap[sym + 'USDT_F'] || marketMap[sym + 'USDT_S']) : null; return m ? m.price : null; };
+
+        function draw() {
+            const cash = read('cw_paper_cash', null);
+            const hold = read('cw_paper_holdings', []), fut = read('cw_paper_futures', []), ords = read('cw_paper_orders', []), dep = read('cw_paper_deposited', null);
+            if (cash === null && !hold.length && !fut.length) {
+                pane.innerHTML = '<div class="pd-empty">No paper account yet. Open the Trade page, place a practice order, and your positions will show up here live.<br><br><a class="pd-btn pd-link" href="trade">Open Trade</a></div>';
+                return;
+            }
+            let upnl = 0, margin = 0, spotVal = 0;
+            const hRows = hold.map(h => {
+                const m = px(h.symbol), v = (m || h.avgCost) * h.qty, pl = m ? (m - h.avgCost) * h.qty : null;
+                spotVal += v; if (pl !== null) upnl += pl;
+                return '<tr data-sym="' + esc(h.symbol) + 'USDT" data-f="0"><td class="pd-sym">' + esc(h.symbol) + '</td><td class="pd-r">' + h.qty + '</td><td class="pd-r">$' + priceStr(h.avgCost) + '</td><td class="pd-r">' + (m ? '$' + priceStr(m) : '--') + '</td><td class="pd-r pd-strong">' + usd(v) + '</td><td class="pd-r ' + cls(pl) + '">' + (pl === null ? '--' : (pl >= 0 ? '+' : '') + usd(pl) + ' (' + pct(pl / (h.avgCost * h.qty) * 100, 1) + ')') + '</td><td class="pd-r pd-fine">' + (h.slPrice ? 'SL $' + priceStr(h.slPrice) : '') + (h.tpPrice ? ' TP $' + priceStr(h.tpPrice) : '') + '</td></tr>';
+            }).join('');
+            const fRows = fut.map(p => {
+                const m = fpx(p.symbol), pl = m ? ((p.side === 'long' ? m - p.entryPrice : p.entryPrice - m) * p.qty - (p.fundingPaid || 0)) : null;
+                margin += p.margin || 0; if (pl !== null) upnl += pl;
+                const shift = p.fundingPaid && p.qty > 0 ? p.fundingPaid / p.qty : 0;
+                const liqP = p.liqPrice != null ? (p.side === 'long' ? p.liqPrice + shift : p.liqPrice - shift) : null;
+                const dist = m && liqP ? (p.side === 'long' ? (m - liqP) / m : (liqP - m) / m) * 100 : null;
+                return '<tr data-sym="' + esc(p.symbol) + 'USDT" data-f="1"><td class="pd-sym">' + esc(p.symbol) + ' <span class="' + (p.side === 'long' ? 'pd-up' : 'pd-dn') + '">' + esc(p.side) + ' ' + esc(p.leverage) + 'x</span></td><td class="pd-r">$' + priceStr(p.entryPrice) + '</td><td class="pd-r">' + (m ? '$' + priceStr(m) : '--') + '</td><td class="pd-r ' + (dist !== null && dist < 5 ? 'pd-dn' : '') + '">' + (liqP ? '$' + priceStr(liqP) + ' (' + dist.toFixed(1) + '%)' : '--') + '</td><td class="pd-r pd-strong">' + usd(p.margin || 0) + '</td><td class="pd-r ' + cls(pl) + '">' + (pl === null ? '--' : (pl >= 0 ? '+' : '') + usd(pl) + ' (' + pct(p.margin > 0 ? pl / p.margin * 100 : NaN, 1) + ')') + '</td></tr>';
+            }).join('');
+            const equity = (cash || 0) + spotVal + margin + fut.reduce((s, p) => { const m = fpx(p.symbol); return s + (m ? ((p.side === 'long' ? m - p.entryPrice : p.entryPrice - m) * p.qty - (p.fundingPaid || 0)) : 0); }, 0);
+            const total = dep ? equity - dep : NaN;
+            const curve = read('cw_paper_equity_curve', []).map(x => x.equity);
+            const worst = fut.map(p => { const m = fpx(p.symbol); if (!m || p.liqPrice == null) return null; return (p.side === 'long' ? (m - p.liqPrice) / m : (p.liqPrice - m) / m) * 100; }).filter(x => x !== null).sort((a, b) => a - b)[0];
+            pane.innerHTML =
+                '<div class="pd-grid pd-grid-3"><div class="pd-tile"><div class="pd-k">Equity</div><div class="pd-v">' + usd(equity) + '</div><div class="pd-sub"><span class="' + cls(total) + '">' + (isFinite(total) ? (total >= 0 ? '+' : '') + usd(total) + ' all-time' : '') + '</span></div>' + (curve.length > 2 ? spark(curve.slice(-120), '#4fd8e8') : '') + '</div>' +
+                '<div class="pd-tile"><div class="pd-k">Unrealised P&amp;L</div><div class="pd-v ' + cls(upnl) + '">' + (upnl >= 0 ? '+' : '') + usd(upnl) + '</div><div class="pd-sub"><span>cash ' + usd(cash || 0) + '</span><span>margin ' + usd(margin) + '</span></div></div>' +
+                '<div class="pd-tile" title="Smallest distance between price and a liquidation price across your open futures."><div class="pd-k">Closest to liquidation</div><div class="pd-v ' + (worst !== undefined && worst < 5 ? 'pd-dn' : '') + '">' + (worst !== undefined ? worst.toFixed(1) + '%' : 'none') + '</div><div class="pd-sub"><span>' + fut.length + ' futures &middot; ' + hold.length + ' spot &middot; ' + ords.length + ' pending</span></div></div></div>' +
+                (fRows ? '<div class="pd-k">Futures positions</div><div class="pd-tablewrap"><table class="pd-table"><thead><tr><th>Position</th><th class="pd-r">Entry</th><th class="pd-r">Mark</th><th class="pd-r">Liquidation</th><th class="pd-r">Margin</th><th class="pd-r">P&amp;L</th></tr></thead><tbody>' + fRows + '</tbody></table></div>' : '') +
+                (hRows ? '<div class="pd-k" style="margin-top:.8rem">Spot holdings</div><div class="pd-tablewrap"><table class="pd-table"><thead><tr><th>Coin</th><th class="pd-r">Qty</th><th class="pd-r">Avg cost</th><th class="pd-r">Price</th><th class="pd-r">Value</th><th class="pd-r">P&amp;L</th><th class="pd-r">Exits</th></tr></thead><tbody>' + hRows + '</tbody></table></div>' : '') +
+                '<p class="pd-fine">Live view of your practice account (virtual money). Place, close and manage orders on the <a class="pd-a" href="trade">Trade page</a>. Click a row to chart that coin.</p>';
+            $$('tr[data-sym]', pane).forEach(tr => tr.addEventListener('click', () => pickSymbol(tr.dataset.sym, tr.dataset.f === '1')));
+        }
+        tabs.mine = {
+            start() { draw(); clearInterval(timer); timer = setInterval(() => { if (visible()) draw(); }, 2000); },
+            stop() { clearInterval(timer); timer = null; }
+        };
+    })();
+
+    // ---------- market breadth meter (top strip) ----------
+    function breadth() {
+        if (typeof marketMap === 'undefined') return;
+        const spot = Object.keys(marketMap).map(k => marketMap[k]).filter(a => !a.isFutures && a.volume > 1e6);
+        if (spot.length < 10) return;
+        const up = spot.filter(a => a.changePct > 0).length, p = up / spot.length * 100;
+        const el = $('#pd-breadth'), f = $('#pd-breadth-fill');
+        if (el) { el.textContent = p.toFixed(0) + '% up'; el.className = 'text-sm font-mono font-bold ' + (p >= 55 ? 'pd-up' : p <= 45 ? 'pd-dn' : 'text-gray-300'); }
+        if (f) f.style.width = p.toFixed(0) + '%';
+    }
+    setInterval(breadth, 3000);
 
     // ---------- follow the selected coin ----------
     function watchAsset() {
