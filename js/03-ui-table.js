@@ -85,7 +85,7 @@
             : (() => {
                 // one tile per coin (prefer spot) so the grid is not every coin twice
                 const seen = new Set();
-                return [...globalMarketList].filter(i => i.volume > 500000)
+                return [...globalMarketList].filter(i => i.volume > 500000 && !/^(USDC|FDUSD|TUSD|BUSD|USDP|DAI|USDE|EUR|AEUR|PYUSD|XUSD|USD1)$/.test(i.baseAsset))
                     .sort((a, b) => (a.isFutures ? 1 : 0) - (b.isFutures ? 1 : 0))
                     .filter(i => !seen.has(i.baseAsset) && seen.add(i.baseAsset));
             })();

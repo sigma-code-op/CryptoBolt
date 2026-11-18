@@ -183,3 +183,26 @@ body.cb-has-rail { font-variant-numeric: tabular-nums; }
 /* movers label sits on a solid chip so the ticker never runs underneath it */
 #mover-strip { padding-left: 5.2rem !important; }
 .cw-card-interactive > .absolute.inset-y-0.left-0.w-16 { width: 4.6rem; background: #181a20; border-right: 1px solid #232937; }
+
+/* ---------- phone overflow fixes (real devices clip anything wider than the screen) ---------- */
+html, body { max-width: 100%; overflow-x: clip; }
+#main, #main > *, #main .grid > *, #main .lg\:col-span-5, #main .lg\:col-span-7 { min-width: 0; max-width: 100%; }
+#main .lg\:col-span-5 > *, #main .lg\:col-span-7 > * { min-width: 0; max-width: 100%; }
+@media (max-width: 640px) {
+  /* HUD stats wrap into a 3-up grid instead of one long row */
+  #chart-header-card > div { min-width: 0; max-width: 100%; }
+  #chart-header-card div:has(> #hud-price), #chart-header-card div:has(> div > #hud-price) { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem .6rem; width: 100%; text-align: left; }
+  #chart-header-card .text-right { text-align: left !important; }
+  /* indicators dropdown + action buttons stay inside the card */
+  #chart-toolbar { min-width: 0; } #chart-toolbar > * { min-width: 0; max-width: 100%; }
+  #chart-toolbar .cw-scroll-row { overflow-x: auto; flex-wrap: nowrap; }
+  #chart-toolbar button { flex: 0 0 auto; }
+  /* order book / trades columns never wider than the card */
+  #orderbook-body, #trades-body, .cw-ob-row, .cw-trade-row { min-width: 0; }
+  /* alerts form */
+  #alert-price-input { min-width: 0; flex: 1 1 6rem; }
+  #alert-add-btn { flex: 0 0 auto; }
+  /* heatmap: 3 tiles always fit */
+  #market-heatmap { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  #market-heatmap > * { min-width: 0; padding-left: .2rem; padding-right: .2rem; }
+}
