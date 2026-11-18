@@ -124,3 +124,62 @@ body.cb-has-rail { font-variant-numeric: tabular-nums; }
 @media (max-width: 1100px) { .cw-app-hdr .cw-hdr-actions { flex-wrap: wrap !important; } }
 #chart-toolbar { padding: .35rem .5rem !important; gap: .35rem .9rem !important; }
 @media (min-width: 1024px) { #chart-toolbar .cw-tb-interval > span:first-child, #chart-toolbar .cw-tb-type > span:first-child { display: none; } }
+
+/* ---------- final polish: desktop + mobile ---------- */
+.pd-notes ul { list-style: disc; }
+.pd-notes li { margin: .15rem 0; }
+.pd-duo { display: grid; grid-template-columns: 1fr; gap: .8rem; margin-bottom: .8rem; }
+.pd-duo > * { margin-top: 0 !important; margin-bottom: 0 !important; }
+@media (min-width: 1100px) { .pd-duo { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: stretch; } .pd-duo textarea { min-height: 12rem; } }
+.pd { border-color: #232937; background: linear-gradient(180deg, #1a1d25 0, #161920 100%); }
+.pd-tile { transition: border-color .15s ease; } .pd-tile:hover { border-color: #2c3445; }
+.pd-tabs button { transition: color .15s ease, background .15s ease; }
+.pd-tabs button.is-on { box-shadow: inset 0 -2px 0 var(--cw-green); border-radius: 6px 6px 0 0; }
+.pd-v { letter-spacing: -.01em; }
+#chart-header-card { background: linear-gradient(180deg, #1b1f28 0, #181a20 100%) !important; }
+#chart-toolbar .cw-scroll-row { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-thumb { background: #2a3040; border-radius: 4px; } ::-webkit-scrollbar-track { background: transparent; }
+
+@media (max-width: 1023px) {
+  /* chart first, market list after */
+  #main .grid.lg\:grid-cols-12 { display: flex !important; flex-direction: column; }
+  #main .lg\:col-span-7 { order: -1; }
+  #main .lg\:col-span-5 > .cw-card-interactive:first-child { position: static; }
+  #chart-workspace { height: clamp(320px, 52vh, 460px) !important; }
+}
+@media (max-width: 640px) {
+  #main { padding-left: .6rem !important; padding-right: .6rem !important; }
+  /* header: logo, then a 3-button row, then search */
+  .cw-app-hdr { flex-direction: column; align-items: stretch !important; gap: .6rem !important; padding: .6rem !important; }
+  .cw-app-hdr .cw-hdr-actions { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: .4rem !important; width: 100%; }
+  .cw-app-hdr .cw-hdr-actions > .w-full { grid-column: 1 / -1; width: 100% !important; flex: none; order: 5; }
+  .cw-app-hdr .cw-hdr-actions > :not(.w-full) { justify-content: center; text-align: center; min-height: 40px; }
+  .cw-app-hdr .cw-hdr-actions > div:first-child { grid-column: 1 / -1; order: 6; justify-content: center; min-height: 0; }
+  .pd-cmd { font-size: .66rem; padding: .4rem .3rem; justify-content: center; }
+  /* HUD */
+  #chart-header-card { padding: .7rem .8rem !important; }
+  #chart-title, #hud-price { font-size: 1.2rem !important; }
+  .pd-hud-row { gap: .6rem 1rem; } .pd-hud-range { flex-basis: 100%; }
+  /* pro desk */
+  .pd-head { flex-direction: column; align-items: stretch; gap: .35rem; padding: .55rem .6rem 0; }
+  .pd-tabs { margin: 0 -.6rem; padding: 0 .6rem; scroll-snap-type: x proximity; border-bottom: 1px solid #232937; }
+  .pd-tabs button { scroll-snap-align: start; padding: .6rem .8rem; font-size: .76rem; flex: 0 0 auto; }
+  .pd-tabs button.is-on { background: transparent; border-color: transparent; }
+  .pd-body { padding: .65rem; }
+  .pd-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+  .pd-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pd-grid .pd-tile:nth-last-child(1):nth-child(odd) { grid-column: 1 / -1; }
+  .pd-tile { padding: .55rem .6rem; } .pd-v { font-size: 1rem; }
+  .pd-tablewrap { max-height: 300px; } .pd-table { font-size: .68rem; } .pd-table th, .pd-table td { padding: .4rem .5rem; }
+  .pd-controls { gap: .5rem .7rem; } .pd-ctl-right { margin-left: 0; width: 100%; }
+  .pd-controls select, .pd-btn { min-height: 34px; }
+  .pd-pal-back { padding: 5vh .6rem .6rem; } .pd-pal-input { font-size: 16px; } /* 16px stops iOS zoom */
+  .pd-foot { flex-direction: column; gap: .6rem; }
+  .pd-pane .pd-tile.pd-wide { grid-column: 1 / -1; }
+}
+@media (max-width: 380px) { .pd-grid, .pd-grid-3 { grid-template-columns: 1fr; } }
+/* respect the iPhone home indicator under the fixed bottom nav */
+@media (max-width: 880px) { .pd-foot { padding-bottom: 5.5rem; } }
+/* movers label sits on a solid chip so the ticker never runs underneath it */
+#mover-strip { padding-left: 5.2rem !important; }
+.cw-card-interactive > .absolute.inset-y-0.left-0.w-16 { width: 4.6rem; background: #181a20; border-right: 1px solid #232937; }

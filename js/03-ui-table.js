@@ -82,7 +82,13 @@
 
         let pool = heatmapScope === 'watchlist'
             ? globalMarketList.filter(item => watchlist.includes(item.id))
-            : [...globalMarketList].filter(i => i.volume > 500000);
+            : (() => {
+                // one tile per coin (prefer spot) so the grid is not every coin twice
+                const seen = new Set();
+                return [...globalMarketList].filter(i => i.volume > 500000)
+                    .sort((a, b) => (a.isFutures ? 1 : 0) - (b.isFutures ? 1 : 0))
+                    .filter(i => !seen.has(i.baseAsset) && seen.add(i.baseAsset));
+            })();
 
         pool = [...pool].sort((a, b) => b.volume - a.volume).slice(0, 24);
 
