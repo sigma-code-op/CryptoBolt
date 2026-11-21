@@ -359,7 +359,7 @@
       <video:description>A 50-second animated guide to leverage and liquidation: how margin and position size relate, how close liquidation sits at 2x to 50x leverage, and why the same price dip can wipe out a 10x position but not a 2x one.</video:description>
       <video:content_loc>https://cryptobolt.io/assets/video/leverage-liquidation-explained.mp4</video:content_loc>
       <video:duration>50</video:duration>
-      <video:publication_date>2026-11-11</video:publication_date>
+      <video:publication_date>2026-11-11T08:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -374,7 +374,7 @@
       <video:description>A 48-second animated guide to the crypto order book: what bids and asks are, how the spread is measured, how a market order walks up the book and causes slippage, and why large walls are only hints.</video:description>
       <video:content_loc>https://cryptobolt.io/assets/video/order-book-explained.mp4</video:content_loc>
       <video:duration>48</video:duration>
-      <video:publication_date>2026-11-11</video:publication_date>
+      <video:publication_date>2026-11-11T08:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -389,7 +389,7 @@
       <video:description>A 46-second animated guide to position sizing: risk a fixed percentage of your account, divide by the stop distance to get the position size, and see why ten losses in a row at 1% risk leave about $904 of a $1,000 account.</video:description>
       <video:content_loc>https://cryptobolt.io/assets/video/position-sizing-1-percent-rule.mp4</video:content_loc>
       <video:duration>46</video:duration>
-      <video:publication_date>2026-11-11</video:publication_date>
+      <video:publication_date>2026-11-11T08:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -404,7 +404,7 @@
       <video:description>A 44-second animated walkthrough of paper trading on CryptoBolt: start with $10,000 in virtual funds, pick a market, set size, stop-loss and take-profit, then review your results.</video:description>
       <video:content_loc>https://cryptobolt.io/assets/video/paper-trading-how-it-works.mp4</video:content_loc>
       <video:duration>44</video:duration>
-      <video:publication_date>2026-11-11</video:publication_date>
+      <video:publication_date>2026-11-11T08:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>

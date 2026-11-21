@@ -216,12 +216,6 @@ const POST_VIDEOS = {
 function renderVideo(slug) {
   const v = POST_VIDEOS[slug];
   if (!v) throw new Error('Unknown video: ' + slug);
-  const ld = {
-    '@context': 'https://schema.org', '@type': 'VideoObject', name: v.title, description: v.desc,
-    thumbnailUrl: [`https://cryptobolt.io/assets/video/${slug}.jpg`], uploadDate: '2026-11-11',
-    duration: `PT${v.secs}S`, contentUrl: `https://cryptobolt.io/assets/video/${slug}.mp4`, inLanguage: 'en',
-    publisher: { '@type': 'Organization', name: 'CryptoBolt', url: 'https://cryptobolt.io/' },
-  };
   return [
     '    <link rel="stylesheet" href="css/video.css?v=20261111">',
     '    <figure class="cb-video-frame cb-video-inline">',
@@ -229,9 +223,8 @@ function renderVideo(slug) {
     `            <source src="/assets/video/${slug}.mp4" type="video/mp4">`,
     `            Your browser does not support HTML video. <a href="/assets/video/${slug}.mp4">Download the video</a>.`,
     '        </video>',
-    `        <figcaption>Watch: ${escapeHtml(v.title)} (${v.secs} seconds, no sound needed). <a href="videos#v-${slug}">Transcript and more guides</a></figcaption>`,
+    `        <figcaption>Watch: ${escapeHtml(v.title)} (${v.secs} seconds, no sound needed). <a href="${slug}-video">Open the full video page</a></figcaption>`,
     '    </figure>',
-    `    <script type="application/ld+json">${JSON.stringify(ld)}</script>`,
   ].join('\n');
 }
 
