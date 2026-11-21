@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------------------
 
 import { Router } from 'express';
-import rateLimit from 'express-rate-limit';
+import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
 import Groq from 'groq-sdk';
 import { GROQ_MODEL, GROQ_HOUSE_API_KEY, HOUSE_KEY_ENABLED } from '../config.js';
 import { validateContext, validateAlertExplainPayload } from '../validators.js';
@@ -108,7 +108,7 @@ export async function houseKeyRateLimitKey(req) {
       // rather than let a broken verification call bypass rate limiting entirely.
     }
   }
-  return `ip:${req.ip}`;
+  return `ip:${ipKeyGenerator(req.ip)}`;
 }
 
 // Separate, stricter limiter for requests using CryptoBolt's own shared "house" key —
