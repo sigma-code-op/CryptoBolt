@@ -36,6 +36,7 @@
   - [Risk-reward ratio and win rate: why a 40% win rate can still work](https://cryptobolt.io/risk-reward-ratio-and-win-rate)
   - [Liquidation Price Calculator](https://cryptobolt.io/liquidation-price-calculator) — Free calculator estimating liquidation price for leveraged crypto futures positions, long or short, isolated or cross margin.
   - [Position Size Calculator](https://cryptobolt.io/position-size-calculator) — Free calculator turning account balance, risk percentage, entry and stop-loss into position size, margin and R-multiple targets.
+  - [Hyperliquid Position Size Calculator](https://cryptobolt.io/hyperliquid-position-size-calculator) — Free calculator sizing a Hyperliquid perp trade from risk, stop and max leverage, with the liquidation price and hourly funding cost.
   - [Crypto Futures Profit Calculator](https://cryptobolt.io/crypto-profit-calculator) — Free calculator for net profit or loss, ROE and fees on a leveraged long or short trade.
   - [Crypto Profit Calculator by Coin](https://cryptobolt.io/altcoin-profit-calculator) — Free spot profit, ROI and break-even calculator for FET, NEAR, ANKR, SOL and any other coin, fees included.
   - [Funding Fee Calculator](https://cryptobolt.io/funding-fee-calculator) — Free calculator for what a perpetual futures position pays or earns in funding per day, month and year.

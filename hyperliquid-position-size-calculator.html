@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://www.gstatic.com 'sha256-bIw44qbLcXi0pFxyrlupXhkjDhxxcQ7CK7ZnFUUPlAQ=' 'sha256-ZDb4S1yV9bBfFiVqjeGu5C9MIzKtf1nqUPpywxGQt0Y=' 'sha256-LR8c6/h2q2bYy+1SNfbnorqVD/K69pm+5m2qEtOXsnc=' 'sha256-1t7L51jZxDm2xwyaIRU6gP8ZoDK36n4ek7WJqKakpE8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://translate.googleapis.com; font-src 'self' https://cryptobolt.io https://www.cryptobolt.io https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://fonts.gstatic.com https://translate.google.com https://translate.googleapis.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-ads data-gtag-lazy></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Hyperliquid Position Size Calculator | CryptoBolt</title>
+    <meta name="description" content="Free Hyperliquid position size calculator: size a perp trade from your risk %, stop and max leverage, then see the liquidation price and hourly funding cost.">
+    <meta name="keywords" content="hyperliquid position size calculator, hyperliquid risk calculator, hyperliquid maintenance margin, hyperliquid liquidation price, hyperliquid leverage calculator, perp position size calculator, hyperliquid funding cost">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/hyperliquid-position-size-calculator">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/hyperliquid-position-size-calculator">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/hyperliquid-position-size-calculator">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/hyperliquid-position-size-calculator">
+    <meta property="og:title" content="Hyperliquid Position Size Calculator | CryptoBolt">
+    <meta property="og:description" content="Size a Hyperliquid perp trade from a fixed risk, then check your stop against the liquidation price. Free, no signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/position-size-calculator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt Hyperliquid position size calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Hyperliquid Position Size Calculator | CryptoBolt">
+    <meta name="twitter:description" content="Size a Hyperliquid perp trade from a fixed risk, then check your stop against the liquidation price. Free, no signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/position-size-calculator.png">
+    <meta name="twitter:image:alt" content="CryptoBolt Hyperliquid position size calculator">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "WebPage",
+    "WebApplication"
+  ],
+  "name": "Hyperliquid position size calculator",
+  "url": "https://cryptobolt.io/hyperliquid-position-size-calculator",
+  "description": "Free Hyperliquid position size calculator: size a perp trade from your risk %, stop and max leverage, then see the liquidation price and hourly funding cost.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "inLanguage": "en",
+  "dateModified": "2026-11-20",
+  "isPartOf": {
+    "@id": "https://cryptobolt.io/#website"
+  },
+  "publisher": {
+    "@id": "https://cryptobolt.io/#organization"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate position size on Hyperliquid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Risk amount = balance × risk %. Position size in units = risk amount ÷ the distance between your entry and your stop-loss. Margin needed = position value ÷ leverage. Leverage does not change how much you lose at the stop, only how much margin you lock up and how close liquidation sits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the maintenance margin on Hyperliquid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hyperliquid sets the maintenance margin at half of the initial margin at the asset's max leverage. That is about 1.25% for a 40x asset and about 16.7% for a 3x asset, and it can be higher for very large positions that fall into margin tiers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a higher leverage setting make me lose more at my stop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. If your stop fills, the loss is the position size times the stop distance, whatever leverage you chose. Higher leverage locks less margin and moves the liquidation price closer, which is the real danger: a stop beyond the liquidation price never triggers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often does Hyperliquid charge funding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every hour. Hyperliquid computes an 8-hour rate and pays one eighth of it each hour. Funding moves between longs and shorts and is capped at 4% per hour. The calculator lets you enter your own hourly rate and holding time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the liquidation price on this page exact?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, it is an estimate for an isolated position using the documented formula. The exchange liquidates on its mark price, may apply margin tiers on large positions, and accounts for funding and your other positions on cross margin. Check the figure in the Hyperliquid app before you trade."
+      }
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "CryptoBolt",
+      "item": "https://cryptobolt.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crypto calculators",
+      "item": "https://cryptobolt.io/crypto-calculators"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Hyperliquid position size calculator",
+      "item": "https://cryptobolt.io/hyperliquid-position-size-calculator"
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Organization", "@id": "https://cryptobolt.io/#organization", "name": "CryptoBolt", "alternateName": "Crypto Bolt", "url": "https://cryptobolt.io/", "logo": {"@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png", "width": 512, "height": 512}, "image": "https://cryptobolt.io/assets/og-image.png", "description": "CryptoBolt is a free crypto market research and analysis platform with live Binance spot and futures data, charts, paper trading, calculators and AI-assisted research. It is an education and analysis tool, not an exchange and not financial advice.", "email": "info@cryptobolt.io", "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": "info@cryptobolt.io", "url": "https://cryptobolt.io/contact", "availableLanguage": ["English"]}], "knowsAbout": ["Cryptocurrency market data", "Technical analysis", "Crypto paper trading", "Perpetual futures"], "sameAs": ["https://x.com/cryptobolt5fvj", "https://github.com/sigma-code-op/CryptoBolt", "https://youtube.com/@cryptobolt-1", "https://www.facebook.com/profile.php?id=61595142351905"]}
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261117">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+
+        .lc-tbl-wrap{overflow-x:auto;margin-top:14px;}
+        .lc-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:6px;}
+        .lc-rows .lc-field label{font-size:11px;}
+        .lc-fib{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+        .lc-fib th,.lc-fib td{padding:9px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;}
+        .lc-fib td:last-child{font-family:'JetBrains Mono',monospace;text-align:right;}
+        .lc-meta{max-width:820px;margin:0 auto 18px;font-size:12px;color:var(--mk-text-dim,#8B93A3);text-align:center;}
+        .lc-meta a{color:var(--mk-green,#22C58C);}
+        .lc-sel{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        @media(max-width:640px){.lc-rows{grid-template-columns:1fr;}}
+        .lc-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:6px;}
+        @media(max-width:640px){.lc-grid3{grid-template-columns:1fr;}}
+        .lc-hint{font-size:11px;color:var(--mk-text-dim,#8B93A3);font-weight:400;}
+        .lc-callout{margin:18px 0;padding:14px 16px;border-radius:10px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);font-size:14px;}
+        .mk-article caption{caption-side:bottom;text-align:left;font-size:12px;color:var(--mk-text-dim,#8B93A3);padding-top:8px;white-space:normal;}
+    .lc-field{min-width:0;}.lc-field input,.lc-field select{width:100%;min-width:0;box-sizing:border-box;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}.lc-grid3{grid-template-columns:repeat(3,minmax(0,1fr));}@media(max-width:640px){.lc-calc{padding:18px;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr);}}</style>
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app">Terminal</a>
+        <a href="features">Features</a>
+        <a href="ai">AI Research</a>
+        <a href="spot-vs-futures">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <div class="mk-lang" hidden>
+            <button type="button" class="mk-lang-btn" aria-label="Change language" aria-haspopup="listbox" aria-expanded="false">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="mk-lang-code">EN</span>
+            </button>
+            <ul class="mk-lang-menu" role="listbox" aria-label="Language" hidden></ul>
+        </div>
+        <a href="app" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app">Terminal</a>
+    <a href="features">Features</a>
+    <a href="ai">AI Research</a>
+    <a href="spot-vs-futures">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool · Hyperliquid perps</span>
+    <h1>Hyperliquid position size calculator</h1>
+    <p>Work out how large a Hyperliquid trade can be for the loss you accept, then check that your stop sits before the liquidation price, using Hyperliquid&rsquo;s own margin rule.</p>
+</header>
+
+<p class="lc-meta">Written and checked by the CryptoBolt founder · Margin and funding rules checked against Hyperliquid&rsquo;s docs on November 20, 2026 · <a href="editorial-policy">How we build and check our tools</a></p>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc">
+        <div class="lc-toggle" role="group" aria-label="Position side">
+            <button type="button" id="hl-side-long" class="active" aria-pressed="true">Long</button>
+            <button type="button" id="hl-side-short" aria-pressed="false">Short</button>
+        </div>
+        <div class="lc-grid">
+            <div class="lc-field"><label for="hl-balance">Account balance (USD)</label><input type="number" id="hl-balance" inputmode="decimal" step="any" value="5000"></div>
+            <div class="lc-field"><label for="hl-risk">Risk per trade (%)</label><input type="number" id="hl-risk" inputmode="decimal" step="any" value="1" min="0.01" max="99"></div>
+            <div class="lc-field"><label for="hl-entry">Entry price (USD)</label><input type="number" id="hl-entry" inputmode="decimal" step="any" value="65000"></div>
+            <div class="lc-field"><label for="hl-stop">Stop-loss price (USD)</label><input type="number" id="hl-stop" inputmode="decimal" step="any" value="63700"></div>
+            <div class="lc-field"><label for="hl-maxlev">Asset max leverage on Hyperliquid (x)</label><input type="number" id="hl-maxlev" inputmode="decimal" step="any" value="40" min="1" max="50"></div>
+            <div class="lc-field"><label for="hl-lev">Leverage you set (x)</label><input type="number" id="hl-lev" inputmode="decimal" step="any" value="10" min="1" max="50"></div>
+            <div class="lc-field"><label for="hl-fund">Funding rate per hour (%) <span class="lc-hint">(positive: longs pay)</span></label><input type="number" id="hl-fund" inputmode="decimal" step="any" value="0.00125"></div>
+            <div class="lc-field"><label for="hl-hours">Hours you expect to hold</label><input type="number" id="hl-hours" inputmode="decimal" step="any" value="24" min="0"></div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="hl-out-size">0.0385 units</div>
+            <div class="lc-sub" id="hl-out-sub">Size for a $50.00 loss if your stop fills (stop is 2.00% from entry)</div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="hl-out-risk">$50.00</b><span>Amount at risk</span></div>
+            <div class="lc-stat"><b id="hl-out-notional">$2,500.00</b><span>Position value (notional)</span></div>
+            <div class="lc-stat"><b id="hl-out-margin">$250.00 at 10x</b><span>Initial margin needed</span></div>
+            <div class="lc-stat"><b id="hl-out-mmr">1.25%</b><span>Maintenance margin rate</span></div>
+            <div class="lc-stat"><b id="hl-out-liq">$59,240.51</b><span>Estimated liquidation price (isolated)</span></div>
+            <div class="lc-stat"><b id="hl-out-ratio">4.4× your stop distance</b><span>Liquidation distance vs stop distance</span></div>
+            <div class="lc-stat"><b id="hl-out-fund">Pay $0.75</b><span>Funding over your holding time</span></div>
+        </div>
+        <div class="lc-warning" id="hl-warning"></div>
+        <p class="lc-note">Estimate for an isolated position using Hyperliquid&rsquo;s published margin rules. It ignores trading fees, slippage, margin tiers for very large positions, and cross-margin effects, and the exchange liquidates on its own mark price. Always confirm the liquidation price shown in the Hyperliquid app. Educational tool, not financial advice. <a href="crypto-paper-trading">Practice the sizing with virtual funds &rarr;</a></p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>How this calculator works</h2>
+    <p>It combines the standard risk-based sizing formula with the margin rules Hyperliquid publishes for its perpetual futures:</p>
+    <ul>
+        <li><strong>Amount at risk</strong> = account balance × risk %</li>
+        <li><strong>Position size (units)</strong> = amount at risk ÷ |entry − stop|</li>
+        <li><strong>Initial margin</strong> = position value ÷ the leverage you set (capped at the asset&rsquo;s max leverage)</li>
+        <li><strong>Maintenance margin rate</strong> = 1 ÷ (2 × max leverage), which Hyperliquid describes as half of the initial margin at max leverage</li>
+        <li><strong>Liquidation price</strong> = entry − side × available margin ÷ units ÷ (1 − MMR × side), where side is +1 for a long and −1 for a short, and available margin is your isolated margin minus the maintenance margin</li>
+    </ul>
+    <p>The liquidation formula is the one in <a href="https://hyperliquid.gitbook.io/hyperliquid-docs/trading/liquidations" target="_blank" rel="noopener noreferrer">Hyperliquid&rsquo;s liquidation docs</a>. The maintenance margin depends on the asset: it runs from about 1.25% on 40x assets up to about 16.7% on 3x assets.</p>
+    <div class="lc-tbl-wrap"><table>
+<thead><tr><th>Asset max leverage</th><th>Maintenance margin rate</th><th>Initial margin at max leverage</th></tr></thead>
+<tbody><tr><td>3x</td><td>16.67%</td><td>33.33%</td></tr><tr><td>5x</td><td>10.00%</td><td>20.00%</td></tr><tr><td>10x</td><td>5.00%</td><td>10.00%</td></tr><tr><td>20x</td><td>2.50%</td><td>5.00%</td></tr><tr><td>25x</td><td>2.00%</td><td>4.00%</td></tr><tr><td>40x</td><td>1.25%</td><td>2.50%</td></tr></tbody>
+</table></div>
+    <h2>Worked example</h2>
+    <p>Account of $5,000, risking 1%, long an asset with 40x max leverage at $65,000 with a stop at $63,700, using 10x leverage:</p>
+    <ul>
+        <li>Amount at risk: $5,000 × 1% = $50</li>
+        <li>Stop distance: $1,300 (2% below entry), so size = $50 ÷ $1,300 ≈ 0.0385 units</li>
+        <li>Position value ≈ $2,500; initial margin at 10x = $250</li>
+        <li>Maintenance margin rate: 1.25%, so maintenance margin ≈ $31.25 and available margin ≈ $218.75</li>
+        <li>Liquidation price ≈ $59,240, which is about 8.9% below entry and about 4.4 times further away than your stop</li>
+    </ul>
+    <p>The same trade at different leverage settings shows why the stop must come first. The position and the $50 loss at the stop never change; only the margin and the liquidation price do:</p>
+    <div class="lc-tbl-wrap"><table>
+<thead><tr><th>Leverage you set</th><th>Margin locked</th><th>Liquidation distance</th><th>Liquidation price</th><th>Stop ($63,700) hits first?</th></tr></thead>
+<tbody><tr><td>3x</td><td>$833.33</td><td>32.49%</td><td>$43,881.86</td><td>Yes</td></tr><tr><td>5x</td><td>$500.00</td><td>18.99%</td><td>$52,658.23</td><td>Yes</td></tr><tr><td>10x</td><td>$250.00</td><td>8.86%</td><td>$59,240.51</td><td>Yes</td></tr><tr><td>20x</td><td>$125.00</td><td>3.80%</td><td>$62,531.65</td><td>Yes</td></tr><tr><td>25x</td><td>$100.00</td><td>2.78%</td><td>$63,189.87</td><td>Yes</td></tr><tr><td>40x</td><td>$62.50</td><td>1.27%</td><td>$64,177.22</td><td>No, liquidated first</td></tr></tbody>
+</table></div>
+    <p>At 40x the liquidation price is closer than the stop, so the exchange would close the position before your stop could trigger.</p>
+    <h2>Why your stop must come before liquidation</h2>
+    <p>When equity drops below the maintenance margin, Hyperliquid first tries to close the whole position with market orders on the book, and anything left over stays with you. If equity falls below two thirds of the maintenance margin before that succeeds, a backstop liquidation hands the position to the liquidator vault, and the maintenance margin is not returned to you. Positions above 100,000 USDC are liquidated in 20% slices with a 30-second cooldown. Details are in <a href="https://hyperliquid.gitbook.io/hyperliquid-docs/trading/liquidations" target="_blank" rel="noopener noreferrer">Hyperliquid&rsquo;s docs</a>. A stop-loss that triggers earlier avoids all of this.</p>
+    <h2>Isolated versus cross margin</h2>
+    <p>For isolated positions the liquidation price depends on the leverage you set, because it decides how much margin is allocated. For cross positions the liquidation price does not depend on the leverage setting; a lower setting just uses more of your collateral, and your whole account value and other open positions feed into it. This calculator models isolated margin, so treat its liquidation price as indicative on a cross account.</p>
+    <h2>Funding is charged hourly</h2>
+    <p>Hyperliquid computes an 8-hour funding rate and pays one eighth of it every hour, with a cap of 4% per hour. The interest component is fixed at 0.01% per 8 hours, which is 0.00125% per hour. That is the default hourly rate in the calculator, so the funding figure is the floor in calm markets, not a forecast. See the <a href="https://hyperliquid.gitbook.io/hyperliquid-docs/trading/funding" target="_blank" rel="noopener noreferrer">Hyperliquid funding docs</a> for the premium formula, and use the <a href="funding-fee-calculator">funding fee calculator</a> to model longer holds.</p>
+    <h2>What this calculator does not model</h2>
+    <ul>
+        <li><strong>Margin tiers.</strong> Very large positions can have a higher maintenance margin rate than the flat rate used here.</li>
+        <li><strong>Fees and slippage.</strong> A real stop-out costs slightly more than planned.</li>
+        <li><strong>Mark price.</strong> Liquidations use the mark price, which can differ from the last traded price during volatility.</li>
+        <li><strong>Other markets.</strong> Markets listed by third-party deployers can use different mark prices and rules.</li>
+    </ul>
+    <p>To judge how likely a given liquidation level is to be reached, use the <a href="liquidation-probability-calculator">liquidation probability calculator</a>. For the account-level view of how a risk percentage compounds over many trades, use the <a href="risk-of-ruin-calculator">risk of ruin calculator</a>, and for spot or Binance-style sizing use the general <a href="position-size-calculator">position size calculator</a>.</p>
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Hyperliquid position size FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>How do I calculate position size on Hyperliquid?</h3>
+            <p>Risk amount = balance × risk %. Position size in units = risk amount ÷ the distance between your entry and your stop-loss. Margin needed = position value ÷ leverage. Leverage does not change how much you lose at the stop, only how much margin you lock up and how close liquidation sits.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What is the maintenance margin on Hyperliquid?</h3>
+            <p>Hyperliquid sets the maintenance margin at half of the initial margin at the asset's max leverage. That is about 1.25% for a 40x asset and about 16.7% for a 3x asset, and it can be higher for very large positions that fall into margin tiers.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does a higher leverage setting make me lose more at my stop?</h3>
+            <p>No. If your stop fills, the loss is the position size times the stop distance, whatever leverage you chose. Higher leverage locks less margin and moves the liquidation price closer, which is the real danger: a stop beyond the liquidation price never triggers.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How often does Hyperliquid charge funding?</h3>
+            <p>Every hour. Hyperliquid computes an 8-hour rate and pays one eighth of it each hour. Funding moves between longs and shorts and is capped at 4% per hour. The calculator lets you enter your own hourly rate and holding time.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Is the liquidation price on this page exact?</h3>
+            <p>No, it is an estimate for an isolated position using the documented formula. The exchange liquidates on its mark price, may apply margin tiers on large positions, and accounts for funding and your other positions on cross margin. Check the figure in the Hyperliquid app before you trade.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep going</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="position-size-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="ruler" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Position size calculator</h3>
+                <p>Spot and futures sizing from risk, entry and stop.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="liquidation-probability-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="activity" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Liquidation probability calculator</h3>
+                <p>How likely the price is to touch your liquidation level.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="funding-fee-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="coins" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Funding fee calculator</h3>
+                <p>What perpetual funding costs over time.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="position-sizing-and-the-one-percent-rule" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="graduation-cap" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Guide</span>
+                <h3>Position sizing and the 1% rule</h3>
+                <p>Why small risk per trade keeps you in the game.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app">Terminal</a>
+            <a href="features">Features</a>
+            <a href="releases">Releases</a>
+            <a href="trade">Paper trading</a>
+            <a href="ai">AI research</a>
+            <a href="spot-vs-futures">Spot vs futures</a>
+            <a href="funding-rate-explained">Funding rate explained</a>
+            <a href="crypto-calculators">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about">About</a>
+            <a href="blog">Blog</a>
+            <a href="trading-course">Free course</a>
+            <a href="glossary">Glossary</a>
+            <a href="contact">Contact</a>
+            <a href="ebook">Ebook</a>
+            <a href="editorial-policy">Editorial policy</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy">Privacy policy</a>
+            <a href="terms">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/live.js?v=20261117" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/hyperliquid-calculator.js?v=20261120" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+<script src="js/lang-switcher.js?v=20261114b" defer></script>
+</body>
+</html>
