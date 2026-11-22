@@ -30,6 +30,16 @@ Link: https://cryptobolt.io/position-size-calculator
 
 Free tool · no signup
 
+### Hyperliquid position size calculator
+
+Size a perp trade and check your stop against liquidation.
+
+Open calculator
+
+Link: https://cryptobolt.io/hyperliquid-position-size-calculator
+
+Free tool · no signup
+
 ### Risk-reward calculator
 
 The reward-to-risk ratio and the win rate it needs.
@@ -58,6 +68,16 @@ Open calculator
 
 Link: https://cryptobolt.io/risk-of-ruin-calculator
 
+5 free pro tools · original
+
+### Crypto pro trader tools
+
+Journal analyzer, challenge odds, safe leverage, live slippage and scale-in ladder.
+
+Open tools
+
+Link: https://cryptobolt.io/crypto-pro-tools
+
 Free tool · original analysis
 
 ### Losing streak calculator
@@ -77,6 +97,16 @@ Net PnL, ROE and fees on a leveraged trade.
 Open calculator
 
 Link: https://cryptobolt.io/crypto-profit-calculator
+
+Free tool · no signup
+
+### Profit calculator by coin
+
+Net profit, ROI and break-even for FET, NEAR, ANKR and any coin.
+
+Open calculator
+
+Link: https://cryptobolt.io/altcoin-profit-calculator
 
 Free tool · no signup
 
