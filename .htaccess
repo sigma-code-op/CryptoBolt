@@ -29,6 +29,16 @@ AddType text/markdown .md
 AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # Scraper that made ~150 requests/day from one Latvian subnet (logs 2026-11-22); not a search engine.
+  RewriteCond %{HTTP_USER_AGENT} GeedoShopProductFinder [NC]
+  RewriteRule ^ - [F,L]
+
+  # www + old .html in ONE hop (was two: www -> bare domain -> clean URL)
+  RewriteCond %{HTTP_HOST} ^www\.cryptobolt\.io$ [NC]
+  RewriteCond %{THE_REQUEST} \s/+[^\s?]+\.html[\s?]
+  RewriteCond %{REQUEST_URI} !^/(account|404)\.html$
+  RewriteRule ^(.+)\.html$ https://cryptobolt.io/$1 [R=301,L]
+
   # Send www.cryptobolt.io to the bare domain (fixes Ahrefs "no self-referencing hreflang" and duplicate-host crawling)
   RewriteCond %{HTTP_HOST} ^www\.cryptobolt\.io$ [NC]
   RewriteRule ^(.*)$ https://cryptobolt.io/$1 [R=301,L]
@@ -39,6 +49,11 @@ AddDefaultCharset UTF-8
   RewriteCond %{DOCUMENT_ROOT}/md/$1.md -f
   RewriteRule ^([A-Za-z0-9-]+)(?:\.html)?$ /md/$1.md [L]
 
+  # A page opened as /glossary/ (trailing slash) resolves its relative js/css against /glossary/js/...
+  # and used to return 500 when an old glossary/ folder was still on the server. Send those to the root files.
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([A-Za-z0-9-]+)/((?:js|css|assets|data|md|fonts)/.+)$ /$2 [R=301,L]
+
   # ---- Clean URLs: /ebook serves ebook.html, and /ebook.html redirects (301) to /ebook ----
   # account.html keeps its extension (login redirects point at it). 404.html is served internally.
   RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
@@ -47,7 +62,6 @@ AddDefaultCharset UTF-8
   RewriteCond %{REQUEST_URI} !^/(account|404)\.html$
   RewriteRule ^(.+)\.html$ /$1 [R=301,L]
   # /glossary/ (trailing slash) -> 301 to /glossary, so relative CSS/JS paths do not break and there is one URL per page
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
   RewriteRule ^([A-Za-z0-9-]+)/$ /$1 [R=301,L]
   RewriteCond %{REQUEST_FILENAME} !-d
@@ -88,3 +102,8 @@ AddDefaultCharset UTF-8
   ExpiresByType text/javascript "access plus 1 week"
   ExpiresByType application/javascript "access plus 1 week"
 </IfModule>
+
+# Chrome's prefetch proxy asks for this file; serving it stops the 404s and allows Google prefetching.
+<Files "traffic-advice">
+  ForceType application/trafficadvice+json
+</Files>

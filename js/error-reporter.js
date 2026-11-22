@@ -16,7 +16,9 @@
     var sentCount = 0;
 
     function resolveApiUrl(path) {
-        var base = (typeof CW_CONFIG !== 'undefined' && CW_CONFIG.apiBaseUrl ? CW_CONFIG.apiBaseUrl : '').replace(/\/$/, '');
+        // This file loads before js/00-config.js, so CW_CONFIG is usually not defined yet; fall back to the API host
+        // (without this the report went to cryptobolt.io/api/client-error and returned 404).
+        var base = (typeof CW_CONFIG !== 'undefined' && CW_CONFIG.apiBaseUrl ? CW_CONFIG.apiBaseUrl : 'https://api.cryptobolt.io').replace(/\/$/, '');
         return base + path;
     }
 
