@@ -46,6 +46,10 @@ AddDefaultCharset UTF-8
   RewriteCond %{THE_REQUEST} \s/+[^\s?]+\.html[\s?]
   RewriteCond %{REQUEST_URI} !^/(account|404)\.html$
   RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+  # /glossary/ (trailing slash) -> 301 to /glossary, so relative CSS/JS paths do not break and there is one URL per page
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([A-Za-z0-9-]+)/$ /$1 [R=301,L]
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME}.html -f
