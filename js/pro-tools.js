@@ -131,6 +131,7 @@
       document.querySelectorAll('[data-pt-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-pt-panel') !== name; });
       if (history.replaceState) history.replaceState(null, '', '#' + name); }
     tabs.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-pt-tab')); }); });
+    window.addEventListener('hashchange', function () { var n = (location.hash || '').slice(1); if (document.querySelector('[data-pt-tab="' + n + '"]')) show(n); });
     var h = (location.hash || '').slice(1); show(document.querySelector('[data-pt-tab="' + h + '"]') ? h : 'journal');
   }
 
