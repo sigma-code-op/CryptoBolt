@@ -95,6 +95,7 @@ const IMG_SRC = [
   'https://ph-files.imgix.net', // Product Hunt embed card's own icon image
   'https://launchzone.co',
   'https://sellwithboost.com', // "Listed on Sell With Boost" badge image
+  'https://foundrlist.com', // "Featured on FoundrList" badge image
   'https://images.dmca.com', // DMCA Protection Status badge image
   'https://www.nxgntools.com', // "Featured on NxGn Tools" badge image
   'https://*.adtrafficquality.google', // AdSense invalid-traffic / ad quality checks
