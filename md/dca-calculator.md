@@ -1,6 +1,6 @@
-# Crypto DCA Calculator: Dollar-Cost Averaging | CryptoBolt
+# Crypto DCA Calculator: Average Cost & Return vs Lump Sum
 
-> Free crypto DCA calculator. Enter a buy amount, number of buys and start and end price to see average cost, coins bought and return versus a lump sum.
+> Free crypto DCA calculator. Enter buy amount, number of buys and start and end price to see average cost, coins bought and return versus a lump sum.
 
 Source: https://cryptobolt.io/dca-calculator
 

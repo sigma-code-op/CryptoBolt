@@ -1,6 +1,6 @@
-# Fear & Greed Index Explained | CryptoBolt
+# Crypto Fear & Greed Index Explained: Score Ranges & Use
 
-> What the crypto Fear & Greed index measures, why it isn't a trade signal on its own, and how to use it alongside trend, volume, and funding.
+> What each Fear & Greed score from 0 to 100 means, what feeds the index, and how traders pair it with trend, volume and funding. Plain-English guide.
 
 Source: https://cryptobolt.io/fear-and-greed-index
 

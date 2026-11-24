@@ -1,6 +1,6 @@
-# Crypto Position Size Calculator (Risk %) | CryptoBolt
+# Crypto Position Size Calculator: Risk %, Stop-Loss, Leverage
 
-> Free crypto position size calculator. Enter account balance, risk % and stop-loss to get position size, margin needed and 1R/2R/3R targets. No signup.
+> Free crypto position size calculator. Enter balance, risk % and stop-loss to get position size, margin needed and 1R/2R/3R targets. No signup.
 
 Source: https://cryptobolt.io/position-size-calculator
 
@@ -26,7 +26,7 @@ Margin at chosen leverage
 
 3R target (risk ×3)
 
-Estimate only — ignores trading fees and slippage, which make a real stop-out slightly larger than planned. Educational tool, not financial advice. [Practice the sizing with virtual funds →](https://cryptobolt.io/crypto-paper-trading)
+Estimate only — ignores trading fees and slippage, which make a real stop-out slightly larger than planned. Educational tool, not financial advice. [Practice the sizing with virtual funds →](https://cryptobolt.io/crypto-paper-trading) Trading perps on Hyperliquid? Use the [Hyperliquid position size calculator](https://cryptobolt.io/hyperliquid-position-size-calculator).
 
 ## What position size means
 

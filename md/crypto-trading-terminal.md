@@ -1,6 +1,6 @@
-# Free Crypto Trading Terminal with AI Research | CryptoBolt
+# Free Crypto Trading Terminal: Live Charts, Order Book, AI
 
-> Track live Bitcoin, Ethereum, Solana & altcoin prices with spot & futures charts, order book depth, portfolio tracking, and AI research.
+> Free crypto trading terminal with live Binance spot and futures charts, order book depth, paper trading and AI research. Runs in your browser with no signup.
 
 Source: https://cryptobolt.io/crypto-trading-terminal
 

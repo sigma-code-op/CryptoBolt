@@ -1,6 +1,6 @@
-# Bitcoin Halving Explained: Dates and Supply | CryptoBolt
+# Next Bitcoin Halving: Date (~April 2028) & History
 
-> What the Bitcoin halving is, how block rewards and the 21 million supply cap work, the dates of every halving so far, and why the event is not a price forecast.
+> When is the next Bitcoin halving? Around April 2028, at block 1,050,000. See every halving date so far, the shrinking block reward and the 21 million cap.
 
 Source: https://cryptobolt.io/bitcoin-halving-explained
 
@@ -23,7 +23,9 @@ The protocol cuts the subsidy in half after every **210,000 blocks**. At about t
 | Third | May 2020 | 6.25 BTC |
 | Fourth | April 2024 | 3.125 BTC |
 
-The next halving is expected around 2028, which would reduce the subsidy to 1.5625 BTC. You can confirm the current block height and expected timing on any public block explorer.
+## When is the next Bitcoin halving?
+
+The next halving happens at **block 1,050,000**, which is 210,000 blocks after the April 2024 halving at block 840,000. At about ten minutes per block that points to roughly **April 2028**, but the exact date moves with how fast blocks are actually found, so treat any specific day as an estimate. The subsidy will fall from 3.125 BTC to 1.5625 BTC. You can confirm the current block height and expected timing on any public block explorer.
 
 ## The 21 million cap
 

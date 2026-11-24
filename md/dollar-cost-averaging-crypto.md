@@ -1,6 +1,6 @@
-# Dollar-Cost Averaging in Crypto: Does DCA Work? | CryptoBolt
+# Crypto Dollar-Cost Averaging: Does DCA Work? (Examples)
 
-> What dollar-cost averaging in crypto is, a worked example, how it compares with a lump sum, where it falls short, and how to build a plan you can keep.
+> Crypto dollar-cost averaging explained with a worked example, DCA vs lump sum, where it falls short and a free DCA calculator to plan your own buys.
 
 Source: https://cryptobolt.io/dollar-cost-averaging-crypto
 

@@ -1,6 +1,6 @@
-# CryptoBolt | Free Crypto Terminal & Crypto AI Research
+# CryptoBolt: Free Crypto Terminal, Paper Trading & AI
 
-> Track live Bitcoin, Ethereum, Solana, and altcoin prices with CryptoBolt — a free trading terminal with charts, portfolio tracking, and crypto AI research.
+> CryptoBolt is a free crypto terminal: live Binance charts, order book, paper trading with $10,000 virtual funds, calculators and AI research.
 
 Source: https://cryptobolt.io/
 

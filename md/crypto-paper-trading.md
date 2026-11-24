@@ -1,6 +1,6 @@
-# Crypto Paper Trading: Free Practice Simulator | CryptoBolt
+# Free Crypto Paper Trading Simulator, $10,000 Virtual
 
-> Free crypto paper trading app: practice buying and selling Bitcoin, spot and futures with virtual funds at live prices. Track P&L, no real money.
+> Practice crypto spot and futures with $10,000 virtual funds at live Binance prices. Free simulator with leverage, funding and live P&L. Reset anytime.
 
 Source: https://cryptobolt.io/crypto-paper-trading
 

@@ -1,6 +1,6 @@
-# Crypto Staking Rewards Calculator (APR to APY) | CryptoBolt
+# Crypto APY Calculator: Staking Rewards, APR to APY
 
-> Free crypto staking calculator. Project rewards with daily, weekly, monthly or yearly compounding and optional monthly deposits, and convert APR to APY.
+> Free crypto APY and staking calculator: convert APR to APY, compound daily to yearly, add monthly deposits and see your rewards in dollars. No signup.
 
 Source: https://cryptobolt.io/crypto-staking-calculator
 

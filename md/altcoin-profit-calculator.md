@@ -1,6 +1,6 @@
-# Profit Calculator by Coin (FET, NEAR, ANKR) | CryptoBolt
+# Crypto Profit Calculator: FET, NEAR, ANKR, SOL & More
 
-> Free crypto profit calculator for any coin: FET, NEAR, ANKR, SOL, XRP and more. Enter buy price, sell price and fees to see net profit, ROI and break-even.
+> Free profit calculator for any coin: FET, NEAR, ANKR, SOL, XRP and more. Enter buy price, sell price and fees to see net profit, ROI and break-even.
 
 Source: https://cryptobolt.io/altcoin-profit-calculator
 

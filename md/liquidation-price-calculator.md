@@ -1,6 +1,6 @@
-# Liquidation Price Calculator (Crypto Futures) | CryptoBolt
+# Liquidation Price Calculator: Crypto Futures Long & Short
 
-> Free crypto liquidation price calculator for long and short futures. Enter entry price, leverage and margin mode to estimate where a position is liquidated.
+> Free crypto liquidation price calculator for long and short futures. Enter entry, leverage and margin mode to see where your position gets liquidated.
 
 Source: https://cryptobolt.io/liquidation-price-calculator
 
