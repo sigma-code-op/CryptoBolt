@@ -3,11 +3,6 @@ Allow: /
 
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 
-Sitemap: https://cryptobolt.io/sitemap.xmlUser-agent: *
-Allow: /
-
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-
 # GPTBot is OpenAI's model-training crawler (matches ai-train=no above). It made 76 requests in a day and was
 # rate-limited (429). OAI-SearchBot and ChatGPT-User, which power ChatGPT search/citations, stay allowed.
 User-agent: GPTBot
