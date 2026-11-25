@@ -30,6 +30,16 @@ Link: https://cryptobolt.io/position-size-calculator
 
 Free tool · no signup
 
+### Crypto backtester
+
+Test a strategy with fees, leverage, out-of-sample and Monte Carlo.
+
+Open tool
+
+Link: https://cryptobolt.io/crypto-backtester
+
+Free tool · no signup
+
 ### Grid bot profit calculator
 
 Profit per grid after fees and the cost of leaving the range.

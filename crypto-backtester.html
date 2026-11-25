@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://www.gstatic.com 'sha256-dOaIH3/EuVBEZCJHSbU+9fWeqNgxvZ9SmELYRrmsnXs=' 'sha256-uQK2oBelt3F4/KDHuBlVKIlHc0tGCCfbbMjcQ1Yn/+s=' 'sha256-Ifaee+AUkjnd4mvFXM78c8MRh/HuCnSgk2kVMiOzYDw=' 'sha256-1t7L51jZxDm2xwyaIRU6gP8ZoDK36n4ek7WJqKakpE8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://translate.googleapis.com; font-src 'self' https://cryptobolt.io https://www.cryptobolt.io https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://foundrlist.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://fonts.gstatic.com https://translate.google.com https://translate.googleapis.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-ads data-gtag-lazy></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Free Crypto Backtester (Fees, Leverage &amp; Monte Carlo)</title>
+    <meta name="description" content="Free crypto backtester with fees, leverage and liquidation, an automatic out-of-sample test, optimizer, Monte Carlo and AI review. No signup.">
+    <meta name="keywords" content="crypto backtester, free crypto backtesting tool, backtest crypto strategy, bitcoin backtester, backtest rsi strategy crypto, backtest leverage liquidation, monte carlo backtest crypto, crypto strategy tester, out of sample backtest, backtest ema crossover crypto">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/crypto-backtester">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/crypto-backtester">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/crypto-backtester">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/crypto-backtester">
+    <meta property="og:title" content="Free Crypto Backtester (Fees, Leverage &amp; Monte Carlo)">
+    <meta property="og:description" content="Free crypto backtester with fees, leverage and liquidation, an automatic out-of-sample test, optimizer, Monte Carlo and AI review. No signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/crypto-backtester.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt free crypto backtester">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Free Crypto Backtester (Fees, Leverage &amp; Monte Carlo)">
+    <meta name="twitter:description" content="Free crypto backtester with fees, leverage and liquidation, an automatic out-of-sample test, optimizer, Monte Carlo and AI review. No signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/crypto-backtester.png">
+    <meta name="twitter:image:alt" content="CryptoBolt free crypto backtester">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "WebPage",
+    "WebApplication"
+  ],
+  "name": "Crypto backtester",
+  "url": "https://cryptobolt.io/crypto-backtester",
+  "description": "Free browser-based crypto strategy backtester using Binance candles: moving-average, MACD, RSI, Bollinger and breakout strategies with fees, slippage, leverage, liquidation, stop-loss, out-of-sample validation, parameter optimization, Monte Carlo stress test and AI review.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "inLanguage": "en",
+  "dateModified": "2026-11-25",
+  "isPartOf": {
+    "@id": "https://cryptobolt.io/#website"
+  },
+  "publisher": {
+    "@id": "https://cryptobolt.io/#organization"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this crypto backtester really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. There is no account, no limit on runs and no paywall. The candles are downloaded straight from Binance’s public API in your browser, and the simulation runs locally on your device. The optional AI review uses CryptoBolt’s shared AI key or your own free Groq key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many years of history can I test?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can load up to 5,000 candles per run. That is about 13.7 years of daily candles, about 208 days of hourly candles, or about 2.3 years of 4-hour candles, limited by how long the coin has been listed on Binance. Use daily candles for long-term ideas and hourly or 4-hour candles when you need many trades."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does out-of-sample mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The first 70% of the candles are the in-sample part, where you design and tune a strategy. The last 30% are held back and used only to check it. If the strategy makes money in-sample but loses money out-of-sample, it was fitted to noise in the past rather than catching something that repeats."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the backtest fill at the next open instead of the close?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A candle is only known to be closed once it has finished, so a rule that reads the close can only act after it. Filling at that same close assumes you traded at a price you could not have known in time. This tool reads the signal at the close and fills at the next candle’s open, plus slippage, which is the realistic version."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it include funding fees and liquidation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Liquidation is modelled: with leverage, an adverse move of about 1 divided by leverage, minus a 0.5% maintenance margin, wipes out the account, and it is checked against every candle’s high and low. Funding payments are not modelled, so long-held leveraged perpetual positions will look slightly better here than in real life."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a good backtest still lose money live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Fees, slippage and funding can differ from your assumptions, the market regime can change, and a strategy tuned on past data can simply be an accident of that data. A good backtest is a reason to test the strategy further with paper trading, not a reason to risk real money."
+      }
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "CryptoBolt",
+      "item": "https://cryptobolt.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crypto calculators",
+      "item": "https://cryptobolt.io/crypto-calculators"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Crypto backtester",
+      "item": "https://cryptobolt.io/crypto-backtester"
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Organization", "@id": "https://cryptobolt.io/#organization", "name": "CryptoBolt", "alternateName": "Crypto Bolt", "url": "https://cryptobolt.io/", "logo": {"@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png", "width": 512, "height": 512}, "image": "https://cryptobolt.io/assets/og-image.png", "description": "CryptoBolt is a free crypto market research and analysis platform with live Binance spot and futures data, charts, paper trading, calculators and AI-assisted research. It is an education and analysis tool, not an exchange and not financial advice.", "email": "info@cryptobolt.io", "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": "info@cryptobolt.io", "url": "https://cryptobolt.io/contact", "availableLanguage": ["English"]}], "knowsAbout": ["Cryptocurrency market data", "Technical analysis", "Crypto paper trading", "Perpetual futures"], "sameAs": ["https://x.com/cryptobolt5fvj", "https://github.com/sigma-code-op/CryptoBolt", "https://youtube.com/@cryptobolt-1", "https://www.facebook.com/profile.php?id=61595142351905"]}
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261117">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+
+        .lc-tbl-wrap{overflow-x:auto;margin-top:14px;}
+        .lc-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:6px;}
+        .lc-rows .lc-field label{font-size:11px;}
+        .lc-fib{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+        .lc-fib th,.lc-fib td{padding:9px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;}
+        .lc-fib td:last-child{font-family:'JetBrains Mono',monospace;text-align:right;}
+        .lc-meta{max-width:820px;margin:0 auto 18px;font-size:12px;color:var(--mk-text-dim,#8B93A3);text-align:center;}
+        .lc-meta a{color:var(--mk-green,#22C58C);}
+        .lc-sel{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        @media(max-width:640px){.lc-rows{grid-template-columns:1fr;}}
+        .lc-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:6px;}
+        @media(max-width:640px){.lc-grid3{grid-template-columns:1fr;}}
+        .lc-hint{font-size:11px;color:var(--mk-text-dim,#8B93A3);font-weight:400;}
+        .lc-callout{margin:18px 0;padding:14px 16px;border-radius:10px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);font-size:14px;}
+        .mk-article caption{caption-side:bottom;text-align:left;font-size:12px;color:var(--mk-text-dim,#8B93A3);padding-top:8px;white-space:normal;}
+    .lc-field{min-width:0;}.lc-field input,.lc-field select{width:100%;min-width:0;box-sizing:border-box;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}.lc-grid3{grid-template-columns:repeat(3,minmax(0,1fr));}@media(max-width:640px){.lc-calc{padding:18px;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr);}}.lc-calc .lc-tbl-wrap table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}.lc-calc .lc-tbl-wrap th,.lc-calc .lc-tbl-wrap td{padding:8px 10px;white-space:nowrap;text-align:left;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08))}.lc-calc .lc-tbl-wrap th{color:var(--mk-text-dim,#8B93A3);font-weight:600}.lc-calc textarea{width:100%;box-sizing:border-box;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;resize:vertical}.lc-calc .hidden{display:none !important}.lc-calc .bt-ok{background:rgba(34,197,140,.08);border-color:rgba(34,197,140,.3);color:#9fe3c8}.lc-calc .bt-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 4px}.lc-calc .bt-btn{padding:11px 18px;border-radius:10px;border:1px solid rgba(34,197,140,.5);background:rgba(34,197,140,.14);color:var(--mk-green,#22C58C);font-weight:700;font-size:14px;cursor:pointer}.lc-calc .bt-btn:disabled{opacity:.5;cursor:wait}.lc-calc .bt-btn.alt{background:transparent;border-color:var(--mk-line,rgba(237,239,243,.18));color:var(--mk-text,#EDEFF3)}.lc-calc h2{margin:26px 0 6px;font-size:16px}.lc-calc .bt-check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:12px}.lc-calc .bt-ai-text{font-size:14px;line-height:1.6;margin-top:12px}.lc-calc #bt-verdict{margin:10px 0 0;padding-left:18px;font-size:14px;line-height:1.55}.lc-calc .lc-stats{grid-template-columns:repeat(3,minmax(0,1fr))}@media (max-width:640px){.lc-calc .lc-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app">Terminal</a>
+        <a href="features">Features</a>
+        <a href="ai">AI Research</a>
+        <a href="spot-vs-futures">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <div class="mk-lang" hidden>
+            <button type="button" class="mk-lang-btn" aria-label="Change language" aria-haspopup="listbox" aria-expanded="false">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="mk-lang-code">EN</span>
+            </button>
+            <ul class="mk-lang-menu" role="listbox" aria-label="Language" hidden></ul>
+        </div>
+        <a href="app" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app">Terminal</a>
+    <a href="features">Features</a>
+    <a href="ai">AI Research</a>
+    <a href="spot-vs-futures">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Free tool · No signup · Runs in your browser</span>
+    <h1>Free crypto backtester</h1>
+    <p>Test a trading strategy on real Binance candles with fees, slippage, leverage and liquidation, then see whether it survives data it never saw, a Monte Carlo reshuffle and an optimizer that tries to fool you.</p>
+</header>
+
+<p class="lc-meta">Written and checked by the CryptoBolt founder · Formulas tested against worked examples on November 25, 2026 · <a href="editorial-policy">How we build and check our tools</a></p>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc" id="bt-app">
+        <div class="lc-field"><label for="bt-text">Describe a strategy in plain English <span class="lc-hint">(optional; works offline, no AI key needed)</span></label>
+            <textarea id="bt-text" rows="2" placeholder="e.g. buy when RSI is below 30 and sell above 70, 3x leverage, stop loss 4%"></textarea></div>
+        <div class="bt-row"><button type="button" class="bt-btn alt" id="bt-parse">Set it up from my sentence</button></div>
+        <h2>1. Market and data</h2>
+        <div class="lc-grid">
+            <div class="lc-field"><label for="bt-symbol">Coin</label><input type="text" id="bt-symbol" value="BTC" maxlength="12" autocomplete="off" spellcheck="false"></div>
+            <div class="lc-field"><label for="bt-market">Market</label><select id="bt-market"><option value="spot">Spot (Binance)</option><option value="futures">USDT perpetual (Binance)</option></select></div>
+            <div class="lc-field"><label for="bt-interval">Candle size</label><select id="bt-interval"><option value="1h">1 hour</option><option value="4h">4 hours</option><option value="1d" selected>1 day</option></select></div>
+            <div class="lc-field"><label for="bt-bars">History length</label><select id="bt-bars"><option value="1000">1,000 candles</option><option value="2000">2,000 candles</option><option value="3000" selected>3,000 candles</option><option value="5000">5,000 candles</option></select></div>
+        </div>
+        <h2>2. Strategy</h2>
+        <div class="lc-grid"><div class="lc-field"><label for="bt-strategy">Strategy</label><select id="bt-strategy"></select></div></div>
+        <p class="lc-note" id="bt-strategy-desc"></p>
+        <div class="lc-grid" id="bt-params"></div>
+        <h2>3. Real-world costs and risk</h2>
+            <div class="lc-field"><label for="bt-lev">Leverage (x) <span class="lc-hint">(1 = no leverage)</span></label><input type="number" id="bt-lev" inputmode="decimal" step="any" value="1" min="1" max="125" step="1"></div>
+        <p class="lc-note" id="bt-lev-warn" style="margin-top:4px"></p>
+        <div class="lc-grid">
+            <div class="lc-field"><label for="bt-fee">Fee per side (%) <span class="lc-hint">(taker fee on entry and exit)</span></label><input type="number" id="bt-fee" inputmode="decimal" step="any" value="0.05" min="0"></div>
+            <div class="lc-field"><label for="bt-slip">Slippage per fill (%)</label><input type="number" id="bt-slip" inputmode="decimal" step="any" value="0.02" min="0"></div>
+            <div class="lc-field"><label for="bt-stop">Stop-loss (%) <span class="lc-hint">(0 = none)</span></label><input type="number" id="bt-stop" inputmode="decimal" step="any" value="0" min="0"></div>
+            <div class="lc-field"><label for="bt-tp">Take-profit (%) <span class="lc-hint">(0 = none)</span></label><input type="number" id="bt-tp" inputmode="decimal" step="any" value="0" min="0"></div>
+        </div>
+        <label class="bt-check"><input type="checkbox" id="bt-short"> Allow short trades (the strategy flips to short instead of going flat)</label>
+        <div class="bt-row"><button type="button" class="bt-btn" id="bt-run">Run backtest</button></div>
+        <div class="lc-warning" id="bt-status" role="status" aria-live="polite"></div>
+
+        <div id="bt-results" class="hidden">
+            <h2>Equity curve</h2>
+            <div id="bt-chart"></div>
+            <div class="lc-stats" id="bt-stats-full"></div>
+            <h2>Does it survive out-of-sample?</h2>
+            <div id="bt-stats-split"></div>
+            <ul id="bt-verdict"></ul>
+            <h2>Monte Carlo stress test</h2>
+            <div id="bt-mc"></div>
+            <h2>Trades</h2>
+            <div id="bt-trades"></div>
+
+            <h2>Parameter optimizer</h2>
+            <p class="lc-note" style="margin-top:0">Tests 64 nearby settings on the first 70% of history only, then shows how each one did on the last 30%.</p>
+            <div class="lc-grid">
+                <div class="lc-field"><label for="bt-opt-a">First parameter (rows)</label><select id="bt-opt-a"></select></div>
+                <div class="lc-field"><label for="bt-opt-b">Second parameter (columns)</label><select id="bt-opt-b"></select></div>
+            </div>
+            <div class="bt-row"><button type="button" class="bt-btn alt" id="bt-optimize">Run optimizer</button></div>
+            <div id="bt-opt-wrap" class="hidden"><div id="bt-opt"></div></div>
+
+            <div id="bt-ai-box" class="hidden">
+                <h2>AI review of this backtest</h2>
+                <p class="lc-note" style="margin-top:0">Sends only the numbers above (not your browser data) to the CryptoBolt AI, which critiques overfitting risk, regime dependence and cost sensitivity, and suggests the next tests. Uses your Groq key from the <a href="ai">AI page</a> if you saved one, otherwise CryptoBolt's shared key when available.</p>
+                <div class="bt-row"><button type="button" class="bt-btn alt" id="bt-ai">Ask the AI to review it</button></div>
+                <div id="bt-ai-out" class="hidden"></div>
+            </div>
+        </div>
+        <noscript><p class="lc-note">The backtester needs JavaScript to download candles and run the simulation.</p></noscript>
+        <p class="lc-note">Past results do not predict future results. Candles come directly from Binance’s public API in your browser; nothing you test is sent to CryptoBolt except the AI review, if you press it. Educational tool, not financial advice. <a href="crypto-paper-trading">Practice with virtual funds &rarr;</a></p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>What makes this backtester different</h2>
+    <p>Most free backtests show a smooth equity curve and one big number. That number is usually wrong in the direction you want it to be. This tool is built to argue against your strategy first:</p>
+    <ul>
+        <li><strong>No look-ahead.</strong> A signal is read at the close of a candle and filled at the <em>next</em> open. Reading a signal and filling at the same close is the most common reason a backtest looks too good.</li>
+        <li><strong>Costs are on by default.</strong> A 0.05% fee and 0.02% slippage per side are pre-filled, because zero-cost backtests overstate every active strategy.</li>
+        <li><strong>Leverage and liquidation are modelled.</strong> At 10x an adverse move of about 9.5% ends the account. The simulator checks every candle’s high and low, not just the close.</li>
+        <li><strong>An out-of-sample test is automatic.</strong> The last 30% of history is held back and reported separately, next to buy and hold.</li>
+        <li><strong>A Monte Carlo stress test</strong> reshuffles your trades 1,000 times to show how much of the result depended on the order they arrived in.</li>
+        <li><strong>The optimizer shows you its own failure.</strong> It finds the best setting on the first 70% and then reveals what that setting did on the rest.</li>
+    </ul>
+    <h2>How to read the results</h2>
+    <p>Start with the <strong>out-of-sample table</strong>, not the headline return. A strategy that makes money in the first 70% and loses money in the last 30% fit the past; it did not find an edge. Then check the <strong>trade count</strong>: under about 30 trades, a win rate or profit factor is mostly noise. Compare the <strong>max drawdown</strong> with what you could actually sit through, and compare the return with <strong>buy and hold</strong> over the same dates, because a trend strategy that earns less than holding with a deeper drawdown has no reason to exist.</p>
+    <h2>Example 1: trading costs, on one reproducible series</h2>
+    <p>The examples on this page run the real engine on a seeded synthetic price series (1,500 daily candles, 2.5% daily volatility, a small upward drift), so you can reproduce the numbers exactly. They are not real market data. The strategy is a 12/26 EMA crossover, long only, with no stop. Only the costs change:</p>
+    <div class="lc-tbl-wrap"><table>
+<thead><tr><th>Costs per side</th><th>Trades</th><th>Total return</th><th>Rough cost drag (trades x round-trip cost)</th></tr></thead>
+<tbody><tr><td>0% fee, 0% slippage</td><td>25</td><td>+52%</td><td>0.0%</td></tr><tr><td>0.05% fee, 0% slippage</td><td>25</td><td>+48%</td><td>2.5%</td></tr><tr><td>0.05% fee, 0.02% slippage</td><td>25</td><td>+46%</td><td>3.5%</td></tr><tr><td>0.1% fee, 0.05% slippage</td><td>25</td><td>+41%</td><td>7.5%</td></tr><tr><td>0.2% fee, 0.1% slippage</td><td>25</td><td>+30%</td><td>15.0%</td></tr></tbody>
+</table></div>
+    <p>With no costs the same rules return +52%; with a 0.1% fee and 0.05% slippage they return +41% on 25 trades. The drag grows with the number of trades, which is why a strategy that looks fine on daily candles can be destroyed on 5-minute candles: it simply trades more often.</p>
+    <h2>Example 2: what leverage does to the same strategy</h2>
+    <p>Same series, same rules, costs at 0.05% fee and 0.02% slippage, only the leverage changes:</p>
+    <div class="lc-tbl-wrap"><table>
+<thead><tr><th>Leverage</th><th>Total return</th><th>Max drawdown</th><th>Account liquidated?</th></tr></thead>
+<tbody><tr><td>1x</td><td>+46%</td><td>-51%</td><td>No</td></tr><tr><td>2x</td><td>+37%</td><td>-77%</td><td>No</td></tr><tr><td>3x</td><td><span class="lc-neg">-11%</span></td><td>-90%</td><td>No</td></tr><tr><td>5x</td><td><span class="lc-neg">-90%</span></td><td>-99%</td><td>No</td></tr><tr><td>10x</td><td><span class="lc-neg">-100%</span></td><td>-100%</td><td><span class="lc-neg">Yes, account wiped out</span></td></tr><tr><td>20x</td><td><span class="lc-neg">-100%</span></td><td>-100%</td><td><span class="lc-neg">Yes, account wiped out</span></td></tr></tbody>
+</table></div>
+    <p>Leverage multiplies the drawdown as well as the gain, and past a certain point the question is no longer &ldquo;how much does it make&rdquo; but &ldquo;does it survive its worst candle&rdquo;. A stop-loss placed closer than the liquidation price keeps a leveraged account alive; check where yours sits with the <a href="liquidation-price-calculator">liquidation price calculator</a>.</p>
+    <h2>Example 3: the optimizer will happily find a &ldquo;winner&rdquo; in pure noise</h2>
+    <p>This is the experiment every trader should see once. We generated 20 price series with <strong>zero drift and no pattern at all</strong> (a pure random walk), and for each one ran the optimizer over 64 SMA-crossover settings on the first 70%. The best in-sample setting averaged <strong>+33%</strong>, and it was profitable in-sample on 14 of 20 series. On the unseen last 30% the same settings averaged <strong>-4%</strong>, almost exactly the -5% that a typical setting made. The &ldquo;best&rdquo; setting had no edge at all; it was just the luckiest of 64 tries.</p>
+    <p>One concrete case: on the second series the optimizer picked fast=3, slow=20, which made +38% in-sample and then -43% out-of-sample. On a real chart, the same thing happens whenever you tune parameters until the equity curve looks good. The defence is simple: only trust a setting that sits inside a block of neighbours that are also profitable, and that still works on the part of the history the optimizer never saw.</p>
+    <h2>Example 4: Monte Carlo on a trend-following profile</h2>
+    <p>Take a strategy that wins 40% of the time, makes +9% on a winner and loses 3% on a loser, over 60 trades. In the order it happened it returns +164% with a worst drawdown of 6%. Reshuffling those same 60 trades 1,000 times gives a median return of +164% but a range from +31% (worst 5% of runs) to +432% (best 5%), and a median worst drawdown of 19%, with the severe end near 32%. The trades did not change, only their order. That spread is the part of a backtest that is luck, and it is the number to compare with your own risk tolerance. For the maths of losing streaks and ruin, see the <a href="losing-streak-calculator">losing streak calculator</a> and the <a href="risk-of-ruin-calculator">risk of ruin calculator</a>.</p>
+    <h2>A checklist before you trust any backtest</h2>
+    <ul>
+        <li>Is the trade count above about 30, ideally above 100?</li>
+        <li>Does it make money in <strong>both</strong> the first 70% and the last 30% of history?</li>
+        <li>Does it beat buy and hold <strong>after</strong> costs, or at least match it with a much smaller drawdown?</li>
+        <li>Do the neighbouring parameter values also work, or is it one lucky cell?</li>
+        <li>Is the Monte Carlo worst-5% outcome something you could live with?</li>
+        <li>If you use leverage, is your stop closer than your liquidation price?</li>
+        <li>Have you tried a different coin and a different time window? An idea that only works on one chart is a coincidence.</li>
+    </ul>
+    <h2>What this backtester does not model</h2>
+    <ul>
+        <li><strong>Funding payments</strong> on perpetual futures, which cost or pay a few percent a year depending on the side. See the <a href="funding-fee-calculator">funding fee calculator</a>.</li>
+        <li><strong>The order book.</strong> Fills happen at the open of the next candle plus your slippage setting; large orders on thin coins would fill worse.</li>
+        <li><strong>Intrabar order.</strong> If a stop and a target are inside the same candle, the stop is assumed to hit first, which is the conservative choice.</li>
+        <li><strong>Survivorship bias.</strong> You can only test coins that still trade. Coins that died are missing from every free dataset, including this one.</li>
+        <li><strong>Taxes, borrowing costs and exchange-specific margin rules.</strong> Liquidation uses a simple isolated formula with a 0.5% maintenance margin.</li>
+        <li><strong>The future.</strong> Markets change regime. A result describes how the rules would have behaved, not how they will.</li>
+    </ul>
+    <p>When a strategy survives all of that, the next step is to practise it with virtual money, where every trade is real in everything but cost. The <a href="crypto-paper-trading">paper trading simulator</a> is built for that, and the position size for each trade can come from the <a href="position-size-calculator">position size calculator</a>.</p>
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Crypto backtester FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>Is this crypto backtester really free?</h3>
+            <p>Yes. There is no account, no limit on runs and no paywall. The candles are downloaded straight from Binance’s public API in your browser, and the simulation runs locally on your device. The optional AI review uses CryptoBolt’s shared AI key or your own free Groq key.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How many years of history can I test?</h3>
+            <p>You can load up to 5,000 candles per run. That is about 13.7 years of daily candles, about 208 days of hourly candles, or about 2.3 years of 4-hour candles, limited by how long the coin has been listed on Binance. Use daily candles for long-term ideas and hourly or 4-hour candles when you need many trades.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What does out-of-sample mean?</h3>
+            <p>The first 70% of the candles are the in-sample part, where you design and tune a strategy. The last 30% are held back and used only to check it. If the strategy makes money in-sample but loses money out-of-sample, it was fitted to noise in the past rather than catching something that repeats.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Why does the backtest fill at the next open instead of the close?</h3>
+            <p>A candle is only known to be closed once it has finished, so a rule that reads the close can only act after it. Filling at that same close assumes you traded at a price you could not have known in time. This tool reads the signal at the close and fills at the next candle’s open, plus slippage, which is the realistic version.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Does it include funding fees and liquidation?</h3>
+            <p>Liquidation is modelled: with leverage, an adverse move of about 1 divided by leverage, minus a 0.5% maintenance margin, wipes out the account, and it is checked against every candle’s high and low. Funding payments are not modelled, so long-held leveraged perpetual positions will look slightly better here than in real life.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Can a good backtest still lose money live?</h3>
+            <p>Yes. Fees, slippage and funding can differ from your assumptions, the market regime can change, and a strategy tuned on past data can simply be an accident of that data. A good backtest is a reason to test the strategy further with paper trading, not a reason to risk real money.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep going</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="crypto-calculators" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="calculator" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Hub</span>
+                <h3>All crypto calculators</h3>
+                <p>Every free CryptoBolt calculator in one place.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="risk-of-ruin-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="calculator" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Risk of ruin calculator</h3>
+                <p>How likely a strategy is to blow up an account.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="losing-streak-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="calculator" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Losing streak calculator</h3>
+                <p>How long a losing run to expect.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="crypto-paper-trading" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="target" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Practice</span>
+                <h3>Crypto paper trading</h3>
+                <p>Try the strategy with virtual funds.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app">Terminal</a>
+            <a href="features">Features</a>
+            <a href="releases">Releases</a>
+            <a href="trade">Paper trading</a>
+            <a href="ai">AI research</a>
+            <a href="spot-vs-futures">Spot vs futures</a>
+            <a href="funding-rate-explained">Funding rate explained</a>
+            <a href="crypto-calculators">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about">About</a>
+            <a href="blog">Blog</a>
+            <a href="trading-course">Free course</a>
+            <a href="glossary">Glossary</a>
+            <a href="contact">Contact</a>
+            <a href="ebook">Ebook</a>
+            <a href="editorial-policy">Editorial policy</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy">Privacy policy</a>
+            <a href="terms">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/live.js?v=20261117" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/backtest-lab.js?v=20261125" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+<script src="js/lang-switcher.js?v=20261114b" defer></script>
+</body>
+</html>

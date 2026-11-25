@@ -199,6 +199,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://cryptobolt.io/crypto-backtester</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://cryptobolt.io/grid-bot-profit-calculator</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>

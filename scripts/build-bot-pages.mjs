@@ -56,7 +56,7 @@ function build(p) {
   rep(/<meta name="twitter:image" content=".*?">/, `<meta name="twitter:image" content="${og}">`);
   rep(/<meta name="twitter:image:alt" content=".*?">/, `<meta name="twitter:image:alt" content="${esc(p.ogAlt)}">`);
 
-  rep(/<\/style>/, '.lc-calc .lc-tbl-wrap table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}.lc-calc .lc-tbl-wrap th,.lc-calc .lc-tbl-wrap td{padding:8px 10px;white-space:nowrap;text-align:left;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08))}.lc-calc .lc-tbl-wrap th{color:var(--mk-text-dim,#8B93A3);font-weight:600}</style>');
+  rep(/<\/style>/, '.lc-calc .lc-tbl-wrap table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}.lc-calc .lc-tbl-wrap th,.lc-calc .lc-tbl-wrap td{padding:8px 10px;white-space:nowrap;text-align:left;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08))}.lc-calc .lc-tbl-wrap th{color:var(--mk-text-dim,#8B93A3);font-weight:600}' + (p.css || '') + '</style>');
   // JSON-LD: replace the first three blocks (WebApplication, FAQPage, BreadcrumbList), keep Organization.
   const marker = '<script type="application/ld+json">';
   const parts = h.split(marker);
@@ -373,7 +373,8 @@ ${field('db-mmr', 'Maintenance margin rate (%)', 0.5, ' min="0"', '(futures only
   ]
 };
 
-for (const p of [gridPage, dcaPage]) {
+import { backtestPage } from './backtest-page-def.mjs';
+for (const p of [gridPage, dcaPage, backtestPage(build, { field, table, card, usd, pct })]) {
   const html = build(p).replace(/\n/g, '\r\n');
   fs.writeFileSync(path.join(ROOT, p.slug + '.html'), html);
   console.log('wrote', p.slug + '.html', html.length);
