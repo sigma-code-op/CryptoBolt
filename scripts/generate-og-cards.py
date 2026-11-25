@@ -396,6 +396,12 @@ CARDS = [
     ("fibonacci-retracement-calculator", "Free tool", "Fibonacci retracement calculator",
      "Retracement and extension levels from any swing.",
      v_fields("Swing", (("High", "70,000"), ("Low", "50,000"), ("61.8% level", "57,640")), "38.2% retracement", "$62,360.00", "Uptrend \u00b7 range $20,000", CYAN), 440, 431),
+    ("grid-bot-profit-calculator", "Original analysis", "Grid bot profit calculator",
+     "Net profit per grid after fees, plus what happens when price leaves the range.",
+     v_fields("Grid", (("Range", "50k-70k"), ("Grids", "20"), ("Fee/side", "0.1%")), "Net per grid cycle", "1.25-1.80%", "About $7.68 per completed cycle", GREEN), 440, 431),
+    ("dca-bot-safety-order-calculator", "Original analysis", "DCA bot safety order calculator",
+     "Capital needed, average entry and take-profit price for every safety order.",
+     v_fields("Bot", (("Base / SO", "$100/$200"), ("Safety orders", "5"), ("Volume scale", "1.5")), "Capital needed", "$2,737.50", "Last order 11.16% below entry", AMBER), 440, 431),
     ("crypto-calculators", "Free tools", "Crypto trading calculators",
      "Eleven free calculators for trading, DCA and staking.", v_hub, 440, 431),
 ]

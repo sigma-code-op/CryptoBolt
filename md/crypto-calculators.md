@@ -30,6 +30,26 @@ Link: https://cryptobolt.io/position-size-calculator
 
 Free tool · no signup
 
+### Grid bot profit calculator
+
+Profit per grid after fees and the cost of leaving the range.
+
+Open calculator
+
+Link: https://cryptobolt.io/grid-bot-profit-calculator
+
+Free tool · no signup
+
+### DCA bot safety order calculator
+
+Capital and average entry for every safety order.
+
+Open calculator
+
+Link: https://cryptobolt.io/dca-bot-safety-order-calculator
+
+Free tool · no signup
+
 ### Hyperliquid position size calculator
 
 Size a perp trade and check your stop against liquidation.

@@ -37,6 +37,8 @@
   - [Risk-reward ratio and win rate: why a 40% win rate can still work](https://cryptobolt.io/risk-reward-ratio-and-win-rate)
   - [Liquidation Price Calculator](https://cryptobolt.io/liquidation-price-calculator) — Free calculator estimating liquidation price for leveraged crypto futures positions, long or short, isolated or cross margin.
   - [Position Size Calculator](https://cryptobolt.io/position-size-calculator) — Free calculator turning account balance, risk percentage, entry and stop-loss into position size, margin and R-multiple targets.
+  - [Grid Bot Profit Calculator](https://cryptobolt.io/grid-bot-profit-calculator) — Free calculator for net profit per grid after fees, the break-even grid step and what leaving the range costs.
+  - [DCA Bot Safety Order Calculator](https://cryptobolt.io/dca-bot-safety-order-calculator) — Free calculator for the capital, average entry and take-profit price of every safety order in a DCA (martingale) bot.
   - [Hyperliquid Position Size Calculator](https://cryptobolt.io/hyperliquid-position-size-calculator) — Free calculator sizing a Hyperliquid perp trade from risk, stop and max leverage, with the liquidation price and hourly funding cost.
   - [Crypto Futures Profit Calculator](https://cryptobolt.io/crypto-profit-calculator) — Free calculator for net profit or loss, ROE and fees on a leveraged long or short trade.
   - [Crypto Profit Calculator by Coin](https://cryptobolt.io/altcoin-profit-calculator) — Free spot profit, ROI and break-even calculator for FET, NEAR, ANKR, SOL and any other coin, fees included.

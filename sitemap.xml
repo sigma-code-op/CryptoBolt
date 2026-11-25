@@ -199,6 +199,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://cryptobolt.io/grid-bot-profit-calculator</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cryptobolt.io/dca-bot-safety-order-calculator</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://cryptobolt.io/hyperliquid-position-size-calculator</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>

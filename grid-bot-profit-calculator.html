@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://cdn.jsdelivr.net https://unpkg.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://www.gstatic.com 'sha256-dOaIH3/EuVBEZCJHSbU+9fWeqNgxvZ9SmELYRrmsnXs=' 'sha256-uQK2oBelt3F4/KDHuBlVKIlHc0tGCCfbbMjcQ1Yn/+s=' 'sha256-Ifaee+AUkjnd4mvFXM78c8MRh/HuCnSgk2kVMiOzYDw=' 'sha256-1t7L51jZxDm2xwyaIRU6gP8ZoDK36n4ek7WJqKakpE8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://translate.googleapis.com; font-src 'self' https://cryptobolt.io https://www.cryptobolt.io https://fonts.gstatic.com data:; img-src 'self' data: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://api.producthunt.com https://ph-files.imgix.net https://launchzone.co https://sellwithboost.com https://foundrlist.com https://images.dmca.com https://www.nxgntools.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://www.gstatic.com https://fonts.gstatic.com https://translate.google.com https://translate.googleapis.com; connect-src 'self' https://api.binance.com https://fapi.binance.com https://data-api.binance.vision https://stream.binance.com wss://stream.binance.com wss://stream.binance.com:9443 https://fstream.binance.com wss://fstream.binance.com https://api.coingecko.com https://api.alternative.me https://api.coinbase.com https://api.cryptobolt.io https://xdfkumkkfskdmlemelso.supabase.co wss://xdfkumkkfskdmlemelso.supabase.co https://www.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.adtrafficquality.google https://cryptobolt.io https://www.cryptobolt.io https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta name="google-adsense-account" content="ca-pub-7149913639439821">
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script src="js/consent-default.js"></script>
+    <script defer src="js/deferred-loader.js?v=20261103b" data-ads data-gtag-lazy></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ============ Primary SEO ============ -->
+    <title>Grid Bot Profit Calculator (After Fees &amp; Range Exit)</title>
+    <meta name="description" content="Free grid bot profit calculator: net profit per grid after fees, the minimum grid step, and what a drop below or rise above your range costs. No signup.">
+    <meta name="keywords" content="grid bot profit calculator, grid trading calculator, crypto grid bot calculator, grid bot fees, arithmetic vs geometric grid, grid bot minimum profit per grid, grid bot range calculator, spot grid bot profit">
+    <meta name="author" content="CryptoBolt">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cryptobolt.io/grid-bot-profit-calculator">
+    <link rel="alternate" hreflang="en" href="https://cryptobolt.io/grid-bot-profit-calculator">
+    <link rel="alternate" hreflang="x-default" href="https://cryptobolt.io/grid-bot-profit-calculator">
+
+    <!-- ============ Favicons / PWA ============ -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#07090d">
+
+    <!-- ============ Open Graph ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CryptoBolt">
+    <meta property="og:url" content="https://cryptobolt.io/grid-bot-profit-calculator">
+    <meta property="og:title" content="Grid Bot Profit Calculator (After Fees &amp; Range Exit)">
+    <meta property="og:description" content="Free grid bot profit calculator: net profit per grid after fees, the minimum grid step, and what a drop below or rise above your range costs. No signup.">
+    <meta property="og:image" content="https://cryptobolt.io/assets/og/grid-bot-profit-calculator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CryptoBolt grid bot profit calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============ Twitter / X Card ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cryptobolt5fvj">
+    <meta name="twitter:creator" content="@cryptobolt5fvj">
+    <meta name="twitter:title" content="Grid Bot Profit Calculator (After Fees &amp; Range Exit)">
+    <meta name="twitter:description" content="Free grid bot profit calculator: net profit per grid after fees, the minimum grid step, and what a drop below or rise above your range costs. No signup.">
+    <meta name="twitter:image" content="https://cryptobolt.io/assets/og/grid-bot-profit-calculator.png">
+    <meta name="twitter:image:alt" content="CryptoBolt grid bot profit calculator">
+
+    <!-- ============ Structured data (JSON-LD) ============ -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "WebPage",
+    "WebApplication"
+  ],
+  "name": "Grid bot profit calculator",
+  "url": "https://cryptobolt.io/grid-bot-profit-calculator",
+  "description": "Free grid bot profit calculator: net profit per grid cycle after fees, break-even grid step, and the profit or loss when price leaves the range, for arithmetic and geometric spot grids.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "inLanguage": "en",
+  "dateModified": "2026-11-25",
+  "isPartOf": {
+    "@id": "https://cryptobolt.io/#website"
+  },
+  "publisher": {
+    "@id": "https://cryptobolt.io/#organization"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you calculate grid bot profit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each completed grid cycle earns the quantity per grid times the price step, minus the fee on the buy and the sell. In a geometric grid the net profit per cycle is the price step as a percentage, reduced by the fee on both legs. Total profit is the number of completed cycles times that amount, plus or minus the change in value of the coin the bot is holding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many grids should a grid bot have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enough that every grid step is clearly larger than the round-trip fees, and few enough that each order stays above the exchange minimum. More grids give smaller profit per cycle but more cycles. With a 0.1% fee per side, a grid step has to be above about 0.2% just to break even, and most traders want a margin well above that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a grid bot lose money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If the price falls below the bottom of the range, the bot is left holding coins bought on the way down, and the unrealised loss can be larger than all the grid profit collected. If the price rises above the top, the bot has sold everything and stops earning while the coin keeps rising."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between an arithmetic and a geometric grid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An arithmetic grid uses the same price distance between lines, so the percentage step is larger at the bottom and smaller at the top. A geometric grid uses the same percentage between lines, so each cycle earns about the same percentage. Geometric grids suit wide ranges, arithmetic grids suit tight ranges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the daily profit estimate a forecast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The calculator multiplies the net profit of an average cycle by the number of cycles per day that you type in. How many cycles actually complete depends on volatility and on how the price moves inside your range, which nobody can forecast. Use it to compare setups, not to predict income."
+      }
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "CryptoBolt",
+      "item": "https://cryptobolt.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crypto calculators",
+      "item": "https://cryptobolt.io/crypto-calculators"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Grid bot profit calculator",
+      "item": "https://cryptobolt.io/grid-bot-profit-calculator"
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Organization", "@id": "https://cryptobolt.io/#organization", "name": "CryptoBolt", "alternateName": "Crypto Bolt", "url": "https://cryptobolt.io/", "logo": {"@type": "ImageObject", "url": "https://cryptobolt.io/assets/android-chrome-512.png", "width": 512, "height": 512}, "image": "https://cryptobolt.io/assets/og-image.png", "description": "CryptoBolt is a free crypto market research and analysis platform with live Binance spot and futures data, charts, paper trading, calculators and AI-assisted research. It is an education and analysis tool, not an exchange and not financial advice.", "email": "info@cryptobolt.io", "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": "info@cryptobolt.io", "url": "https://cryptobolt.io/contact", "availableLanguage": ["English"]}], "knowsAbout": ["Cryptocurrency market data", "Technical analysis", "Crypto paper trading", "Perpetual futures"], "sameAs": ["https://x.com/cryptobolt5fvj", "https://github.com/sigma-code-op/CryptoBolt", "https://youtube.com/@cryptobolt-1", "https://www.facebook.com/profile.php?id=61595142351905"]}
+    </script>
+
+    <link rel="preload" href="/assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="css/dist/bundle-marketing.css?v=20261117">
+    <style>
+        .lc-calc{max-width:820px;margin:0 auto;background:var(--mk-surface-strong,rgba(23,27,36,.92));border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:16px;padding:28px;}
+        .lc-toggle{display:flex;gap:8px;margin-bottom:20px;}
+        .lc-toggle button{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--mk-line,rgba(237,239,243,.08));background:transparent;color:var(--mk-text-dim,#8B93A3);font-weight:600;font-size:13px;cursor:pointer;}
+        .lc-toggle button.active{background:rgba(34,197,140,.12);border-color:rgba(34,197,140,.5);color:var(--mk-green,#22C58C);}
+        .lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
+        .lc-field{display:flex;flex-direction:column;gap:6px;}
+        .lc-field label{font-size:12px;color:var(--mk-text-dim,#8B93A3);font-weight:600;}
+        .lc-field input,.lc-field select{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        .lc-field input:focus,.lc-field select:focus{outline:none;border-color:rgba(34,197,140,.5);}
+        .lc-result{margin-top:22px;padding:20px;border-radius:12px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);text-align:center;}
+        .lc-result .lc-price{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mk-green,#22C58C);}
+        .lc-result .lc-sub{font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:6px;}
+        .lc-warning{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(232,169,58,.1);border:1px solid rgba(232,169,58,.3);color:#e8c98a;font-size:13px;display:none;}
+        .lc-warning.show{display:block;}
+        @media(max-width:640px){.lc-grid{grid-template-columns:1fr;}}
+        .lc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+        .lc-stat{padding:14px;border-radius:10px;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:center;}
+        .lc-stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--mk-text,#EDEFF3);}
+        .lc-stat span{display:block;font-size:11px;color:var(--mk-text-dim,#8B93A3);margin-top:4px;}
+        .lc-neg{color:#ff6b81 !important;}
+        .lc-note{margin-top:16px;font-size:12px;color:var(--mk-text-dim,#8B93A3);}
+        .lc-note a{color:var(--mk-green,#22C58C);}
+        .mk-article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;display:block;overflow-x:auto;}
+        .mk-article th,.mk-article td{padding:8px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;white-space:nowrap;}
+        @media(max-width:640px){.lc-stats{grid-template-columns:1fr;}}
+
+        .lc-tbl-wrap{overflow-x:auto;margin-top:14px;}
+        .lc-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:6px;}
+        .lc-rows .lc-field label{font-size:11px;}
+        .lc-fib{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+        .lc-fib th,.lc-fib td{padding:9px 12px;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08));text-align:left;}
+        .lc-fib td:last-child{font-family:'JetBrains Mono',monospace;text-align:right;}
+        .lc-meta{max-width:820px;margin:0 auto 18px;font-size:12px;color:var(--mk-text-dim,#8B93A3);text-align:center;}
+        .lc-meta a{color:var(--mk-green,#22C58C);}
+        .lc-sel{background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;}
+        @media(max-width:640px){.lc-rows{grid-template-columns:1fr;}}
+        .lc-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:6px;}
+        @media(max-width:640px){.lc-grid3{grid-template-columns:1fr;}}
+        .lc-hint{font-size:11px;color:var(--mk-text-dim,#8B93A3);font-weight:400;}
+        .lc-callout{margin:18px 0;padding:14px 16px;border-radius:10px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);font-size:14px;}
+        .mk-article caption{caption-side:bottom;text-align:left;font-size:12px;color:var(--mk-text-dim,#8B93A3);padding-top:8px;white-space:normal;}
+    .lc-field{min-width:0;}.lc-field input,.lc-field select{width:100%;min-width:0;box-sizing:border-box;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}.lc-grid3{grid-template-columns:repeat(3,minmax(0,1fr));}@media(max-width:640px){.lc-calc{padding:18px;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr);}}.lc-calc .lc-tbl-wrap table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}.lc-calc .lc-tbl-wrap th,.lc-calc .lc-tbl-wrap td{padding:8px 10px;white-space:nowrap;text-align:left;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08))}.lc-calc .lc-tbl-wrap th{color:var(--mk-text-dim,#8B93A3);font-weight:600}</style>
+</head>
+<body class="mk">
+<a class="mk-skip" href="#main">Skip to main content</a>
+<div class="mk-field" aria-hidden="true"></div>
+
+<nav class="mk-nav" aria-label="Primary">
+    <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+    <div class="mk-nav-links">
+        <a href="app">Terminal</a>
+        <a href="features">Features</a>
+        <a href="ai">AI Research</a>
+        <a href="spot-vs-futures">Spot vs Futures</a>
+    </div>
+    <div class="mk-nav-cta">
+        <div class="mk-lang" hidden>
+            <button type="button" class="mk-lang-btn" aria-label="Change language" aria-haspopup="listbox" aria-expanded="false">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="mk-lang-code">EN</span>
+            </button>
+            <ul class="mk-lang-menu" role="listbox" aria-label="Language" hidden></ul>
+        </div>
+        <a href="app" class="mk-btn mk-btn-primary">Launch terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+    <button type="button" class="mk-burger" aria-label="Menu" aria-expanded="false" aria-controls="mk-mobile-panel">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="mk-mobile-panel" id="mk-mobile-panel">
+    <a href="app">Terminal</a>
+    <a href="features">Features</a>
+    <a href="ai">AI Research</a>
+    <a href="spot-vs-futures">Spot vs Futures</a>
+    <div class="mk-mobile-panel-cta">
+        <a href="app" class="mk-btn mk-btn-primary">Launch Terminal <i data-lucide="arrow-right" class="mk-btn-icon" width="15" height="15" stroke-width="2.4"></i></a>
+    </div>
+</div>
+<main id="main" tabindex="-1">
+
+<header class="mk-fhero">
+    <span class="mk-eyebrow">Original analysis · Spot grid bots</span>
+    <h1>Grid bot profit calculator</h1>
+    <p>Enter your price range, number of grids and fee to see what each completed grid really earns after fees, how small a step can get before it loses money, and what happens to your investment if the price leaves the range.</p>
+</header>
+
+<p class="lc-meta">Written and checked by the CryptoBolt founder · Formulas tested against worked examples on November 25, 2026 · <a href="editorial-policy">How we build and check our tools</a></p>
+
+<section class="mk-section" id="calculator">
+    <div class="lc-calc">
+        <div class="lc-toggle" role="group" aria-label="Grid type">
+            <button type="button" id="gb-mode-a" class="active" aria-pressed="true">Arithmetic grid</button>
+            <button type="button" id="gb-mode-g" aria-pressed="false">Geometric grid</button>
+        </div>
+        <div class="lc-grid">
+            <div class="lc-field"><label for="gb-lower">Lower price of the range (USD)</label><input type="number" id="gb-lower" inputmode="decimal" step="any" value="50000"></div>
+            <div class="lc-field"><label for="gb-upper">Upper price of the range (USD)</label><input type="number" id="gb-upper" inputmode="decimal" step="any" value="70000"></div>
+            <div class="lc-field"><label for="gb-grids">Number of grids</label><input type="number" id="gb-grids" inputmode="decimal" step="any" value="20" min="2" max="500" step="1"></div>
+            <div class="lc-field"><label for="gb-invest">Investment (USD)</label><input type="number" id="gb-invest" inputmode="decimal" step="any" value="10000"></div>
+            <div class="lc-field"><label for="gb-price">Current price (USD)</label><input type="number" id="gb-price" inputmode="decimal" step="any" value="60000"></div>
+            <div class="lc-field"><label for="gb-fee">Fee per trade (%) <span class="lc-hint">(each buy and each sell)</span></label><input type="number" id="gb-fee" inputmode="decimal" step="any" value="0.1" min="0"></div>
+            <div class="lc-field"><label for="gb-cycles">Completed cycles per day <span class="lc-hint">(your estimate, not a forecast)</span></label><input type="number" id="gb-cycles" inputmode="decimal" step="any" value="3" min="0"></div>
+        </div>
+        <div class="lc-result">
+            <div class="lc-price" id="gb-out-main">1.25% to 1.80%</div>
+            <div class="lc-sub" id="gb-out-sub">Net profit per completed grid cycle after fees (arithmetic grid, about $7.68 per cycle)</div>
+        </div>
+        <div class="lc-stats">
+            <div class="lc-stat"><b id="gb-out-order">$500.00</b><span>Average order size per grid</span></div>
+            <div class="lc-stat"><b id="gb-out-step">2.00% to 1.45%</b><span>Grid step as % of price</span></div>
+            <div class="lc-stat"><b id="gb-out-net">0.20% needed to cover fees</b><span>Smallest step that breaks even</span></div>
+            <div class="lc-stat"><b id="gb-out-avg">$7.68</b><span>Average net profit per cycle</span></div>
+            <div class="lc-stat"><b id="gb-out-day">$23.03</b><span>Profit per day at your cycle estimate</span></div>
+            <div class="lc-stat"><b id="gb-out-apr">84.1%</b><span>Simple annual rate of that estimate</span></div>
+            <div class="lc-stat"><b id="gb-out-low" class="lc-neg">-$1,275.10</b><span>Profit or loss if price falls to the bottom</span></div>
+            <div class="lc-stat"><b id="gb-out-up">$468.92</b><span>Profit or loss if price rises to the top</span></div>
+            <div class="lc-stat"><b id="gb-out-rec">167 cycles</b><span>Cycles needed to earn back the bottom loss</span></div>
+        </div>
+        <div class="lc-warning" id="gb-warning"></div>
+        <div class="lc-tbl-wrap"><table>
+<thead><tr><th>If price moves in one direction to</th><th>Price</th><th>Value of the bot</th><th>Profit or loss</th><th>Value if you had just bought</th></tr></thead>
+<tbody id="gb-scen"><tr><td>10% below the range</td><td>$45,000</td><td>$7,852.41</td><td class="lc-neg">-$2,147.59</td><td>$7,492.51</td></tr><tr><td>Bottom of range</td><td>$50,000</td><td>$8,724.90</td><td class="lc-neg">-$1,275.10</td><td>$8,325.01</td></tr><tr><td>Start price</td><td>$60,000</td><td>$9,994.77</td><td class="lc-neg">-$5.23</td><td>$9,990.01</td></tr><tr><td>Top of range</td><td>$70,000</td><td>$10,468.92</td><td>$468.92</td><td>$11,655.01</td></tr><tr><td>10% above the range</td><td>$77,000</td><td>$10,468.92</td><td>$468.92</td><td>$12,820.51</td></tr></tbody>
+</table></div>
+        <p class="lc-note">Spot grid with an equal coin quantity per grid. The scenario table follows a one-way move from the start price and adds no extra cycles, so it isolates the cost of leaving the range. It ignores slippage, funding (futures grids), minimum order sizes and tax. Educational tool, not financial advice. <a href="crypto-paper-trading">Practice with virtual funds first &rarr;</a></p>
+    </div>
+</section>
+
+<article class="mk-article" id="guide">
+    <h2>How this calculator works</h2>
+    <p>A grid bot places buy orders below the current price and sell orders above it, evenly spaced between a lower and an upper price. Each time the price moves up one grid, a sell fills; each time it moves back down, the matching buy fills. Every completed buy-and-sell pair banks one grid profit. The calculator follows this setup:</p>
+    <ul>
+        <li><strong>Grid lines</strong>: arithmetic grids use an equal price distance between lines; geometric grids use an equal percentage.</li>
+        <li><strong>Quantity per grid</strong>: every grid holds the same amount of the coin. The calculator picks the amount so that the waiting buy orders plus the coin bought at the start cost exactly your investment.</li>
+        <li><strong>Profit of one cycle</strong> = quantity × (upper line − lower line) − fee × quantity × (lower line + upper line).</li>
+        <li><strong>Break-even step</strong> = (1 + fee) ÷ (1 − fee) − 1. With a 0.1% fee per side that is about 0.2002%.</li>
+        <li><strong>Range exit</strong>: the value of the bot after a one-way move to a price outside the range, compared with simply buying the coin at the start price.</li>
+    </ul>
+    <h2>Worked example: 20 grids between $50,000 and $70,000</h2>
+    <p>With $10,000 invested, the start price at $60,000 and a 0.1% fee per trade, an arithmetic grid with 20 lines places 10 buy orders and starts with coin for 10 sell orders. Each grid order is about $500.00. The grid step is $1,000, which is 2.00% of the price at the bottom and 1.45% at the top. After fees one completed cycle nets between 1.25% and 1.80%, about $7.68 on average.</p>
+    <p>A geometric grid with the same range and grid count has an equal 1.70% step in every grid, so each cycle nets 1.49%.</p>
+    <h2>More grids does not mean more profit</h2>
+    <p>Splitting the same range into more grids makes each step smaller and each order smaller. The profit per cycle falls, and the fees take a bigger share. More cycles complete, but only if the price actually travels that far. Here is a geometric grid on the same $50,000 to $70,000 range:</p>
+    <div class="lc-tbl-wrap"><table>
+<thead><tr><th>Grids</th><th>Step per grid</th><th>Net per cycle</th><th>Order size</th><th>Average profit per cycle</th><th>Profit if every grid completes once</th></tr></thead>
+<tbody><tr><td>5</td><td>6.96%</td><td>6.75%</td><td>$2,000.00</td><td>$136.77</td><td>$683.86</td></tr><tr><td>10</td><td>3.42%</td><td>3.22%</td><td>$1,000.00</td><td>$33.10</td><td>$331.02</td></tr><tr><td>20</td><td>1.70%</td><td>1.49%</td><td>$500.00</td><td>$7.72</td><td>$154.43</td></tr><tr><td>50</td><td>0.68%</td><td>0.47%</td><td>$200.00</td><td>$0.98</td><td>$49.18</td></tr><tr><td>100</td><td>0.34%</td><td>0.14%</td><td>$100.00</td><td>$0.14</td><td>$14.18</td></tr><tr><td>200</td><td>0.17%</td><td>-0.03%</td><td>$50.00</td><td>-$0.02</td><td>-$3.30</td></tr></tbody>
+</table></div>
+    <p>Going from 20 to 200 grids shrinks the net profit per cycle from 1.49% to -0.03%. At 200 grids the step is only a little above what the fees take, so a small change in your fee tier or a bit of slippage can wipe out the edge.</p>
+    <h2>How fees set the smallest useful grid</h2>
+    <p>Every cycle pays a fee on the buy and on the sell. If the grid step is smaller than the two fees together, the cycle loses money even though the bot reports a &ldquo;profit&rdquo; in price terms. The table shows the break-even step for common fee levels, and how many geometric grids fit in the $50,000 to $70,000 range while each cycle still nets about 0.3%:</p>
+    <div class="lc-tbl-wrap"><table>
+<thead><tr><th>Fee per trade</th><th>Break-even grid step</th><th>Most grids for about 0.3% net per cycle</th></tr></thead>
+<tbody><tr><td>0.02%</td><td>0.040%</td><td>99</td></tr><tr><td>0.05%</td><td>0.100%</td><td>84</td></tr><tr><td>0.10%</td><td>0.200%</td><td>67</td></tr><tr><td>0.20%</td><td>0.401%</td><td>48</td></tr></tbody>
+</table></div>
+    <p>Fee levels depend on the exchange, your trading volume and whether you pay in the exchange token, so check your own tier before you rely on any number here.</p>
+    <h2>What happens when price leaves the range</h2>
+    <p>This is the part most grid bot calculators leave out. Using the example above:</p>
+    <div class="lc-tbl-wrap"><table>
+<thead><tr><th>Price moves one way to</th><th>Value of the bot</th><th>Profit or loss</th><th>Value if you had just bought</th><th>Profit or loss from just buying</th></tr></thead>
+<tbody><tr><td>10% below the range ($45,000)</td><td>$7,852.41</td><td><span class="lc-neg">-$2,147.59</span></td><td>$7,492.51</td><td>-$2,507.49</td></tr><tr><td>Bottom of range ($50,000)</td><td>$8,724.90</td><td><span class="lc-neg">-$1,275.10</span></td><td>$8,325.01</td><td>-$1,674.99</td></tr><tr><td>Start price ($60,000)</td><td>$9,994.77</td><td><span class="lc-neg">-$5.23</span></td><td>$9,990.01</td><td>-$9.99</td></tr><tr><td>Top of range ($70,000)</td><td>$10,468.92</td><td><span>$468.92</span></td><td>$11,655.01</td><td>$1,655.01</td></tr><tr><td>10% above the range ($77,000)</td><td>$10,468.92</td><td><span>$468.92</span></td><td>$12,820.51</td><td>$2,820.51</td></tr></tbody>
+</table></div>
+    <p>If the price falls to the bottom of the range, the bot has bought every grid on the way down and holds coins worth less than it paid, a loss of -$1,275.10, which would take about 167 average cycles to earn back. That is still a smaller loss than buying and holding, because the bot bought gradually. If the price rises to the top, the bot has sold everything and holds cash, earning $468.92, while a holder would have made $1,655.01. Above the range the bot earns nothing more while the coin keeps rising.</p>
+    <div class="lc-callout"><strong>The trade-off in one line:</strong> a grid bot swaps the big upside of holding for small repeated profits, and it carries a downside nearly as large as holding if the price leaves the bottom of the range.</div>
+    <h2>Arithmetic or geometric grid?</h2>
+    <ul>
+        <li><strong>Arithmetic</strong> works well for a tight range, where the percentage difference between the lowest and highest line is small. The bottom grids have a larger percentage step than the top grids.</li>
+        <li><strong>Geometric</strong> works better for a wide range, such as a range that spans 40% or more, because each grid earns about the same percentage.</li>
+    </ul>
+    <h2>Choosing a range</h2>
+    <p>A narrow range gives more cycles but a higher chance of the price leaving it. A wide range survives bigger moves but spreads the money across more grids, so each grid is smaller. Many traders pick the range from support and resistance levels they can see on the chart; the <a href="fibonacci-retracement-calculator">Fibonacci retracement calculator</a> can help mark them. To see how the position behaves if the price falls through the bottom, you can also check the maths of averaging down with the <a href="crypto-average-price-calculator">average price calculator</a>.</p>
+    <h2>What this calculator does not model</h2>
+    <ul>
+        <li><strong>Futures grids.</strong> Grids on perpetual futures add leverage, liquidation risk and funding payments. Use the <a href="liquidation-price-calculator">liquidation price calculator</a> and the <a href="funding-fee-calculator">funding fee calculator</a> for those parts.</li>
+        <li><strong>Slippage and minimum orders.</strong> Exchanges reject orders below a minimum size, and thin books fill at worse prices.</li>
+        <li><strong>Trailing grids and stop-losses.</strong> Some bots move the range or close the bot at a stop price, which changes the outcome.</li>
+        <li><strong>Tax.</strong> Every completed cycle can be a taxable event in many countries.</li>
+        <li><strong>The future.</strong> The cycles-per-day input is your own guess. The calculator does not predict how often the price will cross your grid lines.</li>
+    </ul>
+    <p>Before you run a real bot, practise reading the range and the risks with virtual funds in <a href="crypto-paper-trading">crypto paper trading</a>, and read <a href="risk-reward-ratio-and-win-rate">why win rate and risk-reward matter together</a>.</p>
+</article>
+
+<section class="mk-section" id="faq">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">FAQ</span>
+        <h2>Grid bot profit FAQ</h2>
+    </div>
+    <div class="mk-bento">
+        <div class="mk-card mk-span-2">
+            <h3>How do you calculate grid bot profit?</h3>
+            <p>Each completed grid cycle earns the quantity per grid times the price step, minus the fee on the buy and the sell. In a geometric grid the net profit per cycle is the price step as a percentage, reduced by the fee on both legs. Total profit is the number of completed cycles times that amount, plus or minus the change in value of the coin the bot is holding.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>How many grids should a grid bot have?</h3>
+            <p>Enough that every grid step is clearly larger than the round-trip fees, and few enough that each order stays above the exchange minimum. More grids give smaller profit per cycle but more cycles. With a 0.1% fee per side, a grid step has to be above about 0.2% just to break even, and most traders want a margin well above that.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Can a grid bot lose money?</h3>
+            <p>Yes. If the price falls below the bottom of the range, the bot is left holding coins bought on the way down, and the unrealised loss can be larger than all the grid profit collected. If the price rises above the top, the bot has sold everything and stops earning while the coin keeps rising.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>What is the difference between an arithmetic and a geometric grid?</h3>
+            <p>An arithmetic grid uses the same price distance between lines, so the percentage step is larger at the bottom and smaller at the top. A geometric grid uses the same percentage between lines, so each cycle earns about the same percentage. Geometric grids suit wide ranges, arithmetic grids suit tight ranges.</p>
+        </div>
+        <div class="mk-card mk-span-2">
+            <h3>Is the daily profit estimate a forecast?</h3>
+            <p>No. The calculator multiplies the net profit of an average cycle by the number of cycles per day that you type in. How many cycles actually complete depends on volatility and on how the price moves inside your range, which nobody can forecast. Use it to compare setups, not to predict income.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" aria-labelledby="related-heading">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Keep going</span>
+        <h2 id="related-heading">Related calculators and guides</h2>
+    </div>
+    <div class="mk-blog-grid">
+        <a href="dca-bot-safety-order-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="bar-chart-3" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>DCA bot safety order calculator</h3>
+                <p>Capital, average entry and take-profit price for every safety order.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="crypto-average-price-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="calculator" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Crypto average price calculator</h3>
+                <p>Combine several buys into one weighted entry price.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="fibonacci-retracement-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="ruler" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Fibonacci retracement calculator</h3>
+                <p>Levels that help you choose a grid range.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+        <a href="liquidation-price-calculator" class="mk-blog-card">
+            <div class="mk-blog-cover" style="background:rgba(34,197,140,.08);"><i data-lucide="target" width="26" height="26" stroke-width="1.8"></i></div>
+            <div class="mk-blog-body">
+                <span class="mk-blog-meta">Calculator</span>
+                <h3>Liquidation price calculator</h3>
+                <p>For grids that use futures and leverage.</p>
+                <span class="mk-blog-read">Open <i data-lucide="arrow-right" class="mk-btn-icon" width="13" height="13" stroke-width="2.4"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="mk-footer">
+    <div class="mk-footer-grid">
+        <div class="mk-footer-brand">
+            <a href="/" class="mk-logo"><span class="mk-logo-mark"><i data-lucide="zap" width="15" height="15" stroke-width="2.5"></i></span>CryptoBolt</a>
+            <p>A free, real-time crypto market terminal — live Binance spot &amp; futures data, pro-grade charting, and AI-backed research, all in one place.</p>
+        <a href="https://www.producthunt.com/products/cryptobolt/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-cryptobolt" target="_blank" rel="noopener noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1314332&theme=dark" alt="CryptoBolt on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54"></a>
+        <div class="mk-footer-social">
+            <a href="https://youtube.com/@cryptobolt-1" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61595142351905" target="_blank" rel="noopener noreferrer" aria-label="CryptoBolt on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://x.com/cryptobolt5fvj" target="_blank" rel="noopener noreferrer" class="mk-social" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.1l-5.6-6.8L4.3 22H1.2l8.1-9.3L.9 2H8.2l5 6.3L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20Z"/></svg></a>
+        </div>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Product</p>
+            <a href="app">Terminal</a>
+            <a href="features">Features</a>
+            <a href="releases">Releases</a>
+            <a href="trade">Paper trading</a>
+            <a href="ai">AI research</a>
+            <a href="spot-vs-futures">Spot vs futures</a>
+            <a href="funding-rate-explained">Funding rate explained</a>
+            <a href="crypto-calculators">Crypto calculators</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Company</p>
+            <a href="about">About</a>
+            <a href="blog">Blog</a>
+            <a href="trading-course">Free course</a>
+            <a href="glossary">Glossary</a>
+            <a href="contact">Contact</a>
+            <a href="ebook">Ebook</a>
+            <a href="editorial-policy">Editorial policy</a>
+            <a href="mailto:info@cryptobolt.io">info@cryptobolt.io</a>
+            <a href="https://github.com/sigma-code-op/CryptoBolt" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="mk-footer-col">
+            <p class="mk-footer-title">Legal</p>
+            <a href="privacy">Privacy policy</a>
+            <a href="terms">Terms of service</a>
+        </div>
+    </div>
+    <div class="mk-footer-bottom">
+        <span>© 2026 CryptoBolt. All rights reserved.</span><span>Educational content only, not financial advice.</span>
+        <span>Live data via Binance &amp; CoinGecko</span>
+    </div>
+</footer>
+
+<script defer src="js/lucide-slim.js?v=20261010"></script>
+<script defer src="js/icons-init.js"></script>
+<script src="js/cookie-consent.js?v=20261018" defer></script>
+<script src="js/live.js?v=20261117" defer></script>
+<script src="js/mobile-nav.js?v=20260825" defer></script>
+<script src="js/grid-bot.js?v=20261125" defer></script>
+<script defer src="js/webmcp.js?v=20261101"></script>
+<script src="js/lang-switcher.js?v=20261114b" defer></script>
+</body>
+</html>

@@ -53,6 +53,8 @@ The current site has no dedicated search landing page for crypto trading fees, p
 | `/liquidation-probability-calculator.html` | liquidation probability calculator | probability of liquidation, safe leverage crypto, max leverage calculator | liquidation price calculator, position size calculator, funding fee calculator |
 | `/risk-of-ruin-calculator.html` | risk of ruin calculator | drawdown probability calculator, kelly criterion trading, how much to risk per trade | position size calculator, losing streak calculator, position sizing guide |
 | `/losing-streak-calculator.html` | losing streak calculator | how many losing trades in a row is normal, consecutive losses probability | risk of ruin calculator, risk-reward calculator, risk-reward guide |
+| `/grid-bot-profit-calculator` | grid bot profit calculator | grid trading calculator, arithmetic vs geometric grid, grid bot fees, range exit | dca bot calculator, average price calculator, fibonacci calculator |
+| `/dca-bot-safety-order-calculator` | dca bot safety order calculator | martingale calculator crypto, step scale, volume scale, capital needed | grid bot calculator, average price calculator, liquidation calculator |
 | `/crypto-staking-calculator.html` | crypto staking calculator | APR to APY, compounding, monthly deposits | impermanent loss calculator, ROI calculator, staking guide |
 | `/impermanent-loss-calculator.html` | impermanent loss calculator | 50/50 pool, fees to break even, IL formula | staking calculator, ROI calculator, impermanent loss guide |
 | `/crypto-roi-calculator.html` | crypto roi calculator | spot profit, fees, break-even sell price, recovery gain | average price calculator, futures profit calculator, profit-and-loss guide |
