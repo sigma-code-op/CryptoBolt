@@ -148,6 +148,17 @@
 </header>
 
 <article class="mk-article" id="impermanent-loss-explained">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Impermanent loss compares your pool position with simply holding the same tokens.</li><li>It grows as the price ratio between the two tokens moves away from where you deposited.</li><li>Fees can offset it, but only the comparison against holding tells you whether you came out ahead.</li></ul>
+        <dl class="cb-facts"><div><dt>5.7%</dt><dd>loss vs holding when one token doubles</dd></div><div><dt>20%</dt><dd>loss vs holding when one token goes 4x</dd></div><div><dt>0%</dt><dd>loss if the ratio returns to the start</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#how-a-liquidity-pool-prices-things">How a liquidity pool prices things</a><a href="#a-worked-example">A worked example</a><a href="#the-formula-and-how-big-the-loss-gets">The formula and how big the loss gets</a><a href="#why-it-is-called-impermanent">Why it is called impermanent</a><a href="#fees-the-other-half-of-the-picture">Fees: the other half of the picture</a><a href="#how-people-reduce-impermanent-loss">How people reduce impermanent loss</a><a href="#risks-that-are-not-impermanent-loss">Risks that are not impermanent loss</a><a href="#a-short-checklist-before-you-provide-liquidity">A short checklist before you provide liquidity</a></nav>
+    </aside>
+    <section class="cb-widget" data-widget="il" aria-label="Impermanent loss">
+        <h2 class="cb-widget-title">Try the numbers: Impermanent loss</h2>
+        <div class="cb-widget-body"></div>
+        <noscript><p>This interactive example needs JavaScript.</p></noscript>
+    </section>
     <p>Providing liquidity to a decentralised exchange sounds like a free lunch: deposit two tokens, earn a share of the trading fees. Then you withdraw and discover that you would have had more money by doing nothing. The gap has a name, impermanent loss, and it is the main reason liquidity provision is not passive income. This article walks through where it comes from with numbers you can check by hand.</p>
     <h2 id="how-a-liquidity-pool-prices-things">How a liquidity pool prices things</h2>
     <p>Most decentralised exchanges use an <a href="glossary#automated-market-maker">automated market maker</a> (AMM) instead of an <a href="glossary#order-book">order book</a>. In the classic design, a <a href="glossary#liquidity-pool">liquidity pool</a> holds two tokens, say ETH and a dollar stablecoin, and keeps the product of the two quantities constant. If someone buys ETH from the pool, the ETH balance falls, the stablecoin balance rises, and the price of ETH moves up automatically so the product is unchanged.</p>
@@ -196,6 +207,16 @@
     <h2 id="a-short-checklist-before-you-provide-liquidity">A short checklist before you provide liquidity</h2>
     <p>1. Work out the break-even fees for a few price moves (use the <a href="impermanent-loss-calculator">calculator</a>). 2. Estimate realistic fees from the pool's recent volume, not from the headline yield. 3. Ask what happens if either token falls 50% or rises 3x. 4. Check that the contracts are audited and the tokens are legitimate. 5. Decide in advance when you will withdraw.</p>
     <p>Related reading: if you would rather earn a rate than provide liquidity, see <a href="staking-apr-vs-apy">staking: APR vs APY</a> and the <a href="crypto-staking-calculator">staking calculator</a>. This article is educational and not financial advice.</p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>Impermanent loss is only a paper loss, so it does not matter.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>It is a real opportunity cost whenever you withdraw away from the original ratio. It only disappears if the ratio comes back.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="1" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">Why is it called impermanent?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">Because fees always cancel it</button><button type="button" data-i="1">Because it shrinks if the price ratio returns to where it started</button><button type="button" data-i="2">Because it only affects stablecoins</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="The gap versus holding is a function of the price ratio. If the ratio goes back to the deposit level, the gap closes."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -283,6 +304,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

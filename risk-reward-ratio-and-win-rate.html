@@ -148,6 +148,17 @@
 </header>
 
 <article class="mk-article" id="risk-reward-ratio-and-win-rate">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Measure results in R, the multiples of what you risked per trade.</li><li>Expectancy combines win rate and reward size, which is why a 40% win rate can still make money.</li><li>Losing streaks are a normal part of any edge, so judge a strategy only over a large sample.</li></ul>
+        <dl class="cb-facts"><div><dt>33%</dt><dd>break-even win rate at 1:2 reward</dd></div><div><dt>50%</dt><dd>break-even win rate at 1:1</dd></div><div><dt>0.2R</dt><dd>expectancy at 40% wins and 2R winners</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#measuring-in-r">Measuring in R</a><a href="#expectancy-the-average-result-per-trade">Expectancy: the average result per trade</a><a href="#two-traders-one-lesson">Two traders, one lesson</a><a href="#the-break-even-win-rate">The break-even win rate</a><a href="#losing-streaks-are-normal">Losing streaks are normal</a><a href="#setting-stops-and-targets-honestly">Setting stops and targets honestly</a><a href="#do-not-trust-a-short-sample">Do not trust a short sample</a><a href="#a-short-checklist">A short checklist</a></nav>
+    </aside>
+    <section class="cb-widget" data-widget="expectancy" aria-label="Win rate and expectancy">
+        <h2 class="cb-widget-title">Try the numbers: Win rate and expectancy</h2>
+        <div class="cb-widget-body"></div>
+        <noscript><p>This interactive example needs JavaScript.</p></noscript>
+    </section>
     <p>Ask a beginner what makes a good trader and the answer is usually "being right a lot". The people who last in markets tend to answer differently: they talk about how much they make when they are right compared with how much they lose when they are wrong. These two numbers, the win rate and the <a href="glossary#risk-reward">risk-reward</a> ratio, only mean something together. This article shows how they combine, why losing streaks are normal, and how to avoid fooling yourself with either number.</p>
     <h2 id="measuring-in-r">Measuring in R</h2>
     <p>To compare trades of different sizes, measure results in R, where 1R is the amount you risk on a trade (the distance from entry to stop times your size). A trade stopped out at the stop is −1R. A trade that reaches a target twice as far as the stop is +2R. The <a href="glossary#r-multiple">risk-reward ratio</a> is the planned reward divided by the planned risk: with an entry at $65,000, a stop at $63,700 and a target at $69,000, the risk is $1,300, the reward is $4,000 and the ratio is about 1:3.08.</p>
@@ -189,6 +200,16 @@
     <h2 id="a-short-checklist">A short checklist</h2>
     <p>1. Write the entry, stop and target before you place the trade. 2. Check the ratio and the break-even win rate. 3. Ask honestly how often similar setups reach the target. 4. Size the position so the stop costs a small, fixed percentage. 5. Log the result in R, fees included.</p>
     <p>Nothing here is financial advice; leveraged trading can lose more than you expect, and past results do not predict future ones.</p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>A high win rate means a good strategy.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>Many small wins can be erased by a few large losses. Win rate only means something together with the average win and loss.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="1" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">What is the break-even win rate when you target 2R and risk 1R?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">50%</button><button type="button" data-i="1">33%</button><button type="button" data-i="2">20%</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="At 1:2, break-even is 1 / (1 + 2) = 33.3%, before fees."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -276,6 +297,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

@@ -148,6 +148,17 @@
 </header>
 
 <article class="mk-article" id="how-to-calculate-crypto-profit-and-loss">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Fees apply on both entry and exit, so the break-even price is above your entry.</li><li>Several buys mean you track an average cost, not a single price.</li><li>On futures, leverage and funding change the maths, and losses are asymmetric: a 50% loss needs a 100% gain to repair.</li></ul>
+        <dl class="cb-facts"><div><dt>~0.2%</dt><dd>rise needed to break even at 0.1% fee per side</dd></div><div><dt>~1%</dt><dd>rise needed at 0.5% per side</dd></div><div><dt>+100%</dt><dd>gain needed to recover a 50% loss</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#step-1-a-simple-spot-trade">Step 1: a simple spot trade</a><a href="#step-2-add-fees-on-both-sides">Step 2: add fees on both sides</a><a href="#step-3-several-purchases-mean-an-average-cost">Step 3: several purchases mean an average cost</a><a href="#step-4-realised-versus-unrealised">Step 4: realised versus unrealised</a><a href="#step-5-leveraged-futures">Step 5: leveraged futures</a><a href="#step-6-funding-on-perpetual-contracts">Step 6: funding on perpetual contracts</a><a href="#step-7-the-asymmetry-of-losses">Step 7: the asymmetry of losses</a><a href="#common-mistakes">Common mistakes</a><a href="#a-repeatable-checklist">A repeatable checklist</a></nav>
+    </aside>
+    <section class="cb-widget" data-widget="breakeven" aria-label="Break-even after fees">
+        <h2 class="cb-widget-title">Try the numbers: Break-even after fees</h2>
+        <div class="cb-widget-body"></div>
+        <noscript><p>This interactive example needs JavaScript.</p></noscript>
+    </section>
     <p>It sounds trivial: you bought low and sold high, so you made money. In practice the number on your exchange screen and the number in your bank often disagree. The difference is almost always fees, several purchases at different prices, leverage or time. This guide builds the calculation up from a single spot trade to a leveraged position, so you can check any result by hand.</p>
     <h2 id="step-1-a-simple-spot-trade">Step 1: a simple spot trade</h2>
     <p>For a spot purchase with no fees, profit is the number of coins multiplied by the change in price.</p>
@@ -202,6 +213,16 @@
     <h2 id="a-repeatable-checklist">A repeatable checklist</h2>
     <p>1. Write down entry, exit, size and fees before you trade. 2. Calculate the break-even price, not just the target. 3. For futures, calculate liquidation, funding and ROE as well as PnL. 4. After the trade, record the realised result, including fees, in a journal.</p>
     <p>Tax rules for crypto vary widely, and none of the figures here is tax or financial advice.</p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>If the price is above where I bought, I am in profit.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>After fees (and spread, and funding on futures) the break-even is higher than your entry price. Profit starts above that line.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="2" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">With 0.1% fee on both the buy and the sell, roughly how much must price rise to break even?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">0%</button><button type="button" data-i="1">0.1%</button><button type="button" data-i="2">0.2%</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="You pay about 0.1% going in and 0.1% going out, so price needs to rise about 0.2% before you are even."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -289,6 +310,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

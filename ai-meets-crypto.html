@@ -148,6 +148,12 @@
 </header>
 
 <article class="mk-article" id="ai-meets-crypto">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>AI is most useful as an analyst: summarising, flagging and explaining data you can check.</li><li>Giving an agent unlimited authority over funds multiplies the cost of a single mistake or a prompt-injection attack.</li><li>Hard limits belong in code (spend caps, allow-lists, human approval), not only in a prompt.</li></ul>
+        <dl class="cb-facts"><div><dt>3</dt><dd>limits worth coding in: size cap, allow-list, human sign-off</dd></div><div><dt>0</dt><dd>price targets an AI can guarantee</dd></div><div><dt>1</dt><dd>stranger's post is enough to hijack a naive agent</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#why-ai-and-crypto-fit-together">Why AI and crypto fit together</a><a href="#where-the-overlap-is-happening">Where the overlap is happening</a><a href="#the-risks-worth-naming">The risks worth naming</a><a href="#guardrails-that-help">Guardrails that help</a><a href="#what-s-next">What's next</a><a href="#where-to-go-next">Where to go next</a></nav>
+    </aside>
     <p>For years, artificial intelligence and blockchain technology evolved in separate lanes — one focused on prediction and pattern recognition, the other on trust and decentralization. That's changing fast. As both fields mature, they're increasingly converging into something genuinely new: financial systems that can think, verify, and transact without a human in the loop.</p>
     <h2 id="why-ai-and-crypto-fit-together">Why AI and crypto fit together</h2>
     <p>At first glance, the pairing might seem odd. AI thrives on centralized compute and massive datasets; crypto is built around decentralization and minimal trust. But that tension is exactly what makes the combination powerful.</p>
@@ -183,6 +189,16 @@
         <li><a href="glossary">Glossary</a>: AI trading agent, prompt injection, hallucination and other terms.</li>
     </ul>
     <p><a href="ai-research-grounded-data">See how CryptoBolt keeps AI research grounded in real data →</a></p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>An AI agent can trade your crypto profitably on autopilot.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>A model cannot see the future and can be tricked by text it reads. Autonomy without hard limits only makes errors bigger and faster.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="0" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">Which is the safest first use of AI in crypto?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">Summarising market data you then verify</button><button type="button" data-i="1">Giving it full wallet control</button><button type="button" data-i="2">Copying its price targets into orders</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="Summaries you can check keep a human in the loop. Full control and blind copying remove the check."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -270,6 +286,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

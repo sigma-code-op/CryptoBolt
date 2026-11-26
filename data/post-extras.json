@@ -1,0 +1,675 @@
+{
+  "1000-dollar-day-trap": {
+    "takeaways": [
+      "A single screenshot shows the best day, not the average one.",
+      "Big percentage days on small accounts usually mean heavy leverage, and heavy leverage means the account was close to zero on the way.",
+      "Ask for the account size, the full history and the losing days before you believe a number."
+    ],
+    "facts": [
+      [
+        "250%",
+        "return when $1,000 is won on a $400 account"
+      ],
+      [
+        "+100%",
+        "needed to recover from a 50% loss"
+      ],
+      [
+        "~2%",
+        "adverse move that liquidates a 50x position"
+      ]
+    ],
+    "widget": "recovery",
+    "myth": "A $1,000 day proves a trader can repeat it.",
+    "reality": "One day is one sample. Without the account size, the leverage and every losing day, the number says nothing about the next day.",
+    "quiz": {
+      "q": "A post shows +$1,000 in one day on a $2,000 account. What was the return that day?",
+      "o": [
+        "5%",
+        "50%",
+        "500%"
+      ],
+      "a": 1,
+      "e": "$1,000 / $2,000 = 0.5, so 50% in a day. Returns like that normally require leverage, which cuts both ways."
+    }
+  },
+  "ai-meets-crypto": {
+    "takeaways": [
+      "AI is most useful as an analyst: summarising, flagging and explaining data you can check.",
+      "Giving an agent unlimited authority over funds multiplies the cost of a single mistake or a prompt-injection attack.",
+      "Hard limits belong in code (spend caps, allow-lists, human approval), not only in a prompt."
+    ],
+    "facts": [
+      [
+        "3",
+        "limits worth coding in: size cap, allow-list, human sign-off"
+      ],
+      [
+        "0",
+        "price targets an AI can guarantee"
+      ],
+      [
+        "1",
+        "stranger's post is enough to hijack a naive agent"
+      ]
+    ],
+    "myth": "An AI agent can trade your crypto profitably on autopilot.",
+    "reality": "A model cannot see the future and can be tricked by text it reads. Autonomy without hard limits only makes errors bigger and faster.",
+    "quiz": {
+      "q": "Which is the safest first use of AI in crypto?",
+      "o": [
+        "Summarising market data you then verify",
+        "Giving it full wallet control",
+        "Copying its price targets into orders"
+      ],
+      "a": 0,
+      "e": "Summaries you can check keep a human in the loop. Full control and blind copying remove the check."
+    }
+  },
+  "ai-research-grounded-data": {
+    "takeaways": [
+      "Pass one gathers live inputs (news, Fear & Greed, funding, multi-timeframe trend) before any writing happens.",
+      "Pass two explains those inputs in plain language.",
+      "Entry, stop and target levels are calculated by code from live prices and ATR, never invented by the model."
+    ],
+    "facts": [
+      [
+        "2",
+        "passes: research, then synthesis"
+      ],
+      [
+        "0",
+        "price levels invented by the AI"
+      ],
+      [
+        "3",
+        "timeframes checked: daily, 4-hour, 1-hour"
+      ]
+    ],
+    "myth": "AI research tells you what the price will do next.",
+    "reality": "It explains measured conditions. The trade levels come from arithmetic on live data, and the read is allowed to say there is no clean setup.",
+    "quiz": {
+      "q": "In CryptoBolt's AI research, what produces the entry, stop and target numbers?",
+      "o": [
+        "The language model's memory",
+        "Plain code using live levels and ATR",
+        "A random sample of past trades"
+      ],
+      "a": 1,
+      "e": "Code computes the levels so they do not depend on what a model happens to remember or imagine."
+    }
+  },
+  "bitcoin-halving-explained": {
+    "takeaways": [
+      "Roughly every 210,000 blocks (about four years) the reward for mining a block is cut in half.",
+      "Total supply is capped at 21 million coins, and the schedule is public and fixed.",
+      "A halving changes new supply, not demand. What happened to price after past halvings is only a handful of data points."
+    ],
+    "facts": [
+      [
+        "210,000",
+        "blocks between halvings"
+      ],
+      [
+        "3.125",
+        "BTC block reward after April 2024"
+      ],
+      [
+        "21M",
+        "hard cap on supply"
+      ]
+    ],
+    "widget": "halving",
+    "myth": "A halving makes the price go up automatically.",
+    "reality": "It slows new issuance on a schedule everyone already knows. Price depends on demand and everything else that moves at the same time.",
+    "quiz": {
+      "q": "About how many blocks separate two Bitcoin halvings?",
+      "o": [
+        "21,000",
+        "210,000",
+        "2,100,000"
+      ],
+      "a": 1,
+      "e": "The reward halves every 210,000 blocks, which at about ten minutes a block is roughly four years."
+    }
+  },
+  "day-trading-crypto-realistic-returns": {
+    "takeaways": [
+      "Fees, slippage and funding are paid on every trade, so a strategy must beat all of them before it earns anything.",
+      "Studies of active retail traders find that most lose money over time.",
+      "Two traders with the same sizing and risk-reward can land on opposite sides of zero because of a ten-point win-rate gap."
+    ],
+    "facts": [
+      [
+        "+$200",
+        "trader A over 10 trades (40% wins, 1:2)"
+      ],
+      [
+        "-$100",
+        "trader B over 10 trades (30% wins, 1:2)"
+      ],
+      [
+        "1%",
+        "of account risked per trade in both cases"
+      ]
+    ],
+    "widget": "expectancy",
+    "myth": "If you work hard enough, daily profit is a matter of discipline.",
+    "reality": "Discipline controls risk, not outcomes. Costs, small samples and luck decide a lot more than most traders expect.",
+    "quiz": {
+      "q": "You risk $100 per trade at a 1:2 reward and win 4 of 10 trades. What is the net result?",
+      "o": [
+        "-$200",
+        "+$200",
+        "+$800"
+      ],
+      "a": 1,
+      "e": "4 wins of $200 is $800 and 6 losses of $100 is $600, so the net is +$200. At 3 wins of 10 the same plan loses $100."
+    }
+  },
+  "dollar-cost-averaging-crypto": {
+    "takeaways": [
+      "DCA is a rule about when you buy, not about what is worth buying.",
+      "It lowers the damage of a badly timed purchase and also lowers the gain from a well-timed one.",
+      "The best plan is the one small enough that you will keep running it through a drawdown."
+    ],
+    "facts": [
+      [
+        "$6.67",
+        "average cost of $100 at $10 then $100 at $5"
+      ],
+      [
+        "$7.50",
+        "simple average of the two prices, which overstates the cost"
+      ],
+      [
+        "30",
+        "coins bought for $200 in that example"
+      ]
+    ],
+    "widget": "dca",
+    "myth": "DCA protects you from losses.",
+    "reality": "DCA protects you from regret about timing. If the asset keeps falling, you keep losing, just in smaller instalments.",
+    "quiz": {
+      "q": "You buy $100 at $10 and $100 at $5. What is your average cost per coin?",
+      "o": [
+        "$7.50",
+        "$6.67",
+        "$5.00"
+      ],
+      "a": 1,
+      "e": "You hold 10 + 20 = 30 coins for $200, so the average is about $6.67. Falling prices buy more coins, which pulls the average toward the lower price."
+    }
+  },
+  "fear-and-greed-index": {
+    "takeaways": [
+      "The index is a mood gauge built from several market inputs, not a forecast.",
+      "Extreme readings show the crowd is one-sided. They do not say when the one-sidedness ends.",
+      "Always check it against trend, funding and where price sits before acting."
+    ],
+    "facts": [
+      [
+        "0-100",
+        "scale, from extreme fear to extreme greed"
+      ],
+      [
+        "5",
+        "zones from extreme fear to extreme greed"
+      ],
+      [
+        "15",
+        "example reading: extreme fear, not a buy signal"
+      ]
+    ],
+    "myth": "Extreme fear means it is time to buy.",
+    "reality": "Extreme fear can last for weeks while price keeps falling. It is context that something is crowded, not a trigger.",
+    "quiz": {
+      "q": "The index reads 15 and price is still making new lows on rising volume. What does that most likely suggest?",
+      "o": [
+        "The bottom is in",
+        "The crowd is scared, but selling may not be over",
+        "Funding must be positive"
+      ],
+      "a": 1,
+      "e": "Extreme fear describes sentiment. Without a pause in new lows, the selling pressure can carry on."
+    }
+  },
+  "funding-rate-explained": {
+    "takeaways": [
+      "Funding is a payment between traders on perpetual contracts, not a fee paid to the exchange.",
+      "It is charged on the full position size, not on your margin, so leverage makes it heavier.",
+      "A high funding rate with rising open interest points to a crowded, fragile trade."
+    ],
+    "facts": [
+      [
+        "$1",
+        "per settlement on a $10,000 long at +0.01%"
+      ],
+      [
+        "10.95%",
+        "of position size per year if the rate never changed"
+      ],
+      [
+        "8h",
+        "common settlement interval on many venues"
+      ]
+    ],
+    "widget": "funding",
+    "myth": "Positive funding means the market is bullish and price must go up.",
+    "reality": "Positive funding means longs outnumber shorts. Crowded longs can be the fuel for a sharp drop just as easily as a rally.",
+    "quiz": {
+      "q": "Funding is positive. Who pays whom?",
+      "o": [
+        "Shorts pay longs",
+        "Longs pay shorts",
+        "Everyone pays the exchange"
+      ],
+      "a": 1,
+      "e": "Positive funding means longs pay shorts. Negative funding reverses the direction."
+    }
+  },
+  "how-to-calculate-crypto-profit-and-loss": {
+    "takeaways": [
+      "Fees apply on both entry and exit, so the break-even price is above your entry.",
+      "Several buys mean you track an average cost, not a single price.",
+      "On futures, leverage and funding change the maths, and losses are asymmetric: a 50% loss needs a 100% gain to repair."
+    ],
+    "facts": [
+      [
+        "~0.2%",
+        "rise needed to break even at 0.1% fee per side"
+      ],
+      [
+        "~1%",
+        "rise needed at 0.5% per side"
+      ],
+      [
+        "+100%",
+        "gain needed to recover a 50% loss"
+      ]
+    ],
+    "widget": "breakeven",
+    "myth": "If the price is above where I bought, I am in profit.",
+    "reality": "After fees (and spread, and funding on futures) the break-even is higher than your entry price. Profit starts above that line.",
+    "quiz": {
+      "q": "With 0.1% fee on both the buy and the sell, roughly how much must price rise to break even?",
+      "o": [
+        "0%",
+        "0.1%",
+        "0.2%"
+      ],
+      "a": 2,
+      "e": "You pay about 0.1% going in and 0.1% going out, so price needs to rise about 0.2% before you are even."
+    }
+  },
+  "how-to-read-an-order-book": {
+    "takeaways": [
+      "The book lists resting buy orders (bids) and sell orders (asks) at each price.",
+      "A market order walks up the asks (or down the bids), so your average fill is worse than the best quote. That gap is slippage.",
+      "Imbalance and big walls can change in an instant, so treat them as context, never a promise."
+    ],
+    "facts": [
+      [
+        "$100.05",
+        "average fill in the 4-coin example, not $100.00"
+      ],
+      [
+        "2",
+        "sides to the book: bids and asks"
+      ],
+      [
+        "0.05",
+        "of slippage per coin in that example"
+      ]
+    ],
+    "widget": "slippage",
+    "myth": "A big wall in the order book guarantees price will stop there.",
+    "reality": "Orders can be pulled at any moment. A wall is a hint of interest, and it may vanish when price gets close.",
+    "quiz": {
+      "q": "Asks: 2 coins at $100.00 and 3 at $100.10. You market-buy 4 coins. What is your average price?",
+      "o": [
+        "$100.00",
+        "$100.05",
+        "$100.10"
+      ],
+      "a": 1,
+      "e": "2 coins at $100.00 plus 2 at $100.10 is $400.20 for 4 coins, which is $100.05 on average."
+    }
+  },
+  "impermanent-loss-explained": {
+    "takeaways": [
+      "Impermanent loss compares your pool position with simply holding the same tokens.",
+      "It grows as the price ratio between the two tokens moves away from where you deposited.",
+      "Fees can offset it, but only the comparison against holding tells you whether you came out ahead."
+    ],
+    "facts": [
+      [
+        "5.7%",
+        "loss vs holding when one token doubles"
+      ],
+      [
+        "20%",
+        "loss vs holding when one token goes 4x"
+      ],
+      [
+        "0%",
+        "loss if the ratio returns to the start"
+      ]
+    ],
+    "widget": "il",
+    "myth": "Impermanent loss is only a paper loss, so it does not matter.",
+    "reality": "It is a real opportunity cost whenever you withdraw away from the original ratio. It only disappears if the ratio comes back.",
+    "quiz": {
+      "q": "Why is it called impermanent?",
+      "o": [
+        "Because fees always cancel it",
+        "Because it shrinks if the price ratio returns to where it started",
+        "Because it only affects stablecoins"
+      ],
+      "a": 1,
+      "e": "The gap versus holding is a function of the price ratio. If the ratio goes back to the deposit level, the gap closes."
+    }
+  },
+  "most-useful-crypto-tools-2027": {
+    "takeaways": [
+      "The five tools cover edge, leverage safety, challenge odds, order cost and scaling in.",
+      "Each one turns a vague worry into a number you can check before you trade.",
+      "Used together they move you from guessing to sizing, testing and costing a plan."
+    ],
+    "facts": [
+      [
+        "5",
+        "free tools in the set"
+      ],
+      [
+        "+15",
+        "expectancy per trade in the journal example"
+      ],
+      [
+        "~31%",
+        "break-even win rate in that same example"
+      ]
+    ],
+    "myth": "More tools mean a better edge.",
+    "reality": "Tools measure risk and cost. An edge still has to exist in the strategy, and the tools help you find out honestly whether it does.",
+    "quiz": {
+      "q": "In the safe-leverage table, what happens to the maximum safe leverage as the stop gets wider?",
+      "o": [
+        "It rises",
+        "It falls",
+        "It stays the same"
+      ],
+      "a": 1,
+      "e": "A wider stop means more room is needed before liquidation, so safe leverage drops (about 43x at a 1% stop, about 12x at 5%)."
+    }
+  },
+  "open-interest-explained": {
+    "takeaways": [
+      "Open interest counts contracts that are still open, not how many traded.",
+      "Rising open interest means new positions are being added. Falling open interest means positions are being closed.",
+      "Read it with price and funding: it shows how much leverage is sitting in the market, not which way it will break."
+    ],
+    "facts": [
+      [
+        "+1",
+        "open interest when two traders open a new contract"
+      ],
+      [
+        "0",
+        "change when a contract only changes owner"
+      ],
+      [
+        "2",
+        "metrics to pair with it: price and funding"
+      ]
+    ],
+    "myth": "High volume and high open interest are the same thing.",
+    "reality": "Volume counts every trade. Open interest only grows when new positions are opened, and falls when they are closed.",
+    "quiz": {
+      "q": "Alice sells her open long to Carol. What happens to open interest?",
+      "o": [
+        "It rises by 1",
+        "It falls by 1",
+        "It does not change"
+      ],
+      "a": 2,
+      "e": "The same single long position still exists, only under a new owner, so open interest is unchanged while volume counted a trade."
+    }
+  },
+  "position-sizing-and-the-one-percent-rule": {
+    "takeaways": [
+      "Size comes from the amount you are willing to lose, divided by the distance to your stop.",
+      "A wider stop means a smaller position, so the loss stays the same.",
+      "Leverage changes how much margin you post, not how much you should risk."
+    ],
+    "facts": [
+      [
+        "$50",
+        "risk on a $5,000 account at 1%"
+      ],
+      [
+        "10",
+        "coins with a $5 stop distance"
+      ],
+      [
+        "5",
+        "coins when the stop distance doubles to $10"
+      ]
+    ],
+    "widget": "size",
+    "myth": "If I am very confident, I should size up.",
+    "reality": "Confidence does not change the odds on a single trade. Fixed-risk sizing keeps one wrong idea from doing outsized damage.",
+    "quiz": {
+      "q": "Account $5,000, risk 1%, entry $100, stop $95. How many coins?",
+      "o": [
+        "5",
+        "10",
+        "50"
+      ],
+      "a": 1,
+      "e": "Risk is $50 and the stop distance is $5 per coin, so $50 / $5 = 10 coins."
+    }
+  },
+  "risk-reward-ratio-and-win-rate": {
+    "takeaways": [
+      "Measure results in R, the multiples of what you risked per trade.",
+      "Expectancy combines win rate and reward size, which is why a 40% win rate can still make money.",
+      "Losing streaks are a normal part of any edge, so judge a strategy only over a large sample."
+    ],
+    "facts": [
+      [
+        "33%",
+        "break-even win rate at 1:2 reward"
+      ],
+      [
+        "50%",
+        "break-even win rate at 1:1"
+      ],
+      [
+        "0.2R",
+        "expectancy at 40% wins and 2R winners"
+      ]
+    ],
+    "widget": "expectancy",
+    "myth": "A high win rate means a good strategy.",
+    "reality": "Many small wins can be erased by a few large losses. Win rate only means something together with the average win and loss.",
+    "quiz": {
+      "q": "What is the break-even win rate when you target 2R and risk 1R?",
+      "o": [
+        "50%",
+        "33%",
+        "20%"
+      ],
+      "a": 1,
+      "e": "At 1:2, break-even is 1 / (1 + 2) = 33.3%, before fees."
+    }
+  },
+  "round-number-levels": {
+    "takeaways": [
+      "Round numbers matter because orders cluster there, not because the digits are special.",
+      "Whether a level holds depends on how many resting orders are there versus how much buying or selling arrives.",
+      "Confirm with the order book, volume and timeframe before treating it as support or resistance."
+    ],
+    "facts": [
+      [
+        "$50,000",
+        "example level where orders pile up"
+      ],
+      [
+        "3",
+        "order types that cluster: stops, targets, limits"
+      ],
+      [
+        "0",
+        "levels guaranteed to hold"
+      ]
+    ],
+    "myth": "Round-number support always holds.",
+    "reality": "Levels get absorbed all the time. If buyers run out, price goes through and the cluster is gone.",
+    "quiz": {
+      "q": "Why do round numbers sometimes act as support or resistance?",
+      "o": [
+        "The exchange locks the price",
+        "Many traders place orders there",
+        "Prices are set by miners"
+      ],
+      "a": 1,
+      "e": "Clustered orders around a salient price create real supply and demand at that level."
+    }
+  },
+  "spot-vs-futures": {
+    "takeaways": [
+      "Spot means you own the coin. Perpetual futures mean you hold a leveraged contract on its price.",
+      "With leverage, a move against you can liquidate the position well before the price reaches zero.",
+      "Perpetuals add funding payments, which spot does not have."
+    ],
+    "facts": [
+      [
+        "10x",
+        "leverage: about a 10% drop wipes out the margin"
+      ],
+      [
+        "$100",
+        "margin behind a $1,000 position at 10x"
+      ],
+      [
+        "~$900",
+        "what $1,000 of spot is still worth after a 10% fall"
+      ]
+    ],
+    "widget": "liq",
+    "myth": "Futures are just spot with a bigger payout.",
+    "reality": "Futures add liquidation, funding and the risk of losing everything you posted, which spot does not.",
+    "quiz": {
+      "q": "You hold a 10x long and price falls about 10%. What most likely happens?",
+      "o": [
+        "You are liquidated (a little before 10%)",
+        "Nothing, margin is infinite",
+        "You gain 10%"
+      ],
+      "a": 0,
+      "e": "10x leverage means a 10% adverse move consumes the margin. Exchanges also require maintenance margin, so liquidation happens slightly sooner."
+    }
+  },
+  "staking-apr-vs-apy": {
+    "takeaways": [
+      "Staking rewards come from protocol issuance and fees, not from free money.",
+      "APY includes compounding, APR does not, so the same rate can look bigger as an APY.",
+      "A high percentage can still lose money in dollars if the token falls more than you earn."
+    ],
+    "facts": [
+      [
+        "10%",
+        "APR: $100 becomes $110 without compounding"
+      ],
+      [
+        "10.47%",
+        "APY of 10% APR compounded monthly"
+      ],
+      [
+        "0%",
+        "protection against token price falls"
+      ]
+    ],
+    "widget": "apy",
+    "myth": "A higher staking percentage means a better deal.",
+    "reality": "The percentage is paid in the token. If its price drops more than the yield, you are behind in dollars, and lockups and slashing add more risk.",
+    "quiz": {
+      "q": "A 10% APR compounded monthly gives about what APY?",
+      "o": [
+        "10.00%",
+        "10.47%",
+        "12.00%"
+      ],
+      "a": 1,
+      "e": "(1 + 0.10/12)^12 - 1 is about 10.47%."
+    }
+  },
+  "stop-loss-orders-explained": {
+    "takeaways": [
+      "A stop-market order is nearly guaranteed to execute but may fill beyond your price.",
+      "A stop-limit order guarantees a worst price but may not fill at all.",
+      "On futures, make sure your stop is hit before your liquidation price, with room to spare."
+    ],
+    "facts": [
+      [
+        "$95",
+        "example stop level"
+      ],
+      [
+        "~$93",
+        "possible stop-market fill after a gap"
+      ],
+      [
+        "0",
+        "fills for a stop-limit the price jumped past"
+      ]
+    ],
+    "widget": "slippage",
+    "myth": "A stop-loss guarantees the maximum loss I set.",
+    "reality": "In fast markets a stop-market can fill worse, and a stop-limit can fail to fill. A stop controls intent, not the exact price.",
+    "quiz": {
+      "q": "Which order type can leave you still holding the position after a fast drop through your price?",
+      "o": [
+        "Stop-market",
+        "Stop-limit",
+        "Neither"
+      ],
+      "a": 1,
+      "e": "If price passes your limit before it can fill, a stop-limit may sit unfilled while the loss grows."
+    }
+  },
+  "why-we-dont-predict-crypto-prices": {
+    "takeaways": [
+      "Price reflects the combined decisions of millions of participants, so confident point forecasts are rarely trustworthy.",
+      "Write if/then plans before a trade: what must hold, and what proves the idea wrong.",
+      "Check positioning, levels and context instead of chasing a target."
+    ],
+    "facts": [
+      [
+        "0",
+        "price targets published by CryptoBolt"
+      ],
+      [
+        "5",
+        "things worth checking instead of a target"
+      ],
+      [
+        "2",
+        "branches written down before a trade: if and then"
+      ]
+    ],
+    "myth": "Better AI will eventually predict prices reliably.",
+    "reality": "Better models can describe conditions faster, but the future still depends on events and behaviour that are not in the data yet.",
+    "quiz": {
+      "q": "What should you write down before a trade instead of a price target?",
+      "o": [
+        "A guaranteed outcome",
+        "An if/then plan with an invalidation level",
+        "A friend's opinion"
+      ],
+      "a": 1,
+      "e": "An invalidation level tells you in advance when the idea is wrong, so the decision is not made mid-move."
+    }
+  }
+}

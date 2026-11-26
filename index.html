@@ -423,6 +423,69 @@
 </section>
 
 <!-- ============ Blog ============ -->
+<section class="mk-section" id="risk-check">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Reality check</span>
+        <h2>How far can price move before leverage ends the trade?</h2>
+        <p>Drag the slider. It is simple arithmetic, and it is the number most new futures traders never look up before clicking buy.</p>
+    </div>
+    <div class="hx-risk" data-hx-risk>
+        <div class="hx-risk-panel">
+            <label class="hx-risk-label" for="hx-lev">Leverage: <strong id="hx-lev-val">10x</strong></label>
+            <input id="hx-lev" type="range" min="1" max="100" step="1" value="10" aria-describedby="hx-risk-note">
+            <div class="hx-risk-track" role="img" aria-label="Share of a price move that your margin can absorb"><i id="hx-risk-fill"></i></div>
+            <div class="hx-risk-read">
+                <div><b id="hx-risk-drop">9.5%</b><span>fall that liquidates a long (approx.)</span></div>
+                <div><b id="hx-risk-pos">$10,000</b><span>position opened with $1,000 margin</span></div>
+                <div><b id="hx-risk-1pct">$100</b><span>swing in your account for each 1% price move</span></div>
+            </div>
+            <p id="hx-risk-note" class="hx-risk-note">Simplified isolated-margin long with 0.5% maintenance margin. Real exchanges differ. Education only, not financial advice.</p>
+        </div>
+        <ul class="hx-risk-presets" aria-label="Quick comparisons">
+            <li><b>3x</b><span>about a 33% fall</span></li>
+            <li><b>10x</b><span>about a 9.5% fall</span></li>
+            <li><b>25x</b><span>about a 3.5% fall</span></li>
+            <li><b>50x</b><span>about a 1.5% fall</span></li>
+            <li><b>100x</b><span>about a 0.5% fall</span></li>
+        </ul>
+        <div class="hx-risk-cta">
+            <a href="liquidation-price-calculator" class="mk-btn mk-btn-primary">Open the liquidation calculator</a>
+            <a href="position-size-calculator" class="mk-btn mk-btn-ghost">Size a trade from your risk</a>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section" id="start-here">
+    <div class="mk-section-head">
+        <span class="mk-eyebrow">Start here</span>
+        <h2>Pick what you are here to do.</h2>
+        <p>Everything below is free and already on the site. Choose a path and we will point you to the three pages worth opening first.</p>
+    </div>
+    <div class="hx-paths" data-hx-paths>
+        <div class="hx-tabs" role="tablist" aria-label="Choose your path">
+            <button type="button" role="tab" id="hx-t0" aria-selected="true" aria-controls="hx-p0">I am brand new</button>
+            <button type="button" role="tab" id="hx-t1" aria-selected="false" aria-controls="hx-p1" tabindex="-1">I trade futures</button>
+            <button type="button" role="tab" id="hx-t2" aria-selected="false" aria-controls="hx-p2" tabindex="-1">I want to test an idea</button>
+        </div>
+        <div class="hx-panel" role="tabpanel" id="hx-p0" aria-labelledby="hx-t0">
+            <a href="trading-course"><b>Free 12-lesson course</b><span>Four modules from what a market is to a written trading plan, with a quiz after each lesson.</span></a>
+            <a href="crypto-paper-trading"><b>Paper trade with $10,000 of virtual cash</b><span>Use live Binance prices with no real money at risk and see your equity curve.</span></a>
+            <a href="glossary"><b>Plain-English glossary</b><span>Every term you will hit in the first month, defined without jargon.</span></a>
+        </div>
+        <div class="hx-panel" role="tabpanel" id="hx-p1" aria-labelledby="hx-t1" hidden>
+            <a href="liquidation-price-calculator"><b>Liquidation price calculator</b><span>See exactly where leverage ends a trade, with worked examples and a leverage table.</span></a>
+            <a href="funding-fee-calculator"><b>Funding fee calculator</b><span>Turn a funding rate into dollars per day, month and year.</span></a>
+            <a href="risk-of-ruin-calculator"><b>Risk of ruin calculator</b><span>Estimate how likely a given risk per trade is to blow up an account.</span></a>
+        </div>
+        <div class="hx-panel" role="tabpanel" id="hx-p2" aria-labelledby="hx-t2" hidden>
+            <a href="crypto-backtester"><b>Crypto backtester</b><span>Test seven strategies on Binance candles with fees, slippage, leverage and an out-of-sample split.</span></a>
+            <a href="grid-bot-profit-calculator"><b>Grid bot profit calculator</b><span>Check what a grid setup could earn, and where it stops working.</span></a>
+            <a href="ai"><b>AI research desk</b><span>A structured read grounded in live data, with trade levels computed by code.</span></a>
+        </div>
+        <p class="hx-paths-more"><a href="crypto-calculators">See every free calculator</a></p>
+    </div>
+</section>
+
 <section class="mk-section" id="blog">
     <div class="mk-section-head">
         <span class="mk-eyebrow">From the desk</span>
@@ -595,6 +658,7 @@
 <script defer src="js/index-ai-status.js"></script>
 <script src="js/cookie-consent.js?v=20261018" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/home-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

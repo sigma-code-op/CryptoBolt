@@ -148,6 +148,12 @@
 </header>
 
 <article class="mk-article" id="ai-research-grounded-data">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Pass one gathers live inputs (news, Fear &amp; Greed, funding, multi-timeframe trend) before any writing happens.</li><li>Pass two explains those inputs in plain language.</li><li>Entry, stop and target levels are calculated by code from live prices and ATR, never invented by the model.</li></ul>
+        <dl class="cb-facts"><div><dt>2</dt><dd>passes: research, then synthesis</dd></div><div><dt>0</dt><dd>price levels invented by the AI</dd></div><div><dt>3</dt><dd>timeframes checked: daily, 4-hour, 1-hour</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#pass-one-research">Pass one: research</a><a href="#pass-two-synthesis">Pass two: synthesis</a><a href="#why-trade-levels-aren-t-ai-output">Why trade levels aren't AI output</a><a href="#what-you-can-check-yourself">What you can check yourself</a><a href="#what-the-ai-does-and-what-code-does">What the AI does and what code does</a><a href="#what-it-cannot-do">What it cannot do</a><a href="#frequently-asked-questions">Frequently asked questions</a></nav>
+    </aside>
     <p>Ask an AI model to "analyze the market" with nothing but its training data and you'll get something that sounds confident and is frequently stale or invented. CryptoBolt's AI research desk is built to avoid that in two ways: a two-pass pipeline, and a hard rule that trade levels are never AI-generated.</p>
     <div class="mk-callout mk-callout-key-idea" role="note"><strong>Key idea:</strong> The AI explains the market from live inputs you can check, and plain code computes every price level. If there is no clean setup, the read is allowed to say so.</div>
     <figure class="mk-figure">
@@ -199,6 +205,16 @@
     <p>No. It is educational research support. Always do your own checking and only risk money you can afford to lose.</p>
     <p>For the reasoning behind this design, see <a href="why-we-dont-predict-crypto-prices">why CryptoBolt doesn't predict crypto prices</a>. For the wider picture of where AI fits into crypto, see <a href="ai-meets-crypto">when AI meets crypto</a>.</p>
     <p><a href="ai">Try CryptoBolt AI Research →</a></p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>AI research tells you what the price will do next.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>It explains measured conditions. The trade levels come from arithmetic on live data, and the read is allowed to say there is no clean setup.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="1" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">In CryptoBolt's AI research, what produces the entry, stop and target numbers?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">The language model's memory</button><button type="button" data-i="1">Plain code using live levels and ATR</button><button type="button" data-i="2">A random sample of past trades</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="Code computes the levels so they do not depend on what a model happens to remember or imagine."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -286,6 +302,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

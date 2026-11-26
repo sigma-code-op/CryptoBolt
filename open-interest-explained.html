@@ -148,6 +148,12 @@
 </header>
 
 <article class="mk-article" id="open-interest-explained">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Open interest counts contracts that are still open, not how many traded.</li><li>Rising open interest means new positions are being added. Falling open interest means positions are being closed.</li><li>Read it with price and funding: it shows how much leverage is sitting in the market, not which way it will break.</li></ul>
+        <dl class="cb-facts"><div><dt>+1</dt><dd>open interest when two traders open a new contract</dd></div><div><dt>0</dt><dd>change when a contract only changes owner</dd></div><div><dt>2</dt><dd>metrics to pair with it: price and funding</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#what-open-interest-counts">What open interest counts</a><a href="#open-interest-versus-volume">Open interest versus volume</a><a href="#reading-it-together-with-price">Reading it together with price</a><a href="#why-high-open-interest-matters-for-risk">Why high open interest matters for risk</a><a href="#pairing-it-with-funding">Pairing it with funding</a><a href="#how-to-measure-it-fairly">How to measure it fairly</a><a href="#what-it-cannot-do">What it cannot do</a></nav>
+    </aside>
     <p>Open interest is one of the most quoted numbers in crypto derivatives and one of the most misread. People see it climbing and announce that the market is bullish, or see it fall and announce a trend is dead. Neither conclusion follows from the number alone. Here is what it actually measures and how to use it without over-reading it.</p>
     <h2 id="what-open-interest-counts">What open interest counts</h2>
     <p><a href="glossary#open-interest">Open interest</a> is the total size of futures contracts that have been opened and not yet closed. Every futures trade has two sides: someone long and someone short. When a new long and a new short are created, open interest goes up. When an existing long and an existing short close against each other, it goes down.</p>
@@ -189,6 +195,16 @@
     </ul>
     <h2 id="what-it-cannot-do">What it cannot do</h2>
     <p>Open interest cannot tell you who is long and who is short in total, because every contract has both. It cannot tell you direction. And it cannot tell you the timing of any move. What it can do is show how much leverage the market is carrying, which is useful context for deciding how much leverage you want to carry yourself. If you want to see what a given leverage level means for your own position, the <a href="liquidation-price-calculator">liquidation price calculator</a> is a good place to start.</p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>High volume and high open interest are the same thing.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>Volume counts every trade. Open interest only grows when new positions are opened, and falls when they are closed.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="2" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">Alice sells her open long to Carol. What happens to open interest?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">It rises by 1</button><button type="button" data-i="1">It falls by 1</button><button type="button" data-i="2">It does not change</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="The same single long position still exists, only under a new owner, so open interest is unchanged while volume counted a trade."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -276,6 +292,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

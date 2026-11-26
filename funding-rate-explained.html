@@ -148,6 +148,17 @@
 </header>
 
 <article class="mk-article" id="funding-rate-explained">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Funding is a payment between traders on perpetual contracts, not a fee paid to the exchange.</li><li>It is charged on the full position size, not on your margin, so leverage makes it heavier.</li><li>A high funding rate with rising open interest points to a crowded, fragile trade.</li></ul>
+        <dl class="cb-facts"><div><dt>$1</dt><dd>per settlement on a $10,000 long at +0.01%</dd></div><div><dt>10.95%</dt><dd>of position size per year if the rate never changed</dd></div><div><dt>8h</dt><dd>common settlement interval on many venues</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#what-it-s-actually-for">What it's actually for</a><a href="#reading-positive-vs-negative">Reading positive vs. negative</a><a href="#a-worked-example-what-funding-actually-costs">A worked example: what funding actually costs</a><a href="#why-it-matters-more-paired-with-open-interest">Why it matters more paired with open interest</a><a href="#what-counts-as-a-good-or-normal-funding-rate">What counts as a "good" or normal funding rate?</a><a href="#the-catch">The catch</a><a href="#where-to-go-next">Where to go next</a></nav>
+    </aside>
+    <section class="cb-widget" data-widget="funding" aria-label="What funding costs you">
+        <h2 class="cb-widget-title">Try the numbers: What funding costs you</h2>
+        <div class="cb-widget-body"></div>
+        <noscript><p>This interactive example needs JavaScript.</p></noscript>
+    </section>
     <p>Open any <a href="glossary#perpetual-futures">perpetual futures</a> contract and there's a small percentage sitting next to the price, updating every few hours. Most traders glance past it. It's worth slowing down on, because the <a href="glossary#funding-rate">funding rate</a> is one of the few numbers on the screen that tells you what other traders are actually positioned for, not just where price has been.</p>
     <h2 id="what-it-s-actually-for">What it's actually for</h2>
     <p>Perpetual futures never expire, which is what makes them convenient — and also what creates a problem: with no expiry date to force the contract price back to the real spot price, the two can drift apart indefinitely. The funding rate is the fix. It's a periodic payment exchanged directly between long and short traders, sized so that staying on the more crowded side of the trade becomes slightly costly. That constant pressure is what keeps the perpetual's price anchored near spot without anyone needing to settle the contract.</p>
@@ -184,6 +195,16 @@
     </ul>
     <p><a href="app">See live funding rates next to open interest in the terminal →</a></p>
     <p><strong>Go deeper.</strong> Chapter 14 of our 160-page ebook <a href="ebook">Crypto Clarity</a> covers futures, leverage and liquidation, with worked examples and self-test questions. A free 16-page sample is available on the <a href="ebook">ebook page</a>.</p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>Positive funding means the market is bullish and price must go up.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>Positive funding means longs outnumber shorts. Crowded longs can be the fuel for a sharp drop just as easily as a rally.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="1" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">Funding is positive. Who pays whom?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">Shorts pay longs</button><button type="button" data-i="1">Longs pay shorts</button><button type="button" data-i="2">Everyone pays the exchange</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="Positive funding means longs pay shorts. Negative funding reverses the direction."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -271,6 +292,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

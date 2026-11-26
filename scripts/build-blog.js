@@ -355,6 +355,71 @@ function renderBlogCard(post, headingTag) {
   ].join('\n');
 }
 
+
+// ---------------------------------------------------------------------------
+// Per-article enrichment (data/post-extras.json): an "At a glance" summary,
+// an interactive "Try the numbers" widget (js/article-extras.js), a
+// myth-vs-reality card and a one-question self-check quiz.
+// ---------------------------------------------------------------------------
+const EXTRAS_PATH = path.join(ROOT, 'data', 'post-extras.json');
+const POST_EXTRAS = existsSync(EXTRAS_PATH) ? JSON.parse(readFileSync(EXTRAS_PATH, 'utf8')) : {};
+const WIDGET_TITLES = {
+  recovery: 'Loss and recovery', halving: 'Bitcoin supply timeline', expectancy: 'Win rate and expectancy',
+  dca: 'DCA versus a lump sum', funding: 'What funding costs you', breakeven: 'Break-even after fees',
+  slippage: 'Market order slippage', il: 'Impermanent loss', size: 'Position size from risk',
+  liq: 'Leverage and liquidation distance', apy: 'APR to APY',
+};
+
+function renderExtrasTop(slug, bodyHtml) {
+  const x = POST_EXTRAS[slug];
+  if (!x) return '';
+  const out = [];
+  const heads = [...bodyHtml.matchAll(/<h2 id="([^"]+)">([\s\S]*?)<\/h2>/g)];
+  out.push('    <aside class="cb-glance" aria-labelledby="glance-h">');
+  out.push('        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>');
+  out.push('        <ul>' + x.takeaways.map((t) => `<li>${escapeHtml(t)}</li>`).join('') + '</ul>');
+  if (x.facts && x.facts.length) {
+    out.push('        <dl class="cb-facts">' + x.facts.map(([v, l]) =>
+      `<div><dt>${escapeHtml(v)}</dt><dd>${escapeHtml(l)}</dd></div>`).join('') + '</dl>');
+  }
+  if (heads.length > 2) {
+    out.push('        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span>' +
+      heads.map((m) => `<a href="#${m[1]}">${m[2].replace(/<[^>]+>/g, '')}</a>`).join('') + '</nav>');
+  }
+  out.push('    </aside>');
+  if (x.widget) {
+    out.push(`    <section class="cb-widget" data-widget="${x.widget}" aria-label="${escapeAttr(WIDGET_TITLES[x.widget] || 'Interactive calculator')}">`);
+    out.push(`        <h2 class="cb-widget-title">Try the numbers: ${escapeHtml(WIDGET_TITLES[x.widget] || '')}</h2>`);
+    out.push('        <div class="cb-widget-body"></div>');
+    out.push('        <noscript><p>This interactive example needs JavaScript.</p></noscript>');
+    out.push('    </section>');
+  }
+  return out.join('\n');
+}
+
+function renderExtrasBottom(slug) {
+  const x = POST_EXTRAS[slug];
+  if (!x) return '';
+  const out = [];
+  if (x.myth) {
+    out.push('    <section class="cb-myth" aria-label="Myth versus reality">');
+    out.push(`        <div class="cb-myth-a"><h3>Myth</h3><p>${escapeHtml(x.myth)}</p></div>`);
+    out.push(`        <div class="cb-myth-b"><h3>Reality</h3><p>${escapeHtml(x.reality)}</p></div>`);
+    out.push('    </section>');
+  }
+  if (x.quiz) {
+    const q = x.quiz;
+    out.push(`    <section class="cb-quiz" data-answer="${q.a}" aria-labelledby="quiz-h">`);
+    out.push('        <h2 id="quiz-h">Quick check</h2>');
+    out.push(`        <p class="cb-quiz-q">${escapeHtml(q.q)}</p>`);
+    out.push('        <div class="cb-quiz-opts" role="group" aria-label="Answer choices">' +
+      q.o.map((o, i) => `<button type="button" data-i="${i}">${escapeHtml(o)}</button>`).join('') + '</div>');
+    out.push(`        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="${escapeAttr(q.e)}"></p>`);
+    out.push('    </section>');
+  }
+  return out.join('\n');
+}
+
 function renderPostPage(template, post, related) {
   const relatedHtml = related
     .map((p) => renderBlogCard(p, 'h3'))
@@ -402,6 +467,10 @@ function renderPostPage(template, post, related) {
     .join(post.updated)
     .split('{{WORD_COUNT}}')
     .join(String(wordCount(post.body)))
+    .split('{{EXTRAS_TOP}}')
+    .join(renderExtrasTop(post.slug, markdownToHtml(post.body)))
+    .split('{{EXTRAS_BOTTOM}}')
+    .join(renderExtrasBottom(post.slug))
     .split('{{BODY_HTML}}')
     .join(markdownToHtml(post.body))
     .split('{{RELATED_HTML}}')

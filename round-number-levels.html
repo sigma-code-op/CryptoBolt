@@ -148,6 +148,12 @@
 </header>
 
 <article class="mk-article" id="round-number-levels">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Round numbers matter because orders cluster there, not because the digits are special.</li><li>Whether a level holds depends on how many resting orders are there versus how much buying or selling arrives.</li><li>Confirm with the order book, volume and timeframe before treating it as support or resistance.</li></ul>
+        <dl class="cb-facts"><div><dt>$50,000</dt><dd>example level where orders pile up</dd></div><div><dt>3</dt><dd>order types that cluster: stops, targets, limits</dd></div><div><dt>0</dt><dd>levels guaranteed to hold</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#it-starts-with-where-people-actually-place-orders">It starts with where people actually place orders</a><a href="#why-that-turns-into-an-actual-price-reaction">Why that turns into an actual price reaction</a><a href="#which-round-numbers-matter-most">Which round numbers matter most</a><a href="#a-worked-example-with-numbers">A worked example with numbers</a><a href="#common-mistakes">Common mistakes</a><a href="#frequently-asked-questions">Frequently asked questions</a><a href="#the-catch">The catch</a><a href="#how-to-check-it-in-practice">How to check it in practice</a><a href="#where-to-go-next">Where to go next</a></nav>
+    </aside>
     <p>Look back at any BTC chart and you'll notice something odd: price seems to hesitate at $30,000, $50,000, $100,000 — clean, round numbers — far more often than it stalls at $47,312 or $89,650. That's not a coincidence, and it's not magic either.</p>
     <div class="mk-callout mk-callout-key-idea" role="note"><strong>Key idea:</strong> Round numbers matter because orders cluster there, not because of the number itself. Check the order book, volume and timeframe before treating a level as support or resistance, and never as a standalone signal.</div>
     <figure class="mk-figure">
@@ -216,6 +222,16 @@
         <li><a href="glossary">Glossary</a>: support and resistance, order book depth, wick and more.</li>
     </ul>
     <p><a href="app">Check the live order book depth in the terminal →</a></p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>Round-number support always holds.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>Levels get absorbed all the time. If buyers run out, price goes through and the cluster is gone.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="1" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">Why do round numbers sometimes act as support or resistance?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">The exchange locks the price</button><button type="button" data-i="1">Many traders place orders there</button><button type="button" data-i="2">Prices are set by miners</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="Clustered orders around a salient price create real supply and demand at that level."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -303,6 +319,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

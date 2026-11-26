@@ -148,6 +148,17 @@
 </header>
 
 <article class="mk-article" id="spot-vs-futures">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Spot means you own the coin. Perpetual futures mean you hold a leveraged contract on its price.</li><li>With leverage, a move against you can liquidate the position well before the price reaches zero.</li><li>Perpetuals add funding payments, which spot does not have.</li></ul>
+        <dl class="cb-facts"><div><dt>10x</dt><dd>leverage: about a 10% drop wipes out the margin</dd></div><div><dt>$100</dt><dd>margin behind a $1,000 position at 10x</dd></div><div><dt>~$900</dt><dd>what $1,000 of spot is still worth after a 10% fall</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#ownership">Ownership</a><a href="#leverage-and-liquidation">Leverage and liquidation</a><a href="#funding-rate">Funding rate</a><a href="#spot-vs-futures-trading-for-beginners">Spot vs futures trading for beginners</a><a href="#where-to-go-next">Where to go next</a></nav>
+    </aside>
+    <section class="cb-widget" data-widget="liq" aria-label="Leverage and liquidation distance">
+        <h2 class="cb-widget-title">Try the numbers: Leverage and liquidation distance</h2>
+        <div class="cb-widget-body"></div>
+        <noscript><p>This interactive example needs JavaScript.</p></noscript>
+    </section>
     <p>Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath. Here is the short version before the detail:</p>
     <link rel="stylesheet" href="css/video.css?v=20261111">
     <figure class="cb-video-frame cb-video-inline">
@@ -197,6 +208,16 @@
     </ul>
     <p><a href="app">Track spot holdings and futures positions side by side in the terminal →</a></p>
     <p><strong>Go deeper.</strong> Chapter 14 of our 160-page ebook <a href="ebook">Crypto Clarity</a> covers spot, margin and futures trading, with worked examples and self-test questions. A free 16-page sample is available on the <a href="ebook">ebook page</a>.</p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>Futures are just spot with a bigger payout.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>Futures add liquidation, funding and the risk of losing everything you posted, which spot does not.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="0" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">You hold a 10x long and price falls about 10%. What most likely happens?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">You are liquidated (a little before 10%)</button><button type="button" data-i="1">Nothing, margin is infinite</button><button type="button" data-i="2">You gain 10%</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="10x leverage means a 10% adverse move consumes the margin. Exchanges also require maintenance margin, so liquidation happens slightly sooner."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -284,6 +305,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>

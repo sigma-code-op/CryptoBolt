@@ -148,6 +148,17 @@
 </header>
 
 <article class="mk-article" id="staking-apr-vs-apy">
+    <aside class="cb-glance" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="cb-glance-title">At a glance</h2>
+        <ul><li>Staking rewards come from protocol issuance and fees, not from free money.</li><li>APY includes compounding, APR does not, so the same rate can look bigger as an APY.</li><li>A high percentage can still lose money in dollars if the token falls more than you earn.</li></ul>
+        <dl class="cb-facts"><div><dt>10%</dt><dd>APR: $100 becomes $110 without compounding</dd></div><div><dt>10.47%</dt><dd>APY of 10% APR compounded monthly</dd></div><div><dt>0%</dt><dd>protection against token price falls</dd></div></dl>
+        <nav class="cb-toc" aria-label="In this article"><span>Jump to</span><a href="#what-staking-is">What staking is</a><a href="#where-the-rewards-come-from">Where the rewards come from</a><a href="#apr-versus-apy">APR versus APY</a><a href="#the-dollar-problem">The dollar problem</a><a href="#what-can-go-wrong">What can go wrong</a><a href="#exchange-staking-self-staking-and-liquid-staking">Exchange staking, self-staking and liquid staking</a><a href="#questions-to-ask-before-you-stake">Questions to ask before you stake</a></nav>
+    </aside>
+    <section class="cb-widget" data-widget="apy" aria-label="APR to APY">
+        <h2 class="cb-widget-title">Try the numbers: APR to APY</h2>
+        <div class="cb-widget-body"></div>
+        <noscript><p>This interactive example needs JavaScript.</p></noscript>
+    </section>
     <p>Staking is often described as earning interest on your crypto. That description is half right and half dangerous. The reward rate is real, but it is paid in tokens whose price can move far more than the reward, it can change, and the tokens may be locked up when you most want them. This article explains how staking works and how to read the numbers you will see on a staking dashboard.</p>
     <h2 id="what-staking-is">What staking is</h2>
     <p>Some blockchains use <a href="glossary#proof-of-stake">proof of stake</a> to agree on which transactions are valid. Instead of miners spending electricity, validators lock up (stake) the network's own token as collateral and take turns proposing and checking blocks. Honest validators earn rewards; dishonest or offline validators can be penalised. You do not have to run a validator yourself: most people delegate tokens to a validator, or use an exchange or a liquid-staking service that does it for them.</p>
@@ -186,6 +197,16 @@
     <h2 id="questions-to-ask-before-you-stake">Questions to ask before you stake</h2>
     <p>1. What is the rate after fees, and is it paid in the same token? 2. How long can my tokens be locked, and what does unstaking cost? 3. What happens to my tokens if the validator or platform fails? 4. Why is the rate this high? Unusually high yields usually mean higher risk. 5. Am I comfortable holding this token if its price halves?</p>
     <p>Staking is one way to earn from holding; trading and providing liquidity are others, each with different risks. For the liquidity-provider side, see <a href="impermanent-loss-explained">impermanent loss explained</a>. This article is educational and is not financial advice.</p>
+    <section class="cb-myth" aria-label="Myth versus reality">
+        <div class="cb-myth-a"><h3>Myth</h3><p>A higher staking percentage means a better deal.</p></div>
+        <div class="cb-myth-b"><h3>Reality</h3><p>The percentage is paid in the token. If its price drops more than the yield, you are behind in dollars, and lockups and slashing add more risk.</p></div>
+    </section>
+    <section class="cb-quiz" data-answer="1" aria-labelledby="quiz-h">
+        <h2 id="quiz-h">Quick check</h2>
+        <p class="cb-quiz-q">A 10% APR compounded monthly gives about what APY?</p>
+        <div class="cb-quiz-opts" role="group" aria-label="Answer choices"><button type="button" data-i="0">10.00%</button><button type="button" data-i="1">10.47%</button><button type="button" data-i="2">12.00%</button></div>
+        <p class="cb-quiz-fb" role="status" aria-live="polite" hidden data-explain="(1 + 0.10/12)^12 - 1 is about 10.47%."></p>
+    </section>
 </article>
 
 <section class="mk-section" aria-labelledby="related-heading">
@@ -273,6 +294,7 @@
 <script src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20260823" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/article-extras.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>
 <script src="js/lang-switcher.js?v=20261114b" defer></script>
