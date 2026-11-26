@@ -55,6 +55,7 @@ const BUNDLES = {
     'live.css',
     'article-extras.css',
     'home-extras.css',
+    'page-extras.css',
   ],
   // ai.html
   'bundle-ai.css': [

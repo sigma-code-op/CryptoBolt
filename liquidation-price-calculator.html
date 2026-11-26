@@ -217,6 +217,18 @@
     <p><a href="app">See estimated liquidation price update live next to your open positions in the terminal →</a></p>
 </article>
 
+<!-- px:start -->
+<section class="mk-section px-extras" aria-label="Worked example and common mistakes">
+  <div class="mk-section-head"><span class="mk-eyebrow">Check your understanding</span><h2>Worked example: a 10x position opened at $60,000</h2></div>
+  <div class="px-grid">
+    <div class="px-card px-example"><dl class="px-rows"><div><dt>Entry / leverage / maintenance margin</dt><dd>$60,000 / 10x / 0.5%</dd></div><div><dt>Long liquidation price</dt><dd>$54,300</dd></div><div><dt>Distance below entry</dt><dd>9.5%</dd></div><div><dt>Short liquidation price</dt><dd>$65,700</dd></div><div><dt>Distance above entry</dt><dd>9.5%</dd></div><div><dt>At 25x, long liquidation</dt><dd>$57,900</dd></div></dl><p class="px-note">A 9.5% dip is a normal week for crypto. At 25x the cushion falls to 3.5% and the price only has to fall to $57,900.</p></div>
+    <div class="px-side">
+      <div class="px-card px-mistakes"><h3>Mistakes this calculator helps you catch</h3><ul><li>Setting a stop-loss beyond the liquidation price.</li><li>Using cross margin without knowing that other positions share the same balance.</li><li>Forgetting fees and funding, which move the real number slightly.</li></ul></div>
+      <div class="px-card px-rule"><h3>Rule of thumb</h3><p>Put the stop well inside the liquidation price. If liquidation happens first, you did not have a stop.</p></div>
+    </div>
+  </div>
+</section>
+<!-- px:end -->
 <section class="mk-section" id="lc-faq">
     <div class="mk-section-head">
         <span class="mk-eyebrow">FAQ</span>

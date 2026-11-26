@@ -1,0 +1,37 @@
+/* Page extras: worked examples, lesson scenarios, features walkthrough, search bar */
+.px-extras { padding-top: 24px; }
+.px-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; align-items: start; }
+.px-side { display: grid; gap: 16px; }
+.px-card { padding: clamp(18px, 2.5vw, 26px); border-radius: 16px; border: 1px solid #1c232b; background: #0b0f14; }
+.px-example { border-color: rgba(34,211,238,.25); background: linear-gradient(160deg, rgba(34,211,238,.06), rgba(11,15,20,1) 60%); }
+.px-rows { margin: 0; display: grid; }
+.px-rows div { display: flex; justify-content: space-between; gap: 18px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.px-rows div:last-child { border-bottom: 0; }
+.px-rows dt { color: #98a3ad; font-size: 14px; }
+.px-rows dd { margin: 0; text-align: right; color: #eef1f4; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; font-size: 15px; }
+.px-note { margin: 14px 0 0; padding-top: 14px; border-top: 1px dashed rgba(255,255,255,.12); font-size: 14px; line-height: 1.65; color: #c4ccd3; }
+.px-mistakes { border-color: rgba(251,113,133,.25); background: rgba(251,113,133,.04); }
+.px-mistakes h3, .px-rule h3 { margin: 0 0 10px; font-size: 15px; }
+.px-mistakes h3 { color: #fb7185; }
+.px-mistakes ul { margin: 0; padding-left: 20px; list-style: disc; }
+.px-mistakes li { font-size: 14px; line-height: 1.6; margin-bottom: 6px; color: #d3d9de; display: list-item; }
+.px-rule { border-color: rgba(245,158,11,.3); background: rgba(245,158,11,.05); }
+.px-rule h3 { color: #f59e0b; }
+.px-rule p { margin: 0; font-size: 14.5px; line-height: 1.65; color: #e6eaee; }
+.px-lesson { display: grid; gap: 16px; margin: 28px 0; }
+.px-scenario { border-color: rgba(34,211,238,.28); background: linear-gradient(160deg, rgba(34,211,238,.07), rgba(11,15,20,1) 70%); }
+.px-scenario h2 { margin: 0 0 10px !important; font-size: 18px !important; }
+.px-scenario p { margin: 0 !important; line-height: 1.75; }
+.px-steps { list-style: none; counter-reset: px; margin: 0; padding: 0; display: grid; gap: 12px; max-width: 880px; }
+.px-steps li { counter-increment: px; position: relative; padding: 16px 18px 16px 64px; border-radius: 14px; border: 1px solid #1c232b; background: #0b0f14; }
+.px-steps li::before { content: counter(px); position: absolute; left: 18px; top: 14px; width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font: 700 15px 'Space Grotesk', system-ui, sans-serif; color: #07110d; background: #10b981; }
+.px-steps b { display: block; color: #eef1f4; margin-bottom: 4px; }
+.px-steps span { color: #98a3ad; font-size: 14.5px; line-height: 1.6; }
+.px-search { margin: 0 auto 22px; max-width: var(--mk-max, 1100px); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.px-search input { flex: 1 1 260px; min-height: 44px; padding: 10px 14px; border-radius: 12px; border: 1px solid #263039; background: #0b0f14; color: #eef1f4; font: inherit; font-size: 15px; }
+.px-search input:focus-visible, .px-chip:focus-visible { outline: 2px solid var(--mk-cyan, #22d3ee); outline-offset: 2px; }
+.px-chip { min-height: 40px; padding: 8px 14px; border-radius: 999px; border: 1px solid #263039; background: #0b0f14; color: #c4ccd3; font: inherit; font-size: 13.5px; cursor: pointer; }
+.px-chip[aria-pressed=true] { background: rgba(16,185,129,.14); border-color: #10b981; color: #fff; }
+.px-count { font-size: 13px; color: #7d8893; margin-left: auto; }
+.px-empty { padding: 24px; text-align: center; color: #98a3ad; }
+@media (max-width: 860px) { .px-grid { grid-template-columns: 1fr; } .px-rows div { flex-direction: column; gap: 2px; } .px-rows dd { text-align: left; } }

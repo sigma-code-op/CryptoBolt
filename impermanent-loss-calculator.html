@@ -312,6 +312,18 @@
     <p>Enter how much one token has moved relative to the other (use a negative number for a fall), your deposit and, optionally, the fees you expect to earn as a percentage of the deposit. If the other token is a stablecoin, the price change is simply the volatile token's change in dollars. For a full walk-through of how pools work and how liquidity providers think about the trade-off, read <a href="impermanent-loss-explained">impermanent loss explained</a>.</p>
 </article>
 
+<!-- px:start -->
+<section class="mk-section px-extras" aria-label="Worked example and common mistakes">
+  <div class="mk-section-head"><span class="mk-eyebrow">Check your understanding</span><h2>Worked example: a $1,000 deposit when one token doubles</h2></div>
+  <div class="px-grid">
+    <div class="px-card px-example"><dl class="px-rows"><div><dt>Deposit</dt><dd>$1,000</dd></div><div><dt>Price ratio change</dt><dd>2x</dd></div><div><dt>Value if held</dt><dd>$1,500.00</dd></div><div><dt>Value in the pool</dt><dd>$1,414.21</dd></div><div><dt>Impermanent loss</dt><dd>-5.72%</dd></div><div><dt>Fees needed to break even</dt><dd>$85.79</dd></div></dl><p class="px-note">You still have more dollars than you deposited, but $85.79 less than simply holding. Trading fees have to cover that gap before the pool beats holding.</p></div>
+    <div class="px-side">
+      <div class="px-card px-mistakes"><h3>Mistakes this calculator helps you catch</h3><ul><li>Comparing pool value to the deposit instead of to holding.</li><li>Counting advertised APR without checking whether fees outrun impermanent loss.</li><li>Using a volatile pair and expecting the loss to disappear. It only closes if the ratio returns.</li></ul></div>
+      <div class="px-card px-rule"><h3>Rule of thumb</h3><p>Pools suit pairs that move together. The more the two prices diverge, the more fees you need.</p></div>
+    </div>
+  </div>
+</section>
+<!-- px:end -->
 <section class="mk-section" id="faq">
     <div class="mk-section-head">
         <span class="mk-eyebrow">FAQ</span>

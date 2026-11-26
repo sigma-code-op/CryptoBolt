@@ -301,6 +301,18 @@
     <p><a href="app">See live funding rates alongside charts in the terminal →</a></p>
 </article>
 
+<!-- px:start -->
+<section class="mk-section px-extras" aria-label="Worked example and common mistakes">
+  <div class="mk-section-head"><span class="mk-eyebrow">Check your understanding</span><h2>Worked example: a $20,000 long paying 0.01% per 8 hours</h2></div>
+  <div class="px-grid">
+    <div class="px-card px-example"><dl class="px-rows"><div><dt>Position value</dt><dd>$20,000</dd></div><div><dt>Funding rate</dt><dd>0.01% per 8 hours</dd></div><div><dt>Per payment</dt><dd>$2.00</dd></div><div><dt>Payments per day</dt><dd>3</dd></div><div><dt>Per day</dt><dd>$6.00</dd></div><div><dt>Over 30 days</dt><dd>$180.00</dd></div><div><dt>Annualised</dt><dd>10.95%</dd></div></dl><p class="px-note">0.01% looks like nothing, but it is about 10.95% a year on the whole position. On a 10x trade that is roughly 110% of the margin per year if the rate never changed.</p></div>
+    <div class="px-side">
+      <div class="px-card px-mistakes"><h3>Mistakes this calculator helps you catch</h3><ul><li>Calculating funding on margin instead of position value.</li><li>Assuming the rate stays at today&#x27;s level. It changes every interval.</li><li>Forgetting that funding can be income if you are on the side that gets paid.</li></ul></div>
+      <div class="px-card px-rule"><h3>Rule of thumb</h3><p>If funding is positive, longs pay. Holding a crowded long for weeks costs real money even when the price goes nowhere.</p></div>
+    </div>
+  </div>
+</section>
+<!-- px:end -->
 <section class="mk-section" id="faq">
     <div class="mk-section-head">
         <span class="mk-eyebrow">FAQ</span>
