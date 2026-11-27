@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/blog
 
+Start here
+
+## The guides to read first, in a sensible order.
+
+If you read only a few things on this site, read these. They run from “what can go wrong” to “how to size it” and need no prior knowledge.
+
+### 1. How trades fail
+
+Start with why the $1,000-a-day dream fails, then why we never predict prices.
+
+### 2. How to protect yourself
+
+Position sizing, stop-loss orders and the risk-reward and win-rate guide.
+
+### 3. How the market works
+
+Spot versus futures, funding rates, open interest and the order book.
+
+### A 20-minute reading path
+
+1. The $1,000 day trap, then why we do not predict crypto prices.
+2. Position sizing and the one percent rule, then stop-loss orders explained.
+3. Spot versus futures, then funding rate explained.
+
+[Read the first guide](https://cryptobolt.io/1000-dollar-day-trap)
+
+[Or learn it as a course](https://cryptobolt.io/trading-course)
+
 Strategy · 9 min read
 
 ## The most useful crypto tools in 2027: 5 free tools every trader should use

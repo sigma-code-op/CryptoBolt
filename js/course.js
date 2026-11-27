@@ -4,7 +4,7 @@
   var KEY = 'cb-course-v1';
   function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
   function save(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
-  var data = load(); data.done = data.done || {}; data.checks = data.checks || {}; data.plan = data.plan || {};
+  var data = load(); data.done = data.done || {}; data.checks = data.checks || {}; data.plan = data.plan || {}; data.quiz = data.quiz || {};
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var num = function (id) { var el = document.getElementById(id); var v = el ? parseFloat(el.value) : NaN; return isNaN(v) ? NaN : v; };
@@ -61,6 +61,7 @@
         var ex = $('.cc-explain', q); if (ex && sel) ex.hidden = false;
       });
       if (!answered) { score.textContent = 'Pick an answer for each question first.'; return; }
+      if (answered === qs.length && lesson) { var qs_slug = lesson.getAttribute('data-lesson'), prev = data.quiz[qs_slug]; if (!prev || right > prev.best) { data.quiz[qs_slug] = { best: right, total: qs.length }; save(data); } }
       score.textContent = answered < qs.length ? 'You answered ' + answered + ' of ' + qs.length + '. Score so far: ' + right + '.' : 'Score: ' + right + ' of ' + qs.length + (right === qs.length ? '. Perfect!' : right >= qs.length - 1 ? '. Great job.' : '. Read the explanations and try again.');
       reset.hidden = false;
     });

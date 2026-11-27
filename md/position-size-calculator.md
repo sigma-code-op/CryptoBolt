@@ -68,6 +68,46 @@ There is no universally correct number. Many traders who write about risk manage
 
 [See live prices and charts to pick your entry and stop in the terminal →](https://cryptobolt.io/app)
 
+Check your understanding
+
+## Worked example: $5,000 account, 1% risk, stop $5 away
+
+Amount at risk
+
+$50
+
+Entry / stop
+
+$100 / $95
+
+Position size
+
+10 units
+
+Position value
+
+$1,000
+
+1R / 2R / 3R targets
+
+$105 / $110 / $115
+
+If the stop is $10 away instead
+
+5 units
+
+The same $50 risk buys 10 units with a $5 stop and 5 units with a $10 stop. A wider stop means a smaller position, never a bigger loss.
+
+### Mistakes this calculator helps you catch
+
+- Sizing from the money you have instead of the money you are willing to lose.
+- Moving the stop further away after entry without reducing size.
+- Forgetting that fees and slippage mean the real loss at the stop is slightly larger than planned.
+
+### Rule of thumb
+
+Decide the stop from the chart first, then calculate the size. If the size is too small to be worth it, skip the trade.
+
 FAQ
 
 ## Position size calculator FAQ

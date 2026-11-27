@@ -125,6 +125,50 @@ A narrow range gives more cycles but a higher chance of the price leaving it. A 
 
 Before you run a real bot, practise reading the range and the risks with virtual funds in [crypto paper trading](https://cryptobolt.io/crypto-paper-trading), and read [why win rate and risk-reward matter together](https://cryptobolt.io/risk-reward-ratio-and-win-rate).
 
+Check your understanding
+
+## Worked example: one grid cycle between $100 and $101
+
+Grid lines
+
+$100 and $101
+
+Quantity per grid
+
+1 coin
+
+Fee per side
+
+0.1%
+
+Gross profit
+
+$1.00
+
+Fees (buy at $100, sell at $101)
+
+$0.201
+
+Net profit of the cycle
+
+$0.799
+
+Break-even grid step
+
+0.2002%
+
+The grid step here is 1%, about five times the break-even step of 0.2%. If the lines were only 0.15% apart, every cycle would lose money after fees.
+
+### Mistakes this calculator helps you catch
+
+- Packing grid lines so tightly that the step is smaller than twice the fee.
+- Setting a range the price can leave. Below it the bot holds the coin at a loss, above it the bot sits in cash.
+- Judging a bot only on completed cycles and ignoring the unrealised loss from a price drop.
+
+### Rule of thumb
+
+Make the grid step at least three or four times the break-even step, and size the range for the move you actually expect.
+
 FAQ
 
 ## Grid bot profit FAQ

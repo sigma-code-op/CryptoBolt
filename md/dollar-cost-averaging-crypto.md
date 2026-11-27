@@ -1,8 +1,28 @@
-# Crypto Dollar-Cost Averaging: Does DCA Work? (Examples)
+# Dollar-Cost Averaging in Crypto: Does DCA Work? | CryptoBolt
 
-> Crypto dollar-cost averaging explained with a worked example, DCA vs lump sum, where it falls short and a free DCA calculator to plan your own buys.
+> What dollar-cost averaging in crypto is, a worked example, how it compares with a lump sum, where it falls short, and how to build a plan you can keep.
 
 Source: https://cryptobolt.io/dollar-cost-averaging-crypto
+
+## At a glance
+
+- DCA is a rule about when you buy, not about what is worth buying.
+- It lowers the damage of a badly timed purchase and also lowers the gain from a well-timed one.
+- The best plan is the one small enough that you will keep running it through a drawdown.
+
+$6.67
+
+average cost of $100 at $10 then $100 at $5
+
+$7.50
+
+simple average of the two prices, which overstates the cost
+
+30
+
+coins bought for $200 in that example
+
+## Try the numbers: DCA versus a lump sum
 
 Almost every crypto buyer asks the same question: is now a good time to buy? Dollar-cost averaging (DCA) is a way of not having to answer it. You pick an amount and a schedule, and you buy on that schedule whatever the price is. It is simple, it is popular, and it is often described as if it were a trick that beats the market. It is not. It is a method for managing one specific risk, and understanding which one tells you when to use it.
 
@@ -54,6 +74,18 @@ The practical value of DCA is behavioural. A fixed schedule removes decisions, a
 1. Decide the total you are comfortable committing and the length of the plan before you start. 2. Choose an amount per buy that you could keep paying even in a bad month. 3. Pick an interval (weekly, fortnightly or monthly) and, if your exchange allows it, automate the purchase. 4. Keep an emergency fund outside the plan, so you are never forced to sell at a low. 5. Review once or twice a year, not daily. Use the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) to see where you stand against your actual buys.
 
 To model a plan before you start, use the [DCA calculator](https://cryptobolt.io/dca-calculator). To rehearse the discipline without real money, try [paper trading](https://cryptobolt.io/crypto-paper-trading). CryptoBolt is an education and analysis tool; nothing here is financial advice.
+
+### Myth
+
+DCA protects you from losses.
+
+### Reality
+
+DCA protects you from regret about timing. If the asset keeps falling, you keep losing, just in smaller instalments.
+
+## Quick check
+
+You buy $100 at $10 and $100 at $5. What is your average cost per coin?
 
 Keep reading
 

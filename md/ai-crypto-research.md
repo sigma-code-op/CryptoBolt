@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/ai-crypto-research
 
+Research you can check
+
+## An AI that shows its work instead of calling the next candle.
+
+A good read is a short list of conditions you can verify: trend, positioning, sentiment and news, each tied to something on your screen.
+
+### Grounded in live inputs
+
+Price action, funding rates and the Fear & Greed Index feed the read, so it reflects now and not a stale snapshot.
+
+### No predictions
+
+It will not tell you where price goes tomorrow. It tells you what the market is doing and why it matters.
+
+### Built to be questioned
+
+Every claim points back to a panel or a source you can open, so you can disagree with it.
+
+### Test it in a minute
+
+1. Open the AI desk and ask what is driving a coin you follow.
+2. Find the funding rate and open interest it mentions on the terminal and confirm them.
+3. Decide for yourself whether you agree, then note why.
+
+[Open AI desk](https://cryptobolt.io/app)
+
+[How the research stays grounded](https://cryptobolt.io/ai-research-grounded-data)
+
 Why it matters
 
 ## Smart crypto research should explain the market, not just guess.

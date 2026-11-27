@@ -70,6 +70,46 @@ Deposit $10,000 into a 50/50 pool ($5,000 of each token). One token then doubles
 
 Enter how much one token has moved relative to the other (use a negative number for a fall), your deposit and, optionally, the fees you expect to earn as a percentage of the deposit. If the other token is a stablecoin, the price change is simply the volatile token's change in dollars. For a full walk-through of how pools work and how liquidity providers think about the trade-off, read [impermanent loss explained](https://cryptobolt.io/impermanent-loss-explained).
 
+Check your understanding
+
+## Worked example: a $1,000 deposit when one token doubles
+
+Deposit
+
+$1,000
+
+Price ratio change
+
+2x
+
+Value if held
+
+$1,500.00
+
+Value in the pool
+
+$1,414.21
+
+Impermanent loss
+
+-5.72%
+
+Fees needed to break even
+
+$85.79
+
+You still have more dollars than you deposited, but $85.79 less than simply holding. Trading fees have to cover that gap before the pool beats holding.
+
+### Mistakes this calculator helps you catch
+
+- Comparing pool value to the deposit instead of to holding.
+- Counting advertised APR without checking whether fees outrun impermanent loss.
+- Using a volatile pair and expecting the loss to disappear. It only closes if the ratio returns.
+
+### Rule of thumb
+
+Pools suit pairs that move together. The more the two prices diverge, the more fees you need.
+
 FAQ
 
 ## Impermanent loss calculator FAQ

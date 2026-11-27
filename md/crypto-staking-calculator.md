@@ -64,6 +64,50 @@ Stake $10,000 at 5% APR, compounded daily, for three years. The balance grows to
 
 For a longer explanation of how staking rewards are produced and where the risks sit, read [staking: APR vs APY](https://cryptobolt.io/staking-apr-vs-apy). To compare earning a yield with trading for a gain, the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator) shows the net result of a trade after fees.
 
+Check your understanding
+
+## Worked example: 8% APR compounded daily for 3 years
+
+Start
+
+$1,000
+
+APR
+
+8%
+
+APY with daily compounding
+
+8.33%
+
+Balance after 3 years
+
+$1,271.22
+
+Rewards earned
+
+$271.22
+
+Same rewards, no compounding
+
+$240.00
+
+Extra from compounding
+
+$31.22
+
+Compounding adds a few dollars here. The bigger risk is the token price: if the coin falls 30% in those three years, the rewards do not cover the loss in dollars.
+
+### Mistakes this calculator helps you catch
+
+- Treating APR and APY as the same number.
+- Assuming the advertised rate stays fixed. Staking rates change with network conditions.
+- Forgetting lockup, unbonding time and slashing risk.
+
+### Rule of thumb
+
+Rewards are paid in the token. Judge a staking offer by what you would hold in dollars, not by the percentage.
+
 FAQ
 
 ## Crypto staking rewards calculator FAQ

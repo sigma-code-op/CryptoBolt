@@ -4,6 +4,24 @@
 
 Source: https://cryptobolt.io/open-interest-explained
 
+## At a glance
+
+- Open interest counts contracts that are still open, not how many traded.
+- Rising open interest means new positions are being added. Falling open interest means positions are being closed.
+- Read it with price and funding: it shows how much leverage is sitting in the market, not which way it will break.
+
++1
+
+open interest when two traders open a new contract
+
+0
+
+change when a contract only changes owner
+
+2
+
+metrics to pair with it: price and funding
+
 Open interest is one of the most quoted numbers in crypto derivatives and one of the most misread. People see it climbing and announce that the market is bullish, or see it fall and announce a trend is dead. Neither conclusion follows from the number alone. Here is what it actually measures and how to use it without over-reading it.
 
 ## What open interest counts
@@ -57,6 +75,18 @@ A few details trip people up when comparing open interest across assets or time:
 ## What it cannot do
 
 Open interest cannot tell you who is long and who is short in total, because every contract has both. It cannot tell you direction. And it cannot tell you the timing of any move. What it can do is show how much leverage the market is carrying, which is useful context for deciding how much leverage you want to carry yourself. If you want to see what a given leverage level means for your own position, the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) is a good place to start.
+
+### Myth
+
+High volume and high open interest are the same thing.
+
+### Reality
+
+Volume counts every trade. Open interest only grows when new positions are opened, and falls when they are closed.
+
+## Quick check
+
+Alice sells her open long to Carol. What happens to open interest?
 
 Keep reading
 

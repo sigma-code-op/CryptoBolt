@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/impermanent-loss-explained
 
+## At a glance
+
+- Impermanent loss compares your pool position with simply holding the same tokens.
+- It grows as the price ratio between the two tokens moves away from where you deposited.
+- Fees can offset it, but only the comparison against holding tells you whether you came out ahead.
+
+5.7%
+
+loss vs holding when one token doubles
+
+20%
+
+loss vs holding when one token goes 4x
+
+0%
+
+loss if the ratio returns to the start
+
+## Try the numbers: Impermanent loss
+
 Providing liquidity to a decentralised exchange sounds like a free lunch: deposit two tokens, earn a share of the trading fees. Then you withdraw and discover that you would have had more money by doing nothing. The gap has a name, impermanent loss, and it is the main reason liquidity provision is not passive income. This article walks through where it comes from with numbers you can check by hand.
 
 ## How a liquidity pool prices things
@@ -67,6 +87,18 @@ Impermanent loss is only the arithmetic of balancing a pool. Liquidity providers
 1. Work out the break-even fees for a few price moves (use the [calculator](https://cryptobolt.io/impermanent-loss-calculator)). 2. Estimate realistic fees from the pool's recent volume, not from the headline yield. 3. Ask what happens if either token falls 50% or rises 3x. 4. Check that the contracts are audited and the tokens are legitimate. 5. Decide in advance when you will withdraw.
 
 Related reading: if you would rather earn a rate than provide liquidity, see [staking: APR vs APY](https://cryptobolt.io/staking-apr-vs-apy) and the [staking calculator](https://cryptobolt.io/crypto-staking-calculator). This article is educational and not financial advice.
+
+### Myth
+
+Impermanent loss is only a paper loss, so it does not matter.
+
+### Reality
+
+It is a real opportunity cost whenever you withdraw away from the original ratio. It only disappears if the ratio comes back.
+
+## Quick check
+
+Why is it called impermanent?
 
 Keep reading
 

@@ -1,6 +1,6 @@
-# Crypto AI Research for Bitcoin & Ethereum | CryptoBolt
+# Free AI Crypto Research for BTC, ETH & Altcoins
 
-> Crypto AI research for Bitcoin, Ethereum, Solana, and altcoins — trend analysis, funding-rate context, volatility, and sentiment in one free tool.
+> Free AI crypto research for Bitcoin, Ethereum and altcoins: trend, funding-rate context, volatility and sentiment, with the sources it used shown.
 
 Source: https://cryptobolt.io/ai
 

@@ -99,6 +99,38 @@ A better approach than reacting in the moment is to decide your response in adva
 
 To size a trade from your risk, use the [position size calculator](https://cryptobolt.io/position-size-calculator); to check what your reward-to-risk and win rate imply, use the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator); and to practise surviving streaks without real money, try [crypto paper trading](https://cryptobolt.io/crypto-paper-trading).
 
+Check your understanding
+
+## Worked example: how often long losing streaks show up
+
+50% win rate, 100 trades: at least 7 losses in a row
+
+32%
+
+40% win rate, 100 trades: at least 8 losses in a row
+
+49%
+
+Cost of 8 losses in a row at 1% risk
+
+7.7% of the account
+
+Cost of 8 losses in a row at 5% risk
+
+33.7% of the account
+
+Streaks that feel like proof the strategy is broken are often just arithmetic. What decides survival is the size you risk while the streak plays out.
+
+### Mistakes this calculator helps you catch
+
+- Changing the strategy after a streak that sits inside the normal range.
+- Sizing as if streaks will not happen. At 5% risk, eight losses in a row takes about a third of the account.
+- Assuming trades are independent when they are all long and the market is trending down.
+
+### Rule of thumb
+
+Plan for a streak twice as long as the one you consider likely, and pick a size that survives it.
+
 FAQ
 
 ## Losing streak calculator FAQ

@@ -102,6 +102,38 @@ The Kelly fraction is the bet size that maximises long-run growth for a given ed
 3. Lower the risk per trade until the chance of that drawdown is one you can accept, then set the size of every trade with the [position size calculator](https://cryptobolt.io/position-size-calculator).
 4. Pair the result with the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator) to check that the ratio and break-even win rate you assumed are realistic for your levels.
 
+Check your understanding
+
+## Worked example: the same edge at two different sizes
+
+Win rate / reward / trades
+
+45% / 2R / 200 trades
+
+Expectancy per trade
+
++0.35R
+
+Risk 1% per trade: chance of a 30% drawdown
+
+under 1%
+
+Risk 5% per trade: chance of a 30% drawdown
+
+about 90%
+
+Same strategy, same win rate, same reward. Only the size changed. These are simulation results (4,000 runs), so expect small differences each time you run it.
+
+### Mistakes this calculator helps you catch
+
+- Believing a positive expectancy protects you from a deep drawdown.
+- Sizing from the best-case run instead of the bad-luck case.
+- Using a win rate from a small sample that will not repeat.
+
+### Rule of thumb
+
+Choose size from the drawdown you can tolerate. The edge decides whether you win over time, the size decides whether you are still there to see it.
+
 FAQ
 
 ## Risk of ruin calculator FAQ

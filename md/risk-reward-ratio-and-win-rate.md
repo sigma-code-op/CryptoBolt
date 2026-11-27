@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/risk-reward-ratio-and-win-rate
 
+## At a glance
+
+- Measure results in R, the multiples of what you risked per trade.
+- Expectancy combines win rate and reward size, which is why a 40% win rate can still make money.
+- Losing streaks are a normal part of any edge, so judge a strategy only over a large sample.
+
+33%
+
+break-even win rate at 1:2 reward
+
+50%
+
+break-even win rate at 1:1
+
+0.2R
+
+expectancy at 40% wins and 2R winners
+
+## Try the numbers: Win rate and expectancy
+
 Ask a beginner what makes a good trader and the answer is usually "being right a lot". The people who last in markets tend to answer differently: they talk about how much they make when they are right compared with how much they lose when they are wrong. These two numbers, the win rate and the [risk-reward](https://cryptobolt.io/glossary#risk-reward) ratio, only mean something together. This article shows how they combine, why losing streaks are normal, and how to avoid fooling yourself with either number.
 
 ## Measuring in R
@@ -61,6 +81,18 @@ A win rate measured over twenty trades is nearly meaningless: luck dominates. Re
 1. Write the entry, stop and target before you place the trade. 2. Check the ratio and the break-even win rate. 3. Ask honestly how often similar setups reach the target. 4. Size the position so the stop costs a small, fixed percentage. 5. Log the result in R, fees included.
 
 Nothing here is financial advice; leveraged trading can lose more than you expect, and past results do not predict future ones.
+
+### Myth
+
+A high win rate means a good strategy.
+
+### Reality
+
+Many small wins can be erased by a few large losses. Win rate only means something together with the average win and loss.
+
+## Quick check
+
+What is the break-even win rate when you target 2R and risk 1R?
 
 Keep reading
 

@@ -103,6 +103,54 @@ Hyperliquid computes an 8-hour funding rate and pays one eighth of it every hour
 
 To judge how likely a given liquidation level is to be reached, use the [liquidation probability calculator](https://cryptobolt.io/liquidation-probability-calculator). For the account-level view of how a risk percentage compounds over many trades, use the [risk of ruin calculator](https://cryptobolt.io/risk-of-ruin-calculator), and for spot or Binance-style sizing use the general [position size calculator](https://cryptobolt.io/position-size-calculator).
 
+Check your understanding
+
+## Worked example: risking 1% on a $10,000 account
+
+Account / risk
+
+$10,000 / 1%
+
+Amount at risk
+
+$100
+
+Entry / stop
+
+$3,000 / $2,910
+
+Stop distance
+
+$90
+
+Position size
+
+1.1111 units
+
+Position value
+
+$3,333.33
+
+Margin at 5x
+
+$666.67
+
+Margin at 20x
+
+$166.67
+
+The loss at the stop is $100 whether you use 5x or 20x. Leverage only decides how much margin is locked up and how close liquidation sits to the stop.
+
+### Mistakes this calculator helps you catch
+
+- Choosing leverage first and size second. Risk decides size; leverage just sets margin.
+- Placing the stop beyond the liquidation price, so liquidation arrives first.
+- Ignoring hourly funding on a position held for days.
+
+### Rule of thumb
+
+Check that the liquidation price is well beyond your stop. If the stop would never be reached, the stop is decoration.
+
 FAQ
 
 ## Hyperliquid position size FAQ

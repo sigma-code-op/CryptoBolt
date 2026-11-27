@@ -104,6 +104,16 @@ A 50% loss needs a 100% gain to repair. Deep [drawdowns](https://cryptobolt.io/g
 3. Do not increase size after wins out of excitement or after losses to "win it back".
 4. If the calculated size is too small to be worth it, skip the trade. That is a feature, not a bug.
 
+## Scenario: Ana sizes her first trade
+
+Ana has $2,000 and decides to risk 1%, which is $20. Her entry is $50 and her stop is $48, so the stop distance is $2. She can buy 10 coins, a $500 position. If the stop is hit she loses about $20. If she had wanted to buy 40 coins "because it feels right", the same stop would cost $80, or 4% of her account.
+
+### Common beginner mistakes here
+
+- Letting confidence decide the size.
+- Putting the stop where the position size works instead of where the chart says the idea is wrong.
+- Risking a bigger percentage after a win.
+
 ## What to remember
 
 - Risk is the amount you lose if you are wrong, not the size of the position. Set the stop first, then calculate size.

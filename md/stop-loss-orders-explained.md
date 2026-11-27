@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/stop-loss-orders-explained
 
+## At a glance
+
+- A stop-market order is nearly guaranteed to execute but may fill beyond your price.
+- A stop-limit order guarantees a worst price but may not fill at all.
+- On futures, make sure your stop is hit before your liquidation price, with room to spare.
+
+$95
+
+example stop level
+
+~$93
+
+possible stop-market fill after a gap
+
+0
+
+fills for a stop-limit the price jumped past
+
+## Try the numbers: Market order slippage
+
 A stop-loss is the most common risk tool in trading, and one of the most misunderstood. Many people assume it guarantees an exit at a chosen price. It does not. What it guarantees depends on which kind you use, and understanding the difference is worth more than any particular stop level.
 
 ## What a stop-loss is
@@ -54,6 +74,18 @@ The most common mistake is choosing a stop by feel or by a percentage that sound
 How a stop behaves in a fast market is hard to appreciate from a description. Using [paper trading](https://cryptobolt.io/glossary#paper-trading) on live prices lets you see slippage and stop-outs happen with virtual funds, which is far cheaper than learning it with real ones.
 
 **Go deeper.** Chapter 13 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers stop-losses and risk management, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
+
+### Myth
+
+A stop-loss guarantees the maximum loss I set.
+
+### Reality
+
+In fast markets a stop-market can fill worse, and a stop-limit can fail to fill. A stop controls intent, not the exact price.
+
+## Quick check
+
+Which order type can leave you still holding the position after a fast drop through your price?
 
 Keep reading
 

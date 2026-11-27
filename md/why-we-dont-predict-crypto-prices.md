@@ -4,6 +4,24 @@
 
 Source: https://cryptobolt.io/why-we-dont-predict-crypto-prices
 
+## At a glance
+
+- Price reflects the combined decisions of millions of participants, so confident point forecasts are rarely trustworthy.
+- Write if/then plans before a trade: what must hold, and what proves the idea wrong.
+- Check positioning, levels and context instead of chasing a target.
+
+0
+
+price targets published by CryptoBolt
+
+5
+
+things worth checking instead of a target
+
+2
+
+branches written down before a trade: if and then
+
 Search for "bitcoin price prediction" and you'll find a wall of confident targets: a number, a date, and a chart with a line pointing somewhere dramatic. CryptoBolt doesn't publish any of them. That's deliberate, and the reasoning is worth spelling out, because it also tells you how to use the tools that do live here, including the AI research panel.
 
 If you landed here looking for a forecast, the honest short answer is that nobody can give you a reliable one. What we can show you is what's happening right now: the live [Bitcoin](https://cryptobolt.io/bitcoin), [Ethereum](https://cryptobolt.io/ethereum), and [Solana](https://cryptobolt.io/solana) pages carry current data and context, not predictions.
@@ -60,6 +78,18 @@ Context isn't a guarantee either. Everything on your screen can line up and pric
 - [Why "$1000 in a day" is a trap](https://cryptobolt.io/1000-dollar-day-trap): the same skepticism applied to trading headlines.
 
 [Ask the AI panel what's actually driving the market right now →](https://cryptobolt.io/ai)
+
+### Myth
+
+Better AI will eventually predict prices reliably.
+
+### Reality
+
+Better models can describe conditions faster, but the future still depends on events and behaviour that are not in the data yet.
+
+## Quick check
+
+What should you write down before a trade instead of a price target?
 
 Keep reading
 

@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/crypto-trading-terminal
 
+Your first five minutes
+
+## Stop juggling four tabs to answer one question.
+
+Price, chart, order book, alerts and an AI read sit in one view, so a question like “is this move real?” takes seconds instead of a tab hunt.
+
+### See where size sits
+
+The order book shows resting bids and asks, so a thin book or a wall of orders is visible before you click.
+
+### Chart and context together
+
+Watch an indicator cross on the chart while the book and the AI summary update beside it.
+
+### No wall in front of it
+
+Open it and look around. Prices, charts and depth need no account and no email.
+
+### Try this first session
+
+1. Open BTC/USDT and switch the chart to the 4-hour timeframe.
+2. Look at the order book: is size stacked above or below the price?
+3. Ask the AI desk for a read and compare it with what you can see yourself.
+
+[Launch live terminal](https://cryptobolt.io/app)
+
+[Learn to read an order book](https://cryptobolt.io/how-to-read-an-order-book)
+
 What it includes
 
 ## Everything a crypto trader needs in one terminal.

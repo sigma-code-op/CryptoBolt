@@ -68,6 +68,54 @@ Losses and gains are not symmetrical. A fall of 50% needs a rise of 100% to get 
 
 This is why limiting the size of a loss matters more than the size of a win. When the calculator shows a loss, the last figure tells you how far the price must rise from your exit to recover it. Pair this with the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator) before you enter, and the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) if you bought in several steps. The full method is laid out in [how to calculate crypto profit and loss](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss).
 
+Check your understanding
+
+## Worked example: a $2,000 spot trade
+
+Invested
+
+$2,000.00
+
+Buy / sell
+
+$40 / $55
+
+Fee per side
+
+0.1%
+
+Coins received
+
+49.950
+
+Proceeds after sell fee
+
+$2,744.50
+
+Net profit
+
+$744.50
+
+ROI
+
+37.23%
+
+Total fees paid
+
+$4.75
+
+A 37.5% price rise gives a 37.2% ROI. Fees are small on one trade and large across hundreds.
+
+### Mistakes this calculator helps you catch
+
+- Comparing ROI across trades of different length without annualising.
+- Ignoring the buy fee because it is taken out of what you spend, not added on top.
+- Counting unrealised ROI as banked profit.
+
+### Rule of thumb
+
+ROI says how much you made, not how fast or how risky. Always put the holding time and the worst drop beside it.
+
 FAQ
 
 ## Crypto ROI calculator FAQ

@@ -86,6 +86,16 @@ Costs repeat on every trade. A trader who makes 10 round trips a day at 0.25% ea
 
 To practise the arithmetic on a real position, try our [profit and loss guide](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss) and the [ROI calculator](https://cryptobolt.io/crypto-roi-calculator), which both include fees.
 
+## Scenario: the true price of a $1,000 round trip
+
+A trade has a 0.1% fee each side ($2 in total), a spread of 0.1% ($1) and slippage of about 0.05% ($0.50). That is about $3.50, or 0.35% of the trade. Price must move more than 0.35% in your favour just to get you back to even. Do ten such trades a day and the costs alone are 3.5% a day before the market has done anything.
+
+### Common beginner mistakes here
+
+- Ignoring the cost of frequent small trades.
+- Not checking fees at higher volume tiers or with a discount token.
+- Forgetting funding when comparing futures to spot.
+
 ## What to remember
 
 - Every trade costs fees, spread and slippage. You pay them win or lose.

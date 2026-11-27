@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/position-sizing-and-the-one-percent-rule
 
+## At a glance
+
+- Size comes from the amount you are willing to lose, divided by the distance to your stop.
+- A wider stop means a smaller position, so the loss stays the same.
+- Leverage changes how much margin you post, not how much you should risk.
+
+$50
+
+risk on a $5,000 account at 1%
+
+10
+
+coins with a $5 stop distance
+
+5
+
+coins when the stop distance doubles to $10
+
+## Try the numbers: Position size from risk
+
 Most beginners decide how big a trade should be by asking how much they want to make. Experienced traders ask the opposite question: how much am I prepared to lose if this is wrong? That one change of question is the core of [position sizing](https://cryptobolt.io/glossary#position-sizing), and it matters more to long-term survival than almost any entry technique.
 
 ## Size comes from risk, not from conviction
@@ -55,6 +75,18 @@ Once size is set by risk, you can evaluate whether a trade is worth taking by it
 Position sizing is a habit more than a calculation. Doing it every time, on every trade, even in simulation, is how it becomes automatic. CryptoBolt's [paper trading](https://cryptobolt.io/crypto-paper-trading) account lets you practise sizing on live prices with virtual funds, and the numbers you build there are the same numbers you would use with real money.
 
 **Go deeper.** Chapter 13 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers position sizing and risk management, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
+
+### Myth
+
+If I am very confident, I should size up.
+
+### Reality
+
+Confidence does not change the odds on a single trade. Fixed-risk sizing keeps one wrong idea from doing outsized damage.
+
+## Quick check
+
+Account $5,000, risk 1%, entry $100, stop $95. How many coins?
 
 Keep reading
 

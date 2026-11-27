@@ -148,6 +148,38 @@ The most useful input is your own. A simple recipe: take the last 30 to 90 daily
 4. Place a stop-loss well inside the liquidation price and size the position from the stop distance with the [position size calculator](https://cryptobolt.io/position-size-calculator), not from the leverage setting.
 5. Check that the planned reward justifies the risk with the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator), and test the whole plan with no real money in [crypto paper trading](https://cryptobolt.io/crypto-paper-trading).
 
+Check your understanding
+
+## Worked example: a 10x long over 30 days at 60% annual volatility
+
+Cushion to liquidation (10x, 0.5% maintenance)
+
+9.5%
+
+30-day volatility
+
+17.2%
+
+Chance of touching liquidation within 30 days
+
+56%
+
+Same trade at 3x (cushion 32.8%)
+
+2%
+
+This uses the zero-drift model described on this page, so treat it as a sense of scale. The point is the gap: the same market gives roughly even odds at 10x and a small chance at 3x.
+
+### Mistakes this calculator helps you catch
+
+- Reading a low one-day probability as a low risk over the weeks you actually hold.
+- Using calm-market volatility. Risk rises in the weeks that matter.
+- Forgetting that touching the level once is enough. Price does not have to close there.
+
+### Rule of thumb
+
+Pick leverage from the probability you can live with, not from the profit you hope for.
+
 FAQ
 
 ## Liquidation probability calculator FAQ

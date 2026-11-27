@@ -66,6 +66,46 @@ At 1:1 you must win half your trades. At 1:3 you need only 25%, which is why a t
 
 The ratio tells you about the shape of a trade, not how much money to put in it. The amount at risk comes from a separate decision, usually a small percentage of your account. The [1% rule](https://cryptobolt.io/position-sizing-and-the-one-percent-rule) and the [position size calculator](https://cryptobolt.io/position-size-calculator) turn the stop distance into a size, and the [liquidation calculator](https://cryptobolt.io/liquidation-price-calculator) checks that a leveraged position would not be closed before the stop is reached. A deeper walk-through is in [risk-reward ratio and win rate](https://cryptobolt.io/risk-reward-ratio-and-win-rate).
 
+Check your understanding
+
+## Worked example: entry $100, stop $95, target $110
+
+Risk per unit
+
+$5
+
+Reward per unit
+
+$10
+
+Risk-reward ratio
+
+2.0 (1 : 2)
+
+Break-even win rate
+
+33.3%
+
+Expectancy at a 40% win rate
+
++0.20R
+
+Expectancy at a 30% win rate
+
+-0.10R
+
+A 40% win rate is profitable at 1:2, and a 30% win rate is not. The ratio only means something together with how often the trade works.
+
+### Mistakes this calculator helps you catch
+
+- Choosing the target to make the ratio look good instead of where price can realistically reach.
+- Ignoring fees, which push the true break-even higher.
+- Cutting winners early while letting losers run, which destroys the planned ratio.
+
+### Rule of thumb
+
+Write down the ratio and the win rate you need before the trade. If you cannot reach that win rate, the plan does not work.
+
 FAQ
 
 ## Risk-reward ratio calculator FAQ

@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/contact
 
+Read by a person
+
+## Your message goes to the person who builds this site.
+
+Tell us what broke, what confused you or what you wish existed. A short, specific note is the most useful kind.
+
+### Bug report
+
+Say the page, what you did and what you saw. A screenshot helps a lot.
+
+### Feature idea
+
+Describe the problem you are trying to solve, not only the button you want.
+
+### Correction
+
+Spotted a wrong number or an unclear sentence in a guide? Tell us and it gets fixed.
+
+### What makes a message easy to act on
+
+1. Name the page or tool.
+2. Say what you expected and what happened.
+3. Add your browser or device if it looks like a display bug.
+
+[See what shipped recently](https://cryptobolt.io/releases)
+
+[Read the editorial policy](https://cryptobolt.io/editorial-policy)
+
 [info@cryptobolt.io](mailto:info@cryptobolt.io)
 
 [Report an issue on GitHub](https://github.com/sigma-code-op/CRYPTOBOLT/issues)

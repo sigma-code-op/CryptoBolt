@@ -152,6 +152,58 @@ Paid terminals bundle these tools behind a subscription and a signup wall. Crypt
 - Indicator-only signals with no news or sentiment context
 - Closed source — you take the pricing and the data handling on faith
 
+Reality check
+
+## How far can price move before leverage ends the trade?
+
+Drag the slider. It is simple arithmetic, and it is the number most new futures traders never look up before clicking buy.
+
+Leverage: **10x**
+
+fall that liquidates a long (approx.)
+
+position opened with $1,000 margin
+
+swing in your account for each 1% price move
+
+Simplified isolated-margin long with 0.5% maintenance margin. Real exchanges differ. Education only, not financial advice.
+
+- **3x**about a 33% fall
+- **10x**about a 9.5% fall
+- **25x**about a 3.5% fall
+- **50x**about a 1.5% fall
+- **100x**about a 0.5% fall
+
+[Open the liquidation calculator](https://cryptobolt.io/liquidation-price-calculator)
+
+[Size a trade from your risk](https://cryptobolt.io/position-size-calculator)
+
+Start here
+
+## Pick what you are here to do.
+
+Everything below is free and already on the site. Choose a path and we will point you to the three pages worth opening first.
+
+[**Free 12-lesson course**Four modules from what a market is to a written trading plan, with a quiz after each lesson.](https://cryptobolt.io/trading-course)
+
+[**Paper trade with $10,000 of virtual cash**Use live Binance prices with no real money at risk and see your equity curve.](https://cryptobolt.io/crypto-paper-trading)
+
+[**Plain-English glossary**Every term you will hit in the first month, defined without jargon.](https://cryptobolt.io/glossary)
+
+[**Liquidation price calculator**See exactly where leverage ends a trade, with worked examples and a leverage table.](https://cryptobolt.io/liquidation-price-calculator)
+
+[**Funding fee calculator**Turn a funding rate into dollars per day, month and year.](https://cryptobolt.io/funding-fee-calculator)
+
+[**Risk of ruin calculator**Estimate how likely a given risk per trade is to blow up an account.](https://cryptobolt.io/risk-of-ruin-calculator)
+
+[**Crypto backtester**Test seven strategies on Binance candles with fees, slippage, leverage and an out-of-sample split.](https://cryptobolt.io/crypto-backtester)
+
+[**Grid bot profit calculator**Check what a grid setup could earn, and where it stops working.](https://cryptobolt.io/grid-bot-profit-calculator)
+
+[**AI research desk**A structured read grounded in live data, with trade levels computed by code.](https://cryptobolt.io/ai)
+
+[See every free calculator](https://cryptobolt.io/crypto-calculators)
+
 From the desk
 
 ## Notes on reading the market.

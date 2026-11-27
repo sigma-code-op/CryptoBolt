@@ -1,8 +1,28 @@
-# Next Bitcoin Halving: Date (~April 2028) & History
+# Next Bitcoin Halving: Date, History & Supply | CryptoBolt
 
-> When is the next Bitcoin halving? Around April 2028, at block 1,050,000. See every halving date so far, the shrinking block reward and the 21 million cap.
+> What the Bitcoin halving is, how block rewards and the 21 million supply cap work, the dates of every halving so far, and why the event is not a price forecast.
 
 Source: https://cryptobolt.io/bitcoin-halving-explained
+
+## At a glance
+
+- Roughly every 210,000 blocks (about four years) the reward for mining a block is cut in half.
+- Total supply is capped at 21 million coins, and the schedule is public and fixed.
+- A halving changes new supply, not demand. What happened to price after past halvings is only a handful of data points.
+
+210,000
+
+blocks between halvings
+
+3.125
+
+BTC block reward after April 2024
+
+21M
+
+hard cap on supply
+
+## Try the numbers: Bitcoin supply timeline
 
 Every few years the Bitcoin halving becomes a headline, usually paired with a confident claim about what price will do next. The event itself is simple, scheduled and entirely predictable. The price claims are neither. Here is the mechanism, the full history, and an honest account of what it does and does not tell you.
 
@@ -55,6 +75,18 @@ Anyone telling you with confidence what a halving will do to price is guessing. 
 The halving is a useful fact for understanding Bitcoin's monetary design and miner economics. It is not a trading signal. If you follow the market around such events, the more practical tools are the ones that measure what is happening now: [volatility](https://cryptobolt.io/glossary#volatility), the [funding rate](https://cryptobolt.io/funding-rate-explained), and sentiment gauges like the [Fear & Greed index](https://cryptobolt.io/fear-and-greed-index). Periods around big narratives tend to bring larger swings, so it is worth knowing your [liquidation price](https://cryptobolt.io/glossary#liquidation-price) before you use leverage, not after. And if you want to test how you would behave in that kind of market, [paper trading](https://cryptobolt.io/crypto-paper-trading) on live prices costs nothing. For live Bitcoin data, see the [Bitcoin page](https://cryptobolt.io/bitcoin).
 
 **Go deeper.** Chapter 3 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers how Bitcoin works and where it came from, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
+
+### Myth
+
+A halving makes the price go up automatically.
+
+### Reality
+
+It slows new issuance on a schedule everyone already knows. Price depends on demand and everything else that moves at the same time.
+
+## Quick check
+
+About how many blocks separate two Bitcoin halvings?
 
 Keep reading
 

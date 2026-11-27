@@ -4,6 +4,24 @@
 
 Source: https://cryptobolt.io/ai-research-grounded-data
 
+## At a glance
+
+- Pass one gathers live inputs (news, Fear & Greed, funding, multi-timeframe trend) before any writing happens.
+- Pass two explains those inputs in plain language.
+- Entry, stop and target levels are calculated by code from live prices and ATR, never invented by the model.
+
+2
+
+passes: research, then synthesis
+
+0
+
+price levels invented by the AI
+
+3
+
+timeframes checked: daily, 4-hour, 1-hour
+
 Ask an AI model to "analyze the market" with nothing but its training data and you'll get something that sounds confident and is frequently stale or invented. CryptoBolt's AI research desk is built to avoid that in two ways: a two-pass pipeline, and a hard rule that trade levels are never AI-generated.
 
 [hallucination](https://cryptobolt.io/glossary#hallucination)
@@ -64,6 +82,18 @@ No. It is educational research support. Always do your own checking and only ris
 For the reasoning behind this design, see [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices). For the wider picture of where AI fits into crypto, see [when AI meets crypto](https://cryptobolt.io/ai-meets-crypto).
 
 [Try CryptoBolt AI Research →](https://cryptobolt.io/ai)
+
+### Myth
+
+AI research tells you what the price will do next.
+
+### Reality
+
+It explains measured conditions. The trade levels come from arithmetic on live data, and the read is allowed to say there is no clean setup.
+
+## Quick check
+
+In CryptoBolt's AI research, what produces the entry, stop and target numbers?
 
 Keep reading
 

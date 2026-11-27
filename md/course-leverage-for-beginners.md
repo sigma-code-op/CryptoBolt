@@ -110,6 +110,16 @@ For a visual walk-through, watch our [leverage and liquidation video](https://cr
 
 ## A sensible rule for beginners
 
+## Scenario: $500 at 5x
+
+You post $500 of margin at 5x leverage, so the position is worth $2,500. If price falls 10%, the position loses $250, which is half of your margin. Liquidation is roughly where the price has fallen about 19.5%, because 1 divided by 5 is 20%, less a 0.5% maintenance margin. The same trade at 20x has a cushion of only about 4.5%.
+
+### Common beginner mistakes here
+
+- Choosing leverage by how much you could win.
+- Not checking the liquidation price before opening the trade.
+- Adding margin to a losing position instead of closing it.
+
 ## What to remember
 
 - Leverage lets you control a bigger position with a smaller margin. It magnifies profits and losses equally.

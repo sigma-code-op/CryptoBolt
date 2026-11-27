@@ -79,6 +79,16 @@ That is not meant to scare you off. It is meant to set the right target. If you 
 
 This course is education, not financial advice. Trading carries a high risk of loss.
 
+## Scenario: what a small trade really looks like
+
+Sam buys $200 of a coin at $50 and sells at $55. That is 4 coins, a $220 sale and a gross gain of $20. With a 0.1% fee on each side, fees are about $0.42, so the net profit is about $19.58. Notice what is missing: a signal, a prediction or a secret. A trade is a decision about price, size and exit, plus the cost of making it.
+
+### Common beginner mistakes here
+
+- Thinking trading is predicting. It is managing risk while you are wrong more often than you expect.
+- Judging a trade by the outcome instead of by whether the plan was followed.
+- Starting with money you cannot afford to lose.
+
 ## What to remember
 
 - Trading is opening and closing positions to profit from price moves; investing is owning for the long term.

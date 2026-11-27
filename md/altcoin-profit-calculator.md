@@ -100,6 +100,54 @@ Pick any of these in the selector above, or choose "Other coin" for anything els
 
 [Practice this trade with virtual funds in paper trading →](https://cryptobolt.io/trade)
 
+Check your understanding
+
+## Worked example: a $1,000 altcoin trade
+
+Invested
+
+$1,000.00
+
+Buy price / sell price
+
+$0.50 / $0.80
+
+Fee per side
+
+0.1%
+
+Coins bought
+
+1,998.0
+
+Sale proceeds
+
+$1,598.40
+
+Net profit after both fees
+
+$596.80
+
+Net ROI
+
+59.68%
+
+Break-even sell price
+
+$0.5010
+
+The price rose 60%, but the profit is 59.68%. Fees take a little off the top on the way in and a little more on the way out.
+
+### Mistakes this calculator helps you catch
+
+- Quoting the headline price change (+60%) instead of net ROI after both fees.
+- Forgetting that the sell fee is charged on the larger sale amount, not on what you invested.
+- Ignoring break-even: any sell price below it is a loss even if it is above your buy price.
+
+### Rule of thumb
+
+Before you buy a low-priced coin, work out the break-even sell price first. If the realistic target is not far above it, the trade is not worth the fees.
+
 FAQ
 
 ## Crypto profit calculator FAQ

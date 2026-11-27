@@ -58,7 +58,7 @@
   - [Crypto Trading Calculators](https://cryptobolt.io/crypto-calculators) — Hub for fourteen free calculators: liquidation price and probability, position size, risk-reward, risk of ruin, losing streaks, profit, funding fee, Fibonacci, DCA, average price, ROI, staking and impermanent loss.
   - [How much can you realistically make day trading crypto?](https://cryptobolt.io/day-trading-crypto-realistic-returns)
   - ["$1000 in a day": why that headline is a trap, and why you clicked it](https://cryptobolt.io/1000-dollar-day-trap)
-- [Free Trading Course for Beginners](https://cryptobolt.io/trading-course) — Twelve free lessons for absolute beginners: charts, order types, costs, leverage, position sizing, risk-reward, psychology, a trading plan and a 30-day paper trading routine.
+- [Free Trading Course for Beginners](https://cryptobolt.io/trading-course) — Twelve free lessons for absolute beginners: charts, order types, costs, leverage, position sizing, risk-reward, psychology, a trading plan a 30-day paper trading routine and a downloadable certificate of completion.
   - [What trading is (and what it is not)](https://cryptobolt.io/course-what-is-trading)
   - [How a market works: buyers, sellers and price](https://cryptobolt.io/course-how-markets-work)
   - [Reading a price chart: candles and timeframes](https://cryptobolt.io/course-how-to-read-candlestick-charts)

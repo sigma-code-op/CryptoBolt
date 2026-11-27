@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/staking-apr-vs-apy
 
+## At a glance
+
+- Staking rewards come from protocol issuance and fees, not from free money.
+- APY includes compounding, APR does not, so the same rate can look bigger as an APY.
+- A high percentage can still lose money in dollars if the token falls more than you earn.
+
+10%
+
+APR: $100 becomes $110 without compounding
+
+10.47%
+
+APY of 10% APR compounded monthly
+
+0%
+
+protection against token price falls
+
+## Try the numbers: APR to APY
+
 Staking is often described as earning interest on your crypto. That description is half right and half dangerous. The reward rate is real, but it is paid in tokens whose price can move far more than the reward, it can change, and the tokens may be locked up when you most want them. This article explains how staking works and how to read the numbers you will see on a staking dashboard.
 
 ## What staking is
@@ -49,6 +69,18 @@ Staking rewards are normally paid in the staked token. Suppose you stake 10 toke
 1. What is the rate after fees, and is it paid in the same token? 2. How long can my tokens be locked, and what does unstaking cost? 3. What happens to my tokens if the validator or platform fails? 4. Why is the rate this high? Unusually high yields usually mean higher risk. 5. Am I comfortable holding this token if its price halves?
 
 Staking is one way to earn from holding; trading and providing liquidity are others, each with different risks. For the liquidity-provider side, see [impermanent loss explained](https://cryptobolt.io/impermanent-loss-explained). This article is educational and is not financial advice.
+
+### Myth
+
+A higher staking percentage means a better deal.
+
+### Reality
+
+The percentage is paid in the token. If its price drops more than the yield, you are behind in dollars, and lockups and slashing add more risk.
+
+## Quick check
+
+A 10% APR compounded monthly gives about what APY?
 
 Keep reading
 

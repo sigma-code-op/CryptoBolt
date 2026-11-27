@@ -108,6 +108,16 @@ Once a week, spend 20 minutes with your journal and answer:
 
 Change one thing at a time. Over a month, this review loop will teach you more than any course, including this one.
 
+## Scenario: what 20 journal entries reveal
+
+After 20 logged trades, a trader has 8 wins averaging +1.8R and 12 losses of -1R. The result is (8 x 1.8 - 12) / 20, or about +0.12R per trade. That is barely above zero, so the journal says the edge, if there is one, is small and costs matter. The same journal might also show that the three worst losses all happened after skipping the plan.
+
+### Common beginner mistakes here
+
+- Journaling only the winners.
+- Writing results but not the reason for the trade or how you felt.
+- Reviewing too rarely to catch repeating mistakes.
+
 ## What to remember
 
 - A one-page written plan sets your markets, setup, entry, stop, target, risk and no-trade rules in advance.

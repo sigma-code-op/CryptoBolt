@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/spot-vs-futures
 
+## At a glance
+
+- Spot means you own the coin. Perpetual futures mean you hold a leveraged contract on its price.
+- With leverage, a move against you can liquidate the position well before the price reaches zero.
+- Perpetuals add funding payments, which spot does not have.
+
+10x
+
+leverage: about a 10% drop wipes out the margin
+
+$100
+
+margin behind a $1,000 position at 10x
+
+~$900
+
+what $1,000 of spot is still worth after a 10% fall
+
+## Try the numbers: Leverage and liquidation distance
+
 Both show up as a price on a chart, which makes it easy to gloss over how differently they actually work underneath. Here is the short version before the detail:
 
 | Feature | Spot | Perpetual futures |
@@ -47,6 +67,18 @@ Neither is inherently better. Spot is simpler and caps your downside at zero; fu
 [Track spot holdings and futures positions side by side in the terminal →](https://cryptobolt.io/app)
 
 **Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers spot, margin and futures trading, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
+
+### Myth
+
+Futures are just spot with a bigger payout.
+
+### Reality
+
+Futures add liquidation, funding and the risk of losing everything you posted, which spot does not.
+
+## Quick check
+
+You hold a 10x long and price falls about 10%. What most likely happens?
 
 Keep reading
 

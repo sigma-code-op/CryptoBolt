@@ -94,6 +94,18 @@ For a beginner, **start on the 1-hour to 1-day charts**. They move slower, give 
 
 Under the candles you will usually see bars showing [volume](https://cryptobolt.io/glossary#volume), the amount traded in that period. A big move on high volume means many participants agreed. A big move on thin volume is easier to reverse. Volume is context, not a signal on its own.
 
+**Go deeper:** every major pattern, with trade rules, risk notes and crypto-specific guidance, is covered in the ebook [The Complete Book of Candlestick Patterns](https://cryptobolt.io/ebook#candlestick-patterns) (a free sample is on the ebook page).
+
+## Scenario: reading one candle
+
+On the 1-hour chart a candle opens at $100, reaches a high of $104, a low of $98 and closes at $102. It is green because it closed above its open. The body ($100 to $102) shows where the hour started and ended. The upper wick ($102 to $104) shows buyers pushed higher but could not hold it, and the lower wick ($98 to $100) shows sellers pushed lower but were rejected.
+
+### Common beginner mistakes here
+
+- Memorising pattern names without checking trend and context.
+- Comparing a 1-minute candle with a daily candle as if they meant the same thing.
+- Reading a single candle as a signal.
+
 ## What to remember
 
 - A candle records open, high, low and close for one time period; the body spans open to close and the wicks show the extremes.

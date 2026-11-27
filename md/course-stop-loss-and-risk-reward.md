@@ -108,6 +108,16 @@ More detail is available in the [risk-reward calculator](https://cryptobolt.io/r
 
 If you cannot fill in all three, you are not ready to place the trade. Skip it. There will be another one tomorrow.
 
+## Scenario: a 1:2 plan written before the entry
+
+Entry $100, stop $96, target $108. The risk is $4 and the reward is $8, a ratio of 1:2, so the plan breaks even at a 33.3% win rate. If you expect to win about four trades in ten, each trade carries an expectancy of about +0.2R before costs. The numbers are written down before the order is placed, so the exit does not get decided in the middle of a move.
+
+### Common beginner mistakes here
+
+- Moving the stop further away after the price approaches it.
+- Taking profit early because a small gain feels safe, while still letting losses run to the stop.
+- Setting a target that is far outside the recent range.
+
 ## What to remember
 
 - Put the stop where your trade idea is proven wrong, and never move it farther away to dodge a loss.

@@ -1,8 +1,26 @@
-# Crypto Fear & Greed Index Explained: Score Ranges & Use
+# Crypto Fear & Greed Index: How to Read It | CryptoBolt
 
-> What each Fear & Greed score from 0 to 100 means, what feeds the index, and how traders pair it with trend, volume and funding. Plain-English guide.
+> What the crypto Fear & Greed index measures, why it isn't a trade signal on its own, and how to use it alongside trend, volume, and funding.
 
 Source: https://cryptobolt.io/fear-and-greed-index
+
+## At a glance
+
+- The index is a mood gauge built from several market inputs, not a forecast.
+- Extreme readings show the crowd is one-sided. They do not say when the one-sidedness ends.
+- Always check it against trend, funding and where price sits before acting.
+
+0-100
+
+scale, from extreme fear to extreme greed
+
+5
+
+zones from extreme fear to extreme greed
+
+15
+
+example reading: extreme fear, not a buy signal
 
 The Fear & Greed index (often written "fear and greed index") — the number CryptoBolt pulls from Alternative.me into the Global Market Pulse strip — compresses a handful of inputs (volatility, momentum and volume, social media activity, Bitcoin dominance, and search trends, with survey data when the provider includes it) into a single 0–100 score. Near 0 is "extreme fear," near 100 is "extreme greed."
 
@@ -78,6 +96,18 @@ No. This is educational content about how an indicator works, not a recommendati
 - [Glossary](https://cryptobolt.io/glossary): definitions for volatility, dominance and other terms used here.
 
 [See the live Fear & Greed reading in the terminal →](https://cryptobolt.io/app)
+
+### Myth
+
+Extreme fear means it is time to buy.
+
+### Reality
+
+Extreme fear can last for weeks while price keeps falling. It is context that something is crowded, not a trigger.
+
+## Quick check
+
+The index reads 15 and price is still making new lows on rising volume. What does that most likely suggest?
 
 Keep reading
 

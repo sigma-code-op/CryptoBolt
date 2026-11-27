@@ -85,6 +85,16 @@ Read [why we do not predict prices](https://cryptobolt.io/why-we-dont-predict-cr
 3. Where is my stop (the price that proves me wrong), and how big does that make my position?
 4. Is the reward at least about twice the risk?
 
+## Scenario: a range and what breaks it
+
+Price has moved between $90 and $100 for two weeks and bounced off $90 three times. The $90 area is support because buyers have repeatedly stepped in there. If a candle closes at $88 on strong volume, the idea that buyers will defend $90 is wrong, and your plan should already say what you do then. Levels are places where decisions get made, not guarantees.
+
+### Common beginner mistakes here
+
+- Drawing a dozen levels on the chart until every price is near one.
+- Treating a wick through a level as a break without waiting for a close.
+- Entering only because price is at a level with no plan for being wrong.
+
 ## What to remember
 
 - An uptrend is higher highs and higher lows; a downtrend is lower highs and lower lows; otherwise price is ranging.

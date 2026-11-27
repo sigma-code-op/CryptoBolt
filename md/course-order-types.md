@@ -85,6 +85,16 @@ If your order **waits** in the book (a limit order), you are a *maker*: you add 
 - **Protecting:** set a stop as soon as you are in.
 - **Always** check the order preview before you confirm: side (buy or sell), price, amount and fee.
 
+## Scenario: $1,000 market order in a thin book
+
+You place a market buy for $1,000. The first few coins fill at $100.00, but the order has to climb the asks and the average fill ends up at $100.05, which is 0.05% worse. That is $0.50 of slippage. On a calm major coin it is negligible. On a thin coin, or a bigger order, the same mistake can cost many times more. A limit order would have avoided it, at the price of maybe not filling.
+
+### Common beginner mistakes here
+
+- Using market orders on illiquid coins.
+- Placing a stop-limit with the limit too close to the stop.
+- Not checking that a limit order has actually filled before you assume you are in the trade.
+
 ## What to remember
 
 - You buy at the ask and sell at the bid when trading instantly; the gap between them is the spread.

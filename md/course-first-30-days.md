@@ -102,6 +102,16 @@ If you prefer not to trade actively at all, that is a valid choice. Our guide to
 
 Congratulations on finishing the course. Remember, this is education, not financial advice, and trading carries a high risk of loss.
 
+## Scenario: a sample 30-day scorecard
+
+After 30 days on paper, a beginner has 22 logged trades, 9 wins averaging +1.6R and 13 losses of -1R. The result is (9 x 1.6 - 13) / 22, about +0.06R per trade. That is not proof of anything: 22 trades is a tiny sample. The real result of the month is that every trade has a plan, a size and a note, which is the habit you will take to real money.
+
+### Common beginner mistakes here
+
+- Going live after a week of paper profits.
+- Changing the strategy every few days so nothing is ever tested.
+- Skipping the journal because the paper money is not real.
+
 ## What to remember
 
 - Spend 30 days: one week observing, then paper trade with 1% risk, then journal and review, aiming for around 30 trades under the same rules.

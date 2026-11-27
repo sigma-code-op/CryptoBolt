@@ -45,6 +45,46 @@ Liquidation price is one input. Use the [position size calculator](https://crypt
 
 [See estimated liquidation price update live next to your open positions in the terminal →](https://cryptobolt.io/app)
 
+Check your understanding
+
+## Worked example: a 10x position opened at $60,000
+
+Entry / leverage / maintenance margin
+
+$60,000 / 10x / 0.5%
+
+Long liquidation price
+
+$54,300
+
+Distance below entry
+
+9.5%
+
+Short liquidation price
+
+$65,700
+
+Distance above entry
+
+9.5%
+
+At 25x, long liquidation
+
+$57,900
+
+A 9.5% dip is a normal week for crypto. At 25x the cushion falls to 3.5% and the price only has to fall to $57,900.
+
+### Mistakes this calculator helps you catch
+
+- Setting a stop-loss beyond the liquidation price.
+- Using cross margin without knowing that other positions share the same balance.
+- Forgetting fees and funding, which move the real number slightly.
+
+### Rule of thumb
+
+Put the stop well inside the liquidation price. If liquidation happens first, you did not have a stop.
+
 FAQ
 
 ## Liquidation price calculator FAQ

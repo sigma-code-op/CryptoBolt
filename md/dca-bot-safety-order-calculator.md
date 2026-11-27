@@ -128,6 +128,46 @@ If a liquidation price sits above the price of a later safety order, that order 
 
 The same averaging maths applies to manual buys, which you can check with the [crypto average price calculator](https://cryptobolt.io/crypto-average-price-calculator). If you prefer to compare the approach with simple regular buying, see [dollar-cost averaging in crypto](https://cryptobolt.io/dollar-cost-averaging-crypto) and the [DCA calculator](https://cryptobolt.io/dca-calculator). Grid strategies work differently; the [grid bot profit calculator](https://cryptobolt.io/grid-bot-profit-calculator) shows how.
 
+Check your understanding
+
+## Worked example: a base order and five evenly spaced safety orders
+
+Base order
+
+$100 at $100
+
+Safety orders
+
+5 x $100 at about $98, $96, $94, $92, $90
+
+Capital needed if all fill
+
+$600
+
+Average entry if all fill
+
+$94.88
+
+Take profit at +1.5%
+
+$96.30
+
+Price drop covered
+
+about 10% below entry
+
+A bot that is fully filled needs six times its first order, and it is exposed to a 10% decline. The price must still recover about 7% from the last fill ($90) to reach the take-profit ($96.30).
+
+### Mistakes this calculator helps you catch
+
+- Sizing only the first order and forgetting the capital the safety orders will demand.
+- Letting the grid of safety orders cover only a small drop, so a normal decline exhausts them.
+- Using a large volume scale: each extra order is bigger, so the last fills carry most of the risk.
+
+### Rule of thumb
+
+Check the total capital with every safety order filled. If you cannot afford that number, shrink the bot, not the safety orders.
+
 FAQ
 
 ## DCA bot safety order FAQ

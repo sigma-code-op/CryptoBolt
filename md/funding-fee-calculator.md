@@ -60,6 +60,50 @@ Funding payments are taken from your margin balance. On a long held through many
 
 [See live funding rates alongside charts in the terminal →](https://cryptobolt.io/app)
 
+Check your understanding
+
+## Worked example: a $20,000 long paying 0.01% per 8 hours
+
+Position value
+
+$20,000
+
+Funding rate
+
+0.01% per 8 hours
+
+Per payment
+
+$2.00
+
+Payments per day
+
+3
+
+Per day
+
+$6.00
+
+Over 30 days
+
+$180.00
+
+Annualised
+
+10.95%
+
+0.01% looks like nothing, but it is about 10.95% a year on the whole position. On a 10x trade that is roughly 110% of the margin per year if the rate never changed.
+
+### Mistakes this calculator helps you catch
+
+- Calculating funding on margin instead of position value.
+- Assuming the rate stays at today's level. It changes every interval.
+- Forgetting that funding can be income if you are on the side that gets paid.
+
+### Rule of thumb
+
+If funding is positive, longs pay. Holding a crowded long for weeks costs real money even when the price goes nowhere.
+
 FAQ
 
 ## Funding fee calculator FAQ

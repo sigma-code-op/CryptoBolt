@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/1000-dollar-day-trap
 
+## At a glance
+
+- A single screenshot shows the best day, not the average one.
+- Big percentage days on small accounts usually mean heavy leverage, and heavy leverage means the account was close to zero on the way.
+- Ask for the account size, the full history and the losing days before you believe a number.
+
+250%
+
+return when $1,000 is won on a $400 account
+
++100%
+
+needed to recover from a 50% loss
+
+~2%
+
+adverse move that liquidates a 50x position
+
+## Try the numbers: Loss and recovery
+
 "$1000 in one day." It's not a coincidence that this exact phrasing shows up everywhere — YouTube thumbnails, X threads, "signal group" ads, screenshotted trading apps. It's a specific, tested formula, and it works on smart, careful people, not just beginners. Understanding why it works is more useful than being told not to fall for it.
 
 [Survivorship bias](https://cryptobolt.io/glossary#survivorship-bias)
@@ -55,6 +75,18 @@ If you want to test a strategy against real conditions without the affiliate lin
 Related reading: [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices) covers the same trap from the forecasting side, and [spot vs. perpetual futures](https://cryptobolt.io/spot-vs-futures) explains the leverage mechanics behind many of these screenshots. Unfamiliar term? Check the [glossary](https://cryptobolt.io/glossary).
 
 [Test a strategy with zero real risk →](https://cryptobolt.io/trade)
+
+### Myth
+
+A $1,000 day proves a trader can repeat it.
+
+### Reality
+
+One day is one sample. Without the account size, the leverage and every losing day, the number says nothing about the next day.
+
+## Quick check
+
+A post shows +$1,000 in one day on a $2,000 account. What was the return that day?
 
 Keep reading
 

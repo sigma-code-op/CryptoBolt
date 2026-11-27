@@ -79,6 +79,16 @@ A coin priced at $0.0004 with a trillion coins in circulation is worth $400 mill
 
 High volatility is why people are drawn to crypto and also why it can hurt so quickly.
 
+## Scenario: the spread is the first cost
+
+The best bid is $99.90 and the best ask is $100.10. The gap is $0.20, or 0.2%. If you buy at the ask and immediately sell at the bid, you lose $0.20 per coin before any fee. That is why a price on a chart is not a price you can trade at: you buy slightly above it and sell slightly below it.
+
+### Common beginner mistakes here
+
+- Believing the last price is the price you will get.
+- Trading thin markets where the spread is wide.
+- Assuming a price move is news when it is only a trade hitting one side of the book.
+
 ## What to remember
 
 - The price on screen is simply the last deal between a buyer and a seller; more buyers push it up, more sellers push it down.

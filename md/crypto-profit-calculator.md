@@ -64,6 +64,54 @@ Funding payments on perpetual contracts (use the [funding fee calculator](https:
 
 [Try the trade with virtual funds in paper trading →](https://cryptobolt.io/trade)
 
+Check your understanding
+
+## Worked example: a 10x long that moves 5%
+
+Margin / leverage
+
+$500 / 10x
+
+Position value
+
+$5,000.00
+
+Units
+
+50
+
+Entry to exit
+
+$100 to $105
+
+Gross PnL
+
+$250.00
+
+Fees (0.05% each side, on position value)
+
+$5.125
+
+Net PnL
+
+$244.875
+
+Return on margin (ROE)
+
+48.98%
+
+A 5% price move turned into a roughly 49% return on margin. The same leverage makes a 5% move the other way a roughly 51% loss, fees included.
+
+### Mistakes this calculator helps you catch
+
+- Reading ROE as if it were the price move. Leverage multiplies both.
+- Charging fees on margin instead of position value, which understates the cost by the leverage factor.
+- Skipping funding on trades held overnight.
+
+### Rule of thumb
+
+Fees on a leveraged trade are paid on the whole position, so at 10x a 0.05% fee is 0.5% of your margin, each way.
+
 FAQ
 
 ## Crypto futures profit calculator FAQ

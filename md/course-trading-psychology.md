@@ -77,6 +77,16 @@ Losing money to a scam is a different problem from losing it to the market, and 
 
 Never share your password, 2-factor codes or recovery phrase with anyone. No genuine support agent will ask. Turn on two-factor authentication, and only use well-known, regulated exchanges. Read our piece on [why get-rich headlines work](https://cryptobolt.io/1000-dollar-day-trap) for the psychology behind these pitches.
 
+## Scenario: doubling after a loss
+
+On a $5,000 account the plan risks $50 per trade. After a loss, a frustrated trader doubles the next size to win it back, then doubles again. Four losses in a row at $50, $100, $200 and $400 costs $750, which is 15% of the account. The same four losses at a fixed $50 cost $200, or 4%. The emotion does not change the odds of the next trade, but it changes the cost of the streak.
+
+### Common beginner mistakes here
+
+- Revenge trading after a loss.
+- Moving the stop to avoid being wrong.
+- Trading when tired, angry or chasing a price that already moved.
+
 ## What to remember
 
 - Most beginner losses come from emotional rule-breaking: FOMO, revenge trading, overtrading, hope and overconfidence.

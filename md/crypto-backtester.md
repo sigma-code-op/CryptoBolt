@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/crypto-backtester
 
+Test it before you trust it
+
+## Your strategy looked great on one chart. Does it survive another?
+
+A backtest that ignores fees, slippage and unseen data flatters every idea. This one adds the real-world costs and then tries to break the result.
+
+### Costs included
+
+Fees, slippage, leverage and liquidation are in the run, so the equity curve is not a fantasy.
+
+### Out-of-sample check
+
+The strategy is tested on data it never saw, which is where most overfitted ideas fall apart.
+
+### Monte Carlo stress
+
+Reshuffling the trades shows how bad a streak could realistically get.
+
+### Run your first test
+
+1. Pick a market and timeframe, then choose a simple strategy.
+2. Turn on fees and slippage before you press run.
+3. Check the out-of-sample result before you believe the equity curve.
+
+[Practise it in paper trading](https://cryptobolt.io/trade)
+
+[Stress-test a losing streak](https://cryptobolt.io/losing-streak-calculator)
+
 Written and checked by the CryptoBolt founder · Formulas tested against worked examples on November 25, 2026 · [How we build and check our tools](https://cryptobolt.io/editorial-policy)
 
 Describe a strategy in plain English (optional; works offline, no AI key needed)

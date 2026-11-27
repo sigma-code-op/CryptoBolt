@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/ebook
 
+Why people buy these guides
+
+## Skip the expensive part of learning: the losses.
+
+Both books are plain-English, 160-page PDFs written to be finished. They teach risk and process first, because that is what keeps an account alive long enough to learn the rest.
+
+### Crypto Clarity
+
+From “what is a blockchain?” to security, position sizing and a written plan you can actually follow.
+
+### Candlestick patterns
+
+Every formation explained with what it can and cannot tell you, and an honest look at how often patterns fail.
+
+### No hype
+
+No signals, no get-rich promises and no guaranteed returns. Just how things work and how to protect yourself.
+
+### Not sure yet? Do this first
+
+1. Read how the book begins in the free sample on this page.
+2. Take lesson 1 of the free course to see the teaching style.
+3. Come back for the full guide if it suits you.
+
+[Start the free course](https://cryptobolt.io/trading-course)
+
+[Read the glossary](https://cryptobolt.io/glossary)
+
 PDF EBOOK
 
 CryptoBolt · Edition 1

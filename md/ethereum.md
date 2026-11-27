@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/ethereum
 
+Before you trade Ethereum
+
+## ETH is not just “smaller Bitcoin”, and it trades that way.
+
+Staking, fee burn and activity across the network give ETH drivers that Bitcoin does not have, and the ETH/BTC ratio shows when it is leading or lagging.
+
+### Watch ETH against BTC
+
+The ETH/BTC ratio tells you whether ETH is really outperforming or just riding the whole market.
+
+### Understand the yield
+
+Staking rewards are quoted as APR or APY. They are not the same thing, and the guide shows the difference.
+
+### Respect the leverage
+
+ETH moves hard. At high leverage a normal swing can liquidate a position before your idea plays out.
+
+### Do this before your next ETH trade
+
+1. Look at ETH/USDT and ETH/BTC side by side on the page.
+2. Work out your risk with the risk-reward calculator.
+3. Check where leverage would liquidate you before you commit.
+
+[Risk-reward calculator](https://cryptobolt.io/risk-reward-calculator)
+
+[Liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator)
+
 How to read it
 
 ## What each Ethereum number tells you

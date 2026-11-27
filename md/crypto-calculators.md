@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/crypto-calculators
 
+Fourteen calculators, one habit
+
+## The traders who last do the maths before the trade, not after.
+
+Three numbers get skipped more than any others: how much they can lose, how big the position is, and where leverage liquidates them. These tools answer all three in seconds.
+
+### Plan the trade
+
+Risk, size and reward in one pass, so you know the cost of being wrong before you enter.
+
+### Plan the hold
+
+Average price, ROI, staking and DCA, with fees included, so the real return is the one you see.
+
+### Stress-test it
+
+Liquidation, losing streaks and risk of ruin show how a plan behaves when things go badly.
+
+### A two-minute routine to copy
+
+1. Enter your account size and a 1% risk in the position size calculator.
+2. Check the reward-to-risk ratio of the idea.
+3. Run the losing streak calculator once so a bad run is not a surprise.
+
+[Position size calculator](https://cryptobolt.io/position-size-calculator)
+
+[Losing streak calculator](https://cryptobolt.io/losing-streak-calculator)
+
 Trading
 
 ## Plan a trade: risk, size and reward

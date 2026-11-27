@@ -1,0 +1,51 @@
+/* Site-wide engagement layer: course chip, course band, glossary game. Loaded on demand by js/engage.js and js/glossary-game.js. */
+.eg-band{padding:clamp(28px,5vw,56px) clamp(16px,4vw,48px)}
+.eg-band-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center;padding:clamp(22px,3.5vw,40px);border:1px solid var(--mk-line,rgba(255,255,255,.12));border-radius:calc(var(--mk-radius,14px) + 6px);background:radial-gradient(800px 320px at 0 0,rgba(20,211,138,.14),transparent 60%),radial-gradient(700px 300px at 100% 100%,rgba(167,139,250,.14),transparent 60%),var(--mk-surface,#0d121a)}
+.eg-band h2{margin:8px 0 10px;font-size:clamp(24px,3.4vw,36px);line-height:1.15}
+.eg-band p{margin:0 0 18px;color:var(--mk-text-dim,#9aa7b4);line-height:1.6;max-width:56ch}
+.eg-band-cta{display:flex;flex-wrap:wrap;gap:10px}
+.eg-band-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
+.eg-band-stats div{padding:16px 18px;border:1px solid var(--mk-line,rgba(255,255,255,.12));border-radius:12px;background:rgba(255,255,255,.03)}
+.eg-band-stats dt{font-size:12.5px;color:var(--mk-text-dim,#9aa7b4)}.eg-band-stats dd{margin:4px 0 0;font-size:22px;font-weight:700}
+.eg-chip{position:fixed;left:16px;bottom:16px;z-index:900;display:flex;align-items:center;max-width:min(340px,calc(100vw - 96px));border:1px solid var(--mk-line-hi,rgba(255,255,255,.22));border-radius:16px;background:rgba(13,18,26,.94);backdrop-filter:blur(10px);box-shadow:0 14px 40px rgba(0,0,0,.5);transform:translateY(24px);opacity:0;pointer-events:none;transition:transform .35s ease,opacity .35s ease}
+.eg-chip.is-in{transform:none;opacity:1;pointer-events:auto}
+.eg-chip-main{display:flex;align-items:center;gap:12px;padding:10px 6px 10px 10px;color:inherit;text-decoration:none;min-width:0}
+.eg-ring{--p:0;flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:conic-gradient(var(--mk-green,#14d38a) calc(var(--p)*1%),rgba(255,255,255,.12) 0)}
+.eg-ring b{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#0d121a;font-size:11.5px;font-variant-numeric:tabular-nums}
+.eg-chip-t{display:grid;min-width:0}.eg-chip-t strong{font-size:14px;line-height:1.25}.eg-chip-t small{font-size:12px;color:var(--mk-text-dim,#9aa7b4);line-height:1.3}
+.eg-x{flex:none;width:34px;height:34px;margin-right:4px;border:0;border-radius:50%;background:transparent;color:var(--mk-text-dim,#9aa7b4);font-size:20px;cursor:pointer}
+.eg-x:hover{background:rgba(255,255,255,.08);color:#fff}
+.eg-chip a:focus-visible,.eg-x:focus-visible{outline:2px solid var(--mk-cyan,#4fd8e8);outline-offset:2px}
+/* glossary game */
+.gg{max-width:1180px;margin:0 auto 28px;padding:0 clamp(16px,4vw,48px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:16px}
+.gg-card{padding:20px 22px;border:1px solid var(--mk-line,rgba(255,255,255,.12));border-radius:var(--mk-radius,14px);background:var(--mk-surface,#0d121a)}
+.gg-card h2{margin:6px 0 10px;font-size:20px}.gg-card p{color:var(--mk-text-dim,#9aa7b4);line-height:1.6;margin:0 0 12px}
+.gg-term{font-size:24px;font-weight:700;margin:4px 0 8px}
+.gg-cat{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:99px;background:rgba(79,216,232,.12);color:var(--mk-cyan,#4fd8e8)}
+.gg-q{font-size:15.5px;line-height:1.55;margin:0 0 12px;color:#e3e8ed}
+.gg-opts{display:grid;gap:8px;margin:0 0 12px;padding:0;list-style:none}
+.gg-opts button{width:100%;text-align:left;padding:11px 14px;border-radius:10px;border:1px solid var(--mk-line-hi,rgba(255,255,255,.22));background:rgba(255,255,255,.03);color:inherit;font:inherit;cursor:pointer}
+.gg-opts button:hover:not(:disabled){background:rgba(255,255,255,.08)}
+.gg-opts button.is-right{border-color:var(--mk-green,#14d38a);background:rgba(20,211,138,.14)}
+.gg-opts button.is-wrong{border-color:#ff4d6a;background:rgba(255,77,106,.12)}
+.gg-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--mk-text-dim,#9aa7b4)}
+.gg a,.gg button:focus-visible{outline-offset:2px}.gg button:focus-visible{outline:2px solid var(--mk-cyan,#4fd8e8)}
+@media (max-width:860px){.eg-band-in,.gg{grid-template-columns:1fr}}
+@media (max-width:480px){.eg-band-stats{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){.eg-chip{transition:none}}
+@media print{.eg-chip,.eg-band{display:none!important}}
+/* hook blocks injected under page heroes (scripts/engage-pages.py) */
+.eg2{padding:clamp(20px,4vw,44px) clamp(16px,4vw,48px) 0}
+.eg2-in{max-width:1180px;margin:0 auto;padding:clamp(20px,3.5vw,38px);border:1px solid var(--mk-line,rgba(255,255,255,.12));border-radius:calc(var(--mk-radius,14px) + 4px);background:radial-gradient(800px 300px at 0 0,rgba(79,216,232,.10),transparent 60%),radial-gradient(700px 300px at 100% 100%,rgba(20,211,138,.09),transparent 60%),var(--mk-surface,#0d121a)}
+.eg2 h2{margin:8px 0 10px;font-size:clamp(24px,3.4vw,36px);line-height:1.15;max-width:24em}
+.eg2-lead{margin:0 0 22px;color:#cbd3da;line-height:1.65;max-width:62ch;font-size:16.5px}
+.eg2-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 20px}
+.eg2-card{padding:16px 18px;border:1px solid var(--mk-line,rgba(255,255,255,.12));border-radius:12px;background:rgba(255,255,255,.03);transition:transform .2s,border-color .2s}
+.eg2-card:hover{transform:translateY(-3px);border-color:rgba(20,211,138,.45)}
+.eg2-card b{display:block;font-size:12px;letter-spacing:.12em;color:var(--mk-green,#14d38a);margin-bottom:6px}
+.eg2-card h3{margin:0 0 6px;font-size:16.5px}.eg2-card p{margin:0;font-size:14px;line-height:1.6;color:var(--mk-text-dim,#9aa7b4)}
+.eg2-try{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:18px 20px;border-radius:12px;background:rgba(20,211,138,.07);border:1px solid rgba(20,211,138,.28)}
+.eg2-try h3{margin:0 0 8px;font-size:15px}.eg2-try ol{margin:0;padding-left:22px;list-style:decimal;font-size:14px;line-height:1.7;color:#cbd3da}
+.eg2-cta{display:flex;flex-direction:column;gap:8px;min-width:210px}
+@media (max-width:860px){.eg2-grid{grid-template-columns:1fr}.eg2-try{grid-template-columns:1fr}.eg2-cta{flex-direction:row;flex-wrap:wrap;min-width:0}}
+@media (prefers-reduced-motion:reduce){.eg2-card{transition:none}}

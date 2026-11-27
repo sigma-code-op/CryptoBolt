@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/day-trading-crypto-realistic-returns
 
+## At a glance
+
+- Fees, slippage and funding are paid on every trade, so a strategy must beat all of them before it earns anything.
+- Studies of active retail traders find that most lose money over time.
+- Two traders with the same sizing and risk-reward can land on opposite sides of zero because of a ten-point win-rate gap.
+
++$200
+
+trader A over 10 trades (40% wins, 1:2)
+
+-$100
+
+trader B over 10 trades (30% wins, 1:2)
+
+1%
+
+of account risked per trade in both cases
+
+## Try the numbers: Win rate and expectancy
+
 Search "day trading crypto" and you'll find no shortage of people implying you can turn a small account into $1000 a day if you just learn the right setup. It's worth pausing on that claim before acting on it, because it isn't a matter of opinion — it's been studied directly, repeatedly, across different markets, and the results are consistent.
 
 ## What the research actually found
@@ -59,6 +79,18 @@ For a look at why the headline numbers hook people in the first place, read [why
 This isn't financial advice, and nothing here predicts what any specific trade will do — it's a summary of what the published research on day traders has found, and a more realistic starting point than a dollar figure pulled from a headline.
 
 [Practice with real market data, zero real risk →](https://cryptobolt.io/trade)
+
+### Myth
+
+If you work hard enough, daily profit is a matter of discipline.
+
+### Reality
+
+Discipline controls risk, not outcomes. Costs, small samples and luck decide a lot more than most traders expect.
+
+## Quick check
+
+You risk $100 per trade at a 1:2 reward and win 4 of 10 trades. What is the net result?
 
 Keep reading
 

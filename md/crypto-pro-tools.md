@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/crypto-pro-tools
 
+Five tools, no sign-up
+
+## Find out if you actually have an edge, with your own trades.
+
+Paste your profit and loss numbers and see expectancy, drawdown, streaks and fee drag. It runs in your browser, so your trades never leave your device.
+
+### Journal analyzer
+
+Shows whether your results come from skill or from a few lucky trades.
+
+### Safe leverage finder
+
+Finds the leverage where your stop fires before liquidation, after fees and slippage.
+
+### Challenge odds
+
+Simulates thousands of funded-challenge attempts and shows which rule is most likely to fail you.
+
+### Start with the one most people skip
+
+1. Open the journal analyzer and press Try sample data.
+2. Note the break-even win rate you needed against what you achieved.
+3. Paste your own numbers and compare.
+
+[See all 14 calculators](https://cryptobolt.io/crypto-calculators)
+
+[How the tools are built](https://cryptobolt.io/editorial-policy)
+
 Everything runs in your browser. Your trades are never uploaded · [How we build and check our tools](https://cryptobolt.io/editorial-policy) · [All calculators](https://cryptobolt.io/crypto-calculators)
 
 Paste one profit/loss number per line, or a CSV export with a PnL column (optional time and fee columns unlock best/worst hour, weekday and fee drag). Works with Binance, Bybit, OKX or Hyperliquid exports.

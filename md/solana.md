@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/solana
 
+Before you trade Solana
+
+## Fast network, fast moves: plan for both.
+
+SOL can move a lot in a short time, so the risk side of the plan matters more than the entry. Know your exit before you are in.
+
+### Big candles are normal
+
+Wide swings mean tight stops get hit often. Decide whether your stop fits the coin, not just your wish.
+
+### Mind the thin spots
+
+Smaller markets can slip on big orders. The order book shows how much size really sits near the price.
+
+### Practice the volatility
+
+Feeling a 10% swing with virtual money is a far cheaper lesson than feeling it with real money.
+
+### Do this before your next SOL trade
+
+1. Check the order book depth before sizing up.
+2. Use the position size calculator so a stop-out costs a fixed, small amount.
+3. Practise the setup in paper trading first.
+
+[Position size calculator](https://cryptobolt.io/position-size-calculator)
+
+[Try paper trading](https://cryptobolt.io/trade)
+
 How to read it
 
 ## What each Solana number tells you

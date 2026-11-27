@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss
 
+## At a glance
+
+- Fees apply on both entry and exit, so the break-even price is above your entry.
+- Several buys mean you track an average cost, not a single price.
+- On futures, leverage and funding change the maths, and losses are asymmetric: a 50% loss needs a 100% gain to repair.
+
+~0.2%
+
+rise needed to break even at 0.1% fee per side
+
+~1%
+
+rise needed at 0.5% per side
+
++100%
+
+gain needed to recover a 50% loss
+
+## Try the numbers: Break-even after fees
+
 It sounds trivial: you bought low and sold high, so you made money. In practice the number on your exchange screen and the number in your bank often disagree. The difference is almost always fees, several purchases at different prices, leverage or time. This guide builds the calculation up from a single spot trade to a leveraged position, so you can check any result by hand.
 
 ## Step 1: a simple spot trade
@@ -75,6 +95,18 @@ This is the strongest argument for limiting risk per trade, which is covered in 
 1. Write down entry, exit, size and fees before you trade. 2. Calculate the break-even price, not just the target. 3. For futures, calculate liquidation, funding and ROE as well as PnL. 4. After the trade, record the realised result, including fees, in a journal.
 
 Tax rules for crypto vary widely, and none of the figures here is tax or financial advice.
+
+### Myth
+
+If the price is above where I bought, I am in profit.
+
+### Reality
+
+After fees (and spread, and funding on futures) the break-even is higher than your entry price. Profit starts above that line.
+
+## Quick check
+
+With 0.1% fee on both the buy and the sell, roughly how much must price rise to break even?
 
 Keep reading
 

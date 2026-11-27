@@ -1,6 +1,6 @@
-# Free Trading Course for Beginners (12 Lessons) | CryptoBolt
+# Free Trading Course with Certificate | CryptoBolt
 
-> A free 12-lesson trading course for absolute beginners: charts, orders, fees, leverage, risk and psychology, with quizzes and a 30-day paper trading plan.
+> Free 12-lesson trading course for beginners: charts, orders, fees, leverage and risk, with quizzes, a 30-day plan and a certificate when you finish.
 
 Source: https://cryptobolt.io/trading-course
 
@@ -31,6 +31,24 @@ Quizzes
 Cost
 
 Free
+
+Certificate of completion
+
+## Finish the course. Earn your certificate.
+
+Mark all twelve lessons complete and you can generate a personal certificate with your name, the date and a unique ID. Download it as an image or a PDF, print it, or share it. Score 90% or more across all twelve quizzes and it carries the With Distinction seal.
+
+Your certificate unlocks when all 12 lessons are marked complete.
+
+Name on the certificate
+
+Style
+
+Your badges
+
+The certificate is created in your browser from the progress saved here. CryptoBolt does not store your name, and a certificate cannot be verified by a third party. It is a personal record of study, not an accredited qualification or financial advice.
+
+Complete all 12 lessons to unlock your certificate.
 
 ## How each lesson works
 
@@ -89,6 +107,10 @@ Simple analysis, a written plan, a journal and a 30-day practice routine.
 
 ## Common questions
 
+Do I get a certificate?
+
+Yes. Mark all twelve lessons complete and you can download a personal certificate of completion as a PNG or PDF. Score 90% or more across all twelve quizzes for the With Distinction version. It is a record of your study, not an accredited qualification.
+
 Is the course really free?
 
 Yes. All twelve lessons, quizzes and tools are free, with no sign-up. Your progress is saved in your own browser, not on our servers.
@@ -122,6 +144,8 @@ No. It is educational content. Trading carries a high risk of loss, so only risk
 [**Glossary**Plain-English definitions of every term.](https://cryptobolt.io/glossary)
 
 [**Crypto Clarity ebook**160 pages if you want to go deeper.](https://cryptobolt.io/ebook)
+
+[**Candlestick Patterns ebook**77 patterns, one page each.](https://cryptobolt.io/ebook#candlestick-patterns)
 
 Educational content only, not financial advice. Trading carries a high risk of loss. Read how we write and review our guides in the [editorial policy](https://cryptobolt.io/editorial-policy).
 

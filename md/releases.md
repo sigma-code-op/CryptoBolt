@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/releases
 
+Still shipping
+
+## This site keeps changing, and the changelog says so plainly.
+
+Each release lists what is new, what was fixed and where the data comes from. If something you wanted is missing, tell us.
+
+### Plain entries
+
+Sorted into new, fixed and data sources, so you can see what actually changed.
+
+### Driven by feedback
+
+The contact form feeds the roadmap, so your message can end up here.
+
+### Nothing hidden
+
+Behind-the-scenes tweaks are left out so the list stays useful.
+
+### Catch up quickly
+
+1. Read the newest entry at the top.
+2. Try anything that sounds useful, such as the free course or the risk tools.
+3. Send us what you would like to see next.
+
+[Take the free course](https://cryptobolt.io/trading-course)
+
+[Suggest a feature](https://cryptobolt.io/contact)
+
 v1.20.0
 
 November 15, 2026

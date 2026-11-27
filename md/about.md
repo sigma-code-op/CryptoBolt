@@ -1,8 +1,36 @@
-# About CryptoBolt | Crypto Terminal & AI Research
+# About CryptoBolt | Free Crypto Terminal & Paper Trading
 
-> Learn about CryptoBolt, an independent crypto trading terminal and AI research platform for tracking markets, charts, alerts, and paper trading.
+> CryptoBolt is a free, independent crypto terminal with live Binance charts, AI research and paper trading. See who builds it and how the data works.
 
 Source: https://cryptobolt.io/about
+
+Why this exists
+
+## Built by one person who wanted a clean screen, then shared it.
+
+No investors to please, no paywall to push you toward. That is the whole idea, and it shapes every choice you see on the site.
+
+### Free where it counts
+
+The terminal, calculators, guides and paper trading cost nothing and need no account to browse.
+
+### Honest about limits
+
+CryptoBolt never holds your money and never predicts prices. It shows you what is happening and what the numbers mean.
+
+### Shaped by you
+
+Most of the roadmap comes from messages sent through the contact form, so a good idea can ship quickly.
+
+### See it for yourself in a minute
+
+1. Open the terminal and watch live Binance prices with no sign-up.
+2. Ask the AI desk what is driving a coin right now and check its sources.
+3. Place a practice trade in paper trading and watch the equity curve.
+
+[Launch the terminal](https://cryptobolt.io/app)
+
+[Send an idea](https://cryptobolt.io/contact)
 
 [info@cryptobolt.io](mailto:info@cryptobolt.io)
 

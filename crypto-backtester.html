@@ -211,6 +211,7 @@
         .lc-callout{margin:18px 0;padding:14px 16px;border-radius:10px;background:rgba(34,197,140,.06);border:1px solid rgba(34,197,140,.2);font-size:14px;}
         .mk-article caption{caption-side:bottom;text-align:left;font-size:12px;color:var(--mk-text-dim,#8B93A3);padding-top:8px;white-space:normal;}
     .lc-field{min-width:0;}.lc-field input,.lc-field select{width:100%;min-width:0;box-sizing:border-box;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}.lc-grid3{grid-template-columns:repeat(3,minmax(0,1fr));}@media(max-width:640px){.lc-calc{padding:18px;}.lc-grid,.lc-grid3{grid-template-columns:minmax(0,1fr);}}.lc-calc .lc-tbl-wrap table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}.lc-calc .lc-tbl-wrap th,.lc-calc .lc-tbl-wrap td{padding:8px 10px;white-space:nowrap;text-align:left;border-bottom:1px solid var(--mk-line,rgba(237,239,243,.08))}.lc-calc .lc-tbl-wrap th{color:var(--mk-text-dim,#8B93A3);font-weight:600}.lc-calc textarea{width:100%;box-sizing:border-box;background:rgba(10,12,16,.6);border:1px solid var(--mk-line,rgba(237,239,243,.08));border-radius:8px;padding:10px 12px;color:var(--mk-text,#EDEFF3);font-size:14px;font-family:inherit;resize:vertical}.lc-calc .hidden{display:none !important}.lc-calc .bt-ok{background:rgba(34,197,140,.08);border-color:rgba(34,197,140,.3);color:#9fe3c8}.lc-calc .bt-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 4px}.lc-calc .bt-btn{padding:11px 18px;border-radius:10px;border:1px solid rgba(34,197,140,.5);background:rgba(34,197,140,.14);color:var(--mk-green,#22C58C);font-weight:700;font-size:14px;cursor:pointer}.lc-calc .bt-btn:disabled{opacity:.5;cursor:wait}.lc-calc .bt-btn.alt{background:transparent;border-color:var(--mk-line,rgba(237,239,243,.18));color:var(--mk-text,#EDEFF3)}.lc-calc h2{margin:26px 0 6px;font-size:16px}.lc-calc .bt-check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mk-text-dim,#8B93A3);margin-top:12px}.lc-calc .bt-ai-text{font-size:14px;line-height:1.6;margin-top:12px}.lc-calc #bt-verdict{margin:10px 0 0;padding-left:18px;font-size:14px;line-height:1.55}.lc-calc .lc-stats{grid-template-columns:repeat(3,minmax(0,1fr))}@media (max-width:640px){.lc-calc .lc-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
+<link rel="stylesheet" href="css/engage.css?v=20261128">
 </head>
 <body class="mk">
 <a class="mk-skip" href="#main">Skip to main content</a>
@@ -254,6 +255,10 @@
     <h1>Free crypto backtester</h1>
     <p>Test a trading strategy on real Binance candles with fees, slippage, leverage and liquidation, then see whether it survives data it never saw, a Monte Carlo reshuffle and an optimizer that tries to fool you.</p>
 </header>
+<!-- eg2:start -->
+<section class="eg2" aria-labelledby="eg2-h"><div class="eg2-in"><span class="mk-eyebrow">Test it before you trust it</span><h2 id="eg2-h">Your strategy looked great on one chart. Does it survive another?</h2><p class="eg2-lead">A backtest that ignores fees, slippage and unseen data flatters every idea. This one adds the real-world costs and then tries to break the result.</p><div class="eg2-grid"><div class="eg2-card"><b aria-hidden="true">01</b><h3>Costs included</h3><p>Fees, slippage, leverage and liquidation are in the run, so the equity curve is not a fantasy.</p></div><div class="eg2-card"><b aria-hidden="true">02</b><h3>Out-of-sample check</h3><p>The strategy is tested on data it never saw, which is where most overfitted ideas fall apart.</p></div><div class="eg2-card"><b aria-hidden="true">03</b><h3>Monte Carlo stress</h3><p>Reshuffling the trades shows how bad a streak could realistically get.</p></div></div><div class="eg2-try"><div><h3>Run your first test</h3><ol><li>Pick a market and timeframe, then choose a simple strategy.</li><li>Turn on fees and slippage before you press run.</li><li>Check the out-of-sample result before you believe the equity curve.</li></ol></div><div class="eg2-cta"><a class="mk-btn mk-btn-primary" href="trade">Practise it in paper trading</a><a class="mk-btn mk-btn-ghost" href="losing-streak-calculator">Stress-test a losing streak</a></div></div></div></section>
+<!-- eg2:end -->
+
 
 <p class="lc-meta">Written and checked by the CryptoBolt founder · Formulas tested against worked examples on November 25, 2026 · <a href="editorial-policy">How we build and check our tools</a></p>
 
@@ -504,6 +509,7 @@
 <script defer src="js/icons-init.js"></script>
 <script src="js/cookie-consent.js?v=20261018" defer></script>
 <script src="js/live.js?v=20261117" defer></script>
+<script src="js/engage.js?v=20261126" defer></script>
 <script src="js/mobile-nav.js?v=20260825" defer></script>
 <script src="js/backtest-lab.js?v=20261125" defer></script>
 <script defer src="js/webmcp.js?v=20261101"></script>

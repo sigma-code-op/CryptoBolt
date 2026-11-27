@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/videos
 
+Four short ideas that decide a trade
+
+## The concepts that decide whether a trade survives, in motion.
+
+Leverage, the order book, position size and practice are easier to grasp when you can watch the numbers move. Each video is short and each one has a tool to try straight after.
+
+### Watch
+
+A short animated explainer for each idea, with no jargon left unexplained.
+
+### Try
+
+Each topic has a matching calculator, or the paper trading account, to practise on.
+
+### Check
+
+The free course has a quiz on each topic if you want to test yourself.
+
+### A good order to watch them
+
+1. Start with position sizing and the 1% rule.
+2. Then leverage and liquidation, so you know what size can do to you.
+3. Finish with the order book and paper trading to practise both.
+
+[Start with position sizing](https://cryptobolt.io/position-sizing-1-percent-rule-video)
+
+[Take the free course](https://cryptobolt.io/trading-course)
+
 ## [Leverage and liquidation explained](https://cryptobolt.io/leverage-liquidation-explained-video)
 
 What actually happens when a leveraged futures position is liquidated.

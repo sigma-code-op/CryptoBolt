@@ -68,6 +68,54 @@ Every buy and sell has a fee, so the true break-even price is a little above the
 
 This tool shows an average cost, which is how many people think about a position. Tax authorities may require a specific method (for example first-in-first-out or specific identification), and the rules differ by country. The average price here is for your own tracking, not tax reporting; ask a qualified tax professional how your jurisdiction treats crypto.
 
+Check your understanding
+
+## Worked example: three buys at three prices
+
+Buy 1
+
+2 units at $100
+
+Buy 2
+
+3 units at $80
+
+Buy 3
+
+5 units at $60
+
+Total cost
+
+$740.00
+
+Total quantity
+
+10 units
+
+Weighted average price
+
+$74.00
+
+Simple average of the 3 prices
+
+$80.00 (misleading)
+
+Result if price is now $70
+
+-$40.00 (-5.4%)
+
+More units were bought at the lower prices, so the weighted average ($74) is below the simple average ($80). The weighted one is the figure that decides profit and loss.
+
+### Mistakes this calculator helps you catch
+
+- Averaging the prices instead of weighting them by quantity.
+- Leaving out small buys or fees, which quietly shifts your real entry.
+- Averaging down a position without a plan: a lower average makes you feel better but does not change what the price is doing.
+
+### Rule of thumb
+
+Your average price is a bookkeeping number, not a support level. The market does not know or care where you bought.
+
 FAQ
 
 ## Crypto average price calculator FAQ

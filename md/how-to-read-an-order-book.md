@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/how-to-read-an-order-book
 
+## At a glance
+
+- The book lists resting buy orders (bids) and sell orders (asks) at each price.
+- A market order walks up the asks (or down the bids), so your average fill is worse than the best quote. That gap is slippage.
+- Imbalance and big walls can change in an instant, so treat them as context, never a promise.
+
+$100.05
+
+average fill in the 4-coin example, not $100.00
+
+2
+
+sides to the book: bids and asks
+
+0.05
+
+of slippage per coin in that example
+
+## Try the numbers: Market order slippage
+
 Every price you see on a crypto chart is the result of a queue of orders waiting to be filled. That queue is the [order book](https://cryptobolt.io/glossary#order-book), and learning to read it explains a lot of things that otherwise look random: why a market order sometimes fills at a worse price than the one on screen, why thin altcoins jump around, and why the same trade size can be trivial on one pair and expensive on another.
 
 ## The two sides of the book
@@ -55,6 +75,18 @@ So treat the book as a description of the present, not a prediction. It is excel
 The order book will not tell you where price is going. It will tell you, precisely, what it costs to trade at this moment, and that is information you can use on every single trade.
 
 **Go deeper.** Chapter 7 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers how exchanges and order books work, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
+
+### Myth
+
+A big wall in the order book guarantees price will stop there.
+
+### Reality
+
+Orders can be pulled at any moment. A wall is a hint of interest, and it may vanish when price gets close.
+
+## Quick check
+
+Asks: 2 coins at $100.00 and 3 at $100.10. You market-buy 4 coins. What is your average price?
 
 Keep reading
 

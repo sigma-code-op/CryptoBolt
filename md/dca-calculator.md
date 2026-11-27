@@ -65,6 +65,50 @@ The interval matters less than consistency. Weekly, fortnightly and monthly sche
 
 Real prices do not move in straight lines, so your true average cost will differ. Trading fees, spreads, taxes and any rewards earned while holding are not included. Use the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) to enter your actual buys, and the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator) to include fees. For a fuller discussion read [dollar-cost averaging in crypto](https://cryptobolt.io/dollar-cost-averaging-crypto).
 
+Check your understanding
+
+## Worked example: six $100 buys while price falls from $100 to $50
+
+Prices at each buy
+
+$100, $90, $80, $70, $60, $50
+
+Total invested
+
+$600
+
+Coins bought
+
+8.456
+
+Average cost
+
+$70.95
+
+Simple average of the prices
+
+$75.00
+
+Value at $50
+
+$422.82
+
+A lump sum at $100 would be worth
+
+$300.00
+
+The average cost ($68.60) is lower than the simple average ($75) because falling prices buy more coins. DCA lost less than the lump sum here, and it would have lagged if price had risen instead.
+
+### Mistakes this calculator helps you catch
+
+- Calling DCA safe. It reduces timing risk, not the risk of the asset falling.
+- Stopping buys after a drop, which defeats the plan.
+- Choosing an amount you cannot keep buying through a long decline.
+
+### Rule of thumb
+
+DCA is a rule about when you buy. Pick a size you could keep up for a year even if the price only went down.
+
 FAQ
 
 ## Crypto DCA calculator FAQ

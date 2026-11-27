@@ -4,6 +4,24 @@
 
 Source: https://cryptobolt.io/round-number-levels
 
+## At a glance
+
+- Round numbers matter because orders cluster there, not because the digits are special.
+- Whether a level holds depends on how many resting orders are there versus how much buying or selling arrives.
+- Confirm with the order book, volume and timeframe before treating it as support or resistance.
+
+$50,000
+
+example level where orders pile up
+
+3
+
+order types that cluster: stops, targets, limits
+
+0
+
+levels guaranteed to hold
+
 Look back at any BTC chart and you'll notice something odd: price seems to hesitate at $30,000, $50,000, $100,000 — clean, round numbers — far more often than it stalls at $47,312 or $89,650. That's not a coincidence, and it's not magic either.
 
 ## It starts with where people actually place orders
@@ -76,6 +94,18 @@ This isn't a standalone signal. A round number with high volume and heavy order 
 - [Glossary](https://cryptobolt.io/glossary): support and resistance, order book depth, wick and more.
 
 [Check the live order book depth in the terminal →](https://cryptobolt.io/app)
+
+### Myth
+
+Round-number support always holds.
+
+### Reality
+
+Levels get absorbed all the time. If buyers run out, price goes through and the cluster is gone.
+
+## Quick check
+
+Why do round numbers sometimes act as support or resistance?
 
 Keep reading
 

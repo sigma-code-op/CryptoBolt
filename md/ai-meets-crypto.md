@@ -4,6 +4,24 @@
 
 Source: https://cryptobolt.io/ai-meets-crypto
 
+## At a glance
+
+- AI is most useful as an analyst: summarising, flagging and explaining data you can check.
+- Giving an agent unlimited authority over funds multiplies the cost of a single mistake or a prompt-injection attack.
+- Hard limits belong in code (spend caps, allow-lists, human approval), not only in a prompt.
+
+3
+
+limits worth coding in: size cap, allow-list, human sign-off
+
+0
+
+price targets an AI can guarantee
+
+1
+
+stranger's post is enough to hijack a naive agent
+
 For years, artificial intelligence and blockchain technology evolved in separate lanes — one focused on prediction and pattern recognition, the other on trust and decentralization. That's changing fast. As both fields mature, they're increasingly converging into something genuinely new: financial systems that can think, verify, and transact without a human in the loop.
 
 ## Why AI and crypto fit together
@@ -50,6 +68,18 @@ The convergence of AI and crypto isn't a gimmick or a buzzword mashup — it's a
 - [Glossary](https://cryptobolt.io/glossary): AI trading agent, prompt injection, hallucination and other terms.
 
 [See how CryptoBolt keeps AI research grounded in real data →](https://cryptobolt.io/ai-research-grounded-data)
+
+### Myth
+
+An AI agent can trade your crypto profitably on autopilot.
+
+### Reality
+
+A model cannot see the future and can be tricked by text it reads. Autonomy without hard limits only makes errors bigger and faster.
+
+## Quick check
+
+Which is the safest first use of AI in crypto?
 
 Keep reading
 

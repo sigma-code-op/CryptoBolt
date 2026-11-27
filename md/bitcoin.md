@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/bitcoin
 
+Before you trade Bitcoin
+
+## Know what is moving BTC before you click buy or sell.
+
+Bitcoin has a hard 21 million supply cap, a halving roughly every four years, and a large futures market alongside spot. Those three facts explain a lot of the noise.
+
+### Read the positioning
+
+Funding and open interest show how crowded one side of the trade is, which often matters more than the headline.
+
+### Know the cycle
+
+The halving cuts new supply in half. It is context for the story, not a timer for the price.
+
+### Size for the swings
+
+BTC can move several percent in a day. Your position size should survive that, not hope it will not happen.
+
+### Do this before your next BTC trade
+
+1. Size the trade from your stop with the position size calculator.
+2. Check the liquidation price if you plan to use leverage.
+3. Rehearse the idea in paper trading first.
+
+[Position size calculator](https://cryptobolt.io/position-size-calculator)
+
+[The halving, explained](https://cryptobolt.io/bitcoin-halving-explained)
+
 How to read it
 
 ## What each Bitcoin number tells you

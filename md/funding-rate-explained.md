@@ -4,6 +4,26 @@
 
 Source: https://cryptobolt.io/funding-rate-explained
 
+## At a glance
+
+- Funding is a payment between traders on perpetual contracts, not a fee paid to the exchange.
+- It is charged on the full position size, not on your margin, so leverage makes it heavier.
+- A high funding rate with rising open interest points to a crowded, fragile trade.
+
+$1
+
+per settlement on a $10,000 long at +0.01%
+
+10.95%
+
+of position size per year if the rate never changed
+
+8h
+
+common settlement interval on many venues
+
+## Try the numbers: What funding costs you
+
 Open any [perpetual futures](https://cryptobolt.io/glossary#perpetual-futures) contract and there's a small percentage sitting next to the price, updating every few hours. Most traders glance past it. It's worth slowing down on, because the [funding rate](https://cryptobolt.io/glossary#funding-rate) is one of the few numbers on the screen that tells you what other traders are actually positioned for, not just where price has been.
 
 ## What it's actually for
@@ -49,6 +69,18 @@ Funding settles on a fixed schedule, every eight hours on many venues (some cont
 [See live funding rates next to open interest in the terminal →](https://cryptobolt.io/app)
 
 **Go deeper.** Chapter 14 of our 160-page ebook [Crypto Clarity](https://cryptobolt.io/ebook) covers futures, leverage and liquidation, with worked examples and self-test questions. A free 16-page sample is available on the [ebook page](https://cryptobolt.io/ebook).
+
+### Myth
+
+Positive funding means the market is bullish and price must go up.
+
+### Reality
+
+Positive funding means longs outnumber shorts. Crowded longs can be the fuel for a sharp drop just as easily as a rally.
+
+## Quick check
+
+Funding is positive. Who pays whom?
 
 Keep reading
 

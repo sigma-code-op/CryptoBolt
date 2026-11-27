@@ -1,8 +1,36 @@
-# Crypto Trading Features | Charts, AI & Alerts
+# CryptoBolt Features: Charts, Order Book, AI & Alerts
 
-> Explore CryptoBolt features: live crypto charts, spot & futures data, AI research, order book depth, portfolio tracking, and alerts.
+> See what CryptoBolt offers: live spot and futures charts, order book depth, AI research, paper trading, portfolio tracking and price alerts.
 
 Source: https://cryptobolt.io/features
+
+See it work
+
+## A terminal is only as good as the first question it answers.
+
+The best way to judge these features is to use them on a coin you already follow. It takes less time than reading about them.
+
+### Look
+
+Live charts and order book depth from Binance spot and futures.
+
+### Ask
+
+An AI desk that explains the move using live data and shows its sources.
+
+### Practise
+
+Paper trading with live prices, plus calculators for every number that matters.
+
+### Take the one-minute tour
+
+1. Open the terminal on a coin you follow.
+2. Ask the AI desk what is driving it.
+3. Open paper trading and place a practice trade with a stop.
+
+[Launch the terminal](https://cryptobolt.io/app)
+
+[Take the free course](https://cryptobolt.io/trading-course)
 
 Charting
 
@@ -147,6 +175,18 @@ Four browser-based tools that need no signup: [liquidation price](https://crypto
 ### Top movers & trending
 
 A live scrolling strip of the day's biggest movers and trending coins, so you catch what's moving without hunting for it.
+
+In practice
+
+## One trading session, start to finish
+
+How the pieces fit together when you actually use the terminal.
+
+1. **Look**Open a pair and read live Binance candles with the indicators you use. Switch timeframes to see whether the move is a blip or a trend.
+2. **Check the book**Use depth and the trade tape to see where size is sitting, and how much slippage a market order would cost.
+3. **Ask the AI desk**Get a structured read grounded in news, funding and sentiment, with trade levels computed from live prices. It describes conditions, it does not predict.
+4. **Practise it first**Place the trade in the paper account at live prices and see how the plan behaves with no real money on the line.
+5. **Set alerts, then step away**Add a price alert at the level that matters and close the tab. The plan, not the screen, decides what happens next.
 
 ## See it running live.
 

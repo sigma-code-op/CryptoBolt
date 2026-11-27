@@ -58,6 +58,50 @@ Once you have a level you care about, check the trade: the [risk-reward calculat
 
 Different traders pick different swings, so different charts show different levels. Levels do not predict direction; they only describe where a move might pause. Strong trends can slice through every level, and ranging markets can ignore them. This calculator uses the standard ratios; some platforms add extras such as 88.6% or 141.4%.
 
+Check your understanding
+
+## Worked example: an uptrend from $60,000 to $70,000
+
+Range
+
+$10,000
+
+23.6% retracement
+
+$67,640
+
+38.2% retracement
+
+$66,180
+
+50.0% retracement
+
+$65,000
+
+61.8% retracement
+
+$63,820
+
+78.6% retracement
+
+$62,140
+
+161.8% extension target
+
+$76,180
+
+These are reference levels where many traders watch for a pause. They are not forecasts, and the ones that matter most are the ones that line up with older highs, lows or round numbers.
+
+### Mistakes this calculator helps you catch
+
+- Drawing from the wrong swing. A different high or low gives a completely different set of levels.
+- Treating a retracement level as a guaranteed bounce.
+- Using Fibonacci levels alone without checking trend, volume or another level nearby.
+
+### Rule of thumb
+
+A level is stronger when two unrelated methods agree on it, for example a retracement and a prior swing low.
+
 FAQ
 
 ## Fibonacci retracement calculator FAQ

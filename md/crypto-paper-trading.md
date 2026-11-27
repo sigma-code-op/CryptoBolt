@@ -4,6 +4,34 @@
 
 Source: https://cryptobolt.io/crypto-paper-trading
 
+Practice that feels real
+
+## Make your beginner mistakes with fake money.
+
+Most beginners lose money early. Paper trading lets that happen at live prices with nothing at stake, and shows exactly where your process broke.
+
+### Live prices, virtual cash
+
+Real market movement and a virtual balance, so the lessons are real and the losses are not.
+
+### A scoreboard, not a hunch
+
+Holdings, realised and unrealised P&L and an equity curve turn “I think I am doing well” into numbers.
+
+### A leaderboard when you want it
+
+Sign in to save your account and compare weekly and monthly P&L with other traders.
+
+### Run your first practice trade
+
+1. Write down your risk per trade before you open anything, for example 1% of the account.
+2. Place a small buy, set where you would exit, and note why in one line.
+3. Check the result against the plan, not against your mood.
+
+[Start paper trading](https://cryptobolt.io/trade)
+
+[Take the free course](https://cryptobolt.io/trading-course)
+
 Why it matters
 
 ## Practice trading with the same live market conditions as the real terminal.
