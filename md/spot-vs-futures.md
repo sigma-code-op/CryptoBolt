@@ -53,6 +53,22 @@ If you're new to crypto, the practical difference in the spot vs futures decisio
 
 Neither is inherently better. Spot is simpler and caps your downside at zero; futures adds leverage and funding dynamics on top. Know which one you're actually looking at before you size a trade.
 
+## Choosing between them: questions to ask yourself
+
+There is no universal answer, but a few questions usually point to the right tool.
+
+**How long do I plan to hold?** Long holds fit spot better, because futures have funding costs and liquidation risk that build over time.
+
+**Do I want to own the coin?** Only spot gives you the actual asset, which you can move to a wallet. A futures contract is an agreement about price, not ownership.
+
+**Do I want to bet on a fall?** Futures let you take a short position. On spot you can only sell what you hold.
+
+**Can I handle the extra risk?** A leveraged position can be closed by force if price moves against you, even if the coin later recovers. That requires planning your stop and size before you open the trade.
+
+**What are my costs?** Compare trading fees, funding, and the spread. A cheap-looking futures trade can cost more over a week than a spot trade, once funding is counted.
+
+A sensible path for most beginners is to learn on spot or paper trading, understand liquidation and funding with practice trades, and only then consider small, low-leverage futures positions. The [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator) and the [funding fee calculator](https://cryptobolt.io/funding-fee-calculator) are good places to start.
+
 ## Where to go next
 
 - [Funding rates explained](https://cryptobolt.io/funding-rate-explained): the ongoing cost that only futures traders pay.

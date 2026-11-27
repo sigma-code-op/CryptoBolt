@@ -71,6 +71,21 @@ Liquidity providers earn a share of every trade's fee, and those fees are the co
 
 Impermanent loss is only the arithmetic of balancing a pool. Liquidity providers also face smart-contract bugs and exploits, tokens that are scams or lose their peg, rug pulls on the pool's creator side, and the usual price risk of the tokens themselves. None of that is captured in a formula. A new, unaudited pool offering a very high yield is not a better deal than a boring one; it is usually a riskier one.
 
+## Three outcomes side by side
+
+For a standard 50/50 pool, impermanent loss depends only on how far the price ratio has moved from when you deposited, not on the direction. The rounded values below come from the usual formula, 2√r ÷ (1 + r) − 1, where r is the price ratio.
+
+| Price of one token versus the other | Loss compared with just holding |
+|---|---|
+| 1.25x (up 25%) | about 0.6% |
+| 2x (doubles) | about 5.7% |
+| 4x | 20% |
+| 0.5x (halves) | about 5.7% |
+
+Notice two things. A move up and the matching move down produce the same loss, and the loss grows quickly as the ratio diverges. A 2x move costs about 5.7%, but a 4x move costs 20%, far more than double.
+
+That is why the question "will I earn enough fees?" is the right one. If a pool pays 15% a year in fees and the pair moves 2x, the fees might cover the 5.7% shortfall over a few months. If the pair moves 4x quickly, the shortfall could take much longer to recover. The comparison you care about is fees earned against the loss, not either number alone. You can try your own numbers in the [impermanent loss calculator](impermanent-loss-calculator).
+
 ## A short checklist before you provide liquidity
 
 1. Work out the break-even fees for a few price moves (use the [calculator](impermanent-loss-calculator)).

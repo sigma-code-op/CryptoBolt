@@ -70,6 +70,20 @@ The popular story is that fewer new coins mean a higher price, because supply gr
 
 Anyone telling you with confidence what a halving will do to price is guessing. We explain why we refuse to make those guesses in [why CryptoBolt doesn't predict crypto prices](https://cryptobolt.io/why-we-dont-predict-crypto-prices).
 
+## Halving myths, checked
+
+A few ideas about the halving are repeated so often that they are easy to accept without thinking.
+
+**"The halving makes the price go up."** The halving reduces the rate of new supply. Whether that changes the price depends on demand, which no rule fixes. Markets also know the date years in advance, so much of the expectation can already be in the price.
+
+**"The halving happens on a fixed date."** It happens every 210,000 blocks. Blocks arrive about every ten minutes on average, so the calendar date is an estimate that shifts with how fast blocks are found.
+
+**"Miners stop mining after the halving."** Their reward per block is cut, which raises pressure on those with high costs. Miners with cheaper power and better hardware continue. Over time, transaction fees are meant to make up a larger share of miner income.
+
+**"Supply drops by half."** Only the *new* supply per block is halved. The existing coins stay where they are. The block reward started at 50 BTC and has fallen to 3.125 BTC since the April 2024 halving.
+
+The useful way to hold this is simple: the halving is a scheduled, known change to how fast new coins appear. It is context for the story of Bitcoin, not a trading signal on its own.
+
 ## How to use this knowledge sensibly
 
 The halving is a useful fact for understanding Bitcoin's monetary design and miner economics. It is not a trading signal. If you follow the market around such events, the more practical tools are the ones that measure what is happening now: [volatility](https://cryptobolt.io/glossary#volatility), the [funding rate](https://cryptobolt.io/funding-rate-explained), and sentiment gauges like the [Fear & Greed index](https://cryptobolt.io/fear-and-greed-index). Periods around big narratives tend to bring larger swings, so it is worth knowing your [liquidation price](https://cryptobolt.io/glossary#liquidation-price) before you use leverage, not after. And if you want to test how you would behave in that kind of market, [paper trading](https://cryptobolt.io/crypto-paper-trading) on live prices costs nothing. For live Bitcoin data, see the [Bitcoin page](https://cryptobolt.io/bitcoin).

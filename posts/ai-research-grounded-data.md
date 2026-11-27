@@ -57,6 +57,14 @@ Entry, stop, and target levels in CryptoBolt come from deterministic [ATR](gloss
 - **It can be wrong.** Even with live data, interpretation can be off. That is why the inputs are shown, so you can compare them with what you see yourself.
 - **It is not a replacement for a plan.** Position size, stop placement and risk limits are still your decisions.
 
+## A worked example: checking one claim
+
+Suppose the AI desk says: "Funding on this coin is elevated, which suggests traders are leaning long." Here is how to check that in two minutes.
+
+First, find the funding rate on the terminal and note the number. Second, compare it with what is normal for that coin: a rate of 0.01% per eight hours is the common baseline on many exchanges, so a reading of 0.05% is several times higher. Third, look at open interest. If open interest has also been rising, more positions are being opened, and the long side is paying to hold them. Fourth, check price. If price has not moved much while funding climbed, positions may be building without much price progress.
+
+At the end you have not learned where price will go. You have learned that the claim matches the data, and what the data does and does not say. That is the standard worth holding any AI summary to: every sentence should be something you could verify yourself in a few clicks.
+
 ## Frequently asked questions
 
 ### Does CryptoBolt AI make up price levels?

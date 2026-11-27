@@ -79,6 +79,31 @@ A coin priced at $0.0004 with a trillion coins in circulation is worth $400 mill
 
 High volatility is why people are drawn to crypto and also why it can hurt so quickly.
 
+## Price is only the last agreement
+
+The number on your screen is not what the coin is "worth". It is the price at which the most recent buyer and seller agreed to trade. A second later it can be different, because a different buyer or seller showed up. This is why price can jump on thin markets: there were simply few people willing to trade near the old number.
+
+Two ideas explain most moves. **Liquidity** is how much can be traded without moving the price much. **Volume** is how much did trade over a period. A coin with deep liquidity can absorb a large order quietly. A thin one cannot, and your own order can push the price against you before it finishes filling.
+
+## What really happens when you press buy
+
+Say the order book shows these sell offers: 2 coins at $100.10, 3 coins at $100.20 and 5 coins at $100.30. You send a market order to buy 6 coins. Your order takes the first 2 at $100.10, then 3 at $100.20, then 1 at $100.30. Your average price is about $100.18, not the $100.10 you saw. That small gap is slippage, and it grows with order size and with thin books.
+
+Nothing went wrong. The market simply gave you what was available, in order, cheapest first. Understanding this one mechanism removes a lot of beginner confusion about why fills "differ from the chart".
+
+## Spot, futures and why prices stay close
+
+When you buy on the spot market, you own the coin. A futures contract is an agreement whose value tracks the coin, and it lets you take a bigger position with less money. Perpetual futures never expire, so exchanges use a small periodic payment called the funding rate to nudge the contract price back toward the spot price. You will meet this properly in later lessons. For now, remember the shape: spot is ownership, futures are exposure with extra moving parts.
+
+## What moves prices in the short run
+
+- **News and scheduled events**, such as economic data releases or an exchange listing.
+- **Positioning.** When many traders lean the same way with borrowed money, a small move against them can force exits that push price further.
+- **Liquidity changes.** Weekends and late hours often have thinner books, so moves can look bigger.
+- **Plain noise.** Many moves have no clear cause at all. Not every candle needs a story.
+
+A useful habit while you learn: when price moves sharply, spend a minute on the order book and recent candles before reading a headline. Often the book already shows what happened, such as a stack of orders being cleared in a thin area.
+
 ## Scenario: the spread is the first cost
 
 The best bid is $99.90 and the best ask is $100.10. The gap is $0.20, or 0.2%. If you buy at the ask and immediately sell at the bid, you lose $0.20 per coin before any fee. That is why a price on a chart is not a price you can trade at: you buy slightly above it and sell slightly below it.

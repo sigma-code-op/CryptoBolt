@@ -108,6 +108,42 @@ Once a week, spend 20 minutes with your journal and answer:
 
 Change one thing at a time. Over a month, this review loop will teach you more than any course, including this one.
 
+## A complete sample plan to adapt
+
+A plan can fit on one page. Here is an example for a beginner who trades one coin on the 4-hour chart. Replace every number with your own.
+
+- **Markets:** BTC/USDT only, spot or low-leverage futures.
+- **Timeframe:** daily chart for direction, 4-hour chart for entries.
+- **Setup:** price pulls back to a previously tested zone inside an uptrend and a candle closes back above the zone.
+- **Risk per trade:** 1% of the account.
+- **Stop:** just below the zone.
+- **Target:** the next zone, only if the reward is at least twice the risk.
+- **Limits:** at most two trades a day, stop for the day after losing 2%.
+- **No-trade conditions:** major news in the next hour, no clear trend, or I am tired or upset.
+
+The last line is the most overlooked. A plan that says when not to trade protects you from the trades that cost the most.
+
+## What to record in your journal
+
+A journal is only useful if you can learn from it later. For every trade, record:
+
+- Date, market and direction.
+- Why you entered, in one sentence, before you click.
+- Entry, stop, target, size and the dollar amount at risk.
+- The result in R, meaning how many times your planned risk you won or lost.
+- Whether you followed the plan, yes or no.
+- One line on how you felt, such as calm, rushed or anxious.
+
+Measuring in R makes different trades comparable. A $50 win on a $10 risk is +5R, while a $50 loss on a $100 risk is −0.5R, so the dollar figures alone would mislead you.
+
+## A weekly review that takes twenty minutes
+
+1. Count trades, wins, losses and the total in R.
+2. Separate trades that followed the plan from those that did not. Compare their results.
+3. Find the largest loss and ask whether it was a plan trade or a rule break.
+4. Look for patterns: certain times of day, certain coins, certain moods.
+5. Choose one thing to improve next week. Only one.
+
 ## Scenario: what 20 journal entries reveal
 
 After 20 logged trades, a trader has 8 wins averaging +1.8R and 12 losses of -1R. The result is (8 x 1.8 - 12) / 20, or about +0.12R per trade. That is barely above zero, so the journal says the edge, if there is one, is small and costs matter. The same journal might also show that the three worst losses all happened after skipping the plan.

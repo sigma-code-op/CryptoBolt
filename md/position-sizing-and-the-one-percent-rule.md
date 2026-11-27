@@ -70,6 +70,20 @@ In the example above, the $1,000 position could be held with $1,000 of margin (1
 
 Once size is set by risk, you can evaluate whether a trade is worth taking by its [risk-reward](https://cryptobolt.io/glossary#risk-reward) ratio: how far to your target compared to how far to your stop. A trade risking $50 to make $150 needs to win far less often to be worthwhile than one risking $50 to make $50. Sizing and risk-reward are two halves of the same decision.
 
+## What changes when the stop distance changes
+
+The same account and the same risk percentage can lead to very different position sizes. Take a $10,000 account risking 1%, so $100 per trade, buying at $50.
+
+| Stop distance | Risk per coin | Coins | Position size |
+| --- | --- | --- | --- |
+| 2% ($49.00) | $1.00 | 100 | $5,000 |
+| 5% ($47.50) | $2.50 | 40 | $2,000 |
+| 10% ($45.00) | $5.00 | 20 | $1,000 |
+
+In each case a stop-out costs about $100. The tighter the stop, the bigger the position, which feels attractive, but a tight stop is also hit more often by ordinary noise. A 2% stop on a coin that routinely moves 5% in an hour will be triggered constantly, so the large position gives you more trades to lose, not more profit.
+
+This is why you start with the chart, not the account. Find where the idea is wrong, and let the stop distance tell you the size. If that size is too small to be worth the effort, the honest conclusion is that this trade does not suit your account, not that you should widen the risk.
+
 ## Practising it
 
 Position sizing is a habit more than a calculation. Doing it every time, on every trade, even in simulation, is how it becomes automatic. CryptoBolt's [paper trading](https://cryptobolt.io/crypto-paper-trading) account lets you practise sizing on live prices with virtual funds, and the numbers you build there are the same numbers you would use with real money.

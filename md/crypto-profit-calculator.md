@@ -64,6 +64,21 @@ Funding payments on perpetual contracts (use the [funding fee calculator](https:
 
 [Try the trade with virtual funds in paper trading →](https://cryptobolt.io/trade)
 
+## Reading your result: why percent and dollars tell different stories
+
+A $40 profit sounds good, but it means different things on different positions. On a $400 position it is a 10% return. On a $4,000 position it is 1%, and a single fee or slip could erase it. Always look at both numbers together, and at what you risked to get there.
+
+Compare two trades. Trade A: buy $1,000, sell at +3%, pay 0.2% in round-trip fees. Net profit is about $28. Trade B: the same, but you also gave up 0.3% in slippage because the coin was thinly traded. Net profit is about $25, a 10% smaller result from a cost you could have checked beforehand in the order book.
+
+## Using the calculator before a trade, not just after
+
+1. Enter your planned entry, your target and your fees to see the profit if it works.
+2. Enter the stop price as the exit to see the loss if it does not.
+3. Divide the first by the second. If the potential gain is not clearly larger than the potential loss, reconsider the trade.
+4. Check the break-even price, the level where fees are covered, and ask whether the move you expect is comfortably beyond it.
+
+Many people only use profit calculators to feel good about a win. They are more valuable as a pre-trade check on whether the numbers justify the risk.
+
 Check your understanding
 
 ## Worked example: a 10x long that moves 5%

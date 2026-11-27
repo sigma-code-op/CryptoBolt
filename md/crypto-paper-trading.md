@@ -84,6 +84,21 @@ Real money brings emotion, fees and slippage. Start small if you move on, and re
 
 Educational content, not financial advice. Paper results do not guarantee real results.
 
+## Six habits that make paper trading worthless
+
+Paper trading is easy to do badly. If your practice does not resemble the real thing, it can teach you habits that hurt when real money is involved. Watch for these:
+
+1. **Using absurd size.** A $1,000,000 virtual balance risked in huge positions teaches nothing. Set the balance to an amount you might really trade.
+2. **Ignoring costs.** If you do not count fees and slippage, your results will look better than reality.
+3. **Trading with no rules.** Without a written plan, you are only clicking. Decide risk, entry and exit before you start.
+4. **Skipping the losses.** Resetting the account after a bad run hides the lesson. Keep the results and study them.
+5. **Taking trades because it is free.** Fake money makes it tempting to gamble. Ask whether you would take this trade with real money, and if not, skip it.
+6. **Stopping too soon.** A handful of trades is noise. A few dozen starts to show how you behave.
+
+## What a good practice month looks like
+
+In a useful month you follow one plan, trade one or two markets, journal every trade, and review weekly. You will probably find that most of your mistakes are about process, not about picking direction: entering late, moving a stop, or sizing too big after a win. Those are exactly the problems that cost real money, and they are far cheaper to find here. When your plan-following rate is high and your risk per trade is steady, you have learned the most important thing paper trading can teach.
+
 FAQ
 
 ## Crypto paper trading basics

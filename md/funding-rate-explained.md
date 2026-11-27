@@ -51,6 +51,18 @@ Funding rate alone tells you the direction of the crowd. [Open interest](https:/
 
 There's no fixed threshold, but as a rough anchor: funding in the roughly 0.01%–0.02% range per 8-hour period (roughly 11–22% annualized if it never changed) is typical, unremarkable positioning on most major pairs. Rates that push toward 0.05%–0.1% per period (well over 50% annualized), especially while climbing, mean the crowd is leaning hard on one side and paying a real premium to stay there — that's the range where leveraged positioning starts getting fragile. If you're holding a leveraged position while funding runs against you, remember that funding is a running cost that eats into your margin over time, on top of — not instead of — your [liquidation price](https://cryptobolt.io/glossary#liquidation-price), which is set mainly by leverage and entry price, not by funding. (You can test this with the [liquidation price calculator](https://cryptobolt.io/liquidation-price-calculator).) CryptoBolt's terminal shows estimated liquidation price alongside live funding for exactly this reason: they're two separate risks that both need watching.
 
+## Funding in three scenarios
+
+Examples make the cost easier to feel. All three assume a $10,000 long position, and funding paid every eight hours, which is common on many perpetual markets.
+
+**Calm market, 0.01% per interval.** You pay $1 every eight hours, or $3 a day. Over a month that is about $90, about 0.9% of the position. Not alarming, but it adds up if you hold for weeks with a small expected gain.
+
+**Crowded longs, 0.05% per interval.** You pay $5 every eight hours, $15 a day, about $450 a month, which is 4.5% of the position. A trade that you expected to make 5% could have most of that eaten by funding alone.
+
+**Negative funding, −0.02% per interval.** Now shorts pay longs. You would *receive* about $2 every eight hours, $6 a day. This does not make the trade good, but it changes the holding cost.
+
+The rate can change at each interval, so these are snapshots, not forecasts. The habit to build is simple: before holding a perpetual position for more than a day, look at the current rate and multiply it out. The [funding fee calculator](https://cryptobolt.io/funding-fee-calculator) does the arithmetic for you.
+
 ## The catch
 
 Funding settles on a fixed schedule, every eight hours on many venues (some contracts use shorter intervals), so a single reading is a snapshot, not a trend. What's more useful is watching how it moves over the funding periods leading into a big move: rate climbing steadily into a rally, then spiking right before it stalls, is a very different picture than a rate that's been calm the whole way up. Treat it the same way you'd treat the Fear & Greed index or round-number levels — informative in isolation, more useful stacked with price action, volume, and open interest than read alone.

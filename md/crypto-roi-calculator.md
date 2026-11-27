@@ -68,6 +68,22 @@ Losses and gains are not symmetrical. A fall of 50% needs a rise of 100% to get 
 
 This is why limiting the size of a loss matters more than the size of a win. When the calculator shows a loss, the last figure tells you how far the price must rise from your exit to recover it. Pair this with the [risk-reward calculator](https://cryptobolt.io/risk-reward-calculator) before you enter, and the [average price calculator](https://cryptobolt.io/crypto-average-price-calculator) if you bought in several steps. The full method is laid out in [how to calculate crypto profit and loss](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss).
 
+## What ROI hides
+
+Return on investment is a ratio, and ratios hide size and time. A 50% ROI on $100 is $50. A 5% ROI on $10,000 is $500. And a 50% ROI that took three years is a very different result from a 50% ROI that took three weeks.
+
+## Comparing investments fairly
+
+To compare two results, convert them to an annualised figure. A 20% gain over six months is not 20% a year. Compounded, it is roughly 44% a year if repeated, but nothing guarantees it will be. Annualising is useful for comparing, and misleading if you treat it as a forecast. That is why short-term results should be quoted with their time period attached.
+
+## The loss side of ROI
+
+ROI is not symmetrical. After a −50% result you need +100% to get back to where you started. After −20% you need +25%. When the calculator shows a negative ROI, check what return would recover it. That number is often larger than people expect, and it explains why limiting losses matters more than chasing gains.
+
+## Include everything you paid
+
+For an honest ROI, count the full cost: purchase fees, withdrawal or network fees, and any funding or borrowing costs. Leaving these out can turn a small apparent gain into a small real loss. If you used leverage, calculate ROI on the margin you put in, not on the full position value, or the percentages will look far smaller than the risk you actually took.
+
 Check your understanding
 
 ## Worked example: a $2,000 spot trade

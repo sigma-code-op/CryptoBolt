@@ -60,6 +60,21 @@ Funding payments are taken from your margin balance. On a long held through many
 
 [See live funding rates alongside charts in the terminal →](https://cryptobolt.io/app)
 
+## Reading your result: three cases
+
+The calculator gives you a cost, but the number only means something next to what you expect to earn. Take a $5,000 long held for 5 days.
+
+At 0.01% per 8 hours, the cost is $0.50 per interval, $1.50 per day and $7.50 over five days, about 0.15% of the position. Most trades can carry that. At 0.05% the same hold costs $37.50, or 0.75%, which is a real slice of a trade aiming for 3%. At 0.10%, which appears in very crowded markets, it is $75, or 1.5%, and funding alone can decide whether the trade pays.
+
+## When this number misleads you
+
+- **The rate will not stay fixed.** It is recalculated every interval and can swing from positive to negative within days.
+- **Position value moves.** If price rises, the position is worth more and so is each payment.
+- **It is not the only cost.** Trading fees and slippage come on top, so add them before judging a trade.
+- **The sign matters.** If you are short while funding is positive, you receive the payment instead of paying it.
+
+A useful habit: run the calculator at the current rate, then again at three times that rate. If the trade still makes sense at the higher figure, funding is not your main risk.
+
 Check your understanding
 
 ## Worked example: a $20,000 long paying 0.01% per 8 hours

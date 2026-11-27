@@ -58,6 +58,16 @@ Say BTC is at $48,200 and you notice the order book shows 180 BTC of resting sel
 - **Placing a stop exactly on the level.** Many other traders do the same, which is why price often sweeps just past a round number before reversing. Think about where your idea is actually wrong, not just where the number is.
 - **Ignoring everything else.** Trend, funding and sentiment can all point in a different direction from the level.
 
+## Levels inside levels
+
+Not every round number is equal. A useful way to think about it is as a hierarchy.
+
+The biggest ones are the thousands and ten-thousands for a coin like Bitcoin, such as $60,000 or $100,000. These attract headlines, large orders and a lot of attention. Next are the half levels, like $62,500 or $57,500, and the hundreds in between. Smaller coins follow the same pattern at a smaller scale, so $1.00 and $0.50 matter for a low-priced token.
+
+Two practical points follow. First, price often reacts a little *before* the exact number, because traders place orders slightly early so they are filled. A resistance at $60,000 may show up as a pause at $59,800. Second, because many stops sit just beyond the number, price sometimes pushes through briefly and then reverses, leaving a wick. Both are tendencies, not rules.
+
+Use round numbers as zones, in the same way you would use any support or resistance level. Place your own stop beyond the zone, not on the number, and decide what you will do if the level fails. The number gives you a place to look. It does not tell you what happens next.
+
 ## Frequently asked questions
 
 ### Do round numbers work as support and resistance in crypto?

@@ -104,6 +104,37 @@ A 50% loss needs a 100% gain to repair. Deep [drawdowns](https://cryptobolt.io/g
 3. Do not increase size after wins out of excitement or after losses to "win it back".
 4. If the calculated size is too small to be worth it, skip the trade. That is a feature, not a bug.
 
+## A full sizing walkthrough
+
+Suppose your account is $2,000 and you decide to risk 1% per trade, which is $20. You want to buy a coin at $50 with a stop at $47. The distance between them is $3 per coin.
+
+Position size is the amount you risk divided by the risk per unit: $20 ÷ $3 is about 6.67 coins. That position costs about $333 at $50. If the stop is hit, you lose about $20, plus a little for fees and slippage. If you had instead bought 20 coins because it "felt right", the same stop would cost $60, three times your plan.
+
+Notice what drove the size: not your confidence, but the stop distance. A wider stop means fewer coins. A tighter stop means more coins, although tighter stops are hit more often by ordinary noise. The calculation forces a trade-off you would otherwise skip.
+
+## Why small risk per trade matters so much
+
+Losses are harder to recover than they look. A 10% loss needs about an 11% gain to get back to even. A 25% loss needs about 33%. A 50% loss needs 100%. Because of this asymmetry, a string of losses at big size can leave an account in a hole that is very hard to climb out of, even if your strategy is decent.
+
+Consider ten losing trades in a row, which happens more often than people expect for strategies that win less than half the time. At 1% risk each, you are down about 9.6%. At 5% risk each, you are down about 40%. At 10% risk each, you are down about 65%. The strategy is the same, the outcome is entirely different, and only the sizing changed.
+
+## Adjusting for real conditions
+
+- **Volatility.** If a coin routinely swings 8% a day, a 2% stop will be hit constantly. Either use a wider stop with a smaller size, or skip the coin.
+- **Several positions at once.** If three trades all depend on the same market move, they are really one large trade. Count their combined risk, not each one alone.
+- **Fees and slippage.** Allow a little extra, so a stop-out that costs slightly more than planned does not break your limit.
+- **Account changes.** Recalculate from the current balance now and then. Do not keep sizing from an old, larger number after losses.
+
+## A routine you can repeat every time
+
+1. Pick the risk percentage for the account and keep it fixed while you learn.
+2. Find the exit that proves your idea wrong, based on the chart rather than the money.
+3. Run the numbers in the {{position-size-calculator|position size calculator}}.
+4. Check the liquidation price if you use leverage. It should sit beyond your stop.
+5. Write the plan down: entry, stop, size, and the dollar loss if wrong.
+
+It takes a minute, and it is the single habit that most often separates accounts that survive from accounts that do not.
+
 ## Scenario: Ana sizes her first trade
 
 Ana has $2,000 and decides to risk 1%, which is $20. Her entry is $50 and her stop is $48, so the stop distance is $2. She can buy 10 coins, a $500 position. If the stop is hit she loses about $20. If she had wanted to buy 40 coins "because it feels right", the same stop would cost $80, or 4% of her account.

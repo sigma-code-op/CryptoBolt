@@ -77,6 +77,34 @@ Losing money to a scam is a different problem from losing it to the market, and 
 
 Never share your password, 2-factor codes or recovery phrase with anyone. No genuine support agent will ask. Turn on two-factor authentication, and only use well-known, regulated exchanges. Read our piece on [why get-rich headlines work](https://cryptobolt.io/1000-dollar-day-trap) for the psychology behind these pitches.
 
+## The same four patterns, over and over
+
+Most emotional mistakes fall into a small number of patterns. Learning their names makes them easier to catch in the moment.
+
+- **Fear of missing out (FOMO).** Price is running and you jump in late, at a worse price, with a wider stop than you would normally accept.
+- **Revenge trading.** After a loss you take a bigger, faster trade to "get it back". It is usually the least planned trade of the week.
+- **Moving the stop.** The trade goes against you and you widen the stop "to give it room". A small, planned loss turns into a large, unplanned one.
+- **Cutting winners short.** You close a good trade at the first sign of profit, then let losers run because closing them feels like admitting a mistake.
+
+## Why your brain makes this hard
+
+Humans feel losses more strongly than equal gains, a pattern researchers call loss aversion. That is why closing a losing trade hurts, and why holding on in hope feels easier than accepting the loss. Another pattern is that a few recent wins can make you feel more skilful than the evidence supports, so you size up exactly when you should not. None of this means something is wrong with you. It means that rules written in advance, when you are calm, protect you from decisions made when you are not.
+
+## Rules that work when emotions run high
+
+1. **A daily loss limit.** Decide a number, for example 2% of the account. If you reach it, you stop for the day, no exceptions.
+2. **A cooling-off rule.** After a losing trade, wait a set time, such as thirty minutes, before the next one.
+3. **A pre-trade sentence.** Before every entry, write: "I am buying because ___, I am wrong if ___, and I lose about $___ if so." If you cannot fill it in, you do not trade.
+4. **A maximum number of trades per day.** It limits overtrading and keeps costs down.
+
+## What a bad day should look like
+
+A well-run bad day is boring. You hit your daily limit after two small losses, close the app, and review what happened in your journal. A badly run bad day starts the same way, and then three more trades follow, each larger than the last. The difference between the two is not skill, it is whether a rule was in place and followed.
+
+Also look after the basics. Trading while tired, hungry, stressed about money, or after an argument tends to produce worse decisions. If you notice that your worst trades cluster at certain times, treat that as data and schedule around it.
+
+If trading ever starts to feel compulsive, or you find yourself risking money you cannot afford to lose, step away and talk to someone you trust. No trade is worth that.
+
 ## Scenario: doubling after a loss
 
 On a $5,000 account the plan risks $50 per trade. After a loss, a frustrated trader doubles the next size to win it back, then doubles again. Four losses in a row at $50, $100, $200 and $400 costs $750, which is 15% of the account. The same four losses at a fixed $50 cost $200, or 4%. The emotion does not change the odds of the next trade, but it changes the cost of the streak.

@@ -96,6 +96,34 @@ Under the candles you will usually see bars showing [volume](https://cryptobolt.
 
 **Go deeper:** every major pattern, with trade rules, risk notes and crypto-specific guidance, is covered in the ebook [The Complete Book of Candlestick Patterns](https://cryptobolt.io/ebook#candlestick-patterns) (a free sample is on the ebook page).
 
+## Reading a short sequence, not a single candle
+
+One candle tells you what happened inside one time slice. A sequence tells you about momentum. Compare these two imaginary hourly sequences that both end at the same price:
+
+**Sequence A:** four candles in a row that each close higher than they open, with small wicks. Buyers were in control in every hour.
+
+**Sequence B:** a large down candle, then three small candles drifting up. Sellers hit hard, and buyers only partly recovered.
+
+The ending price is identical, but the story is different. In A the move is steady, so a pause would not be surprising. In B the market first rejected a level aggressively, and a retest of that area is worth watching. You are not predicting anything. You are describing what the evidence so far says.
+
+## What wicks are telling you
+
+A long upper wick means price went up but sellers pushed it back down before the candle closed. A long lower wick means the reverse. Wicks are rejected prices, places the market tried and did not accept. Three practical uses:
+
+- A cluster of long lower wicks around one price shows buyers defending that area, which is useful for placing a stop just beyond it.
+- A very long wick on a low-volume candle can be a brief spike through thin orders and may mean little.
+- A wick that closes back inside the previous range often shows a failed breakout, a sign that the move did not attract follow-through.
+
+## Choosing a timeframe without overthinking it
+
+A candle on the 1-minute chart and one on the daily chart are the same shape but carry very different weight. Longer timeframes contain more trading, so their levels tend to be respected more often than levels on a 1-minute chart. A common beginner routine is to look at the daily chart first to see the broad picture, then step down to the 1-hour or 4-hour chart to plan the entry and the exit. Switching constantly between five timeframes until one agrees with you is a way of fooling yourself, so decide your main timeframe before you open the chart.
+
+## Why volume gives candles context
+
+A big green candle with heavy volume means many traders took part. The same candle on thin volume may have been moved by a few orders. Volume does not tell you direction, but it tells you how much to trust the move. If price breaks above a recent high and volume barely rises, treat the break with more doubt than if volume surges.
+
+Practise by scrolling back on any chart, covering the right side with your hand, and describing in one sentence what the last five candles show. Then uncover and see what came next. You will quickly notice how often the honest answer is "it was unclear", and that is a healthy thing to learn early.
+
 ## Scenario: reading one candle
 
 On the 1-hour chart a candle opens at $100, reaches a high of $104, a low of $98 and closes at $102. It is green because it closed above its open. The body ($100 to $102) shows where the hour started and ended. The upper wick ($102 to $104) shows buyers pushed higher but could not hold it, and the lower wick ($98 to $100) shows sellers pushed lower but were rejected.

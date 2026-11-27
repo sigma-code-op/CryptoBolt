@@ -63,6 +63,16 @@ A few details trip people up when comparing open interest across assets or time:
 - **Scale it.** A $2 billion open interest means something very different for Bitcoin than for a small coin. Looking at open interest relative to market cap, or relative to its own recent range, is more meaningful than the raw figure.
 - **Exchanges differ.** Each exchange reports its own open interest, and aggregated figures depend on which venues are included.
 
+## A stylised example: a leverage flush
+
+A made-up but typical sequence shows how open interest and price interact. Treat it as a teaching story, not a record of a particular day.
+
+Over several days price drifts up a few percent. Each day open interest climbs, which means new positions are being opened, and funding rises as more traders pile on the long side. The market looks calm because nothing dramatic has happened, but a lot of borrowed money is leaning one way.
+
+Then a modest drop of 3% to 4% happens, perhaps from a headline or a large sell order. Some highly leveraged longs hit their liquidation prices. Their positions are closed by force, and those forced sales push price down further, which triggers the next group of liquidations. Within minutes, open interest drops sharply, because positions are being closed, and price may overshoot lower than the news justifies.
+
+The lesson is not that every rise in open interest ends this way. Most do not. It is that high and rising open interest combined with high funding tells you the market is crowded, and crowded markets can move abruptly. That is a good moment to check your own leverage and your distance to liquidation.
+
 ## What it cannot do
 
 Open interest cannot tell you who is long and who is short in total, because every contract has both. It cannot tell you direction. And it cannot tell you the timing of any move. What it can do is show how much leverage the market is carrying, which is useful context for deciding how much leverage you want to carry yourself. If you want to see what a given leverage level means for your own position, the [liquidation price calculator](liquidation-price-calculator) is a good place to start.

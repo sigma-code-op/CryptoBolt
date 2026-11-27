@@ -54,6 +54,21 @@ None of this requires malice from every single poster — some genuinely had a l
 - Does the poster earn from referrals, subscriptions, or courses?
 - Can the result be repeated, or is it one trade?
 
+## What the arithmetic of a $1,000 day requires
+
+Turn the headline into a requirement and it stops looking casual. To make $1,000 in one day, you need a return that matches your account size:
+
+| Account size | Daily return needed for $1,000 |
+|---|---|
+| $5,000 | 20% |
+| $20,000 | 5% |
+| $50,000 | 2% |
+| $100,000 | 1% |
+
+Most traders do not hold $50,000 to $100,000 for a single day's trading, so the people posting such results are typically using leverage or very large positions. That means two things. First, the same position could just as easily have lost $1,000 or more. Second, a single day is not a business: what matters is whether the approach holds up across hundreds of days, including the bad ones.
+
+It also helps to remember what is not shown. A screenshot of one winning day hides the losing days before it and the fees on every trade. If someone posted ten days in a row, including the red ones, the picture would usually look very different. That is not cynicism, it is just how survivorship works: the winners post, and the rest go quiet.
+
 ## What to do with that instead
 
 The useful question was never "how do I get the $1000." It's "what would it actually take, and is that a real, repeatable plan or a single lucky outcome being presented as one." We wrote up what the actual [long-run research on day trading returns](day-trading-crypto-realistic-returns) shows — it's a very different picture than any single screenshot.

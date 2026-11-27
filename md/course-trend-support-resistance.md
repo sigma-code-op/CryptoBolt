@@ -85,6 +85,30 @@ Read [why we do not predict prices](https://cryptobolt.io/why-we-dont-predict-cr
 3. Where is my stop (the price that proves me wrong), and how big does that make my position?
 4. Is the reward at least about twice the risk?
 
+## Reading trend without fooling yourself
+
+A simple, testable definition of an uptrend is a series of higher highs and higher lows. A downtrend is lower highs and lower lows. Anything else, with price bouncing between two levels, is a range. Using a clear rule matters because the eye is very good at seeing trends in random noise.
+
+Check yourself with this exercise: pick a chart, hide the right side, and decide whether the last 30 candles form a trend or a range using the rule above. Then check what happened. You will often find that what looked like a strong trend was a range, and that is a valuable thing to learn before you risk money on it.
+
+## Levels are zones, not lines
+
+Support and resistance are better thought of as areas where orders have been concentrated, not exact prices. If price turned around $100 twice, the reaction may have occurred anywhere between $99.50 and $100.60. Draw a band, not a hairline. Then plan your stop beyond the whole band, because price often pokes just through the line before reversing.
+
+A level is stronger when it has been tested several times, when the reactions were sharp, and when it sits on a longer timeframe. A level on the 1-hour chart that lines up with one on the daily chart carries more weight than either alone. Round numbers, such as $100 or $60,000, also attract orders because people like to place them there. See the article on {{round-number-levels|round number levels}} for the detail.
+
+## When a level breaks
+
+When price closes clearly beyond a level and stays there, old resistance often becomes new support, and vice versa. This "role reversal" is common, but it is a tendency, not a law. A break that quickly falls back inside the range is called a failed breakout, and it can trap traders who bought the break. Many beginners enter on the first touch of a new high. A more careful approach is to wait for a close beyond the level and a retest that holds, accepting that you will sometimes miss part of a move.
+
+## Turning this into a plan
+
+1. Identify the trend on a higher timeframe using the higher highs and lows rule.
+2. Mark the two or three zones that mattered most recently.
+3. Define your idea in the form "if price holds above this zone, I buy, and I am wrong below it".
+4. Check the distance to the next zone to see whether the reward justifies the risk.
+5. If the trend and the zones disagree, or the picture is unclear, do nothing.
+
 ## Scenario: a range and what breaks it
 
 Price has moved between $90 and $100 for two weeks and bounced off $90 three times. The $90 area is support because buyers have repeatedly stepped in there. If a candle closes at $88 on strong volume, the idea that buyers will defend $90 is wrong, and your plan should already say what you do then. Levels are places where decisions get made, not guarantees.

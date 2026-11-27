@@ -10,6 +10,7 @@ import os, re, json, html, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from course_content_a import LESSONS_A
 from course_content_b import LESSONS_B
+from course_depth import DEPTH
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://cryptobolt.io"
@@ -240,7 +241,7 @@ def lesson_page(idx, s):
     mt = MODULES[s["module"]][0]
     prev = LESSONS[idx - 1] if idx > 0 else None
     nxt = LESSONS[idx + 1] if idx < TOTAL - 1 else None
-    body = render_body(s)
+    body = render_body(s) + DEPTH.get(s["slug"], "")
     take = "".join(f"<li>{esc(t)}</li>" for t in s["takeaways"])
     words = text_len(body) + text_len(s["tryit"]) + sum(text_len(q[0] + " ".join(q[1]) + q[3]) for q in s["quiz"])
     jl = [{"@context": "https://schema.org", "@type": "Article", "headline": s["title"], "description": s["desc"],

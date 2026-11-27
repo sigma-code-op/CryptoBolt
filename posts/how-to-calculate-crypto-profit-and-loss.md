@@ -70,6 +70,19 @@ A loss needs a larger gain to recover, because the base is smaller after the los
 
 This is the strongest argument for limiting risk per trade, which is covered in [position sizing and the 1% rule](position-sizing-and-the-one-percent-rule).
 
+## A full worked example, start to finish
+
+Seeing all the steps in one place helps. You buy 2 coins at $100 each and pay a 0.10% fee. You later sell both at $110 and pay 0.10% again.
+
+- **Buy:** 2 × $100 = $200, plus a fee of $0.20, so you spend $200.20.
+- **Sell:** 2 × $110 = $220, minus a fee of $0.22, so you receive $219.78.
+- **Profit:** $219.78 − $200.20 = **$19.58**.
+- **Return:** $19.58 ÷ $200.20 ≈ **9.78%**.
+
+The headline price move was 10%, but your return was 9.78%, because fees took a small bite on each side. On a small, short trade that is a rounding error. On a trade that makes 0.5%, the same fees could erase most of the gain, which is why it matters to include them.
+
+Now test the other direction. If you had sold at $95 instead, you would receive $189.81 after a $0.19 fee, for a loss of $10.39, or about 5.19%. The loss is a little larger than the 5% price drop, again because of fees. Fees always make a winning trade smaller and a losing trade larger.
+
 ## Common mistakes
 
 - Comparing ROE with the price move as if they were the same number.

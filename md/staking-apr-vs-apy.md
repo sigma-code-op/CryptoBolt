@@ -64,6 +64,20 @@ Staking rewards are normally paid in the staked token. Suppose you stake 10 toke
 | Running your own validator | You operate the node | Highest control, with technical work and slashing risk |
 | Liquid staking | You receive a token that represents your staked amount | You can use it elsewhere, but you add smart-contract and de-peg risk |
 
+## The same 5% two ways
+
+Suppose you stake $1,000 at a quoted 5%. What you receive depends on whether that is APR or APY and how often rewards compound.
+
+- **5% APR, no compounding:** $50 after one year.
+- **5% APR, compounded monthly:** about $51.16, an effective rate of roughly 5.12% (the APY).
+- **5% APR, compounded daily:** about $51.27, roughly 5.13%.
+
+The differences here are small, which is a useful lesson in itself: compounding matters more at high rates and over long periods. At 20% APR, monthly compounding gives roughly 21.9% APY, a gap you would notice.
+
+The bigger question is the price of the coin. If you stake a token for a year, earn 5% in new tokens, and the token falls by 20%, your position is worth less in dollars even though the number of tokens went up. Staking rewards are paid in the asset, so they do not protect you from its price.
+
+Also check whether the quoted rate is fixed or variable. Many networks adjust rewards based on how much is staked overall, so a number that looks attractive today can change next month. The [staking calculator](https://cryptobolt.io/crypto-staking-calculator) lets you test different rates and compounding periods.
+
 ## Questions to ask before you stake
 
 1. What is the rate after fees, and is it paid in the same token? 2. How long can my tokens be locked, and what does unstaking cost? 3. What happens to my tokens if the validator or platform fails? 4. Why is the rate this high? Unusually high yields usually mean higher risk. 5. Am I comfortable holding this token if its price halves?

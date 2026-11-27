@@ -101,6 +101,20 @@ Try an idea in paper trading, with a stop-loss and a position size you worked ou
 | Do I need an account to look around? | No. Signing in is only needed to save paper trading and settings to the cloud. |
 | Is it financial advice? | No. It is a research and practice tool, and every decision stays with you. |
 
+## A five-step routine for using a trading terminal well
+
+A terminal gives you a lot of information at once, which can make it harder to think, not easier. A fixed routine keeps you focused on what matters.
+
+1. **Start with the big picture.** Open the daily chart and note the trend and the two or three levels that mattered most recently.
+2. **Check positioning.** Look at funding and open interest. High funding with rising open interest suggests a crowded trade, which can mean sharp moves.
+3. **Look at the order book.** See how much size sits near price. Thin depth means your order may move the market.
+4. **Define the trade.** Write the entry, the stop and the size from your risk rule before touching the order panel.
+5. **Decide what would change your mind.** Name the condition that cancels the idea, so you are not inventing reasons later.
+
+## What not to do with it
+
+More screens do not create an edge. Beginners often add indicator after indicator until something agrees with what they already want to do. Pick a small set of tools, learn what each one shows, and ignore the rest. The goal of the terminal is to make your process faster and more careful, not to give you a reason to trade more often.
+
 FAQ
 
 ## Common terminal questions

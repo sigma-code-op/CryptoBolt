@@ -110,6 +110,39 @@ For a visual walk-through, watch our [leverage and liquidation video](https://cr
 
 ## A sensible rule for beginners
 
+## Leverage in numbers, step by step
+
+Leverage lets a small amount of money, called margin, control a larger position. With $100 of margin at 10x, you control a $1,000 position. Gains and losses are calculated on the full $1,000. A 1% move in price is therefore a 10% move in your margin: $10 on $100.
+
+Now see what happens when the market turns. At 10x, a 10% move against you removes your entire margin, so the exchange closes your position. That is a liquidation, and it can happen on a perfectly normal day for many coins. At 20x the same thing happens on roughly a 5% move. At 50x, close to 2%. Fees and maintenance margin make the real distance a little shorter than these round figures.
+
+| Leverage | Price move that wipes out margin (approx.) | Loss on margin from a 2% adverse move |
+| --- | --- | --- |
+| 2x | about 50% | 4% |
+| 5x | about 20% | 10% |
+| 10x | about 10% | 20% |
+| 25x | about 4% | 50% |
+| 50x | about 2% | 100% |
+
+The table uses simple round numbers to show the shape. Your exchange's exact liquidation price depends on fees, margin mode and maintenance margin, so always check it with the {{liquidation-price-calculator|liquidation price calculator}} before you open a trade.
+
+## The difference between leverage and risk
+
+Leverage and risk are related but not the same. What you actually risk on a trade is the distance from your entry to your stop, times your position size. You can trade 10x leverage and still risk only 1% of your account if the position is small and the stop is close. You can also trade 2x leverage and risk 30% of your account if the position is huge and there is no stop. The leverage number is a limit on how much room you have before liquidation, not a measure of how dangerous the trade is.
+
+That is why the safest way to use leverage is the opposite of how it is advertised. Decide your stop first, size the position so that hitting the stop costs about 1% of the account, then use only as much leverage as needed to open that position. If the liquidation price sits comfortably beyond your stop, you are using leverage as a tool. If your stop sits beyond your liquidation price, the exchange will close you out before your plan does.
+
+## Isolated and cross margin, briefly
+
+With **isolated margin**, only the margin you assign to a position is at risk. If it is liquidated, the rest of your account is untouched. With **cross margin**, your whole balance backs the position, which gives more room before liquidation but can put the entire account at stake. Beginners are usually better served by isolated margin, because the worst case is capped and visible.
+
+## Habits that keep leverage from hurting you
+
+- Never add margin to a losing position just to push the liquidation price away. It turns a small, planned loss into a large one.
+- Start at the lowest leverage that lets you open the position you planned. Raise it only when you can explain why.
+- Expect fast moves around news and weekends, and avoid maximum leverage during them.
+- Practise with leveraged paper trades first. Seeing a liquidation happen with fake money is far cheaper than with real money.
+
 ## Scenario: $500 at 5x
 
 You post $500 of margin at 5x leverage, so the position is worth $2,500. If price falls 10%, the position loses $250, which is half of your margin. Liquidation is roughly where the price has fallen about 19.5%, because 1 divided by 5 is 20%, less a 0.5% maintenance margin. The same trade at 20x has a cushion of only about 4.5%.

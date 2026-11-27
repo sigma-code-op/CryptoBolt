@@ -76,6 +76,19 @@ It will not predict price, guarantee a level will hold, or tell you what to buy.
 
 Educational content, not financial advice. Verify important information yourself and only risk money you can afford to lose.
 
+## How to get better answers from an AI research tool
+
+The quality of what you get depends a lot on how you ask. A few habits help.
+
+- **Ask specific questions.** "What has changed in funding and open interest for this coin over the last day?" is better than "Is this coin good?"
+- **Ask for the evidence.** Request the numbers behind a claim, then compare them with the panels yourself.
+- **Ask for the other side.** "What would make this view wrong?" often reveals the weak point in an argument.
+- **Keep your own timeframe.** Say whether you care about the next hour or the next month. The relevant evidence is different.
+
+## What an AI summary should never replace
+
+A summary can save time, but it cannot see your risk limits, your account size, or how you will feel if a trade drops 5%. Those decide whether a trade is right for you. Use the research to understand conditions, then do the sizing and the planning yourself. If an answer sounds certain about the future, treat that certainty as a flaw, not a strength.
+
 FAQ
 
 ## What AI crypto research helps with

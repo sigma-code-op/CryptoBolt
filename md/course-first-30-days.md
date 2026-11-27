@@ -102,6 +102,42 @@ If you prefer not to trade actively at all, that is a valid choice. Our guide to
 
 Congratulations on finishing the course. Remember, this is education, not financial advice, and trading carries a high risk of loss.
 
+## A week-by-week plan for your first month
+
+**Week 1: observe.** Open the terminal each day for fifteen minutes. Watch how the order book behaves, how candles form, and how price reacts near round numbers. Do not trade yet. Write down three things you noticed each day.
+
+**Week 2: practise the mechanics.** Place small paper trades using one market and one setup. The goal is not profit. It is to get used to placing entries, stops and targets quickly and correctly, and to recording every trade in your journal.
+
+**Week 3: practise the rules.** Add your risk limits: a fixed risk per trade, a daily loss limit and a maximum number of trades. Count how often you break your own rules. That number is more telling than your profit.
+
+**Week 4: review and decide.** Run a full review of the month. Compute your average result in R, how often you followed the plan, and your costs. Decide honestly whether you are ready to try a very small real position, or whether you need another month.
+
+## A readiness checklist
+
+Move to real money only when you can say yes to most of these:
+
+- I followed my plan on at least 80% of my paper trades.
+- I know my risk per trade in dollars before I enter.
+- I understand the liquidation price on any leveraged position I take.
+- I kept a journal for the whole month and reviewed it weekly.
+- I can explain what I would do if a trade went wrong, without improvising.
+- The amount I would use is money I could lose without changing my life.
+
+If you cannot tick enough boxes, nothing is lost. Another month of practice costs nothing, and you will be more prepared than most people who start.
+
+## Your first real trades
+
+When you do move to real money, shrink everything. Use a much smaller risk than you used in paper trading, maybe a quarter of it, because real money feels different. The aim of the first month is not profit, it is to see how you behave when the loss is real, and whether your rules survive. Many people find that rules which were easy on paper become hard with real money. That is normal, and it is the reason for starting small.
+
+Keep the journal going, and keep your daily loss limit. If you break your rules, go back to paper trading for a week, without shame. It is a sign that your process needs work, not that you have failed.
+
+## What to learn next
+
+- Read the guide on {{funding-rate-explained|funding rates}} and {{open-interest-explained|open interest}} if you plan to trade futures.
+- Study {{risk-reward-ratio-and-win-rate|risk-reward and win rate}} in more depth, then test your own numbers.
+- Try the {{crypto-backtester|backtester}} to see how a simple idea would have behaved on past data, remembering that the past does not predict the future.
+- Revisit the lessons on psychology every few weeks. They read differently after you have taken a few real losses.
+
 ## Scenario: a sample 30-day scorecard
 
 After 30 days on paper, a beginner has 22 logged trades, 9 wins averaging +1.6R and 13 losses of -1R. The result is (9 x 1.6 - 13) / 22, about +0.06R per trade. That is not proof of anything: 22 trades is a tiny sample. The real result of the month is that every trade has a plan, a size and a note, which is the habit you will take to real money.

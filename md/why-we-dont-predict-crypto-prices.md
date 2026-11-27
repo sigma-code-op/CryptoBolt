@@ -66,6 +66,22 @@ The second version is checkable, has its exit built in, and doesn't require know
 
 Ask four questions. Does it state a time frame? Does it name the level that would prove it wrong? Is there a public record of the source's past calls, including the misses? Is the source selling something that works better if you believe the call? A forecast that can't survive those questions is entertainment, not analysis.
 
+## Scenario thinking in practice
+
+Replacing "where will it go?" with "what will I do if?" sounds abstract, so here is a concrete example. Imagine a coin trading at $100 after a strong week.
+
+A prediction says: "It will reach $120." You cannot do anything with that except wait and hope.
+
+A scenario plan says:
+
+- *If price holds above $95 and pushes through $105 on rising volume,* the move has more support, so I may buy a small position with a stop just under $95.
+- *If price falls below $95,* the recent strength has failed, so I stay out or exit any position.
+- *If price chops between $95 and $105,* nothing is clear, so I do nothing.
+
+Notice what this does. It names the levels that matter, it ties each action to evidence rather than a feeling, and it includes a "do nothing" branch, which beginners tend to skip. You are not claiming to know the future. You are preparing responses to the futures that could plausibly happen.
+
+It also gives you a way to judge yourself afterwards. Did you follow the plan for the scenario that occurred? That is a question you can answer, while "was my prediction right?" often depends on luck.
+
 ## The catch
 
 Context isn't a guarantee either. Everything on your screen can line up and price can still do something else, which is why position size and stops come before conviction. Nothing here is financial advice; it's a way of looking at the market that doesn't depend on pretending to know what comes next.

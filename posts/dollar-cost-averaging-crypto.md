@@ -52,6 +52,17 @@ Neither is always better. The honest comparison is:
 
 The practical value of DCA is behavioural. A fixed schedule removes decisions, and decisions are where most investors go wrong: waiting for a dip that never comes, buying after a spike because of [FOMO](glossary#fomo), selling in a panic. An automated plan makes buying boring, and boring is good. The risk it does not address is the one inside the asset itself: a coin that falls and never recovers will lose you money no matter how evenly you bought it.
 
+## Choosing the interval and the amount
+
+People spend a lot of time choosing between weekly and monthly purchases. In practice, the difference between them is small compared with the other choices you make. What matters more:
+
+- **The amount.** Pick a sum that you could keep buying even in a month when you are short of cash. A plan you abandon after three months teaches you little.
+- **The consistency.** Buying on a fixed date, automatically if possible, removes the temptation to guess a "better" day.
+- **The fees.** If the platform charges a fixed fee per purchase, small frequent buys can lose a large share to fees. A $10 purchase with a $1 fee costs you 10% before price moves at all. Check the fee table before choosing a schedule.
+- **The time frame.** DCA is designed for long horizons. If you may need the money in a few months, the schedule does not remove the risk that the price is lower when you need to sell.
+
+A simple approach is to decide an amount and a date, write down how long you plan to continue, and decide in advance what would make you stop. Then leave it alone. The [DCA calculator](dca-calculator) lets you see how a schedule would have averaged out on past prices, which is useful for understanding the method, not for predicting the future.
+
 ## What can go wrong
 
 - **Fees.** If each purchase carries a fixed or minimum fee, many small buys can eat a noticeable share of your money. Check the fee before choosing a tiny amount.

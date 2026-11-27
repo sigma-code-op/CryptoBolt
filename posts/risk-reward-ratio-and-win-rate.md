@@ -59,6 +59,17 @@ A common mistake is to abandon a sound plan after a few losses in a row. Even go
 - **Account for costs.** Fees and funding reduce the reward and increase the loss. The [futures profit calculator](crypto-profit-calculator) shows the net figure.
 - **Do not widen a stop to avoid a loss.** That changes the ratio after the fact and is the usual way small losses become large ones.
 
+## How costs shift the break-even
+
+The break-even win rates in the table above ignore fees and slippage. Add a realistic cost and they move. Suppose costs equal 0.1R per trade, meaning every trade loses a tenth of your planned risk to costs.
+
+- At **1:1**, a winner nets +0.9R and a loser costs −1.1R. Break-even is a win rate of 55%, not 50%.
+- At **1:2**, a winner nets +1.9R and a loser costs −1.1R. Break-even is about 37%, not 33%.
+
+The tighter your stops and the more often you trade, the larger the cost is in relation to your risk, and the more these shifts matter. A strategy that looks marginally profitable before costs can easily be unprofitable after them.
+
+Practical consequence: when you test an idea, record your real costs in R from the first trade. When you plan a trade, prefer setups where the reward is large compared with both the risk and the cost of trying. And be suspicious of any approach that depends on very small stops and very high frequency, because that is exactly where costs dominate.
+
 ## Do not trust a short sample
 
 A win rate measured over twenty trades is nearly meaningless: luck dominates. Record every trade, including the ones you skipped for rule violations, and look at expectancy over at least a few dozen trades before changing anything. If you are new, test the plan with virtual funds in [paper trading](crypto-paper-trading) first. Beware also of survivorship bias: the traders who post screenshots of 10R wins rarely show the dozens of −1R trades around them.

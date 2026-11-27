@@ -68,6 +68,16 @@ Across the studies, a few patterns show up in the traders who did better than th
 
 [win rate](https://cryptobolt.io/glossary#win-rate)
 
+## The arithmetic of frequent trading
+
+Even before skill comes into it, trading often has a built-in handicap: costs. Take a trader with a $5,000 account who trades 5 times a day using the full account, paying about 0.2% per round trip in fees and slippage. That is $10 per trade, or $50 a day. Over 20 trading days that is about $1,000, a fifth of the account, just to stand still.
+
+Now compare a trader who makes 2 careful trades a week with the same costs: about $80 a month. The second trader needs far less luck or skill to break even, simply because fewer costs are in the way.
+
+This is why many of the people who last in trading do less, not more. They wait for setups where the likely reward is large compared with the cost of trying. It is also why the first month in paper trading is useful: you can count how often you actually trade and see how much of your result is just cost.
+
+A realistic goal for a beginner is not to match a screenshot, it is to end the year with the account intact and a clearer idea of whether trading suits you.
+
 ## A more honest way to explore this
 
 If the goal is figuring out whether a strategy could actually work, the useful move isn't picking a dollar target — it's testing the strategy against real, live price data without risking anything while you find out.

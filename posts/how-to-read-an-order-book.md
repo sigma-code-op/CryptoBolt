@@ -54,6 +54,19 @@ It is tempting to look at the book and see a forecast: far more bids than asks m
 
 So treat the book as a description of the present, not a prediction. It is excellent for judging the cost of getting in or out, and for seeing where size is concentrated, such as around a [round number level](glossary#round-number-level). It is a weak tool for guessing direction. That is the same reason CryptoBolt does not publish price forecasts, which we explain in [why we don't predict crypto prices](why-we-dont-predict-crypto-prices).
 
+## Walls that disappear
+
+A very large order sitting in the book looks like a barrier. It is natural to think price will stop there. But resting orders can be cancelled at any moment, and some traders place large orders with no intention of letting them fill, a practice called spoofing. It is prohibited in regulated markets, though how well it is policed on crypto venues varies.
+
+You do not need to accuse anyone to be careful. Treat a big order as a temporary fact about the book, not as a promise. A few ways to read it more honestly:
+
+- **Watch what happens when price approaches.** If the order is traded through, it was real. If it vanishes just before price arrives, it was not something to rely on.
+- **Look at it over time.** An order that has sat for hours and been partially filled is more believable than one that appeared a moment ago.
+- **Compare it with the rest of the book.** One huge order amid thin depth says more about the thin depth than about the order.
+- **Do not size your trade around it.** If your plan only works because a wall stays put, the plan has a hole.
+
+The book is a live picture of intentions, and intentions can change quickly. Useful information, but always a little provisional.
+
 ## A short checklist before a larger order
 
 - Check the spread. A wide spread on a quiet pair means instant execution is expensive.

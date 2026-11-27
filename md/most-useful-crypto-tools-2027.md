@@ -96,6 +96,14 @@ Notice that the biggest order sits at the lowest price. That is how a ladder wor
 
 Beginners can practice the whole routine with virtual money in [crypto paper trading](https://cryptobolt.io/crypto-paper-trading) before risking real funds.
 
+## Five questions to ask before you trust any trading tool
+
+New tools appear constantly. Before you build a habit around one, run it through a short filter.
+
+1. **Does it show its assumptions?** A calculator that hides how it gets its numbers is hard to trust. Good tools show the formula or at least the inputs. 2. **Does it use realistic costs?** A result that ignores fees, slippage and funding will look better than reality. 3. **Does it change your behaviour for the better?** The best tools make you slow down: they ask for a stop, show a liquidation price, or reveal a loss you were ignoring. 4. **Can you test it on something you already know?** Feed it a trade whose outcome you understand. If the output is wrong, you have learned something cheaply. 5. **Does it ask for more than it needs?** A calculator should not need your API keys. Be careful with anything that asks for access to your funds.
+
+No tool replaces a plan. The most useful ones simply make the parts of the plan harder to skip.
+
 ## Frequently asked questions
 
 ### What are the most useful crypto tools in 2027?

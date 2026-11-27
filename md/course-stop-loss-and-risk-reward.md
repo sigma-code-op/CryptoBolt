@@ -108,6 +108,35 @@ More detail is available in the [risk-reward calculator](https://cryptobolt.io/r
 
 If you cannot fill in all three, you are not ready to place the trade. Skip it. There will be another one tomorrow.
 
+## Where does the stop actually go?
+
+A good stop goes where your idea is proven wrong, not where a fixed percentage happens to land. If you buy because price bounced from a support area, a sensible stop sits just below that area. If price falls through it, the reason for the trade has gone. Then you work out position size from that distance, as in the previous lesson.
+
+Three common mistakes to avoid: a stop so tight that normal noise hits it, a stop at an obvious round number where many others sit, and a stop that you move further away whenever price approaches it. The last one defeats the purpose of having a stop at all.
+
+## Risk-reward and win rate work as a pair
+
+Risk-reward compares what you might gain with what you might lose. If you risk $20 to make $60, the ratio is 1:3. What is less obvious is that the ratio only means something alongside how often you win.
+
+| Risk-reward | Break-even win rate (before costs) |
+| --- | --- |
+| 1 : 1 | 50% |
+| 1 : 2 | about 33% |
+| 1 : 3 | 25% |
+| 2 : 1 (risk 2 to make 1) | about 67% |
+
+With a 1:3 setup you can lose three trades out of four and still break even. With a 2:1 setup you need to win two out of three just to stay level. Neither is automatically better. A strategy with a high win rate can use a small reward, and a strategy with a low win rate needs a large one. The trap is quoting a big ratio without checking whether the target is realistically reachable.
+
+## Expectancy: the average result per trade
+
+Expectancy combines both numbers. If you win 40% of the time, earn 2R on a win and lose 1R on a loss, then on average each trade returns (0.4 × 2) − (0.6 × 1) = 0.2R. That is a small edge. If you risk $20 per trade, you expect about $4 per trade before costs, and results will swing a lot around that average. Fees can easily eat a 0.2R edge, so check costs honestly.
+
+## Setting a target without wishful thinking
+
+Pick a target at a level where price has a reason to pause: a prior high, a round number, or an area where sellers appeared before. A target chosen only to make the ratio look pretty, such as "3x my risk because that sounds good", is a guess dressed as a plan. If the nearest sensible target gives you only 1:1, either accept a smaller size, wait for a better entry that improves the ratio, or pass on the trade.
+
+Passing is a legitimate decision. Many good traders take only a few setups a week, because most of what they see does not offer a clear exit and a worthwhile reward at the same time.
+
 ## Scenario: a 1:2 plan written before the entry
 
 Entry $100, stop $96, target $108. The risk is $4 and the reward is $8, a ratio of 1:2, so the plan breaks even at a 33.3% win rate. If you expect to win about four trades in ten, each trade carries an expectancy of about +0.2R before costs. The numbers are written down before the order is placed, so the exit does not get decided in the middle of a move.

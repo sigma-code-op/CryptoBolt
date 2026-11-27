@@ -68,6 +68,22 @@ Every buy and sell has a fee, so the true break-even price is a little above the
 
 This tool shows an average cost, which is how many people think about a position. Tax authorities may require a specific method (for example first-in-first-out or specific identification), and the rules differ by country. The average price here is for your own tracking, not tax reporting; ask a qualified tax professional how your jurisdiction treats crypto.
 
+## What your average price tells you, and what it does not
+
+An average cost is simply total money spent divided by total coins held. It is your break-even point, the price at which you would neither gain nor lose, before fees. It is not a target, and it has no influence on what the market does next.
+
+Suppose you buy 1 coin at $100, then 2 coins at $80, then 1 coin at $60. You spent $320 for 4 coins, so your average is $80. If the price is $70 you are down about 12.5%, even though your last purchase was at $60. Notice that the average moved toward the later, cheaper buys, which is the whole point of averaging down.
+
+## The trap of averaging down
+
+Buying more as price falls lowers your average, which feels like progress. But it also increases your exposure to something that is going the wrong way. Averaging down works when it is a plan made in advance with limits, such as a fixed amount on a fixed schedule. It is dangerous when it is a reaction, with bigger purchases each time, because losses can grow faster than your average improves.
+
+## A quick discipline
+
+- Decide the maximum total you are willing to put into one coin before the first purchase.
+- Write down the price at which you would admit the idea was wrong.
+- Use the calculator to see how far price must recover to reach break-even after each extra buy.
+
 Check your understanding
 
 ## Worked example: three buys at three prices

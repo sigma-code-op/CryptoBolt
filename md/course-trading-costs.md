@@ -86,6 +86,35 @@ Costs repeat on every trade. A trader who makes 10 round trips a day at 0.25% ea
 
 To practise the arithmetic on a real position, try our [profit and loss guide](https://cryptobolt.io/how-to-calculate-crypto-profit-and-loss) and the [ROI calculator](https://cryptobolt.io/crypto-roi-calculator), which both include fees.
 
+## A cost calculation worth doing once
+
+Costs feel small on one trade and large over many. Take a simple setup: you trade $1,000 per position, pay a 0.10% fee on entry and 0.10% on exit, and also lose about 0.05% to slippage on each side. That is 0.30% per round trip, or $3 on a $1,000 trade.
+
+Now suppose you make 20 round trips in a month. Costs alone come to about $60, or 6% of the $1,000 you used per trade. Your trades must earn more than that just to break even. A beginner who makes 100 small trades with the same setup pays about $300 in costs, which is 30% of the $1,000 used per trade, before earning a cent.
+
+## Three costs, three different causes
+
+- **Fees** are charged by the exchange as a percentage of the trade. They are known in advance.
+- **Spread** is the gap between the best buy price and the best sell price. If you buy and sell instantly you pay it every time.
+- **Slippage** is the difference between the price you expected and the price you got, usually because your order was larger than the size available at the best price.
+
+On a large, liquid coin the spread can be tiny and slippage small. On a lightly traded coin, the spread alone can be a noticeable fraction of your expected profit.
+
+## Costs that depend on how long you hold
+
+On perpetual futures, a funding payment is exchanged between long and short traders at regular intervals. When funding is positive, longs pay shorts; when negative, the opposite. A small rate can look harmless, but it repeats several times a day. At 0.01% per eight hours, a long position pays about 0.03% per day, close to 11% per year on the position size if the rate stayed the same, which it rarely does. That is why a trade you plan to hold for weeks needs a different cost check from one you hold for an hour.
+
+Leverage also makes cost percentages larger relative to your own money. A 0.30% round-trip cost on a position ten times your margin is 3% of your margin, before the trade has even moved.
+
+## A pre-trade cost checklist
+
+1. Write the fee rate you actually pay, not the headline one. Fee tiers and token discounts change it.
+2. Look at the order book. If your size would eat several levels, estimate the slippage.
+3. Add the likely funding cost if the trade will run past a funding time.
+4. Compare the total with the profit you expect. If costs take more than a fifth of the expected gain, the trade needs a better reason or a different size.
+
+The {{funding-fee-calculator|funding fee calculator}} and the {{crypto-profit-calculator|profit calculator}} can run these numbers for you, and doing so before you enter is one of the cheapest habits you can build.
+
 ## Scenario: the true price of a $1,000 round trip
 
 A trade has a 0.1% fee each side ($2 in total), a spread of 0.1% ($1) and slippage of about 0.05% ($0.50). That is about $3.50, or 0.35% of the trade. Price must move more than 0.35% in your favour just to get you back to even. Do ten such trades a day and the costs alone are 3.5% a day before the market has done anything.

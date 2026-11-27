@@ -64,6 +64,20 @@ Stake $10,000 at 5% APR, compounded daily, for three years. The balance grows to
 
 For a longer explanation of how staking rewards are produced and where the risks sit, read [staking: APR vs APY](https://cryptobolt.io/staking-apr-vs-apy). To compare earning a yield with trading for a gain, the [crypto ROI calculator](https://cryptobolt.io/crypto-roi-calculator) shows the net result of a trade after fees.
 
+## How to read the projected reward
+
+The calculator multiplies your balance by a rate over time. That is arithmetic, not a promise. Real staking rewards depend on network rules, how many others are staking, and sometimes on validator performance. Treat the output as a "what if the rate stayed this way" figure.
+
+## Three things the projection leaves out
+
+- **The coin price.** Rewards are usually paid in the staked token. If its price falls 30%, a 6% reward does not rescue the position in dollar terms.
+- **Lock-up and unbonding.** Some networks hold your coins for days or weeks after you unstake. You cannot sell during that period.
+- **Fees and risk.** Platforms or validators may take a commission, and a validator that misbehaves can be penalised, which can reduce your balance in some systems.
+
+## Getting more from the tool
+
+Run it twice: once with the current advertised rate and once with half of it. Rates often fall as more people stake. If the lower figure still justifies locking your coins, the decision is sturdier. Also compare compounding on and off, to see how much of the result depends on reinvesting rewards, which may need manual action on some platforms.
+
 Check your understanding
 
 ## Worked example: 8% APR compounded daily for 3 years

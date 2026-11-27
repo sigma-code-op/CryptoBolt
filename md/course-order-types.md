@@ -85,6 +85,35 @@ If your order **waits** in the book (a limit order), you are a *maker*: you add 
 - **Protecting:** set a stop as soon as you are in.
 - **Always** check the order preview before you confirm: side (buy or sell), price, amount and fee.
 
+## Choosing the order: a plain decision guide
+
+Instead of memorising definitions, ask three questions in this order.
+
+1. **Do I care more about getting in now, or about the price?** If it must happen now, a market order. If price matters more, a limit order.
+2. **Do I need a protective exit?** If yes, plan a stop order before you enter, not after.
+3. **Is the market calm or fast?** In a fast market, market orders slip more and limit orders may not fill at all. Neither is "safe", they fail in different ways.
+
+## The hidden cost of waiting with a limit order
+
+A limit order feels like a bargain: you name your price. The cost is that nothing guarantees a fill. Suppose you want to buy at $98 while price is $100. If price dips to $98.10 and bounces, you never get in and your idea plays out without you. That is not a failure, it is the trade-off you chose. Many beginners get frustrated and chase the price with a market order at $103, which is usually the worst of both worlds.
+
+A calmer approach: decide beforehand whether you will accept missing the move. If the answer is "yes, I only want that price", leave the limit and walk away. If the answer is "no, I want to be in", you should have used a different size or a different plan.
+
+## What a stop does and does not do
+
+A stop order stays dormant until price reaches its trigger, then becomes a real order. If it becomes a market order, you get out but maybe not at the trigger price. If it becomes a limit order, you get a price you accept but may not get out at all. Because of this, a stop is a plan for the typical case, not a guarantee against the worst case. In very fast moves, even a good stop can fill several percent beyond its trigger.
+
+## Maker and taker in practice
+
+Exchanges usually charge lower fees to orders that add liquidity (makers) than to orders that remove it (takers). A resting limit order that fills later is typically a maker. A market order is a taker. On a single trade the difference looks tiny, but a person who trades often can pay noticeably more as a taker. Keep this in mind, and do not let the saving push you into a limit order you would never want to miss.
+
+## Four order mistakes worth avoiding
+
+- Using a market order on a thin coin without looking at the order book first.
+- Placing a stop exactly on a round number where many other stops sit.
+- Forgetting that a resting order stays live. A forgotten limit order can fill days later when you no longer agree with it.
+- Sending a bigger order than your plan allows because "the price looked great".
+
 ## Scenario: $1,000 market order in a thin book
 
 You place a market buy for $1,000. The first few coins fill at $100.00, but the order has to climb the asks and the average fill ends up at $100.05, which is 0.05% worse. That is $0.50 of slippage. On a calm major coin it is negligible. On a thin coin, or a bigger order, the same mistake can cost many times more. A limit order would have avoided it, at the price of maybe not filling.

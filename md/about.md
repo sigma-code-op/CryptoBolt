@@ -72,6 +72,20 @@ Development is ongoing and mostly driven by user feedback submitted through the 
 
 Questions? [Get in touch](https://cryptobolt.io/contact).
 
+## The principles behind the site
+
+Every page on CryptoBolt is written to the same short list of rules, so you can judge the site by whether it keeps them.
+
+- **No predictions.** Nobody can reliably say where a price goes next. The site explains conditions and risk instead.
+- **Show the arithmetic.** Calculators display their formulas, and articles use worked numbers so you can check them.
+- **Say what a tool cannot do.** Funding, slippage and liquidation are explained with their limits, not just their benefits.
+- **Teach before selling.** Learning material is free to read, and anything paid is labelled clearly.
+- **Admit mistakes.** If something on the site is wrong, you can report it through the contact page and it will be fixed.
+
+## Who it is for
+
+The site is aimed at people who want to understand markets before they risk money: beginners who need clear explanations, and more experienced traders who want quick, honest tools for sizing and checking a plan. If you want signals or guaranteed returns, this is not the place, and any site that promises them deserves your suspicion.
+
 Trust and independence
 
 ## How the site is run and how it is funded

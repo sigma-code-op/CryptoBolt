@@ -58,6 +58,16 @@ The most common mistake is choosing a stop by feel or by a percentage that sound
 - **Volatility.** A stop tighter than the asset's normal movement will be hit by noise. Measures such as [ATR](glossary#atr) express typical movement in price terms and are one way to set a distance that fits the coin you are trading.
 - **Size.** Once you know the stop distance, work backwards to the position size that makes the loss acceptable. That calculation is covered in our guide to [position sizing](position-sizing-and-the-one-percent-rule).
 
+## Trigger prices, mark price and fast markets
+
+Two details trip up many beginners on futures.
+
+**What price triggers the stop?** Many exchanges let you choose between the last traded price and the mark price. The last price is where the most recent trade happened, and can spike on a single large order. The mark price is a smoothed reference, designed to resist manipulation, and is often used for liquidations. A stop that triggers on the last price may fire in a brief wick that the mark price ignores. Check which one your order uses and pick deliberately.
+
+**Where does the stop live?** A stop order placed on the exchange is checked by the exchange's systems. A "mental stop", which you plan to place by hand, depends on you being awake, online and willing to act. Crypto markets run around the clock, so there is no overnight gap like in stock markets, but sudden spikes at 3 a.m. still happen. If you cannot watch the market, a stop on the exchange is far safer.
+
+**What about outages?** Exchanges can slow down or pause under heavy load, exactly when stops matter most. You cannot remove that risk, but you can size positions so that a worse-than-planned fill does not hurt too much. As a rule of thumb, assume your real loss can exceed your planned loss, and make sure that is still acceptable.
+
 ## Practice before it costs money
 
 How a stop behaves in a fast market is hard to appreciate from a description. Using [paper trading](glossary#paper-trading) on live prices lets you see slippage and stop-outs happen with virtual funds, which is far cheaper than learning it with real ones.

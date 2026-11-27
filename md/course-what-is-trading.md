@@ -79,6 +79,39 @@ That is not meant to scare you off. It is meant to set the right target. If you 
 
 This course is education, not financial advice. Trading carries a high risk of loss.
 
+## Two beginners, the same $500
+
+Numbers make the point better than advice does. Imagine two people who each start with $500 and a vague wish to "make some extra money".
+
+**Sam** opens a leveraged position worth $5,000 on the first day, because the app made it one tap. Price moves 2% against him. That is a $100 loss, a fifth of the account, in an afternoon. He panics, adds money to "win it back", and ten days later the account is empty.
+
+**Priya** starts in paper trading. Over four weeks she places thirty practice trades, risking about $5 on each. Her results are mixed: eleven winners, nineteen losers, and a small net loss. But she notices something useful. Nearly all her worst trades were entered within minutes of seeing a big green candle. She writes that down as a rule: no entries right after a spike. Only then does she put in a small amount of real money.
+
+Neither person was smarter than the other. Priya simply paid for her education with fake money and Sam paid with real money. That is the single biggest lever a beginner controls.
+
+## Who is on the other side of your trade?
+
+Every trade needs two parties. When you buy, someone sells to you, and that someone may be a patient long-term holder, a market-making firm quoting prices all day, or a program that reacts in milliseconds. You will rarely know which. What matters is that you should not assume the other side is making a mistake. Often they are simply working on a different time scale, or hedging something you cannot see.
+
+This is why a trade needs a reason that goes beyond "it looks like it will go up". A better reason sounds like: "Price has pulled back to a level where buyers stepped in twice before, I can place my exit just below it, and if I am wrong the loss is small." That sentence can be checked, and it contains its own exit.
+
+## Where the real skill is
+
+New traders usually think the skill is predicting direction. In practice, direction is the least controllable part. Four things are far more in your hands:
+
+- **How much you risk.** Cutting a position in half halves every loss, whether or not your idea was good.
+- **Where you exit if you are wrong.** A planned exit turns an open-ended problem into a known cost.
+- **What you pay.** Fees and slippage are certain, while profits are not. Fewer, better trades usually cost less.
+- **How you behave after a loss.** A calm routine after a losing trade matters more than any indicator.
+
+## Questions beginners ask before they start
+
+**"How much money do I need?"** To learn, none: paper trading is free. To trade for real, only an amount you could lose completely without it changing your life. Many beginners start with a sum so small that a bad day is an annoyance, not a crisis.
+
+**"Can I do this full time?"** Treat that as a long-term question. Trading income is uneven, and a salary is not. Learning part time, with a separate income, removes the pressure to force trades just to pay bills.
+
+**"Should I follow someone's signals?"** A signal you do not understand is a decision you cannot manage. If you cannot say why you are in a trade and where you will get out, you will not know what to do when it moves against you. Learning your own process is slower but it is the one that lasts.
+
 ## Scenario: what a small trade really looks like
 
 Sam buys $200 of a coin at $50 and sells at $55. That is 4 coins, a $220 sale and a gross gain of $20. With a 0.1% fee on each side, fees are about $0.42, so the net profit is about $19.58. Notice what is missing: a signal, a prediction or a secret. A trade is a decision about price, size and exit, plus the cost of making it.

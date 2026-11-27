@@ -47,6 +47,18 @@ This convergence isn't all upside.
 
 Three habits reduce these risks: keep a human confirmation step for anything that moves money, enforce position limits in code instead of in the prompt, and compute numbers with ordinary code instead of asking a model for them. CryptoBolt follows the same thinking. Its AI chat can propose changes to a paper-trading account, but nothing changes until you press Confirm, and price levels come from [deterministic math rather than the model](ai-research-grounded-data).
 
+## A practical test for any "AI crypto" claim
+
+Marketing around AI and crypto moves faster than the products behind it. A few questions cut through most of the noise:
+
+1. **What data does it actually see?** An AI that only reads old text cannot know today's funding rate. Look for live inputs it names.
+2. **Can you check its claims?** A good answer points to a number or a panel you can open yourself. If you cannot verify it, treat it as an opinion.
+3. **Does it admit uncertainty?** Markets are uncertain. A tool that never says "this is unclear" is probably overselling.
+4. **Does it make price promises?** If it tells you where a coin will be next week, that is a warning sign, not a feature.
+5. **Who is paid when you act on it?** A tool that earns from your trades has different incentives from one that does not.
+
+None of these questions needs technical knowledge. They simply move the conversation from "is it AI?" to "is it useful and honest?", which is the question that matters.
+
 ## What's next
 
 The near-term trajectory points toward more autonomous, agent-driven finance: AI systems that don't just advise on crypto markets but actively participate in them, backed by on-chain accountability. Whether that makes markets more efficient or more fragile will likely depend less on the technology itself and more on how carefully these systems are designed, tested, and constrained.

@@ -52,6 +52,17 @@ Zone boundaries are approximate and the provider can change them, but the rough 
 | 56 to 74 | Greed | Rising momentum and confidence | Is funding rising with it? Is price extended from its averages? |
 | 75 to 100 | Extreme greed | Crowd is very optimistic | Look for crowded longs and stretched funding |
 
+## Using the index with your own plan
+
+The index is most useful as a mood gauge, not a signal. A short routine keeps it in its place.
+
+1. **Read the score and the trend.** A reading of 25 that has been falling for a week says something different from a reading of 25 that has just jumped up from 10.
+2. **Ask what you are doing about it.** If the answer is "buying because the score is low" or "selling because it is high", pause. That is a rule of thumb many people share, so it can be crowded, and it ignores your own situation.
+3. **Check it against your plan.** Does your plan have a trade here? Does the mood change your position size or your stop? If the index is extreme, the sensible response is often to size down, because moves can be fast in both directions.
+4. **Look at the price action beside it.** Mood and price usually move together. A gap between them, such as price rising while sentiment stays fearful, is an observation worth noting, not a verdict.
+
+Used this way, the index stops being a button and becomes a prompt to check your own discipline. It is a useful question to ask, "Am I reacting to the crowd?", even if the score cannot answer it for you.
+
 ## Common mistakes
 
 - **Buying every extreme fear reading.** The score can stay in fear for weeks in a real downtrend. Buying early means taking the full drop.

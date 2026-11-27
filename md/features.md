@@ -176,6 +176,20 @@ Four browser-based tools that need no signup: [liquidation price](https://crypto
 
 A live scrolling strip of the day's biggest movers and trending coins, so you catch what's moving without hunting for it.
 
+## Which feature to learn first
+
+If you are new, the number of tools can feel like a lot. A simple order makes it manageable.
+
+1. **Charting.** Learn to read candles and mark a few levels. Everything else builds on this.
+2. **The order book.** Learn what the two sides show and how a market order walks through them.
+3. **Paper trading.** Practise entries, stops and targets with virtual money before you risk anything.
+4. **Alerts.** Once you have levels in mind, let alerts watch them so you are not glued to the screen.
+5. **The AI desk.** Use it last, as a second opinion that you can check, not as a starting point.
+
+## How the features work together
+
+A typical session might start with a chart to find a level, a glance at the order book to see how much size sits near it, a calculator to size the trade from the stop, and a paper trade to rehearse. Each tool answers one question, and the value comes from asking them in order. If you skip straight to placing an order, the other tools have nothing to do.
+
 In practice
 
 ## One trading session, start to finish
